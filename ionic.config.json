@@ -1,0 +1,7 @@
+{
+  "name": "BMW-ESM-APP",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
