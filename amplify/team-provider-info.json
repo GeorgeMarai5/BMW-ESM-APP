@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bmwesmapp-dev-145645-authRole",
+      "UnauthRoleArn": "arn:aws:iam::423654800714:role/amplify-bmwesmapp-dev-145645-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::423654800714:role/amplify-bmwesmapp-dev-145645-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-bmwesmapp-dev-145645-deployment",
+      "UnauthRoleName": "amplify-bmwesmapp-dev-145645-unauthRole",
+      "StackName": "amplify-bmwesmapp-dev-145645",
+      "StackId": "arn:aws:cloudformation:us-east-1:423654800714:stack/amplify-bmwesmapp-dev-145645/001d0470-c885-11ec-a936-125e1641868f",
+      "AmplifyAppId": "d2sh51n0oyqbhb"
+    },
+    "categories": {
+      "auth": {
+        "bmwesmapp7f351355": {}
+      }
+    }
+  }
+}
