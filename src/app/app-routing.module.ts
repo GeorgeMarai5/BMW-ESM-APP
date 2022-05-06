@@ -11,18 +11,9 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'addclientaccount',
-    loadChildren: () => import('./addclientaccount/addclientaccount.module').then( m => m.AddclientaccountPageModule)
-  },
-  {
-    path: 'searchclientaccount',
-    loadChildren: () => import('./searchclientaccount/searchclientaccount.module').then( m => m.SearchclientaccountPageModule)
-  },  {
-    path: 'searchclientaccount',
-    loadChildren: () => import('./searchclientaccount/searchclientaccount.module').then( m => m.SearchclientaccountPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   }
-
-
 ];
 @NgModule({
   imports: [
