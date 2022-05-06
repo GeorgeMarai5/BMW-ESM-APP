@@ -1,27 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>searchclientaccount</ion-title>
+    <ion-title>Search Client Account</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form class="search-form">
-    <ion-content>
-      <ion-card>
-        <input type="text" id="searchBox" placeholder="Search...." name="searchField" />
-          <ion-list>
-            <ion-row>
-    Client ID, Name, Phone, Email
-            </ion-row>
-            <ion-row>
-
-     <button>View</button>
-    <button>Remove</button> 
-   </ion-row>
-   </ion-list>
-    </ion-card>
-    </ion-content>
-    </form>
-    
-    
+<ion-content fullscreen="true">
+  <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" showCancelButton="focus" animated>
+  </ion-searchbar>
+  <ion-item *ngFor="let client of clients">
+    <ion-label> {{client.cliendID}}</ion-label>
+    <ion-label> {{client.Name}}</ion-label>
+    <ion-label> {{client.Phone}}</ion-label>
+    <ion-label> {{client.Email}}</ion-label>
+  </ion-item>
 </ion-content>
+
+
+//| filter:searchTerm"
