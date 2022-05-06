@@ -9,19 +9,11 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },  {
-    path: 'view-client-account',
-    loadChildren: () => import('./view-client-account/view-client-account.module').then( m => m.ViewClientAccountPageModule)
   },
   {
-    path: 'delete-client',
-    loadChildren: () => import('./delete-client/delete-client.module').then( m => m.DeleteClientPageModule)
-  },
-  {
-    path: 'update-client',
-    loadChildren: () => import('./update-client/update-client.module').then( m => m.UpdateClientPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   }
-
 ];
 @NgModule({
   imports: [
