@@ -9,7 +9,20 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'addclientaccount',
+    loadChildren: () => import('./addclientaccount/addclientaccount.module').then( m => m.AddclientaccountPageModule)
+  },
+  {
+    path: 'searchclientaccount',
+    loadChildren: () => import('./searchclientaccount/searchclientaccount.module').then( m => m.SearchclientaccountPageModule)
+  },  {
+    path: 'searchclientaccount',
+    loadChildren: () => import('./searchclientaccount/searchclientaccount.module').then( m => m.SearchclientaccountPageModule)
   }
+
+
 ];
 @NgModule({
   imports: [
