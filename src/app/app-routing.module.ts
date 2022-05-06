@@ -9,23 +9,11 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },  {
-    path: 'create',
-    loadChildren: () => import('./create/create.module').then( m => m.CreatePageModule)
   },
   {
-    path: 'update-password',
-    loadChildren: () => import('./update-password/update-password.module').then( m => m.UpdatePasswordPageModule)
-  },
-  {
-    path: 'dashboard-employee',
-    loadChildren: () => import('./dashboard-employee/dashboard-employee.module').then( m => m.DashboardEmployeePageModule)
-  },
-  {
-    path: 'dashboard-client',
-    loadChildren: () => import('./dashboard-client/dashboard-client.module').then( m => m.DashboardClientPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   }
-
 ];
 @NgModule({
   imports: [
