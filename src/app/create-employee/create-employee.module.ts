@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { CreateEmployeePageRoutingModule } from './create-employee-routing.module';
 
 import { CreateEmployeePage } from './create-employee.page';
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CreateEmployeePageRoutingModule
+    CreateEmployeePageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [CreateEmployeePage]
 })
