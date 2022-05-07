@@ -5,20 +5,18 @@ import { FormControl, FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class PostService {
-
-  // Inspired on: http://plnkr.co/edit/Zcbg2T3tOxYmhxs7vaAm?p=preview
   static areEqual(formGroup: FormGroup) {
-    let val;
+    let va;
     let valid = true;
 
     for (let key in formGroup.controls) {
       if (formGroup.controls.hasOwnProperty(key)) {
-        let control: FormControl = <FormControl>formGroup.controls[key];
+        let con: FormControl = <FormControl>formGroup.controls[key];
 
-        if (val === undefined) {
-          val = control.value
+        if (va === undefined) {
+          va = con.value
         } else {
-          if (val !== control.value) {
+          if (va !== con.value) {
             valid = false;
             break;
           }
