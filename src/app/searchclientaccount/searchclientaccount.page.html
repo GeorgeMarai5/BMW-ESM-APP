@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search Client Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" showCancelButton="focus" animated>
+  </ion-searchbar>
+  <ion-item *ngFor="let client of clients">
+    <ion-label> {{client.cliendID}}</ion-label>
+    <ion-label> {{client.Name}}</ion-label>
+    <ion-label> {{client.Phone}}</ion-label>
+    <ion-label> {{client.Email}}</ion-label>
+  </ion-item>
+</ion-content>
+
+
+//| filter:searchTerm"
