@@ -13,12 +13,4 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-  createAccount(email, password){
-    this.authService.RegisterUser(email.value, password.value)      
-    .then((res) => {
-      // Do something here
-    }).catch((error) => {
-      window.alert(error.message)
-    })
-  }
 }
