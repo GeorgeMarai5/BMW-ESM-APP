@@ -68,10 +68,6 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user'));
     return user.emailVerified !== false ? true : false;
   }
-  // Sign in with Gmail
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
-  }
   // Auth providers
   AuthLogin(provider) {
     return this.ngFireAuth
