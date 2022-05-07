@@ -5,7 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PostService } from '../services/post.service';
 //import{HttpClient} from '@angular/core'
-
+import { FormArray } from '@angular/forms';
 @Component({
   selector: 'app-view-client-account',
   templateUrl: './view-client-account.page.html',
@@ -103,7 +103,7 @@ back(){
 
 }
 
-}
+
 
 function deleteClient(item: any, any: any) {
   throw new Error('Function not implemented.');
