@@ -4,39 +4,39 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-searchclientaccount',
-  templateUrl: './searchclientaccount.page.html',
-  styleUrls: ['./searchclientaccount.page.scss'],
+  selector: 'app-searchemployeeaccount',
+  templateUrl: './searchemployeeaccount.page.html',
+  styleUrls: ['./searchemployeeaccount.page.scss'],
 })
 
 
-export class SearchclientaccountPage implements OnInit {
+export class SearchemployeeaccountPage implements OnInit {
 
   searchTerm: string;
-  clients:any = [];
+  employees:any = [];
   public list: Array<Object> = [];
   private searchedItem: any;
   
-  id: string;
+  qnumber: string;
   name: string;
-  phone: number;
-  email: string;
+  email: number;
+  role: string;
   
   Filter: string;
 
 
   constructor(private httpClient: HttpClient) { 
-    this.getClients().subscribe(res => {
+    this.getEmployees().subscribe(res => {
       console.log(res)
-      this.clients = res;
+      this.employees = res;
     });
   }
 
-  getClients(): Observable<SearchclientaccountPage[]> {
-    return this.httpClient.get<SearchclientaccountPage[]>('https://jsonplaceholder.typicode.com/users/')
+  getEmployees(): Observable<SearchemployeeaccountPage[]> {
+    return this.httpClient.get<SearchemployeeaccountPage[]>('https://jsonplaceholder.typicode.com/users/')
       .pipe(
-        tap(ClientDevice => console.log('Clients list received!')),
-        catchError(this.handleError<SearchclientaccountPage[]>('Get Client', []))
+        tap(EmployeeDevice => console.log('Employees list received!')),
+        catchError(this.handleError<SearchemployeeaccountPage[]>('Get Employee', []))
       );
   }
   private handleError<T>(operation = 'operation', result?: T) {

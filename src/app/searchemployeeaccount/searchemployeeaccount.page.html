@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search Employee Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" showCancelButton="focus" animated>
+  </ion-searchbar>
+  <ion-item *ngFor="let employee of employees">
+    <ion-label> {{employee.employeeQNumber}}</ion-label>
+    <ion-label> {{employee.Name}}</ion-label>
+    <ion-label> {{employee.Email}}</ion-label>
+    <ion-label> {{employee.Role}}</ion-label>
+  </ion-item>
+</ion-content>
+
+
+//| filter:searchTerm"
