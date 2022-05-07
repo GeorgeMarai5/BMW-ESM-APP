@@ -32,7 +32,7 @@ export class CreateEmployeePage implements OnInit {
 
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
-        Validators.minLength(5),
+        Validators.minLength(8),
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ])),
@@ -59,7 +59,7 @@ export class CreateEmployeePage implements OnInit {
     ],
     'password': [
       { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long.' },
+      { type: 'minlength', message: 'Password must be at least 8 characters long.' },
       { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
     ],
     'confirm_password': [
