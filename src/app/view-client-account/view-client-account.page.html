@@ -1,0 +1,80 @@
+
+<!---form [formGroup]= "Clientpage" (ngSubmit)="logForm()">--->
+
+<ion-header>
+
+  <ion-toolbar>
+
+
+    <ion-title color="blue">Account Detials</ion-title>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-item>
+<ion-label>
+  Title
+</ion-label>
+<ion-input></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>
+    First Name
+  </ion-label>
+  <ion-input></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>
+      Last Name
+    </ion-label>
+    <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        phone number 
+      </ion-label>
+      <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          Email Address
+        </ion-label>
+        <ion-input></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            Address
+          </ion-label>
+          <ion-input type="text"  ></ion-input>
+          </ion-item>
+
+<ion-row>
+<ion-col>
+<button ion-button >
+back
+</button>
+</ion-col>
+
+<ion-col>
+<button ion-button color="blue">
+  update Details
+</button>
+</ion-col>
+
+<ion-col>
+  <button ion-button color="red" onclick="deleteClient">
+    Delete Details
+</button>
+</ion-col>
+</ion-row>
+
+</ion-content>
+

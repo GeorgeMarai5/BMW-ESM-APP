@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { PostService } from '../services/post.service';
 import { Router } from '@angular/router';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms'
+
 
 
 @Component({
@@ -67,6 +69,7 @@ export class CreateEmployeePage implements OnInit {
       { type: 'areEqual', message: 'Password mismatch.' }
     ],
   };
+  
 
   onSubmit(values){
     console.log(values);
