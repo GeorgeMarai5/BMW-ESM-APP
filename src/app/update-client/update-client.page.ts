@@ -12,4 +12,24 @@ export class UpdateClientPage implements OnInit {
   ngOnInit() {
   }
 
+
+  /*let field = document.getElementById("field");
+
+  
+  if (sessionStorage.getItem("autosave")) {
+    
+    field.value = sessionStorage.getItem("autosave");
+  }
+  
+  
+  field.addEventListener("change", function() {
+   
+    sessionStorage.setItem("autosave", field.value);
+  });
+
+*/
+
+
+
+
 }

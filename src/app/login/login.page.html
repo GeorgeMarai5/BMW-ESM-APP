@@ -1,9 +1,64 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/create-account']">
+        <ion-icon slot="icon-only" name="person-add" style="color: #002850;"></ion-icon>
+      </ion-button>  
+      <ion-button [routerLink]="['/login']" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        Have an account?
+      </ion-button>  
+    </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div>
+    <form> 
+      <ion-card>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button expand="full" fill="none" [routerLink]="['/login']" style="color: #002850; font-size: medium;">Log In</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button expand="full" fill="none" [routerLink]="['/create-account']" style="color: #002850; font-size: medium;">Create Account</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-item-divider style="margin-top: -7%;"></ion-item-divider>
+        </ion-grid>
+        <div style="padding-left: 4%; padding-right: 4%; padding-bottom: 15%">
+          <ion-item>
+            <ion-label position="floating">Select Account Type</ion-label>
+            <ion-select #accountType required>
+              <ion-select-option>Client</ion-select-option>
+              <ion-select-option>Employee</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" #email required></ion-input>
+          </ion-item> 
+          <ion-item lines="full">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" #password required></ion-input>
+          </ion-item><br/>
+          <ion-row>
+            <ion-col> 
+              <ion-button type="submit" (click)="logIn(email, password)" expand="block" style="--background: #1976D2;">Login</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> 
+              <div class="center">
+                <a [routerLink]="['/create-account']" style="text-decoration: none;">Forgot your password?</a>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+        
+      </ion-card>
+    </form>
+  </div>
 </ion-content>

@@ -12,16 +12,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
-  <ion-item>
+  <ion-item >
     <ion-label>
       Title
     </ion-label>
     </ion-item>
     
-  <ion-item>
-    <ion-input type="text"  ></ion-input>
+  <ion-item *ngfor="let Client of eventList">
+    <ion-input type="text"  >{{Client.Title}}</ion-input>
     </ion-item>
 
 <ion-item>
@@ -30,8 +30,8 @@
   </ion-label>
   </ion-item>
   
-<ion-item>
-  <ion-input type="text"  ></ion-input>
+<ion-item *ngfor="let Client of eventList">
+  <ion-input type="text"  >{{Client.FirstName}}</ion-input>
   </ion-item>
   
   <ion-item>
@@ -40,8 +40,8 @@
     </ion-label>
     </ion-item>
     
-  <ion-item>
-    <ion-input type="text"  ></ion-input>
+  <ion-item *ngfor="let Client of eventList">
+    <ion-input type="text"  >{{Client.LastName}}</ion-input>
     </ion-item>
 
     <ion-item>
@@ -50,8 +50,8 @@
       </ion-label>
       </ion-item>
       
-    <ion-item>
-      <ion-input type="text"  ></ion-input>
+    <ion-item *ngfor="let Client of eventList">
+      <ion-input type="text"  >{{Client.PhoneNumber}}</ion-input>
       </ion-item>
 
       <ion-item>
@@ -60,8 +60,8 @@
         </ion-label>
         </ion-item>
         
-      <ion-item>
-        <ion-input type="text"  ></ion-input>
+      <ion-item *ngfor="let Client of eventList">
+        <ion-input type="text"  >{{Client.Email}}</ion-input>
         </ion-item>
 
         <ion-item>
@@ -70,8 +70,8 @@
           </ion-label>
           </ion-item>
 
-        <ion-item>
-          <ion-input type="text"  ></ion-input>
+        <ion-item *ngfor="let Client of eventList">
+          <ion-input type="text"  >{{Client.Address}}</ion-input>
           </ion-item>
 
 
