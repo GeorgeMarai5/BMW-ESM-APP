@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'create-account',
-        loadChildren: () => import('../create-employee/create-employee.module').then(m => m.CreateEmployeePageModule)
+        loadChildren: () => import('../addclientaccount/addclientaccount.module').then(m => m.AddclientaccountPageModule)
       },
       {
         path: '',
