@@ -59,7 +59,7 @@ export class ViewClientAccountPage implements OnInit {
       position: 'top',
     });
 
-
+  }
   deleteClient(){
     this.removeAlert();
     this.Clientpage.splice(this.Clientpage.indexOf(item),1);
