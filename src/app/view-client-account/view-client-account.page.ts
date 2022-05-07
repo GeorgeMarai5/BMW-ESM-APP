@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validators,FormGroup } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
 import { AngularDelegate } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { PostService } from '../services/post.service';
 //import{HttpClient} from '@angular/core'
 
 @Component({
@@ -12,27 +15,55 @@ export class ViewClientAccountPage implements OnInit {
 
   
     public Clientpage : FormGroup;
+    clientList: Any;
+
+  title: String;
+  FirstName: string;
+  LastName: string;
+  PhoneNumber: number;
+  Email: string;
+  Address: String;
   
-  constructor(private formBuilder: FormBuilder) { 
+  
+  constructor(private toastCtrl: ToastController,private service: PostService, private formBuilder: FormBuilder,private router: Router) { 
 
 
-    this.Clientpage = this.formBuilder.group({
-      title: [''],
-      First_Name: [''], Last_Name: [''],
-      Phone_Number: [''], Email_Address: [''],
-      Address: ['']
-    });
+    //this.Clientpage = this.formBuilder.group({
+      //title: [''],
+      //First_Name: [''], Last_Name: [''],
+      //Phone_Number: [''], Email_Address: [''],
+     // Address: ['']
+  
 
 
   }
 
   logForm(){
     console.log(this.Clientpage.value)
+    
   }
 
+
+
   ngOnInit() {
+    this.ClientList = JSON.parse(localStorage.getItem('Client'));
 
 
+  }
+
+  async removeAlert(){
+
+    let toast = await this.toastCtrl.create({
+      message: 'The product was successfully removed from the basket',
+      duration: 3000,
+      position: 'top',
+    });
+
+
+  deleteClient(item: any){
+    this.removeAlert();
+    this.Clientpage.splice(this.Clientpage.indexOf(item),1);
+    localStorage.setItem('basket',JSON.stringify(this.Clientpage));
 
   }
 
@@ -59,11 +90,7 @@ export class ViewClientAccountPage implements OnInit {
 
 }
 
-delete(){
 
-
-
-}
 
 
 
@@ -74,5 +101,7 @@ back(){
 
 
 
+
+}
 
 }
