@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef, Input, Output } from '@angular/core';
 import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
 import { AngularDelegate } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PostService } from '../services/post.service';
-//import{HttpClient} from '@angular/core'
+
 
 @Component({
   selector: 'app-view-client-account',
@@ -28,14 +29,6 @@ export class ViewClientAccountPage implements OnInit {
   constructor(private toastCtrl: ToastController,private service: PostService, private formBuilder: FormBuilder,private router: Router) { 
 
 
-    //this.Clientpage = this.formBuilder.group({
-      //title: [''],
-      //First_Name: [''], Last_Name: [''],
-      //Phone_Number: [''], Email_Address: [''],
-     // Address: ['']
-  
-
-
   }
 
   logForm(){
@@ -46,7 +39,7 @@ export class ViewClientAccountPage implements OnInit {
 
 
   ngOnInit() {
-    this.clientList = JSON.parse(localStorage.getItem('Client'));
+    this.clientList = JSON.parse(sessionStorage.getItem('Client'));
 
 
   }
@@ -62,8 +55,8 @@ export class ViewClientAccountPage implements OnInit {
   }
   deleteClient(){
     this.removeAlert();
-    this.Clientpage.splice(this.Clientpage.indexOf(item),1);
-    localStorage.setItem('basket',JSON.stringify(this.Clientpage));
+    sessionStorage.removeItem('Client')
+    
   }
 
 
@@ -95,7 +88,7 @@ export class ViewClientAccountPage implements OnInit {
 
 back(){
 
-
+  this.router.navigate(['SearchclientaccountPage'])
 }
 
 
@@ -103,8 +96,10 @@ back(){
 
 }
 
-}
+
 
 function deleteClient(item: any, any: any) {
   throw new Error('Function not implemented.');
 }
+
+

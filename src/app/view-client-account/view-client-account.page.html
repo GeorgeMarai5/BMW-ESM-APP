@@ -14,52 +14,75 @@
 
 <ion-content>
 
-<ion-item>
-<ion-label>
-  Title
-</ion-label>
-<ion-input></ion-input>
-</ion-item>
+  <ion-item>
+    <ion-label>
+      Title
+    </ion-label>
+    </ion-item>
+    
+  <ion-item>
+    <ion-input type="text"  ></ion-input>
+    </ion-item>
 
 <ion-item>
   <ion-label>
     First Name
   </ion-label>
-  <ion-input></ion-input>
+  </ion-item>
+  
+<ion-item>
+  <ion-input type="text"  ></ion-input>
   </ion-item>
   
   <ion-item>
     <ion-label>
       Last Name
     </ion-label>
-    <ion-input></ion-input>
+    </ion-item>
+    
+  <ion-item>
+    <ion-input type="text"  ></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>
-        phone number 
+        Phone number
       </ion-label>
-      <ion-input></ion-input>
+      </ion-item>
+      
+    <ion-item>
+      <ion-input type="text"  ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>
           Email Address
         </ion-label>
-        <ion-input></ion-input>
+        </ion-item>
+        
+      <ion-item>
+        <ion-input type="text"  ></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label>
             Address
           </ion-label>
+          </ion-item>
+
+        <ion-item>
           <ion-input type="text"  ></ion-input>
           </ion-item>
+
+
+
+
+<div>
 
 <ion-row>
 <ion-col>
 <button ion-button >
-back
+  back
 </button>
 </ion-col>
 
@@ -70,11 +93,14 @@ back
 </ion-col>
 
 <ion-col>
-  <button ion-button color="red" onclick="deleteClient">
+  <button ion-button (click)="deleteClient()" color="danger">
     Delete Details
 </button>
 </ion-col>
 </ion-row>
+
+</div>
+
 
 </ion-content>
 
