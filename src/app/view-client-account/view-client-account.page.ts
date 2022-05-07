@@ -15,7 +15,7 @@ export class ViewClientAccountPage implements OnInit {
 
   
     public Clientpage : FormGroup;
-    clientList: Any;
+    clientList: [];
 
   title: String;
   FirstName: string;
@@ -46,7 +46,7 @@ export class ViewClientAccountPage implements OnInit {
 
 
   ngOnInit() {
-    this.ClientList = JSON.parse(localStorage.getItem('Client'));
+    this.clientList = JSON.parse(localStorage.getItem('Client'));
 
 
   }
@@ -54,17 +54,16 @@ export class ViewClientAccountPage implements OnInit {
   async removeAlert(){
 
     let toast = await this.toastCtrl.create({
-      message: 'The product was successfully removed from the basket',
+      message: 'The client was removed',
       duration: 3000,
       position: 'top',
     });
 
-
-  deleteClient(item: any){
+  }
+  deleteClient(){
     this.removeAlert();
     this.Clientpage.splice(this.Clientpage.indexOf(item),1);
     localStorage.setItem('basket',JSON.stringify(this.Clientpage));
-
   }
 
 
@@ -104,4 +103,8 @@ back(){
 
 }
 
+}
+
+function deleteClient(item: any, any: any) {
+  throw new Error('Function not implemented.');
 }
