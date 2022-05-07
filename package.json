@@ -30,6 +30,7 @@
     "@capacitor/keyboard": "1.2.2",
     "@capacitor/status-bar": "1.0.8",
     "@ionic/angular": "^6.1.4",
+    "@ionic/cli": "^6.19.0",
     "add": "^2.0.6",
     "aws-amplify": "^4.3.20",
     "cordova": "^11.0.0",
