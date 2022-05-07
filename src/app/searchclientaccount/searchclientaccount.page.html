@@ -8,7 +8,7 @@
   <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" showCancelButton="focus" animated>
   </ion-searchbar>
   <ion-item *ngFor="let client of clients">
-    <ion-label> {{client.cliendID}}</ion-label>
+    <ion-label> {{client.clientID}}</ion-label>
     <ion-label> {{client.Name}}</ion-label>
     <ion-label> {{client.Phone}}</ion-label>
     <ion-label> {{client.Email}}</ion-label>
@@ -17,3 +17,23 @@
 
 
 //| filter:searchTerm"
+
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Search Clients </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar debounce="100"></ion-searchbar>
+
+  <ion-list lines="none">
+    <ion-item *ngFor="let client of clients | async">
+      <ion-label>{{ client.clientid }}</ion-label>
+      <ion-label>{{ client.name }}</ion-label>
+      <ion-label>{{ client.phone }}</ion-label>
+      <ion-label>{{ client.email }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
