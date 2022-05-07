@@ -17,13 +17,8 @@ const routes: Routes = [
       },
       {
         path: 'create-account',
-        loadChildren: () => import('../addclientaccount/addclientaccount.module').then(m => m.AddclientaccountPageModule)
+        loadChildren: () => import('../create-account/create-account.module').then(m => m.CreateAccountPageModule)
       },
-      {
-        path: '',
-        redirectTo: '/tabs/home',
-        pathMatch: 'full'
-      }
     ]
   },
   {
