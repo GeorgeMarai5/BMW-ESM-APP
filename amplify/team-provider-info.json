@@ -16,5 +16,23 @@
         "bmwesmapp7f351355": {}
       }
     }
+  },
+  "bmwesmapp": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bmwesmapp-bmwesmapp-101139-authRole",
+      "UnauthRoleArn": "arn:aws:iam::423654800714:role/amplify-bmwesmapp-bmwesmapp-101139-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::423654800714:role/amplify-bmwesmapp-bmwesmapp-101139-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-bmwesmapp-bmwesmapp-101139-deployment",
+      "UnauthRoleName": "amplify-bmwesmapp-bmwesmapp-101139-unauthRole",
+      "StackName": "amplify-bmwesmapp-bmwesmapp-101139",
+      "StackId": "arn:aws:cloudformation:us-east-1:423654800714:stack/amplify-bmwesmapp-bmwesmapp-101139/5795e2f0-cddd-11ec-8118-0a01de3ab03d",
+      "AmplifyAppId": "d2sh51n0oyqbhb"
+    },
+    "categories": {
+      "auth": {
+        "bmwesmapp7f351355": {}
+      }
+    }
   }
 }
