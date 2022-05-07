@@ -1,10 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
 import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
 import { AngularDelegate } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
-//import{HttpClient} from '@angular/core'
+import { getApp } from 'firebase/app';
+import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc} from 'firebase/firestore'
+import { Clients } from '../models/Clients';
+import { ActivatedRoute } from '@angular/router';
+import { snapshotChanges } from '@angular/fire/compat/database';
+
 
 @Component({
   selector: 'app-view-client-account',
@@ -14,29 +20,65 @@ import { PostService } from '../services/post.service';
 export class ViewClientAccountPage implements OnInit {
 
   
+  private FirebaseApp = getApp();
+  private db = getFirestore(this.FirebaseApp);
+  private Clientid: String;
+ private currentClient;
+
+
     public Clientpage : FormGroup;
-    clientList: [];
+    public eventList: Clients[] = [];
+    ClientList: [];
 
-  title: String;
-  FirstName: string;
-  LastName: string;
-  PhoneNumber: number;
-  Email: string;
-  Address: String;
   
   
-  constructor(private toastCtrl: ToastController,private service: PostService, private formBuilder: FormBuilder,private router: Router) { 
+  constructor(private zone: NgZone,private toastCtrl: ToastController,private service: PostService, private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute) { 
+this.Clientpage = this.formBuilder.group({Title: ['', Validators.compose([Validators.required])], 
+FirstName: ['', Validators.compose([Validators.required])],
+LastName: ['', Validators.compose([Validators.required])],
+PhoneNumber: ['', Validators.compose([Validators.required])],
+Email: ['', Validators.compose([Validators.required])],
+Address: ['', Validators.compose([Validators.required])],
 
 
-    //this.Clientpage = this.formBuilder.group({
-      //title: [''],
-      //First_Name: [''], Last_Name: [''],
-      //Phone_Number: [''], Email_Address: [''],
-     // Address: ['']
-  
 
+
+
+
+
+
+});
 
   }
+
+
+viewClient(): void{
+
+//this is the update user method
+
+
+
+  //const FirebaseApp = getApp();
+  //const db = getFirestore(FirebaseApp);
+  const ClientCollection = collection(this.db,'Client')
+
+  addDoc(ClientCollection, this.Clientpage.value);
+
+
+
+
+
+
+
+console.log(this.Clientpage.value)
+
+}
+
+  
+
+
+
+  
 
   logForm(){
     console.log(this.Clientpage.value)
@@ -46,8 +88,62 @@ export class ViewClientAccountPage implements OnInit {
 
 
   ngOnInit() {
-    this.clientList = JSON.parse(localStorage.getItem('Client'));
 
+this.Clientid = this.route.snapshot.params.id;
+console.log(this.Clientid);
+
+if(this.Clientid !== 'new'){
+this.currentClient = doc(this.db,'Client/${id}');    //to load data onto the form
+onSnapshot<Clients>(this.currentClient, snapshot => {
+this.Clientpage.setValue({
+
+Title: snapshot.data().Title,
+FirstName: snapshot.data().FirstName,
+LastName: snapshot.data().LastName,
+PhoneNumber: snapshot.data().PhoneNumber,
+Email: snapshot.data().Email,
+Address: snapshot.data().Address
+
+
+
+
+});
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+     const ClientCollection = collection(db,'Client')
+onSnapshot<Clients>(ClientCollection, snapshot => {
+       this.zone.run(() =>{
+       this.eventList = snapshot.docs.map(d => d.data());
+       console.log(this.eventList)
+
+
+      });
+
+
+
+     });
+
+    //this.clientList = JSON.parse(sessionStorage.getItem('Client'));
+
+*/
 
   }
 
@@ -62,8 +158,8 @@ export class ViewClientAccountPage implements OnInit {
   }
   deleteClient(){
     this.removeAlert();
-    this.Clientpage.splice(this.Clientpage.indexOf(item),1);
-    localStorage.setItem('basket',JSON.stringify(this.Clientpage));
+    sessionStorage.removeItem('Client')
+    
   }
 
 
@@ -95,7 +191,7 @@ export class ViewClientAccountPage implements OnInit {
 
 back(){
 
-
+  this.router.navigate(['SearchclientaccountPage'])
 }
 
 
@@ -103,8 +199,12 @@ back(){
 
 }
 
-}
+
+
+
 
 function deleteClient(item: any, any: any) {
   throw new Error('Function not implemented.');
 }
+
+

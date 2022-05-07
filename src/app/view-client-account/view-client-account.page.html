@@ -12,49 +12,72 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
-<ion-item>
-<ion-label>
-  Title
-</ion-label>
-<ion-input></ion-input>
-</ion-item>
+  <ion-item >
+    <ion-label>
+      Title
+    </ion-label>
+    </ion-item>
+    
+  <ion-item *ngfor="let Client of eventList">
+    <ion-input type="text"  >{{Client.Title}}</ion-input>
+    </ion-item>
 
 <ion-item>
   <ion-label>
     First Name
   </ion-label>
-  <ion-input></ion-input>
+  </ion-item>
+  
+<ion-item *ngfor="let Client of eventList">
+  <ion-input type="text"  >{{Client.FirstName}}</ion-input>
   </ion-item>
   
   <ion-item>
     <ion-label>
       Last Name
     </ion-label>
-    <ion-input></ion-input>
+    </ion-item>
+    
+  <ion-item *ngfor="let Client of eventList">
+    <ion-input type="text"  >{{Client.LastName}}</ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>
-        Phone Number 
+        Phone number
       </ion-label>
-      <ion-input></ion-input>
+      </ion-item>
+      
+    <ion-item *ngfor="let Client of eventList">
+      <ion-input type="text"  >{{Client.PhoneNumber}}</ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>
           Email Address
         </ion-label>
-        <ion-input></ion-input>
+        </ion-item>
+        
+      <ion-item *ngfor="let Client of eventList">
+        <ion-input type="text"  >{{Client.Email}}</ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label>
             Address
           </ion-label>
-          <ion-input type="text"  ></ion-input>
           </ion-item>
+
+        <ion-item *ngfor="let Client of eventList">
+          <ion-input type="text"  >{{Client.Address}}</ion-input>
+          </ion-item>
+
+
+
+
+<div>
 
 <ion-row>
 <ion-col>
@@ -70,11 +93,14 @@ Back
 </ion-col>
 
 <ion-col>
-  <button ion-button color="red" onclick="deleteClient">
+  <button ion-button (click)="deleteClient()" color="danger">
     Delete Details
 </button>
 </ion-col>
 </ion-row>
+
+</div>
+
 
 </ion-content>
 
