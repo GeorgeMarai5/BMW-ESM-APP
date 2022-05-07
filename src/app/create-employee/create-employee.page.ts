@@ -69,6 +69,7 @@ export class CreateEmployeePage implements OnInit {
       { type: 'areEqual', message: 'Password mismatch.' }
     ],
   };
+  
 
   onSubmit(values){
     console.log(values);

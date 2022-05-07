@@ -1,9 +1,35 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+    <ion-buttons slot="end">
+      <ion-button href="">
+        <ion-icon slot="icon-only" name="person-add" style="color: #002850;"></ion-icon>
+      </ion-button>  
+      <ion-button fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem;" href="">
+        Have an account?
+      </ion-button>  
+    </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content [fullscreen]="true">
+  <ion-grid style="margin-left: 3rem; margin-right: 3rem;">
+    <ion-row style="margin-top: 10vh;">
+      <ion-col class="ion-align-self-start">
+        <ion-text>
+          <h1 style="font-size: 12vh;">BMW ESM</h1>
+          <p style="font-size: 5vh; margin-top: -1.5vh; padding-left: 0.3vw; color: #787878; line-height: 6vh;">Electronic<br/>Service Manual</p>
+          <p style="font-size: 2.5vh; margin-top: -4vh; padding-left: 0.5vw;">Putting your service in your hands</p>
+          <ion-button fill="solid" style="--background: #002850; --border-radius: 0.5em; padding: -1rem;
+           margin-left: 0.5vw;  margin-top: -1vh" href="">
+            Track Service
+          </ion-button>
+        </ion-text>
+      </ion-col>
+      <ion-col class="ion-align-self-end" style="padding-bottom: 5rem;">
+          <ion-img src="assets/images/homepage-bmw.png" style="width: 55vw;"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
