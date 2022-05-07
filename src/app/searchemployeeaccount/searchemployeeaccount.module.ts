@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
 
 import { SearchemployeeaccountPageRoutingModule } from './searchemployeeaccount-routing.module';
 
@@ -11,9 +10,8 @@ import { SearchemployeeaccountPage } from './searchemployeeaccount.page';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    IonicModule,
-    SearchemployeeaccountPageRoutingModule
+    SearchemployeeaccountPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [SearchemployeeaccountPage]
 })
