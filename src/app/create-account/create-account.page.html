@@ -3,9 +3,9 @@
     <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
     <ion-buttons slot="end">
       <ion-button href="">
-        <ion-icon [routerLink]="['/create-account']" slot="icon-only" name="person-add" style="color: #002850;"></ion-icon>
+        <ion-icon [routerLink]="['/tabs/create-account']" slot="icon-only" name="person-add" style="color: #002850;"></ion-icon>
       </ion-button>  
-      <ion-button [routerLink]="['/login']" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+      <ion-button [routerLink]="['/tabs/login']" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
         Have an account?
       </ion-button>  
     </ion-buttons>
@@ -20,10 +20,10 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-button expand="full" fill="none" [routerLink]="['/login']" style="color: #002850; font-size: medium;">Log In</ion-button>
+              <ion-button expand="full" fill="none" [routerLink]="['/tabs/login']" style="color: #002850; font-size: medium;">Log In</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button expand="full" fill="none" [routerLink]="['/create-account']" style="color: #002850; font-size: medium;">Create Account</ion-button>
+              <ion-button expand="full" fill="none" [routerLink]="['/tabs/create-account']" style="color: #002850; font-size: medium;">Create Account</ion-button>
             </ion-col>
           </ion-row>
           <ion-item-divider style="margin-top: -7%;"></ion-item-divider>
@@ -35,22 +35,55 @@
               <ion-select-option>Client</ion-select-option>
               <ion-select-option>Employee</ion-select-option>
             </ion-select>
+
           </ion-item>    
           <ion-item lines="full">
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="text" #email required></ion-input>
+            <ion-input type="text" formControlName="email" #email required></ion-input>
           </ion-item> 
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+
           <ion-item lines="full">
             <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" #password required></ion-input>
+            <ion-input type="password" formControlName="password" #password required></ion-input>
           </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div class="error-message" *ngIf="validations_form.get('matching_passwords').get('password').hasError(validation.type) && (validations_form.get('matching_passwords').get('password').dirty || validations_form.get('matching_passwords').get('password').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+
           <ion-item lines="full">
             <ion-label position="floating">Confirm Password</ion-label>
             <ion-input type="password" #confirmPassword required></ion-input>
           </ion-item><br/>
+        <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.confirm_password">
+          <div class="error-message" *ngIf="validations_form.get('matching_passwords').get('confirm_password').hasError(validation.type) && (validations_form.get('matching_passwords').get('confirm_password').dirty || validations_form.get('matching_passwords').get('confirm_password').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+ <!-- These validations are for the form group -->
+ <div class="validation-errors">
+  <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+    <div class="error-message" *ngIf="validations_form.get('matching_passwords').hasError(validation.type) && (validations_form.get('matching_passwords').get('confirm_password').dirty || validations_form.get('matching_passwords').get('confirm_password').touched)">
+      <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+    </div>
+  </ng-container>
+</div>
+
           <ion-row>
             <ion-col> 
-              <ion-button type="submit" (click)="createAccount(email, password)" expand="block" style="--background: #1976D2;">Create Account</ion-button>
+              <ion-button type="submit" (click)="createAccount(email, password)" expand="block" style="--background: #1976D2;" [disabled]="!validations_form.valid">Create Account</ion-button>
             </ion-col>
           </ion-row> 
         </div> 
