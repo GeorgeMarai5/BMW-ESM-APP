@@ -16,6 +16,10 @@ const routes: Routes = [
   },  {
     path: 'searchemployeeaccount',
     loadChildren: () => import('./searchemployeeaccount/searchemployeeaccount.module').then( m => m.SearchemployeeaccountPageModule)
+  },
+  {
+    path: 'create-account',
+    loadChildren: () => import('./create-account/create-account.module').then( m => m.CreateAccountPageModule)
   }
 
 ];
