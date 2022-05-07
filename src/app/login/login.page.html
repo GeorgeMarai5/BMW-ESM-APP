@@ -2,10 +2,10 @@
   <ion-toolbar>
     <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/create-account']">
+      <ion-button [routerLink]="['/tabs/create-account']">
         <ion-icon slot="icon-only" name="person-add" style="color: #002850;"></ion-icon>
       </ion-button>  
-      <ion-button [routerLink]="['/login']" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+      <ion-button [routerLink]="['/tabs/login']" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
         Have an account?
       </ion-button>  
     </ion-buttons>
@@ -20,10 +20,10 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-button expand="full" fill="none" [routerLink]="['/login']" style="color: #002850; font-size: medium;">Log In</ion-button>
+              <ion-button expand="full" fill="none" [routerLink]="['/tabs/login']" style="color: #002850; font-size: medium;">Log In</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button expand="full" fill="none" [routerLink]="['/create-account']" style="color: #002850; font-size: medium;">Create Account</ion-button>
+              <ion-button expand="full" fill="none" [routerLink]="['/tabs/create-account']" style="color: #002850; font-size: medium;">Create Account</ion-button>
             </ion-col>
           </ion-row>
           <ion-item-divider style="margin-top: -7%;"></ion-item-divider>

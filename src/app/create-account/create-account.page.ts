@@ -14,11 +14,13 @@ export class CreateAccountPage implements OnInit {
   ngOnInit() {
   }
   createAccount(email, password){
-    this.authService.RegisterUser(email.value, password.value)      
+    this.authService.RegisterUser(email.value, password.value)
     .then((res) => {
       // Do something here
+      this.authService.SendVerificationMail()
+      this.router.navigate(['verify-email']);
     }).catch((error) => {
       window.alert(error.message)
     })
-  }
+}
 }
