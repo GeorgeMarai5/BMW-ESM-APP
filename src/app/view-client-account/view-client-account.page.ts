@@ -10,6 +10,7 @@ import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc} from 'firebase/
 import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
 import { snapshotChanges } from '@angular/fire/compat/database';
+import { ClientService } from '../services/Client.service';
 
 
 @Component({
@@ -28,12 +29,50 @@ export class ViewClientAccountPage implements OnInit {
 
     public Clientpage : FormGroup;
     public eventList: Clients[] = [];
-    ClientList: [];
+    ClientList: any;   //[]
 
   
   
-  constructor(private zone: NgZone,private toastCtrl: ToastController,private service: PostService, private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute) { 
-this.Clientpage = this.formBuilder.group({Title: ['', Validators.compose([Validators.required])], 
+  constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
+    private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute) { 
+
+this.clientService.get_Clients().subscribe((res)=>{
+
+this.ClientList = res.map(e =>{
+
+return{
+
+ClientID: e.payload.doc.id,
+Title: e.payload.doc.data()['Title'],
+FirstName: e.payload.doc.data()['FirstName'],
+LastName: e.payload.doc.data()['LastName'],
+PhoneNumber: e.payload.doc.data()['PhoneNumber'],
+Email: e.payload.doc.data()['Email'],
+Address: e.payload.doc.data()['Address'],
+
+
+
+
+}
+
+
+
+
+})
+
+console.log(this.ClientList)
+
+
+}, (err:any) => {
+console.log(err);
+})
+
+
+
+
+
+
+/*this.Clientpage = this.formBuilder.group({Title: ['', Validators.compose([Validators.required])], 
 FirstName: ['', Validators.compose([Validators.required])],
 LastName: ['', Validators.compose([Validators.required])],
 PhoneNumber: ['', Validators.compose([Validators.required])],
@@ -41,13 +80,10 @@ Email: ['', Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z
 Address: ['', Validators.compose([Validators.required])],
 
 
-
-
-
-
-
-
 });
+
+
+*/
 
   }
 
