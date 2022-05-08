@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { Firestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-searchemployeeaccount',
@@ -11,6 +11,9 @@ import { catchError, tap } from 'rxjs/operators';
 
 
 export class SearchemployeeaccountPage implements OnInit {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   searchTerm: string;
   employees:any = [];
@@ -23,30 +26,23 @@ export class SearchemployeeaccountPage implements OnInit {
   role: string;
   
   Filter: string;
-
-
-  constructor(private httpClient: HttpClient) { 
-    this.getEmployees().subscribe(res => {
-      console.log(res)
-      this.employees = res;
-    });
+  constuctor(){
+    
+  
   }
-
-  getEmployees(): Observable<SearchemployeeaccountPage[]> {
-    return this.httpClient.get<SearchemployeeaccountPage[]>('https://jsonplaceholder.typicode.com/users/')
-      .pipe(
-        tap(EmployeeDevice => console.log('Employees list received!')),
-        catchError(this.handleError<SearchemployeeaccountPage[]>('Get Employee', []))
-      );
-  }
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  } 
-  ngOnInit() {
-  }
+ 
 
 }
+
+  // getEmployees(): Observable<SearchemployeeaccountPage[]> {
+  //   return this.httpClient.get<SearchemployeeaccountPage[]>('https://jsonplaceholder.typicode.com/users/')
+  //     .pipe(
+  //       tap(EmployeeDevice => console.log('Employees list received!')),
+  //       catchError(this.handleError<SearchemployeeaccountPage[]>('Get Employee', []))
+  //     );
+  // }
+  // private handleError<T>(operation = 'operation', result?: T) {
+  //   return (error: any): Observable<T> => {
+  //     console.error(error);
+  //     console.log(`${operation} failed: ${error.message}`);
+  //     return of(result as T);

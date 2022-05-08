@@ -3,6 +3,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { SearchclientaccountPage } from './searchclientaccount.page';
 
+
+
 describe('SearchclientaccountPage', () => {
   let component: SearchclientaccountPage;
   let fixture: ComponentFixture<SearchclientaccountPage>;

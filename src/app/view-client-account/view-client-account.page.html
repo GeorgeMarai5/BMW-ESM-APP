@@ -21,7 +21,7 @@
     </ion-item>
     
   <ion-item *ngfor="let Client of eventList">
-    <ion-input type="text"  >{{Client.Title}}</ion-input>
+    <ion-input type="text" class="box" >{{Client.Title}}</ion-input>
     </ion-item>
 
 <ion-item>
@@ -31,7 +31,7 @@
   </ion-item>
   
 <ion-item *ngfor="let Client of eventList">
-  <ion-input type="text"  >{{Client.FirstName}}</ion-input>
+  <ion-input type="text" class="box" >{{Client.FirstName}}</ion-input>
   </ion-item>
   
   <ion-item>
@@ -41,7 +41,7 @@
     </ion-item>
     
   <ion-item *ngfor="let Client of eventList">
-    <ion-input type="text"  >{{Client.LastName}}</ion-input>
+    <ion-input type="text" class="box" >{{Client.LastName}}</ion-input>
     </ion-item>
 
     <ion-item>
@@ -51,7 +51,7 @@
       </ion-item>
       
     <ion-item *ngfor="let Client of eventList">
-      <ion-input type="text"  >{{Client.PhoneNumber}}</ion-input>
+      <ion-input type="text"  class="box">{{Client.PhoneNumber}}</ion-input>
       </ion-item>
 
       <ion-item>
@@ -61,7 +61,7 @@
         </ion-item>
         
       <ion-item *ngfor="let Client of eventList">
-        <ion-input type="text"  >{{Client.Email}}</ion-input>
+        <ion-input type="text" class="box" >{{Client.Email}}</ion-input>
         </ion-item>
 
         <ion-item>
@@ -71,7 +71,7 @@
           </ion-item>
 
         <ion-item *ngfor="let Client of eventList">
-          <ion-input type="text"  >{{Client.Address}}</ion-input>
+          <ion-input type="text" class="box" >{{Client.Address}}</ion-input>
           </ion-item>
 
 
@@ -81,13 +81,13 @@
 
 <ion-row>
 <ion-col>
-<button ion-button >
+<button ion-button [routerLink]="['/tabs/Searchclientaccount']" >
 Back
 </button>
 </ion-col>
 
 <ion-col>
-<button ion-button color="blue">
+<button ion-button color="blue" [routerLink]="['/tabs/update-client']">
   Update Details
 </button>
 </ion-col>

@@ -7,6 +7,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
+import { FormControl, FormGroup } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
@@ -67,10 +68,6 @@ export class AuthService {
   get isEmailVerified(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return user.emailVerified !== false ? true : false;
-  }
-  // Sign in with Gmail
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
   }
   // Auth providers
   AuthLogin(provider) {
