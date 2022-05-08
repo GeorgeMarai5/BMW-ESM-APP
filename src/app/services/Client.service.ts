@@ -29,7 +29,12 @@ return this.firestore.collection(this.collectionName).snapshotChanges();
 
 }
 
+delete_Client(ClientID){
 
+return this.firestore.doc(this.collectionName + '/' + ClientID).delete();
+
+
+}
 
 
 }

@@ -28,7 +28,7 @@ export class ViewClientAccountPage implements OnInit {
 
 
     public Clientpage : FormGroup;
-    public eventList: Clients[] = [];
+    //public eventList: Clients[] = [];
     ClientList: any;   //[]
 
   
@@ -192,9 +192,12 @@ onSnapshot<Clients>(ClientCollection, snapshot => {
     });
 
   }
-  deleteClient(){
+  deleteClient(ClientList){
     this.removeAlert();
-    sessionStorage.removeItem('Client')
+    this.clientService.delete_Client(ClientList).then((res:any) => {
+console.log(res)
+
+    })
     
   }
 
