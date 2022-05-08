@@ -35,7 +35,7 @@ export class DashboardClientPage implements OnInit {
       centralLabel: '50',
     }
 
-    GaugeChart.gaugeChart(element, 300, gaugeOptions).updateNeedle(50)
+    //GaugeChart.gaugeChart(element, 300, gaugeOptions).updateNeedle(50)
   }
 
 }
