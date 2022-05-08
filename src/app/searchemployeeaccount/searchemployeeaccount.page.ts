@@ -31,9 +31,7 @@ export class SearchemployeeaccountPage implements OnInit {
   
   }
  
-  ngOnInit() {
-    
-  }
+
 }
 
   // getEmployees(): Observable<SearchemployeeaccountPage[]> {
