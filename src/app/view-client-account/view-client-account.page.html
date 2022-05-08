@@ -55,13 +55,13 @@
   <ion-input *ngfor="let Client of ClientList"></ion-input>
 </ion-item>
 
-<button ion-button [routerLink]="['/tabs/searchclientaccount']">back</button>
+<ion-button  [routerLink]="['/tabs/search/account/client']">back</ion-button>
 
 
-<button ion-button [routerLink]="['/tabs/searchclientaccount']">Update</button>
+<ion-button  [routerLink]="['/tabs/update/client']">Update</ion-button>
 
 
-<button ion-button (click)="deleteClient(ClientList)" color="danger" [routerLink]="['/tabs/searchclientaccount']">Delete</button>
+<ion-button ion-button (click)="deleteClient(ClientList)" color="danger" [routerLink]="['/tabs/searchclientaccount']"  >Delete</ion-button>
 
 
 
