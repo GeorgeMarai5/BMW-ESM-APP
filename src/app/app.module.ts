@@ -16,6 +16,13 @@ import { environment } from '../environments/environment';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { NgxGaugeModule } from 'ngx-gauge';
 
+
+@NgModule({
+  imports: [
+    
+  ]
+})
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

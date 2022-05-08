@@ -36,7 +36,47 @@ export class ViewClientAccountPage implements OnInit {
   constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
     private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute) { 
 
-this.clientService.get_Clients().subscribe((res)=>{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+this.clientService.getClients().subscribe((res)=>{
 
 this.ClientList = res.map(e =>{
 
@@ -71,8 +111,8 @@ console.log(err);
 
 
 
-
-/*this.Clientpage = this.formBuilder.group({Title: ['', Validators.compose([Validators.required])], 
+/*
+this.Clientpage = this.formBuilder.group({Title: ['', Validators.compose([Validators.required])], 
 FirstName: ['', Validators.compose([Validators.required])],
 LastName: ['', Validators.compose([Validators.required])],
 PhoneNumber: ['', Validators.compose([Validators.required])],
@@ -125,6 +165,8 @@ console.log(this.Clientpage.value)
 
   ngOnInit() {
 
+    /*
+
 this.Clientid = this.route.snapshot.params.id;
 console.log(this.Clientid);
 
@@ -147,7 +189,7 @@ Address: snapshot.data().Address
 
 });
 
-
+*/
 
 }
 
@@ -181,7 +223,7 @@ onSnapshot<Clients>(ClientCollection, snapshot => {
 
 */
 
-  }
+    
 
   async removeAlert(){
 
@@ -191,7 +233,14 @@ onSnapshot<Clients>(ClientCollection, snapshot => {
       position: 'top',
     });
 
+
+    
   }
+
+
+/*
+
+
   deleteClient(ClientList){
     this.removeAlert();
     this.clientService.delete_Client(ClientList).then((res:any) => {
@@ -200,7 +249,7 @@ console.log(res)
     })
     
   }
-
+*/
 
   update(){   
 
