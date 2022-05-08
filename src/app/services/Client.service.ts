@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
+import { AngularFireDatabase } from "@angular/fire/compat/database";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { Clients } from "../models/Clients";
 
 
 
@@ -11,31 +13,15 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 
 export class ClientService{
 
-collectionName = 'Client'
-
-constructor(private firestore: AngularFirestore){
 
 
-
-
-
+    
+    private ClientListRef = this.db.list<Clients>('Client')
+    
+  
+    constructor(private db: AngularFireDatabase){}
+  
+    getClientList() { 
+      return this.ClientListRef;
+    }
 }
-
-get_Clients(){
-return this.firestore.collection(this.collectionName).snapshotChanges();
-
-
-
-
-}
-
-delete_Client(ClientID){
-
-return this.firestore.doc(this.collectionName + '/' + ClientID).delete();
-
-
-}
-
-
-}
-

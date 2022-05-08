@@ -26,43 +26,43 @@
 
   <ion-item>
     <ion-label position="stacked">Title</ion-label>
-    <ion-input *ngfor="let Client of ClientList"></ion-input>
+    <ion-input value="Mr"></ion-input>
   </ion-item>
 
 <ion-item>
   <ion-label position="stacked">First Name</ion-label>
-  <ion-input *ngfor="let Client of ClientList"></ion-input>
+  <ion-input value="John"></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label position="stacked">Last Name</ion-label>
-  <ion-input *ngfor="let Client of ClientList"></ion-input>
+  <ion-input value="Chuffste"></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label position="stacked">Phone Number</ion-label>
-  <ion-input *ngfor="let Client of ClientList"></ion-input>
+  <ion-input value="0836044756"></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label position="stacked">Email</ion-label>
-  <ion-input *ngfor="let Client of ClientList"></ion-input>
+  <ion-input value="John@gmail.com"></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label position="stacked">Address</ion-label>
-  <ion-input *ngfor="let Client of ClientList"></ion-input>
+  <ion-input value="161 Raymond st"></ion-input>
 </ion-item>
 
-<button ion-button [routerLink]="['/tabs/searchclientaccount']">back</button>
+<ion-button  [routerLink]="['/tabs/search/account/client']">back</ion-button>
 
 
-<button ion-button [routerLink]="['/tabs/searchclientaccount']">Update</button>
+<ion-button  [routerLink]="['/tabs/update/client']">Update</ion-button>
 
 
-<button ion-button (click)="deleteClient(ClientList)" color="danger" [routerLink]="['/tabs/searchclientaccount']">Delete</button>
+<ion-button  color="danger" [routerLink]="['/tabs/searchclientaccount']"  >Delete</ion-button>
 
 
-
+<!--(click)="deleteClient(ClientList)"-->
 
 </ion-content>

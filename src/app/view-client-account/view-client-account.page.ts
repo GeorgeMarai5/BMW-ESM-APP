@@ -6,12 +6,14 @@ import { ToastController } from '@ionic/angular';
 import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
 import { getApp } from 'firebase/app';
-import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc} from 'firebase/firestore'
+import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
 import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
 import { snapshotChanges } from '@angular/fire/compat/database';
 import { ClientService } from '../services/Client.service';
 import { AuthService } from '../services/auth.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 
 @Component({
@@ -35,7 +37,31 @@ export class ViewClientAccountPage implements OnInit {
   
   
   constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService) { 
+    private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+
+     this.firestore.collection("Client").get().subscribe((QuerySnapshot) =>{
+    QuerySnapshot.forEach((doc) =>{
+
+      console.log(doc.data());
+    })
+
+
+     }) 
+
+
+
+
+     }
+
+
+
+     //const ClientRef = collection(db, 'Client');        --this is a reference to the database
+
+
+
+
+     
+      /*
 
 this.clientService.get_Clients().subscribe((res)=>{
 
@@ -86,7 +112,7 @@ Address: ['', Validators.compose([Validators.required])],
 
 */
 
-  }
+  
 
 
 viewClient(): void{
@@ -193,6 +219,10 @@ onSnapshot<Clients>(ClientCollection, snapshot => {
     });
 
   }
+
+
+/*
+
   deleteClient(ClientList){
     this.removeAlert();
     this.clientService.delete_Client(ClientList).then((res:any) => {
@@ -201,6 +231,7 @@ console.log(res)
     })
     
   }
+  */
 
 
   update(){   

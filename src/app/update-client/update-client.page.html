@@ -2,95 +2,71 @@
   <ion-toolbar>
     <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/tabs/view/client']">
-        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+      <ion-button [routerLink]="['/tabs/create-account']">
+        <ion-icon slot="icon-only" name="person-add" style="color: #002850;"></ion-icon>
       </ion-button>  
-      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
-        Log Out
+      <ion-button [routerLink]="['/tabs/login']" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        logout
       </ion-button>  
     </ion-buttons>
-    
+
+
   </ion-toolbar>
 </ion-header>
 
 
 
+
 <ion-content>
+  <ion-title>
+    Update Client Account
+  </ion-title>
 
-  <ion-item>
-    <ion-label>
-      Title
-    </ion-label>
-    </ion-item>
+
+  <ion-item *ngfor= "let Clients of Client">
+    <ion-label position="stacked">Title</ion-label>
+    <h1>{{Clients.Title}}</h1>
+    <h2>{{Clients.FirstName}}</h2>
+   
     
-  <ion-item>
-    <ion-input type="text"  ></ion-input>
-    </ion-item>
+    
+
+  </ion-item>
 
 <ion-item>
-  <ion-label>
-    First Name
-  </ion-label>
-  </ion-item>
-  
+  <ion-label position="stacked">First Name</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
 <ion-item>
-  <ion-input type="text"  ></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label class="ion-padding-top">
-      Last Name
-    </ion-label>
-    </ion-item>
-    
-  <ion-item>
-    <ion-input type="text"  ></ion-input>
-    </ion-item>
+  <ion-label position="stacked">Last Name</ion-label>
+  <ion-input ></ion-input>
+</ion-item>
 
-    <ion-item>
-      <ion-label>
-        Phone number
-      </ion-label>
-      </ion-item>
-      
-    <ion-item>
-      <ion-input type="text"  ></ion-input>
-      </ion-item>
+<ion-item>
+  <ion-label position="stacked">Phone Number</ion-label>
+  <ion-input ></ion-input>
+</ion-item>
 
-      <ion-item>
-        <ion-label>
-          Email Address
-        </ion-label>
-        </ion-item>
-        
-      <ion-item>
-        <ion-input type="text"  ></ion-input>
-        </ion-item>
+<ion-item>
+  <ion-label position="stacked">Email</ion-label>
+  <ion-input ></ion-input>
+</ion-item>
 
-        <ion-item>
-          <ion-label>
-            Address
-          </ion-label>
-          </ion-item>
+<ion-item>
+  <ion-label position="stacked">Address</ion-label>
+  <ion-input ></ion-input>
+</ion-item>
 
-        <ion-item>
-          <ion-input type="text"  ></ion-input>
-          </ion-item>
+<ion-button  [routerLink]="['/tabs/password/reset']">Update password</ion-button>
 
-<ion-row>
-<ion-col>
-<button ion-button >
-Update password
-</button>
-</ion-col>
 
-<ion-col>
-<button ion-button color="blue">
-  submit
-</button>
-</ion-col>
-</ion-row>
+<ion-button  [routerLink]="['/tabs/home']">Submit</ion-button>
+
+
+
+
+
 
 
 </ion-content>
-
