@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
-import { GaugeChartComponent } from 'angular-gauge-chart'
+
 @Component({
   selector: 'app-dashboard-client',
   templateUrl: './dashboard-client.page.html',
