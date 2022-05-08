@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { Router } from "@angular/router";
 
-export class User{
-  userID: number;
+export interface User{
+  userID: string;
   userType: string;
   userEmail: string;
 }
