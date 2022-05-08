@@ -7,6 +7,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
+import { FormControl, FormGroup } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
@@ -68,6 +69,20 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user'));
     return user.emailVerified !== false ? true : false;
   }
+  // Auth providers
+  AuthLogin(provider) {
+    return this.ngFireAuth
+      .signInWithPopup(provider)
+      .then((result) => {
+        this.ngZone.run(() => {
+          this.router.navigate(['dashboard']);
+        });
+        this.SetUserData(result.user);
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
+  }
   // Store user in localStorage
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afStore.doc(
@@ -89,5 +104,33 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     });
+  }
+//password validation
+  static areEqual(formGroup: FormGroup) {
+    let va;
+    let valid = true;
+
+    for (let key in formGroup.controls) {
+      if (formGroup.controls.hasOwnProperty(key)) {
+        let con: FormControl = <FormControl>formGroup.controls[key];
+
+        if (va === undefined) {
+          va = con.value
+        } else {
+          if (va !== con.value) {
+            valid = false;
+            break;
+          }
+        }
+      }
+    }
+
+    if (valid) {
+      return null;
+    }
+
+    return {
+      areEqual: true
+    };
   }
 }

@@ -11,6 +11,9 @@ import { Firestore } from '@angular/fire/firestore';
 
 
 export class SearchemployeeaccountPage implements OnInit {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   searchTerm: string;
   employees:any = [];
