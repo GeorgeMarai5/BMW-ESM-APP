@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
-
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.page.html',
@@ -9,7 +9,7 @@ import { AuthService } from "../services/auth.service";
 })
 export class CreateAccountPage implements OnInit {
 
-  constructor(public authService: AuthService, public router: Router) { }
+  constructor(public authService: AuthService, public router: Router,public formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
