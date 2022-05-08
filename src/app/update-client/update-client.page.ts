@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { Clients } from '../models/Clients';
+import * as firebase from 'firebase/app';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { LoadingController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-update-client',
@@ -8,8 +13,74 @@ import { AuthService } from '../services/auth.service';
 })
 export class UpdateClientPage implements OnInit {
 
-  constructor(public authService: AuthService) { }
 
+  client: any;
+
+  constructor(private firestore: AngularFirestore,
+    private loadingCtrl: LoadingController) { }
+  
+
+ionViewWillEnter(){
+this.getposts();
+}
+
+
+async getposts(){
+
+let loader = this.loadingCtrl.create({
+message: "please wait..."
+});
+
+(await loader).present();
+
+try{
+
+this.firestore.collection('Client').
+snapshotChanges().subscribe(data => {
+
+this.client = data.map(e => {
+return{
+
+id: e.payload.doc.id,
+ClientID: e.payload.doc.data()["clientid"],
+Title: e.payload.doc.data()["Title"],
+FirstName: e.payload.doc.data()["FirstName"],
+LastName: e.payload.doc.data()["LastName"],
+PhoneNumber: e.payload.doc.data()["Phone"],
+Email: e.payload.doc.data()["email"],
+Address: e.payload.doc.data()["Address"],
+
+
+
+
+};
+
+});
+
+});
+
+
+
+//dismiss loader
+(await loader).dismiss();
+} catch(e){
+  this.showToast(e);
+
+
+}
+
+
+
+
+
+}
+
+showToast(message){
+
+}
+
+
+  
   ngOnInit() {
   }
 

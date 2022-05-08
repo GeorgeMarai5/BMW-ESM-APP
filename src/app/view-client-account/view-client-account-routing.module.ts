@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ViewClientAccountPage } from './view-client-account.page';
 
+
+
 const routes: Routes = [
   {
     path: '',

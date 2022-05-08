@@ -15,6 +15,13 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 
+
+@NgModule({
+  imports: [
+    
+  ]
+})
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
