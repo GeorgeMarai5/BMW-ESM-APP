@@ -9,14 +9,15 @@ import { SearchclientaccountPageRoutingModule } from './searchclientaccount-rout
 import { SearchclientaccountPage } from './searchclientaccount.page';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     SearchclientaccountPageRoutingModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    ReactiveFormsModule
   ],
   declarations: [SearchclientaccountPage]
 })
