@@ -42,7 +42,7 @@ this.ClientList = res.map(e =>{
 
 return{
 
-ClientID: e.payload.doc.id,
+ClientID: e.payload.doc.data()['ClientID'],
 Title: e.payload.doc.data()['Title'],
 FirstName: e.payload.doc.data()['FirstName'],
 LastName: e.payload.doc.data()['LastName'],
