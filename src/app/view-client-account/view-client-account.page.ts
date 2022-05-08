@@ -37,7 +37,7 @@ this.Clientpage = this.formBuilder.group({Title: ['', Validators.compose([Valida
 FirstName: ['', Validators.compose([Validators.required])],
 LastName: ['', Validators.compose([Validators.required])],
 PhoneNumber: ['', Validators.compose([Validators.required])],
-Email: ['', Validators.compose([Validators.required])],
+Email: ['', Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
 Address: ['', Validators.compose([Validators.required])],
 
 
