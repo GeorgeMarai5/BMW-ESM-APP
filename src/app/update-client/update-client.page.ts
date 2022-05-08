@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Clients } from '../models/Clients';
 import * as firebase from 'firebase/app';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { LoadingController, ToastController } from '@ionic/angular';
-
-
+import { LoadingController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular/providers/toast-controller';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-update-client',
