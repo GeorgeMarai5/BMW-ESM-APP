@@ -8,12 +8,10 @@
   <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" showCancelButton="focus" animated>
   </ion-searchbar>
   <ion-item *ngFor="let client of clients">
-    <ion-label> {{client.cliendID}}</ion-label>
+    <ion-label> {{client.clientID}}</ion-label>
     <ion-label> {{client.Name}}</ion-label>
     <ion-label> {{client.Phone}}</ion-label>
     <ion-label> {{client.Email}}</ion-label>
   </ion-item>
 </ion-content>
 
-
-//| filter:searchTerm"
