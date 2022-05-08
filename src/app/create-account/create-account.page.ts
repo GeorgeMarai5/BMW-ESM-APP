@@ -13,7 +13,7 @@ export class CreateAccountPage implements OnInit {
 
   ngOnInit() {
   }
-  createAccount(email, password){
+  createAccount(email, password, accountType){
     this.authService.RegisterUser(email.value, password.value)
     .then((res) => {
       // Do something here
