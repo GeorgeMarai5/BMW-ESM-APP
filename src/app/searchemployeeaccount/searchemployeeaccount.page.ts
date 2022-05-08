@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-searchemployeeaccount',
@@ -25,7 +26,7 @@ export class SearchemployeeaccountPage implements OnInit {
   Filter: string;
 
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient, public authService: AuthService) { 
     this.getEmployees().subscribe(res => {
       console.log(res)
       this.employees = res;

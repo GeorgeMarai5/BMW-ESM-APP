@@ -11,6 +11,7 @@ import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
 import { snapshotChanges } from '@angular/fire/compat/database';
 import { ClientService } from '../services/Client.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class ViewClientAccountPage implements OnInit {
   
   
   constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute) { 
+    private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService) { 
 
 
 
