@@ -1,110 +1,69 @@
 
 <!---form [formGroup]= "Clientpage" (ngSubmit)="logForm()">--->
-<ion-toolbar>
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
-  </ion-toolbar>
-<ion-header>
-
-  <ion-toolbar>
-
-
-    <ion-title color="blue">Account Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/create-account']">
+        <ion-icon slot="icon-only" name="person-add" style="color: #002850;"></ion-icon>
+      </ion-button>  
+      <ion-button [routerLink]="['/tabs/login']" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        logout
+      </ion-button>  
+    </ion-buttons>
 
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
 
-  <ion-item >
-    <ion-label>
-      Title
-    </ion-label>
-    </ion-item>
-    
-  <ion-item *ngfor="let Client of ClientList">
-    <ion-input type="text"  >{{Client.Title}}</ion-input>
-    </ion-item>
+
+
+<ion-content>
+  <ion-title>
+    Client Account
+  </ion-title>
+
+
+  <ion-item>
+    <ion-label position="stacked">Title</ion-label>
+    <ion-input *ngfor="let Client of ClientList"></ion-input>
+  </ion-item>
 
 <ion-item>
-  <ion-label>
-    First Name
-  </ion-label>
-  </ion-item>
-  
-<ion-item *ngfor="let Client of ClientList">
-  <ion-input type="text"  >{{Client.FirstName}}</ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label>
-      Last Name
-    </ion-label>
-    </ion-item>
-    
-  <ion-item *ngfor="let Client of ClientList">
-    <ion-input type="text"  >{{Client.LastName}}</ion-input>
-    </ion-item>
+  <ion-label position="stacked">First Name</ion-label>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
+</ion-item>
 
-    <ion-item>
-      <ion-label>
-        Phone number
-      </ion-label>
-      </ion-item>
-      
-    <ion-item *ngfor="let Client of ClientList">
-      <ion-input type="text"  >{{Client.PhoneNumber}}</ion-input>
-      </ion-item>
+<ion-item>
+  <ion-label position="stacked">Last Name</ion-label>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
+</ion-item>
 
-      <ion-item>
-        <ion-label>
-          Email Address
-        </ion-label>
-        </ion-item>
-        
-      <ion-item *ngfor="let Client of ClientList">
-        <ion-input type="text"  >{{Client.Email}}</ion-input>
-        </ion-item>
+<ion-item>
+  <ion-label position="stacked">Phone Number</ion-label>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
+</ion-item>
 
-        <ion-item>
-          <ion-label>
-            Address
-          </ion-label>
-          </ion-item>
+<ion-item>
+  <ion-label position="stacked">Email</ion-label>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
+</ion-item>
 
-        <ion-item *ngfor="let Client of ClientList">
-          <ion-input type="text"  >{{Client.Address}}</ion-input>
-          </ion-item>
+<ion-item>
+  <ion-label position="stacked">Address</ion-label>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
+</ion-item>
+
+<button ion-button [routerLink]="['/tabs/searchclientaccount']">back</button>
 
 
+<button ion-button [routerLink]="['/tabs/searchclientaccount']">Update</button>
 
 
-<div>
+<button ion-button (click)="deleteClient(ClientList)" color="danger" [routerLink]="['/tabs/searchclientaccount']">Delete</button>
 
-<ion-row>
-<ion-col>
-<button ion-button [routerLink]="['/tabs/searchclientaccount']" >
-Back
-</button>
-</ion-col>
 
-<ion-col>
-<button ion-button color="blue">
-  Update Details
-</button>
-</ion-col>
-
-<ion-col>
-  <button ion-button (click)="deleteClient(ClientList)" color="danger" [routerLink]="['/tabs/searchclientaccount']">
-    Delete Details
-</button>
-</ion-col>
-</ion-row>
-
-</div>
 
 
 </ion-content>
-
