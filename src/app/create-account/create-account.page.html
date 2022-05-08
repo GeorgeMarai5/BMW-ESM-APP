@@ -28,33 +28,39 @@
           </ion-row>
           <ion-item-divider style="margin-top: -7%;"></ion-item-divider>
         </ion-grid>
-        <div style="padding-left: 4%; padding-right: 4%; padding-bottom: 5%">
+        <div style="padding-left: 4%; padding-right: 4%; padding-bottom: 15%">
           <ion-item>
             <ion-label position="floating">Select Account Type</ion-label>
             <ion-select #accountType required>
               <ion-select-option>Client</ion-select-option>
               <ion-select-option>Employee</ion-select-option>
             </ion-select>
+
           </ion-item>    
           <ion-item lines="full">
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="text" #email required></ion-input>
+            <ion-input type="text" formControlName="email" #email required></ion-input>
           </ion-item> 
+
           <ion-item lines="full">
             <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" #password required></ion-input>
+            <ion-input type="password" formControlName="password" #password required></ion-input>
           </ion-item>
+
           <ion-item lines="full">
             <ion-label position="floating">Confirm Password</ion-label>
             <ion-input type="password" #confirmPassword required></ion-input>
           </ion-item><br/>
+ <!-- These validations are for the form group -->
+
           <ion-row>
             <ion-col> 
-              <ion-button type="submit" (click)="createAccount(email, password)" expand="block" style="--background: #1976D2;">Create Account</ion-button>
+              <ion-button type="submit" (click)="createAccount(email, password)" expand="block" style="--background: #1976D2;" >Create Account</ion-button>
             </ion-col>
-          </ion-row> 
-        </div> 
+          </ion-row>
+        </div>   
       </ion-card>
     </form>
   </div>
 </ion-content>
+
