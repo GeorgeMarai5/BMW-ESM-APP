@@ -6,12 +6,13 @@ import { ToastController } from '@ionic/angular';
 import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
 import { getApp } from 'firebase/app';
-import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc} from 'firebase/firestore'
+import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc,getDoc} from 'firebase/firestore'
 import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
 import { snapshotChanges } from '@angular/fire/compat/database';
 import { ClientService } from '../services/Client.service';
 import { AuthService } from '../services/auth.service';
+
 
 
 @Component({
@@ -32,29 +33,38 @@ export class ViewClientAccountPage implements OnInit {
     //public eventList: Clients[] = [];
     ClientList: any;   //[]
 
-  
+    
   
   constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
     private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService) { 
 
 
+      
+
+
+/*
+
+
+
+
+      const citiesRef = collection(this.db, "cities");
+
+      const docRef = doc(this.db, "Client", "U20KImdzyvivSTvtvkTF");
+      const docSnap = await getDoc(docRef);
+      
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+      
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 
@@ -127,7 +137,6 @@ Address: ['', Validators.compose([Validators.required])],
 */
 
   }
-
 
 viewClient(): void{
 

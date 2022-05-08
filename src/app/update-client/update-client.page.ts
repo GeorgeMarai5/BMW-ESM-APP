@@ -3,8 +3,8 @@ import { Clients } from '../models/Clients';
 import * as firebase from 'firebase/app';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LoadingController } from '@ionic/angular';
-import { ToastController } from '@ionic/angular/providers/toast-controller';
-import { AuthService } from '../services/auth.service';
+
+
 
 @Component({
   selector: 'app-update-client',
@@ -14,10 +14,9 @@ import { AuthService } from '../services/auth.service';
 export class UpdateClientPage implements OnInit {
 
 
-  clients: any;
+  client: any;
 
   constructor(private firestore: AngularFirestore,
-    private toastCtrl: ToastController,
     private loadingCtrl: LoadingController) { }
   
 
@@ -39,7 +38,7 @@ try{
 this.firestore.collection('Client').
 snapshotChanges().subscribe(data => {
 
-this.clients = data.map(e => {
+this.client = data.map(e => {
 return{
 
 id: e.payload.doc.id,
