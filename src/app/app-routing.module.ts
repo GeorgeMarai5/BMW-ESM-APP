@@ -19,9 +19,26 @@ const routes: Routes = [
     loadChildren: () => import('./create-account/create-account.module').then( m => m.CreateAccountPageModule)
   },
   {
-    path: 'searchemployeeaccount',
+    path: 'search/account/employee',
     loadChildren: () => import('./searchemployeeaccount/searchemployeeaccount.module').then( m => m.SearchemployeeaccountPageModule)
-  },  {
+  },
+  {
+    path: 'password-reset',
+    loadChildren: () => import('./password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
+  },
+  {
+    path: 'verify-email',
+    loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
+  },
+  {
+    path: 'dashboard/client',
+    loadChildren: () => import('./dashboard-client/dashboard-client.module').then( m => m.DashboardClientPageModule)
+  },
+  {
+    path: 'search/account/client',
+    loadChildren: () => import('./searchclientaccount/searchclientaccount.module').then( m => m.SearchclientaccountPageModule)
+  },
+  {
     path: 'password-reset',
     loadChildren: () => import('./password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
   },
@@ -29,7 +46,6 @@ const routes: Routes = [
     path: 'verify-email',
     loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   }
-
 ];
 @NgModule({
   imports: [
