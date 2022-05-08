@@ -35,8 +35,8 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard-client/dashboard-client.module').then( m => m.DashboardClientPageModule)
   },
   {
-    path: 'searchemployeeaccount',
-    loadChildren: () => import('./searchemployeeaccount/searchemployeeaccount.module').then( m => m.SearchemployeeaccountPageModule)
+    path: 'search/account/client',
+    loadChildren: () => import('./searchclientaccount/searchclientaccount.module').then( m => m.SearchclientaccountPageModule)
   },
   {
     path: 'password-reset',

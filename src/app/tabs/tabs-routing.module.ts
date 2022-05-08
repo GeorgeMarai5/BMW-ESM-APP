@@ -24,7 +24,7 @@ const routes: Routes = [
         loadChildren: () => import('../dashboard-client/dashboard-client.module').then( m => m.DashboardClientPageModule)
       },
       {
-        path: 'searchemployeeaccount',
+        path: 'search/account/employee',
         loadChildren: () => import('../searchemployeeaccount/searchemployeeaccount.module').then( m => m.SearchemployeeaccountPageModule)
       },
       {
@@ -34,6 +34,10 @@ const routes: Routes = [
       {
         path: 'verify-email',
         loadChildren: () => import('../verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
+      },
+      {
+        path: 'search/account/client',
+        loadChildren: () => import('../searchclientaccount/searchclientaccount.module').then( m => m.SearchclientaccountPageModule)
       },
     ]
   },
