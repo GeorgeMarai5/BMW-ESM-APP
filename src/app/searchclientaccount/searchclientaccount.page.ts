@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-
+import { Observable, combineLatest } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { Firestore, collectionData, query, collection } from '@angular/fire/firestore';
+import { startWith, map } from 'rxjs/operators';
 @Component({
   selector: 'app-searchclientaccount',
   templateUrl: './searchclientaccount.page.html',
@@ -16,7 +16,8 @@ export class SearchclientaccountPage implements OnInit {
   clients:any = [];
   public list: Array<Object> = [];
   private searchedItem: any;
-  
+  public searchField: FormControl;
+  public clientList$: Observable<any[]>;
   id: string;
   name: string;
   phone: number;
@@ -25,28 +26,42 @@ export class SearchclientaccountPage implements OnInit {
   Filter: string;
 
 
-  constructor(private httpClient: HttpClient) { 
-    this.getClients().subscribe(res => {
-      console.log(res)
-      this.clients = res;
-    });
+  constructor(private readonly firestore: Firestore) { 
+    this.searchField = new FormControl('');
   }
-
-  getClients(): Observable<SearchclientaccountPage[]> {
-    return this.httpClient.get<SearchclientaccountPage[]>('https://jsonplaceholder.typicode.com/users/')
-      .pipe(
-        tap(ClientDevice => console.log('Clients list received!')),
-        catchError(this.handleError<SearchclientaccountPage[]>('Get Client', []))
-      );
-  }
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  } 
-  ngOnInit() {
-  }
-
+  
+  // getClients(): Observable<SearchclientaccountPage[]> {
+  //   return this.httpClient.get<SearchclientaccountPage[]>('https://jsonplaceholder.typicode.com/users/')
+  //     .pipe(
+  //       tap(ClientDevice => console.log('Clients list received!')),
+  //       catchError(this.handleError<SearchclientaccountPage[]>('Get Client', []))
+  //     );
+  // }
+  // private handleError<T>(operation = 'operation', result?: T) {
+  //   return (error: any): Observable<T> => {
+  //     console.error(error);
+  //     console.log(`${operation} failed: ${error.message}`);
+  //     return of(result as T);
+  //   };
+  // } 
+   async ngOnInit() {
+    const searchTerm$ = this.searchField.valueChanges.pipe(
+      startWith(this.searchField.value),
+    );
+  const clientList$ = collectionData(query(collection(this.firestore, 'clientList')));
+  this.clientList$ = combineLatest([clientList$, searchTerm$]).pipe(
+    map(([clientList, searchTerm]) =>
+      clientList.filter(
+        (clientItem) =>
+          searchTerm === '' ||
+          clientItem.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    )
+  );
+  
+}
+}
+interface ClientItem {
+  name: string;
+  
 }
