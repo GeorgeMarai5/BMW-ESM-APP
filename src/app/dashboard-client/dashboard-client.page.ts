@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: 'app-dashboard-client',
@@ -12,6 +13,7 @@ export class DashboardClientPage implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
+    public authService: AuthService
   ) {
     this.initializeApp();
   }

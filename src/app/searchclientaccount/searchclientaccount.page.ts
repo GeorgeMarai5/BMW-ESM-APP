@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Firestore, collectionData, query, collection } from '@angular/fire/firestore';
 import { first, startWith, map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-searchclientaccount',
@@ -28,7 +29,7 @@ export class SearchclientaccountPage implements OnInit {
  // Filter: string;
 public clientList: any;
 
-constructor(private firestore: AngularFirestore){
+constructor(private firestore: AngularFirestore, public authService: AuthService){
 
 }
   // constructor(private readonly firestore: Firestore) { 
