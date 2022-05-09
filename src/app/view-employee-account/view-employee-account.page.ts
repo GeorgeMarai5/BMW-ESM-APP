@@ -7,32 +7,45 @@ import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
 import { getApp } from 'firebase/app';
 import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
-import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
 import { snapshotChanges } from '@angular/fire/compat/database';
-import { ClientService } from '../services/Client.service';
+import { EmployeeService } from '../services/Employee.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { employee } from '../models/Employee';
+
 
 
 @Component({
-  selector: 'app-update-client',
-  templateUrl: './update-client.page.html',
-  styleUrls: ['./update-client.page.scss'],
+  selector: 'app-view-employee-account',
+  templateUrl: './view-employee-account.page.html',
+  styleUrls: ['./view-employee-account.page.scss'],
 })
-
-export class UpdateClientPage implements OnInit {
+export class ViewEmployeeAccountPage implements OnInit {
 
   
-    clientList = [];
+  //private FirebaseApp = getApp();
+  //private db = getFirestore(this.FirebaseApp);
+  //private Clientid: String;
+ //private currentClient;
+    employeeList = [];
+    employeeform: FormGroup;
+    employee: employee;
     
-    clients: Clients;
-    clientform : FormGroup;
+    
+
+
+
+
+    //public eventList: Clients[] = [];
+    //ClientList: any;   //[]
+
   
-  constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
+  
+  constructor(public employeeService: EmployeeService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
 
-this.clients = {} as Clients;
+this.employee = {} as employee;
 
     }
 
@@ -41,34 +54,34 @@ this.clients = {} as Clients;
 
     ngOnInit() {
 
-      this.clientform = this.fb.group({
-        Title: [''],
-        FirstName: [''],
-        LastName: [''],
+      this.employeeform = this.fb.group({
+        QNumber: [''],
+        Name: [''],
+        Surname: [''],
         PhoneNumber: [''],
         Email: [''],
-        Address: [''],
+        Team: [''],
       })
 
 
-this.clientService.read_Clients().subscribe(data =>{
+this.employeeService.read_Employee().subscribe(data =>{
 
 
-  this.clientList = data.map(e =>{
+  this.employeeList = data.map(e =>{
 
 return{
 
 id: e.payload.doc.id,
-Title: e.payload.doc.data()['Title'],
-FirstName: e.payload.doc.data()['FirstName'],
-LastName: e.payload.doc.data()['lastName'],
+QNumber: e.payload.doc.data()['qnumber'],
+Name: e.payload.doc.data()['name'],
+Surname: e.payload.doc.data()['surname'],
 PhoneNumber: e.payload.doc.data()['phone'],
 Email: e.payload.doc.data()['email'],
-Address: e.payload.doc.data()['Address'],
+Team: e.payload.doc.data()['team'],
 };
 
 })
-console.log(this.clientList);
+console.log(this.employeeList);
 
 
 });
@@ -77,8 +90,6 @@ console.log(this.clientList);
     }
 
 
+
+
   }
-
-
-
-

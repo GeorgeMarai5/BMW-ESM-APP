@@ -57,8 +57,7 @@ const routes: Routes = [
   {
     path: 'view-employee-account',
     loadChildren: () => import('./view-employee-account/view-employee-account.module').then( m => m.ViewEmployeeAccountPageModule)
-  },
-  {
+  },  {
     path: 'update-employee',
     loadChildren: () => import('./update-employee/update-employee.module').then( m => m.UpdateEmployeePageModule)
   }
