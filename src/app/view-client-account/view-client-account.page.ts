@@ -6,14 +6,12 @@ import { ToastController } from '@ionic/angular';
 import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
 import { getApp } from 'firebase/app';
-import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
+import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc} from 'firebase/firestore'
 import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
 import { snapshotChanges } from '@angular/fire/compat/database';
 import { ClientService } from '../services/Client.service';
 import { AuthService } from '../services/auth.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-
 
 
 @Component({
@@ -24,98 +22,20 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class ViewClientAccountPage implements OnInit {
 
   
-  //private FirebaseApp = getApp();
-  //private db = getFirestore(this.FirebaseApp);
-  //private Clientid: String;
- //private currentClient;
-    clientList = [];
-    
-    clients: Clients;
-    clientform : FormGroup;
+  private FirebaseApp = getApp();
+  private db = getFirestore(this.FirebaseApp);
+  private Clientid: String;
+ private currentClient;
 
 
-
-
+    public Clientpage : FormGroup;
     //public eventList: Clients[] = [];
-    //ClientList: any;   //[]
+    ClientList: any;   //[]
 
   
   
   constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
-
-this.clients = {} as Clients;
-
-    }
-
-
-
-
-    ngOnInit() {
-
-      this.clientform = this.fb.group({
-        Title: [''],
-        FirstName: [''],
-        LastName: [''],
-        PhoneNumber: [''],
-        Email: [''],
-        Address: [''],
-      })
-
-
-this.clientService.read_Clients().subscribe(data =>{
-
-
-  this.clientList = data.map(e =>{
-
-return{
-
-id: e.payload.doc.id,
-Title: e.payload.doc.data()['Title'],
-FirstName: e.payload.doc.data()['FirstName'],
-LastName: e.payload.doc.data()['lastName'],
-PhoneNumber: e.payload.doc.data()['phone'],
-Email: e.payload.doc.data()['email'],
-Address: e.payload.doc.data()['Address'],
-};
-
-})
-console.log(this.clientList);
-
-
-});
-
-
-    }
-
-
-
-
-
-
-
-
-    
-      /*
-     this.firestore.collection("Client").get().subscribe((QuerySnapshot) =>{
-    QuerySnapshot.forEach((doc) =>{
-
-      console.log(doc.data());
-    })
-
-
-     }) 
-}
-
-*/
-
-     //const ClientRef = collection(db, 'Client');        --this is a reference to the database
-
-
-
-
-     
-      /*
+    private formBuilder: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService) { 
 
 this.clientService.get_Clients().subscribe((res)=>{
 
@@ -166,10 +86,10 @@ Address: ['', Validators.compose([Validators.required])],
 
 */
 
-  
+  }
 
 
-//viewClient(): void{
+viewClient(): void{
 
 //this is the update user method
 
@@ -177,41 +97,41 @@ Address: ['', Validators.compose([Validators.required])],
 
   //const FirebaseApp = getApp();
   //const db = getFirestore(FirebaseApp);
- // const ClientCollection = collection(this.db,'Client')
+  const ClientCollection = collection(this.db,'Client')
 
-  //addDoc(ClientCollection, this.Clientpage.value);
-
-
+  addDoc(ClientCollection, this.Clientpage.value);
 
 
 
 
 
-//console.log(this.Clientpage.value)
-
-//}
-
-  
 
 
+console.log(this.Clientpage.value)
+
+}
 
   
 
-  //logForm(){
-   // console.log(this.Clientpage.value)
+
+
+  
+
+  logForm(){
+    console.log(this.Clientpage.value)
     
- // }
+  }
 
 
 
-  
-/*
+  ngOnInit() {
+
 this.Clientid = this.route.snapshot.params.id;
 console.log(this.Clientid);
 
 if(this.Clientid !== 'new'){
 this.currentClient = doc(this.db,'Client/${id}');    //to load data onto the form
-onSnapshot<clients>(this.currentClient, snapshot => {
+onSnapshot<Clients>(this.currentClient, snapshot => {
 this.Clientpage.setValue({
 
 Title: snapshot.data().Title,
@@ -229,7 +149,21 @@ Address: snapshot.data().Address
 });
 
 
-  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*
      const ClientCollection = collection(db,'Client')
 onSnapshot<Clients>(ClientCollection, snapshot => {
@@ -248,7 +182,7 @@ onSnapshot<Clients>(ClientCollection, snapshot => {
 
 */
 
-  
+  }
 
   async removeAlert(){
 
@@ -259,10 +193,6 @@ onSnapshot<Clients>(ClientCollection, snapshot => {
     });
 
   }
-
-
-/*
-
   deleteClient(ClientList){
     this.removeAlert();
     this.clientService.delete_Client(ClientList).then((res:any) => {
@@ -271,12 +201,28 @@ console.log(res)
     })
     
   }
-  */
 
 
   update(){   
 
-  
+    //this.createform.patchValue({
+
+   //title: this.ClientDate.title
+
+   //first_name: this.ClientData.first_name,
+
+   //last_name: this.ClientData.last_name,
+
+   //username: this.ClientData.username,
+
+   //email: this.ClientData.email,
+
+ //})
+
+
+
+
+
 }
 
 
