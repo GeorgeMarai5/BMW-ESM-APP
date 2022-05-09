@@ -11,5 +11,6 @@ export class UpdatePasswordPage implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-}
+  }
+
 }
