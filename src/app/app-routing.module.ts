@@ -53,12 +53,7 @@ const routes: Routes = [
   {
     path: 'view/client',
     loadChildren: () => import('./view-client-account/view-client-account.module').then( m => m.ViewClientAccountPageModule)
-  },
-  {
-    path: 'view-employee-account',
-    loadChildren: () => import('./view-employee-account/view-employee-account.module').then( m => m.ViewEmployeeAccountPageModule)
   }
-
 ];
 @NgModule({
   imports: [

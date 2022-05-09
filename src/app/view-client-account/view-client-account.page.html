@@ -24,49 +24,45 @@
   </ion-title>
 
 
-  <form [formGroup]="clientform" *ngFor="let item of clientList">
-
   <ion-item>
     <ion-label position="stacked">Title</ion-label>
-    <ion-input value="{{item.Title}}" readonly></ion-input>
+    <ion-input *ngfor="let Client of ClientList"></ion-input>
   </ion-item>
 
 <ion-item>
   <ion-label position="stacked">First Name</ion-label>
-  <ion-input value="{{item.FirstName}}" readonly></ion-input>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
 </ion-item>
 
-<ion-item >
+<ion-item>
   <ion-label position="stacked">Last Name</ion-label>
-  <ion-input value="{{item.LastName}}" readonly></ion-input>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label position="stacked">Phone Number</ion-label>
-  <ion-input value="{{item.PhoneNumber}}" readonly></ion-input>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
 </ion-item>
 
-<ion-item >
-  <ion-label position="stacked" >Email</ion-label> 
-  <ion-input value="{{item.Email}}" readonly></ion-input>
+<ion-item>
+  <ion-label position="stacked">Email</ion-label>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label position="stacked">Address</ion-label>
-  <ion-input value="{{item.Address}}" readonly> </ion-input>
+  <ion-input *ngfor="let Client of ClientList"></ion-input>
 </ion-item>
 
-</form>
-
-<ion-button  [routerLink]="['/tabs/search/account/client']">back</ion-button>
+<button ion-button [routerLink]="['/tabs/searchclientaccount']">back</button>
 
 
-<ion-button  [routerLink]="['/tabs/update/client']">Update</ion-button>
+<button ion-button [routerLink]="['/tabs/searchclientaccount']">Update</button>
 
 
-<ion-button  color="danger" [routerLink]="['/tabs/searchclientaccount']">Delete</ion-button>
+<button ion-button (click)="deleteClient(ClientList)" color="danger" [routerLink]="['/tabs/searchclientaccount']">Delete</button>
 
 
-<!--(click)="deleteClient(ClientList)"-->
+
 
 </ion-content>
