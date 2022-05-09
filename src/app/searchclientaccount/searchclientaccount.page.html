@@ -18,7 +18,7 @@
     <ion-item>
 <ion-label class="large">Search Clients</ion-label>
 </ion-item>
-<ion-searchbar class="isb"placeholder="Search Client" (ionInput)="filterList($event)" showCancelButton="focus" animated>
+<ion-searchbar class="isb"placeholder="Search Client" showCancelButton="focus" animated>
   </ion-searchbar>
   <ion-card>
     <ion-grid class="ion-margin" class="ion-grid-padding">
@@ -30,7 +30,10 @@
       <ion-col></ion-col>
       <ion-col></ion-col>
     </ion-row>
-  <ion-row *ngFor="let clientItem of clientList">
+    </ion-grid>
+    </ion-card>
+
+  <!-- <ion-row *ngFor="let clientItem of clientList">
     <ion-item>
     <ion-label> {{clientItem.clientID}}</ion-label>
   </ion-item>
@@ -53,5 +56,45 @@
     
 </ion-grid>
 </ion-card>
-</ion-content>
+</ion-content> -->
 
+
+  <ion-title>
+    Client Account
+  </ion-title>
+
+
+  <form [formGroup]="clientform" *ngFor="let item of clientList">
+
+  <ion-item>
+    <ion-label position="stacked">Title</ion-label>
+    <ion-input value="{{item.Title}}" readonly></ion-input>
+  </ion-item>
+
+<ion-item>
+  <ion-label position="stacked">First Name</ion-label>
+  <ion-input value="{{item.FirstName}}" readonly></ion-input>
+</ion-item>
+
+<ion-item >
+  <ion-label position="stacked">Last Name</ion-label>
+  <ion-input value="{{item.LastName}}" readonly></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Phone Number</ion-label>
+  <ion-input value="{{item.PhoneNumber}}" readonly></ion-input>
+</ion-item>
+
+<ion-item >
+  <ion-label position="stacked" >Email</ion-label> 
+  <ion-input value="{{item.Email}}" readonly></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Address</ion-label>
+  <ion-input value="{{item.Address}}" readonly> </ion-input>
+</ion-item>
+
+</form>
+</ion-content>
