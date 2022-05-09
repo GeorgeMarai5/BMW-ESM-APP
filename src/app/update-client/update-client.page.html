@@ -13,84 +13,53 @@
   </ion-toolbar>
 </ion-header>
 
-
-
 <ion-content>
+  <ion-title>
+    Client Account
+  </ion-title>
 
-  <ion-item>
-    <ion-label>
-      Title
-    </ion-label>
-    </ion-item>
-    
-  <ion-item>
-    <ion-input type="text"  ></ion-input>
-    </ion-item>
 
-<ion-item>
-  <ion-label>
-    First Name
-  </ion-label>
-  </ion-item>
-  
-<ion-item>
-  <ion-input type="text"  ></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label class="ion-padding-top">
-      Last Name
-    </ion-label>
-    </ion-item>
-    
-  <ion-item>
-    <ion-input type="text"  ></ion-input>
-    </ion-item>
+  <form formGroup="clientform" *ngFor="let item of clientList">
 
     <ion-item>
-      <ion-label>
-        Phone number
-      </ion-label>
-      </ion-item>
-      
-    <ion-item>
-      <ion-input type="text"  ></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>
-          Email Address
-        </ion-label>
-        </ion-item>
-        
-      <ion-item>
-        <ion-input type="text"  ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>
-            Address
-          </ion-label>
-          </ion-item>
-
-        <ion-item>
-          <ion-input type="text"  ></ion-input>
-          </ion-item>
-
-<ion-row>
-<ion-col>
-<button ion-button >
-Update password
-</button>
-</ion-col>
-
-<ion-col>
-<button ion-button color="blue">
-  submit
-</button>
-</ion-col>
-</ion-row>
-
-
-</ion-content>
-
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input value="{{item.Title}}" readonly></ion-input>
+    </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">First Name</ion-label>
+    <ion-input value="{{item.FirstName}}" readonly></ion-input>
+  </ion-item>
+  
+  <ion-item >
+    <ion-label position="stacked">Last Name</ion-label>
+    <ion-input value="{{item.LastName}}" readonly></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">Phone Number</ion-label>
+    <ion-input value="{{item.PhoneNumber}}" readonly></ion-input>
+  </ion-item>
+  
+  <ion-item >
+    <ion-label position="stacked" >Email</ion-label> 
+    <ion-input value="{{item.Email}}" readonly></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">Address</ion-label>
+    <ion-input value="{{item.Address}}" readonly> </ion-input>
+  </ion-item>
+  
+  </form>
+  
+  <ion-button color="primary" [routerLink]="['/tabs/password/reset']">Update Password</ion-button>
+  
+  
+  <ion-button  color="primary" [routerLink]="['/tabs/view/client']">Submit</ion-button>
+  
+  
+  
+  <!--(click)="deleteClient(ClientList)"-->
+  
+  </ion-content>
