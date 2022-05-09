@@ -13,93 +13,99 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
     <ion-grid>
         <ion-row>
             <ion-col>
-                <h1>Welcome to Mr J Andille</h1>
+                <h1>Welcome </h1>
             </ion-col>
             <ion-col>
-                <ion-item-divider>
-                    <ion-label>
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col>
-                                    <ion-icon md="md-construct"></ion-icon>
-                                    <p>5</p>
-                                </ion-col>
-                                <ion-col>
-                                    <p>Role</p>
-                                    <p>Foreman</p>
-                                </ion-col>
-                                <ion-col>
-                                    <p>Team Status</p>
-                                    <p>Active</p>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-                    </ion-label>
-                </ion-item-divider>
+                <ion-card style="margin-top: 3vh;">
+                    <ion-row>
+                        <ion-col>
+                            <ion-icon name="construct"></ion-icon><ion-text></ion-text>
+                        </ion-col>
+                        <ion-col>
+                            <ion-text>Role: </ion-text>
+                        </ion-col>
+                        <ion-col>
+                            <ion-text>Team Status: Active</ion-text>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
             </ion-col>
         </ion-row>
-
+    </ion-grid>
+    <ion-grid>
         <ion-row>
-            <ion-col>
-                <ion-item-divider>
-                    <ion-label>
+            <ion-col size="4">
+                <ion-card>
+                    <ion-item-divider>
                         <h3>Team</h3>
-                    </ion-label>
-                </ion-item-divider>
-                <ion-item-divider>
-                    <ion-label>
-                        <p>A. Davis</p>
-                    </ion-label>
-                </ion-item-divider>
-                <ion-item-divider>
-                    <ion-label>
-                        <p>J. Andille</p>
-                    </ion-label>
-                </ion-item-divider>
-                <ion-item-divider>
-                    <ion-label>
-                        <p>B. Frode</p>
-                    </ion-label>
-                </ion-item-divider>
-                <ion-label>
-                    <p>P. Grand</p>
-                </ion-label>
+                    </ion-item-divider>
+                    <ion-item-divider>
+                        <ion-label>
+                            <p>A. Davis</p>
+                        </ion-label>
+                    </ion-item-divider>
+                    <ion-item-divider>
+                        <ion-label>
+                            <p>J. Andille</p>
+                        </ion-label>
+                    </ion-item-divider>
+                    <ion-item-divider>
+                        <ion-label>
+                            <p>B. Frode</p>
+                        </ion-label>
+                    </ion-item-divider>
+                    <ion-item-divider>
+                        <ion-label>
+                            <p>P. Grand</p>
+                        </ion-label>
+                    </ion-item-divider>
+                </ion-card>
             </ion-col>
-            <ion-col>
-                <ion-item-divider>
-                    <ion-label>
+            <ion-col size="4">
+                <ion-card>
+                    <ion-item-divider>
                         <h3>Team Peformance</h3>
-                    </ion-label>
-                </ion-item-divider>
-                <div id="gaugeArea"></div>
+                    </ion-item-divider>
+                    <div id="gaugeArea"></div>
+                    <ion-item-divider>
+                        <ion-label>
+                            <h3>Description:</h3>
+                            <ion-text>This metric is based on the feedback received from the clients about the service conducted.</ion-text>
+                        </ion-label>
+                    </ion-item-divider>
+                </ion-card>
             </ion-col>
-            <ion-col>
-                <ion-item-divider>
-                    <ion-label>
+            <ion-col size="4">
+                <ion-card>
+                    <ion-item-divider>
                         <h3>Team Details</h3>
-                    </ion-label>
-                </ion-item-divider>
-                <ion-item-divider>
-                    <ion-label>
-                        <p>Team Name</p>
-                        <br>
-                        <p>B-ZAG-SN-02</p>
-                    </ion-label>
-                </ion-item-divider>
-                <ion-item-divider>
-                    <ion-label>
-                        <p>Team Type</p>
-                        <br>
-                        <p>Fully Integrated</p>
-                    </ion-label>
-                </ion-item-divider>
-                <ion-label>
-                    <p>Dealership</p>
-                </ion-label>
+                    </ion-item-divider>
+                    <ion-item-divider>
+                        <ion-label>
+                            <h3>Team Name</h3>
+                            <br>
+                            <ion-text>B-ZAG-SN-02</ion-text>
+                        </ion-label>
+                    </ion-item-divider>
+                    <ion-item-divider>
+                        <ion-label>
+                            <h3>Team Type</h3>
+                            <br>
+                            <ion-text>Fully Integrated</ion-text>
+                        </ion-label>
+                    </ion-item-divider>
+                    <ion-item-divider>
+                        <ion-label>
+                            <h3>Dealership</h3>
+                            <br>
+                            <ion-text>BMW Sandton</ion-text>
+                        </ion-label>
+                    </ion-item-divider>
+                </ion-card>
             </ion-col>
         </ion-row>
     </ion-grid>
