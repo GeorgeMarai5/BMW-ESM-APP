@@ -1,11 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, combineLatest } from 'rxjs';
-import { FormControl } from '@angular/forms';
-import { Firestore, collectionData, query, collection } from '@angular/fire/firestore';
-import { first, startWith, map } from 'rxjs/operators';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
+import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
+import { AngularDelegate } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { ToastController } from '@ionic/angular';
+import { Router,Route } from '@angular/router';
+import { PostService } from '../services/post.service';
+import { getApp } from 'firebase/app';
+import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
+import { Clients } from '../models/Clients';
+import { ActivatedRoute } from '@angular/router';
+import { snapshotChanges } from '@angular/fire/compat/database';
+import { ClientService } from '../services/Client.service';
 import { AuthService } from '../services/auth.service';
-
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Component({
   selector: 'app-searchclientaccount',
   templateUrl: './searchclientaccount.page.html',
@@ -28,69 +35,53 @@ export class SearchclientaccountPage implements OnInit {
   
  // Filter: string;
 public clientList: any;
+//clientList= [];
+    
+clients: Clients;
+clientform : FormGroup;
 
-constructor(private firestore: AngularFirestore, public authService: AuthService){
 
-}
-  // constructor(private readonly firestore: Firestore) { 
-  //   this.searchField = new FormControl('');
-  // }
-  
-  // getClients(): Observable<SearchclientaccountPage[]> {
-  //   return this.httpClient.get<SearchclientaccountPage[]>('https://jsonplaceholder.typicode.com/users/')
-  //     .pipe(
-  //       tap(ClientDevice => console.log('Clients list received!')),
-  //       catchError(this.handleError<SearchclientaccountPage[]>('Get Client', []))
-  //     );
-  // }
-  // private handleError<T>(operation = 'operation', result?: T) {
-  //   return (error: any): Observable<T> => {
-  //     console.error(error);
-  //     console.log(`${operation} failed: ${error.message}`);
-  //     return of(result as T);
-  //   };
-  // } 
-//    async ngOnInit() {
-//     const searchTerm$ = this.searchField.valueChanges.pipe(
-//       startWith(this.searchField.value),
-//     );
-//   const clientList$ = collectionData(query(collection(this.firestore, 'clientList')));
-//   this.clientList$ = combineLatest([clientList$, searchTerm$]).pipe(
-//     map(([clientList, searchTerm]) =>
-//       clientList.filter(
-//         (clientItem) =>
-//           searchTerm === '' ||
-//           clientItem.name.toLowerCase().includes(searchTerm.toLowerCase())
-//       )
-//     )
-//   );
-  
-// }
-// }
-// interface ClientItem {
-//   name: string;
-  
 
-async ngOnInit(){
-    this.clientList = await this.initializeItems();
-}
+constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
+  public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
 
-async initializeItems(): Promise<any>{
-const clientList = await this.firestore.collection('clientList').valueChanges().pipe(first());
-}
+this.clients = {} as Clients;
 
-async filterList(evt){
-  this.clientList = await this.initializeItems();
-  const searchTerm = evt.srcElement.value;
-
-  if(!searchTerm){
-    return;
   }
 
-  this.clientList = this.clientList.filter(currentClient => {
-    if (currentClient.name && searchTerm){
-      return (currentClient.name.toLowerCase().indexOf(searchTerm.toLowerCase())> -1 || currentClient.clientId.toLowerCase().indexOf(searchTerm.toLowerCase()))
-    }
-  })
-}
-}
+
+
+
+  ngOnInit() {
+
+    this.clientform = this.fb.group({
+      Title: [''],
+      FirstName: [''],
+      LastName: [''],
+      PhoneNumber: [''],
+      Email: [''],
+      Address: [''],
+    })
+
+
+this.clientService.read_Clients().subscribe(data =>{
+
+
+this.clientList = data.map(e =>{
+
+return{
+
+id: e.payload.doc.id,
+Title: e.payload.doc.data()['Title'],
+FirstName: e.payload.doc.data()['FirstName'],
+LastName: e.payload.doc.data()['lastName'],
+PhoneNumber: e.payload.doc.data()['phone'],
+Email: e.payload.doc.data()['email'],
+Address: e.payload.doc.data()['Address'],
+};
+
+})
+console.log(this.clientList);
+
+
+});}}
