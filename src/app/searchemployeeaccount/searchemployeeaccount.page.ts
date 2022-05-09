@@ -1,18 +1,9 @@
-import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
-import { AngularDelegate } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { ToastController } from '@ionic/angular';
-import { Router,Route } from '@angular/router';
-import { PostService } from '../services/post.service';
-import { getApp } from 'firebase/app';
-import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
-import { Clients } from '../models/Clients';
-import { ActivatedRoute } from '@angular/router';
-import { snapshotChanges } from '@angular/fire/compat/database';
-import { ClientService } from '../services/Client.service';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 @Component({
   selector: 'app-searchemployeeaccount',
   templateUrl: './searchemployeeaccount.page.html',
@@ -22,21 +13,41 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export class SearchemployeeaccountPage implements OnInit {
 
-
-public clientList: any;
-
-    
-clients: Clients;
-employeeform : FormGroup;
-
-
-
-constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-  public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
-
-
+  searchTerm: string;
+  employees:any = [];
+  public list: Array<Object> = [];
+  private searchedItem: any;
+  
+  qnumber: string;
+  name: string;
+  email: number;
+  role: string;
+  
+  Filter: string;
 
 
-}ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }}
+  constructor(private httpClient: HttpClient, public authService: AuthService) { 
+    this.getEmployees().subscribe(res => {
+      console.log(res)
+      this.employees = res;
+    });
+  }
+
+  getEmployees(): Observable<SearchemployeeaccountPage[]> {
+    return this.httpClient.get<SearchemployeeaccountPage[]>('https://jsonplaceholder.typicode.com/users/')
+      .pipe(
+        tap(EmployeeDevice => console.log('Employees list received!')),
+        catchError(this.handleError<SearchemployeeaccountPage[]>('Get Employee', []))
+      );
+  }
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      console.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  } 
+  ngOnInit() {
+  }
+
+}
