@@ -60,6 +60,22 @@ const routes: Routes = [
   },  {
     path: 'update-employee',
     loadChildren: () => import('./update-employee/update-employee.module').then( m => m.UpdateEmployeePageModule)
+  },
+  {
+    path: 'add-vehicle',
+    loadChildren: () => import('./add-vehicle/add-vehicle.module').then( m => m.AddVehiclePageModule)
+  },
+  {
+    path: 'edit-vehicle',
+    loadChildren: () => import('./edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
+  },
+  {
+    path: 'search-vehicle',
+    loadChildren: () => import('./search-vehicle/search-vehicle.module').then( m => m.SearchVehiclePageModule)
+  },
+  {
+    path: 'view-vehicle',
+    loadChildren: () => import('./view-vehicle/view-vehicle.module').then( m => m.ViewVehiclePageModule)
   }
 
 
