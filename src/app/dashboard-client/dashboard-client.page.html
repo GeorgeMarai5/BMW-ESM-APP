@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid>
+    <ion-grid class="content">
         <ion-row>
             <ion-col>
                 <h1>Welcome </h1>
@@ -31,25 +31,25 @@
                             <ion-text>km </ion-text>
                         </ion-col>
                         <ion-col>
-                            <ion-text>Status: Active</ion-text>
+                            <ion-text>Status: <span class="status">Active</span></ion-text>
                         </ion-col>
                     </ion-row>
                 </ion-card>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-grid>
+    <ion-grid class="content">
         <ion-row>
             <ion-col size="4">
                 <ion-card>
                     <ion-item-divider>
                         <h3>Fleet Health</h3>
                     </ion-item-divider>
-                    <div id="gaugeArea"></div>
+                    <div class="gaugeChart"></div>
                     <ion-item-divider>
                         <ion-label>
                             <h3>Description:</h3>
-                            <ion-text>This metric is based on the feedback received from the clients about the service conducted.</ion-text>
+                            <ion-text>This metric is based on the feedback received from <br/>the clients about the service conducted.</ion-text>
                         </ion-label>
                     </ion-item-divider>
                 </ion-card>
@@ -57,7 +57,7 @@
             <ion-col size="4">
                 <ion-card>
                     <ion-item-divider>
-                        <h3>Previous Service Summary</h3>
+                        <h3>Previous Service <br/>Summary</h3>
                     </ion-item-divider>
                     <ion-item-divider>
                         <ion-label>
