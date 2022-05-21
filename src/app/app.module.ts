@@ -15,11 +15,14 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { GaugeModule } from 'angular-gauge';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,AngularFireModule.initializeApp(environment.firebaseConfig),
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,AngularFireModule.initializeApp(environment.firebaseConfig), 
+    GaugeModule.forRoot(),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
