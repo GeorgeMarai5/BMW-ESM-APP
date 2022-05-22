@@ -93,7 +93,28 @@ const routes: Routes = [
   {
     path: 'view-dealership',
     loadChildren: () => import('./view-dealership/view-dealership.module').then( m => m.ViewDealershipPageModule)
+  },
+  {
+    path: 'searchmaintenanceplan',
+    loadChildren: () => import('./searchmaintenanceplan/searchmaintenanceplan.module').then( m => m.SearchmaintenanceplanPageModule)
+  },
+  {
+    path: 'select-maintenanceplan',
+    loadChildren: () => import('./select-maintenanceplan/select-maintenanceplan.module').then( m => m.SelectMaintenanceplanPageModule)
+  },
+  {
+    path: 'upgrade-maintenanceplan',
+    loadChildren: () => import('./upgrade-maintenanceplan/upgrade-maintenanceplan.module').then( m => m.UpgradeMaintenanceplanPageModule)
+  },  {
+    path: 'view-maintenanceplan',
+    loadChildren: () => import('./view-maintenanceplan/view-maintenanceplan.module').then( m => m.ViewMaintenanceplanPageModule)
+  },
+  {
+    path: 'initiate-service-procedure',
+    loadChildren: () => import('./initiate-service-procedure/initiate-service-procedure.module').then( m => m.InitiateServiceProcedurePageModule)
   }
+
+
 
 
 ];
