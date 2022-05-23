@@ -13,6 +13,7 @@ import { snapshotChanges } from '@angular/fire/compat/database';
 import { ClientService } from '../services/Client.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 @Component({
   selector: 'app-searchemployeeaccount',
   templateUrl: './searchemployeeaccount.page.html',
