@@ -105,7 +105,8 @@ const routes: Routes = [
   {
     path: 'upgrade-maintenanceplan',
     loadChildren: () => import('./upgrade-maintenanceplan/upgrade-maintenanceplan.module').then( m => m.UpgradeMaintenanceplanPageModule)
-  },  {
+  },
+  {
     path: 'view-maintenanceplan',
     loadChildren: () => import('./view-maintenanceplan/view-maintenanceplan.module').then( m => m.ViewMaintenanceplanPageModule)
   },
