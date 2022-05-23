@@ -113,7 +113,27 @@ const routes: Routes = [
   {
     path: 'initiate-service-procedure',
     loadChildren: () => import('./initiate-service-procedure/initiate-service-procedure.module').then( m => m.InitiateServiceProcedurePageModule)
+  },  {
+    path: 'create-service',
+    loadChildren: () => import('./create-service/create-service.module').then( m => m.CreateServicePageModule)
+  },
+  {
+    path: 'update-service',
+    loadChildren: () => import('./update-service/update-service.module').then( m => m.UpdateServicePageModule)
+  },
+  {
+    path: 'cancel-service',
+    loadChildren: () => import('./cancel-service/cancel-service.module').then( m => m.CancelServicePageModule)
+  },
+  {
+    path: 'search-service',
+    loadChildren: () => import('./search-service/search-service.module').then( m => m.SearchServicePageModule)
+  },
+  {
+    path: 'view-service',
+    loadChildren: () => import('./view-service/view-service.module').then( m => m.ViewServicePageModule)
   }
+
 
 
 
