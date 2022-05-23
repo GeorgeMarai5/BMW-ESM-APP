@@ -34,7 +34,7 @@ export class CreateAccountPage implements OnInit {
           email: email.value,
           phoneNum: ''
         }
-        await this.firestore.collection('Client').add(client)
+        await this.firestore.collection('Client').doc().set(client)
       }
       else if(accountType.value == 'Employee'){
         const employee = {

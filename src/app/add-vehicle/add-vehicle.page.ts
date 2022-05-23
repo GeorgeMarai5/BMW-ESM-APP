@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-add-vehicle',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddVehiclePage implements OnInit {
 
-  constructor() { }
+  addVehicleForm: FormGroup;
+  isSubmitted = false;
 
-  ngOnInit() {
+  constructor(public fb: FormBuilder, public authService: AuthService) { 
+    this.addVehicleForm = new FormGroup({
+      VINNum: new FormControl('', Validators.required),
+      vehicleModel: new FormControl('', Validators.required),
+      Registration: new FormControl('', Validators.required),
+      warrantyPlan: new FormControl('', Validators.required)
+    })
   }
 
+  submitForm(){
+    this.isSubmitted = true;
+    if(!this.addVehicleForm.valid){
+      return false;
+    }
+    else{
+      console.log(this.addVehicleForm.value);
+    }
+    return false;
+  }
+
+  ngOnInit() {
+    this.addVehicleForm.setValue({VINNum: '', vehicleModel: '', Registration: '', warrantyPlan: ''});
+  }
+
+  get errorControl() {
+    return this.addVehicleForm.controls;
+  }
 }

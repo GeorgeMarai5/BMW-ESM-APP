@@ -1,5 +1,5 @@
 import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControlName, FormControl } from "@angular/forms";
 import { AngularDelegate } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
@@ -22,62 +22,40 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 
 export class UpdateClientPage implements OnInit {
-
   
-    clientList = [];
-    
-    clients: Clients;
-    clientform : FormGroup;
-  
-  constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+  updateClientForm: FormGroup;
+  isSubmitted = false;
 
-this.clients = {} as Clients;
-
-    }
-
-
-
-
-    ngOnInit() {
-
-      this.clientform = this.fb.group({
-        Title: [''],
-        FirstName: [''],
-        LastName: [''],
-        PhoneNumber: [''],
-        Email: [''],
-        Address: [''],
-      })
-
-
-this.clientService.read_Clients().subscribe(data =>{
-
-
-  this.clientList = data.map(e =>{
-
-return{
-
-id: e.payload.doc.id,
-Title: e.payload.doc.data()['Title'],
-FirstName: e.payload.doc.data()['FirstName'],
-LastName: e.payload.doc.data()['lastName'],
-PhoneNumber: e.payload.doc.data()['phone'],
-Email: e.payload.doc.data()['email'],
-Address: e.payload.doc.data()['Address'],
-};
-
-})
-console.log(this.clientList);
-
-
-});
-
-
-    }
-
-
+  constructor(public fb: FormBuilder, public authService: AuthService) {
+    this.updateClientForm = new FormGroup({
+      title: new FormControl('', Validators.required),
+      fName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      lName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      phoneNum: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      address: new FormControl()
+    });
   }
+
+  submitForm(){
+    this.isSubmitted = true;
+    if(!this.updateClientForm.valid){
+      return false;
+    }
+    else{
+      console.log(this.updateClientForm.value);
+    }
+    return false;
+  }
+
+  ngOnInit() {
+    this.updateClientForm.setValue({title: '', fName: '', lName: '', phoneNum: '', email: '', address: ''});
+  }
+
+  get errorControl() {
+    return this.updateClientForm.controls;
+  }
+}
 
 
 

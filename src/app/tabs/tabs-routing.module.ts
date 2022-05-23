@@ -7,6 +7,7 @@ const routes: Routes = [
     path: 'tabs',
     component: TabsPage,
     children: [
+      //Iteration 4 Routing
       {
         path: 'home',
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
@@ -55,6 +56,39 @@ const routes: Routes = [
         path: 'view/client',
         loadChildren: () => import('../view-client-account/view-client-account.module').then( m => m.ViewClientAccountPageModule)
       },
+      //Iteration 5 Routing
+      {
+        path: 'add/vehicle',
+        loadChildren: () => import('../add-vehicle/add-vehicle.module').then( m => m.AddVehiclePageModule)
+      },
+      {
+        path: 'edit/vehicle',
+        loadChildren: () => import('../edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
+      },
+      {
+        path: 'search/vehicle',
+        loadChildren: () => import('../search-vehicle/search-vehicle.module').then( m => m.SearchVehiclePageModule)
+      },
+      {
+        path: 'view/vehicle',
+        loadChildren: () => import('../view-vehicle/view-vehicle.module').then( m => m.ViewVehiclePageModule)
+      },
+      {
+        path: 'assign/dealership',
+        loadChildren: () => import('../assign-dealership/assign-dealership.module').then( m => m.AssignDealershipPageModule)
+      },
+      {
+        path: 'edit/dealership',
+        loadChildren: () => import('../edit-dealership/edit-dealership.module').then( m => m.EditDealershipPageModule)
+      },
+      {
+        path: 'search/dealership',
+        loadChildren: () => import('../search-dealership/search-dealership.module').then( m => m.SearchDealershipPageModule)
+      },
+      {
+        path: 'view/dealership',
+        loadChildren: () => import('../view-dealership/view-dealership.module').then( m => m.ViewDealershipPageModule)
+      }
     ]
   },
   {

@@ -3,7 +3,7 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { Router } from "@angular/router";
 
 export class User{
-  userID: number;
+  userID: string;
   userType: string;
   userEmail: string;
 }
@@ -27,5 +27,8 @@ export class UserService {
     return this.ngFirestore.collection('User').doc(userID).valueChanges();
   }
 
+  getID(user: User){
+    return this.ngFirestore.collection('users').doc(user.userID);
+  }
   
 }

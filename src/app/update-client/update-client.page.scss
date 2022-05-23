@@ -1,26 +1,28 @@
-ion-input {
-    width: 30%;
-    padding: 6px;
-    margin: 4px 0;
-    display: inline-block;
-    border: 1px solid;
-    border-color: black;
-    background: white;
-  }
+.contents{
+  width: 40%;
+  margin-top: 5vh;
+  margin-left: 3vw;
+}
 
+h1{
+  color: #002850;
+}
 
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: black;
-  }
-  
+form{
+  margin-top: -3vh;
+}
 
-  ion-label {
+.light-Btn{
+  --background: #1976D2;
+}
 
-font-size: 20px;
-color: black;
+ion-label{
+  font-size: large;
+}
 
-
-
-  }
-
+span{
+  color: red;
+  margin-top: 2vh;
+  font-size: small;
+  margin-left: 1.4vw;
+}

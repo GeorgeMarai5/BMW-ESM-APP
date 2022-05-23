@@ -14,52 +14,105 @@
 </ion-header>
 
 <ion-content>
-  <ion-title>
-    Client Account
-  </ion-title>
-
-
-  <form>
-
-    <ion-item>
-      <ion-label position="stacked">Title</ion-label>
-      <ion-input value="Mr" readonly></ion-input>
-    </ion-item>
+  <div class="contents">
+    <ion-title><h1>Update Account Details</h1></ion-title>
   
-  <ion-item>
-    <ion-label position="stacked">First Name</ion-label>
-    <ion-input value="Henri" readonly></ion-input>
-  </ion-item>
-  
-  <ion-item >
-    <ion-label position="stacked">Last Name</ion-label>
-    <ion-input value="davids" readonly></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label position="stacked">Phone Number</ion-label>
-    <ion-input value="083674673" readonly></ion-input>
-  </ion-item>
-  
-  <ion-item >
-    <ion-label position="stacked" >Email</ion-label> 
-    <ion-input value="Henri@gmail.com" readonly></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label position="stacked">Address</ion-label>
-    <ion-input value="1224" readonly> </ion-input>
-  </ion-item>
-  
-  </form>
-  
-  <ion-button color="primary" [routerLink]="['/tabs/password/reset']">Update Password</ion-button>
-  
-  
-  <ion-button  color="primary" [routerLink]="['/tabs/view/client']">Submit</ion-button>
-  
-  
-  
-  <!--(click)="deleteClient(ClientList)"-->
-  
-  </ion-content>
+    <form [formGroup]="updateClientForm" (ngSubmit)="submitForm()" novalidate>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Title</b></ion-label>
+              <ion-select formControlName="title" type="text" required>
+                <ion-select-option>Mr</ion-select-option>
+                <ion-select-option>Ms</ion-select-option>
+                <ion-select-option>Mrs</ion-select-option>
+                <ion-select-option>Dr</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>First Name</b></ion-label>
+              <ion-input formControlName="fName" type="text" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.required">
+              First Name is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.maxlength">
+              First Name can't be longer than 20 characters.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Last Name</b></ion-label>
+              <ion-input formControlName="lName" type="text" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.lName.errors?.required">
+              Last Name is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.lName.errors?.maxlength">
+              Last Name can't be longer than 20 characters.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Phone Number</b></ion-label>
+              <ion-input formControlName="phoneNum" type="text" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNum.errors?.required">
+              Phone Number is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNum.errors?.maxlength || 
+            errorControl.phoneNum.errors?.maxlength">
+              Invalid Phone Number.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Email Address</b></ion-label>
+              <ion-input formControlName="email" type="email" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
+              Email is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email">
+              Invalid Email Address.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Address</b></ion-label>
+              <ion-input formControlName="address" type="text" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+              Address is required.
+            </span>
+          </ion-col>
+        </ion-row>
+        <br/>
+        <ion-row>
+          <ion-col>
+            <ion-button [routerLink]="['/tabs/view/client']" expand="block">Back</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="light-Btn" [routerLink]="['/tabs/reset/password']" expand="block">Update Password</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button type="submit" expand="block">Submit</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>
