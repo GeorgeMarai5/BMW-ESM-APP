@@ -9,16 +9,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   selector: 'app-dashboard-employee',
   templateUrl: './dashboard-employee.page.html',
   styleUrls: ['./dashboard-employee.page.scss'],
-  template: `
-    <mwl-gauge
-      [max]="100"
-      [dialStartAngle]="-90"
-      [dialEndAngle]="-90.001"
-      [value]="50"
-      [animated]="true"
-      [animationDuration]="1"
-    >
-    </mwl-gauge>`
 })
 export class DashboardEmployeePage implements OnInit {
   
@@ -37,6 +27,20 @@ export class DashboardEmployeePage implements OnInit {
     });
   }
   
+  public canvasWidth = 300
+  public needleValue = 65
+  public centralLabel = ''
+  public name = 'Gauge chart'
+  public bottomLabel = '65'
+  public options = {
+    hasNeedle: true,
+    needleColor: 'gray',
+    needleUpdateSpeed: 1000,
+    arcColors: ['rgb(44, 151, 222)', 'lightgray'],
+    arcDelimiters: [30],
+    rangeLabel: ['0', '100'],
+    needleStartValue: 50,
+}
   ngOnInit() {
 
   }
