@@ -132,6 +132,26 @@ const routes: Routes = [
   {
     path: 'view-service',
     loadChildren: () => import('./view-service/view-service.module').then( m => m.ViewServicePageModule)
+  },
+  {
+    path: 'create-fleet',
+    loadChildren: () => import('./create-fleet/create-fleet.module').then( m => m.CreateFleetPageModule)
+  },
+  {
+    path: 'search-fleet',
+    loadChildren: () => import('./search-fleet/search-fleet.module').then( m => m.SearchFleetPageModule)
+  },
+  {
+    path: 'edit-fleet',
+    loadChildren: () => import('./edit-fleet/edit-fleet.module').then( m => m.EditFleetPageModule)
+  },
+  {
+    path: 'remove-fleet',
+    loadChildren: () => import('./remove-fleet/remove-fleet.module').then( m => m.RemoveFleetPageModule)
+  },
+  {
+    path: 'view-fleet',
+    loadChildren: () => import('./view-fleet/view-fleet.module').then( m => m.ViewFleetPageModule)
   }
 
 
