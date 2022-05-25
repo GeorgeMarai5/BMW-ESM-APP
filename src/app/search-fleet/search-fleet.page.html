@@ -1,9 +1,57 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Search-Fleet</ion-title>
+    <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/view/employee']">
+        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+      </ion-button>  
+      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        Log Out
+      </ion-button>  
+    </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-content class="ion-margin">
+    <ion-item>
+<ion-label class="large">Search Employee</ion-label>
+</ion-item>
+<ion-searchbar class="isb"placeholder="Search Employee" showCancelButton="focus" animated>
+  </ion-searchbar>
+  <ion-card>
+    <ion-grid class="ion-margin" class="ion-grid-padding">
+      <ion-row>
+        <ion-col>Fleet ID</ion-col>
+      <ion-col>Fleet Name</ion-col>
+      <ion-col>Fleet Location</ion-col>
+      <ion-col>Vehicle Qty</ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    </ion-grid>
+    </ion-card>
 
+  <ion-row *ngFor="let item of fleetList">
+    <ion-item>
+    <ion-label> {{item.FleetID}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label> {{item.FleetName}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label> {{item.FleetLocation}}</ion-label>
+    <ion-item>
+  </ion-item>
+    <ion-label> {{item.FleetVehicleQty}}</ion-label>
+    <ion-item>
+  </ion-item>
+    <ion-button [routerLink]="['/tabs/view']" style="color: #002850; font-size: medium;" >View</ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-button [routerLink]="['/tabs/delete']" style="color: red; font-size: medium;">Remove</ion-button>
+  </ion-item>
+    </ion-row>
+    
 </ion-content>

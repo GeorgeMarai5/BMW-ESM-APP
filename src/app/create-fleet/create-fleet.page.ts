@@ -26,9 +26,9 @@ export class CreateFleetPage implements OnInit {
 
   constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService) {
 
-    {
+    
       this.fleetData = {} as FleetData;
-    }
+    
 
    }
 
