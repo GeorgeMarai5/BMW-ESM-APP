@@ -113,7 +113,8 @@ const routes: Routes = [
   {
     path: 'initiate-service-procedure',
     loadChildren: () => import('./initiate-service-procedure/initiate-service-procedure.module').then( m => m.InitiateServiceProcedurePageModule)
-  },  {
+  },
+  {
     path: 'create-service',
     loadChildren: () => import('./create-service/create-service.module').then( m => m.CreateServicePageModule)
   },

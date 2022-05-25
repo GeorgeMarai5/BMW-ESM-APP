@@ -15,7 +15,7 @@
 
 <ion-content>
   <div>
-    <form> 
+    <form [formGroup]="createAccountForm" novalidate> 
       <ion-card>
         <ion-grid>
           <ion-row>
@@ -31,23 +31,38 @@
         <div style="padding-left: 4%; padding-right: 4%; padding-bottom: 5%">
           <ion-item>
             <ion-label position="floating">Select Account Type</ion-label>
-            <ion-select #accountType required>
+            <ion-select #accountType formControlName="accountType" type="text" required>
               <ion-select-option>Client</ion-select-option>
               <ion-select-option>Employee</ion-select-option>
             </ion-select>
           </ion-item>    
           <ion-item lines="full">
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="text" #email required></ion-input>
+            <ion-input type="text" #email formControlName="email" type="text" required></ion-input>
           </ion-item> 
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
+            Email is required.
+          </span>
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email">
+            Please enter a valid email.
+          </span>
           <ion-item lines="full">
             <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" #password required></ion-input>
+            <ion-input type="password" #password formControlName="password" required></ion-input>
           </ion-item>
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
+            Password is required.
+          </span>
           <ion-item lines="full">
             <ion-label position="floating">Confirm Password</ion-label>
-            <ion-input type="password" #confirmPassword required></ion-input>
-          </ion-item><br/>
+            <ion-input type="password" #confirmPassword formControlName="confirmPassword" required></ion-input>
+          </ion-item>
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
+            Confirmed Password is required.
+          </span>
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password != errorControl.confirmPassword">
+            Confirmed password does not match.
+          </span><br/>
           <ion-row>
             <ion-col> 
               <ion-button type="submit" (click)="createAccount(email, password, accountType)" expand="block" style="--background: #1976D2;">Create Account</ion-button>
