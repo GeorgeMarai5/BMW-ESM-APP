@@ -16,15 +16,15 @@ export class FleetService {
     return this.firestore.collection(this.collectionName).add(Fleet);
   }
 
-  read_students() {
+  read_Fleet() {
     return this.firestore.collection(this.collectionName).snapshotChanges();
   }
 
-  update_student(Fleet,FleetID) {
+  update_Fleet(Fleet,FleetID) {
     this.firestore.doc(this.collectionName + '/' + FleetID).update(Fleet);
   }
 
-  delete_student(FleetID) {
+  delete_Fleet(FleetID) {
     this.firestore.doc(this.collectionName + '/' + FleetID).delete();
   }
 }

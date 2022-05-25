@@ -92,6 +92,10 @@ const routes: Routes = [
       {
         path: 'create-fleet',
         loadChildren: () => import('../create-fleet/create-fleet.module').then( m => m.CreateFleetPageModule)
+      },
+      {
+        path: 'edit-fleet',
+        loadChildren: () => import('../edit-fleet/edit-fleet.module').then( m => m.EditFleetPageModule)
       }
 
 
