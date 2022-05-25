@@ -27,7 +27,7 @@ export class MaintenancePlanService{
 
 /*
 
-      upgrade_Plan(Title, FirstName, LastName, PhoneNumber, Email, address) {
+      upgrade_Plan(PlanName, Description, Duration, Price) {
         this.firestore.doc(this.collectionName + '/' + recordID).update(record);
       }
     
