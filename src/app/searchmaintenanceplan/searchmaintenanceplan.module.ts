@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { SearchmaintenanceplanPageRoutingModule } from './searchmaintenanceplan-routing.module';
 
-import { SearchmaintenanceplanPage } from './searchmaintenanceplan.page';
+import { SearchMaintenancePlanPage } from './searchmaintenanceplan.page';
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { SearchmaintenanceplanPage } from './searchmaintenanceplan.page';
     SearchmaintenanceplanPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [SearchmaintenanceplanPage]
+  declarations: [SearchMaintenancePlanPage]
 })
 export class SearchmaintenanceplanPageModule {}
