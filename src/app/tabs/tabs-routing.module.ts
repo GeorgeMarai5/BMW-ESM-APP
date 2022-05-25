@@ -90,12 +90,60 @@ const routes: Routes = [
         loadChildren: () => import('../view-dealership/view-dealership.module').then( m => m.ViewDealershipPageModule)
       },
       {
-        path: 'create-fleet',
+        path: 'search/maintenanceplan',
+        loadChildren: () => import('../searchmaintenanceplan/searchmaintenanceplan.module').then( m => m.SearchmaintenanceplanPageModule)
+      },
+      {
+        path: 'select-maintenanceplan',
+        loadChildren: () => import('../select-maintenanceplan/select-maintenanceplan.module').then( m => m.SelectMaintenanceplanPageModule)
+      },
+      {
+        path: 'upgrade/maintenanceplan',
+        loadChildren: () => import('../upgrade-maintenanceplan/upgrade-maintenanceplan.module').then( m => m.UpgradeMaintenanceplanPageModule)
+      },
+      {
+        path: 'view/maintenanceplan',
+        loadChildren: () => import('../view-maintenanceplan/view-maintenanceplan.module').then( m => m.ViewMaintenanceplanPageModule)
+      },
+      {
+        path: 'initiate-service-procedure',
+        loadChildren: () => import('../initiate-service-procedure/initiate-service-procedure.module').then( m => m.InitiateServiceProcedurePageModule)
+      },
+      {
+        path: 'create/service',
+        loadChildren: () => import('../create-service/create-service.module').then( m => m.CreateServicePageModule)
+      },
+      {
+        path: 'update/service',
+        loadChildren: () => import('../update-service/update-service.module').then( m => m.UpdateServicePageModule)
+      },
+      {
+        path: 'cancel-service',
+        loadChildren: () => import('../cancel-service/cancel-service.module').then( m => m.CancelServicePageModule)
+      },
+      {
+        path: 'search/service',
+        loadChildren: () => import('../search-service/search-service.module').then( m => m.SearchServicePageModule)
+      },
+      {
+        path: 'view/service',
+        loadChildren: () => import('../view-service/view-service.module').then( m => m.ViewServicePageModule)
+      },
+      {
+        path: 'create/fleet',
         loadChildren: () => import('../create-fleet/create-fleet.module').then( m => m.CreateFleetPageModule)
       },
       {
-        path: 'edit-fleet',
+        path: 'search/fleet',
+        loadChildren: () => import('../search-fleet/search-fleet.module').then( m => m.SearchFleetPageModule)
+      },
+      {
+        path: 'edit/fleet',
         loadChildren: () => import('../edit-fleet/edit-fleet.module').then( m => m.EditFleetPageModule)
+      },
+      {
+        path: 'view/fleet',
+        loadChildren: () => import('../view-fleet/view-fleet.module').then( m => m.ViewFleetPageModule)
       }
 
 
