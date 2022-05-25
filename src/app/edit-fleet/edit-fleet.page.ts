@@ -72,11 +72,11 @@ EditFleet(Fleet) {
 
 
 UpdateFleet(Fleet) {
-  let record = {};
-  record['FleetName'] = Fleet.FleetName;
-  record['FleetLocation'] = Fleet.FleetLocation; 
+  let FleetID = {};
+  Fleet['FleetName'] = Fleet.FleetName;
+  Fleet['FleetLocation'] = Fleet.FleetLocation; 
   this.fleetservice.update_Fleet(Fleet.id,Fleet);
-  Fleet.isEdit = false;
+  //Fleet.isEdit = false;
   console.log(Fleet,"successfully updated")
 }
 
