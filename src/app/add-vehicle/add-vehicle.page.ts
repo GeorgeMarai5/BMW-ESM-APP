@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 
@@ -12,7 +13,7 @@ export class AddVehiclePage implements OnInit {
   addVehicleForm: FormGroup;
   isSubmitted = false;
 
-  constructor(public fb: FormBuilder, public authService: AuthService) { 
+  constructor(public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore) { 
     this.addVehicleForm = new FormGroup({
       VINNum: new FormControl('', Validators.required),
       vehicleModel: new FormControl('', Validators.required),
@@ -27,9 +28,17 @@ export class AddVehiclePage implements OnInit {
       return false;
     }
     else{
-      console.log(this.addVehicleForm.value);
-    }
-    return false;
+        const vehicle = {
+          VIN_Number: this.addVehicleForm.get('VINNum').value,
+          VehicleModel: this.addVehicleForm.get('vehicleModel').value,
+          Registration: this.addVehicleForm.get('Registration').value,
+          Warranty: this.addVehicleForm.get('warrantyPlan').value
+        }
+        this.firestore.collection('Vehicle').add(vehicle).then(function(){
+          alert("New vehicle created successfully");
+        });
+      }
+     
   }
 
   ngOnInit() {

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Vehicle } from '../models/Vehicle';
+import { AuthService } from '../services/auth.service';
+import { VehicleService } from '../services/vehicle.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-search-vehicle',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchVehiclePage implements OnInit {
 
-  constructor() { }
+  vehicles: Vehicle[];
+
+  constructor(public authService: AuthService, private service: VehicleService,
+    private firestore: AngularFirestore) { }
 
   ngOnInit() {
+    
   }
 
 }

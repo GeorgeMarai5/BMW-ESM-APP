@@ -28,9 +28,6 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.required">
               VIN Number is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.maxlength">
-              First Name can't be longer than 20 characters.
-            </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -38,14 +35,12 @@
             <ion-item lines="full">
               <ion-label position="stacked"><b>Vehicle Model</b></ion-label>
               <ion-select formControlName="vehicleModel" type="text" required>
+                <ion-select-option>X5</ion-select-option>
                 <ion-select-option></ion-select-option>
               </ion-select>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
               Vehicle Model is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.maxlength">
-              First Name can't be longer than 20 characters.
             </span>
           </ion-col>
         </ion-row>
@@ -58,9 +53,6 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.required">
               Registration is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.maxlength">
-              Last Name can't be longer than 20 characters.
-            </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -71,10 +63,6 @@
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.required">
               Warranty Plan is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.maxlength || 
-            errorControl.phoneNum.errors?.maxlength">
-              Invalid Phone Number.
             </span>
           </ion-col>
         </ion-row>

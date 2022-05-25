@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>search-vehicle</ion-title>
+    <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/view/client']">
+        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+      </ion-button>  
+      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        Log Out
+      </ion-button>  
+    </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="contents">
+    <ion-title><h1>Add Vehicle</h1></ion-title>
+  
+    <table class="table table-hover">
+      <thead>
+        <th>Vehicle ID</th>
+        <th>VIN Number</th>
+        <th>Model Name</th>
+        <th>Year</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehicle of vehicles">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </ion-content>
