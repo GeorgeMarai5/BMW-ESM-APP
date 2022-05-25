@@ -147,10 +147,6 @@ const routes: Routes = [
     loadChildren: () => import('./edit-fleet/edit-fleet.module').then( m => m.EditFleetPageModule)
   },
   {
-    path: 'remove-fleet',
-    loadChildren: () => import('./remove-fleet/remove-fleet.module').then( m => m.RemoveFleetPageModule)
-  },
-  {
     path: 'view-fleet',
     loadChildren: () => import('./view-fleet/view-fleet.module').then( m => m.ViewFleetPageModule)
   }
