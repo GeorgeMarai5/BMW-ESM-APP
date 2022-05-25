@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SearchmaintenanceplanPageRoutingModule } from './searchmaintenanceplan-routing.module';
+import { ViewServicePageRoutingModule } from './view-service-routing.module';
 
-import { SearchmaintenanceplanPage } from './searchmaintenanceplan.page';
+import { ViewServicePage } from './view-service.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SearchmaintenanceplanPageRoutingModule,
+    ViewServicePageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [SearchmaintenanceplanPage]
+  declarations: [ViewServicePage]
 })
-export class SearchmaintenanceplanPageModule {}
+export class ViewServicePageModule {}

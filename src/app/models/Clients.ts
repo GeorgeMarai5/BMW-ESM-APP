@@ -6,9 +6,5 @@
     PhoneNumber: string;
     Email: string;
     address: string;
-
-
-
-
-
+    
 }
