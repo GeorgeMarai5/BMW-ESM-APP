@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { UserService, User } from '../services/user.service';
+import { getAuth } from "firebase/auth";
 
 @Component({
   selector: 'app-create-account',
@@ -25,6 +26,10 @@ export class CreateAccountPage implements OnInit {
       await this.firestore.collection('User').add(user).then(function(){
         alert("New account created successfully");
       });
+
+      const auth = getAuth();
+      const currUser = auth.currentUser;
+
       if(accountType.value == 'Client'){
         const client = {
           address: '',
@@ -34,7 +39,7 @@ export class CreateAccountPage implements OnInit {
           email: email.value,
           phoneNum: ''
         }
-        await this.firestore.collection('Client').doc().set(client)
+        await this.firestore.collection('Client').doc(currUser.uid).set(client)
       }
       else if(accountType.value == 'Employee'){
         const employee = {
@@ -43,7 +48,7 @@ export class CreateAccountPage implements OnInit {
           phoneNum: '',
           QNumber: ''
         }
-        await this.firestore.collection('Employee').add(employee)
+        await this.firestore.collection('Employee').doc(currUser.uid).set(employee)
       }
       this.authService.SendVerificationMail()
       this.router.navigate(['verify-email']);
