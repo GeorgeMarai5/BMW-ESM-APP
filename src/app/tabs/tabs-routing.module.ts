@@ -88,7 +88,13 @@ const routes: Routes = [
       {
         path: 'view/dealership',
         loadChildren: () => import('../view-dealership/view-dealership.module').then( m => m.ViewDealershipPageModule)
+      },
+      {
+        path: 'create-fleet',
+        loadChildren: () => import('../create-fleet/create-fleet.module').then( m => m.CreateFleetPageModule)
       }
+
+
     ]
   },
   {

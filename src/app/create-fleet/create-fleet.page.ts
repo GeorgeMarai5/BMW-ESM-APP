@@ -56,6 +56,7 @@ export class CreateFleetPage implements OnInit {
     console.log(this.fleetForm.value);
     this.fleetservice.create_Fleet(this.fleetForm.value).then(resp => {
       this.fleetForm.reset();
+      console.log("successfully created")
     })
       .catch(error => {
         console.log(error);
