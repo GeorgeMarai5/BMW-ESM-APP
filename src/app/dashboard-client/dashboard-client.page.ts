@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { AuthService } from "../services/auth.service";
+import { getAuth } from "firebase/auth";
+import { Clients } from '../models/Clients';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-dashboard-client',
@@ -23,7 +26,8 @@ export class DashboardClientPage implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    public authService: AuthService
+    public authService: AuthService,
+    public firestore: AngularFirestore
   ) {
     this.initializeApp();
   }
@@ -35,6 +39,7 @@ export class DashboardClientPage implements OnInit {
   }
 
   ngOnInit() {
-
+    const auth = getAuth();
+    const currUser = auth.currentUser;
   }
 }

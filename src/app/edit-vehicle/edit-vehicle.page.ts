@@ -18,7 +18,7 @@ export class EditVehiclePage implements OnInit {
       vehicleModel: new FormControl('', Validators.required),
       Registration: new FormControl('', Validators.required),
       warrantyPlan: new FormControl('', Validators.required)
-    })
+    });
   }
 
   submitForm(){

@@ -15,7 +15,7 @@
 
 <ion-content>
   <div>
-    <form> 
+    <form [formGroup]="loginForm" novalidate> 
       <ion-card>
         <ion-grid>
           <ion-row>
@@ -38,12 +38,21 @@
           </ion-item>
           <ion-item lines="full">
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="text" #email required></ion-input>
+            <ion-input type="text" #email formControlName="email" type="text" required></ion-input>
           </ion-item> 
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
+            Email is required.
+          </span>
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email">
+            Please enter a valid email.
+          </span>
           <ion-item lines="full">
             <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" #password required></ion-input>
-          </ion-item><br/>
+            <ion-input type="password" #password formControlName="password" required></ion-input>
+          </ion-item>
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
+            Password is required.
+          </span><br/>
           <ion-row>
             <ion-col> 
               <ion-button type="submit" (click)="logIn(email, password, accountType)" expand="block" style="--background: #1976D2;">Login</ion-button>

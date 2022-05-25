@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,16 @@ import { AuthService } from "../services/auth.service";
 })
 export class LoginPage implements OnInit {
 
-  constructor(public authService: AuthService, public router: Router) { }
+  loginForm: FormGroup;
+  isSubmitted = false;
+
+  constructor(public fb: FormBuilder, public authService: AuthService, public router: Router) { 
+    this.loginForm = new FormGroup({
+      accountType: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required)
+    });
+  }
 
   ngOnInit() {
   }
@@ -31,5 +41,9 @@ export class LoginPage implements OnInit {
       }).catch((error) => {
         window.alert(error.message)
       })
+  }
+
+  get errorControl() {
+    return this.loginForm.controls;
   }
 }

@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { UserService, User } from '../services/user.service';
 import { getAuth } from "firebase/auth";
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 @Component({
   selector: 'app-create-account',
@@ -12,12 +13,35 @@ import { getAuth } from "firebase/auth";
 })
 export class CreateAccountPage implements OnInit {
 
-  constructor(public authService: AuthService, public router: Router, public userService: UserService, public firestore: AngularFirestore) { }
+  createAccountForm: FormGroup;
+  isSubmitted = false;
+
+  constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public userService: UserService, public firestore: AngularFirestore) {
+    this.createAccountForm = new FormGroup({
+      accountType: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required)
+    }, { validators: this.passwordMatchingValidatior });
+   }
 
   ngOnInit() {
   }
+
+  passwordMatchingValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password');
+    const confirmPassword = control.get('confirmPassword');
+
+    return password?.value === confirmPassword?.value ? null : { notmatched: true };
+  };
+
   createAccount(email, password, accountType){
-    this.authService.RegisterUser(email.value, password.value)
+    this.isSubmitted = true;
+    if(!this.createAccountForm.valid){
+      return false;
+    }
+    else{
+      this.authService.RegisterUser(email.value, password.value)
     .then(async(res) => {
       const user = {
         userType: accountType.value,
@@ -55,5 +79,11 @@ export class CreateAccountPage implements OnInit {
     }).catch((error) => {
       window.alert(error.message)
     })
-}
+    }
+    return false; 
+  }
+
+  get errorControl() {
+    return this.createAccountForm.controls;
+  }
 }
