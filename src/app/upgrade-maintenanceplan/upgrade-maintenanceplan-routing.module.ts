@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UpgradeMaintenanceplanPage } from './upgrade-maintenanceplan.page';
+import { UpgradeMaintenancePlanPage } from './upgrade-maintenanceplan.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: UpgradeMaintenanceplanPage
+    component: UpgradeMaintenancePlanPage
   }
 ];
 

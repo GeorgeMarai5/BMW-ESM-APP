@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ViewMaintenanceplanPageRoutingModule } from './view-maintenanceplan-routing.module';
 
-import { ViewMaintenanceplanPage } from './view-maintenanceplan.page';
+import { ViewMaintenancePlanPage } from './view-maintenanceplan.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { ViewMaintenanceplanPage } from './view-maintenanceplan.page';
     IonicModule,
     ViewMaintenanceplanPageRoutingModule
   ],
-  declarations: [ViewMaintenanceplanPage]
+  declarations: [ViewMaintenancePlanPage]
 })
 export class ViewMaintenanceplanPageModule {}
