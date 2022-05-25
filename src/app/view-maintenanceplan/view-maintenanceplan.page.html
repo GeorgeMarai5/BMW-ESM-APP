@@ -1,9 +1,58 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>view-maintenanceplan</ion-title>
-  </ion-toolbar>
+<!---form [formGroup]= "MaintenancPlanpage" (ngSubmit)="logForm()">--->
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
 </ion-header>
 
+
+
+
 <ion-content>
+    <ion-title>
+        Plan Details
+    </ion-title>
+
+
+    <form [formGroup]="planform" *ngFor="let planItem of maintenanceplanList">
+
+        <ion-item>
+            <ion-label position="stacked">Plan Name</ion-label>
+            <ion-input value="{{planItem.PlanName}}" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Description</ion-label>
+            <ion-input value="{{planItem.Description}}" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Duration</ion-label>
+            <ion-input value="{{planItem.Duration}}" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Price</ion-label>
+            <ion-input value="{{planItem.Price}}" readonly></ion-input>
+        </ion-item>
+
+    </form>
+
+    <ion-button [routerLink]="['/tabs/search/account/client']">Back</ion-button>
+
+
+    <ion-button [routerLink]="['/tabs/update/client']">Upgrade Plan</ion-button>
+
+
+    <ion-button color="danger" [routerLink]="['/tabs/searchclientaccount']">Select Plan</ion-button>
 
 </ion-content>

@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ViewMaintenanceplanPage } from './view-maintenanceplan.page';
 
-describe('ViewMaintenanceplanPage', () => {
+describe('ViewMaintenanceplanPag', () => {
   let component: ViewMaintenanceplanPage;
   let fixture: ComponentFixture<ViewMaintenanceplanPage>;
 
