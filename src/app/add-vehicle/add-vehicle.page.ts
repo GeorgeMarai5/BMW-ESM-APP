@@ -15,7 +15,7 @@ export class AddVehiclePage implements OnInit {
 
   constructor(public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore) { 
     this.addVehicleForm = new FormGroup({
-      VINNum: new FormControl('', Validators.required),
+      VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
       vehicleModel: new FormControl('', Validators.required),
       Registration: new FormControl('', Validators.required),
       warrantyPlan: new FormControl('', Validators.required)
