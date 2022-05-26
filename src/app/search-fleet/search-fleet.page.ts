@@ -5,6 +5,7 @@ import{FleetService} from '../services/fleet.service';
 
 
 interface FleetData {
+  $key: string;
   FleetID: number;
   FleetName: string;
   FleetLocation: string;
@@ -58,5 +59,14 @@ export class SearchFleetPage implements OnInit {
 
 }
 
+
+RemoveFleet(ID) {
+  if (window.confirm('Do you really want to Remove This Fleet?')) {
+   
+  
+  this.fleetservice.delete_Fleet(ID);
+  }
+  console.log(ID)
+}
 
 }
