@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Service } from '../services/service.service';
+
+interface ServiceData {
+  TeamName: string;
+  ServiceTypeName: string;
+  
+}
 
 @Component({
   selector: 'app-create-service',
@@ -7,9 +16,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateServicePage implements OnInit {
 
-  constructor() { }
+  serviceData: ServiceData;
+  serviceForm: FormGroup;
+
+  constructor(public authService: AuthService,public fb: FormBuilder, private myService: Service) {
+      this.serviceData = {} as ServiceData;
+   }
 
   ngOnInit() {
+    this.serviceForm = this.fb.group({
+      TeamName: ['', [Validators.required]],
+      ServieTypeName: ['', [Validators.required]],
+    })
   }
 
+  CreateService() {
+    console.log(this.serviceForm.value);
+    this.myService.createService(this.serviceForm.value).then(resp => {
+      this.serviceForm.reset();
+      alert("New Service created successfully")
+    })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 }
