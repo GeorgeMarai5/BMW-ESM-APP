@@ -13,42 +13,38 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-margin">
   <div class="contents">
-    <ion-item>
-      <ion-label class="large"><h1>Search Vehicle</h1></ion-label>
-    </ion-item>
-    <ion-searchbar class="isb" placeholder="Search Vehicle" showCancelButton="focus" animated></ion-searchbar>
-      <ion-card>
-        <ion-grid class="ion-margin" class="ion-grid-padding">
-          <ion-row>
-            <ion-col>Vehicle ID</ion-col>
-            <ion-col>VIN Number</ion-col>
-            <ion-col>Model Name</ion-col>
-            <ion-col>Year</ion-col>
-            <ion-col></ion-col>
-            <ion-col></ion-col>
-          </ion-row>
-          <ion-row *ngFor="let item of vehicleList">
-            <ion-col>
-              <ion-label> {{item.VehicleID}}</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label> {{item.VINNumber}}</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label> {{item.vehicleModel}}</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label> {{item.year}}</ion-label>
-            </ion-col>
-            <ion-col></ion-col>
-            <ion-col>
-              <ion-button>view</ion-button>
-              <ion-button>view</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
+    <h1>Search Vehicle</h1>
+    <ion-searchbar class="isb" placeholder="Search Vehicle..." showCancelButton="focus" animated></ion-searchbar><br/>
+      <ion-grid class="ion-margin" class="ion-grid-padding">
+        <ion-row>
+          <ion-col>Vehicle ID</ion-col>
+          <ion-col>VIN Number</ion-col>
+          <ion-col>Model Name</ion-col>
+          <ion-col>Year</ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
+        <ion-row *ngFor="let item of vehicleList">
+          <ion-col>
+            <ion-label> {{item.VehicleID}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label> {{item.VINNumber}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label> {{item.vehicleModel}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label> {{item.year}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-button class="light-Btn" (click)="viewVehicle()">View</ion-button>
+            <ion-button class="red-Btn" (click)="removeVehicle()">Remove</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
+      </ion-grid>
   </div>
 </ion-content>

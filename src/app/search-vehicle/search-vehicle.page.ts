@@ -50,4 +50,12 @@ export class SearchVehiclePage implements OnInit {
   });
   }
 
+  viewVehicle(){
+
+  }
+
+  removeVehicle(){
+    
+  }
+
 }
