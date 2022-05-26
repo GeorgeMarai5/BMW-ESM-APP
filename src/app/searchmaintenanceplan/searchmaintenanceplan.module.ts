@@ -12,6 +12,7 @@ import { SearchMaintenancePlanPage } from './searchmaintenanceplan.page';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     SearchmaintenanceplanPageRoutingModule,
     ReactiveFormsModule

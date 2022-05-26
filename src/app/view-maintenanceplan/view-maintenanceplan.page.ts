@@ -26,6 +26,7 @@ export class ViewMaintenancePlanPage implements OnInit {
     planList = [];
     plans: MaintenancePlan;
     planform : FormGroup;
+    firebaseService: any;
  
     constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
@@ -36,10 +37,10 @@ export class ViewMaintenancePlanPage implements OnInit {
     ngOnInit() {
 
       this.planform = this.fb.group({
-        Title: [''],
-        FirstName: [''],
-        LastName: [''],
-        PhoneNumber: ['']
+        PlanName: [''],
+        Description: [''],
+        Duration: [''],
+        Price: ['']
       })
 
 
@@ -48,16 +49,44 @@ export class ViewMaintenancePlanPage implements OnInit {
     this.planList = data.map(e =>{
 
     return{
-      Title: e.payload.doc.data()['Title'],
-      FirstName: e.payload.doc.data()['FirstName'],
-      LastName: e.payload.doc.data()['lastName'],
-      PhoneNumber: e.payload.doc.data()['phone'],
+      PlanName: e.payload.doc.data()['Plan Name'],
+      Description: e.payload.doc.data()['Description'],
+      Duration: e.payload.doc.data()['Duration'],
+      Price: e.payload.doc.data()['Price'],
     };
+  })
+}
+)}
 
-    })
-
+    CreatePlan() {
+      console.log(this.planform.value);
+      this.firebaseService.create_plan(this.planform.value).then(resp => {
+        this.planform.reset();
+      })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  
+    EditPlan(record) {
+      record.isEdit = true;
+      record.EditPlanName = record.PlanName;
+      record.EditDescription = record.Description;
+      record.EditDuration = record.Duration;
+      record.EditPrice = record.Price;
+    }
+  
+    UpdateRecord(recordRow) {
+      let record = {};
+      record['Plan Name'] = recordRow.EditName;
+      record['Description'] = recordRow.EditAge;
+      record['Duration'] = recordRow.EditAddress;
+      record['Price'] = recordRow.EditPrice;
+      this.firebaseService.update_student(recordRow.id, record);
+      recordRow.isEdit = false;
+    }
+    
     }
 
-    )}
+  
 
-    }
