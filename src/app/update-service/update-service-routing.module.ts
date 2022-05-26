@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { UpdateServicePage } from './update-service.page';
 
 const routes: Routes = [
