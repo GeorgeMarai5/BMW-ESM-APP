@@ -3,8 +3,10 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 import {
   AngularFireDatabase,
   AngularFireList,
-  AngularFireObject,
+  AngularFireObject
 } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,14 +29,12 @@ export class FleetService {
   }
 
   get_Fleet(FleetId){
-    return this.firestore.collection(this.collectionName).doc(FleetId).get()
+    return this.firestore.collection(this.collectionName).doc(FleetId).get();
   }
 
   update_Fleet(FleetID,Fleet) {
     this.firestore.doc(this.collectionName + '/' + FleetID).update(Fleet);
   }
-
-
 
   deleteFleet(id: string) {
     this.FleetRef = this.db.object('/Fleet/' + id);
