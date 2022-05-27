@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { UpdateServicePageRoutingModule } from './update-service-routing.module';
@@ -13,7 +13,8 @@ import { UpdateServicePage } from './update-service.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdateServicePageRoutingModule
+    UpdateServicePageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [UpdateServicePage]
 })

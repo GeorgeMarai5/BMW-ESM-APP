@@ -1,4 +1,3 @@
-<!---form [formGroup]= "InitiateServicePage" (ngSubmit)="logForm()">
 <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
@@ -23,26 +22,26 @@
     </ion-title>
 
 
-    <form [formGroup]="planform" *ngFor="let planItem of maintenanceplanList">
+    <form [formGroup]="serviceForm" *ngFor="let serivceItem of serviceList">
 
         <ion-item>
-            <ion-label position="stacked">Dealership Name/ion-label>
-            <ion-input value="{{planItem.PlanName}}" readonly></ion-input>
+            <ion-label position="stacked">Dealership Name</ion-label>
+            <ion-input value="BMW Menlyn" readonly></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="stacked">Fleet Name</ion-label>
-            <ion-input value="{{planItem.Description}}" readonly></ion-input>
+            <ion-input value="Avis Pretoria" readonly></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="stacked">Team Name</ion-label>
-            <ion-input value="{{planItem.Duration}}" readonly></ion-input>
+            <ion-input value="BMST001" readonly></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="stacked">Service Date</ion-label>
-            <ion-input value="{{planItem.Price}}" readonly></ion-input>
+            <ion-input value="01/02/2023" readonly></ion-input>/
         </ion-item>
 
     </form>
@@ -50,4 +49,3 @@
     <ion-button [routerLink]="['/tabs/search/account/client']">Initiate Service</ion-button>
 
 </ion-content>
---->

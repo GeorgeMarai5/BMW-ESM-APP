@@ -1,4 +1,3 @@
-<!--
 <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
@@ -25,11 +24,10 @@
                 Log Out
             </ion-button>
         </ion-buttons>
-
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<form [formGroup]="planform" *ngFor="let planItem of maintenanceplanList">
     <ion-content class="ion-margin">
         <ion-item>
             <ion-label class="large">Search Maintenance Plans</ion-label>
@@ -46,24 +44,20 @@
                 </ion-row>
             </ion-grid>
         </ion-card>
-
-        <ion-row *ngFor="let planItem of maintenanceplanList">
+        <ion-item>
+            <ion-label> {{planItem.PlanName}}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label> {{planItem.Description}}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label> {{planItem.Duration}}</ion-label>
             <ion-item>
-                <ion-label> {{planItem.PlanName}}</ion-label>
             </ion-item>
+            <ion-label> {{planItem.Price}}</ion-label>
             <ion-item>
-                <ion-label> {{planItem.Description}}</ion-label>
             </ion-item>
-            <ion-item>
-                <ion-label> {{planItem.Duration}}</ion-label>
-                <ion-item>
-                </ion-item>
-                <ion-label> {{planItem.Price}}</ion-label>
-                <ion-item>
-                </ion-item>
-                <ion-button [routerLink]="['/tabs/view']" style="color: #002850; font-size: medium;">View</ion-button>
-            </ion-item>
-        </ion-row>
-
+            <ion-button [routerLink]="['/tabs/view']" style="color: #002850; font-size: medium;">View</ion-button>
+        </ion-item>
     </ion-content>
--->
+</form>

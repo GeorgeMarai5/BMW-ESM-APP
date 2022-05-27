@@ -28,7 +28,7 @@ public maintenanceplanList: any;
 
     
 plans: MaintenancePlan;
-employeeform : FormGroup;
+planform : FormGroup;
 
 
 

@@ -1,62 +1,101 @@
-import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControlName, FormControl } from "@angular/forms";
-import { AngularDelegate } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { ToastController } from '@ionic/angular';
-import { Router,Route } from '@angular/router';
-import { PostService } from '../services/post.service';
-import { getApp } from 'firebase/app';
-import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
-import { Clients } from '../models/Clients';
-import { ActivatedRoute } from '@angular/router';
-import { snapshotChanges } from '@angular/fire/compat/database';
-import { ClientService } from '../services/Client.service';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
+import { Service } from '../services/service.service'
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
+
+
+interface ServiceData {
+  ServiceID: number;
+}
+
+// interface FleetVehicles{
+//   VehicleID: number;
+//   VinNumber: string;
+//   ModelName: string;
+//   Year: string;
+// }
+
+
+
 @Component({
-  selector: 'app-update-service',
+  selector: 'app-view-service',
   templateUrl: './view-service.page.html',
   styleUrls: ['./view-service.page.scss'],
 })
-
 export class ViewServicePage implements OnInit {
-  
-  viewServiceForm: FormGroup;
-  isSubmitted = false;
 
-  constructor(public fb: FormBuilder, public authService: AuthService) {
-    this.viewServiceForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      fName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-      lName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-      phoneNum: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      address: new FormControl()
-    });
+   serviceList = [];
+   serviceData: ServiceData;
+   serviceForm: FormGroup;
+   isSubmitted = false;
+  constructor(public authService: AuthService,public fb: FormBuilder, private _service: Service, public firestore: AngularFirestore) { 
+    this.serviceData = {} as ServiceData;
   }
+  ngOnInit() {
+    this.serviceForm = this.fb.group({
+      ServiceID: ['', [Validators.required]],
+      DealershipName: ['', [Validators.required]],
+      TeamName: ['', [Validators.required]],
+      ServiceType: ['', [Validators.required]],
+      ServiceStatus: ['', [Validators.required]],
+  });
 
+  this._service.getServices().subscribe(data => {
+    this.serviceList = data.map(e => {
+
+      return {
+        id: e.payload.doc.id,
+        ServiceID: e.payload.doc.data()['ServiceID'],
+        DealershipName: e.payload.doc.data()['DealershipName'],
+        TeamName: e.payload.doc.data()['TeamName'],
+        ServiceType: e.payload.doc.data()['ServiceType'],
+        ServiceStatus: e.payload.doc.data()['ServiceStatus'],
+  
+      };
+    })
+    console.log(this.serviceList);
+
+  });
+  }
   submitForm(){
     this.isSubmitted = true;
-    if(!this.viewServiceForm.valid){
+    if(!this.serviceForm.valid){
       return false;
     }
     else{
-      console.log(this.viewServiceForm.value);
-    }
-    return false;
+        const service = {
+          ServiceID: this.serviceForm.get('ServiceID').value,
+          DealershipName: this.serviceForm.get('DealershipName').value,
+          TeamName: this.serviceForm.get('TeamName').value,
+          ServiceType: this.serviceForm.get('ServiceType').value,
+          ServiceStatus: this.serviceForm.get('ServiceStatus').value
+        }
+        this.firestore.collection('Service').add(service).then(function(){
+          alert("New service created successfully");
+        });
+      }
+     
   }
+  // this._service.getService().subscribe(data => {
 
-  ngOnInit() {
-    this.viewServiceForm.setValue({title: '', fName: '', lName: '', phoneNum: '', email: '', address: ''});
-  }
+  //   this.serviceList = data.map(e => {
+  //     return {
+  //       id: e.payload.doc.id,
+  //       isEdit: false,
+  //       FleetID: e.payload.doc.data()['FleetID'],
+  //       FleetVehicleQty: e.payload.doc.data()['FleetVehicleQty'],
+  //       FleetName: e.payload.doc.data()['FleetName'],
+  //       FleetLocation: e.payload.doc.data()['FleetLocation']
+  //     };
+  //   })
+  //   console.log(this.serviceList);
+
+  // });
 
   get errorControl() {
-    return this.viewServiceForm.controls;
+    return this.serviceForm.controls;
   }
 }
-
-
-
-

@@ -6,15 +6,13 @@ import { ToastController } from '@ionic/angular';
 import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
 import { getApp } from 'firebase/app';
-import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
+import { getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot } from 'firebase/firestore'
 import { MaintenancePlan } from '../models/Maintenance-Plan';
 import { ActivatedRoute } from '@angular/router';
 import { snapshotChanges } from '@angular/fire/compat/database';
 import { MaintenancePlanService } from '../services/MaintenancePlan.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
-
 
 @Component({
   selector: 'app-view-maintenanceplan',
@@ -23,7 +21,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class ViewMaintenancePlanPage implements OnInit {
   
-    planList = [];
+    maintenanceplanList = [];
     plans: MaintenancePlan;
     planform : FormGroup;
     firebaseService: any;
@@ -46,7 +44,7 @@ export class ViewMaintenancePlanPage implements OnInit {
 
     this.planService.read_Plans().subscribe(data =>{
 
-    this.planList = data.map(e =>{
+    this.maintenanceplanList = data.map(e =>{
 
     return{
       PlanName: e.payload.doc.data()['Plan Name'],
@@ -87,6 +85,3 @@ export class ViewMaintenancePlanPage implements OnInit {
     }
     
     }
-
-  
-

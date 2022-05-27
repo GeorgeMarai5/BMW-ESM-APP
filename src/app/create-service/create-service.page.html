@@ -2,13 +2,48 @@
   <ion-toolbar>
     <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
     <ion-buttons slot="end">
-      <ion-button href="">
-        <ion-icon [routerLink]="['/tabs/create-account']" slot="icon-only" name="person-add" style="color: #002850;"></ion-icon>
+      <ion-button [routerLink]="['/tabs/view/client']">
+        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
       </ion-button>  
-      <ion-button [routerLink]="['/tabs/login']" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
-        Have an account?
+      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        Log Out
       </ion-button>  
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
+  <ion-title>
+    Create Service
+  </ion-title>
+<ion-content>
+  <form [formGroup]="serviceForm" (ngSubmit)="CreateService()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Select Team</ion-label>
+                  <ion-select formControlName="TeamName" type="text" required>
+                      <ion-select-option>BMST001</ion-select-option>
+                      <ion-select-option>BMST002</ion-select-option>
+                      <ion-select-option>BMST003</ion-select-option>
+                      <ion-select-option>BMMR001</ion-select-option>
+                      <ion-select-option>BMMR002</ion-select-option>
+                      <ion-select-option>BMMR003</ion-select-option>
+                  </ion-select>
+              </ion-item>
+      <ion-item>
+        <ion-label>Select Service Type</ion-label>
+                  <ion-select formControlName="ServiceName" type="text" required>
+                      <ion-select-option>Brake fluid flush overdue</ion-select-option>
+                      <ion-select-option>Front brake pads due</ion-select-option>
+                      <ion-select-option>Rear brake pads due</ion-select-option>
+                      <ion-select-option>Micro filter due</ion-select-option>
+                      <ion-select-option>Oil service</ion-select-option>
+                      <ion-select-option>Service action</ion-select-option>
+                      <ion-select-option>Vehicle check service due</ion-select-option>
+                      <ion-select-option>Service overdue</ion-select-option>
+                  </ion-select>
+              </ion-item>
+<ion-button (click)="CreateService()">Continue</ion-button>
+    </ion-list>
+</form>
+</ion-content>
