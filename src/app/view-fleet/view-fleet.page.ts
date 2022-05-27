@@ -75,4 +75,10 @@ RemoveFleet(ID) {
   console.log(ID)
 }
 
+select(){
+  if(window.confirm('Fleet selected')){
+    
+  }
+}
+
 }

@@ -20,24 +20,36 @@ import { MaintenancePlan } from '../models/Maintenance-Plan';
   styleUrls: ['./searchmaintenanceplan.page.scss'],
 })
 
-
 export class SearchMaintenancePlanPage implements OnInit {
 
-
-public maintenanceplanList: any;
-
-    
+maintenanceplanList = [];
 plans: MaintenancePlan;
-employeeform : FormGroup;
-
-
+planform : FormGroup;
 
 constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-  public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+  public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) {
+    this.plans = {} as MaintenancePlan; 
+}
 
+ngOnInit(){
+    this.planform = this.fb.group({
+      PlanName: ['', [Validators.required]],
+      Description: ['', [Validators.required]],
+      Duration: ['', [Validators.required]],
+      Price: ['', [Validators.required]],
+  });
 
+  this.service.getPlans().subscribe(data => {
+    this.maintenanceplanList = data.map(e => {
 
-
-}ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }}
+      return {
+        PlanName: e.payload.doc.data()['Plan Name'],
+        Description: e.payload.doc.data()['Description'],
+        Duration: e.payload.doc.data()['Duration'],
+        yPriceear: e.payload.doc.data()['Price']
+      };
+    })
+    console.log(this.maintenanceplanList);
+  }
+  )}
+}

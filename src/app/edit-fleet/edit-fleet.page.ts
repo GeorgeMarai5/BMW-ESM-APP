@@ -27,10 +27,10 @@ export class EditFleetPage implements OnInit {
 
   constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService) {
 
-    
+      
       this.fleetData = {} as FleetData;
-    
-
+           
+   
    }
 
 
