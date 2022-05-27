@@ -5,6 +5,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   providedIn: 'root'
 })
 export class Service {
+  intiateService(value: any) {
+    throw new Error('Method not implemented.');
+  }
   readService() {
     throw new Error('Method not implemented.');
   }
