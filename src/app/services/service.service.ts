@@ -5,6 +5,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   providedIn: 'root'
 })
 export class Service {
+  readService() {
+    throw new Error('Method not implemented.');
+  }
 
   collectionName = 'Service';
 
@@ -22,8 +25,8 @@ export class Service {
     return this.firestore.collection(this.collectionName).doc(id).get()
   }
 
-  updateService(id, service) {
-    this.firestore.doc(this.collectionName + '/' + id).update(service);
+  updateService(id){
+    this.firestore.doc(this.collectionName);
   }
 
   deleteService(id) {

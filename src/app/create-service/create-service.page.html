@@ -21,16 +21,28 @@
     <ion-list>
       <ion-item>
         <ion-label>Select Team</ion-label>
-        <ion-select placeholder="Select Team...">
-          <ion-select-option value="team"></ion-select-option>
-        </ion-select>
-      </ion-item>
+                  <ion-select formControlName="TeamName" type="text" required>
+                      <ion-select-option>BMST001</ion-select-option>
+                      <ion-select-option>BMST002</ion-select-option>
+                      <ion-select-option>BMST003</ion-select-option>
+                      <ion-select-option>BMMR001</ion-select-option>
+                      <ion-select-option>BMMR002</ion-select-option>
+                      <ion-select-option>BMMR003</ion-select-option>
+                  </ion-select>
+              </ion-item>
       <ion-item>
         <ion-label>Select Service Type</ion-label>
-        <ion-select placeholder="Select Service Type...">
-          <ion-select-option value="serviceType"></ion-select-option>
-        </ion-select>
-      </ion-item>
+                  <ion-select formControlName="ServiceName" type="text" required>
+                      <ion-select-option>Brake fluid flush overdue</ion-select-option>
+                      <ion-select-option>Front brake pads due</ion-select-option>
+                      <ion-select-option>Rear brake pads due</ion-select-option>
+                      <ion-select-option>Micro filter due</ion-select-option>
+                      <ion-select-option>Oil service</ion-select-option>
+                      <ion-select-option>Service action</ion-select-option>
+                      <ion-select-option>Vehicle check service due</ion-select-option>
+                      <ion-select-option>Service overdue</ion-select-option>
+                  </ion-select>
+              </ion-item>
 <ion-button (click)="CreateService()">Continue</ion-button>
     </ion-list>
 </form>

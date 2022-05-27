@@ -34,7 +34,7 @@ export class CreateServicePage implements OnInit {
     console.log(this.serviceForm.value);
     this.myService.createService(this.serviceForm.value).then(resp => {
       this.serviceForm.reset();
-      alert("New Service created successfully")
+      alert("A new service has been created successfully.")
     })
       .catch(error => {
         console.log(error);

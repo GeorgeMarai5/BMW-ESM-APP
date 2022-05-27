@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
+import { Service } from '../services/service.service';
 @Component({
   selector: 'app-update-service',
   templateUrl: './update-service.page.html',
@@ -16,7 +16,7 @@ export class UpdateServicePage implements OnInit {
   updateServiceForm: FormGroup;
   isSubmitted = false;
 
-  constructor(public fb: FormBuilder, public authService: AuthService) {
+  constructor(public fb: FormBuilder, public authService: AuthService, private myUpdate: Service) {
     this.updateServiceForm = new FormGroup({
       DealershipName: new FormControl('', Validators.required),
       TeamName: new FormControl('', Validators.required),
@@ -36,10 +36,15 @@ export class UpdateServicePage implements OnInit {
   }
 
   ngOnInit() {
-    this.updateServiceForm.setValue({PlanName: '', Description: '', Duration: '', Price: ''});
+    this.updateServiceForm.setValue({DealershipName: '', TeamName: '', ServiceTypeName: ''});
   }
 
   get errorControl() {
     return this.updateServiceForm.controls;
   }
-}
+  UpdateService() {
+    
+      alert("A service has been updated successfully.")
+      console.log(this.updateServiceForm.value);
+    }
+  }

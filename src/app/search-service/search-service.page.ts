@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { theService } from '../models/theService';
+
 import { AuthService } from '../services/auth.service';
 import { Service } from '../services/service.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';

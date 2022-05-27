@@ -149,7 +149,11 @@ const routes: Routes = [
   {
     path: 'view-fleet',
     loadChildren: () => import('./view-fleet/view-fleet.module').then( m => m.ViewFleetPageModule)
+  },  {
+    path: 'cancel-service',
+    loadChildren: () => import('./cancel-service/cancel-service.module').then( m => m.CancelServicePageModule)
   }
+
 
 
 
