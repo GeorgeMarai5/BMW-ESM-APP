@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { FormBuilder,Validators,FormGroup } from '@angular/forms';
-import { Service } from '../services/service.service';
+import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
+import { Service } from '../services/service.service'
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 
 
@@ -17,6 +19,7 @@ interface ServiceData {
 // }
 
 
+
 @Component({
   selector: 'app-view-service',
   templateUrl: './view-service.page.html',
@@ -27,20 +30,55 @@ export class ViewServicePage implements OnInit {
    serviceList = [];
    serviceData: ServiceData;
    serviceForm: FormGroup;
-
-  constructor(public authService: AuthService,public fb: FormBuilder, private _service: Service) { 
+   isSubmitted = false;
+  constructor(public authService: AuthService,public fb: FormBuilder, private _service: Service, public firestore: AngularFirestore) { 
     this.serviceData = {} as ServiceData;
   }
   ngOnInit() {
-
     this.serviceForm = this.fb.group({
-      VehicleID: ['', [Validators.required]],
-      VinNumber: ['', [Validators.required]],
-      ModelName: ['', [Validators.required]],
-      Year: ['', [Validators.required]],
+      ServiceID: ['', [Validators.required]],
+      DealershipName: ['', [Validators.required]],
+      TeamName: ['', [Validators.required]],
+      ServiceType: ['', [Validators.required]],
+      ServiceStatus: ['', [Validators.required]],
   });
 
+  this._service.getServices().subscribe(data => {
+    this.serviceList = data.map(e => {
 
+      return {
+        id: e.payload.doc.id,
+        ServiceID: e.payload.doc.data()['ServiceID'],
+        DealershipName: e.payload.doc.data()['DealershipName'],
+        TeamName: e.payload.doc.data()['TeamName'],
+        ServiceType: e.payload.doc.data()['ServiceType'],
+        ServiceStatus: e.payload.doc.data()['ServiceStatus'],
+  
+      };
+    })
+    console.log(this.serviceList);
+
+  });
+  }
+  submitForm(){
+    this.isSubmitted = true;
+    if(!this.serviceForm.valid){
+      return false;
+    }
+    else{
+        const service = {
+          ServiceID: this.serviceForm.get('ServiceID').value,
+          DealershipName: this.serviceForm.get('DealershipName').value,
+          TeamName: this.serviceForm.get('TeamName').value,
+          ServiceType: this.serviceForm.get('ServiceType').value,
+          ServiceStatus: this.serviceForm.get('ServiceStatus').value
+        }
+        this.firestore.collection('Service').add(service).then(function(){
+          alert("New service created successfully");
+        });
+      }
+     
+  }
   // this._service.getService().subscribe(data => {
 
   //   this.serviceList = data.map(e => {
@@ -57,15 +95,7 @@ export class ViewServicePage implements OnInit {
 
   // });
 
-
-}
-RemoveService(ID) {
-  if (window.confirm('Do you really want to Remove This Fleet?')) {
-   
-  
-  this._service.deleteService(ID);
+  get errorControl() {
+    return this.serviceForm.controls;
   }
-  console.log(ID)
-}
-
 }
