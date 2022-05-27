@@ -47,7 +47,7 @@ export class InitiateServiceProcedurePage implements OnInit {
         date: ['', [Validators.required]],
       })
       const auth = getAuth();
-      const currService = auth.current.sid;
+      const currService = auth.currentUser.uid;
     }
   
     InitiateService() {
