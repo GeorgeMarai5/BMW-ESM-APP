@@ -24,19 +24,13 @@ export class ClientService{
         return this.firestore.collection(this.collectionName).snapshotChanges();
       }
 
+      getClient(id: string){
+        return this.firestore.collection(this.collectionName).doc(id);
+      }
 
-/*
-
-      update_student(Title, FirstName, LastName, PhoneNumber, Email, address) {
-        this.firestore.doc(this.collectionName + '/' + recordID).update(record);
+      delete_Client(ClientID) {
+        this.firestore.doc(this.collectionName + '/' + ClientID).delete();
       }
 
 
-
-
-      delete_client(record_id) {
-        this.firestore.doc(this.collectionName + '/' + record_id).delete();
-      }
-    */
-    
 }

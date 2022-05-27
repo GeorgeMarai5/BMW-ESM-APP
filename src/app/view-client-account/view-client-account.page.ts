@@ -1,115 +1,70 @@
-import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
-import { AngularDelegate } from '@ionic/angular';
-import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
-import { Router,Route } from '@angular/router';
-import { PostService } from '../services/post.service';
-import { getApp } from 'firebase/app';
-import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
 import { Clients } from '../models/Clients';
-import { ActivatedRoute } from '@angular/router';
-import { snapshotChanges } from '@angular/fire/compat/database';
-import { ClientService } from '../services/Client.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
-
-
+import { ClientService } from '../services/Client.service';
 
 @Component({
   selector: 'app-view-client-account',
   templateUrl: './view-client-account.page.html',
   styleUrls: ['./view-client-account.page.scss'],
+  
 })
 export class ViewClientAccountPage implements OnInit {
 
-  
-  //private FirebaseApp = getApp();
-  //private db = getFirestore(this.FirebaseApp);
-  //private Clientid: String;
- //private currentClient;
-    clientList = [];
-    
-    clients: Clients;
-    clientform : FormGroup;
+  clients: Clients;
+  client = [];
+  viewClientForm: FormGroup;
+  isSubmitted = false;
+  data: any;
+  editVehicleForm: FormGroup;
 
-
-
-
-  
-  
-  constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
-
-this.clients = {} as Clients;
-
-    }
-
-
-
-
-    ngOnInit() {
-
-
-
-
-
-
-
-
-
-
-      this.clientform = this.fb.group({
-        Title: [''],
-        FirstName: [''],
-        LastName: [''],
-        PhoneNumber: [''],
-        Email: [''],
-        Address: [''],
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
+    public router: Router, public service: ClientService,private toastCtrl: ToastController) {
+      this.route.queryParams.subscribe(params => {
+        if (this.router.getCurrentNavigation().extras.state) {
+          this.data = this.router.getCurrentNavigation().extras.state.id;
+        }
+      });
+      this.viewClientForm = new FormGroup({
+        Title: new FormControl('', Validators.required),
+        FirstName: new FormControl('', Validators.required),
+        LastName: new FormControl('', Validators.required),
+        PhoneNumber: new FormControl('', Validators.required),
+        Email: new FormControl('', Validators.required),
+        Address: new FormControl('', Validators.required)
       })
+     }
+     
+
+  ngOnInit() {
+    this.service.getClient('5jh9j0RPItYYHzLI4FisElc8hJF2').valueChanges()
+    .subscribe(res =>{
+    console.log(res)
+      this.viewClientForm.setValue({
+      Title: res['title'], 
+      FirstName: res['firstName'], 
+      LastName: res['lastName'],
+      PhoneNumber: res['phoneNum'],
+      Email: res['email'],
+      Address: res['address']
+    })
+    });
+  }
+
+  openDetailsWithState() {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        id: '5jh9j0RPItYYHzLI4FisElc8hJF2'
+      }
+    };
+    this.router.navigate(['tabs/update/client'], navigationExtras);
+  }
 
 
-this.clientService.read_Clients().subscribe(data =>{
-
-
-  this.clientList = data.map(e =>{
-
-return{
-
-id: e.payload.doc.id,
-Title: e.payload.doc.data()['Title'],
-FirstName: e.payload.doc.data()['FirstName'],
-LastName: e.payload.doc.data()['lastName'],
-PhoneNumber: e.payload.doc.data()['phone'],
-Email: e.payload.doc.data()['email'],
-Address: e.payload.doc.data()['Address'],
-};
-
-})
-console.log(this.clientList);
-
-
-});
-
-
-    }
-
-
-
-
-
-
-
-
-    
-
-
-
-
-  
-
-  
 
   async removeAlert(){
 
@@ -121,31 +76,23 @@ console.log(this.clientList);
 
   }
 
-  update(){   
+  back(){
 
-  
+    this.router.navigate(['SearchclientaccountPage'])
+  }
+
+  RemoveClient(ID) {
+    if (window.confirm('Do you really want to Remove This Client?')) {
+     
+    
+    this.service.delete_Client(ID);
+    }
+    console.log(ID)
+  }
+
+
+
+
+
+
 }
-
-
-
-
-
-back(){
-
-  this.router.navigate(['SearchclientaccountPage'])
-}
-
-
-
-
-}
-
-
-
-
-
-function deleteClient(item: any, any: any) {
-  throw new Error('Function not implemented.');
-}
-
-

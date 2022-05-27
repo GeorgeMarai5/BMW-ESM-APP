@@ -24,36 +24,36 @@
   </ion-title>
 
 
-  <form [formGroup]="clientform" *ngFor="let item of clientList">
+  <form [formGroup]="viewClientForm"  novalidate>
 
   <ion-item>
     <ion-label position="stacked">Title</ion-label>
-    <ion-input value="{{item.Title}}" readonly></ion-input>
+    <ion-input formControlName="Title" readonly></ion-input>
   </ion-item>
 
 <ion-item>
   <ion-label position="stacked">First Name</ion-label>
-  <ion-input value="{{item.FirstName}}" readonly></ion-input>
+  <ion-input formControlName="FirstName" readonly></ion-input>
 </ion-item>
 
 <ion-item >
   <ion-label position="stacked">Last Name</ion-label>
-  <ion-input value="{{item.LastName}}" readonly></ion-input>
+  <ion-input formControlName="LastName" readonly></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label position="stacked">Phone Number</ion-label>
-  <ion-input value="{{item.PhoneNumber}}" readonly></ion-input>
+  <ion-input formControlName="PhoneNumber" readonly></ion-input>
 </ion-item>
 
 <ion-item >
   <ion-label position="stacked" >Email</ion-label> 
-  <ion-input value="{{item.Email}}" readonly></ion-input>
+  <ion-input formControlName="Email" readonly></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label position="stacked">Address</ion-label>
-  <ion-input value="{{item.Address}}" readonly> </ion-input>
+  <ion-input formControlName="Address" readonly> </ion-input>
 </ion-item>
 
 </form>
@@ -63,10 +63,10 @@
 
 <ion-button  [routerLink]="['/tabs/update/client']">Update</ion-button>
 
+<ion-button  color="danger" >Delete</ion-button>
 
-<ion-button  color="danger" [routerLink]="['/tabs/searchclientaccount']">Delete</ion-button>
 
 
-<!--(click)="deleteClient(ClientList)"-->
+<!--(click)="deleteClient(ClientList)"   <ion-button  color="danger" (click)="RemoveClient()">Delete</ion-button>                   -->
 
 </ion-content>
