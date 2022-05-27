@@ -8,7 +8,6 @@ const routes: Routes = [
     path: 'tabs',
     component: TabsPage,
     children: [
-      //Iteration 4 Routing
       {
         path: 'home',
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
@@ -107,21 +106,10 @@ const routes: Routes = [
         },
         loadChildren: () => import('../update-employee/update-employee.module').then( m => m.UpdateEmployeePageModule)
       },
-      //Iteration 5 Routing
+      
       {
         path: 'add/vehicle',
         loadChildren: () => import('../add-vehicle/add-vehicle.module').then( m => m.AddVehiclePageModule)
-      },
-      {
-        path: 'edit/vehicle',
-        loadChildren: () => import('../edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
-      },
-      {
-        path: 'edit/vehicle/:id',
-        resolve: {
-          special: DataResolverService
-        },
-        loadChildren: () => import('../edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
       },
       {
         path: 'search/vehicle',
@@ -265,6 +253,17 @@ const routes: Routes = [
           special: DataResolverService
         },
         loadChildren: () => import('../view-fleet/view-fleet.module').then( m => m.ViewFleetPageModule)
+      },
+      {
+        path: 'edit/vehicle',
+        loadChildren: () => import('../edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
+      },
+      {
+        path: 'edit/vehicle/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
       },
 
     ]

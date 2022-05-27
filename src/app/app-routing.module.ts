@@ -110,17 +110,6 @@ const routes: Routes = [
     loadChildren: () => import('./add-vehicle/add-vehicle.module').then( m => m.AddVehiclePageModule)
   },
   {
-    path: 'edit/vehicle',
-    loadChildren: () => import('./edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
-  },
-  {
-    path: 'edit/vehicle/:id',
-    resolve: {
-      special: DataResolverService
-    },
-    loadChildren: () => import('./edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
-  },
-  {
     path: 'search/vehicle',
     loadChildren: () => import('./search-vehicle/search-vehicle.module').then( m => m.SearchVehiclePageModule)
   },
@@ -262,6 +251,17 @@ const routes: Routes = [
       special: DataResolverService
     },
     loadChildren: () => import('./view-fleet/view-fleet.module').then( m => m.ViewFleetPageModule)
+  },
+  {
+    path: 'edit/vehicle',
+    loadChildren: () => import('./edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
+  },
+  {
+    path: 'edit/vehicle/:id',
+    resolve: {
+      special: DataResolverService
+    },
+    loadChildren: () => import('./edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
   },
 
 ];

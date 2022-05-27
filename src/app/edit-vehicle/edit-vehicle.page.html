@@ -91,9 +91,6 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
               Vehicle Model is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.maxlength">
-              First Name can't be longer than 20 characters.
-            </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -104,9 +101,6 @@
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.required">
               Registration is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.maxlength">
-              Last Name can't be longer than 20 characters.
             </span>
           </ion-col>
         </ion-row>
@@ -124,10 +118,6 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.required">
               Warranty Plan is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.maxlength || 
-            errorControl.phoneNum.errors?.maxlength">
-              Invalid Phone Number.
-            </span>
           </ion-col>
         </ion-row>
         <br/>
@@ -142,4 +132,3 @@
     </form>
   </div>
 </ion-content>
-

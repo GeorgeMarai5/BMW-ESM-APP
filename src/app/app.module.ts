@@ -20,7 +20,7 @@ import { Component } from '@angular/core';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,AngularFireModule.initializeApp(environment.firebaseConfig), 
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AngularFireModule.initializeApp(environment.firebaseConfig), 
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
