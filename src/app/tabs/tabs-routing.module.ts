@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { DataResolverService } from '../resolver/data-resolver.service';
 
 const routes: Routes = [
   {
@@ -25,6 +26,13 @@ const routes: Routes = [
         loadChildren: () => import('../update-client/update-client.module').then( m => m.UpdateClientPageModule)
       },
       {
+        path: 'update/client/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../update-client/update-client.module').then( m => m.UpdateClientPageModule)
+      },
+      {
         path: 'update/password',
         loadChildren: () => import('../update-password/update-password.module').then( m => m.UpdatePasswordPageModule)
       },
@@ -33,7 +41,21 @@ const routes: Routes = [
         loadChildren: () => import('../dashboard-client/dashboard-client.module').then( m => m.DashboardClientPageModule)
       },
       {
+        path: 'dashboard/client/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../dashboard-client/dashboard-client.module').then( m => m.DashboardClientPageModule)
+      },
+      {
         path: 'dashboard/employee',
+        loadChildren: () => import('../dashboard-employee/dashboard-employee.module').then( m => m.DashboardEmployeePageModule)
+      },
+      {
+        path: 'dashboard/employee/:id',
+        resolve: {
+          special: DataResolverService
+        },
         loadChildren: () => import('../dashboard-employee/dashboard-employee.module').then( m => m.DashboardEmployeePageModule)
       },
       {
@@ -56,6 +78,35 @@ const routes: Routes = [
         path: 'view/client',
         loadChildren: () => import('../view-client-account/view-client-account.module').then( m => m.ViewClientAccountPageModule)
       },
+      {
+        path: 'view/client/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../view-client-account/view-client-account.module').then( m => m.ViewClientAccountPageModule)
+      },
+      {
+        path: 'view/employee-account',
+        loadChildren: () => import('../view-employee-account/view-employee-account.module').then( m => m.ViewEmployeeAccountPageModule)
+      },
+      {
+        path: 'view/employee/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../view-employee-account/view-employee-account.module').then( m => m.ViewEmployeeAccountPageModule)
+      },
+      {
+        path: 'update/employee',
+        loadChildren: () => import('../update-employee/update-employee.module').then( m => m.UpdateEmployeePageModule)
+      },
+      {
+        path: 'update/employee/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../update-employee/update-employee.module').then( m => m.UpdateEmployeePageModule)
+      },
       //Iteration 5 Routing
       {
         path: 'add/vehicle',
@@ -63,6 +114,13 @@ const routes: Routes = [
       },
       {
         path: 'edit/vehicle',
+        loadChildren: () => import('../edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
+      },
+      {
+        path: 'edit/vehicle/:id',
+        resolve: {
+          special: DataResolverService
+        },
         loadChildren: () => import('../edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
       },
       {
@@ -74,6 +132,13 @@ const routes: Routes = [
         loadChildren: () => import('../view-vehicle/view-vehicle.module').then( m => m.ViewVehiclePageModule)
       },
       {
+        path: 'view/vehicle/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../view-vehicle/view-vehicle.module').then( m => m.ViewVehiclePageModule)
+      },
+      {
         path: 'assign/dealership',
         loadChildren: () => import('../assign-dealership/assign-dealership.module').then( m => m.AssignDealershipPageModule)
       },
@@ -82,11 +147,25 @@ const routes: Routes = [
         loadChildren: () => import('../edit-dealership/edit-dealership.module').then( m => m.EditDealershipPageModule)
       },
       {
+        path: 'edit/dealership/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../edit-dealership/edit-dealership.module').then( m => m.EditDealershipPageModule)
+      },
+      {
         path: 'search/dealership',
         loadChildren: () => import('../search-dealership/search-dealership.module').then( m => m.SearchDealershipPageModule)
       },
       {
         path: 'view/dealership',
+        loadChildren: () => import('../view-dealership/view-dealership.module').then( m => m.ViewDealershipPageModule)
+      },
+      {
+        path: 'view/dealership/:id',
+        resolve: {
+          special: DataResolverService
+        },
         loadChildren: () => import('../view-dealership/view-dealership.module').then( m => m.ViewDealershipPageModule)
       },
       {
@@ -102,7 +181,21 @@ const routes: Routes = [
         loadChildren: () => import('../upgrade-maintenanceplan/upgrade-maintenanceplan.module').then( m => m.UpgradeMaintenanceplanPageModule)
       },
       {
+        path: 'upgrade/maintenance-plan/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../upgrade-maintenanceplan/upgrade-maintenanceplan.module').then( m => m.UpgradeMaintenanceplanPageModule)
+      },
+      {
         path: 'view/maintenanceplan',
+        loadChildren: () => import('../view-maintenanceplan/view-maintenanceplan.module').then( m => m.ViewMaintenanceplanPageModule)
+      },
+      {
+        path: 'view/maintenance-plan/:id',
+        resolve: {
+          special: DataResolverService
+        },
         loadChildren: () => import('../view-maintenanceplan/view-maintenanceplan.module').then( m => m.ViewMaintenanceplanPageModule)
       },
       {
@@ -118,6 +211,13 @@ const routes: Routes = [
         loadChildren: () => import('../update-service/update-service.module').then( m => m.UpdateServicePageModule)
       },
       {
+        path: 'update/service/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../update-service/update-service.module').then( m => m.UpdateServicePageModule)
+      },
+      {
         path: 'cancel-service',
         loadChildren: () => import('../cancel-service/cancel-service.module').then( m => m.CancelServicePageModule)
       },
@@ -127,6 +227,13 @@ const routes: Routes = [
       },
       {
         path: 'view/service',
+        loadChildren: () => import('../view-service/view-service.module').then( m => m.ViewServicePageModule)
+      },
+      {
+        path: 'view/service/:id',
+        resolve: {
+          special: DataResolverService
+        },
         loadChildren: () => import('../view-service/view-service.module').then( m => m.ViewServicePageModule)
       },
       {
@@ -142,10 +249,23 @@ const routes: Routes = [
         loadChildren: () => import('../edit-fleet/edit-fleet.module').then( m => m.EditFleetPageModule)
       },
       {
+        path: 'edit/fleet/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../edit-fleet/edit-fleet.module').then( m => m.EditFleetPageModule)
+      },
+      {
         path: 'view/fleet',
         loadChildren: () => import('../view-fleet/view-fleet.module').then( m => m.ViewFleetPageModule)
-      }
-
+      },
+      {
+        path: 'view/fleet/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../view-fleet/view-fleet.module').then( m => m.ViewFleetPageModule)
+      },
 
     ]
   },

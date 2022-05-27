@@ -19,7 +19,7 @@ export class VehicleService {
   }
 
   getVehicle(id: string){
-    return this.firestore.collection(this.collectionName).doc(id).get()
+    return this.firestore.collection(this.collectionName).doc(id);
   }
 
   updateVehicle(id, vehicle) {
