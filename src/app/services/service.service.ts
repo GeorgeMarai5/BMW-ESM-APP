@@ -6,9 +6,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class Service {
   readService() {
-    throw new Error('Method not implemented.');
+    return this.firestore.collection(this.collectionName).snapshotChanges();
   }
-
   collectionName = 'Service';
 
   constructor(private firestore: AngularFirestore) { }
@@ -17,16 +16,16 @@ export class Service {
     return this.firestore.collection('Service').snapshotChanges();
   }
 
-  createService(service) {
-    return this.firestore.collection(this.collectionName).add(service);
+  createService(Service) {
+    return this.firestore.collection(this.collectionName).add(Service);
   }
 
   getService(id: string){
     return this.firestore.collection(this.collectionName).doc(id).get()
   }
 
-  updateService(id){
-    this.firestore.doc(this.collectionName);
+  updateService(ServiceID,Service) {
+    this.firestore.doc(this.collectionName + '/' + ServiceID).update(Service);
   }
 
   deleteService(id) {

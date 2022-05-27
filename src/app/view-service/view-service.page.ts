@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
-import { Service } from '../services/service.service'
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import{Service} from '../services/service.service';
 
 
 
 interface ServiceData {
   ServiceID: number;
+  DealershipName: string;
+  TeamName: string;
+  ServiceType: string;
+  ServiceStatus: string;
+  
 }
 
-// interface FleetVehicles{
-//   VehicleID: number;
+// interface ServiceVehicles{
+//   VehiID: number;
 //   VinNumber: string;
 //   ModelName: string;
 //   Year: string;
 // }
-
 
 
 @Component({
@@ -30,72 +32,52 @@ export class ViewServicePage implements OnInit {
    serviceList = [];
    serviceData: ServiceData;
    serviceForm: FormGroup;
-   isSubmitted = false;
-  constructor(public authService: AuthService,public fb: FormBuilder, private _service: Service, public firestore: AngularFirestore) { 
+
+  constructor(public authService: AuthService,public fb: FormBuilder, private _service: Service) { 
+
     this.serviceData = {} as ServiceData;
+
   }
+
   ngOnInit() {
+
     this.serviceForm = this.fb.group({
-      ServiceID: ['', [Validators.required]],
-      DealershipName: ['', [Validators.required]],
-      TeamName: ['', [Validators.required]],
-      ServiceType: ['', [Validators.required]],
-      ServiceStatus: ['', [Validators.required]],
+      VehicleID: ['', [Validators.required]],
+      VinNumber: ['', [Validators.required]],
+      ModelName: ['', [Validators.required]],
+      Year: ['', [Validators.required]],
   });
 
-  this._service.getServices().subscribe(data => {
-    this.serviceList = data.map(e => {
 
+  this._service.readService().subscribe(data => {
+
+    this.serviceList = data.map(e => {
       return {
         id: e.payload.doc.id,
         ServiceID: e.payload.doc.data()['ServiceID'],
         DealershipName: e.payload.doc.data()['DealershipName'],
         TeamName: e.payload.doc.data()['TeamName'],
         ServiceType: e.payload.doc.data()['ServiceType'],
-        ServiceStatus: e.payload.doc.data()['ServiceStatus'],
-  
+        ServiceStatus: e.payload.doc.data()['ServiceStatus']
       };
     })
     console.log(this.serviceList);
 
   });
-  }
-  submitForm(){
-    this.isSubmitted = true;
-    if(!this.serviceForm.valid){
-      return false;
-    }
-    else{
-        const service = {
-          ServiceID: this.serviceForm.get('ServiceID').value,
-          DealershipName: this.serviceForm.get('DealershipName').value,
-          TeamName: this.serviceForm.get('TeamName').value,
-          ServiceType: this.serviceForm.get('ServiceType').value,
-          ServiceStatus: this.serviceForm.get('ServiceStatus').value
-        }
-        this.firestore.collection('Service').add(service).then(function(){
-          alert("New service created successfully");
-        });
-      }
-     
-  }
-  // this._service.getService().subscribe(data => {
 
-  //   this.serviceList = data.map(e => {
-  //     return {
-  //       id: e.payload.doc.id,
-  //       isEdit: false,
-  //       FleetID: e.payload.doc.data()['FleetID'],
-  //       FleetVehicleQty: e.payload.doc.data()['FleetVehicleQty'],
-  //       FleetName: e.payload.doc.data()['FleetName'],
-  //       FleetLocation: e.payload.doc.data()['FleetLocation']
-  //     };
-  //   })
-  //   console.log(this.serviceList);
 
-  // });
-
-  get errorControl() {
-    return this.serviceForm.controls;
-  }
 }
+RemoveService(ID) {
+  if (window.confirm('Do you really want to Remove this service?')) {
+   
+  
+  this._service.deleteService(ID);
+  }
+  console.log(ID)
+}
+
+}
+function id(id: string) {
+  throw new Error('Function not implemented.');
+}
+
