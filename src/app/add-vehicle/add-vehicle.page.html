@@ -109,7 +109,12 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Warranty Plan</b></ion-label>
-              <ion-input formControlName="warrantyPlan" type="text" required></ion-input>
+              <ion-select formControlName="warrantyPlan" type="text" required>
+                <ion-select-option>Executive</ion-select-option>
+                <ion-select-option>Prestige</ion-select-option>
+                <ion-select-option>Elegant</ion-select-option>
+                <ion-select-option>Standard</ion-select-option>
+              </ion-select>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.required">
               Warranty Plan is required.
