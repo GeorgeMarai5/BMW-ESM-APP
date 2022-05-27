@@ -12,80 +12,46 @@
     
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <ion-title>
+    Client Account
+  </ion-title>
 
-<form [formGroup]="serviceForm" (ngSubmit)="submitForm()" novalidate>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="full">
-          <ion-label position="stacked"><b>Service ID</b></ion-label>
-          <ion-input formControlName="ServiceID" type="text" required></ion-input>
-        </ion-item>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.required">
-          VIN Number is required.
-        </span>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.min || 
-        errorControl.VINNum.errors?.max">
-          VIN Number is invalid.
-        </span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="full">
-          <ion-label position="stacked"><b>Dealership Name</b></ion-label>
-          <ion-select formControlName="DealershipName" type="text" required>
-            <ion-select-option>X5</ion-select-option>
-            <ion-select-option></ion-select-option>
-          </ion-select>
-        </ion-item>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
-          Vehicle Model is required.
-        </span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="full">
-          <ion-label position="stacked"><b>Team</b></ion-label>
-          <ion-input formControlName="TeamName" type="text" required></ion-input>
-        </ion-item>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.required">
-          Registration is required.
-        </span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="full">
-          <ion-label position="stacked"><b>Service Type</b></ion-label>
-          <ion-input formControlName="ServiceType" type="text" required></ion-input>
-        </ion-item>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.required">
-        
-        </span>
-      </ion-col>
-    </ion-row>
-    <br/>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="full">
-          <ion-label position="stacked"><b>Service Status</b></ion-label>
-          <ion-input formControlName="ServiceStatus" type="text" required></ion-input>
-        </ion-item>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.required">
-        
-        </span>
-      </ion-col>
-    </ion-row>
-    <br/>
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col></ion-col>
-      <ion-col>
-        <ion-button type="submit" expand="block">Submit</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+  <form [formGroup]="serviceForm" *ngFor="let item of serviceList">
+
+  <ion-item>
+    <ion-label position="stacked">Service ID</ion-label>
+    <ion-input value="{{item.ServiceID}}" readonly></ion-input>
+  </ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Dealership Name</ion-label>
+  <ion-input value="{{item.DealershipName}}" readonly></ion-input>
+</ion-item>
+
+<ion-item >
+  <ion-label position="stacked">Team</ion-label>
+  <ion-input value="{{item.TeamName}}" readonly></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Service Type</ion-label>
+  <ion-input value="{{item.ServiceTypeName}}" readonly></ion-input>
+</ion-item>
+
+<ion-item >
+  <ion-label position="stacked" >Service Status</ion-label> 
+  <ion-input value="{{item.ServiceStatus}}" readonly></ion-input>
+</ion-item>
+
 </form>
+
+<ion-button  [routerLink]="['/tabs/search/service']">Back</ion-button>
+
+
+<ion-button  [routerLink]="['/tabs/view/maintenanceplan']">Inspection Details</ion-button>
+
+
+<ion-button  color="danger" [routerLink]="['/tabs/search/service']">Cancel</ion-button>
 
