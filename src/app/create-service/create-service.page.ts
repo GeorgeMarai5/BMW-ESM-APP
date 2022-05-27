@@ -28,6 +28,8 @@ export class CreateServicePage implements OnInit {
       TeamName: ['', [Validators.required]],
       ServieTypeName: ['', [Validators.required]],
     })
+    // const auth = getAuth();
+    // const currUser = auth.current.uid;
   }
 
   CreateService() {
