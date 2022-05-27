@@ -5,6 +5,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class PostService {
+  [x: string]: any;
+
   static areEqual(formGroup: FormGroup) {
     let va;
     let valid = true;
