@@ -17,6 +17,7 @@
     Create Service
   </ion-title>
 <ion-content>
+  <div>
   <form [formGroup]="serviceForm" (ngSubmit)="CreateService()">
     <ion-list>
       <ion-item>
@@ -32,7 +33,7 @@
               </ion-item>
       <ion-item>
         <ion-label>Select Service Type</ion-label>
-                  <ion-select formControlName="ServiceName" type="text" required>
+                  <ion-select formControlName="ServiceTypeName" type="text" required>
                       <ion-select-option>Brake fluid flush overdue</ion-select-option>
                       <ion-select-option>Front brake pads due</ion-select-option>
                       <ion-select-option>Rear brake pads due</ion-select-option>
@@ -46,4 +47,6 @@
 <ion-button (click)="CreateService()">Continue</ion-button>
     </ion-list>
 </form>
+</div>
 </ion-content>
+
