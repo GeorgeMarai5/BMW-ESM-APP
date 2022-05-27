@@ -1,4 +1,4 @@
-interface FleetData {
+export interface Fleet {
     $key: string;
     FleetID: number;
     FleetName: string;

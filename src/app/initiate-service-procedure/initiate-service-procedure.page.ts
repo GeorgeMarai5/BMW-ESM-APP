@@ -12,7 +12,7 @@ import { snapshotChanges } from '@angular/fire/compat/database';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Dealership } from '../models/Dealership';
-import { Fleet } from '../models/Fleet';
+import { Fleet } from '../models/fleet';
 import { Team } from '../models/Team';
 import { VehicleService } from '../services/vehicle.service';
 
