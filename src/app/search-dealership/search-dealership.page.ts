@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Dealership } from '../models/Dealership';
 import { AlertController } from '@ionic/angular';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-dealership',
@@ -20,7 +21,7 @@ export class SearchDealershipPage implements OnInit {
   deleteModal: HTMLElement;
 
   constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, 
-    private firestore: AngularFirestore, public alertCtrl: AlertController) { 
+    private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 
       this.dealerships = {} as Dealership;
     }
 
@@ -44,12 +45,6 @@ export class SearchDealershipPage implements OnInit {
     console.log(this.dealershipList);
 
   });
-  }
-
-  viewDealership(id){
-
-    
-
   }
 
   async removeDealership(id){
