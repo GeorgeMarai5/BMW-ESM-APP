@@ -19,26 +19,26 @@
     <ion-searchbar class="isb" placeholder="View Fleet..." showCancelButton="focus" animated></ion-searchbar><br/>
       <ion-grid class="ion-margin" class="ion-grid-padding">
         <ion-row>
-          <ion-col>Fleet ID</ion-col>
-          <ion-col>Fleet Name</ion-col>
-          <ion-col>Fleet Location</ion-col>
-          <ion-col>Vehicle Qty</ion-col>
+          <ion-col>Vehicle ID</ion-col>
+          <ion-col>Vin Number</ion-col>
+          <ion-col>Model Name</ion-col>
+          <ion-col>Year</ion-col>
           <ion-col></ion-col>
           <ion-col></ion-col>
         </ion-row>
         <ion-item-divider></ion-item-divider>
-        <ion-row *ngFor="let item of fleetList">
+        <ion-row *ngFor="let item of vehicleList">
           <ion-col>
-            <ion-label> {{item.FleetID}}</ion-label>
+            <ion-label> {{item.VehicleID}}</ion-label>
           </ion-col>
           <ion-col>
-            <ion-label> {{item.FleetName}}</ion-label>
+            <ion-label> {{item.VinNumber}}</ion-label>
           </ion-col>
           <ion-col>
-            <ion-label> {{item.FleetLocation}}</ion-label>
+            <ion-label> {{item.ModelName}}</ion-label>
           </ion-col>
           <ion-col>
-            <ion-label> {{item.FleetVehicleQty}}</ion-label>
+            <ion-label> {{item.Year}}</ion-label>
           </ion-col>
           <ion-col>
             <ion-button class="light-Btn" [routerLink]="['/tabs/view/fleet']">View</ion-button>

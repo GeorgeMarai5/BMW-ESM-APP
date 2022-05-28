@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
+import { VehicleService } from '../services/vehicle.service';
 
 
 
@@ -28,13 +29,13 @@ interface FleetVehicles{
 })
 export class ViewFleetPage implements OnInit {
 
-   fleetList = [];
-   fleetData: FleetData;
+   vehicleList = [];
+   VehicleData: FleetVehicles;
    fleetForm: FormGroup;
 
-  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService) { 
+  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService, private vehiclesService: VehicleService) { 
 
-    this.fleetData = {} as FleetData;
+    this.VehicleData = {} as FleetVehicles;
 
   }
 
@@ -48,19 +49,19 @@ export class ViewFleetPage implements OnInit {
   });
 
 
-  this.fleetservice.read_Fleet().subscribe(data => {
+  this.vehiclesService.getVehicles().subscribe(data => {
 
-    this.fleetList = data.map(e => {
+    this.vehicleList = data.map(e => {
       return {
         id: e.payload.doc.id,
         isEdit: false,
-        FleetID: e.payload.doc.data()['FleetID'],
-        FleetVehicleQty: e.payload.doc.data()['FleetVehicleQty'],
-        FleetName: e.payload.doc.data()['FleetName'],
-        FleetLocation: e.payload.doc.data()['FleetLocation']
+        VehicleID: e.payload.doc.data()['VehicleID'],
+        VinNumber: e.payload.doc.data()['VIN_Number'],
+        ModelName: e.payload.doc.data()['VehicleModel'],
+        Year: e.payload.doc.data()['year']
       };
     })
-    console.log(this.fleetList);
+    console.log(this.vehicleList);
 
   });
 
@@ -70,7 +71,7 @@ RemoveFleet(ID) {
   if (window.confirm('Do you really want to Remove This Fleet?')) {
    
   
-  this.fleetservice.delete_Fleet(ID);
+  this.vehiclesService.deleteVehicle(ID);
   }
   console.log(ID)
 }
