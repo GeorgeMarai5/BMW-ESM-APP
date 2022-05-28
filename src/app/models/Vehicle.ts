@@ -3,4 +3,5 @@ export interface Vehicle{
     vehicleModel: string;
     registration: string;
     warrantyPlan: string;
+    fleetID: string | null;
 }

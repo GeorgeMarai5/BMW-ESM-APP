@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Service } from '../services/service.service';
 
@@ -17,7 +17,7 @@ export class AssignDealershipPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
-    public service: Service) { 
+    public service: Service, public router: Router) { 
         this.route.params.subscribe(params => {
           this.data = params['id'];
         });
@@ -33,18 +33,20 @@ export class AssignDealershipPage implements OnInit {
       return false;
     }
     else{
-        const dealership = {
-          dealershipName: this.assignDealershipForm.get('DealershipName').value,
-          address: this.assignDealershipForm.get('AddressName').value
-        }
-        this.firestore.collection('Dealership').add(dealership).then(function(docRef){
-          alert("Dealership has been assigned successfully");
-          const dealershipID = {
-            dealershipID: docRef.id
-          }
-          this.service.updateService(this.data, {"DealershipID": dealershipID})
-        });
+      const dealership = {
+        dealershipName: this.assignDealershipForm.get('DealershipName').value,
+        address: this.assignDealershipForm.get('AddressName').value
       }
+      this.firestore.collection('Dealership').add(dealership).then(function(docRef){
+        alert("Dealership has been assigned successfully");
+        const dealershipID = {
+          dealershipID: docRef.id
+        }
+        this.service.updateService(this.data, {"DealershipID": dealershipID})
+      });
+    }
+
+    this.router.navigate(['tabs/search/fleet'], this.data);
   }
 
   ngOnInit() {
