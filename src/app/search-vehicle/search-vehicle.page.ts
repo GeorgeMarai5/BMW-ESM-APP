@@ -21,6 +21,7 @@ export class SearchVehiclePage implements OnInit {
   vehicleList = [];
   vehicleForm: FormGroup;
   searchTerm: string;
+  fleetID: string;
 
   constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, 
     private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 
