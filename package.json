@@ -1,5 +1,5 @@
 {
-  "name": "BMW-ESM-APP",
+  "name": "cls",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~13.3.6",
     "@angular/router": "~13.3.6",
     "@awesome-cordova-plugins/firebase": "^5.41.0",
-    "@awesome-cordova-plugins/splash-screen": "^5.41.0",
+    "@awesome-cordova-plugins/splash-screen": "^5.43.0",
     "@aws-amplify/ui-angular": "^2.3.15",
     "@capacitor/app": "1.1.1",
     "@capacitor/core": "3.5.0",
@@ -37,7 +37,7 @@
     "cordova": "^11.0.0",
     "cordova-plugin-firebase": "^2.0.5",
     "cordova-plugin-splashscreen": "^6.0.1",
-    "firebase": "^9.8.0",
+    "firebase": "^9.8.2",
     "g": "^2.0.1",
     "gauge-chart": "^0.5.3",
     "gauge-chart-js": "^2.0.1",
@@ -87,5 +87,14 @@
     "plugins": {
       "cordova-plugin-splashscreen": {}
     }
+  },
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgeMarai5/BMW-ESM-APP.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeorgeMarai5/BMW-ESM-APP/issues"
   }
 }
