@@ -5,7 +5,7 @@ import { Service } from '../services/service.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-
+import { AlertController } from '@ionic/angular';
 
 interface ServiceData {
   $key: string;
@@ -13,7 +13,6 @@ interface ServiceData {
   VINNumber: string;
   ServiceTypeName: string;
   Date: number;
-  
 }
 @Component({
   selector: 'app-search-service',
@@ -21,7 +20,7 @@ interface ServiceData {
   styleUrls: ['./search-service.page.scss'],
 })
 export class SearchServicePage implements OnInit {
-
+  deleteModal: HTMLElement;
   services: ModelService;
   serviceList = [];
   serviceForm: FormGroup;
@@ -37,7 +36,7 @@ export class SearchServicePage implements OnInit {
     console.log(this.changedDate);
   }
   constructor(public authService: AuthService, private _service: Service, public fb: FormBuilder, 
-    private firestore: AngularFirestore) { 
+    private firestore: AngularFirestore, public alertCtrl: AlertController) { 
       //this._service = {} as Service;
       this.serviceData = {} as ServiceData;
     }
@@ -68,16 +67,34 @@ export class SearchServicePage implements OnInit {
 
   });
   }
+  async removeService(id){
+    const confirmDeleteAlert = await this.alertCtrl.create({
+      header: 'Remove Service',
+      message: 'Are you sure you would like to remove this service from the system?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: end => {
+          this.alertCtrl.dismiss();
+        }
+      },
+      {
+        text: 'Remove',
+        role: 'remove',
+        handler: () => {
+          this._service.deleteService(id);
+          alert('Service was successfully removed');
+        }
+      }]
+    });
 
-  viewService(){
+    confirmDeleteAlert.present();
+
+  }
+  viewService(id){
 
     
 
   }
 
-  removeService(){
-
-
-    
-  }
 }

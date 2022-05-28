@@ -16,11 +16,15 @@ interface ServiceData {
 })
 export class CreateServicePage implements OnInit {
 
-  serviceData: ServiceData;
+  services: Service;
+  serviceList = [];
   serviceForm: FormGroup;
+  searchTerm: string;
+  deleteModal: HTMLElement;
+
 
   constructor(public authService: AuthService, public fb: FormBuilder, private _service: Service) {
-      this.serviceData = {} as ServiceData;
+      this.services = {} as Service;
       this.serviceForm = new FormGroup({
         TeamName: new FormControl(),
         ServiceTypeName: new FormControl()
@@ -34,8 +38,20 @@ export class CreateServicePage implements OnInit {
     })
     // const auth = getAuth();
     // const currUser = auth.current.uid;
-  }
+  
+  this._service.readService().subscribe(data => {
+    this.serviceList = data.map(e => {
+      return {
+        id: e.payload.doc.id,
+        DealershipID: e.payload.doc.data()['DealershipID'],
+        DealershipName: e.payload.doc.data()['DealershipName'],
+        AddressName: e.payload.doc.data()['AddressName'],
+      };
+    })
+    console.log(this.serviceList);
 
+  });
+  }
 
   CreateService() {
     console.log(this.serviceForm.value);
