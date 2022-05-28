@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface FleetData {
   FleetName: string;
@@ -23,9 +24,11 @@ export class EditFleetPage implements OnInit {
   fleetList = [];
   fleetData: FleetData;
   fleetForm: FormGroup;
+  isSubmitted = false;
+  id: any;
   
 
-  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService) {
+  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService,private route: ActivatedRoute, private router: Router) {
 
       
       this.fleetData = {} as FleetData;
@@ -34,32 +37,43 @@ export class EditFleetPage implements OnInit {
    }
 
 
+   submitForm(){
+    this.isSubmitted = true;
+    if(!this.fleetForm.valid){
+      return false;
+    }
+    else{
+        const vehicle = {
+          FleetName: this.fleetForm.get('FleetName').value,
+          FleetLocation: this.fleetForm.get('FleetLocation').value,
+          
+        }
+        this.fleetservice.update_Fleet(this.id, vehicle)
+        alert("Fleet was successfully updated.");
+      }
+      this.router.navigate(['/tabs/view/fleet', this.id]);
+  }
+
 
 
 
   ngOnInit() {
-
-    this.fleetForm = this.fb.group({
-      FleetName: ['', [Validators.required]],
-      FleetLocation: ['', [Validators.required]],
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.fleetservice.getFleet(this.id).valueChanges()
+    .subscribe(res =>{
+    console.log(res)
+    this.fleetForm.setValue({
+      FleetName: res['FleetName'], 
+      FleetLocation: res['FleetLocation']
       
     })
+    });
 
-  
-  this.fleetservice.read_Fleet().subscribe(data => {
+  }
 
-    this.fleetList = data.map(e => {
-      return {
-        id: e.payload.doc.id,
-        isEdit: false,
-        FleetName: e.payload.doc.data()['FleetName'],
-        FleetLocation: e.payload.doc.data()['FleetLocation']
-      };
-    })
-    console.log(this.fleetList);
-
-  });
-}
+  get errorControl() {
+    return this.fleetForm.controls;
+  }
 
 
 

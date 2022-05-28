@@ -19,19 +19,19 @@
   </ion-title>
 
 <ion-content>
-  <form [formGroup]="fleetForm" *ngFor="let item of fleetList">
+  <form [formGroup]="fleetForm" (ngSubmit)="submitForm()" novalidate>
 
   <ion-item>
     <ion-label position="stacked">Fleet Name</ion-label>
-    <ion-input formControlName="FleetName" [(ngModel)]="item.FleetName"></ion-input>
+    <ion-input formControlName="FleetName" ></ion-input>
   </ion-item>
 
 <ion-item>
-  <ion-label position="stacked">FLeet Location</ion-label>
-  <ion-input formControlName="FleetLocation" [(ngModel)]="item.FleetLocation"></ion-input>
+  <ion-label position="stacked">Fleet Location</ion-label>
+  <ion-input formControlName="FleetLocation" ></ion-input>
 </ion-item>
 
-<ion-button (click)="UpdateFleet(item)">Update </ion-button>
+<ion-button type="submit">Update </ion-button>
 
 </form>
 </ion-content>

@@ -32,6 +32,10 @@ export class FleetService {
     return this.firestore.collection(this.collectionName).doc(FleetId).get();
   }
 
+  getFleet(id: string){
+    return this.firestore.collection(this.collectionName).doc(id);
+  }
+
   update_Fleet(FleetID,Fleet) {
     this.firestore.doc(this.collectionName + '/' + FleetID).update(Fleet);
   }
