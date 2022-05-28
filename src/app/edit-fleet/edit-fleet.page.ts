@@ -51,7 +51,7 @@ export class EditFleetPage implements OnInit {
         this.fleetservice.update_Fleet(this.id, vehicle)
         alert("Fleet was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/fleet', this.id]);
+      this.router.navigate(['/tabs/view/fleet'], this.id);
   }
 
 

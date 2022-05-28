@@ -55,7 +55,7 @@ export class AddVehiclePage implements OnInit {
       });
     }
      
-    this.router.navigate(['/tabs/search/vehicle'], this.data);
+    this.router.navigate(['/tabs/view/fleet'], this.data);
 
   }
 
