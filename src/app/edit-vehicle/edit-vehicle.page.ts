@@ -44,7 +44,7 @@ export class EditVehiclePage implements OnInit {
         this.service.updateVehicle(this.id, vehicle)
         alert("Vehicle was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/vehicle']);
+      this.router.navigate(['/tabs/view/vehicle', this.id]);
   }
 
   ngOnInit() {

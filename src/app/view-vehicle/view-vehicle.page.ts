@@ -22,10 +22,8 @@ export class ViewVehiclePage implements OnInit {
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService) {
-      this.route.queryParams.subscribe(params => {
-        if (this.router.getCurrentNavigation().extras.state) {
-          this.data = this.router.getCurrentNavigation().extras.state.id;
-        }
+      this.route.params.subscribe(params => {
+        this.data = params['id'];
       });
       this.viewVehicleForm = new FormGroup({
         VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
@@ -36,7 +34,8 @@ export class ViewVehiclePage implements OnInit {
      }
 
   ngOnInit() {
-    this.service.getVehicle('LhV0lKeg0Cokxc0nrIDT').valueChanges()
+    console.log(this.data);
+    this.service.getVehicle(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.viewVehicleForm.setValue({

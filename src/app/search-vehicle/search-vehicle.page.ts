@@ -7,6 +7,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { stringify } from 'querystring';
 import { generateKeyPair } from 'crypto';
 import { Console } from 'console';
+import { AlertController } from '@ionic/angular';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-vehicle',
@@ -21,7 +23,7 @@ export class SearchVehiclePage implements OnInit {
   searchTerm: string;
 
   constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, 
-    private firestore: AngularFirestore) { 
+    private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 
       this.vehicles = {} as Vehicle;
     }
 
@@ -51,16 +53,28 @@ export class SearchVehiclePage implements OnInit {
   });
   }
 
-  viewVehicle(){
+  async removeVehicle(id){
+    const confirmDeleteAlert = await this.alertCtrl.create({
+      header: 'Remove Dealership',
+      message: 'Are you sure you would like to remove this dealership from the system?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: end => {
+          this.alertCtrl.dismiss();
+        }
+      },
+      {
+        text: 'Remove',
+        role: 'remove',
+        handler: () => {
+          this.service.deleteVehicle(id);
+          alert('Dealership was successfully removed');
+        }
+      }]
+    });
 
-    
+    confirmDeleteAlert.present();
 
   }
-
-  removeVehicle(){
-
-
-    
-  }
-
 }
