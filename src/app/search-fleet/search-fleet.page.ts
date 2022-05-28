@@ -23,6 +23,9 @@ export class SearchFleetPage implements OnInit {
    fleetList = [];
    fleetData: FleetData;
    fleetForm: FormGroup;
+   searchTerm: string;
+   fleetID: string;
+
 
   constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService) { 
 

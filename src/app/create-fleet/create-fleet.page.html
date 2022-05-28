@@ -31,7 +31,7 @@
   <ion-input formControlName="FleetLocation"></ion-input>
 </ion-item>
 
-<ion-button (click)="CreateFleet()">Continue</ion-button>
+<ion-button (click)="CreateFleet()"[routerLink]="['/tabs/view/fleet']">Continue</ion-button>
 
 </form>
 </ion-content>
