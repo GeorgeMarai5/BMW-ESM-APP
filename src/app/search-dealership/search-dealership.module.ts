@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SearchDealershipPageRoutingModule } from './search-dealership-routing.module';
 
 import { SearchDealershipPage } from './search-dealership.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SearchDealershipPageRoutingModule
+    SearchDealershipPageRoutingModule,
+    Ng2SearchPipeModule
   ],
   declarations: [SearchDealershipPage]
 })
