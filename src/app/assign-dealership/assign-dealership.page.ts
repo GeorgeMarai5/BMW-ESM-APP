@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Service } from '../services/service.service';
 
 @Component({
   selector: 'app-assign-dealership',
@@ -11,12 +14,17 @@ export class AssignDealershipPage implements OnInit {
 
   assignDealershipForm: FormGroup;
   isSubmitted = false;
+  data: any;
 
-  constructor(public fb: FormBuilder, public authService: AuthService) { 
-    this.assignDealershipForm = new FormGroup({
-      dealershipName: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required)
-    })
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
+    public service: Service) { 
+        this.route.params.subscribe(params => {
+          this.data = params['id'];
+        });
+      this.assignDealershipForm = new FormGroup({
+        dealershipName: new FormControl('', Validators.required),
+        address: new FormControl('', Validators.required)
+      })
   }
 
   submitForm(){
@@ -25,9 +33,18 @@ export class AssignDealershipPage implements OnInit {
       return false;
     }
     else{
-      console.log(this.assignDealershipForm.value);
-    }
-    return false;
+        const dealership = {
+          dealershipName: this.assignDealershipForm.get('DealershipName').value,
+          address: this.assignDealershipForm.get('AddressName').value
+        }
+        this.firestore.collection('Dealership').add(dealership).then(function(docRef){
+          alert("Dealership has been assigned successfully");
+          const dealershipID = {
+            dealershipID: docRef.id
+          }
+          this.service.updateService(this.data, {"DealershipID": dealershipID})
+        });
+      }
   }
 
   ngOnInit() {
