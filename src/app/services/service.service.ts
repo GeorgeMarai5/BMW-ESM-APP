@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import {
+  AngularFireDatabase,
+  AngularFireList,
+  AngularFireObject
+} from '@angular/fire/compat/database';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,6 +12,8 @@ export class Service {
   intiateService(value: any) {
     throw new Error('Method not implemented.');
   }
+
+  ServiceRef: AngularFireObject<any>;
   readService() {
     return this.firestore.collection(this.collectionName).snapshotChanges();
   }
@@ -24,7 +30,7 @@ export class Service {
   }
 
   getService(id: string){
-    return this.firestore.collection(this.collectionName).doc(id).get()
+    return this.firestore.collection(this.collectionName).doc(id)
   }
 
   updateService(ServiceID,Service) {
