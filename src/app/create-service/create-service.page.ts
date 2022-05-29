@@ -96,12 +96,12 @@ export class CreateServicePage implements OnInit {
           serviceID: docRef.id
 
         }
-        this.service.updateService(this.id, {"ServiceID": serviceID})
-        console.log(serviceID.serviceID);
-        this.router.navigate(['/tabs/assign/dealership', serviceID.serviceID]);
+        // this.service.updateService(this.id, {"ServiceID": serviceID})
+        // console.log(serviceID.serviceID);
+        
         
       });
-      
+      this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
     }
 
 
