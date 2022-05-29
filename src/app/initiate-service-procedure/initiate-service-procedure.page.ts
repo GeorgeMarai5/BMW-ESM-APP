@@ -16,7 +16,6 @@ import { Fleet } from '../models/fleet';
 import { Team } from '../models/Team';
 import { Service } from '../services/service.service';
 import { VehicleService } from '../services/vehicle.service';
-import { getAuth } from "firebase/auth";
 
 @Component({
   selector: 'app-initiate-service-procedure',
@@ -26,7 +25,6 @@ import { getAuth } from "firebase/auth";
 
 export class InitiateServiceProcedurePage implements OnInit {
 
-
   serviceList = [];
   dealership: Dealership;
   fleet: Fleet;
@@ -35,7 +33,8 @@ export class InitiateServiceProcedurePage implements OnInit {
   myService: any;
 
   constructor(public vehicleService: VehicleService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
+    private firestore: AngularFirestore) { 
       this.vehicleService = {} as VehicleService;
     }
 
@@ -46,8 +45,6 @@ export class InitiateServiceProcedurePage implements OnInit {
         TeamName: ['', [Validators.required]],
         date: ['', [Validators.required]],
       })
-      const auth = getAuth();
-      const currService = auth.currentUser.uid;
     }
   
     InitiateService() {

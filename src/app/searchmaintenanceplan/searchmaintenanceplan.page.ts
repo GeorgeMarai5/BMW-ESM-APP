@@ -40,7 +40,7 @@ ngOnInit(){
       Price: ['', [Validators.required]],
   });
 
-  this.service.getPlans().subscribe(data => {
+  this.planService.getPlans().subscribe(data => {
     this.maintenanceplanList = data.map(e => {
 
       return {

@@ -41,7 +41,7 @@ export class ViewMaintenancePlanPage implements OnInit {
 
     ngOnInit() {
 
-      this.service.getMaintenancePlan(this.data).valueChanges()
+      this.planService.getMaintenancePlan(this.data).valueChanges()
         .subscribe(res =>{
         console.log(res)
         this.planform.setValue({
