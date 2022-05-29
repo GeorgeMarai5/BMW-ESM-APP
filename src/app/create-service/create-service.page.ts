@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { Service } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { DatePipe } from '@angular/common';
 interface ServiceData {
   TeamName: string;
   ServiceTypeName: string;
@@ -25,10 +26,17 @@ export class CreateServicePage implements OnInit {
   isSubmitted = false;
   data: any;
 
+  today = new Date();
 
+  pipe = new DatePipe('en-US');
+  changeFormat(today){
+    let ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
+  
+    console.log(this.today);
+  }
   constructor(private route: ActivatedRoute, public router: Router,  public firestore: AngularFirestore, public authService: AuthService, public fb: FormBuilder, private _service: Service) {
     this.route.params.subscribe(params => {
-      this.data = params['id'];
+      
     });
     this.serviceForm = new FormGroup({
       TeamName: new FormControl('', [Validators.required]),
@@ -81,16 +89,22 @@ export class CreateServicePage implements OnInit {
         TeamName: this.serviceForm.get('TeamName').value,
         ServiceTypeName: this.serviceForm.get('ServiceTypeName').value
       }
+      console.log(service)
       this.firestore.collection('Service').add(service).then(function(docRef){
         alert("Service has been created successfully");
         const serviceID = {
-          dealershipID: docRef.id
+          serviceID: docRef.id
+
         }
-        this.service.updateService(this.data, {"ServiceID": serviceID})
+        this.service.updateService(this.id, {"ServiceID": serviceID})
+        console.log(serviceID.serviceID);
+        this.router.navigate(['/tabs/assign/dealership', serviceID.serviceID]);
+        
       });
+      
     }
 
-    this.router.navigate(['tabs/assign/dealership'], this.data);
+
   }
   ngOnInit() {
     this.serviceForm.setValue({TeamName: '', ServiceTypeName: ''});
@@ -98,7 +112,5 @@ export class CreateServicePage implements OnInit {
 get errorControl() {
   return this.serviceForm.controls;
 }
-navToAssign() {
-  this.router.navigate(['/tabs/assign/dealership', this.data]);
-}
+
 }

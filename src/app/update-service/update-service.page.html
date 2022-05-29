@@ -19,13 +19,14 @@
         <ion-title>
             <h1>Update Service</h1>
         </ion-title>
-        <form [formGroup]="updateServiceForm" (ngSubmit)="submitForm()"  *ngFor="let item of serviceList">
-           
+        <br>
+        <form [formGroup]="serviceForm" (ngSubmit)="submitForm()" >
+           <ion-grid>
               <ion-row>
                 <ion-col>
                     <ion-item lines="full">
                         <ion-label position="stacked"><b>Select Dealership</b></ion-label>
-                        <ion-select formControlName="DealershipName" type="text" required [(ngModel)]="item.DealershipName">
+                        <ion-select formControlName="DealershipName" type="text" required>
                             <ion-select-option>Sandton</ion-select-option>
                             <ion-select-option>Midrand</ion-select-option>
                             <ion-select-option>Menlyn</ion-select-option>
@@ -37,7 +38,7 @@
               <ion-col>
                   <ion-item lines="full">
                       <ion-label position="stacked"><b>Select Team</b></ion-label>
-                      <ion-select formControlName="TeamName" type="text" required [(ngModel)]="item.TeamName">
+                      <ion-select formControlName="TeamName" type="text" required>
                         <ion-select-option>BMST001</ion-select-option>
                         <ion-select-option>BMST002</ion-select-option>
                         <ion-select-option>BMST003</ion-select-option>
@@ -52,7 +53,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Service Type</b></ion-label>
-                            <ion-select formControlName="ServiceTypeName" type="text" required [(ngModel)]="item.ServiceTypeName">
+                            <ion-select formControlName="ServiceTypeName" type="text" required>
                                 <ion-select-option>Brake fluid flush overdue</ion-select-option>
                                 <ion-select-option>Front brake pads due</ion-select-option>
                                 <ion-select-option>Rear brake pads due</ion-select-option>
@@ -68,10 +69,10 @@
                 <br/>
                 <ion-row>
                     <ion-col>
-                        <ion-button (click)="UpdateService(item)" type="submit" expand="block">Update</ion-button>
+                        <ion-button type="submit" expand="block">Update</ion-button>
                     </ion-col>
                 </ion-row>
-            
+            </ion-grid>
         </form>
     </div>
 </ion-content>

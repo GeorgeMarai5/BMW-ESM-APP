@@ -21,22 +21,23 @@ export class Service {
 
   constructor(private firestore: AngularFirestore) { }
 
-  getServices() {
-    return this.firestore.collection('Service').snapshotChanges();
-  }
+  // getServices(id: string) {
+  //   return this.firestore.collection('Service').snapshotChanges();
+  // }
 
   createService(Service) {
     return this.firestore.collection(this.collectionName).add(Service);
   }
 
   getService(id: string){
-    return this.firestore.collection(this.collectionName).doc(id)
+    return this.firestore.collection(this.collectionName).doc(id);
   }
-
-  updateService(ServiceID,Service) {
-    this.firestore.doc(this.collectionName + '/' + ServiceID).update(Service);
+  getServices() {
+    return this.firestore.collection('Service').snapshotChanges();
   }
-
+  updateService(id, service) {
+    this.firestore.doc(this.collectionName + '/' + id).update(service);
+  }
   deleteService(id) {
     this.firestore.doc(this.collectionName + '/' + id).delete();
   }

@@ -4,6 +4,7 @@ import { FormBuilder,FormGroup, FormControl, Validators, Form } from '@angular/f
 import{Service} from '../services/service.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { stringify } from 'querystring';
+import { CancelServicePage } from '../cancel-service/cancel-service.page';
 
 // interface ServiceData {
 //   ServiceID: number;
@@ -106,7 +107,6 @@ export class ViewServicePage implements OnInit {
 
 
 
-
 //     this._service.getService('LhV0lKeg0Cokxc0nrIDT').valueChanges()
 //     .subscribe(res =>{
 //     console.log(res)
@@ -137,14 +137,5 @@ export class ViewServicePage implements OnInit {
 //   }
 
 
-// RemoveService(ID) {
-//   if (window.confirm('Do you really want to Remove this service?')) {
-   
-  
-//   this._service.deleteService(ID);
-//   }
-//   console.log(ID)
-// }
 
-}
-}
+  }}

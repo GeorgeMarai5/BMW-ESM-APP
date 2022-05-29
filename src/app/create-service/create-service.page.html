@@ -32,7 +32,7 @@
                 <ion-select-option>BMMR003</ion-select-option>
               </ion-select>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamName.errors?.required">
               Team Name is required.
             </span>
           </ion-col>
@@ -52,7 +52,7 @@
                 <ion-select-option>Service overdue</ion-select-option>
               </ion-select>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.ServiceTypeName.errors?.required">
               Service Type is required.
             </span>
           </ion-col>
@@ -60,7 +60,7 @@
         <br/>
         <ion-row>
           <ion-col>
-            <ion-button type="submit" expand="block" (click)="navToAssign()">Continue</ion-button>
+            <ion-button type="submit" expand="block">Continue</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
