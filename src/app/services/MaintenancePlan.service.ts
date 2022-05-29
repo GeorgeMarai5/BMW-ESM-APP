@@ -13,7 +13,7 @@ import { MaintenancePlan } from "../models/Maintenance-Plan";
 
 export class MaintenancePlanService{
 
-    collectionName = 'Plans';
+    collectionName = 'Maintenance';
 
 
     constructor(
@@ -21,7 +21,7 @@ export class MaintenancePlanService{
       ) { }
 
       read_Plans() {
-        return this.firestore.collection(this.collectionName).snapshotChanges();
+        return this.firestore.collection('Maintenance').snapshotChanges();
       }
 
 
