@@ -9,6 +9,7 @@
                 Log Out
             </ion-button>
         </ion-buttons>
+
     </ion-toolbar>
 </ion-header>
 
@@ -24,7 +25,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Plan Name</ion-label>
-                            <ion-input value="My BMW Service" readonly></ion-input>
+                            <ion-input value={{planItem.PlanName}} readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -32,7 +33,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Description</ion-label>
-                            <ion-input value="ABCDEFGHIJKL" readonly></ion-input>
+                            <ion-input value={{planItem.Description}} readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -40,7 +41,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Duration</ion-label>
-                            <ion-input value="12 Months" readonly></ion-input>
+                            <ion-input value={{planItem.Price}} readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -48,7 +49,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Price</ion-label>
-                            <ion-input value="R18 000.00" readonly></ion-input>
+                            <ion-input value={{planItem.Price}} readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
