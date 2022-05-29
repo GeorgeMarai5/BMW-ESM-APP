@@ -1,5 +1,4 @@
-<!--
-<ion-header [translucent]="true">
+<ion-header>
     <ion-toolbar>
         <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
         <ion-buttons slot="end">
@@ -20,7 +19,7 @@
             <h1>Upgrade Maintenance Plan</h1>
         </ion-title>
 
-        <form [formGroup]="upgradeMaintenancePlanForm" (ngSubmit)="submitForm()" novalidate>
+        <form [formGroup]="upgradePlanForm" (ngSubmit)="submitForm()" novalidate>
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -29,8 +28,8 @@
                             <ion-input formControlName="PlanName" type="text" required></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.planName.errors?.required">
-              Plan Name is required.
-            </span>
+                            Plan Name is required.
+                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
