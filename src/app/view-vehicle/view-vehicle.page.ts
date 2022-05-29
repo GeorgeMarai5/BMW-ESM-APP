@@ -47,12 +47,7 @@ export class ViewVehiclePage implements OnInit {
     });
   }
 
-  openDetailsWithState() {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        id: 'LhV0lKeg0Cokxc0nrIDT'
-      }
-    };
-    this.router.navigate(['tabs/edit/vehicle'], navigationExtras);
+  navToUpdate() {
+    this.router.navigate(['tabs/edit/vehicle'], this.data);
   }
 }

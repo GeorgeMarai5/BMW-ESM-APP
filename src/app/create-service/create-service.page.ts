@@ -93,7 +93,12 @@ export class CreateServicePage implements OnInit {
     this.router.navigate(['tabs/assign/dealership'], this.data);
   }
   ngOnInit() {
-    this.serviceForm.setValue({teamName: '', serviceTypeName: ''});
+    this.serviceForm.setValue({TeamName: '', ServiceTypeName: ''});
 }
-
+get errorControl() {
+  return this.serviceForm.controls;
+}
+navToAssign() {
+  this.router.navigate(['/tabs/assign/dealership', this.data]);
+}
 }

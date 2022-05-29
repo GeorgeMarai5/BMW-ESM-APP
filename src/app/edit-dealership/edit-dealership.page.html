@@ -28,24 +28,16 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
               Dealership Name is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.maxlength">
-              First Name can't be longer than 20 characters.
-            </span>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Address</b></ion-label>
-              <ion-select formControlName="address" type="text" required>
-                <ion-select-option></ion-select-option>
-              </ion-select>
+              <ion-input formControlName="address" type="text" required></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
               Address is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.maxlength">
-              First Name can't be longer than 20 characters.
             </span>
           </ion-col>
         </ion-row>

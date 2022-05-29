@@ -12,41 +12,58 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-title>
-    Create Service
-  </ion-title>
-<ion-content>
-  <div>
-  <form [formGroup]="serviceForm" (ngSubmit)="submitForm()">
-    <ion-list>
-      <ion-item>
-        <ion-label>Select Team</ion-label>
-                  <ion-select formControlName="TeamName" type="text" required>
-                      <ion-select-option>BMST001</ion-select-option>
-                      <ion-select-option>BMST002</ion-select-option>
-                      <ion-select-option>BMST003</ion-select-option>
-                      <ion-select-option>BMMR001</ion-select-option>
-                      <ion-select-option>BMMR002</ion-select-option>
-                      <ion-select-option>BMMR003</ion-select-option>
-                  </ion-select>
-              </ion-item>
-      <ion-item>
-        <ion-label>Select Service Type</ion-label>
-                  <ion-select formControlName="ServiceTypeName" type="text" required>
-                      <ion-select-option>Brake fluid flush overdue</ion-select-option>
-                      <ion-select-option>Front brake pads due</ion-select-option>
-                      <ion-select-option>Rear brake pads due</ion-select-option>
-                      <ion-select-option>Micro filter due</ion-select-option>
-                      <ion-select-option>Oil service</ion-select-option>
-                      <ion-select-option>Service action</ion-select-option>
-                      <ion-select-option>Vehicle check service due</ion-select-option>
-                      <ion-select-option>Service overdue</ion-select-option>
-                  </ion-select>
-              </ion-item>
-<ion-button type="submit" expand="block" >Continue</ion-button>
-    </ion-list>
-</form>
-</div>
-</ion-content>
 
+<ion-content>
+  <div class="contents">
+    <ion-title><h1>Create Service</h1></ion-title>
+  
+    <form [formGroup]="serviceForm" (ngSubmit)="submitForm()" novalidate>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Select Team</b></ion-label>
+              <ion-select formControlName="TeamName" type="text" required placeholder="Select Team...">
+                <ion-select-option>BMST001</ion-select-option>
+                <ion-select-option>BMST002</ion-select-option>
+                <ion-select-option>BMST003</ion-select-option>
+                <ion-select-option>BMMR001</ion-select-option>
+                <ion-select-option>BMMR002</ion-select-option>
+                <ion-select-option>BMMR003</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
+              Team Name is required.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Select Service Type</b></ion-label>
+              <ion-select formControlName="ServiceTypeName" type="text" required placeholder="Select Service Type...">
+                <ion-select-option>Brake fluid flush overdue</ion-select-option>
+                <ion-select-option>Front brake pads due</ion-select-option>
+                <ion-select-option>Rear brake pads due</ion-select-option>
+                <ion-select-option>Micro filter due</ion-select-option>
+                <ion-select-option>Oil service</ion-select-option>
+                <ion-select-option>Service action</ion-select-option>
+                <ion-select-option>Vehicle check service due</ion-select-option>
+                <ion-select-option>Service overdue</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
+              Service Type is required.
+            </span>
+          </ion-col>
+        </ion-row>
+        <br/>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" expand="block" (click)="navToAssign()">Continue</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

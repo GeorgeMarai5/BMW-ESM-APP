@@ -18,7 +18,6 @@ export class SearchDealershipPage implements OnInit {
   dealershipList = [];
   dealershipForm: FormGroup;
   searchTerm: string;
-  deleteModal: HTMLElement;
 
   constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, 
     private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 

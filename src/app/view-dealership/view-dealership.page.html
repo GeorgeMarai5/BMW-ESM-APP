@@ -14,114 +14,42 @@
 </ion-header>
 
 <ion-content>
-    <div class="contents">
-        <ion-title>
-            <h1>View Dealership</h1>
-        </ion-title>
-
-        <form [formGroup]="viewVehicleForm" novalidate>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>VIN Number</b></ion-label>
-                            <ion-input formControlName="VINNum" type="text" required></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Vehicle Model</b></ion-label>
-                            <ion-select formControlName="vehicleModel" type="text" required>
-                                <ion-select-option>X7</ion-select-option>
-                                <ion-select-option>8 Series Coupe</ion-select-option>
-                                <ion-select-option>3 Series Sedan</ion-select-option>
-                                <ion-select-option>3 Series Touring</ion-select-option>
-                                <ion-select-option>M8 Covertible</ion-select-option>
-                                <ion-select-option>M8 Coupe</ion-select-option>
-                                <ion-select-option>7 Series</ion-select-option>
-                                <ion-select-option>8 Series Convertible</ion-select-option>
-                                <ion-select-option>2 Series Coupe</ion-select-option>
-                                <ion-select-option>X4</ion-select-option>
-                                <ion-select-option>X3</ion-select-option>
-                                <ion-select-option>2 Series Active Tourer</ion-select-option>
-                                <ion-select-option>4 Series Gran Coupe</ion-select-option>
-                                <ion-select-option>6 Series Gran Turismo</ion-select-option>
-                                <ion-select-option>4 Series Coupe</ion-select-option>
-                                <ion-select-option>5 Series Touring</ion-select-option>
-                                <ion-select-option>5 Series Sedan</ion-select-option>
-                                <ion-select-option>4 Series Convertible</ion-select-option>
-                                <ion-select-option>i8</ion-select-option>
-                                <ion-select-option>M4</ion-select-option>
-                                <ion-select-option>M4 Convertible</ion-select-option>
-                                <ion-select-option>M5</ion-select-option>
-                                <ion-select-option>X6</ion-select-option>
-                                <ion-select-option>1 Series</ion-select-option>
-                                <ion-select-option>X1</ion-select-option>
-                                <ion-select-option>2 Series Gran Tourer</ion-select-option>
-                                <ion-select-option>X6 M</ion-select-option>
-                                <ion-select-option>M2</ion-select-option>
-                                <ion-select-option>X5</ion-select-option>
-                                <ion-select-option>M3 Sedan</ion-select-option>
-                                <ion-select-option>X5 M</ion-select-option>
-                                <ion-select-option>i3</ion-select-option>
-                                <ion-select-option>2 Series Convertible</ion-select-option>
-                                <ion-select-option>1 Series 3 doors</ion-select-option>
-                                <ion-select-option>Z4 Roadster</ion-select-option>
-                                <ion-select-option>3 Series Gran Turismo</ion-select-option>
-                                <ion-select-option>M4 CS</ion-select-option>
-                                <ion-select-option>M8 Gran Coupe</ion-select-option>
-                                <ion-select-option>X2</ion-select-option>
-                                <ion-select-option>iX3</ion-select-option>
-                                <ion-select-option>2 Series Gran Coupe</ion-select-option>
-                                <ion-select-option>X4 M</ion-select-option>
-                                <ion-select-option>8 Series Gran Coupe</ion-select-option>
-                                <ion-select-option>iX</ion-select-option>
-                                <ion-select-option>1 Series Sedan</ion-select-option>
-                                <ion-select-option>iX M</ion-select-option>
-                                <ion-select-option>i4</ion-select-option>
-                                <ion-select-option>X3 M</ion-select-option>
-                            </ion-select>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Registration</b></ion-label>
-                            <ion-input formControlName="Registration" type="text" required></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Warranty Plan</b></ion-label>
-                            <ion-select formControlName="warrantyPlan" type="text" required>
-                                <ion-select-option>Executive</ion-select-option>
-                                <ion-select-option>Prestige</ion-select-option>
-                                <ion-select-option>Elegant</ion-select-option>
-                                <ion-select-option>Standard</ion-select-option>
-                            </ion-select>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <br/>
-                <ion-row>
-                    <ion-col></ion-col>
-                    <ion-col></ion-col>
-                    <ion-col>
-                        <ion-button type="submit" expand="block">Back</ion-button>
-                    </ion-col>
-                    <ion-col>
-                        <ion-button class="light-Btn" [routerLink]="['/tabs/edit/dealership', 'LhV0lKeg0Cokxc0nrIDT']" expand="block">Update</ion-button>
-                    </ion-col>
-                    <ion-col>
-                        <ion-button type="submit" class="green-Btn" expand="block">Maintenance Plan</ion-button>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </form>
-    </div>
+  <div class="contents">
+    <ion-title><h1>View Dealership</h1></ion-title>
+  
+    <form [formGroup]="viewDealershipForm" novalidate>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Dealership Name</b></ion-label>
+              <ion-input formControlName="dealershipName" type="text" required readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Address</b></ion-label>
+              <ion-input formControlName="address" type="text" required readonly></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <br/>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+          <ion-col>
+            <ion-button type="submit" expand="block">Back</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="light-Btn" (click)="navToUpdate()" expand="block">Update</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button type="submit" class="green-Btn" expand="block">Maintenance Plan</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
 </ion-content>

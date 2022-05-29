@@ -34,7 +34,7 @@ export class ViewFleetPage implements OnInit {
    VehicleData: FleetVehicles;
    fleetForm: FormGroup;
    searchTerm: string;
-   VehicleID: string;
+   fleetID: string;
 
   constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService, private vehiclesService: VehicleService,public alertCtrl: AlertController) { 
 
