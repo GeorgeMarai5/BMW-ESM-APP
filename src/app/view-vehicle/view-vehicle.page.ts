@@ -3,13 +3,8 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-<<<<<<< HEAD
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
-=======
-import { Vehicle } from '../models/Vehicle';
-import { VehicleService } from '../services/vehicle.service';
->>>>>>> e643ef1b1cc521c690759d05c558e7fe37d7f150
 
 @Component({
   selector: 'app-view-vehicle',
