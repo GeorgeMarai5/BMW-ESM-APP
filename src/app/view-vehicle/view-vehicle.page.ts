@@ -20,14 +20,9 @@ export class ViewVehiclePage implements OnInit {
 
   vehicles: Vehicle;
   vehicle = {};
-<<<<<<< HEAD
   viewVehicleForm: FormGroup;
-=======
-  editVehicleForm: FormGroup;
->>>>>>> e643ef1b1cc521c690759d05c558e7fe37d7f150
   isSubmitted = false;
   data: any;
-  viewVehicleForm: FormGroup;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService) {
