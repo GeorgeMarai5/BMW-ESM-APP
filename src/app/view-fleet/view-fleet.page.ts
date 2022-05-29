@@ -39,7 +39,8 @@ export class ViewFleetPage implements OnInit {
    data: any;
 
   constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService, 
-    private vehiclesService: VehicleService,public alertCtrl: AlertController,public router: Router) { 
+    private vehiclesService: VehicleService,public alertCtrl: AlertController, public router: Router,
+    public vehicleService: VehicleService) { 
 
     this.VehicleData = {} as FleetVehicles;
 
@@ -58,13 +59,15 @@ export class ViewFleetPage implements OnInit {
   this.vehiclesService.getVehicles().subscribe(data => {
 
     this.vehicleList = data.map(e => {
+      let yearCode: string;
+      yearCode = e.payload.doc.data()['VIN_Number'];
       return {
         id: e.payload.doc.id,
         isEdit: false,
         VehicleID: e.payload.doc.data()['VehicleID'],
         VinNumber: e.payload.doc.data()['VIN_Number'],
         ModelName: e.payload.doc.data()['VehicleModel'],
-        Year: e.payload.doc.data()['year']
+        Year: this.vehicleService.getYear(yearCode.substring(9, 10))
       };
     })
     console.log(this.vehicleList);

@@ -1,5 +1,5 @@
 import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup,FormControl  } from '@angular/forms';
 import { AngularDelegate } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
@@ -21,67 +21,39 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class ViewMaintenancePlanPage implements OnInit {
   
-    maintenanceplanList = [];
+    maintenanceplan = {};
     plans: MaintenancePlan;
     planform : FormGroup;
-    firebaseService: any;
+    data: any;
  
     constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
-
-    this.plans = {} as MaintenancePlan;
-
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+      });
+      this.planform = new FormGroup({
+        PlanName: new FormControl('', Validators.required),
+        Description: new FormControl('', Validators.required),
+        Duration: new FormControl('', Validators.required),
+        Price: new FormControl('', Validators.required)
+      })
     }
+
     ngOnInit() {
 
-      this.planform = this.fb.group({
-        PlanName: [''],
-        Description: [''],
-        Duration: [''],
-        Price: ['']
-      })
+      this.service.getMaintenancePlan(this.data).valueChanges()
+        .subscribe(res =>{
+        console.log(res)
+        this.planform.setValue({
+          PlanName: res['Plan_Name'], 
+          Description: res['Description'],
+          Duration: res['Duration'], 
+          Price: res['Price']
+        })
+      });
+    }
 
-
-    this.planService.read_Plans().subscribe(data =>{
-
-    this.maintenanceplanList = data.map(e =>{
-
-    return{
-      PlanName: e.payload.doc.data()['Plan Name'],
-      Description: e.payload.doc.data()['Description'],
-      Duration: e.payload.doc.data()['Duration'],
-      Price: e.payload.doc.data()['Price'],
-    };
-  })
+  navToUpdate() {
+    this.router.navigate(['tabs/upgrade/maintenanceplan'], this.data);
+  }
 }
-)}
-
-    CreatePlan() {
-      console.log(this.planform.value);
-      this.firebaseService.create_plan(this.planform.value).then(resp => {
-        this.planform.reset();
-      })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  
-    EditPlan(record) {
-      record.isEdit = true;
-      record.EditPlanName = record.PlanName;
-      record.EditDescription = record.Description;
-      record.EditDuration = record.Duration;
-      record.EditPrice = record.Price;
-    }
-  
-    UpdateRecord(recordRow) {
-      let record = {};
-      record['Plan Name'] = recordRow.EditName;
-      record['Description'] = recordRow.EditAge;
-      record['Duration'] = recordRow.EditAddress;
-      record['Price'] = recordRow.EditPrice;
-      this.firebaseService.update_student(recordRow.id, record);
-      recordRow.isEdit = false;
-    }
-    
-    }
