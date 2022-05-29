@@ -27,7 +27,7 @@
           
         </ion-row>
         <ion-item-divider></ion-item-divider>
-        <ion-row *ngFor="let item of vehicleList">
+        <ion-row *ngFor="let item of vehicleList | filter: searchTerm | filter: fleetID">
           <ion-col>
             <ion-label> {{item.VehicleID}}</ion-label>
           </ion-col>

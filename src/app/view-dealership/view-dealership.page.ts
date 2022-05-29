@@ -3,8 +3,8 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Vehicle } from '../models/Vehicle';
-import { VehicleService } from '../services/vehicle.service';
+import { DealershipService } from '../services/dealership.service';
+import { Dealership } from '../models/Dealership';
 
 @Component({
   selector: 'app-view-dealership',
@@ -13,48 +13,36 @@ import { VehicleService } from '../services/vehicle.service';
 })
 export class ViewDealershipPage implements OnInit {
 
-  vehicles: Vehicle;
-  vehicle = {};
-  editVehicleForm: FormGroup;
+  dealerships: Dealership;
+  dealership = {};
+  viewDealershipForm: FormGroup;
   isSubmitted = false;
   data: any;
-  viewVehicleForm: FormGroup;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
-    public router: Router, public service: VehicleService) {
-      this.route.queryParams.subscribe(params => {
-        if (this.router.getCurrentNavigation().extras.state) {
-          this.data = this.router.getCurrentNavigation().extras.state.id;
-        }
+    public router: Router, public service: DealershipService) {
+      this.route.params.subscribe(params => {
+          this.data = params.id;
       });
-      this.viewVehicleForm = new FormGroup({
-        VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-        vehicleModel: new FormControl('', Validators.required),
-        Registration: new FormControl('', Validators.required),
-        warrantyPlan: new FormControl('', Validators.required)
+      this.viewDealershipForm = new FormGroup({
+        dealershipName: new FormControl('', Validators.required),
+        address: new FormControl('', Validators.required)
       })
      }
 
   ngOnInit() {
-    this.service.getVehicle('LhV0lKeg0Cokxc0nrIDT').valueChanges()
+    this.service.getDealership(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
-    this.viewVehicleForm.setValue({
-      VINNum: res['VIN_Number'], 
-      vehicleModel: res['VehicleModel'], 
-      Registration: res['Registration'],
-      warrantyPlan: res['Warranty']
+    this.viewDealershipForm.setValue({
+      dealershipName: res['DealershipName'], 
+      address: res['AddressName']
     })
     });
   }
 
-  openDetailsWithState() {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        id: 'LhV0lKeg0Cokxc0nrIDT'
-      }
-    };
-    this.router.navigate(['tabs/edit/vehicle'], navigationExtras);
+  navToUpdate() {
+    this.router.navigate(['/tabs/edit/dealership', this.data]);
   }
 
 }

@@ -17,17 +17,20 @@ export class EditVehiclePage implements OnInit {
   vehicle = {};
   editVehicleForm: FormGroup;
   isSubmitted = false;
-  id: any;
+  data: any;
 
   constructor(private route: ActivatedRoute, private router: Router, public fb: FormBuilder, 
     public authService: AuthService, public service: VehicleService, public firestore: AngularFirestore) { 
-    this.editVehicleForm = new FormGroup({
-      VINNum: new FormControl('', Validators.required),
-      vehicleModel: new FormControl('', Validators.required),
-      Registration: new FormControl('', Validators.required),
-      warrantyPlan: new FormControl('', Validators.required)
-    });
-  }
+      this.route.params.subscribe(params => {
+        this.data = params['id'];
+      });
+      this.editVehicleForm = new FormGroup({
+        VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
+        vehicleModel: new FormControl('', Validators.required),
+        Registration: new FormControl('', Validators.required),
+        warrantyPlan: new FormControl('', Validators.required)
+      })
+     }
 
   submitForm(){
     this.isSubmitted = true;
@@ -41,15 +44,15 @@ export class EditVehiclePage implements OnInit {
           Registration: this.editVehicleForm.get('Registration').value,
           Warranty: this.editVehicleForm.get('warrantyPlan').value
         }
-        this.service.updateVehicle(this.id, vehicle)
+        this.service.updateVehicle(this.data, vehicle)
         alert("Vehicle was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/vehicle', this.id]);
+      this.router.navigate(['/tabs/view/vehicle', this.data]);
   }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.service.getVehicle(this.id).valueChanges()
+    console.log(this.data);
+    this.service.getVehicle(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.editVehicleForm.setValue({

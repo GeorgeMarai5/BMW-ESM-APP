@@ -28,8 +28,9 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.required">
               VIN Number is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.maxlength">
-              First Name can't be longer than 20 characters.
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.min || 
+            errorControl.VINNum.errors?.max">
+              VIN Number is invalid.
             </span>
           </ion-col>
         </ion-row>
