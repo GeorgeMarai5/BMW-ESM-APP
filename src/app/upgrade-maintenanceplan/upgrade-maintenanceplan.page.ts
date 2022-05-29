@@ -22,16 +22,24 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export class UpgradeMaintenancePlanPage implements OnInit {
   
+  plans: MaintenancePlan;
+  maintenanceplan = {};
   upgradePlanForm: FormGroup;
   isSubmitted = false;
+  data: any;
 
-  constructor(public fb: FormBuilder, public authService: AuthService) {
-    this.upgradePlanForm = new FormGroup({
-      PlanName: new FormControl('', Validators.required),
-      Description: new FormControl('', Validators.required),
-      Duration: new FormControl('', Validators.required),
-      Price: new FormControl('', Validators.required),
-    });
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
+    public planService: MaintenancePlanService, public firestore: AngularFirestore, public router: Router) {
+    this.route.params.subscribe(params => {
+      this.data = params.id;
+  });
+  this.upgradePlanForm = new FormGroup({
+    PlanName: new FormControl('', Validators.required),
+    Description: new FormControl('', Validators.required),
+    Duration: new FormControl('', Validators.required),
+    Price: new FormControl('', Validators.required),
+  });
+
   }
 
   submitForm(){
@@ -40,13 +48,29 @@ export class UpgradeMaintenancePlanPage implements OnInit {
       return false;
     }
     else{
-      console.log(this.upgradePlanForm.value);
-    }
-    return false;
+        const maintenanceplan = {
+          PlanName: this.upgradePlanForm.get('PlanName').value,
+          Description: this.upgradePlanForm.get('Description').value,
+          Duration: this.upgradePlanForm.get('Duration').value,
+          Price: this.upgradePlanForm.get('Price').value
+        }
+        this.planService.upgradeMaintenancePlan(this.data, maintenanceplan)
+        alert("Vehicle was successfully updated.");
+      }
+      this.router.navigate(['/tabs/view/maintenanceplan', this.data]);
   }
 
   ngOnInit() {
-    this.upgradePlanForm.setValue({PlanName: '', Description: '', Duration: '', Price: ''});
+    this.planService.getMaintenancePlan(this.data).valueChanges()
+    .subscribe(res =>{
+    console.log(res)
+    this.upgradePlanForm.setValue({
+      PlanName: res['PlanName'], 
+      Description: res['Description'],
+      Duration: res['Duration'], 
+      Price: res['Price']
+    })
+    });
   }
 
   get errorControl() {

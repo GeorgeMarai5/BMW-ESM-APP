@@ -21,7 +21,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class ViewMaintenancePlanPage implements OnInit {
   
-    maintenanceplanList = {};
+    maintenanceplan = {};
     plans: MaintenancePlan;
     planform : FormGroup;
     data: any;

@@ -25,7 +25,7 @@ export class MaintenancePlanService{
     return this.firestore.collection(this.collectionName).doc(id);
   }
 
-  updateMaintenancePlan(id, maintenance) {
+  upgradeMaintenancePlan(id, maintenance) {
     this.firestore.doc(this.collectionName + '/' + id).update(maintenance);
   }
 
