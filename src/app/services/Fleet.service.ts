@@ -40,6 +40,10 @@ export class FleetService {
     this.firestore.doc(this.collectionName + '/' + FleetID).update(Fleet);
   }
 
+  updateFleet(id, fleets) {
+    this.firestore.doc(this.collectionName + '/' + id).update(fleets);
+  }
+
   deleteFleet(id: string) {
     this.FleetRef = this.db.object('/Fleet/' + id);
     this.FleetRef.remove();

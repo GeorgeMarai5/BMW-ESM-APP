@@ -5,6 +5,7 @@ import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 interface FleetData {
   FleetName: string;
@@ -22,62 +23,54 @@ interface FleetData {
 export class EditFleetPage implements OnInit {
 
   
-  fleetData: FleetData;
-  fleetForm: FormGroup;
+  fleets: FleetData;
+  fleet = {};
+  fleetform: FormGroup;
   isSubmitted = false;
-  id: any;
-  Fleet = {};
-  
+  data: any;
 
-  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService,private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
+    public fleetservice: FleetService, public firestore: AngularFirestore, public router: Router) {
+      this.route.params.subscribe(params => {
+          this.data = params.id;
+      });
+    this.fleetform = new FormGroup({
+      dealershipName: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required)
+    })
+  }
 
-      
-      this.fleetData = {} as FleetData;
-           
-      this.fleetForm = new FormGroup({
-        FleetName: new FormControl('', Validators.required),
-        FleetLocation: new FormControl('', Validators.required)
-  })
-   }
-
-
-   submitForm(){
+  submitForm(){
     this.isSubmitted = true;
-    if(!this.fleetForm.valid){
+    if(!this.fleetform.valid){
       return false;
     }
     else{
-        const Fleet = {
-          FleetName: this.fleetForm.get('FleetName').value,
-          FleetLocation: this.fleetForm.get('FleetLocation').value,
-          
+        const dealership = {
+          FleetName: this.fleetform.get('FleetName').value,
+          FleetLocation: this.fleetform.get('FleetLocation').value
         }
-        this.fleetservice.update_Fleet(this.id, Fleet)
-        alert("Fleet was successfully updated.");
+        this.fleetservice.updateFleet(this.data, this.fleets)
+        alert("Vehicle was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/fleet'], this.id);
+      this.router.navigate(['/tabs/view/dealership', this.data]);
   }
 
-
-
-
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.fleetservice.getFleet(this.id).valueChanges()
+    this.fleetservice.getFleet(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
-    this.fleetForm.setValue({
+    this.fleetform.setValue({
       FleetName: res['FleetName'], 
       FleetLocation: res['FleetLocation']
-      
     })
     });
-
   }
 
   get errorControl() {
-    return this.fleetForm.controls;
+    return this.fleetform.controls;
   }
+
 
 
 
