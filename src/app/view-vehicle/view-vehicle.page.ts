@@ -11,6 +11,7 @@ import { VehicleService } from '../services/vehicle.service';
   templateUrl: './view-vehicle.page.html',
   styleUrls: ['./view-vehicle.page.scss'],
 })
+
 export class ViewVehiclePage implements OnInit {
 
   vehicles: Vehicle;
@@ -32,7 +33,6 @@ export class ViewVehiclePage implements OnInit {
         warrantyPlan: new FormControl('', Validators.required)
       })
      }
-
   ngOnInit() {
     console.log(this.data);
     this.service.getVehicle(this.data).valueChanges()
@@ -46,7 +46,6 @@ export class ViewVehiclePage implements OnInit {
     })
     });
   }
-
   navToUpdate() {
     this.router.navigate(['tabs/edit/vehicle'], this.data);
   }
