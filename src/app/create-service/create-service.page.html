@@ -18,7 +18,7 @@
   </ion-title>
 <ion-content>
   <div>
-  <form [formGroup]="serviceForm" (ngSubmit)="CreateService()">
+  <form [formGroup]="serviceForm" (ngSubmit)="submitForm()">
     <ion-list>
       <ion-item>
         <ion-label>Select Team</ion-label>
@@ -44,7 +44,7 @@
                       <ion-select-option>Service overdue</ion-select-option>
                   </ion-select>
               </ion-item>
-<ion-button (click)="CreateService()">Continue</ion-button>
+<ion-button type="submit" expand="block" >Continue</ion-button>
     </ion-list>
 </form>
 </div>

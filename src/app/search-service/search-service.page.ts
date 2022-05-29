@@ -7,13 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { AlertController } from '@ionic/angular';
 
-interface ServiceData {
-  $key: string;
-  ServiceID: number;
-  VINNumber: string;
-  ServiceTypeName: string;
-  Date: number;
-}
+
 @Component({
   selector: 'app-search-service',
   templateUrl: './search-service.page.html',
@@ -25,7 +19,7 @@ export class SearchServicePage implements OnInit {
   serviceList = [];
   serviceForm: FormGroup;
   searchTerm: string;
-  serviceData: ServiceData;
+  
   name = 'Angular ';
   today = new Date();
   changedDate = '';
@@ -37,28 +31,27 @@ export class SearchServicePage implements OnInit {
   }
   constructor(public authService: AuthService, private _service: Service, public fb: FormBuilder, 
     private firestore: AngularFirestore, public alertCtrl: AlertController) { 
-      //this._service = {} as Service;
-      this.serviceData = {} as ServiceData;
+      this.services = {} as ModelService;
     }
 
   ngOnInit() {
     this.serviceForm = this.fb.group({
       ServiceID: ['', [Validators.required]],
       VINNumber: ['', [Validators.required]],
-      ServiceTypeName: ['', [Validators.required]],
+      ServiceType: ['', [Validators.required]],
       Date: ['', [Validators.required]],
   });
   
 
-  this._service.readService().subscribe(data => {
+  this._service.getServices().subscribe(data => {
     this.serviceList = data.map(e => {
 
 
       return {
         id: e.payload.doc.id,
         ServiceID: e.payload.doc.data()['ServiceID'],
-        VINNumber: e.payload.doc.data()['VIN_Number'],
-        ServiceTypeName: e.payload.doc.data()['ServiceType'],
+        VINNumber: e.payload.doc.data()['VINNumber'],
+        ServiceType: e.payload.doc.data()['ServiceType'],
         Date: e.payload.doc.data()['Date']
 
       };
