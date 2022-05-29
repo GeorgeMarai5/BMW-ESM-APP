@@ -35,8 +35,8 @@ export class EditFleetPage implements OnInit {
           this.data = params.id;
       });
     this.fleetform = new FormGroup({
-      dealershipName: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required)
+      FleetName: new FormControl('', Validators.required),
+      FleetLocation: new FormControl('', Validators.required)
     })
   }
 
@@ -50,14 +50,14 @@ export class EditFleetPage implements OnInit {
           FleetName: this.fleetform.get('FleetName').value,
           FleetLocation: this.fleetform.get('FleetLocation').value
         }
-        this.fleetservice.updateFleet(this.data, this.fleets)
+        this.fleetservice.updateFleet(this.data,this.fleet)   //this.data, this.fleets
         alert("Vehicle was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/dealership', this.data]);
+      this.router.navigate(['/tabs/view/fleet']);     // this.data
   }
 
   ngOnInit() {
-    this.fleetservice.getFleet(this.data).valueChanges()
+    this.fleetservice.getFleet("50RmrbhJeHHNJPLLsykC").valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.fleetform.setValue({

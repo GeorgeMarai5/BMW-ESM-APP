@@ -46,7 +46,7 @@ export class AssignDealershipPage implements OnInit {
       });
     }
 
-    this.router.navigate(['tabs/search/fleet'], this.data);
+    this.router.navigate(['tabs/search/dealership'], this.data);
   }
 
   ngOnInit() {
