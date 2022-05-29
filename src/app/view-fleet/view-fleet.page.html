@@ -16,7 +16,7 @@
 <ion-content class="ion-margin">
   <div class="contents">
     <h1>View Fleet</h1>
-    <ion-searchbar class="isb" placeholder="View Fleet..." showCancelButton="focus" animated></ion-searchbar><br/>
+    <ion-searchbar class="isb" placeholder="View Fleet..." showCancelButton="focus" [(ngModel)]="searchTerm"  animated></ion-searchbar><br/>
       <ion-grid class="ion-margin" class="ion-grid-padding">
         <ion-row>
           <ion-col>Vehicle ID</ion-col>
@@ -27,7 +27,7 @@
           
         </ion-row>
         <ion-item-divider></ion-item-divider>
-        <ion-row *ngFor="let item of vehicleList">
+        <ion-row *ngFor="let item of vehicleList | filter: searchTerm | filter: VehicleID">
           <ion-col>
             <ion-label> {{item.VehicleID}}</ion-label>
           </ion-col>
@@ -42,7 +42,7 @@
           </ion-col>
           <ion-col>
             <ion-button class="light-Btn" [routerLink]="['/tabs/view/vehicle',this.item.id]">View</ion-button>
-            <ion-button class="red-Btn" (click)="RemoveFleet(item.id)">Remove</ion-button>
+            <ion-button class="red-Btn" (click)="Deletefleet(item.id)">Remove</ion-button>
           </ion-col>
         </ion-row>
         <ion-item-divider></ion-item-divider>

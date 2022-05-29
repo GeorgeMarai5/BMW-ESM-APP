@@ -21,11 +21,12 @@ interface FleetData {
 })
 export class EditFleetPage implements OnInit {
 
-  fleetList = [];
+  
   fleetData: FleetData;
   fleetForm: FormGroup;
   isSubmitted = false;
   id: any;
+  Fleet = {};
   
 
   constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService,private route: ActivatedRoute, private router: Router) {
@@ -33,7 +34,10 @@ export class EditFleetPage implements OnInit {
       
       this.fleetData = {} as FleetData;
            
-   
+      this.fleetForm = new FormGroup({
+        FleetName: new FormControl('', Validators.required),
+        FleetLocation: new FormControl('', Validators.required)
+  })
    }
 
 
@@ -43,12 +47,12 @@ export class EditFleetPage implements OnInit {
       return false;
     }
     else{
-        const vehicle = {
+        const Fleet = {
           FleetName: this.fleetForm.get('FleetName').value,
           FleetLocation: this.fleetForm.get('FleetLocation').value,
           
         }
-        this.fleetservice.update_Fleet(this.id, vehicle)
+        this.fleetservice.update_Fleet(this.id, Fleet)
         alert("Fleet was successfully updated.");
       }
       this.router.navigate(['/tabs/view/fleet'], this.id);
@@ -59,7 +63,7 @@ export class EditFleetPage implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.fleetservice.getFleet(this.id).valueChanges()
+    this.fleetservice.getFleet('BGcTH5Vg40i8BHMNju5x').valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.fleetForm.setValue({
