@@ -63,7 +63,7 @@ export class EditFleetPage implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.fleetservice.getFleet('BGcTH5Vg40i8BHMNju5x').valueChanges()
+    this.fleetservice.getFleet(this.id).valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.fleetForm.setValue({
