@@ -11,6 +11,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   templateUrl: './edit-vehicle.page.html',
   styleUrls: ['./edit-vehicle.page.scss'],
 })
+
 export class EditVehiclePage implements OnInit {
 
   vehicles: Vehicle;
@@ -18,7 +19,7 @@ export class EditVehiclePage implements OnInit {
   editVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;
-
+  
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
     public service: VehicleService, public firestore: AngularFirestore, public router: Router) {
       this.route.params.subscribe(params => {
@@ -31,7 +32,6 @@ export class EditVehiclePage implements OnInit {
         warrantyPlan: new FormControl('', Validators.required)
       })
      }
-
   submitForm(){
     this.isSubmitted = true;
     if(!this.editVehicleForm.valid){
@@ -49,7 +49,6 @@ export class EditVehiclePage implements OnInit {
       }
       this.router.navigate(['/tabs/view/vehicle', this.data]);
   }
-
   ngOnInit() {
     this.service.getVehicle(this.data).valueChanges()
     .subscribe(res =>{
@@ -61,9 +60,7 @@ export class EditVehiclePage implements OnInit {
       warrantyPlan: res['Warranty']
     })
     });
-
   }
-
   get errorControl() {
     return this.editVehicleForm.controls;
   }
