@@ -16,6 +16,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     IonicModule,
     ViewFleetPageRoutingModule,
     Ng2SearchPipeModule
+    
   ],
   declarations: [ViewFleetPage]
 })

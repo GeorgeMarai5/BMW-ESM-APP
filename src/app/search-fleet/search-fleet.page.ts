@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
+import { AlertController } from '@ionic/angular';
 
 
 interface FleetData {
@@ -27,7 +28,7 @@ export class SearchFleetPage implements OnInit {
    fleetID: string;
 
 
-  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService) { 
+  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService,public alertCtrl: AlertController) { 
 
     this.fleetData = {} as FleetData;
 
@@ -64,12 +65,38 @@ export class SearchFleetPage implements OnInit {
 
 
 RemoveFleet(ID) {
-  if (window.confirm('Do you really want to Remove This Fleet?')) {
+  alert("Vehicle was successfully Removed.");
    
   
   this.fleetservice.delete_Fleet(ID);
-  }
+  
   console.log(ID)
+}
+
+
+async Deletefleet(id){
+  const confirmDeleteAlert = await this.alertCtrl.create({
+    header: 'Remove Fleet',
+    message: 'Are you sure you would like to remove this Fleet from the system?',
+    buttons: [{
+      text: 'Cancel',
+      role: 'cancel',
+      handler: end => {
+        this.alertCtrl.dismiss();
+      }
+    },
+    {
+      text: 'Remove',
+      role: 'remove',
+      handler: () => {
+        this.fleetservice.delete_Fleet(id);
+        alert('Fleet was successfully removed');
+      }
+    }]
+  });
+
+  confirmDeleteAlert.present();
+
 }
 
 }

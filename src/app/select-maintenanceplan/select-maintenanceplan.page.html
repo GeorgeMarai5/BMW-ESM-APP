@@ -14,39 +14,60 @@
 </ion-header>
 
 <ion-content>
-    <ion-title>
-        Plan Details
-    </ion-title>
+    <div class="contents">
+        <ion-title>
+            <h1>Plan Details</h1>
+        </ion-title>
 
-
-    <form [formGroup]="planform" *ngFor="let planItem of maintenanceplanList">
-
-        <ion-item>
-            <ion-label position="stacked">Plan Name</ion-label>
-            <ion-input value="{{planItem.PlanName}}" readonly></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="stacked">Description</ion-label>
-            <ion-input value="{{planItem.Description}}" readonly></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="stacked">Duration</ion-label>
-            <ion-input value="{{planItem.Duration}}" readonly></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="stacked">Price</ion-label>
-            <ion-input value="{{planItem.Price}}" readonly></ion-input>
-        </ion-item>
-
-    </form>
-
-    <ion-button [routerLink]="['/tabs/search/account/client']">Back</ion-button>
-
-    <ion-button [routerLink]="['/tabs/update/client']">Upgrade Plan</ion-button>
-
-    <ion-button [routerLink]="['/tabs/searchclientaccount']">Select Plan</ion-button>
-
+        <form [formGroup]="planform" *ngFor="let planItem of maintenanceplanList">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked">Plan Name</ion-label>
+                            <ion-input value="My BMW Service" readonly></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked">Description</ion-label>
+                            <ion-input value="ABCDEFGHIJKL" readonly></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked">Duration</ion-label>
+                            <ion-input value="12 Months" readonly></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked">Price</ion-label>
+                            <ion-input value="R18 000.00" readonly></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <br/>
+                <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col>
+                        <ion-button type="submit" expand="block">Back</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button class="light-Btn" [routerLink]="['/tabs/upgrade/maintenanceplan', 'LhV0lKeg0Cokxc0nrIDT']" expand="block">Upgrade Plan</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button type="submit" class="green-Btn" expand="block">Select Plan</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
 </ion-content>
