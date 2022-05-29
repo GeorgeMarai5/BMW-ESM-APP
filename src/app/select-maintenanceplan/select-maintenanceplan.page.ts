@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { MaintenancePlan } from '../models/Maintenance-Plan';
@@ -20,15 +20,22 @@ export class SelectMaintenanceplanPage implements OnInit {
   maintenanceplanList = [];
   plans: MaintenancePlan;
   planform : FormGroup;
-  firebaseService: any;
+  data: any;
   
  
-  constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore, 
-    public alertController: AlertController) { 
-
-    this.plans = {} as MaintenancePlan;
-  }
+  constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController, private service: PostService, 
+    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
+    public alertController: AlertController,private firestore: AngularFirestore) { 
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+      });
+      this.planform = new FormGroup({
+        PlanName: new FormControl('', Validators.required),
+        Description: new FormControl('', Validators.required),
+        Duration: new FormControl('', Validators.required),
+        Price: new FormControl('', Validators.required)
+      })
+    }
 
   ngOnInit() {
     interface AlertButton {
