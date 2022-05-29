@@ -26,7 +26,6 @@ export class ViewVehiclePage implements OnInit {
           this.data = params.id;
       });
       this.viewVehicleForm = new FormGroup({
-        
         vehicleModel: new FormControl('', Validators.required),
         VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
         Registration: new FormControl('', Validators.required),
@@ -47,7 +46,7 @@ export class ViewVehiclePage implements OnInit {
     })
     });
   }
-  
+
   navToUpdate() {
     this.router.navigate(['tabs/edit/vehicle'], this.data);
   }

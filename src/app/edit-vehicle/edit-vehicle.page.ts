@@ -26,12 +26,13 @@ export class EditVehiclePage implements OnInit {
           this.data = params.id;
       });
       this.editVehicleForm = new FormGroup({
+        Registration: new FormControl('', Validators.required),
         VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
         vehicleModel: new FormControl('', Validators.required),
-        Registration: new FormControl('', Validators.required),
         warrantyPlan: new FormControl('', Validators.required)
       })
      }
+     
   submitForm(){
     this.isSubmitted = true;
     if(!this.editVehicleForm.valid){
@@ -39,9 +40,9 @@ export class EditVehiclePage implements OnInit {
     }
     else{
         const vehicle = {
-          VIN_Number: this.editVehicleForm.get('VINNum').value,
           VehicleModel: this.editVehicleForm.get('vehicleModel').value,
           Registration: this.editVehicleForm.get('Registration').value,
+          VIN_Number: this.editVehicleForm.get('VINNum').value,
           Warranty: this.editVehicleForm.get('warrantyPlan').value
         }
         this.service.updateVehicle(this.data, vehicle)
@@ -49,14 +50,15 @@ export class EditVehiclePage implements OnInit {
       }
       this.router.navigate(['/tabs/view/vehicle', this.data]);
   }
+
   ngOnInit() {
     this.service.getVehicle(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.editVehicleForm.setValue({
-      VINNum: res['VIN_Number'], 
       vehicleModel: res['VehicleModel'], 
       Registration: res['Registration'],
+      VINNum: res['VIN_Number'], 
       warrantyPlan: res['Warranty']
     })
     });
