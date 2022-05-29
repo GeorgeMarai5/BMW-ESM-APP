@@ -25,6 +25,7 @@ export class SearchMaintenancePlanPage implements OnInit {
 maintenanceplanList = [];
 plans: MaintenancePlan;
 planform : FormGroup;
+searchTerm: string;
 
 constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
   public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) {
