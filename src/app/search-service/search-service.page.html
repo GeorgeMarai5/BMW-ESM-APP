@@ -13,42 +13,39 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-margin">
   <div class="contents">
-    <ion-item>
-      <ion-label class="large"><h1>Search Service</h1></ion-label>
-    </ion-item>
-    <ion-searchbar class="isb" placeholder="Search Service" showCancelButton="focus" animated [(ngModel)]="searchTerm"></ion-searchbar>
-      <ion-card>
-        <ion-grid class="ion-margin" class="ion-grid-padding">
-          <ion-row>
-            <ion-col>Service ID</ion-col>
-            <ion-col>VIN Number</ion-col>
-            <ion-col>Service Type</ion-col>
-            <ion-col>Date</ion-col>
-            <ion-col></ion-col>
-            <ion-col></ion-col>
-          </ion-row>
-          <ion-row *ngFor="let item of serviceList | filter: searchTerm">
-            <ion-col>
-              <ion-label> {{item.ServiceID}}</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label> {{item.VINNumber}}</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label> {{item.ServiceType}}</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>{{today}}</ion-label>
-            </ion-col>
-            <ion-col></ion-col>
-            <ion-col>
-              <ion-button class="red-Btn" (click)="removeService(this.item.id)">Remove</ion-button>
+    <h1>Search Service</h1>
+    <ion-searchbar class="isb" placeholder="Search Service..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
+      <ion-grid class="ion-margin" class="ion-grid-padding">
+        <ion-row>
+          <ion-col>Service ID</ion-col>
+          <ion-col>VIN Number</ion-col>
+          <ion-col>Service Type</ion-col>
+          <ion-col>Date</ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
+        <ion-row *ngFor="let item of serviceList | filter: searchTerm">
+          <ion-col>
+            <ion-label> {{item.ServiceID}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label> {{item.VINNumber}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label> {{item.ServiceTypeName}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label> {{item.Date}}</ion-label>
+          </ion-col>
+          <ion-col>
             <ion-button class="light-Btn" [routerLink]="['/tabs/view/service', this.item.id]">View</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
+            <ion-button class="red-Btn" (click)="removeService(this.item.id)">Remove</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
+      </ion-grid>
   </div>
 </ion-content>
+

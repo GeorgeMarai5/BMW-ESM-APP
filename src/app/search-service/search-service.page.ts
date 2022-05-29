@@ -19,16 +19,8 @@ export class SearchServicePage implements OnInit {
   serviceList = [];
   serviceForm: FormGroup;
   searchTerm: string;
-  
-  name = 'Angular ';
-  today = new Date();
-  changedDate = '';
-  pipe = new DatePipe('en-US');
-  changeFormat(today){
-    let ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
-    this.changedDate = ChangedFormat;
-    console.log(this.changedDate);
-  }
+  id: any;
+
   constructor(public authService: AuthService, private _service: Service, public fb: FormBuilder, 
     private firestore: AngularFirestore, public alertCtrl: AlertController) { 
       this.services = {} as ModelService;
@@ -39,13 +31,14 @@ export class SearchServicePage implements OnInit {
       ServiceID: ['', [Validators.required]],
       VINNumber: ['', [Validators.required]],
       ServiceType: ['', [Validators.required]],
-      Date: ['', [Validators.required]],
+      Date: ['', [Validators.required]]
+
+      
   });
   
 
   this._service.getServices().subscribe(data => {
     this.serviceList = data.map(e => {
-
 
       return {
         id: e.payload.doc.id,
@@ -82,11 +75,6 @@ export class SearchServicePage implements OnInit {
     });
 
     confirmDeleteAlert.present();
-
-  }
-  viewService(id){
-
-    
 
   }
 

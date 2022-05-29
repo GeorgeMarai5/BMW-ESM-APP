@@ -131,6 +131,10 @@ const routes: Routes = [
         loadChildren: () => import('../assign-dealership/assign-dealership.module').then( m => m.AssignDealershipPageModule)
       },
       {
+        path: 'assign/dealership/:id',
+        loadChildren: () => import('../assign-dealership/assign-dealership.module').then( m => m.AssignDealershipPageModule)
+      },
+      {
         path: 'edit/dealership',
         loadChildren: () => import('../edit-dealership/edit-dealership.module').then( m => m.EditDealershipPageModule)
       },
