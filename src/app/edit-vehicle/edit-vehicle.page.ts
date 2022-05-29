@@ -1,64 +1,70 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { ActivatedRoute, Router } from '@angular/router';
-import { Dealership } from '../models/Dealership';
 import { AuthService } from '../services/auth.service';
-import { DealershipService } from '../services/dealership.service';
+import { VehicleService } from '../services/vehicle.service';
+import { Vehicle } from '../models/Vehicle';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
-  selector: 'app-edit-dealership',
-  templateUrl: './edit-dealership.page.html',
-  styleUrls: ['./edit-dealership.page.scss'],
+  selector: 'app-edit-vehicle',
+  templateUrl: './edit-vehicle.page.html',
+  styleUrls: ['./edit-vehicle.page.scss'],
 })
-export class EditDealershipPage implements OnInit {
 
-  dealerships: Dealership;
-  dealership = {};
-  editDealershipForm: FormGroup;
+export class EditVehiclePage implements OnInit {
+
+  vehicles: Vehicle;
+  vehicle = {};
+  editVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;
-
+  
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public service: DealershipService, public firestore: AngularFirestore, public router: Router) {
+    public service: VehicleService, public firestore: AngularFirestore, public router: Router) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-    this.editDealershipForm = new FormGroup({
-      dealershipName: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required)
-    })
-  }
-
+      this.editVehicleForm = new FormGroup({
+        Registration: new FormControl('', Validators.required),
+        VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
+        vehicleModel: new FormControl('', Validators.required),
+        warrantyPlan: new FormControl('', Validators.required)
+      })
+     }
+     
   submitForm(){
     this.isSubmitted = true;
-    if(!this.editDealershipForm.valid){
+    if(!this.editVehicleForm.valid){
       return false;
     }
     else{
-        const dealership = {
-          DealershipName: this.editDealershipForm.get('dealershipName').value,
-          AddressName: this.editDealershipForm.get('address').value
+        const vehicle = {
+          VehicleModel: this.editVehicleForm.get('vehicleModel').value,
+          Registration: this.editVehicleForm.get('Registration').value,
+          VIN_Number: this.editVehicleForm.get('VINNum').value,
+          Warranty: this.editVehicleForm.get('warrantyPlan').value
         }
-        this.service.updateDealership(this.data, dealership)
+        this.service.updateVehicle(this.data, vehicle)
         alert("Vehicle was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/dealership', this.data]);
+      this.router.navigate(['/tabs/view/vehicle', this.data]);
   }
 
   ngOnInit() {
-    this.service.getDealership(this.data).valueChanges()
+    this.service.getVehicle(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
-    this.editDealershipForm.setValue({
-      dealershipName: res['DealershipName'], 
-      address: res['AddressName']
+    this.editVehicleForm.setValue({
+      vehicleModel: res['VehicleModel'], 
+      Registration: res['Registration'],
+      VINNum: res['VIN_Number'], 
+      warrantyPlan: res['Warranty']
     })
     });
   }
-
   get errorControl() {
-    return this.editDealershipForm.controls;
+    return this.editVehicleForm.controls;
   }
 
 }
