@@ -19,10 +19,10 @@ export class EditVehiclePage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, public fb: FormBuilder, 
-    public authService: AuthService, public service: VehicleService, public firestore: AngularFirestore) { 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
+    public service: VehicleService, public firestore: AngularFirestore, public router: Router) {
       this.route.params.subscribe(params => {
-        this.data = params['id'];
+          this.data = params.id;
       });
       this.editVehicleForm = new FormGroup({
         VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
@@ -51,7 +51,6 @@ export class EditVehiclePage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.service.getVehicle(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
