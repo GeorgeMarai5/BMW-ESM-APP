@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { VehicleService } from '../services/vehicle.service';
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -32,8 +33,10 @@ export class ViewFleetPage implements OnInit {
    vehicleList = [];
    VehicleData: FleetVehicles;
    fleetForm: FormGroup;
+   searchTerm: string;
+   VehicleID: string;
 
-  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService, private vehiclesService: VehicleService) { 
+  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService, private vehiclesService: VehicleService,public alertCtrl: AlertController) { 
 
     this.VehicleData = {} as FleetVehicles;
 
@@ -76,10 +79,41 @@ RemoveFleet(ID) {
   console.log(ID)
 }
 
+
+async Deletefleet(id){
+  const confirmDeleteAlert = await this.alertCtrl.create({
+    header: 'Remove Fleet',
+    message: 'Are you sure you would like to remove this Fleet from the system?',
+    buttons: [{
+      text: 'Cancel',
+      role: 'cancel',
+      handler: end => {
+        this.alertCtrl.dismiss();
+      }
+    },
+    {
+      text: 'Remove',
+      role: 'remove',
+      handler: () => {
+        this.fleetservice.delete_Fleet(id);
+        alert('Fleet was successfully removed');
+      }
+    }]
+  });
+
+  confirmDeleteAlert.present();
+
+}
+
+
+
+
 select(){
   if(window.confirm('Fleet selected')){
     
   }
 }
+
+
 
 }
