@@ -23,7 +23,7 @@ export class ViewVehiclePage implements OnInit {
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService) {
       this.route.params.subscribe(params => {
-        this.data = params['id'];
+          this.data = params.id;
       });
       this.viewVehicleForm = new FormGroup({
         VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
