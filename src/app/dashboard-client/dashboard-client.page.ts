@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { AuthService } from "../services/auth.service";
-import { getAuth } from "firebase/auth";
 import { Clients } from '../models/Clients';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -39,7 +38,5 @@ export class DashboardClientPage implements OnInit {
   }
 
   ngOnInit() {
-    const auth = getAuth();
-    const currUser = auth.currentUser;
   }
 }
