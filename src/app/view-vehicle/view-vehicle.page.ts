@@ -3,8 +3,13 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+<<<<<<< HEAD
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
+=======
+import { Vehicle } from '../models/Vehicle';
+import { VehicleService } from '../services/vehicle.service';
+>>>>>>> e643ef1b1cc521c690759d05c558e7fe37d7f150
 
 @Component({
   selector: 'app-view-vehicle',
@@ -15,9 +20,14 @@ export class ViewVehiclePage implements OnInit {
 
   vehicles: Vehicle;
   vehicle = {};
+<<<<<<< HEAD
   viewVehicleForm: FormGroup;
+=======
+  editVehicleForm: FormGroup;
+>>>>>>> e643ef1b1cc521c690759d05c558e7fe37d7f150
   isSubmitted = false;
   data: any;
+  viewVehicleForm: FormGroup;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService) {
@@ -46,7 +56,6 @@ export class ViewVehiclePage implements OnInit {
   }
 
   navToUpdate() {
-    this.router.navigate(['/tabs/edit/dealership', this.data]);
+    this.router.navigate(['tabs/edit/vehicle'], this.data);
   }
-
 }
