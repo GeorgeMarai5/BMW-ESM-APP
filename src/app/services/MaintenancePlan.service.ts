@@ -13,23 +13,20 @@ import { MaintenancePlan } from "../models/Maintenance-Plan";
 
 export class MaintenancePlanService{
 
-    collectionName = 'Maintenance';
+  collectionName = 'Maintenance';
 
+  constructor(private firestore: AngularFirestore) { }
 
-    constructor(
-        private firestore: AngularFirestore
-      ) { }
+  getPlans() {
+    return this.firestore.collection('Maintenance').snapshotChanges();
+  }
 
-      read_Plans() {
-        return this.firestore.collection('Maintenance').snapshotChanges();
-      }
+  getMaintenancePlan(id: string){
+    return this.firestore.collection(this.collectionName).doc(id);
+  }
 
+  updateMaintenancePlan(id, maintenance) {
+    this.firestore.doc(this.collectionName + '/' + id).update(maintenance);
+  }
 
-/*
-
-      upgrade_Plan(PlanName, Description, Duration, Price) {
-        this.firestore.doc(this.collectionName + '/' + recordID).update(record);
-      }
-    
-      */
 }
