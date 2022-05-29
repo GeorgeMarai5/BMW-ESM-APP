@@ -27,7 +27,7 @@
                             <ion-label position="stacked"><b>Current Plan</b></ion-label>
                             <ion-input formControlName="PlanName" type="text" required></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.planName.errors?.required">
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.required">
                             Plan Name is required.
                         </span>
                     </ion-col>
@@ -36,7 +36,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>New Plan</b></ion-label>
-                            <ion-select formControlName="PlanName" type="text" required>
+                            <ion-select formControlName="NewPlanName" type="text" required>
                                 <ion-select-option>BMW Service</ion-select-option>
                                 <ion-select-option>BMW Motorplan</ion-select-option>
                                 <ion-select-option>BMW Motorplan Extended</ion-select-option>

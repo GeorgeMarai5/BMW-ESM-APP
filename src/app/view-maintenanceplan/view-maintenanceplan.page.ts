@@ -54,6 +54,6 @@ export class ViewMaintenancePlanPage implements OnInit {
     }
 
   navToUpdate() {
-    this.router.navigate(['tabs/upgrade/maintenanceplan'], this.data);
+    this.router.navigate(['/tabs/upgrade/maintenanceplan', this.data]);
   }
 }

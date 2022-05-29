@@ -35,9 +35,7 @@ export class UpgradeMaintenancePlanPage implements OnInit {
   });
   this.upgradePlanForm = new FormGroup({
     PlanName: new FormControl('', Validators.required),
-    Description: new FormControl('', Validators.required),
-    Duration: new FormControl('', Validators.required),
-    Price: new FormControl('', Validators.required),
+    NewPlanName: new FormControl('', Validators.required)
   });
 
   }
@@ -49,13 +47,10 @@ export class UpgradeMaintenancePlanPage implements OnInit {
     }
     else{
         const maintenanceplan = {
-          PlanName: this.upgradePlanForm.get('PlanName').value,
-          Description: this.upgradePlanForm.get('Description').value,
-          Duration: this.upgradePlanForm.get('Duration').value,
-          Price: this.upgradePlanForm.get('Price').value
+          NewPlanName: this.upgradePlanForm.get('NewPlanName').value
         }
         this.planService.upgradeMaintenancePlan(this.data, maintenanceplan)
-        alert("Vehicle was successfully updated.");
+        alert("Maintenance Plan was successfully upgraded.");
       }
       this.router.navigate(['/tabs/view/maintenanceplan', this.data]);
   }
@@ -65,10 +60,8 @@ export class UpgradeMaintenancePlanPage implements OnInit {
     .subscribe(res =>{
     console.log(res)
     this.upgradePlanForm.setValue({
-      PlanName: res['PlanName'], 
-      Description: res['Description'],
-      Duration: res['Duration'], 
-      Price: res['Price']
+      PlanName: res['Plan_Name'],
+      NewPlanName: ''
     })
     });
   }

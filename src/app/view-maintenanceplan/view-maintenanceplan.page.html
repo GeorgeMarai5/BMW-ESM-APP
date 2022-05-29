@@ -19,13 +19,13 @@
             <h1>Plan Details</h1>
         </ion-title>
 
-        <form [formGroup]="planform" *ngFor="let planItem of maintenanceplanList">
+        <form [formGroup]="planform">
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Plan Name</ion-label>
-                            <ion-input value={{planItem.PlanName}} readonly></ion-input>
+                            <ion-input formControlName="PlanName" type="text" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -33,7 +33,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Description</ion-label>
-                            <ion-input value={{planItem.Description}} readonly></ion-input>
+                            <ion-input formControlName="Description" type="text" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -41,7 +41,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Duration</ion-label>
-                            <ion-input value={{planItem.Price}} readonly></ion-input>
+                            <ion-input formControlName="Duration" type="text" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -49,7 +49,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Price</ion-label>
-                            <ion-input value={{planItem.Price}} readonly></ion-input>
+                            <ion-input formControlName="Price" type="text" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>

@@ -173,7 +173,7 @@ const routes: Routes = [
         loadChildren: () => import('../upgrade-maintenanceplan/upgrade-maintenanceplan.module').then( m => m.UpgradeMaintenanceplanPageModule)
       },
       {
-        path: 'upgrade/maintenance-plan/:id',
+        path: 'upgrade/maintenanceplan/:id',
         resolve: {
           special: DataResolverService
         },
@@ -184,7 +184,7 @@ const routes: Routes = [
         loadChildren: () => import('../view-maintenanceplan/view-maintenanceplan.module').then( m => m.ViewMaintenanceplanPageModule)
       },
       {
-        path: 'view/maintenance-plan/:id',
+        path: 'view/maintenanceplan/:id',
         resolve: {
           special: DataResolverService
         },
