@@ -4,6 +4,7 @@ import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { VehicleService } from '../services/vehicle.service';
 import { AlertController } from '@ionic/angular';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 
 
@@ -35,8 +36,10 @@ export class ViewFleetPage implements OnInit {
    fleetForm: FormGroup;
    searchTerm: string;
    fleetID: string;
+   data: any;
 
-  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService, private vehiclesService: VehicleService,public alertCtrl: AlertController) { 
+  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService, 
+    private vehiclesService: VehicleService,public alertCtrl: AlertController,public router: Router) { 
 
     this.VehicleData = {} as FleetVehicles;
 
@@ -103,6 +106,10 @@ async Deletefleet(id){
 
   confirmDeleteAlert.present();
 
+}
+
+navToUpdate() {
+  this.router.navigate(['/tabs/edit/fleet', this.data]);
 }
 
 
