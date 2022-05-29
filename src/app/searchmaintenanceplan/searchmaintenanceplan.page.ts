@@ -44,10 +44,11 @@ ngOnInit(){
     this.maintenanceplanList = data.map(e => {
 
       return {
-        PlanName: e.payload.doc.data()['Plan Name'],
+        id: e.payload.doc.id,
+        PlanName: e.payload.doc.data()['Plan_Name'],
         Description: e.payload.doc.data()['Description'],
         Duration: e.payload.doc.data()['Duration'],
-        yPriceear: e.payload.doc.data()['Price']
+        Price: e.payload.doc.data()['Price']
       };
     })
     console.log(this.maintenanceplanList);
