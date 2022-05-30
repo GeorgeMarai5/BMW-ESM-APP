@@ -34,8 +34,9 @@ export class AssignDealershipPage implements OnInit {
     }
     else{
       const dealership = {
-        dealershipName: this.assignDealershipForm.get('dealershipName').value,
-        address: this.assignDealershipForm.get('address').value
+        DealershipID: '00' + (Math.floor(Math.random() * (9 - 1 + 1)) + 1),
+        DealershipName: this.assignDealershipForm.get('dealershipName').value,
+        AddressName: this.assignDealershipForm.get('address').value
       }
       this.firestore.collection('Dealership').add(dealership).then(function(docRef){
         alert("Dealership has been assigned successfully");
