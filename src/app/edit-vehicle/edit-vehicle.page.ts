@@ -19,33 +19,33 @@ export class EditVehiclePage implements OnInit {
   editVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;
-  
+
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
     public service: VehicleService, public firestore: AngularFirestore, public router: Router) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-      this.editVehicleForm = new FormGroup({
-        Registration: new FormControl('', Validators.required),
-        VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-        vehicleModel: new FormControl('', Validators.required),
-        warrantyPlan: new FormControl('', Validators.required)
-      })
-     }
-     
+    this.editVehicleForm = new FormGroup({
+      VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
+      vehicleModel: new FormControl('', Validators.required),
+      Registration: new FormControl('', Validators.required),
+      warrantyPlan: new FormControl('', Validators.required)
+    })
+  }
+
   submitForm(){
     this.isSubmitted = true;
     if(!this.editVehicleForm.valid){
       return false;
     }
     else{
-        const vehicle = {
+        const dealership = {
+          VIN_Number: this.editVehicleForm.get('VINNum').value,
           VehicleModel: this.editVehicleForm.get('vehicleModel').value,
           Registration: this.editVehicleForm.get('Registration').value,
-          VIN_Number: this.editVehicleForm.get('VINNum').value,
-          Warranty: this.editVehicleForm.get('warrantyPlan').value
+          Warranty: this.editVehicleForm.get('warrantyPlan').value,
         }
-        this.service.updateVehicle(this.data, vehicle)
+        this.service.updateVehicle(this.data, dealership)
         alert("Vehicle was successfully updated.");
       }
       this.router.navigate(['/tabs/view/vehicle', this.data]);
@@ -56,13 +56,14 @@ export class EditVehiclePage implements OnInit {
     .subscribe(res =>{
     console.log(res)
     this.editVehicleForm.setValue({
+      VINNum: res['VIN_Number'],
       vehicleModel: res['VehicleModel'], 
-      Registration: res['Registration'],
-      VINNum: res['VIN_Number'], 
+      Registration: res['Registration'], 
       warrantyPlan: res['Warranty']
     })
     });
   }
+
   get errorControl() {
     return this.editVehicleForm.controls;
   }

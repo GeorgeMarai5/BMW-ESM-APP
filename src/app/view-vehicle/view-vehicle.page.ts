@@ -18,6 +18,7 @@ export class ViewVehiclePage implements OnInit {
   viewVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;
+  maintenanceplanID: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService) {
@@ -45,7 +46,21 @@ export class ViewVehiclePage implements OnInit {
     });
   }
 
+  submitForm(){
+    this.service.getVehicle(this.data).valueChanges()
+    .subscribe(res =>{
+      this.maintenanceplanID = res['MaintenanceID'];
+    });
+    console.log(this.maintenanceplanID)
+    if(this.maintenanceplanID != null || this.maintenanceplanID != undefined){
+      this.router.navigate(['/tabs/view/maintenanceplan', '7jk7GWQB5eC6SdZuzU6P']);
+    }
+    else{
+      this.router.navigate(['/tabs/search/maintenanceplan']);
+    }
+  }
+
   navToUpdate() {
-    this.router.navigate(['tabs/edit/vehicle'], this.data);
+    this.router.navigate(['tabs/edit/vehicle', this.data]);
   }
 }

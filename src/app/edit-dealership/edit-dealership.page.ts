@@ -41,7 +41,7 @@ export class EditDealershipPage implements OnInit {
           AddressName: this.editDealershipForm.get('address').value
         }
         this.service.updateDealership(this.data, dealership)
-        alert("Vehicle was successfully updated.");
+        alert("Dealership was successfully updated.");
       }
       this.router.navigate(['/tabs/view/dealership', this.data]);
   }
