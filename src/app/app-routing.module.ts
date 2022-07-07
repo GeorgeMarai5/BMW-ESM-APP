@@ -262,7 +262,27 @@ const routes: Routes = [
       special: DataResolverService
     },
     loadChildren: () => import('./edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
+  },  {
+    path: 'search-part',
+    loadChildren: () => import('./part/search-part/search-part.module').then( m => m.SearchPartPageModule)
   },
+  {
+    path: 'view-part-details',
+    loadChildren: () => import('./part/view-part-details/view-part-details.module').then( m => m.ViewPartDetailsPageModule)
+  },
+  {
+    path: 'view-service-progress',
+    loadChildren: () => import('./view-service-progress/view-service-progress.module').then( m => m.ViewServiceProgressPageModule)
+  },
+  {
+    path: 'checkin-vehicle',
+    loadChildren: () => import('./checkin-vehicle/checkin-vehicle.module').then( m => m.CheckinVehiclePageModule)
+  },
+  {
+    path: 'capture-initial-inspection-details',
+    loadChildren: () => import('./capture-initial-inspection-details/capture-initial-inspection-details.module').then( m => m.CaptureInitialInspectionDetailsPageModule)
+  },
+
 
 ];
 @NgModule({
