@@ -6,11 +6,11 @@ import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
 
 @Component({
-  selector: 'app-capture-initial-inspection-details',
-  templateUrl: './capture-initial-inspection-details.page.html',
-  styleUrls: ['./capture-initial-inspection-details.page.scss'],
+  selector: 'app-perform-precheck',
+  templateUrl: './perform-precheck.page.html',
+  styleUrls: ['./perform-precheck.page.scss'],
 })
-export class CaptureInitialInspectionDetailsPage implements OnInit {
+export class PerformPrecheckPage implements OnInit {
 
   addVehicleForm: FormGroup;
   isSubmitted = false;

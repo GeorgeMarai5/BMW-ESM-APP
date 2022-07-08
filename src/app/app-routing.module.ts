@@ -282,6 +282,10 @@ const routes: Routes = [
     path: 'capture-initial-inspection-details',
     loadChildren: () => import('./capture-initial-inspection-details/capture-initial-inspection-details.module').then( m => m.CaptureInitialInspectionDetailsPageModule)
   },
+  {
+    path: 'perform-precheck',
+    loadChildren: () => import('./perform-precheck/perform-precheck.module').then( m => m.PerformPrecheckPageModule)
+  },
 
 
 ];

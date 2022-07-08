@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ViewServiceProgressPageRoutingModule } from './view-service-progress-routing.module';
+import { PerformPrecheckPageRoutingModule } from './perform-precheck-routing.module';
 
-import { ViewServiceProgressPage } from './view-service-progress.page';
+import { PerformPrecheckPage } from './perform-precheck.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ViewServiceProgressPageRoutingModule,
+    PerformPrecheckPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [ViewServiceProgressPage]
+  declarations: [PerformPrecheckPage]
 })
-export class ViewServiceProgressPageModule {}
+export class PerformPrecheckPageModule {}
