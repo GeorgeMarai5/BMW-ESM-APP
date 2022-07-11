@@ -286,6 +286,66 @@ const routes: Routes = [
     path: 'perform-precheck',
     loadChildren: () => import('./perform-precheck/perform-precheck.module').then( m => m.PerformPrecheckPageModule)
   },
+  {
+    path: 'create-team',
+    loadChildren: () => import('./create-team/create-team.module').then( m => m.CreateTeamPageModule)
+  },
+  {
+    path: 'create-team-member',
+    loadChildren: () => import('./create-team-member/create-team-member.module').then( m => m.CreateTeamMemberPageModule)
+  },
+  {
+    path: 'edit-team',
+    loadChildren: () => import('./edit-team/edit-team.module').then( m => m.EditTeamPageModule)
+  },
+  {
+    path: 'edit-team-member',
+    loadChildren: () => import('./edit-team-member/edit-team-member.module').then( m => m.EditTeamMemberPageModule)
+  },
+  {
+    path: 'search-team',
+    loadChildren: () => import('./search-team/search-team.module').then( m => m.SearchTeamPageModule)
+  },
+  {
+    path: 'search-team-member',
+    loadChildren: () => import('./search-team-member/search-team-member.module').then( m => m.SearchTeamMemberPageModule)
+  },
+  {
+    path: 'remove-team',
+    loadChildren: () => import('./remove-team/remove-team.module').then( m => m.RemoveTeamPageModule)
+  },
+  {
+    path: 'remove-team-member',
+    loadChildren: () => import('./remove-team-member/remove-team-member.module').then( m => m.RemoveTeamMemberPageModule)
+  },
+  {
+    path: 'view-team',
+    loadChildren: () => import('./view-team/view-team.module').then( m => m.ViewTeamPageModule)
+  },
+  {
+    path: 'view-team-member',
+    loadChildren: () => import('./view-team-member/view-team-member.module').then( m => m.ViewTeamMemberPageModule)
+  },
+  {
+    path: 'add-service-item',
+    loadChildren: () => import('./add-service-item/add-service-item.module').then( m => m.AddServiceItemPageModule)
+  },
+  {
+    path: 'edit-service-item',
+    loadChildren: () => import('./edit-service-item/edit-service-item.module').then( m => m.EditServiceItemPageModule)
+  },
+  {
+    path: 'search-service-item',
+    loadChildren: () => import('./search-service-item/search-service-item.module').then( m => m.SearchServiceItemPageModule)
+  },
+  {
+    path: 'remove-service-item',
+    loadChildren: () => import('./remove-service-item/remove-service-item.module').then( m => m.RemoveServiceItemPageModule)
+  },
+  {
+    path: 'view-service-item',
+    loadChildren: () => import('./view-service-item/view-service-item.module').then( m => m.ViewServiceItemPageModule)
+  },
 
 
 ];
