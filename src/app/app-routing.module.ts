@@ -262,7 +262,8 @@ const routes: Routes = [
       special: DataResolverService
     },
     loadChildren: () => import('./edit-vehicle/edit-vehicle.module').then( m => m.EditVehiclePageModule)
-  },  {
+  },
+  {
     path: 'search-part',
     loadChildren: () => import('./part/search-part/search-part.module').then( m => m.SearchPartPageModule)
   },
@@ -311,14 +312,6 @@ const routes: Routes = [
     loadChildren: () => import('./search-team-member/search-team-member.module').then( m => m.SearchTeamMemberPageModule)
   },
   {
-    path: 'remove-team',
-    loadChildren: () => import('./remove-team/remove-team.module').then( m => m.RemoveTeamPageModule)
-  },
-  {
-    path: 'remove-team-member',
-    loadChildren: () => import('./remove-team-member/remove-team-member.module').then( m => m.RemoveTeamMemberPageModule)
-  },
-  {
     path: 'view-team',
     loadChildren: () => import('./view-team/view-team.module').then( m => m.ViewTeamPageModule)
   },
@@ -337,10 +330,6 @@ const routes: Routes = [
   {
     path: 'search-service-item',
     loadChildren: () => import('./search-service-item/search-service-item.module').then( m => m.SearchServiceItemPageModule)
-  },
-  {
-    path: 'remove-service-item',
-    loadChildren: () => import('./remove-service-item/remove-service-item.module').then( m => m.RemoveServiceItemPageModule)
   },
   {
     path: 'view-service-item',
