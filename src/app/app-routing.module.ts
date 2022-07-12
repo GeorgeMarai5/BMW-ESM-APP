@@ -346,6 +346,30 @@ const routes: Routes = [
     path: 'view-service-item',
     loadChildren: () => import('./view-service-item/view-service-item.module').then( m => m.ViewServiceItemPageModule)
   },
+  {
+    path: 'edit-service',
+    loadChildren: () => import('./edit-service/edit-service.module').then( m => m.EditServicePageModule)
+  },
+  {
+    path: 'create-quote',
+    loadChildren: () => import('./create-quote/create-quote.module').then( m => m.CreateQuotePageModule)
+  },
+  {
+    path: 'update-quote',
+    loadChildren: () => import('./update-quote/update-quote.module').then( m => m.UpdateQuotePageModule)
+  },
+  {
+    path: 'search-quote',
+    loadChildren: () => import('./search-quote/search-quote.module').then( m => m.SearchQuotePageModule)
+  },
+  {
+    path: 'view-quote',
+    loadChildren: () => import('./view-quote/view-quote.module').then( m => m.ViewQuotePageModule)
+  },
+  {
+    path: 'accept-quote',
+    loadChildren: () => import('./accept-quote/accept-quote.module').then( m => m.AcceptQuotePageModule)
+  },
 
 
 ];
