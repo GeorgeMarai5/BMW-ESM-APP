@@ -1,9 +1,79 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>create-team</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="contents">
+        <ion-title>
+            <h1>Create Team</h1>
+        </ion-title>
 
+        <form [formGroup]="createTeamForm" (ngSubmit)="submitForm()" novalidate>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Team Name</b></ion-label>
+                            <ion-input formControlName="dealershipName" type="text" required></ion-input>
+                        </ion-item>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
+            Team Name is required.
+          </span>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Dealership</b></ion-label>
+                            <ion-select formControlName="dealershipName" type="text" required>
+                                <ion-select-option>BMW Hatfield</ion-select-option>
+                                <ion-select-option>BMW Menlyn</ion-select-option>
+                                <ion-select-option>BMW Sandton</ion-select-option>
+                                <ion-select-option>BMW Boksburg</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+            Dealership is required.
+          </span>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Team Type</b></ion-label>
+                            <ion-select formControlName="teamType" type="text" required>
+                                <ion-select-option>Service</ion-select-option>
+                                <ion-select-option>Cleaning</ion-select-option>
+                                <ion-select-option>After Sales</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+          Team Type is required.
+        </span>
+                    </ion-col>
+                </ion-row>
+                <br/>
+                <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col>
+                        <ion-button [routerLink]="['/tabs/create/service']" expand="block" style="--background: #E02828;">Back</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button type="submit" expand="block">Create</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
 </ion-content>

@@ -346,6 +346,26 @@ const routes: Routes = [
     path: 'view-service-item',
     loadChildren: () => import('./view-service-item/view-service-item.module').then( m => m.ViewServiceItemPageModule)
   },
+  {
+    path: 'assign-vehicle-part',
+    loadChildren: () => import('./assign-vehicle-part/assign-vehicle-part.module').then( m => m.AssignVehiclePartPageModule)
+  },
+  {
+    path: 'edit-vehicle-part',
+    loadChildren: () => import('./edit-vehicle-part/edit-vehicle-part.module').then( m => m.EditVehiclePartPageModule)
+  },
+  {
+    path: 'search-vehicle-part',
+    loadChildren: () => import('./search-vehicle-part/search-vehicle-part.module').then( m => m.SearchVehiclePartPageModule)
+  },
+  {
+    path: 'view-vehicle-part',
+    loadChildren: () => import('./view-vehicle-part/view-vehicle-part.module').then( m => m.ViewVehiclePartPageModule)
+  },
+  {
+    path: 'perform-postcheck',
+    loadChildren: () => import('./perform-postcheck/perform-postcheck.module').then( m => m.PerformPostcheckPageModule)
+  },
 
 
 ];
