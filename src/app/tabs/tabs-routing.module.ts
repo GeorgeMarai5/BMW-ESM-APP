@@ -282,10 +282,6 @@ const routes: Routes = [
         loadChildren: () => import('../view-service-progress/view-service-progress.module').then( m => m.ViewServiceProgressPageModule)
       },
       {
-        path: 'checkin-vehicle',
-        loadChildren: () => import('../checkin-vehicle/checkin-vehicle.module').then( m => m.CheckinVehiclePageModule)
-      },
-      {
         path: 'capture/initial-inspection-details',
         loadChildren: () => import('../capture-initial-inspection-details/capture-initial-inspection-details.module').then( m => m.CaptureInitialInspectionDetailsPageModule)
       },
