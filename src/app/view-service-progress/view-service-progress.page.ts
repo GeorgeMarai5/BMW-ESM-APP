@@ -34,16 +34,7 @@ export class ViewServiceProgressPage implements OnInit {
      }
 
   ngOnInit() {
-    this.service.getVehicle(this.data).valueChanges()
-    .subscribe(res =>{
-    console.log(res)
-    this.viewVehicleForm.setValue({
-      vehicleModel: res['VehicleModel'], 
-      Registration: res['Registration'],
-      VINNum: res['VIN_Number'], 
-      warrantyPlan: res['Warranty']
-    })
-    });
+    
   }
 
   submitForm(){

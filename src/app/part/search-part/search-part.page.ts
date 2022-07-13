@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Vehicle } from 'src/app/models/Vehicle';
+import { Part } from 'src/app/models/Part';
 import { AuthService } from 'src/app/services/auth.service';
-import { VehicleService } from 'src/app/services/vehicle.service';
+import { PartInfoService } from 'src/app/services/part-info.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
@@ -13,64 +13,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-part.page.scss'],
 })
 export class SearchPartPage implements OnInit {
-  vehicles: Vehicle;
-  vehicleList = [];
-  vehicleForm: FormGroup;
+  parts: Part;
+  partList = [];
+  partForm: FormGroup;
   searchTerm: string;
 
-  constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, 
+  constructor(public authService: AuthService, private service: PartInfoService, public fb: FormBuilder, 
     private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 
-      this.vehicles = {} as Vehicle;
+      this.parts = {} as Part;
     }
 
   ngOnInit() {
-    this.vehicleForm = this.fb.group({
-      FleetName: ['', [Validators.required]],
-      FleetLocation: ['', [Validators.required]],
-      FleetID: ['', [Validators.required]],
-      FleetVehicleQty: ['', [Validators.required]],
+    this.partForm = this.fb.group({
+      PartID: ['', [Validators.required]],
+      PartName: ['', [Validators.required]],
+      Description: ['', [Validators.required]]
   });
 
-  this.service.getVehicles().subscribe(data => {
-    this.vehicleList = data.map(e => {
+  this.service.getParts().subscribe(data => {
+    this.partList = data.map(e => {
       let yearCode: string;
       yearCode = e.payload.doc.data()['VIN_Number'];
 
       return {
         id: e.payload.doc.id,
-        VehicleID: e.payload.doc.data()['VehicleID'],
-        VINNumber: e.payload.doc.data()['VIN_Number'],
-        vehicleModel: e.payload.doc.data()['VehicleModel'],
-        year: this.service.getYear(yearCode.substring(9, 10))
+        PartID: e.payload.doc.data()['PartID'],
+        PartName: e.payload.doc.data()['PartName'],
+        Description: e.payload.doc.data()['Description']
       };
     })
-    console.log(this.vehicleList);
+    console.log(this.partList);
 
   });
-  }
-
-  async removeVehicle(id){
-    const confirmDeleteAlert = await this.alertCtrl.create({
-      header: 'Remove Dealership',
-      message: 'Are you sure you would like to remove this dealership from the system?',
-      buttons: [{
-        text: 'Cancel',
-        role: 'cancel',
-        handler: end => {
-          this.alertCtrl.dismiss();
-        }
-      },
-      {
-        text: 'Remove',
-        role: 'remove',
-        handler: () => {
-          this.service.deleteVehicle(id);
-          alert('Dealership was successfully removed');
-        }
-      }]
-    });
-
-    confirmDeleteAlert.present();
-
   }
 }

@@ -3,8 +3,21 @@
     <ion-row>
       <ion-col>
         <ion-item lines="full">
-          <ion-label position="stacked"><b>VIN Number</b></ion-label>
-          <ion-input formControlName="VINNum" type="text" required></ion-input>
+          <ion-label position="stacked"><b>Select Vehicle Checks to Be Performed</b></ion-label>
+          <ion-checkbox formControlName="VINNum">Safety Systems</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Interior Lights</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Exterior Lights</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Windscreen Washer System And Fluids</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Tyres</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">BMW Mobility System</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Engine Coolant Checks</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Headlamp Exterior Condition And Functionality</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Steering Fluid Reservoir Oil Level</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Brake Lines And Connections</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Under Body Panelling</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Steering System</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Spark Plugs</ion-checkbox>
+          <ion-checkbox formControlName="VINNum">Other</ion-checkbox>
         </ion-item>
         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.required">
           VIN Number is required.
@@ -13,101 +26,6 @@
         errorControl.VINNum.errors?.max">
           VIN Number is invalid.
         </span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="full">
-          <ion-label position="stacked"><b>Vehicle Model</b></ion-label>
-          <ion-select formControlName="vehicleModel" type="text" required>
-            <ion-select-option>X7</ion-select-option>
-            <ion-select-option>8 Series Coupe</ion-select-option>
-            <ion-select-option>3 Series Sedan</ion-select-option>
-            <ion-select-option>3 Series Touring</ion-select-option>
-            <ion-select-option>M8 Covertible</ion-select-option>
-            <ion-select-option>M8 Coupe</ion-select-option>
-            <ion-select-option>7 Series</ion-select-option>
-            <ion-select-option>8 Series Convertible</ion-select-option>
-            <ion-select-option>2 Series Coupe</ion-select-option>
-            <ion-select-option>X4</ion-select-option>
-            <ion-select-option>X3</ion-select-option>
-            <ion-select-option>2 Series Active Tourer</ion-select-option>
-            <ion-select-option>4 Series Gran Coupe</ion-select-option>
-            <ion-select-option>6 Series Gran Turismo</ion-select-option>
-            <ion-select-option>4 Series Coupe</ion-select-option>
-            <ion-select-option>5 Series Touring</ion-select-option>
-            <ion-select-option>5 Series Sedan</ion-select-option>
-            <ion-select-option>4 Series Convertible</ion-select-option>
-            <ion-select-option>i8</ion-select-option>
-            <ion-select-option>M4</ion-select-option>
-            <ion-select-option>M4 Convertible</ion-select-option>
-            <ion-select-option>M5</ion-select-option>
-            <ion-select-option>X6</ion-select-option>
-            <ion-select-option>1 Series</ion-select-option>
-            <ion-select-option>X1</ion-select-option>
-            <ion-select-option>2 Series Gran Tourer</ion-select-option>
-            <ion-select-option>X6 M</ion-select-option>
-            <ion-select-option>M2</ion-select-option>
-            <ion-select-option>X5</ion-select-option>
-            <ion-select-option>M3 Sedan</ion-select-option>
-            <ion-select-option>X5 M</ion-select-option>
-            <ion-select-option>i3</ion-select-option>
-            <ion-select-option>2 Series Convertible</ion-select-option>
-            <ion-select-option>1 Series 3 doors</ion-select-option>
-            <ion-select-option>Z4 Roadster</ion-select-option>
-            <ion-select-option>3 Series Gran Turismo</ion-select-option>
-            <ion-select-option>M4 CS</ion-select-option>
-            <ion-select-option>M8 Gran Coupe</ion-select-option>
-            <ion-select-option>X2</ion-select-option>
-            <ion-select-option>iX3</ion-select-option>
-            <ion-select-option>2 Series Gran Coupe</ion-select-option>
-            <ion-select-option>X4 M</ion-select-option>
-            <ion-select-option>8 Series Gran Coupe</ion-select-option>
-            <ion-select-option>iX</ion-select-option>
-            <ion-select-option>1 Series Sedan</ion-select-option>
-            <ion-select-option>iX M</ion-select-option>
-            <ion-select-option>i4</ion-select-option>
-            <ion-select-option>X3 M</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
-          Vehicle Model is required.
-        </span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="full">
-          <ion-label position="stacked"><b>Registration</b></ion-label>
-          <ion-input formControlName="Registration" type="text" required></ion-input>
-        </ion-item>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.required">
-          Registration is required.
-        </span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="full">
-          <ion-label position="stacked"><b>Warranty Plan</b></ion-label>
-          <ion-select formControlName="warrantyPlan" type="text" required>
-            <ion-select-option>Executive</ion-select-option>
-            <ion-select-option>Prestige</ion-select-option>
-            <ion-select-option>Elegant</ion-select-option>
-            <ion-select-option>Standard</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.required">
-          Warranty Plan is required.
-        </span>
-      </ion-col>
-    </ion-row>
-    <br/>
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col></ion-col>
-      <ion-col>
-        <ion-button type="submit" expand="block">Submit</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

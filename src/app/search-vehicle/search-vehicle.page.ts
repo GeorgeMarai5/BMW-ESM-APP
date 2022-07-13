@@ -55,8 +55,8 @@ export class SearchVehiclePage implements OnInit {
 
   async removeVehicle(id){
     const confirmDeleteAlert = await this.alertCtrl.create({
-      header: 'Remove Dealership',
-      message: 'Are you sure you would like to remove this dealership from the system?',
+      header: 'Remove Vehicle',
+      message: 'Are you sure you would like to remove this vehicle from the system?',
       buttons: [{
         text: 'Cancel',
         role: 'cancel',
@@ -69,12 +69,38 @@ export class SearchVehiclePage implements OnInit {
         role: 'remove',
         handler: () => {
           this.service.deleteVehicle(id);
-          alert('Dealership was successfully removed');
+          alert('Vehicle was successfully removed');
         }
       }]
     });
 
     confirmDeleteAlert.present();
+
+  }
+
+  async checkInVehicle(id){
+    const confirmCheckInAlert = await this.alertCtrl.create({
+      header: 'Check-in Vehicle',
+      message: 'Would you like to check in this vehicle?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: end => {
+          this.alertCtrl.dismiss();
+        }
+      },
+      {
+        text: 'Check-in',
+        role: 'check-in',
+        handler: () => {
+          //Add Check in when backend added
+          //this.service.deleteVehicle(id);
+          alert('Vehicle was successfully checked in');
+        }
+      }]
+    });
+
+    confirmCheckInAlert.present();
 
   }
 }

@@ -3,8 +3,8 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { VehicleService } from 'src/app/services/vehicle.service';
-import { Vehicle } from 'src/app/models/Vehicle';
+import { Part } from 'src/app/models/Part';
+import { PartInfoService } from 'src/app/services/part-info.service';
 
 @Component({
   selector: 'app-view-part-details',
@@ -13,55 +13,32 @@ import { Vehicle } from 'src/app/models/Vehicle';
 })
 export class ViewPartDetailsPage implements OnInit {
 
-  vehicles: Vehicle;
-  vehicle = {};
-  viewVehicleForm: FormGroup;
+  parts: Part;
+  part = {};
+  viewPartDetailsForm: FormGroup;
   isSubmitted = false;
   data: any;
-  maintenanceplanID: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
-    public router: Router, public service: VehicleService) {
+    public router: Router, public service: PartInfoService) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-      this.viewVehicleForm = new FormGroup({
-        VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-        vehicleModel: new FormControl('', Validators.required),
-        Registration: new FormControl('', Validators.required),
-        warrantyPlan: new FormControl('', Validators.required)
+      this.viewPartDetailsForm = new FormGroup({
+        PartName: new FormControl('', Validators.required),
+        Description: new FormControl('', Validators.required)
       })
      }
 
   ngOnInit() {
-    this.service.getVehicle(this.data).valueChanges()
+    this.service.getPart(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
-    this.viewVehicleForm.setValue({
-      vehicleModel: res['VehicleModel'], 
-      Registration: res['Registration'],
-      VINNum: res['VIN_Number'], 
-      warrantyPlan: res['Warranty']
+    this.viewPartDetailsForm.setValue({
+      PartName: res['partName'], 
+      Description: res['Description']
     })
     });
-  }
-
-  submitForm(){
-    this.service.getVehicle(this.data).valueChanges()
-    .subscribe(res =>{
-      this.maintenanceplanID = res['MaintenanceID'];
-    });
-    console.log(this.maintenanceplanID)
-    if(this.maintenanceplanID != null || this.maintenanceplanID != undefined){
-      this.router.navigate(['/tabs/view/maintenanceplan', '7jk7GWQB5eC6SdZuzU6P']);
-    }
-    else{
-      this.router.navigate(['/tabs/search/maintenanceplan']);
-    }
-  }
-
-  navToUpdate() {
-    this.router.navigate(['tabs/edit/vehicle', this.data]);
   }
 }
 
