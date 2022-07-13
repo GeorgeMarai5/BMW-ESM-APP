@@ -1,0 +1,86 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="contents">
+        <ion-title>
+            <h1>Assign Part</h1>
+        </ion-title>
+
+        <form [formGroup]="assignPartForm" (ngSubmit)="submitForm()" novalidate>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Part Name</b></ion-label>
+                            <ion-input formControlName="partName" type="text" required></ion-input>
+                        </ion-item>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
+          Part Name is required.
+        </span>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Part Type</b></ion-label>
+                            <ion-select formControlName="partType" type="text" required>
+                                <ion-select-option>Brakes</ion-select-option>
+                                <ion-select-option>Engine</ion-select-option>
+                                <ion-select-option>Spark Plugs</ion-select-option>
+                                <ion-select-option>Clutch</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+          Part Type is required.
+        </span>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Description</b></ion-label>
+                            <ion-input formControlName="Description" type="text" required></ion-input>
+                        </ion-item>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+        Description is required.
+      </span>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Part In Stock</b></ion-label>
+                            <ion-input formControlName="partStock" type="text" required></ion-input>
+                        </ion-item>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+      Part Availability is required.
+    </span>
+                    </ion-col>
+                </ion-row>
+                <br/>
+                <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col>
+                        <ion-button [routerLink]="['/tabs/create/service']" expand="block" style="--background: #E02828;">Back</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button type="submit" expand="block">Assign Part</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+</ion-content>

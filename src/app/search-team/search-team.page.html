@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-margin">
+    <div class="contents">
+        <h1>Search Team</h1>
+        <ion-searchbar class="isb" placeholder="Search Team..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
+        <ion-grid class="ion-margin" class="ion-grid-padding">
+            <ion-row>
+                <ion-col>Team ID</ion-col>
+                <ion-col>Team Name</ion-col>
+                <ion-col>Dealership</ion-col>
+                <ion-col>Team Type</ion-col>
+                <ion-col></ion-col>
+            </ion-row>
+            <ion-item-divider></ion-item-divider>
+            <ion-row *ngFor="let item of teamList | filter: searchTerm">
+                <ion-col>
+                    <ion-label> {{item.TeamID}}</ion-label>
+                </ion-col>
+                <ion-col>
+                    <ion-label> {{item.teamName}}</ion-label>
+                </ion-col>
+                <ion-col>
+                    <ion-label> {{item.Dealership}}</ion-label>
+                </ion-col>
+                <ion-col>
+                    <ion-label> {{item.teamType}}</ion-label>
+                </ion-col>
+                <ion-col>
+                    <ion-col>
+                        <ion-button class="light-Btn" [routerLink]="['/tabs/view/team', this.item.id]">View</ion-button>
+                        <ion-button class="red-Btn" (click)="removeTeam(this.item.id)">Remove</ion-button>
+                    </ion-col>
+                </ion-col>
+            </ion-row>
+            <ion-item-divider></ion-item-divider>
+        </ion-grid>
+    </div>
+</ion-content>

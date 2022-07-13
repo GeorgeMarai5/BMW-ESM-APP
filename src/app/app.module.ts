@@ -16,9 +16,13 @@ import { environment } from '../environments/environment';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import { AssignVehiclePartPipe } from './assign-vehicle-part.pipe';
+import { EditVehiclePartPipe } from './edit-vehicle-part.pipe';
+import { SearchVehiclePartPipe } from './search-vehicle-part.pipe';
+import { ViewVehiclePartPipe } from './view-vehicle-part.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AssignVehiclePartPipe, EditVehiclePartPipe, SearchVehiclePartPipe, ViewVehiclePartPipe],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AngularFireModule.initializeApp(environment.firebaseConfig), 
     AngularFireAuthModule,

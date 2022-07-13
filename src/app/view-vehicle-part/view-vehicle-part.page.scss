@@ -1,6 +1,6 @@
 .contents {
     width: 40%;
-    margin-top: 5vh;
+    margin-top: 2vh;
     margin-left: 3vw;
 }
 
@@ -17,6 +17,10 @@ form {
     --background: #1976D2;
 }
 
+.green-Btn {
+    --background: #5CB85C;
+}
+
 ion-label {
     font-size: large;
 }
@@ -26,4 +30,8 @@ span {
     margin-top: 2vh;
     font-size: small;
     margin-left: 1.4vw;
+}
+
+.select-disabled {
+    --text-color: black;
 }

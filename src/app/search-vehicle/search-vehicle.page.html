@@ -1,16 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/tabs/view/client']">
-        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
-      </ion-button>  
-      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
-        Log Out
-      </ion-button>  
-    </ion-buttons>
-    
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-margin">
