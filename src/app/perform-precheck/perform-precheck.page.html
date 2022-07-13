@@ -1,32 +1,96 @@
-<form [formGroup]="addVehicleForm" (ngSubmit)="submitForm()" novalidate>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="full">
-          <ion-label position="stacked"><b>Select Vehicle Checks to Be Performed</b></ion-label>
-          <ion-checkbox formControlName="VINNum">Safety Systems</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Interior Lights</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Exterior Lights</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Windscreen Washer System And Fluids</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Tyres</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">BMW Mobility System</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Engine Coolant Checks</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Headlamp Exterior Condition And Functionality</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Steering Fluid Reservoir Oil Level</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Brake Lines And Connections</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Under Body Panelling</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Steering System</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Spark Plugs</ion-checkbox>
-          <ion-checkbox formControlName="VINNum">Other</ion-checkbox>
-        </ion-item>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.required">
-          VIN Number is required.
-        </span>
-        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.min || 
-        errorControl.VINNum.errors?.max">
-          VIN Number is invalid.
-        </span>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</form>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/view/employee']">
+        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+      </ion-button>  
+      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        Log Out
+      </ion-button>  
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-margin">
+  <div class="contents">
+    <h1>Precheck</h1>
+    <form>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label><b>Select Vehicle Checks to Be Performed</b></ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Safety Systems</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Interior Lights</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Exterior Lights</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Windscreen Washer System And Fluids</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Tyres</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">BMW Mobility System</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Engine Coolant Checks</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Headlamp Exterior Condition And Functionality</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Steering Fluid Reservoir Oil Level</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Brake Lines And Connections</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Under Body Panelling</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Steering System</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Spark Plugs</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="label">Other</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <br/>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+          <ion-col>
+            <ion-button type="submit" expand="block">Proceed</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content> 

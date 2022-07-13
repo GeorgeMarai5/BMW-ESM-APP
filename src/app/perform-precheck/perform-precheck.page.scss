@@ -1,12 +1,13 @@
 .contents{
     width: 40%;
     margin-top: 5vh;
-    margin-left: 3vw;
+    margin-left: 2.8vw;
   }
   
   h1{
     color: #002850;
     font-size: xx-large;
+    margin-left: 1.5rem;
   }
   
   form{
@@ -17,8 +18,9 @@
     --background: #1976D2;
   }
   
-  ion-label{
-    font-size: large;
+  .label{
+    font-size: 0.8em;
+    margin-left: 2rem;
   }
   
   span{
