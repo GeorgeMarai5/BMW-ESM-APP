@@ -25,7 +25,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Part Name</b></ion-label>
-                            <ion-input formControlName="partName" type="text" required></ion-input>
+                            <ion-input formControlName="partName" type="text" required readonly></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
         Part Name is required.
@@ -52,7 +52,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Description</b></ion-label>
-                            <ion-input formControlName="Description" type="text" required></ion-input>
+                            <ion-input formControlName="Description" type="text" required readonly></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
       Description is required.
@@ -63,7 +63,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Part In Stock</b></ion-label>
-                            <ion-input formControlName="partStock" type="text" required></ion-input>
+                            <ion-input formControlName="partStock" type="text" required readonly></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
     Part Availability is required.

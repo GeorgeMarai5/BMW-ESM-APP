@@ -25,7 +25,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Name</b></ion-label>
-                            <ion-input formControlName="employeeName" type="text" required></ion-input>
+                            <ion-input formControlName="employeeName" type="text" required readonly></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
                       Employee Name is required.
@@ -36,7 +36,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Surname</b></ion-label>
-                            <ion-input formControlName="employeeSurname" type="text" required></ion-input>
+                            <ion-input formControlName="employeeSurname" type="text" required readonly></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
                       Employee Surname is required.
@@ -47,7 +47,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Phone Number</b></ion-label>
-                            <ion-input formControlName="phoneNumber" type="text" required></ion-input>
+                            <ion-input formControlName="phoneNumber" type="text" required readonly></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
                       Phone Number is required.
@@ -58,7 +58,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Email</b></ion-label>
-                            <ion-input formControlName="emailAddress" type="text" required></ion-input>
+                            <ion-input formControlName="emailAddress" type="text" required readonly></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
                       Email Address is required.
