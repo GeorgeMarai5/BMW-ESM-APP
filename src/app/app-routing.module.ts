@@ -350,7 +350,11 @@ const routes: Routes = [
   {
     path: 'perform-postcheck',
     loadChildren: () => import('./perform-postcheck/perform-postcheck.module').then( m => m.PerformPostcheckPageModule)
+  },  {
+    path: 'view-service-invoice',
+    loadChildren: () => import('./view-service-invoice/view-service-invoice.module').then( m => m.ViewServiceInvoicePageModule)
   },
+
 
 
 ];
