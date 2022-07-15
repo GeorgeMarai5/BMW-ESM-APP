@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder,FormGroup } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-quote',
   templateUrl: './create-quote.page.html',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateQuotePage implements OnInit {
 
-  constructor() { }
+QuoteForm: FormGroup;
+
+  constructor(public authService: AuthService,public router: Router) { }
 
   ngOnInit() {
   }
