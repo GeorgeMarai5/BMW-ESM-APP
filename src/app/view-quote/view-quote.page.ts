@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { FormBuilder,FormGroup, FormControl, Validators, Form } from '@angular/forms';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-view-quote',
@@ -7,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewQuotePage implements OnInit {
 
-  constructor() { }
+  QuoteForm: FormGroup;
+
+
+
+
+  constructor(public authService: AuthService,public router: Router) { }
 
   ngOnInit() {
   }

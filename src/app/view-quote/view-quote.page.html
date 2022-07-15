@@ -1,9 +1,68 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>view-quote</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/view/employee']">
+        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+      </ion-button>  
+      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        Log Out
+      </ion-button>  
+    </ion-buttons>
 
-<ion-content>
 
-</ion-content>
+    <ion-content>
+      <div class="contents">
+        <ion-title><h1>View Quote</h1></ion-title>
+      <br>
+        <form [formGroup]="QuoteForm" novalidate>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="full">
+                  <ion-label position="stacked"><b>Client Name</b></ion-label>
+                  <ion-input formControlName="ClientName" type="text" required readonly></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="full">
+                  <ion-label position="stacked"><b>Date</b></ion-label>
+                  <ion-input formControlName="Date" type="text" required readonly></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="full">
+                  <ion-label position="stacked"><b>Description</b></ion-label>
+                  <ion-input formControlName="Description" type="text" required readonly></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="full">
+                  <ion-label position="stacked"><b>Accepted</b></ion-label>
+                  <ion-input formControlName="Accepted" type="text" required readonly></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            
+            <ion-row>
+            <ion-col>
+                <ion-button type="submit" class="main-Btn" expand="block">Back</ion-button>
+                </ion-col>
+                <ion-col>
+                <ion-button class="light-Btn" expand="block">View Service Note</ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button type="submit" class="red-Btn" expand="block" [routerLink]="['/tabs/update/quote']">Update Quote</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+      </div>
+    </ion-content>
+    
