@@ -1,29 +1,50 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+    <ion-img
+      style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw"
+      src="assets/icon/bmw-logo-2020-grey.png"
+    ></ion-img>
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/tabs/view/employee']">
-        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
-      </ion-button>  
-      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        <ion-icon
+          slot="icon-only"
+          name="person"
+          style="color: #002850"
+        ></ion-icon>
+      </ion-button>
+      <ion-button
+        (click)="authService.SignOut()"
+        fill="solid"
+        style="
+          --background: #002850;
+          --border-radius: 3rem;
+          font-size: 0.7rem;
+          margin-right: 1.5rem;
+          width: 12vw;
+        "
+      >
         Log Out
-      </ion-button>  
+      </ion-button>
     </ion-buttons>
-    
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="contents">
     <ion-title><h1>Service Details</h1></ion-title>
-  <br>
+    <br />
     <form [formGroup]="serviceForm" novalidate>
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Service ID</b></ion-label>
-              <ion-input formControlName="ServiceID" type="text" required readonly></ion-input>
+              <ion-input
+                formControlName="ServiceID"
+                type="text"
+                required
+                readonly
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -31,7 +52,12 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Dealership Name</b></ion-label>
-              <ion-input formControlName="DealershipName" type="text" required readonly></ion-input>
+              <ion-input
+                formControlName="DealershipName"
+                type="text"
+                required
+                readonly
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -39,7 +65,12 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Team</b></ion-label>
-              <ion-input formControlName="TeamName" type="text" required readonly></ion-input>
+              <ion-input
+                formControlName="TeamName"
+                type="text"
+                required
+                readonly
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -47,7 +78,12 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Service Type</b></ion-label>
-              <ion-input formControlName="ServiceType" type="text" required readonly></ion-input>
+              <ion-input
+                formControlName="ServiceType"
+                type="text"
+                required
+                readonly
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -55,19 +91,37 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Service Status</b></ion-label>
-              <ion-input formControlName="ServiceStatus" type="text" required readonly></ion-input>
+              <ion-input
+                formControlName="ServiceStatus"
+                type="text"
+                required
+                readonly
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
-        <ion-col>
-            <ion-button type="submit" class="main-Btn" expand="block">Back</ion-button>
-            </ion-col>
-            <ion-col>
-            <ion-button class="light-Btn" expand="block">Inspection Details</ion-button>
+          <ion-col>
+            <ion-button
+              type="submit"
+              class="main-Btn"
+              expand="block"
+              [routerLink]="['/tabs/search/service']"
+              >Back</ion-button
+            >
           </ion-col>
           <ion-col>
-            <ion-button type="submit" class="red-Btn" expand="block" [routerLink]="['/tabs/search/service']">Cancel</ion-button>
+            <ion-button class="light-Btn" expand="block"
+              >Inspection Details</ion-button
+            >
+          </ion-col>
+          <ion-col>
+            <ion-button
+              class="red-Btn"
+              expand="block"
+              (click)="concludeServiceAlert()"
+              >Conclude</ion-button
+            >
           </ion-col>
         </ion-row>
       </ion-grid>
