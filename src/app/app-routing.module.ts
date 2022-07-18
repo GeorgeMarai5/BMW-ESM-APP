@@ -354,6 +354,10 @@ const routes: Routes = [
     path: 'view-service-invoice',
     loadChildren: () => import('./view-service-invoice/view-service-invoice.module').then( m => m.ViewServiceInvoicePageModule)
   },
+  {
+    path: 'search-service-note',
+    loadChildren: () => import('./search-service-note/search-service-note.module').then( m => m.SearchServiceNotePageModule)
+  },
 
 
 
