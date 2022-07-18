@@ -358,6 +358,10 @@ const routes: Routes = [
     path: 'search-service-note',
     loadChildren: () => import('./search-service-note/search-service-note.module').then( m => m.SearchServiceNotePageModule)
   },
+  {
+    path: 'create-service-note',
+    loadChildren: () => import('./create-service-note/create-service-note.module').then( m => m.CreateServiceNotePageModule)
+  },
 
 
 
