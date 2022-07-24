@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace BMW_ESM_APP_API.Models.Entities
-{
+namespace BMW_ESM_APP_API.Models
+  { 
     public class User_Type
     {
         [Key]
