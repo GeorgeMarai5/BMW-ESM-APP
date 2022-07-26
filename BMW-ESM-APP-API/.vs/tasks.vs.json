@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-ViewModels",
+      "appliesTo": "BMW-ESM-APP-API/ViewModels/",
+      "type": "launch"
+    }
+  ]
+}
