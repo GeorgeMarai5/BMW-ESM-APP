@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marai\\OneDrive\\Desktop\\BMW-ESM-APP\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\BMW-ESM-APP-API.csproj": {}
+    "C:\\Users\\jordananthonyramoo\\GitHub\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\BMW-ESM-APP-API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marai\\OneDrive\\Desktop\\BMW-ESM-APP\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\BMW-ESM-APP-API.csproj": {
+    "C:\\Users\\jordananthonyramoo\\GitHub\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\BMW-ESM-APP-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marai\\OneDrive\\Desktop\\BMW-ESM-APP\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\BMW-ESM-APP-API.csproj",
+        "projectUniqueName": "C:\\Users\\jordananthonyramoo\\GitHub\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\BMW-ESM-APP-API.csproj",
         "projectName": "BMW-ESM-APP-API",
-        "projectPath": "C:\\Users\\marai\\OneDrive\\Desktop\\BMW-ESM-APP\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\BMW-ESM-APP-API.csproj",
-        "packagesPath": "C:\\Users\\marai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marai\\OneDrive\\Desktop\\BMW-ESM-APP\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\obj\\",
+        "projectPath": "C:\\Users\\jordananthonyramoo\\GitHub\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\BMW-ESM-APP-API.csproj",
+        "packagesPath": "C:\\Users\\jordananthonyramoo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jordananthonyramoo\\GitHub\\BMW-ESM-APP\\BMW-ESM-APP-API\\BMW-ESM-APP-API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jordananthonyramoo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
