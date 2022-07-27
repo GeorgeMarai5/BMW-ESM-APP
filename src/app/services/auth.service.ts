@@ -58,7 +58,7 @@ export class AuthService {
         window.alert(error);
       });
   }
-  // Returns true when user is looged in
+  // Returns true when user is logged in
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return user !== null && user.emailVerified !== false ? true : false;
