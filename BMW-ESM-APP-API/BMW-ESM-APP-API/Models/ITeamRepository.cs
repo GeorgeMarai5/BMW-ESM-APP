@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace BMW_ESM_APP_API.Models
 {
-  public interface ITeamCourseRepository
+  public interface ITeamRepository
   {
     void Add<T>(T entity) where T : class;
     void Delete<T>(T entity) where T : class;

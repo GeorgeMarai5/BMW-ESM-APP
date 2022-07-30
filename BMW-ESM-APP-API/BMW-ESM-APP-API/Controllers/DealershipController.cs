@@ -12,24 +12,24 @@ namespace BMW_ESM_APP_API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class TeamController : ControllerBase
+  public class DealershipController : ControllerBase
   {
-    private readonly ITeamRepository _courseRepository;
+    private readonly IDealershipRepository _courseRepository;
     private readonly IMapper _mapper;
 
-    public TeamController(ITeamRepository courseRepository, IMapper mapper)
+    public DealershipController(IDealershipRepository courseRepository, IMapper mapper)
     {
       _courseRepository = courseRepository;
       _mapper = mapper;
     }
 
     [HttpGet]
-    [Route("GetAllTeams")]
-    public async Task<IActionResult> GetAllTeams()
+    [Route("GetAllDealerships")]
+    public async Task<IActionResult> GetAllDealerships()
     {
       try
       {
-        var results = await _courseRepository.GetAllTeamsAsync();
+        var results = await _courseRepository.GetAllDealershipsAsync();
         return Ok(results);
       }
       catch (Exception)
@@ -39,21 +39,19 @@ namespace BMW_ESM_APP_API.Controllers
     }
 
     [HttpPost]
-    [Route("AddTeam")]
-    public async Task<IActionResult> AddTeam(TeamViewModel tvm)
+    [Route("AddDealership")]
+    public async Task<IActionResult> AddDealership(DealershipViewModel dvm)
     {
-      var team = new Team
+      var dealership = new Dealership
       {
-        TeamID = tvm.TeamID,
-        Team_Name = tvm.Team_Name,
-        Quantity = tvm.Quantity,
-        DealershipID = tvm.DealershipID,
-        TeamTypeID = tvm.TeamTypeID
+        DealershipID = dvm.DealershipID,
+        Dealership_Name = dvm.Dealership_Name,
+        AddressID = dvm.AddressID
       };
 
       try
       {
-        _courseRepository.Add(team);
+        _courseRepository.Add(dealership);
         await _courseRepository.SaveChangesAsync();
       }
       catch (Exception)
@@ -66,16 +64,16 @@ namespace BMW_ESM_APP_API.Controllers
 
 
     [HttpDelete]
-    [Route("DeleteTeam")]
-    public async Task<IActionResult> DeleteTeam(string name)
+    [Route("DeleteDealership")]
+    public async Task<IActionResult> DeleteDealership(string name)
     {
       try
       {
-        var existingTeam = await _courseRepository.GetTeamsAsync(name);
+        var existingDealership = await _courseRepository.GetDealershipsAsync(name);
 
-        if (existingTeam == null) return NotFound();
+        if (existingDealership == null) return NotFound();
 
-        _courseRepository.Delete(existingTeam);
+        _courseRepository.Delete(existingDealership);
 
         if (await _courseRepository.SaveChangesAsync())
         {
