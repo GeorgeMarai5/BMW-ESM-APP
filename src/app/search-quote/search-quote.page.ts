@@ -11,6 +11,26 @@ export class SearchQuotePage implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
+
+// Get the ID that was passed with the URL
+//let id = this.activatedRoute.snapshot.paramMap.get('id');
+ 
+// Get the information from the API
+//this.movieService.getDetails(id).subscribe(result => {
+ // this.information = result;
+//});
+}
+
+
+
+
+
+
+
+
+
+
   }
 
-}
+
+

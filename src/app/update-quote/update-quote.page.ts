@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { QuoteService } from '../services/quote.service';
 
 @Component({
   selector: 'app-update-quote',
@@ -11,11 +12,32 @@ import { Router } from '@angular/router';
 export class UpdateQuotePage implements OnInit {
 
 QuoteForm: FormGroup;
-
-  constructor(public authService: AuthService,public router: Router) { }
+id: any;
+  constructor(public authService: AuthService,
+    public router: Router,
+    private quoteservice: QuoteService) { }
   
 
   ngOnInit() {
   }
+
+
+
+  updateQuote(id) {
+    if (!this.QuoteForm.valid) {
+      return false;
+    } else {
+      this.quoteservice.UpdateQuote(this.id)
+        .subscribe((res) => {
+          console.log(res)
+          this.QuoteForm.reset();
+          this.router.navigate(['/home']);
+        })
+    }
+
+
+  }
+
+
 
 }
