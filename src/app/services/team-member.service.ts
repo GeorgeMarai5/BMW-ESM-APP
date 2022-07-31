@@ -8,7 +8,7 @@ import { Team } from '../models/Team';
 })
 export class TeamMemberService {
 
-  apiUrl = 'https://localhost:44381/api/'
+  apiUrl = 'https://localhost:7005/api/'
 
   httpOptions ={
     headers: new HttpHeaders({

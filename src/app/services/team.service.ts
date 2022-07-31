@@ -7,7 +7,7 @@ import { Team } from '../models/Team';
 })
 export class TeamService {
 
-  apiUrl = 'https://localhost:44381/api/'
+  apiUrl = 'https://localhost:7005/api/'
 
   httpOptions ={
     headers: new HttpHeaders({
@@ -19,22 +19,22 @@ export class TeamService {
   }
 
   GetTeam(GetTeam: Team){
-    return this.httpClient.post(`${this.apiUrl}TeamController/GetTeam`,GetTeam, this.httpOptions)
+    return this.httpClient.post(`${this.apiUrl}GetTeam`,GetTeam, this.httpOptions)
   }
 
   DeleteTeam(DeleteTeam: Team){
     return this.httpClient.delete<Team>(`${this.apiUrl}TeamController/DeleteTeam`)
   }
 
-  CreateTeam(CreateTeam: Team){
+  AddTeam(CreateTeam: Team){
 
-    return this.httpClient.post<Team>(`${this.apiUrl}TeamController/CreateTeam`,CreateTeam, this.httpOptions)
+    return this.httpClient.post<Team>(`${this.apiUrl}Team/AddTeam`,CreateTeam, this.httpOptions)
   }
 
   
   UpdateTeam(UpdateTeam: Team){
 
-    return this.httpClient.post<Team>(`${this.apiUrl}TeamController/CreateTeam`,UpdateTeam, this.httpOptions)
+    return this.httpClient.post<Team>(`${this.apiUrl}CreateTeam`,UpdateTeam, this.httpOptions)
   }
 
 }

@@ -32,7 +32,7 @@ export class SearchTeamMemberPage implements OnInit {
       role: new FormControl('', Validators.required)
   });
 
-  this.teamMemberservice.GetTeamMember().subscribe(data => {
+  /*this.teamMemberservice.GetTeamMember().subscribe(data => {
     this.teamMemberList = data.map(e => {
       return {
         id: e.payload.doc.id,
@@ -44,12 +44,12 @@ export class SearchTeamMemberPage implements OnInit {
       };
     })
     console.log(this.teamMemberList);
-  });
+  });*/
   }
 
   async removeTeamMember(id){
     const confirmDeleteAlert = await this.alertCtrl.create({
-      header: 'Remove Team',
+      header: 'Remove Team Member',
       message: 'Are you sure you would like to remove this team from the system?',
       buttons: [{
         text: 'Cancel',
@@ -63,7 +63,7 @@ export class SearchTeamMemberPage implements OnInit {
         role: 'remove',
         handler: () => {
           this.teamMemberservice.DeleteTeamMember(id);
-          alert('Team was successfully removed');
+          alert('Team Member was successfully removed');
         }
       }]
     });

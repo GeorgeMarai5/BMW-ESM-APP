@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { IonicModule } from '@ionic/angular';
 
 import { SearchTeamMemberPageRoutingModule } from './search-team-member-routing.module';
@@ -13,7 +13,9 @@ import { SearchTeamMemberPage } from './search-team-member.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    SearchTeamMemberPageRoutingModule
+    SearchTeamMemberPageRoutingModule,
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
   declarations: [SearchTeamMemberPage]
 })

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular/providers/alert-controller';
 import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
@@ -18,34 +17,33 @@ export class SearchTeamPage implements OnInit {
   teamForm: FormGroup;
   searchTerm: string;
 
-  constructor(public authService: AuthService, private teamservice: TeamService, public fb: FormBuilder,
-     public alertCtrl: AlertController, public router: Router) { 
+  constructor(public authService: AuthService, private teamservice: TeamService, public fb: FormBuilder, public router: Router) { 
       this.teams = {} as Team;
     }
 
   ngOnInit() {
-    this.createTeamForm = this.fb.group({
+    this.teamForm = this.fb.group({
       TeamName: ['', [Validators.required]],
       DealershipName: ['', [Validators.required]],
       TeamType: ['', [Validators.required]]
 
   });
 
-  this.teamservice.GetTeam().subscribe(data => {
+  /*this.teamservice.GetTeam().subscribe(data => {
     this.teamList = data.map(e => {
       return {
         id: e.payload.doc.id,
-        TeamName: e.payload.doc.data()['VehicleID'],
-        DealershipName: e.payload.doc.data()['VIN_Number'],
-        TeamType: e.payload.doc.data()['VehicleModel'],
+        TeamName: e.payload.doc.data()['TeamName'],
+        DealershipName: e.payload.doc.data()['DealershipName'],
+        TeamType: e.payload.doc.data()['TeamType'],
       };
     })
     console.log(this.teamList);
-  });
+  });*/
   }
 
   async removeTeam(id){
-    const confirmDeleteAlert = await this.alertCtrl.create({
+    /*const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Team',
       message: 'Are you sure you would like to remove this team from the system?',
       buttons: [{
@@ -64,6 +62,6 @@ export class SearchTeamPage implements OnInit {
         }
       }]
     });
-    confirmDeleteAlert.present();
+    confirmDeleteAlert.present();*/
   }
 }

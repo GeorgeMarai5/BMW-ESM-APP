@@ -31,7 +31,7 @@ export class ViewTeamPage implements OnInit {
      }
 
   ngOnInit() {
-    this.teamservice.GetTeam(this.data).valueChanges()
+    /*this.teamservice.GetTeam(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.viewTeamForm.setValue({
@@ -39,10 +39,10 @@ export class ViewTeamPage implements OnInit {
       DealershipName: res['DealershipName'],
       TeamType: res['TeamType']
     })
-    });
+    });*/
   }
 
   navToUpdate() {
-    this.router.navigate(['tabs/edit/vehicle', this.data]);
+    this.router.navigate(['tabs/edit/team', this.data]);
   }
 }

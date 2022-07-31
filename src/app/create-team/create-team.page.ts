@@ -39,7 +39,7 @@ export class CreateTeamPage implements OnInit {
         TeamType: this.createTeamForm.get('TeamType').value,
       }
 
-      this.teamservice.CreateTeam(this.createTeamForm.value).subscribe(data => {
+      this.teamservice.AddTeam(this.createTeamForm.value).subscribe(data => {
         this.createTeamForm.reset();
         alert("Team successfully Created")
         console.log("successfully created")

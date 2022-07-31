@@ -31,7 +31,7 @@ export class EditTeamPage implements OnInit {
   }
 
   submitForm(){
-    this.isSubmitted = true;
+    /*this.isSubmitted = true;
     if(!this.editTeamForm.valid){
       return false;
     }
@@ -44,11 +44,11 @@ export class EditTeamPage implements OnInit {
         this.teamservice.UpdateTeam(this.data, team)
         alert("Team was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/vehicle', this.data]);
+      this.router.navigate(['/tabs/view/team', this.data]);*/
   }
 
   ngOnInit() {
-    this.teamservice.GetTeam(this.data).valueChanges()
+    /*this.teamservice.GetTeam(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.editTeamForm.setValue({
@@ -56,7 +56,7 @@ export class EditTeamPage implements OnInit {
       DealershipName: res['DealershipName'], 
       TeamType: res['TeamType']
     })
-    });
+    });*/
   }
 
   get errorControl() {

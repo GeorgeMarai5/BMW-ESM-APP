@@ -25,7 +25,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Name</b></ion-label>
-                            <ion-input formControlName="teamName" type="text" required></ion-input>
+                            <ion-input formControlName="TeamName" type="text" required></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
             Team Name is required.
@@ -36,7 +36,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Dealership</b></ion-label>
-                            <ion-select formControlName="dealershipName" type="text" required>
+                            <ion-select formControlName="DealershipName" type="text" required>
                                 <ion-select-option>BMW Hatfield</ion-select-option>
                                 <ion-select-option>BMW Menlyn</ion-select-option>
                                 <ion-select-option>BMW Sandton</ion-select-option>
@@ -52,7 +52,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Type</b></ion-label>
-                            <ion-select formControlName="teamType" type="text" required>
+                            <ion-select formControlName="TeamType" type="text" required>
                                 <ion-select-option>Service</ion-select-option>
                                 <ion-select-option>Cleaning</ion-select-option>
                                 <ion-select-option>After Sales</ion-select-option>

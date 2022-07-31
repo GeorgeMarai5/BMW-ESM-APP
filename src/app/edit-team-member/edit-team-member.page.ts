@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { employee } from '../models/Employee';
-import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
 
@@ -11,7 +10,7 @@ import { TeamMemberService } from '../services/team-member.service';
   templateUrl: './edit-team-member.page.html',
   styleUrls: ['./edit-team-member.page.scss'],
 })
-export class EditTeamPage implements OnInit {
+export class EditTeamMemberPage implements OnInit {
 
   teamMembers: employee;
   teamMember = {};
@@ -34,12 +33,12 @@ export class EditTeamPage implements OnInit {
   }
 
   submitForm(){
-    this.isSubmitted = true;
+    /*this.isSubmitted = true;
     if(!this.teamMemberservice.valid){
       return false;
     }
     else{
-        const team = {
+        const teamMember = {
           employeeName: this.teamMemberservice.get('employeeName').value,
           employeeSurname: this.teamMemberservice.get('employeeSurname').value,
           phoneNumber: this.teamMemberservice.get('phoneNumber').value,
@@ -47,21 +46,23 @@ export class EditTeamPage implements OnInit {
           role: this.teamMemberservice.get('role').value,
         }
         this.teamMemberservice.UpdateTeamMember(this.data, teamMember)
-        alert("Team was successfully updated.");
+        alert("Team member was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/vehicle', this.data]);
+      this.router.navigate(['/tabs/view/team-member', this.data]);*/
   }
 
   ngOnInit() {
-    this.teamMemberservice.GetTeamMember(this.data).valueChanges()
+    /*this.teamMemberservice.GetTeamMember(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.teamMemberservice.setValue({
-      TeamName: res['TeamName'],
-      DealershipName: res['DealershipName'], 
-      TeamType: res['TeamType']
+      employeeName: res['employeeName'],
+      employeeSurname: res['employeeSurname'], 
+      phoneNumber: res['phoneNumber'],
+      emailAddress: res['emailAddress'], 
+      role: res['role'],
     })
-    });
+    });*/
   }
 
   get errorControl() {
