@@ -40,8 +40,8 @@ export class QuoteService {
     this.firestore.doc(this.collectionName + '/' + FleetID).update(Fleet);
   }
 
-  updateQuote(id, fleets) {
-    this.firestore.doc(this.collectionName + '/' + id).update(fleets);
+  updateQuote(id, Quote) {
+    this.firestore.doc(this.collectionName + '/' + id).update(Quote);
   }
 
   deleteQuote(id: string) {
