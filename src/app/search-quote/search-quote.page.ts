@@ -16,7 +16,7 @@ export class SearchQuotePage implements OnInit {
 //let id = this.activatedRoute.snapshot.paramMap.get('id');
  
 // Get the information from the API
-//this.movieService.getDetails(id).subscribe(result => {
+//this.QuoteService.getDetails(id).subscribe(result => {
  // this.information = result;
 //});
 }

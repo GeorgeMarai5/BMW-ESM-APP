@@ -350,7 +350,8 @@ const routes: Routes = [
   {
     path: 'perform-postcheck',
     loadChildren: () => import('./perform-postcheck/perform-postcheck.module').then( m => m.PerformPostcheckPageModule)
-  },  {
+  },
+  {
     path: 'view-service-invoice',
     loadChildren: () => import('./view-service-invoice/view-service-invoice.module').then( m => m.ViewServiceInvoicePageModule)
   },
@@ -362,7 +363,10 @@ const routes: Routes = [
     path: 'create-service-note',
     loadChildren: () => import('./create-service-note/create-service-note.module').then( m => m.CreateServiceNotePageModule)
   },
-
+  {
+    path: 'create/quote',
+    loadChildren: () => import('./create-quote/create-quote.module').then( m => m.CreateQuotePageModule)
+  },
 
 
 ];

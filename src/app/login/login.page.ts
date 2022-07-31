@@ -3,11 +3,15 @@ import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
+
+
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
@@ -21,7 +25,10 @@ export class LoginPage implements OnInit {
     });
   }
 
+
   ngOnInit() {
+
+
   }
 
   logIn(email, password, accountType) {
@@ -38,9 +45,11 @@ export class LoginPage implements OnInit {
           window.alert('Email is not verified')
           return false;
         }
+
       }).catch((error) => {
         window.alert(error.message)
       })
+
   }
 
   get errorControl() {
