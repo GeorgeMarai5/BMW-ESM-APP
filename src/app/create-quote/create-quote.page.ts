@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,NgZone} from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,11 @@ export class CreateQuotePage implements OnInit {
 
 QuoteForm: FormGroup;
 
-  constructor(public authService: AuthService,public fb: FormBuilder,public router: Router, private quoteservice: QuoteService) { }
+  constructor(public authService: AuthService,
+    public fb: FormBuilder,
+    public router: Router, 
+    private quoteservice: QuoteService,
+    private zone: NgZone) { }
 
   ngOnInit() {
 
@@ -30,20 +34,49 @@ QuoteForm: FormGroup;
 
 
   CreateQuote(){
-   this.quoteservice.CreateQuote(this.QuoteForm.value).subscribe(data => {
-
-
-    console.log(this.QuoteForm.value);
-    this.quoteservice.CreateQuote(this.QuoteForm.value).subscribe(data => {
-      this.QuoteForm.reset();
-      alert("Quote successfully Created")
-      console.log("successfully created")
-    })
+  
+    const quote = {
+      ClientName: this.QuoteForm.get('ClientName').value,
+      Date: this.QuoteForm.get('Date').value,
+      Description: this.QuoteForm.get('Description').value,
+      Accepted: this.QuoteForm.get('Accepted').value
       
-  }
-   )
+}
+this.quoteservice.CreateQuote(this.QuoteForm.value).subscribe((res) => {
+  this.zone.run(() => {
+    console.log(res)
+    this.QuoteForm.reset();
+})
 
-   }
+}
+)
+    console.log(quote);
+
+this.quoteservice.CreateQuote(quote)
+
+   // this.router.navigate(['tabs/tab3']);
+  }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
 
 /*
 
@@ -61,6 +94,47 @@ QuoteForm: FormGroup;
     }
 
 
+
+ const quote = {
+        ClientName: this.QuoteForm.get('ClientName').value,
+        Date: this.QuoteForm.get('Date').value,
+        Description: this.QuoteForm.get('Description').value
+        Accepted: this.QuoteForm.get('Accepted').value
+ }
+    this.quoteservice.CreateQuote(quote).subscribe((res: any) => {
+      this.orderAlert();
+      localStorage.push(quote);
+     // this.router.navigate(['tabs/tab3']);
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ console.log(this.QuoteForm.value);
+    this.quoteservice.CreateQuote(this.QuoteForm.value).subscribe(data => {
+      this.QuoteForm.reset();
+      alert("Quote successfully Created")
+      console.log("successfully created")
+    })
+      
+  
+
+
+
+
+
+
 */
 
 
@@ -75,7 +149,7 @@ QuoteForm: FormGroup;
   
   
   
-  }
+  
    
 
 

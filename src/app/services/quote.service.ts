@@ -11,7 +11,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class QuoteService {
 
-  apiUrl = 'https://localhost:44381/api/'
+  apiUrl = 'https://localhost:7005/api/'
 
   httpOptions ={
     headers: new HttpHeaders({
@@ -30,12 +30,23 @@ export class QuoteService {
     return this.httpClient.delete<Quote>(`${this.apiUrl}QuoteController/DeleteQuote`)
   }
 
-  CreateQuote(CreateQuote: Quote){
+  CreateQuote(AddQuote: Quote){
 
-    return this.httpClient.post<Quote>(`${this.apiUrl}QuoteController/CreateQuote`,CreateQuote, this.httpOptions)
+    return this.httpClient.post<Quote>(`${this.apiUrl}Quote/AddQuote`,AddQuote)
   }
 
+
+  addquote(quote: Quote): Observable<any> {
+    return this.httpClient.post<Quote>('http://localhost:7005/api/Quote/AddQuote', quote)
   
+
+  }
+
+
+
+
+
+
   UpdateQuote(UpdateQuote: Quote){
 
     return this.httpClient.post<Quote>(`${this.apiUrl}QuoteController/CreateQuote`,UpdateQuote, this.httpOptions)

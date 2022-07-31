@@ -25,7 +25,14 @@ export class ViewQuotePage implements OnInit {
    }
 
   ngOnInit() {
+
+    
+
+    
   }
+
+
+  
 
 
 
