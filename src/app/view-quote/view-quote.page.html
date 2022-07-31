@@ -9,19 +9,22 @@
         Log Out
       </ion-button>  
     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 
 
     <ion-content>
       <div class="contents">
         <ion-title><h1>View Quote</h1></ion-title>
       <br>
-        <form [formGroup]="QuoteForm" novalidate>
+        <form [formGroup]="QuoteForm" *ngFor="let item of QuoteList" >
           <ion-grid>
             <ion-row>
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked"><b>Client Name</b></ion-label>
-                  <ion-input formControlName="ClientName" type="text" required readonly></ion-input>
+                  <ion-input >{{item.ClientName}}</ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -29,7 +32,7 @@
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked"><b>Date</b></ion-label>
-                  <ion-input formControlName="Date" type="text" required readonly></ion-input>
+                  <ion-input readonly>{{item.Date}}</ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -37,7 +40,7 @@
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked"><b>Description</b></ion-label>
-                  <ion-input formControlName="Description" type="text" required readonly></ion-input>
+                  <ion-input readonly>{{item.Description}}</ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -45,7 +48,7 @@
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked"><b>Accepted</b></ion-label>
-                  <ion-input formControlName="Accepted" type="text" required readonly></ion-input>
+                  <ion-input readonly>{{item.Accepted}}</ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>

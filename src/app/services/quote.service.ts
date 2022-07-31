@@ -1,9 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  Observable , of} from 'rxjs';
-import { Quote } from '../models/Quote';
-import { catchError, tap } from 'rxjs/operators';
-
+import { AngularFirestore } from "@angular/fire/compat/firestore";
+import {
+  AngularFireDatabase,
+  AngularFireList,
+  AngularFireObject
+} from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -11,60 +13,49 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class QuoteService {
 
-  apiUrl = 'https://localhost:7005/api/'
+  collectionName = 'Quote';
+  QuoteRef: AngularFireObject<any>;
 
-  httpOptions ={
-    headers: new HttpHeaders({
-      ContentType: 'application/json'
-    })
+  constructor(private db: AngularFireDatabase,
+    private firestore: AngularFirestore
+  ) { }
+
+  create_Quote(Quote) {
+    return this.firestore.collection(this.collectionName).add(Quote);
   }
 
-  constructor(private httpClient: HttpClient) {   
+  read_Quote() {
+    return this.firestore.collection(this.collectionName).snapshotChanges();
   }
 
-  GetQuote(GetQuote: Quote){
-    return this.httpClient.post(`${this.apiUrl}QuoteController/GetQuote`,GetQuote, this.httpOptions)
+  get_Quote(){
+    return this.firestore.collection('Quote').snapshotChanges();
   }
 
-  DeleteQuote(DeleteQuote: Quote){
-    return this.httpClient.delete<Quote>(`${this.apiUrl}QuoteController/DeleteQuote`)
+  getQuote(id: string){
+    return this.firestore.collection(this.collectionName).doc(id);
   }
 
-  CreateQuote(AddQuote: Quote){
-
-    return this.httpClient.post<Quote>(`${this.apiUrl}Quote/AddQuote`,AddQuote)
+  update_Quote(FleetID,Fleet) {
+    this.firestore.doc(this.collectionName + '/' + FleetID).update(Fleet);
   }
 
-
-  addquote(quote: Quote): Observable<any> {
-    return this.httpClient.post<Quote>('http://localhost:7005/api/Quote/AddQuote', quote)
-  
-
+  updateQuote(id, fleets) {
+    this.firestore.doc(this.collectionName + '/' + id).update(fleets);
   }
 
-
-
-
-
-
-  UpdateQuote(UpdateQuote: Quote){
-
-    return this.httpClient.post<Quote>(`${this.apiUrl}QuoteController/CreateQuote`,UpdateQuote, this.httpOptions)
-  }
-
-  updateSong(id, quote: Quote): Observable<any> {
-    return this.httpClient.put('http://localhost:3000/api/update-song/' + id, quote, this.httpOptions)
-      .pipe(
-        tap(_ => console.log(`quote updated: ${id}`)),
-      )
+  deleteQuote(id: string) {
+    this.QuoteRef = this.db.object('/Quote/' + id);
+    this.QuoteRef.remove();
   }
 
 
+
+
+  delete_Quote(Fleet_ID) {
+    this.firestore.doc(this.collectionName + '/' + Fleet_ID).delete();
+  }
 }
-
-
-
-
 
 
 

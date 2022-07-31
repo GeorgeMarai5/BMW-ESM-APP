@@ -367,6 +367,10 @@ const routes: Routes = [
     path: 'create/quote',
     loadChildren: () => import('./create-quote/create-quote.module').then( m => m.CreateQuotePageModule)
   },
+  {
+    path: 'view/quote',
+    loadChildren: () => import('./view-quote/view-quote.module').then( m => m.ViewQuotePageModule)
+  },
 
 
 ];

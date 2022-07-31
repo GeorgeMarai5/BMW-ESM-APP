@@ -24,20 +24,8 @@ id: any;
 
 
   updateQuote(id) {
-    if (!this.QuoteForm.valid) {
-      return false;
-    } else {
-      this.quoteservice.UpdateQuote(this.id)
-        .subscribe((res) => {
-          console.log(res)
-          this.QuoteForm.reset();
-          this.router.navigate(['/home']);
-        })
-    }
+    
 
-
-  }
-
-
+}
 
 }
