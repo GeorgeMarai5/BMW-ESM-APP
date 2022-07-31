@@ -13,11 +13,10 @@ import { TeamService } from '../services/team.service';
 export class ViewTeamPage implements OnInit {
 
   teams: Team;
-  vehicle = {};
+  team = {};
   viewTeamForm: FormGroup;
   isSubmitted = false;
   data: any;
-  maintenanceplanID: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
     public router: Router, public teamservice: TeamService) {

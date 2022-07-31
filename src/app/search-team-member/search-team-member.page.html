@@ -26,7 +26,7 @@
                 <ion-col></ion-col>
             </ion-row>
             <ion-item-divider></ion-item-divider>
-            <ion-row *ngFor="let item of memberList | filter: searchTerm">
+            <ion-row *ngFor="let item of teamMemberList | filter: searchTerm">
                 <ion-col>
                     <ion-label> {{item.EmployeeID}}</ion-label>
                 </ion-col>
@@ -42,7 +42,7 @@
                 <ion-col>
                     <ion-col>
                         <ion-button class="light-Btn" [routerLink]="['/tabs/view/team-member', this.item.id]">View</ion-button>
-                        <ion-button class="red-Btn" (click)="removeMember(this.item.id)">Remove</ion-button>
+                        <ion-button class="red-Btn" (click)="removeTeamMember(this.item.id)">Remove</ion-button>
                     </ion-col>
                 </ion-col>
             </ion-row>
