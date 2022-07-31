@@ -27,9 +27,6 @@
                             <ion-label position="stacked"><b>Team Name</b></ion-label>
                             <ion-input formControlName="teamName" type="text" required readonly></ion-input>
                         </ion-item>
-                        <!--span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
-                        Team Name is required.
-                        </span-->
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -43,9 +40,6 @@
                                 <ion-select-option>BMW Boksburg</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <!--span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-          Dealership is required.
-        </span-->
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -58,9 +52,6 @@
                                 <ion-select-option>After Sales</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <!--span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-        Team Type is required.
-      </span-->
                     </ion-col>
                 </ion-row>
                 <br/>
@@ -68,7 +59,7 @@
                     <ion-col></ion-col>
                     <ion-col></ion-col>
                     <ion-col>
-                        <ion-button [routerLink]="['/tabs/search/team']" expand="block">Back</ion-button>
+                        <ion-button [routerLink]="['/tabs/search-team']" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
                         <ion-button class="light-Btn" (click)="navToUpdate()" expand="block">Update</ion-button>

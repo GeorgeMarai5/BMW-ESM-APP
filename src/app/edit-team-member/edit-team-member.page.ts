@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-edit-team-member',
@@ -19,7 +20,7 @@ export class EditTeamMemberPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public teamMemberservice: TeamMemberService, public router: Router) {
+    public firestore: AngularFirestore, public teamMemberservice: TeamMemberService, public router: Router) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -33,36 +34,36 @@ export class EditTeamMemberPage implements OnInit {
   }
 
   submitForm(){
-    /*this.isSubmitted = true;
-    if(!this.teamMemberservice.valid){
+    this.isSubmitted = true;
+    if(!this.editTeamMemberForm.valid){
       return false;
     }
     else{
         const teamMember = {
-          employeeName: this.teamMemberservice.get('employeeName').value,
-          employeeSurname: this.teamMemberservice.get('employeeSurname').value,
-          phoneNumber: this.teamMemberservice.get('phoneNumber').value,
-          emailAddress: this.teamMemberservice.get('emailAddress').value,
-          role: this.teamMemberservice.get('role').value,
+          employeeName: this.editTeamMemberForm.get('employeeName').value,
+          employeeSurname: this.editTeamMemberForm.get('employeeSurname').value,
+          phoneNumber: this.editTeamMemberForm.get('phoneNumber').value,
+          emailAddress: this.editTeamMemberForm.get('emailAddress').value,
+          role: this.editTeamMemberForm.get('role').value,
         }
-        this.teamMemberservice.UpdateTeamMember(this.data, teamMember)
+        this.teamMemberservice.updateTeamMember(this.data, teamMember)
         alert("Team member was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/team-member', this.data]);*/
+      this.router.navigate(['/tabs/view-team-member', this.data]);
   }
 
   ngOnInit() {
-    /*this.teamMemberservice.GetTeamMember(this.data).valueChanges()
+    this.teamMemberservice.getTeamMember(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
-    this.teamMemberservice.setValue({
+    this.editTeamMemberForm.setValue({
       employeeName: res['employeeName'],
       employeeSurname: res['employeeSurname'], 
       phoneNumber: res['phoneNumber'],
       emailAddress: res['emailAddress'], 
       role: res['role'],
     })
-    });*/
+    });
   }
 
   get errorControl() {

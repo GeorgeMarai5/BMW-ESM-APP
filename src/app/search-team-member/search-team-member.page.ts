@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-search-team-member',
@@ -19,7 +20,7 @@ export class SearchTeamMemberPage implements OnInit {
   searchTerm: string;
 
   constructor(public authService: AuthService, private teamMemberservice: TeamMemberService, public fb: FormBuilder,
-     public alertCtrl: AlertController, public router: Router) { 
+     public firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 
       this.teamMembers = {} as employee;
     }
 
@@ -32,7 +33,7 @@ export class SearchTeamMemberPage implements OnInit {
       role: new FormControl('', Validators.required)
   });
 
-  /*this.teamMemberservice.GetTeamMember().subscribe(data => {
+  this.teamMemberservice.getTeamMembers().subscribe(data => {
     this.teamMemberList = data.map(e => {
       return {
         id: e.payload.doc.id,
@@ -44,7 +45,7 @@ export class SearchTeamMemberPage implements OnInit {
       };
     })
     console.log(this.teamMemberList);
-  });*/
+  });
   }
 
   async removeTeamMember(id){
@@ -62,7 +63,7 @@ export class SearchTeamMemberPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.teamMemberservice.DeleteTeamMember(id);
+          this.teamMemberservice.deleteTeamMember(id);
           alert('Team Member was successfully removed');
         }
       }]

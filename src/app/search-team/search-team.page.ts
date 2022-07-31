@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
+import { AlertController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-search-team',
@@ -17,7 +19,8 @@ export class SearchTeamPage implements OnInit {
   teamForm: FormGroup;
   searchTerm: string;
 
-  constructor(public authService: AuthService, private teamservice: TeamService, public fb: FormBuilder, public router: Router) { 
+  constructor(public authService: AuthService, private teamservice: TeamService, 
+    public firestore: AngularFirestore,public alertCtrl: AlertController, public fb: FormBuilder, public router: Router) { 
       this.teams = {} as Team;
     }
 
@@ -29,7 +32,7 @@ export class SearchTeamPage implements OnInit {
 
   });
 
-  /*this.teamservice.GetTeam().subscribe(data => {
+  this.teamservice.getTeams().subscribe(data => {
     this.teamList = data.map(e => {
       return {
         id: e.payload.doc.id,
@@ -39,11 +42,11 @@ export class SearchTeamPage implements OnInit {
       };
     })
     console.log(this.teamList);
-  });*/
+  });
   }
 
   async removeTeam(id){
-    /*const confirmDeleteAlert = await this.alertCtrl.create({
+    const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Team',
       message: 'Are you sure you would like to remove this team from the system?',
       buttons: [{
@@ -57,11 +60,11 @@ export class SearchTeamPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.teamservice.DeleteTeam(id);
+          this.teamservice.deleteTeam(id);
           alert('Team was successfully removed');
         }
       }]
     });
-    confirmDeleteAlert.present();*/
+    confirmDeleteAlert.present();
   }
 }

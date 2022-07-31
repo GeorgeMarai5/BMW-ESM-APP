@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 @Component({
   selector: 'app-create-team',
@@ -16,7 +18,7 @@ export class CreateTeamPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
-    public teamservice: TeamService, public router: Router) { 
+    public firestore: AngularFirestore, public teamservice: TeamService, public router: Router) { 
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
@@ -39,11 +41,9 @@ export class CreateTeamPage implements OnInit {
         TeamType: this.createTeamForm.get('TeamType').value,
       }
 
-      this.teamservice.AddTeam(this.createTeamForm.value).subscribe(data => {
-        this.createTeamForm.reset();
-        alert("Team successfully Created")
-        console.log("successfully created")
-      })
+      this.firestore.collection('Team').add(team).then(function(){
+        alert("New Team created successfully");
+      });
     }
   }
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-edit-team',
@@ -19,7 +20,7 @@ export class EditTeamPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public teamservice: TeamService, public router: Router) {
+    public firestore: AngularFirestore, public teamservice: TeamService, public router: Router) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -31,7 +32,7 @@ export class EditTeamPage implements OnInit {
   }
 
   submitForm(){
-    /*this.isSubmitted = true;
+    this.isSubmitted = true;
     if(!this.editTeamForm.valid){
       return false;
     }
@@ -41,14 +42,14 @@ export class EditTeamPage implements OnInit {
           DealershipName: this.editTeamForm.get('DealershipName').value,
           TeamType: this.editTeamForm.get('TeamType').value
         }
-        this.teamservice.UpdateTeam(this.data, team)
+        this.teamservice.updateTeam(this.data, team)
         alert("Team was successfully updated.");
       }
-      this.router.navigate(['/tabs/view/team', this.data]);*/
+      this.router.navigate(['/tabs/view-team', this.data]);
   }
 
   ngOnInit() {
-    /*this.teamservice.GetTeam(this.data).valueChanges()
+    this.teamservice.getTeam(this.data).valueChanges()
     .subscribe(res =>{
     console.log(res)
     this.editTeamForm.setValue({
@@ -56,7 +57,7 @@ export class EditTeamPage implements OnInit {
       DealershipName: res['DealershipName'], 
       TeamType: res['TeamType']
     })
-    });*/
+    });
   }
 
   get errorControl() {

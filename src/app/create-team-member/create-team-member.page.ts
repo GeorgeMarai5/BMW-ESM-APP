@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-create-team-member',
@@ -16,7 +17,7 @@ export class CreateTeamMemberPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
-    public teamMemberservice: TeamMemberService, public router: Router) { 
+    public firestore: AngularFirestore, public teamMemberservice: TeamMemberService, public router: Router) { 
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
@@ -35,7 +36,7 @@ export class CreateTeamMemberPage implements OnInit {
       return false;
     }
     else{
-      const team = {
+      const teamMember = {
         employeeName: this.createTeamMemberForm.get('employeeName').value,
         employeeSurname: this.createTeamMemberForm.get('employeeSurname').value,
         phoneNumber: this.createTeamMemberForm.get('phoneNumber').value,
@@ -43,11 +44,10 @@ export class CreateTeamMemberPage implements OnInit {
         role: this.createTeamMemberForm.get('role').value
       }
 
-      this.teamMemberservice.CreateTeamMember(this.createTeamMemberForm.value).subscribe(data => {
-        this.createTeamMemberForm.reset();
-        alert("Team Member successfully Added")
-        console.log("successfully added")
-      })
+
+      this.firestore.collection('Employee').add(teamMember).then(function(){
+        alert("New Team Member added successfully");
+      });
     }
   }
 

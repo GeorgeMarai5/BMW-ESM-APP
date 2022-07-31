@@ -1,40 +1,33 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { employee } from '../models/Employee';
-import { Team } from '../models/Team';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamMemberService {
 
-  apiUrl = 'https://localhost:7005/api/'
+  collectionName = 'Employee';
 
-  httpOptions ={
-    headers: new HttpHeaders({
-      ContentType: 'application/json'
-    })
+  constructor(private firestore: AngularFirestore) { }
+
+  getTeamMembers() {
+    return this.firestore.collection('Employee').snapshotChanges();
   }
 
-  constructor(private httpClient: HttpClient) {   
+  createTeamMember(teamMember) {
+    return this.firestore.collection(this.collectionName).add(teamMember);
   }
 
-  GetTeamMember(GetEmployee: employee){
-    return this.httpClient.post(`${this.apiUrl}EmployeeController/GetEmployee`,GetEmployee, this.httpOptions)
+  getTeamMember(id: string){
+    return this.firestore.collection(this.collectionName).doc(id);
   }
 
-  DeleteTeamMember(DeleteEmployee: employee){
-    return this.httpClient.delete<employee>(`${this.apiUrl}EmployeeController/DeleteEmployee`)
+  updateTeamMember(id, teamMember) {
+    this.firestore.doc(this.collectionName + '/' + id).update(teamMember);
   }
 
-  CreateTeamMember(CreateEmployee: employee){
-
-    return this.httpClient.post<employee>(`${this.apiUrl}EmployeeController/CreateEmployee`,CreateEmployee, this.httpOptions)
-  }
-  
-  UpdateTeamMember(UpdateEmployee: employee){
-
-    return this.httpClient.post<employee>(`${this.apiUrl}EmployeeController/CreateEmployee`,UpdateEmployee, this.httpOptions)
+  deleteTeamMember(id) {
+    this.firestore.doc(this.collectionName + '/' + id).delete();
   }
 
 }

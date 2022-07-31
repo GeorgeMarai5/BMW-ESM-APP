@@ -1,40 +1,33 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Team } from '../models/Team';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamService {
 
-  apiUrl = 'https://localhost:7005/api/'
+  collectionName = 'Team';
 
-  httpOptions ={
-    headers: new HttpHeaders({
-      ContentType: 'application/json'
-    })
+  constructor(private firestore: AngularFirestore) { }
+
+  getTeams() {
+    return this.firestore.collection('Team').snapshotChanges();
   }
 
-  constructor(private httpClient: HttpClient) {   
+  createTeam(team) {
+    return this.firestore.collection(this.collectionName).add(team);
   }
 
-  GetTeam(GetTeam: Team){
-    return this.httpClient.post(`${this.apiUrl}GetTeam`,GetTeam, this.httpOptions)
+  getTeam(id: string){
+    return this.firestore.collection(this.collectionName).doc(id);
   }
 
-  DeleteTeam(DeleteTeam: Team){
-    return this.httpClient.delete<Team>(`${this.apiUrl}TeamController/DeleteTeam`)
+  updateTeam(id, team) {
+    this.firestore.doc(this.collectionName + '/' + id).update(team);
   }
 
-  AddTeam(CreateTeam: Team){
-
-    return this.httpClient.post<Team>(`${this.apiUrl}Team/AddTeam`,CreateTeam, this.httpOptions)
-  }
-
-  
-  UpdateTeam(UpdateTeam: Team){
-
-    return this.httpClient.post<Team>(`${this.apiUrl}CreateTeam`,UpdateTeam, this.httpOptions)
+  deleteTeam(id) {
+    this.firestore.doc(this.collectionName + '/' + id).delete();
   }
 
 }
