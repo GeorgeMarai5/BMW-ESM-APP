@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { SearchServiceNotePageRoutingModule } from './search-service-note-routing.module';
 
 import { SearchServiceNotePage } from './search-service-note.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SearchServiceNotePageRoutingModule
+    SearchServiceNotePageRoutingModule,
+    Ng2SearchPipeModule,
   ],
-  declarations: [SearchServiceNotePage]
+  declarations: [SearchServiceNotePage],
 })
 export class SearchServiceNotePageModule {}
