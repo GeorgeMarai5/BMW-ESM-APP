@@ -1,41 +1,46 @@
-.contents {
+.contents{
     width: 90%;
     margin-top: 5vh;
     margin-left: 3vw;
-}
-
-h1 {
+  }
+  
+  h1{
     color: #002850;
     font-size: xx-large;
-}
-
-.light-Btn {
+  }
+  
+  .light-Btn{
     --background: #1976D2;
     --border-radius: 20em;
-}
-
-.red-Btn {
+    float: right;
+  }
+  
+  .red-Btn{
     --background: #E02828;
     --border-radius: 20em;
-}
-
-.isb {
+    float: right;
+  }
+  
+  .isb{
     width: 30%;
-}
-
-ion-grid {
+  }
+  
+  ion-grid {
     --ion-grid-column-padding: 10px;
     border-collapse: collapse;
     border-style: hidden;
+    
     ion-row:first-child {
-        font-size: large;
-        color: #585858;
-        margin-bottom: -5vh;
+      font-size: large;
+      color: #585858;
+      margin-bottom: -5vh;
     }
-    ion-row:nth-child(even) {
+  
+    ion-row:nth-child(even){
         background: #F4F4F4;
     }
+    
     ion-row:nth-child(odd) {
-        background: white;
+      background: white;
     }
-}
+  }

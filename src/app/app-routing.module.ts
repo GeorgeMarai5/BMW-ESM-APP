@@ -362,6 +362,10 @@ const routes: Routes = [
     path: 'create-service-note',
     loadChildren: () => import('./create-service-note/create-service-note.module').then( m => m.CreateServiceNotePageModule)
   },
+  {
+    path: 'view-service-note',
+    loadChildren: () => import('./view-service-note/view-service-note.module').then( m => m.ViewServiceNotePageModule)
+  },
 
 
 

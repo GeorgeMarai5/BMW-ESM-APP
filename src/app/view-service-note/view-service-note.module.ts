@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CreateServiceNotePageRoutingModule } from './create-service-note-routing.module';
+import { ViewServiceNotePageRoutingModule } from './view-service-note-routing.module';
 
-import { CreateServiceNotePage } from './create-service-note.page';
+import { ViewServiceNotePage } from './view-service-note.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CreateServiceNotePageRoutingModule,
+    ViewServiceNotePageRoutingModule,
     ReactiveFormsModule,
   ],
-  declarations: [CreateServiceNotePage],
+  declarations: [ViewServiceNotePage],
 })
-export class CreateServiceNotePageModule {}
+export class ViewServiceNotePageModule {}

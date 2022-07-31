@@ -5,7 +5,7 @@
       src="assets/icon/bmw-logo-2020-grey.png"
     ></ion-img>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/tabs/view/client']">
+      <ion-button [routerLink]="['/tabs/view/employee']">
         <ion-icon
           slot="icon-only"
           name="person"
@@ -31,28 +31,35 @@
 
 <ion-content>
   <div class="contents">
-    <ion-title>
-      <h1>Create Service Note</h1>
-    </ion-title>
-
-    <form [formGroup]="addNoteForm" (ngSubmit)="submitForm()">
+    <ion-title><h1>Service Note Details</h1></ion-title>
+    <br />
+    <form [formGroup]="serviceNoteForm" *ngFor="let myItem of serviceNoteList">
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
-              <ion-label position="stacked">Service Note</ion-label>
-              <ion-input
-                formControlName="Description"
-                type="text"
-                placeholder="Description..."
-              ></ion-input>
+              <ion-label position="stacked"><b>Item Name</b></ion-label>
+              <ion-input>{{myItem.ItemName}}</ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
-        <br />
         <ion-row>
           <ion-col>
-            <ion-button type="submit" expand="block">Submit</ion-button>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Description</b></ion-label>
+              <ion-input>{{myItem.Description}}</ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button
+              type="submit"
+              class="main-Btn"
+              expand="block"
+              [routerLink]="['/tabs/search/service']"
+              >Back</ion-button
+            >
           </ion-col>
         </ion-row>
       </ion-grid>
