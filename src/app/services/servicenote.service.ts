@@ -6,7 +6,7 @@ import { ServiceNote } from '../models/ServiceNote';
   providedIn: 'root',
 })
 export class ServiceNoteService {
-  apiUrl = 'https://localhost:44381/api/';
+  apiUrl = 'https://localhost:7005/api/';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,7 +18,7 @@ export class ServiceNoteService {
 
   GetServiceNote(GetServiceNote: ServiceNote) {
     return this.httpClient.post(
-      `${this.apiUrl}ServiceNoteController/GetServiceNOte`,
+      `${this.apiUrl}ServiceNoteController/GetServiceNote`,
       GetServiceNote,
       this.httpOptions
     );
@@ -26,7 +26,7 @@ export class ServiceNoteService {
 
   DeleteServiceNote(DeleteServiceNote: ServiceNote) {
     return this.httpClient.delete<ServiceNote>(
-      `${this.apiUrl}ServiceNOteController/DeleteServiceNote`
+      `${this.apiUrl}ServiceNoteController/DeleteServiceNote`
     );
   }
 }
