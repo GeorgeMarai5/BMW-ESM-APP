@@ -10,6 +10,7 @@ export class CreateTeamPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
