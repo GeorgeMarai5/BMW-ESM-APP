@@ -19,21 +19,20 @@ export class TeamMemberService {
   constructor(private httpClient: HttpClient) {   
   }
 
-  GetQuote(GetEmployee: employee){
+  GetTeamMember(GetEmployee: employee){
     return this.httpClient.post(`${this.apiUrl}EmployeeController/GetEmployee`,GetEmployee, this.httpOptions)
   }
 
-  DeleteQuote(DeleteEmployee: employee){
+  DeleteTeamMember(DeleteEmployee: employee){
     return this.httpClient.delete<employee>(`${this.apiUrl}EmployeeController/DeleteEmployee`)
   }
 
-  CreateQuote(CreateEmployee: employee){
+  CreateTeamMember(CreateEmployee: employee){
 
     return this.httpClient.post<employee>(`${this.apiUrl}EmployeeController/CreateEmployee`,CreateEmployee, this.httpOptions)
   }
-
   
-  UpdateQuote(UpdateEmployee: employee){
+  UpdateTeamMember(UpdateEmployee: employee){
 
     return this.httpClient.post<employee>(`${this.apiUrl}EmployeeController/CreateEmployee`,UpdateEmployee, this.httpOptions)
   }

@@ -5,7 +5,7 @@ import { Team } from '../models/Team';
 @Injectable({
   providedIn: 'root'
 })
-export class TeamMemberService {
+export class TeamService {
 
   apiUrl = 'https://localhost:44381/api/'
 
@@ -18,21 +18,21 @@ export class TeamMemberService {
   constructor(private httpClient: HttpClient) {   
   }
 
-  GetQuote(GetTeam: Team){
+  GetTeam(GetTeam: Team){
     return this.httpClient.post(`${this.apiUrl}TeamController/GetTeam`,GetTeam, this.httpOptions)
   }
 
-  DeleteQuote(DeleteTeam: Team){
+  DeleteTeam(DeleteTeam: Team){
     return this.httpClient.delete<Team>(`${this.apiUrl}TeamController/DeleteTeam`)
   }
 
-  CreateQuote(CreateTeam: Team){
+  CreateTeam(CreateTeam: Team){
 
     return this.httpClient.post<Team>(`${this.apiUrl}TeamController/CreateTeam`,CreateTeam, this.httpOptions)
   }
 
   
-  UpdateQuote(UpdateTeam: Team){
+  UpdateTeam(UpdateTeam: Team){
 
     return this.httpClient.post<Team>(`${this.apiUrl}TeamController/CreateTeam`,UpdateTeam, this.httpOptions)
   }
