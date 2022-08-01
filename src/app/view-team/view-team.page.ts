@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-view-team',
@@ -19,7 +20,7 @@ export class ViewTeamPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
-    public router: Router, public teamservice: TeamService) {
+    public firestore: AngularFirestore, public router: Router, public teamservice: TeamService) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -45,4 +46,5 @@ export class ViewTeamPage implements OnInit {
   navToUpdate() {
     this.router.navigate(['tabs/edit-team', this.data]);
   }
+  
 }

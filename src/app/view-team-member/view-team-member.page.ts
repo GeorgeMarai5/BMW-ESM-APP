@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-view-team-member',
@@ -19,7 +20,7 @@ export class ViewTeamMemberPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
-    public router: Router, public teamservice: TeamMemberService) {
+    public firestore: AngularFirestore, public router: Router, public teamservice: TeamMemberService) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
