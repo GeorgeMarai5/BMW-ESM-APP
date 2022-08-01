@@ -278,8 +278,22 @@ const routes: Routes = [
         loadChildren: () => import('../part/view-part-details/view-part-details.module').then( m => m.ViewPartDetailsPageModule)
       },
       {
+        path: 'view/part-details/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../view-vehicle/view-vehicle.module').then( m => m.ViewVehiclePageModule)
+      },
+      {
         path: 'view/service-progress',
         loadChildren: () => import('../view-service-progress/view-service-progress.module').then( m => m.ViewServiceProgressPageModule)
+      },
+      {
+        path: 'view/service-progress/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../view-vehicle/view-vehicle.module').then( m => m.ViewVehiclePageModule)
       },
       {
         path: 'capture/initial-inspection-details',
@@ -288,6 +302,278 @@ const routes: Routes = [
       {
         path: 'perform-precheck',
         loadChildren: () => import('../perform-precheck/perform-precheck.module').then( m => m.PerformPrecheckPageModule)
+      },
+      {
+        path: 'create/team',
+        loadChildren: () =>
+          import('../create-team/create-team.module').then(
+            (m) => m.CreateTeamPageModule
+          ),
+      },
+      {
+        path: 'create/team-member',
+        loadChildren: () =>
+          import('../create-team-member/create-team-member.module').then(
+            (m) => m.CreateTeamMemberPageModule
+          ),
+      },
+      {
+        path: 'edit/team',
+        loadChildren: () =>
+          import('../edit-team/edit-team.module').then((m) => m.EditTeamPageModule),
+      },
+      {
+        path: 'edit/team/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../edit-team/edit-team.module').then((m) => m.EditTeamPageModule),
+      },
+      {
+        path: 'edit/team-member',
+        loadChildren: () =>
+          import('../edit-team-member/edit-team-member.module').then(
+            (m) => m.EditTeamMemberPageModule
+          ),
+      },
+      {
+        path: 'edit/team-member/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../edit-team-member/edit-team-member.module').then(
+            (m) => m.EditTeamMemberPageModule
+          ),
+      },
+      {
+        path: 'search/team',
+        loadChildren: () =>
+          import('../search-team/search-team.module').then(
+            (m) => m.SearchTeamPageModule
+          ),
+      },
+      {
+        path: 'search/team-member',
+        loadChildren: () =>
+          import('../search-team-member/search-team-member.module').then(
+            (m) => m.SearchTeamMemberPageModule
+          ),
+      },
+      {
+        path: 'view/team',
+        loadChildren: () =>
+          import('../view-team/view-team.module').then((m) => m.ViewTeamPageModule),
+      },
+      {
+        path: 'view/team/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../view-team/view-team.module').then((m) => m.ViewTeamPageModule),
+      },
+      {
+        path: 'view/team-member',
+        loadChildren: () =>
+          import('../view-team-member/view-team-member.module').then(
+            (m) => m.ViewTeamMemberPageModule
+          ),
+      },
+      {
+        path: 'view/team-member/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../view-team-member/view-team-member.module').then(
+            (m) => m.ViewTeamMemberPageModule
+          ),
+      },
+      {
+        path: 'add/service-item',
+        loadChildren: () =>
+          import('../add-service-item/add-service-item.module').then(
+            (m) => m.AddServiceItemPageModule
+          ),
+      },
+      {
+        path: 'edit/service-item',
+        loadChildren: () =>
+          import('../edit-service-item/edit-service-item.module').then(
+            (m) => m.EditServiceItemPageModule
+          ),
+      },
+      {
+        path: 'edit/service-item/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../edit-service-item/edit-service-item.module').then(
+            (m) => m.EditServiceItemPageModule
+          ),
+      },
+      {
+        path: 'search/service-item',
+        loadChildren: () =>
+          import('../search-service-item/search-service-item.module').then(
+            (m) => m.SearchServiceItemPageModule
+          ),
+      },
+      {
+        path: 'view/service-item',
+        loadChildren: () =>
+          import('../view-service-item/view-service-item.module').then(
+            (m) => m.ViewServiceItemPageModule
+          ),
+      },
+      {
+        path: 'view/service-item/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../view-service-item/view-service-item.module').then(
+            (m) => m.ViewServiceItemPageModule
+          ),
+      },
+      {
+        path: 'assign/vehicle-part',
+        loadChildren: () =>
+          import('../assign-vehicle-part/assign-vehicle-part.module').then(
+            (m) => m.AssignVehiclePartPageModule
+          ),
+      },
+      {
+        path: 'edit/vehicle-part',
+        loadChildren: () =>
+          import('../edit-vehicle-part/edit-vehicle-part.module').then(
+            (m) => m.EditVehiclePartPageModule
+          ),
+      },
+      {
+        path: 'edit/vehicle-part/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../edit-vehicle-part/edit-vehicle-part.module').then(
+            (m) => m.EditVehiclePartPageModule
+          ),
+      },
+      {
+        path: 'search/vehicle-part',
+        loadChildren: () =>
+          import('../search-vehicle-part/search-vehicle-part.module').then(
+            (m) => m.SearchVehiclePartPageModule
+          ),
+      },
+      {
+        path: 'view/vehicle-part',
+        loadChildren: () =>
+          import('../view-vehicle-part/view-vehicle-part.module').then(
+            (m) => m.ViewVehiclePartPageModule
+          ),
+      },
+      {
+        path: 'view/vehicle-part/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../view-vehicle-part/view-vehicle-part.module').then(
+            (m) => m.ViewVehiclePartPageModule
+          ),
+      },
+      {
+        path: 'perform/postcheck',
+        loadChildren: () =>
+          import('../perform-postcheck/perform-postcheck.module').then(
+            (m) => m.PerformPostcheckPageModule
+          ),
+      },
+      {
+        path: 'view/service-invoice',
+        loadChildren: () =>
+          import('../view-service-invoice/view-service-invoice.module').then(
+            (m) => m.ViewServiceInvoicePageModule
+          ),
+      },
+      {
+        path: 'view/service-invoice/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../view-service-invoice/view-service-invoice.module').then(
+            (m) => m.ViewServiceInvoicePageModule
+          ),
+      },
+      {
+        path: 'search/service-note',
+        loadChildren: () =>
+          import('../search-service-note/search-service-note.module').then(
+            (m) => m.SearchServiceNotePageModule
+          ),
+      },
+      {
+        path: 'create/service-note',
+        loadChildren: () =>
+          import('../create-service-note/create-service-note.module').then(
+            (m) => m.CreateServiceNotePageModule
+          ),
+      },
+      {
+        path: 'view/service-note',
+        loadChildren: () =>
+          import('../view-service-note/view-service-note.module').then(
+            (m) => m.ViewServiceNotePageModule
+          ),
+      },
+      {
+        path: 'view/service-note/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () =>
+          import('../view-service-note/view-service-note.module').then(
+            (m) => m.ViewServiceNotePageModule
+          ),
+      },
+      {
+        path: 'create/quote',
+        loadChildren: () =>
+          import('../create-quote/create-quote.module').then(
+            (m) => m.CreateQuotePageModule
+          ),
+      },
+      {
+        path: 'view/quote',
+        loadChildren: () => import('../view-quote/view-quote.module').then( m => m.ViewQuotePageModule)
+      },
+      {
+        path: 'view/quote/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../view-quote/view-quote.module').then( m => m.ViewQuotePageModule)
+      },
+      {
+        path: 'update/quote',
+        loadChildren: () => import('../update-quote/update-quote.module').then( m => m.UpdateQuotePageModule)
+      },
+      {
+        path: 'update/quote/:id',
+        resolve: {
+          special: DataResolverService
+        },
+        loadChildren: () => import('../update-quote/update-quote.module').then( m => m.UpdateQuotePageModule)
+      },
+      {
+        path: 'search/quote',
+        loadChildren: () => import('../search-quote/search-quote.module').then( m => m.SearchQuotePageModule)
       },
 
     ]
