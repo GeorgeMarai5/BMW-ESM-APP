@@ -50,7 +50,7 @@ export class EditFleetPage implements OnInit {
           FleetName: this.fleetform.get('FleetName').value,
           FleetLocation: this.fleetform.get('FleetLocation').value
         }
-        this.fleetservice.updateFleet(this.data,this.fleet)   //this.data, this.fleets
+        this.fleetservice.update_Fleet(this.data,this.fleet)   //this.data, this.fleets
         alert("Vehicle was successfully updated.");
       }
       this.router.navigate(['/tabs/view/fleet']);     // this.data
