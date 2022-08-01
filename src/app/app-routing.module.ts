@@ -605,6 +605,14 @@ const routes: Routes = [
     path: 'view/quote',
     loadChildren: () => import('./view-quote/view-quote.module').then( m => m.ViewQuotePageModule)
   },
+  {
+    path: 'update/quote',
+    loadChildren: () => import('./update-quote/update-quote.module').then( m => m.UpdateQuotePageModule)
+  },
+  {
+    path: 'search/quote',
+    loadChildren: () => import('./search-quote/search-quote.module').then( m => m.SearchQuotePageModule)
+  },
 
 
 ];

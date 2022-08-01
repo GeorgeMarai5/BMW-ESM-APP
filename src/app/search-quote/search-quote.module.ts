@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SearchQuotePageRoutingModule } from './search-quote-routing.module';
 
 import { SearchQuotePage } from './search-quote.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { SearchQuotePage } from './search-quote.page';
     ReactiveFormsModule,
     FormsModule,
     IonicModule,
-    SearchQuotePageRoutingModule
+    SearchQuotePageRoutingModule,
+    Ng2SearchPipeModule
   ],
   declarations: [SearchQuotePage]
 })

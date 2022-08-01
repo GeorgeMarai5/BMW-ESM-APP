@@ -71,6 +71,9 @@ QuoteForm: FormGroup;
       .catch(error => {
         console.log(error);
       });
+
+      this.router.navigate(['/search/quote']);
+
   }
 
 
