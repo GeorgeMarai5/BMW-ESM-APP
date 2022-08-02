@@ -44,7 +44,7 @@ export class ViewTeamPage implements OnInit {
   }
 
   navToUpdate() {
-    this.router.navigate(['tabs/edit-team', this.data]);
+    this.router.navigate(['tabs/edit/team', this.data]);
   }
   
 }

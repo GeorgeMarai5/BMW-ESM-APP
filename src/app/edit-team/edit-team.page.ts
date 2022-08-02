@@ -45,7 +45,7 @@ export class EditTeamPage implements OnInit {
         this.teamservice.updateTeam(this.data, team)
         alert("Team was successfully updated.");
       }
-      this.router.navigate(['/tabs/view-team', this.data]);
+      this.router.navigate(['/tabs/view/team', this.data]);
   }
 
   ngOnInit() {
