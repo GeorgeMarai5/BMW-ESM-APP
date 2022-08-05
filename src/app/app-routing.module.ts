@@ -721,7 +721,27 @@ const routes: Routes = [
   {
     path: 'search/quote',
     loadChildren: () => import('./search-quote/search-quote.module').then( m => m.SearchQuotePageModule)
+  },  {
+    path: 'vehicle-performance',
+    loadChildren: () => import('./vehicle-performance/vehicle-performance.module').then( m => m.VehiclePerformancePageModule)
   },
+  {
+    path: 'service-feedback',
+    loadChildren: () => import('./service-feedback/service-feedback.module').then( m => m.ServiceFeedbackPageModule)
+  },
+  {
+    path: 'service-history',
+    loadChildren: () => import('./service-history/service-history.module').then( m => m.ServiceHistoryPageModule)
+  },
+  {
+    path: 'service-data',
+    loadChildren: () => import('./service-data/service-data.module').then( m => m.ServiceDataPageModule)
+  },
+  {
+    path: 'end-of-service',
+    loadChildren: () => import('./end-of-service/end-of-service.module').then( m => m.EndOfServicePageModule)
+  },
+
 
 
 ];
