@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder,Validators, FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-data',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiceDataPage implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService,
+    public fb: FormBuilder,
+    public router: Router) { }
 
   ngOnInit() {
   }
