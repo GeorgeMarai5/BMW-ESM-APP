@@ -27,9 +27,12 @@
                             <ion-label position="stacked"><b>Part Name</b></ion-label>
                             <ion-input formControlName="partName" type="text" required></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
-        Part Name is required.
-      </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.required">
+                            Part Name is required.
+                        </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.cannotContainSpace">
+                            Part Name can not contain spaces.
+                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -43,9 +46,12 @@
                                 <ion-select-option>Clutch</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-        Part Type is required.
-      </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partType.errors?.required">
+                            Part Type is required.
+                        </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partType.errors?.cannotContainSpace">
+                            Part Type can not contain spaces.
+                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -54,9 +60,12 @@
                             <ion-label position="stacked"><b>Description</b></ion-label>
                             <ion-input formControlName="Description" type="text" required></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-      Description is required.
-    </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.required">
+                            Description is required.
+                        </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.cannotContainSpace">
+                            Description can not contain spaces.
+                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -65,17 +74,18 @@
                             <ion-label position="stacked"><b>Part In Stock</b></ion-label>
                             <ion-input formControlName="partStock" type="text" required></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-    Part Availability is required.
-  </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partStock.errors?.required">
+                            Part Availability is required.
+                        </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partStock.errors?.cannotContainSpace">
+                            Part Availability can not contain spaces.
+                        </span>
                     </ion-col>
                 </ion-row>
                 <br/>
                 <ion-row>
                     <ion-col></ion-col>
-                    <ion-col>
-                        <ion-button [routerLink]="['/tabs/create/vehicle-part']" expand="block" style="--background: #E02828;">Back</ion-button>
-                    </ion-col>
+                    <ion-col></ion-col>
                     <ion-col>
                         <ion-button type="submit" expand="block">Submit</ion-button>
                     </ion-col>
