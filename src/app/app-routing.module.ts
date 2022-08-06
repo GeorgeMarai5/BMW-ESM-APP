@@ -594,43 +594,43 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'edit/assigned-part',
+    path: 'edit/vehicle-part',
     loadChildren: () =>
-      import('./edit-assigned-part/edit-vehicle-part.module').then(
+      import('./edit-vehicle-part/edit-vehicle-part.module').then(
         (m) => m.EditVehiclePartPageModule
       ),
   },
   {
-    path: 'edit/assigned-part/:id',
+    path: 'edit/vehicle-part/:id',
     resolve: {
       special: DataResolverService
     },
     loadChildren: () =>
-      import('./edit-assigned-part/edit-vehicle-part.module').then(
+      import('./edit-vehicle-part/edit-vehicle-part.module').then(
         (m) => m.EditVehiclePartPageModule
       ),
   },
   {
-    path: 'search/assigned-part',
+    path: 'search/vehicle-part',
     loadChildren: () =>
-      import('./search-assigned-part/search-vehicle-part.module').then(
+      import('./search-vehicle-part/search-vehicle-part.module').then(
         (m) => m.SearchVehiclePartPageModule
       ),
   },
   {
-    path: 'view/assigned-part',
+    path: 'view/vehicle-part',
     loadChildren: () =>
-      import('./view-assigned-part/view-vehicle-part.module').then(
+      import('./view-vehicle-part/view-vehicle-part.module').then(
         (m) => m.ViewVehiclePartPageModule
       ),
   },
   {
-    path: 'view/assigned-part/:id',
+    path: 'view/vehicle-part/:id',
     resolve: {
       special: DataResolverService
     },
     loadChildren: () =>
-      import('./view-assigned-part/view-vehicle-part.module').then(
+      import('./view-vehicle-part/view-vehicle-part.module').then(
         (m) => m.ViewVehiclePartPageModule
       ),
   },
@@ -721,7 +721,27 @@ const routes: Routes = [
   {
     path: 'search/quote',
     loadChildren: () => import('./search-quote/search-quote.module').then( m => m.SearchQuotePageModule)
+  },  {
+    path: 'vehicle-performance',
+    loadChildren: () => import('./vehicle-performance/vehicle-performance.module').then( m => m.VehiclePerformancePageModule)
   },
+  {
+    path: 'service-feedback',
+    loadChildren: () => import('./service-feedback/service-feedback.module').then( m => m.ServiceFeedbackPageModule)
+  },
+  {
+    path: 'service-history',
+    loadChildren: () => import('./service-history/service-history.module').then( m => m.ServiceHistoryPageModule)
+  },
+  {
+    path: 'service-data',
+    loadChildren: () => import('./service-data/service-data.module').then( m => m.ServiceDataPageModule)
+  },
+  {
+    path: 'end-of-service',
+    loadChildren: () => import('./end-of-service/end-of-service.module').then( m => m.EndOfServicePageModule)
+  },
+
 
 
 ];
