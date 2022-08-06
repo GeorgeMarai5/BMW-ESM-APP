@@ -596,41 +596,41 @@ const routes: Routes = [
   {
     path: 'edit/vehicle-part',
     loadChildren: () =>
-      import('./edit-vehicle-part/edit-vehicle-part.module').then(
+      import('./edit-assigned-part/edit-vehicle-part.module').then(
         (m) => m.EditVehiclePartPageModule
       ),
   },
   {
-    path: 'edit/vehicle-part/:id',
+    path: 'edit/assigned-part/:id',
     resolve: {
       special: DataResolverService
     },
     loadChildren: () =>
-      import('./edit-vehicle-part/edit-vehicle-part.module').then(
+      import('./edit-assigned-part/edit-vehicle-part.module').then(
         (m) => m.EditVehiclePartPageModule
       ),
   },
   {
-    path: 'search/vehicle-part',
+    path: 'search/assigned-part',
     loadChildren: () =>
-      import('./search-vehicle-part/search-vehicle-part.module').then(
+      import('./search-assigned-part/search-vehicle-part.module').then(
         (m) => m.SearchVehiclePartPageModule
       ),
   },
   {
-    path: 'view/vehicle-part',
+    path: 'view/assigned-part',
     loadChildren: () =>
-      import('./view-vehicle-part/view-vehicle-part.module').then(
+      import('./view-assigned-part/view-vehicle-part.module').then(
         (m) => m.ViewVehiclePartPageModule
       ),
   },
   {
-    path: 'view/vehicle-part/:id',
+    path: 'view/assigned-part/:id',
     resolve: {
       special: DataResolverService
     },
     loadChildren: () =>
-      import('./view-vehicle-part/view-vehicle-part.module').then(
+      import('./view-assigned-part/view-vehicle-part.module').then(
         (m) => m.ViewVehiclePartPageModule
       ),
   },
@@ -721,7 +721,8 @@ const routes: Routes = [
   {
     path: 'search/quote',
     loadChildren: () => import('./search-quote/search-quote.module').then( m => m.SearchQuotePageModule)
-  },  {
+  },
+  {
     path: 'vehicle-performance',
     loadChildren: () => import('./vehicle-performance/vehicle-performance.module').then( m => m.VehiclePerformancePageModule)
   },
