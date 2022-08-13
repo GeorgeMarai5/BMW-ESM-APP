@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ServiceHistoryPageRoutingModule } from './service-history-routing.module';
 
 import { ServiceHistoryPage } from './service-history.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ServiceHistoryPage } from './service-history.page';
     FormsModule,
     IonicModule,
     ServiceHistoryPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
   declarations: [ServiceHistoryPage]
 })

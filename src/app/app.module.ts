@@ -16,14 +16,10 @@ import { environment } from '../environments/environment';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
-import { VehiclePerformanceReportPipe } from './vehicle-performance-report.pipe';
-import { ServiceHistoryPipe } from './service-history.pipe';
-import { ServiceDataPipe } from './service-data.pipe';
-import { ServiceFeedbackPipe } from './service-feedback.pipe';
-import { ServiceEnd0reportPipe } from './service-end0report.pipe';
+
 
 @NgModule({
-  declarations: [AppComponent, VehiclePerformanceReportPipe, ServiceHistoryPipe, ServiceDataPipe, ServiceFeedbackPipe, ServiceEnd0reportPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AngularFireModule.initializeApp(environment.firebaseConfig), 
     AngularFireAuthModule,
