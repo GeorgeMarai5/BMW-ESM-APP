@@ -44,7 +44,7 @@ export class AddressPage implements OnInit {
   });
 
 
-  this.addressservice.GetAddress().subscribe(data => {
+  this.addressservice.GetAddress().subscribe((data) => {
 
     this.AddressList = data.map(e => {
       let yearCode: string;

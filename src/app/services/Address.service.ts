@@ -16,7 +16,7 @@ export class AddressService {
 
     
 
-    apiUrl = 'https://localhost:7292/api/BMWESM_API'
+    apiUrl = 'https://localhost:7292/api'
 
   
 
@@ -65,7 +65,7 @@ export class AddressService {
 
 
   getAddressID(id): Observable<Address[]> {
-    return this.httpClient.get<Address[]>('https://localhost:7292/api/BMWESM_API/AddressByid' + id)
+    return this.httpClient.get<Address[]>('https://localhost:7292/api/AddressByid' + id)
       .pipe(
         tap(_ => console.log(`Address fetched: ${id}`)),
         catchError(this.handleError)
