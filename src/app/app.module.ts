@@ -15,6 +15,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { Component } from '@angular/core';
 
 
@@ -26,7 +27,7 @@ import { Component } from '@angular/core';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, 
   ],
   providers: [SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

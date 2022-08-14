@@ -5,6 +5,9 @@ import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-view-vehicle',
@@ -62,5 +65,25 @@ export class ViewVehiclePage implements OnInit {
 
   navToUpdate() {
     this.router.navigate(['tabs/edit/vehicle', this.data]);
+  }
+
+  generatePDF() {
+    const div = document.getElementById("html2PDF");
+    const options = {background: "white", height: div.clientHeight, width: div.clientWidth};
+
+    html2canvas(div, options).then((canvas) => {
+      let doc = new jsPDF("p", "mm", "a4");
+      //let imgData = canvas.toDataURL("image/PNG");
+      //doc.addImage(imgData, "PNG" , 20, 20, 56);
+
+      let pdfOuput = doc.output();
+      let buffer = new ArrayBuffer(pdfOuput.length);
+      let array = new Uint8Array(buffer);
+      for (let i = 0; i < pdfOuput.length; i++) {
+        array[i] = pdfOuput.charCodeAt(i);
+      }
+      const fileName = "example.pdf";
+      doc.save(fileName);
+    })
   }
 }

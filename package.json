@@ -42,6 +42,7 @@
     "gauge-chart": "^0.5.3",
     "gauge-chart-js": "^2.0.1",
     "ionic": "^4.1.2",
+    "jspdf": "^2.5.1",
     "ng2-search-filter": "^0.5.1",
     "ngx-gauge": "^5.0.0",
     "plugin": "^0.0.15",
