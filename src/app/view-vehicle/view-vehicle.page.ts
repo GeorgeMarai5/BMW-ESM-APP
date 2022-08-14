@@ -73,8 +73,8 @@ export class ViewVehiclePage implements OnInit {
 
     html2canvas(div, options).then((canvas) => {
       let doc = new jsPDF("p", "mm", "a4");
-      //let imgData = canvas.toDataURL("image/PNG");
-      //doc.addImage(imgData, "PNG" , 20, 20, 56);
+      let imgData = canvas.toDataURL("image/PNG");
+      doc.addImage(imgData, "PNG" , 20, 20,56);
 
       let pdfOuput = doc.output();
       let buffer = new ArrayBuffer(pdfOuput.length);
