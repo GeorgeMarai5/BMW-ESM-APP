@@ -741,7 +741,11 @@ const routes: Routes = [
   {
     path: 'end-of-service',
     loadChildren: () => import('./end-of-service/end-of-service.module').then( m => m.EndOfServicePageModule)
+  },  {
+    path: 'address',
+    loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
   },
+
 
 
 
