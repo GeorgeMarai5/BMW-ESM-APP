@@ -6,6 +6,7 @@ import { AddressService } from '../services/Address.service';
 import { AlertController } from '@ionic/angular';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { Address } from '../models/Address';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-address',
   templateUrl: './address.page.html',
@@ -15,7 +16,7 @@ export class AddressPage implements OnInit {
 
 
   AddressList = [];
-
+  AddressList$!:Observable<any[]>;
   AddressForm: FormGroup;
   searchTerm: string;
   AddressID: string;
@@ -33,18 +34,26 @@ export class AddressPage implements OnInit {
 
     }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    //this.AddressList$ = this.addressservice.getAddresList();
+this.addressservice.getAddresList().subscribe(res => {
+ 
+console.log(res);
+}
+  )
+
+  
 
 
     this.AddressForm = this.fb.group({
-      VehicleID: ['', [Validators.required]],
-      VinNumber: ['', [Validators.required]],
-      ModelName: ['', [Validators.required]],
-      Year: ['', [Validators.required]],
+      AddressID: ['', [Validators.required]],
+      Address: ['', [Validators.required]],
+      PostalCode: ['', [Validators.required]],
+      Date_Of_Update: ['', [Validators.required]],
   });
 
 
-  this.addressservice.GetAddress().subscribe((data) => {
+  this.addressservice.getAddresList().subscribe((data) => {
 
     this.AddressList = data.map(e => {
       let yearCode: string;

@@ -16,7 +16,7 @@ export class AddressService {
 
     
 
-    apiUrl = 'https://localhost:7292/api'
+    apiUrl = 'https://localhost:7292'
 
   
 
@@ -62,6 +62,60 @@ export class AddressService {
 
 
   }
+
+
+
+
+
+////////////////////////////////////////real
+
+
+Add_Address(data:any){
+
+  return this.httpClient.post(this.apiUrl + "/Create", data);
+}
+
+
+
+getAddresList(): Observable<any[]>{
+
+
+return this.httpClient.get<any>(this.apiUrl + "/GetAllAddresses" );
+
+}
+
+updateAddress(id:number|string,data:any){
+
+
+return this.httpClient.put(this.apiUrl + "/UpdateAddress/${id}",data)
+
+}
+
+DeleteAddress(id:number|string){
+
+return this.httpClient.delete(this.apiUrl + '/DeleteAddress/${id}');
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////real
+
 
 
   getAddressID(id): Observable<Address[]> {
