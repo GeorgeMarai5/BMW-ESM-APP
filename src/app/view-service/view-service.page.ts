@@ -12,6 +12,10 @@ import { Router, NavigationExtras } from '@angular/router';
 import { stringify } from 'querystring';
 import { CancelServicePage } from '../cancel-service/cancel-service.page';
 import { AlertController } from '@ionic/angular';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+
+
 // interface ServiceData {
 //   ServiceID: number;
 //   DealershipName: string;
@@ -146,4 +150,37 @@ export class ViewServicePage implements OnInit {
 
     await alert.present();
   }
+
+
+  header = [['Service ID', 'Service Type', 'Date']]
+
+    tableData = [ [], [], [], [], [], [], [], []
+    ]
+
+    generatePdf() {
+        var pdf = new jsPDF();
+
+        pdf.setFontSize(2);
+        pdf.text('End Of Service Report', 11, 8);
+        pdf.setFontSize(12);
+        pdf.setTextColor(99);
+
+
+        (pdf as any).autoTable({
+        head: this.header,
+        body: this.tableData,
+        theme: 'plain',
+        didDrawCell: data => {
+            console.log(data.column.index)
+        }
+        })
+
+        // Open PDF document in browser's new tab
+        pdf.output('dataurlnewwindow')
+
+        // Download PDF doc  
+        pdf.save('End_Of_Service_Report.pdf');
+    } 
+
+
 }

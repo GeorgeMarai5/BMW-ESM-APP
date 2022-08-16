@@ -12,4 +12,5 @@ export class ViewServiceInvoicePage implements OnInit {
   ngOnInit() {
   }
 
+  
 }

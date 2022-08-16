@@ -6,8 +6,8 @@ import { HistoryService } from '../services/History.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController } from '@ionic/angular';
 import jsPDF from 'jspdf';
-//import * as html2canvas from 'html2canvas';
 import html2canvas from 'html2canvas';
+import 'jspdf-autotable';
 
 interface HistoryData {
   $key: string;
@@ -41,26 +41,14 @@ export class ServiceHistoryPage implements OnInit {
     
 
   ngOnInit() {
-
-
-
-
-
-
-
     this.historyForm = this.fb.group({
-     
       VIN_Number: ['', [Validators.required]],
       Service_Type: ['', [Validators.required]],
-      Date: ['', [Validators.required]]
-
-      
+      Date: ['', [Validators.required]]   
   });
-  
 
   this._historyservice.gethistory().subscribe(data => {
     this.HistoryList = data.map(e => {
-
       return {
         id: e.payload.doc.id,
         VIN_Number: e.payload.doc.data()['VIN_Number'],
@@ -70,11 +58,8 @@ export class ServiceHistoryPage implements OnInit {
       };
     })
     console.log(this.HistoryList);
-
   });
   }
-
-
 
   async removeService(id){
     const confirmDeleteAlert = await this.alertCtrl.create({
@@ -96,50 +81,39 @@ export class ServiceHistoryPage implements OnInit {
         }
       }]
     });
-
     confirmDeleteAlert.present();
-
   }
 
+  header = [ [],
+             [],
+             ['Serice Type', 'Date']
+    ];
+
+    tableData = [ [], [], [], [], [], [], [], []
+    ]
+
+    generatePdf() {
+        var pdf = new jsPDF();
+
+        pdf.setFontSize(2);
+        pdf.text('Service History Report', 11, 8);
+        pdf.setFontSize(12);
+        pdf.setTextColor(99);
 
 
-  generatePdf() {
-    const div = document.getElementById("html2Pdf");
-    const options = {background: "white", height: div.clientHeight, width: div.clientWidth};
-
-    html2canvas(div, options).then((canvas) => {
-        //Initialize JSPDF
-        let doc = new jsPDF("p", "mm", "a4");
-        //Converting canvas to Image
-        let imgData = canvas.toDataURL("image/PNG");
-        //Add image Canvas to PDF
-        doc.addImage(imgData, "image/PNG", 10, 10, 200, 80, "history", 'MEDIUM', 0);
-
-        let pdfOutput = doc.output();
-        // using ArrayBuffer will allow you to put image inside PDF
-        let buffer = new ArrayBuffer(pdfOutput.length);
-        let array = new Uint8Array(buffer);
-        for (let i = 0; i < pdfOutput.length; i++) {
-            array[i] = pdfOutput.charCodeAt(i);
+        (pdf as any).autoTable({
+        head: this.header,
+        body: this.tableData,
+        theme: 'plain',
+        didDrawCell: data => {
+            console.log(data.column.index)
         }
+        })
 
-        //Name of pdf
-        const fileName = "example.pdf";
+        // Open PDF document in browser's new tab
+        pdf.output('dataurlnewwindow')
 
-        // Make file
-        doc.save(fileName);
-
-    });
+        // Download PDF doc  
+        pdf.save('Service_History_Report.pdf');
+    }  
 }
-
-
-
-
-
-
-
-
-
-}
-
-

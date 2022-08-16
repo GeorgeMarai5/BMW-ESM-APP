@@ -5,9 +5,9 @@ import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
-import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-view-vehicle',
@@ -67,23 +67,33 @@ export class ViewVehiclePage implements OnInit {
     this.router.navigate(['tabs/edit/vehicle', this.data]);
   }
 
-  generatePDF() {
-    const div = document.getElementById("html2PDF");
-    const options = {background: "white", height: div.clientHeight, width: div.clientWidth};
+  header = [['Serice Type', 'Date']]
 
-    html2canvas(div, options).then((canvas) => {
-      let doc = new jsPDF("p", "mm", "a4");
-      let imgData = canvas.toDataURL("image/PNG");
-      doc.addImage(imgData, "PNG" , 20, 20,56);
+    tableData = [ [], [], [], [], [], [], [], []
+    ]
 
-      let pdfOuput = doc.output();
-      let buffer = new ArrayBuffer(pdfOuput.length);
-      let array = new Uint8Array(buffer);
-      for (let i = 0; i < pdfOuput.length; i++) {
-        array[i] = pdfOuput.charCodeAt(i);
-      }
-      const fileName = "example.pdf";
-      doc.save(fileName);
-    })
-  }
+    getReport() {
+        var pdf = new jsPDF();
+
+        pdf.setFontSize(2);
+        pdf.text('Vehicle Performance Report', 11, 8);
+        pdf.setFontSize(12);
+        pdf.setTextColor(99);
+
+
+        (pdf as any).autoTable({
+        head: this.header,
+        body: this.tableData,
+        theme: 'plain',
+        didDrawCell: data => {
+            console.log(data.column.index)
+        }
+        })
+
+        // Open PDF document in browser's new tab
+        pdf.output('dataurlnewwindow')
+
+        // Download PDF doc  
+        pdf.save('Vehicle_Performance_Report.pdf');
+    } 
 }
