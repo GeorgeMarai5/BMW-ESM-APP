@@ -5,7 +5,6 @@ import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
-import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 
@@ -17,7 +16,7 @@ import jsPDF from 'jspdf';
 export class ViewVehiclePage implements OnInit {
 
   vehicles: Vehicle;
-  vehicle = {};
+  vehicle = [];
   viewVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;
@@ -66,34 +65,43 @@ export class ViewVehiclePage implements OnInit {
   navToUpdate() {
     this.router.navigate(['tabs/edit/vehicle', this.data]);
   }
-
-  header = [['Serice Type', 'Date']]
-
-    tableData = [ [], [], [], [], [], [], [], []
-    ]
-
     getReport() {
-        var pdf = new jsPDF();
-
-        pdf.setFontSize(2);
-        pdf.text('Vehicle Performance Report', 11, 8);
+      var pdf = new jsPDF('p', 'pt', 'a4');
+        var y = 20;
+        pdf.setLineWidth(2);
+        pdf.text('Vehicle Performance Report', 200, y = y + 30);
         pdf.setFontSize(12);
         pdf.setTextColor(99);
 
 
         (pdf as any).autoTable({
-        head: this.header,
-        body: this.tableData,
-        theme: 'plain',
-        didDrawCell: data => {
-            console.log(data.column.index)
-        }
-        })
+          head: [ ['Vin Number'], [],
+            ['Model Name', 'Registration' ,'Year']],
+            body: this.vehicle.map(({ModelName, Registration, Year}) => [ ModelName, Registration, Year]),
+          theme: 'grid',
+          columnStyles: {
+            0: {
+              halign: 'right',
+              tableWidth: 100,
+            },
+            1: {
+              tableWidth: 100,  
+            },
+            2: {
+              halign: 'right',
+              tableWidth: 100,
+            },
+            3: {
+              halign: 'right',  
+              tableWidth: 100,
+            }
+            }
+      });
 
         // Open PDF document in browser's new tab
-        pdf.output('dataurlnewwindow')
+        pdf.output('dataurlnewwindow');
 
         // Download PDF doc  
-        pdf.save('Vehicle_Performance_Report.pdf');
+        pdf.save('Service_History_Report.pdf');
     } 
 }

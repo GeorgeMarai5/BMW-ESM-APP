@@ -6,7 +6,6 @@ import { HistoryService } from '../services/History.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController } from '@ionic/angular';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import 'jspdf-autotable';
 
 interface HistoryData {
@@ -84,36 +83,30 @@ export class ServiceHistoryPage implements OnInit {
     confirmDeleteAlert.present();
   }
 
-  header = [ [],
-             [],
-             ['Serice Type', 'Date']
-    ];
-
-    tableData = [ [], [], [], [], [], [], [], []
-    ]
-
     generatePdf() {
-        var pdf = new jsPDF();
-
-        pdf.setFontSize(2);
-        pdf.text('Service History Report', 11, 8);
+        var pdf = new jsPDF('p', 'pt', 'a4');
+        var y = 20;
+        pdf.setLineWidth(2);
+        pdf.text('Service History Report', 200, y = y + 30);
         pdf.setFontSize(12);
         pdf.setTextColor(99);
 
 
         (pdf as any).autoTable({
-        head: this.header,
-        body: this.tableData,
-        theme: 'plain',
-        didDrawCell: data => {
-            console.log(data.column.index)
-        }
-        })
-
-        // Open PDF document in browser's new tab
-        pdf.output('dataurlnewwindow')
-
-        // Download PDF doc  
+          head: [['Vin Number', 'Service Type', 'Date']],
+          body: this.HistoryList.map(({VIN_Number, ServiceType, Date}) => [VIN_Number, ServiceType, Date]),
+          theme: 'grid',
+          columnStyles: {
+            0: {
+              halign: 'right',
+              tableWidth: 100,
+            },
+            1: {
+              tableWidth: 100,  
+            },
+            }
+      });
+        pdf.output('dataurlnewwindow');
         pdf.save('Service_History_Report.pdf');
     }  
 }

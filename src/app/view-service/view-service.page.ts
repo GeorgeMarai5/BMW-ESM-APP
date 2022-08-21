@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-  Form,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { Service } from '../services/service.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { stringify } from 'querystring';
 import { CancelServicePage } from '../cancel-service/cancel-service.page';
 import { AlertController } from '@ionic/angular';
-import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 
@@ -88,6 +81,7 @@ export class ViewServicePage implements OnInit {
   //   console.log(this.serviceList);
 
   // });
+
   ngOnInit() {
     this.serviceForm = this.fb.group({
       ServiceID: ['', [Validators.required]],
@@ -141,6 +135,7 @@ export class ViewServicePage implements OnInit {
     //     this.router.navigate(['tabs/edit/vehicle'], navigationExtras);
     //   }
   }
+
   async concludeServiceAlert() {
     const alert = await this.alertController.create({
       header: 'Conclude Service',
@@ -151,36 +146,31 @@ export class ViewServicePage implements OnInit {
     await alert.present();
   }
 
-
-  header = [['Service ID', 'Service Type', 'Date']]
-
-    tableData = [ [], [], [], [], [], [], [], []
-    ]
-
     generatePdf() {
-        var pdf = new jsPDF();
-
-        pdf.setFontSize(2);
-        pdf.text('End Of Service Report', 11, 8);
+        var pdf = new jsPDF('p', 'pt', 'a4');
+        var y = 20;
+        pdf.setLineWidth(2);
+        pdf.text('End Of Service Report', 200, y = y + 30);
         pdf.setFontSize(12);
         pdf.setTextColor(99);
 
 
         (pdf as any).autoTable({
-        head: this.header,
-        body: this.tableData,
-        theme: 'plain',
-        didDrawCell: data => {
-            console.log(data.column.index)
-        }
-        })
-
-        // Open PDF document in browser's new tab
-        pdf.output('dataurlnewwindow')
-
-        // Download PDF doc  
-        pdf.save('End_Of_Service_Report.pdf');
-    } 
-
-
-}
+          theme: 'grid',
+          head: [['VIN Number', 'Service ID', 'Service Type', 'Date']],
+          body: this.serviceList.map(({VIN_Number, ServiceID, ServiceType, Date}) => [VIN_Number, ServiceID, ServiceType, Date]),
+          columnStyles: {
+            0: {
+              halign: 'right',
+              tableWidth: 10,
+            },
+            1: {
+              tableWidth: 10,  
+            },
+            },
+      });
+        pdf.output('dataurlnewwindow');
+        pdf.save('Service_History_Report.pdf');
+    }
+    
+  }

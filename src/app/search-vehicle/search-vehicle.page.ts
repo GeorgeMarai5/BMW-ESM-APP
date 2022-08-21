@@ -9,6 +9,8 @@ import { generateKeyPair } from 'crypto';
 import { Console } from 'console';
 import { AlertController } from '@ionic/angular';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-search-vehicle',
@@ -103,4 +105,31 @@ export class SearchVehiclePage implements OnInit {
     confirmCheckInAlert.present();
 
   }
+
+  getReport() {
+    var pdf = new jsPDF('p', 'pt', 'a4');
+      var y = 20;
+      pdf.setLineWidth(2);
+      pdf.text('Vehicle Performance Report', 200, y = y + 30);
+      pdf.setFontSize(12);
+      pdf.setTextColor(99);
+
+
+      (pdf as any).autoTable({
+        head: [['Vin Number', 'Model Name', 'Registration' ,'Year']],
+          body: this.vehicleList.map(({VIN_Number, ModelName, Registration, Year}) => {return [VIN_Number, ModelName, Registration, Year]}),
+        theme: 'grid',
+        columnStyles: {
+          0: {
+            halign: 'right',
+            tableWidth: 100,
+          },
+          1: {
+            tableWidth: 100,  
+          },
+          }
+    });
+      pdf.output('dataurlnewwindow');
+      pdf.save('Service_History_Report.pdf');
+  } 
 }
