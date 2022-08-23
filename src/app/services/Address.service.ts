@@ -10,16 +10,7 @@ import { Address } from '../models/Address';
 })
 export class AddressService {
 
-
-
-
-
-    
-
-    apiUrl = 'https://localhost:7292'
-
-  
-
+  apiUrl = 'https://localhost:7292'
   httpOptions ={
     headers: new HttpHeaders({
       ContentType: 'application/json'
@@ -27,6 +18,11 @@ export class AddressService {
   }
 
   constructor(private httpClient: HttpClient) {   
+
+  }
+
+  get(){
+    return this.httpClient.get<Address[]>("https://localhost:7292/address")
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -42,6 +38,7 @@ export class AddressService {
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
+    
   }
 
 
