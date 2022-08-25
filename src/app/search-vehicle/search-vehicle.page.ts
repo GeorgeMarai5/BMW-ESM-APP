@@ -10,7 +10,7 @@ import { Console } from 'console';
 import { AlertController } from '@ionic/angular';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+//import 'jspdf-autotable';
 
 @Component({
   selector: 'app-search-vehicle',
