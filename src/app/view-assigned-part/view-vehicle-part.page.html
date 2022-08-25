@@ -19,7 +19,7 @@
             <h1>View Assigned Part</h1>
         </ion-title>
 
-        <form [formGroup]="assignPartForm" (ngSubmit)="submitForm()" novalidate>
+        <form [formGroup]="viewPartForm" (ngSubmit)="submitForm()" novalidate>
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -27,9 +27,7 @@
                             <ion-label position="stacked"><b>Part Name</b></ion-label>
                             <ion-input formControlName="partName" type="text" required readonly></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
-        Part Name is required.
-      </span>
+                        
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -43,9 +41,7 @@
                                 <ion-select-option>Clutch</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-        Part Type is required.
-      </span>
+                        
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -54,9 +50,7 @@
                             <ion-label position="stacked"><b>Description</b></ion-label>
                             <ion-input formControlName="Description" type="text" required readonly></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-      Description is required.
-    </span>
+                        
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -65,9 +59,7 @@
                             <ion-label position="stacked"><b>Part In Stock</b></ion-label>
                             <ion-input formControlName="partStock" type="text" required readonly></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-    Part Availability is required.
-  </span>
+                        
                     </ion-col>
                 </ion-row>
                 <br/>

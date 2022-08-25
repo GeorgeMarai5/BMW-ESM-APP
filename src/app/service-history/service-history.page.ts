@@ -6,7 +6,7 @@ import { HistoryService } from '../services/History.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController } from '@ionic/angular';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 
 interface HistoryData {
   $key: string;
