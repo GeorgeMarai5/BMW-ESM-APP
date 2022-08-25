@@ -225,23 +225,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'view/dealership',
-    loadChildren: () =>
-      import('./view-dealership/view-dealership.module').then(
-        (m) => m.ViewDealershipPageModule
-      ),
-  },
-  {
-    path: 'view/dealership/:id',
-    resolve: {
-      special: DataResolverService,
-    },
-    loadChildren: () =>
-      import('./view-dealership/view-dealership.module').then(
-        (m) => m.ViewDealershipPageModule
-      ),
-  },
-  {
     path: 'search/maintenance-plan',
     loadChildren: () =>
       import('./searchmaintenanceplan/searchmaintenanceplan.module').then(
@@ -318,13 +301,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./update-service/update-service.module').then(
         (m) => m.UpdateServicePageModule
-      ),
-  },
-  {
-    path: 'cancel/service',
-    loadChildren: () =>
-      import('./cancel-service/cancel-service.module').then(
-        (m) => m.CancelServicePageModule
       ),
   },
   {
@@ -418,18 +394,7 @@ const routes: Routes = [
   },
   {
     path: 'search/part',
-    loadChildren: () => import('./part/search-part/search-part.module').then( m => m.SearchPartPageModule)
-  },
-  {
-    path: 'view/part-details',
-    loadChildren: () => import('./part/view-part-details/view-part-details.module').then( m => m.ViewPartDetailsPageModule)
-  },
-  {
-    path: 'view/part-details/:id',
-    resolve: {
-      special: DataResolverService
-    },
-    loadChildren: () => import('./view-vehicle/view-vehicle.module').then( m => m.ViewVehiclePageModule)
+    loadChildren: () => import('./search-part/search-part.module').then( m => m.SearchPartPageModule)
   },
   {
     path: 'view/service-progress',
@@ -509,36 +474,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'view/team',
-    loadChildren: () =>
-      import('./view-team/view-team.module').then((m) => m.ViewTeamPageModule),
-  },
-  {
-    path: 'view/team/:id',
-    resolve: {
-      special: DataResolverService
-    },
-    loadChildren: () =>
-      import('./view-team/view-team.module').then((m) => m.ViewTeamPageModule),
-  },
-  {
-    path: 'view/team-member',
-    loadChildren: () =>
-      import('./view-team-member/view-team-member.module').then(
-        (m) => m.ViewTeamMemberPageModule
-      ),
-  },
-  {
-    path: 'view/team-member/:id',
-    resolve: {
-      special: DataResolverService
-    },
-    loadChildren: () =>
-      import('./view-team-member/view-team-member.module').then(
-        (m) => m.ViewTeamMemberPageModule
-      ),
-  },
-  {
     path: 'add/service-item',
     loadChildren: () =>
       import('./add-service-item/add-service-item.module').then(
@@ -570,23 +505,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'view/service-item',
-    loadChildren: () =>
-      import('./view-service-item/view-service-item.module').then(
-        (m) => m.ViewServiceItemPageModule
-      ),
-  },
-  {
-    path: 'view/service-item/:id',
-    resolve: {
-      special: DataResolverService
-    },
-    loadChildren: () =>
-      import('./view-service-item/view-service-item.module').then(
-        (m) => m.ViewServiceItemPageModule
-      ),
-  },
-  {
     path: 'assign/vehicle-part',
     loadChildren: () =>
       import('./assign-vehicle-part/assign-vehicle-part.module').then(
@@ -613,25 +531,8 @@ const routes: Routes = [
   {
     path: 'search/assigned-part',
     loadChildren: () =>
-      import('./search-assigned-part/search-vehicle-part.module').then(
+      import('./search-vehicle-part/search-vehicle-part.module').then(
         (m) => m.SearchVehiclePartPageModule
-      ),
-  },
-  {
-    path: 'view/assigned-part',
-    loadChildren: () =>
-      import('./view-assigned-part/view-vehicle-part.module').then(
-        (m) => m.ViewVehiclePartPageModule
-      ),
-  },
-  {
-    path: 'view/assigned-part/:id',
-    resolve: {
-      special: DataResolverService
-    },
-    loadChildren: () =>
-      import('./view-assigned-part/view-vehicle-part.module').then(
-        (m) => m.ViewVehiclePartPageModule
       ),
   },
   {
@@ -670,23 +571,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./create-service-note/create-service-note.module').then(
         (m) => m.CreateServiceNotePageModule
-      ),
-  },
-  {
-    path: 'view/service-note',
-    loadChildren: () =>
-      import('./view-service-note/view-service-note.module').then(
-        (m) => m.ViewServiceNotePageModule
-      ),
-  },
-  {
-    path: 'view/service-note/:id',
-    resolve: {
-      special: DataResolverService
-    },
-    loadChildren: () =>
-      import('./view-service-note/view-service-note.module').then(
-        (m) => m.ViewServiceNotePageModule
       ),
   },
   {
@@ -739,9 +623,6 @@ const routes: Routes = [
     loadChildren: () => import('./service-data/service-data.module').then( m => m.ServiceDataPageModule)
   },
   {
-    path: 'end-of-service',
-    loadChildren: () => import('./end-of-service/end-of-service.module').then( m => m.EndOfServicePageModule)
-  },  {
     path: 'address',
     loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
   },

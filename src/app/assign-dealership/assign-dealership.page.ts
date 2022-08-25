@@ -34,7 +34,7 @@ export class AssignDealershipPage implements OnInit {
     }
     else{
       const dealership = {
-        DealershipID: '00' + (Math.floor(Math.random() * (9 - 1 + 1)) + 1),
+        DealershipID: '00' /*add id*/,
         DealershipName: this.assignDealershipForm.get('dealershipName').value,
         AddressName: this.assignDealershipForm.get('address').value
       }
@@ -57,5 +57,4 @@ export class AssignDealershipPage implements OnInit {
   get errorControl() {
     return this.assignDealershipForm.controls;
   }
-
 }

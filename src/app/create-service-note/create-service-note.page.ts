@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import {
-  FormBuilder,
-  Validators,
-  FormGroup,
-  FormControl,
-} from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ServiceNoteService } from '../services/servicenote.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 interface ServiceNoteData {
   Description: string;
 }
@@ -18,6 +14,7 @@ interface ServiceNoteData {
   templateUrl: './create-service-note.page.html',
   styleUrls: ['./create-service-note.page.scss'],
 })
+
 export class CreateServiceNotePage implements OnInit {
   services: ServiceNoteService;
   serviceNoteList = [];
@@ -29,13 +26,8 @@ export class CreateServiceNotePage implements OnInit {
 
   today = new Date();
 
-  constructor(
-    private route: ActivatedRoute,
-    public router: Router,
-    public firestore: AngularFirestore,
-    public authService: AuthService,
-    public fb: FormBuilder,
-    private _serviceNote: ServiceNoteService
+  constructor (private route: ActivatedRoute, public router: Router, public firestore: AngularFirestore,
+    public authService: AuthService, public fb: FormBuilder, private _serviceNote: ServiceNoteService
   ) {
     this.route.params.subscribe((params) => {});
     this.addNoteForm = new FormGroup({
@@ -64,9 +56,11 @@ export class CreateServiceNotePage implements OnInit {
       this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
     }
   }
+
   ngOnInit() {
     this.addNoteForm.setValue({ Description: '' });
   }
+  
   get errorControl() {
     return this.addNoteForm.controls;
   }

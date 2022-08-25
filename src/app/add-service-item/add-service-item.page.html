@@ -19,7 +19,7 @@
             <h1>Add Service Item</h1>
         </ion-title>
 
-        <form  novalidate>     <!-----------[formGroup]="addItemform" (ngSubmit)="submitForm()"------>
+        <form [formGroup]="addItemForm" (ngSubmit)="submitForm()" novalidate>
             <ion-grid>
                 <ion-row>
                     <ion-col>

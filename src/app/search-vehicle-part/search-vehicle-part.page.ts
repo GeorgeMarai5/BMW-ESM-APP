@@ -69,7 +69,6 @@ export class SearchVehiclePartPage implements OnInit {
     });
 
     confirmDeleteAlert.present();
-
   }
 
   async presentToast() {
@@ -80,6 +79,7 @@ export class SearchVehiclePartPage implements OnInit {
     });
   
     toast.present();
+    
   }
 
 }

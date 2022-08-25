@@ -5,6 +5,7 @@ import { Service } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
+
 interface ServiceData {
   TeamName: string;
   ServiceTypeName: string;
@@ -44,40 +45,6 @@ export class CreateServicePage implements OnInit {
     })
       
    }
-
-
-  //   this.serviceForm = this.fb.group({
-  //     TeamName: ['', [Validators.required]],
-  //     ServiceTypeName: ['', [Validators.required]],
-  //   })
-  //   // const auth = getAuth();
-  //   // const currUser = auth.current.uid;
-  
-  // this._service.readService().subscribe(data => {
-  //   this.serviceList = data.map(e => {
-  //     return {
-  //       id: e.payload.doc.id,
-  //       DealershipID: e.payload.doc.data()['DealershipID'],
-  //       DealershipName: e.payload.doc.data()['DealershipName'],
-  //       AddressName: e.payload.doc.data()['AddressName'],
-  //     };
-  //   })
-  //   console.log(this.serviceList);
-
-  // });
-  // }
-
-  // CreateService() {
-  //   console.log(this.serviceForm.value);
-  //   this._service.createService(this.serviceForm.value).then(resp => {
-  //     this.serviceForm.reset();
-  //     alert("A new service has been created successfully.")
-  //   })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
-
   
   submitForm(){
     this.isSubmitted = true;
@@ -94,23 +61,17 @@ export class CreateServicePage implements OnInit {
         alert("Service has been created successfully");
         const serviceID = {
           serviceID: docRef.id
-
-        }
-        // this.service.updateService(this.id, {"ServiceID": serviceID})
-        // console.log(serviceID.serviceID);
-        
-        
+        } 
       });
       this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
     }
-
-
   }
+
   ngOnInit() {
     this.serviceForm.setValue({TeamName: '', ServiceTypeName: ''});
-}
-get errorControl() {
-  return this.serviceForm.controls;
-}
+  }
 
+  get errorControl() {
+    return this.serviceForm.controls;
+  }
 }

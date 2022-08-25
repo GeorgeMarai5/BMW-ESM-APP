@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, FormControl, Validators, Form } from '@angular/
 import { Service } from '../services/service.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { stringify } from 'querystring';
-import { CancelServicePage } from '../cancel-service/cancel-service.page';
 import { AlertController } from '@ionic/angular';
 import jsPDF from 'jspdf';
 

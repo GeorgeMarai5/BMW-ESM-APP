@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Vehicle } from '../models/Vehicle';
 import { AuthService } from '../services/auth.service';
-import { FleetService } from '../services/fleet.service';
 import { VehicleService } from '../services/vehicle.service';
 
 @Component({
@@ -31,24 +30,24 @@ export class SearchServiceItemPage implements OnInit {
       FleetLocation: ['', [Validators.required]],
       FleetID: ['', [Validators.required]],
       FleetVehicleQty: ['', [Validators.required]],
-  });
+    });
 
-  this.service.getVehicles().subscribe(data => {
-    this.serviceItemList = data.map(e => {
-      let yearCode: string;
-      yearCode = e.payload.doc.data()['VIN_Number'];
+    this.service.getVehicles().subscribe(data => {
+      this.serviceItemList = data.map(e => {
+        let yearCode: string;
+        yearCode = e.payload.doc.data()['VIN_Number'];
 
-      return {
-        id: e.payload.doc.id,
-        VehicleID: e.payload.doc.data()['VehicleID'],
-        VINNumber: e.payload.doc.data()['VIN_Number'],
-        vehicleModel: e.payload.doc.data()['VehicleModel'],
-        year: this.service.getYear(yearCode.substring(9, 10))
-      };
-    })
-    console.log(this.serviceItemList);
+        return {
+          id: e.payload.doc.id,
+          VehicleID: e.payload.doc.data()['VehicleID'],
+          VINNumber: e.payload.doc.data()['VIN_Number'],
+          vehicleModel: e.payload.doc.data()['VehicleModel'],
+          year: this.service.getYear(yearCode.substring(9, 10))
+        };
+      })
+      console.log(this.serviceItemList);
 
-  });
+    });
   }
 
   async removeItem(id){
@@ -101,5 +100,4 @@ export class SearchServiceItemPage implements OnInit {
     confirmCheckInAlert.present();
 
   }
-
 }

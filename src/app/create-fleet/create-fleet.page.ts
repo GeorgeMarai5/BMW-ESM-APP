@@ -4,15 +4,11 @@ import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 
-
-
 interface FleetData {
   FleetName: string;
   FleetLocation: string;
   
 }
-
-
 
 @Component({
   selector: 'app-create-fleet',
@@ -25,36 +21,19 @@ export class CreateFleetPage implements OnInit {
   fleetData: FleetData;
   fleetForm: FormGroup;
   
+  constructor (public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService) {
+
+    this.fleetData = {} as FleetData;
   
-
-  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService) {
-
-    
-      this.fleetData = {} as FleetData;
-    
-
-   }
-
-
-
-
+  }
 
   ngOnInit() {
 
     this.fleetForm = this.fb.group({
       FleetName: ['', [Validators.required]],
       FleetLocation: ['', [Validators.required]],
-      
-    })
-
-
-
-
-
+    });
   }
-
-
-
 
   CreateFleet() {
     console.log(this.fleetForm.value);
@@ -62,10 +41,8 @@ export class CreateFleetPage implements OnInit {
       this.fleetForm.reset();
       alert("New Fleet created successfully")
       console.log("successfully created")
-    })
-      .catch(error => {
+    }).catch(error => {
         console.log(error);
       });
   }
-
 }

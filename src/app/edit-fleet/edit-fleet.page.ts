@@ -13,8 +13,6 @@ interface FleetData {
   
 }
 
-
-
 @Component({
   selector: 'app-edit-fleet',
   templateUrl: './edit-fleet.page.html',
@@ -22,7 +20,6 @@ interface FleetData {
 })
 export class EditFleetPage implements OnInit {
 
-  
   fleets: FleetData;
   fleet = {};
   fleetform: FormGroup;
@@ -71,26 +68,19 @@ export class EditFleetPage implements OnInit {
     return this.fleetform.controls;
   }
 
+  EditFleet(Fleet) {
+    Fleet.isEdit = true;
+    Fleet.EditFleetName = Fleet.FleetName;
+    Fleet.EditFleetLocation = Fleet.FleetLocation;
+    
+  }
 
-
-
-EditFleet(Fleet) {
-  Fleet.isEdit = true;
-  Fleet.EditFleetName = Fleet.FleetName;
-  Fleet.EditFleetLocation = Fleet.FleetLocation;
-  
-}
-
-
-UpdateFleet(Fleet) {
-  let FleetID = {};
-  Fleet['FleetName'] = Fleet.FleetName;
-  Fleet['FleetLocation'] = Fleet.FleetLocation; 
-  this.fleetservice.update_Fleet(Fleet.id,Fleet);
-  //Fleet.isEdit = false;
-  console.log(Fleet,"successfully updated")
-}
-
-
-
+  UpdateFleet(Fleet) {
+    let FleetID = {};
+    Fleet['FleetName'] = Fleet.FleetName;
+    Fleet['FleetLocation'] = Fleet.FleetLocation; 
+    this.fleetservice.update_Fleet(Fleet.id,Fleet);
+    //Fleet.isEdit = false;
+    console.log(Fleet,"successfully updated")
+  }
 }

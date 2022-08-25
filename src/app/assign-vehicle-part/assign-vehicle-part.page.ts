@@ -24,11 +24,11 @@ export class AssignVehiclePartPage implements OnInit {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-    this.assignPartForm = new FormGroup({
-      partName: new FormControl('', Validators.required),
-      partType: new FormControl('', Validators.required),
-      Description: new FormControl('', Validators.required)
-    })
+      this.assignPartForm = new FormGroup({
+        partName: new FormControl('', Validators.required),
+        partType: new FormControl('', Validators.required),
+        Description: new FormControl('', Validators.required)
+      });
   }
 
   submitForm(){
@@ -62,5 +62,4 @@ export class AssignVehiclePartPage implements OnInit {
   get errorControl() {
     return this.assignPartForm.controls;
   }
-
 }

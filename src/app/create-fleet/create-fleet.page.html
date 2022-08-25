@@ -12,30 +12,7 @@
     
   </ion-toolbar>
 </ion-header>
-<!---
-<ion-content>
-  <ion-title>
-    Create Your Fleet
-  </ion-title>
 
-<ion-content>
-  <form [formGroup]="fleetForm" (ngSubmit)="CreateFleet()">
-
-  <ion-item>
-    <ion-label position="stacked">Fleet Name</ion-label>
-    <ion-input formControlName="FleetName"></ion-input>
-  </ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Fleet Location</ion-label>
-  <ion-input formControlName="FleetLocation"></ion-input>
-</ion-item>
-
-<ion-button >Continue</ion-button>
-
-</form>
-</ion-content>
--->
 <ion-content>
   <div class="contents">
     <ion-title><h1>Create Fleet</h1></ion-title>
@@ -64,7 +41,7 @@
         <ion-row>
           <ion-col></ion-col>
           <ion-col>
-            <ion-button (click)="CreateFleet()"[routerLink]="['/tabs/view/fleet']">Continue</ion-button>
+            <ion-button type="submit">Continue</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

@@ -4,7 +4,6 @@ import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { AlertController } from '@ionic/angular';
 
-
 interface FleetData {
   $key: string;
   FleetID: number;
@@ -21,14 +20,14 @@ interface FleetData {
 })
 export class SearchFleetPage implements OnInit {
 
-   fleetList = [];
-   fleetData: FleetData;
-   fleetForm: FormGroup;
-   searchTerm: string;
-   fleetID: string;
+  fleetList = [];
+  fleetData: FleetData;
+  fleetForm: FormGroup;
+  searchTerm: string;
+  fleetID: string;
 
-
-  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService,public alertCtrl: AlertController) { 
+  constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, 
+    public alertCtrl: AlertController) { 
 
     this.fleetData = {} as FleetData;
 
@@ -43,7 +42,6 @@ export class SearchFleetPage implements OnInit {
       FleetVehicleQty: ['', [Validators.required]],
   });
 
-
   this.fleetservice.read_Fleet().subscribe(data => {
 
     this.fleetList = data.map(e => {
@@ -56,47 +54,41 @@ export class SearchFleetPage implements OnInit {
         FleetLocation: e.payload.doc.data()['FleetLocation']
       };
     })
+
     console.log(this.fleetList);
 
   });
-
-
 }
-
 
 RemoveFleet(ID) {
   alert("Vehicle was successfully Removed.");
-   
-  
   this.fleetservice.delete_Fleet(ID);
-  
   console.log(ID)
 }
 
 
-async Deletefleet(id){
-  const confirmDeleteAlert = await this.alertCtrl.create({
-    header: 'Remove Fleet',
-    message: 'Are you sure you would like to remove this Fleet from the system?',
-    buttons: [{
-      text: 'Cancel',
-      role: 'cancel',
-      handler: end => {
-        this.alertCtrl.dismiss();
-      }
-    },
-    {
-      text: 'Remove',
-      role: 'remove',
-      handler: () => {
-        this.fleetservice.delete_Fleet(id);
-        alert('Fleet was successfully removed');
-      }
-    }]
-  });
+  async Deletefleet(id){
+    const confirmDeleteAlert = await this.alertCtrl.create({
+      header: 'Remove Fleet',
+      message: 'Are you sure you would like to remove this Fleet from the system?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: end => {
+          this.alertCtrl.dismiss();
+        }
+      },
+      {
+        text: 'Remove',
+        role: 'remove',
+        handler: () => {
+          this.fleetservice.delete_Fleet(id);
+          alert('Fleet was successfully removed');
+        }
+      }]
+    });
 
-  confirmDeleteAlert.present();
+    confirmDeleteAlert.present();
 
-}
-
+  }
 }

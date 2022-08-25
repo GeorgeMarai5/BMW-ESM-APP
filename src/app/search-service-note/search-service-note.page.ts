@@ -4,7 +4,6 @@ import { AuthService } from '../services/auth.service';
 import { ServiceNoteService } from '../services/servicenote.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -21,14 +20,10 @@ export class SearchServiceNotePage implements OnInit {
   id: any;
   serviceNote: string;
 
-  constructor(
-    public authService: AuthService,
-    private _serviceNote: ServiceNoteService,
-    public fb: FormBuilder,
-    private firestore: AngularFirestore,
-    public alertCtrl: AlertController
-  ) {
-    this.services = {} as ModelService;
+  constructor(public authService: AuthService, private _serviceNote: ServiceNoteService, public fb: FormBuilder,
+    private firestore: AngularFirestore, public alertCtrl: AlertController) {
+    
+      this.services = {} as ModelService;
   }
 
   ngOnInit() {
@@ -50,6 +45,7 @@ export class SearchServiceNotePage implements OnInit {
       console.log(this.serviceNoteList);
     });
   }
+  
   async removeServiceNote(id) {
     const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Service',

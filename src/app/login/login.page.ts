@@ -10,8 +10,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms"
   styleUrls: ['./login.page.scss'],
 })
 
-
-
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
@@ -25,9 +23,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-
   ngOnInit() {
-
 
   }
 

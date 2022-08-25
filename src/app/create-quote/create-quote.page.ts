@@ -13,9 +13,7 @@ interface QuoteData {
   Description: String;
   Accepted: String;
 
-
 }
-
 
 @Component({
   selector: 'app-create-quote',
@@ -23,16 +21,10 @@ interface QuoteData {
   styleUrls: ['./create-quote.page.scss'],
 })
 
-
-
-
-
 export class CreateQuotePage implements OnInit {
 
-
-
-QuoteData: QuoteData;
-QuoteForm: FormGroup;
+  QuoteData: QuoteData;
+  QuoteForm: FormGroup;
 
   constructor(public authService: AuthService,
     public fb: FormBuilder,
@@ -41,8 +33,6 @@ QuoteForm: FormGroup;
     private zone: NgZone) { 
 
       this.QuoteData = {} as QuoteData;
-
-
 
     }
 
@@ -53,32 +43,22 @@ QuoteForm: FormGroup;
       Date: ['', [Validators.required]],
       Description: ['', [Validators.required]],
       Accepted: ['', [Validators.required]],
-    
+    });
   }
-    )
-}
 
-
-
-  CreateQuote(){
+  submit(){
   
     console.log(this.QuoteForm.value);
     this.quoteservice.create_Quote(this.QuoteForm.value).then(resp => {
       this.QuoteForm.reset();
       alert("New Quote has been created successfully")
       console.log("successfully created")
-    })
-      .catch(error => {
+    }).catch(error => {
         console.log(error);
       });
 
       this.router.navigate(['/search/quote']);
-
   }
-
-
-
-
 }
 
 

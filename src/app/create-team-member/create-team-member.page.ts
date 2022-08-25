@@ -21,6 +21,7 @@ export class CreateTeamMemberPage implements OnInit {
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
+    
     this.createTeamMemberForm = new FormGroup({
       employeeName: new FormControl('', Validators.required),
       employeeSurname: new FormControl('', Validators.required),

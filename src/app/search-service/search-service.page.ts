@@ -32,27 +32,25 @@ export class SearchServicePage implements OnInit {
       VINNumber: ['', [Validators.required]],
       ServiceType: ['', [Validators.required]],
       Date: ['', [Validators.required]]
+    });
+    
+    this._service.getServices().subscribe(data => {
+      this.serviceList = data.map(e => {
 
-      
-  });
-  
+        return {
+          id: e.payload.doc.id,
+          ServiceID: e.payload.doc.data()['ServiceID'],
+          VINNumber: e.payload.doc.data()['VINNumber'],
+          ServiceType: e.payload.doc.data()['ServiceType'],
+          Date: e.payload.doc.data()['Date']
 
-  this._service.getServices().subscribe(data => {
-    this.serviceList = data.map(e => {
+        };
+      })
+      console.log(this.serviceList);
 
-      return {
-        id: e.payload.doc.id,
-        ServiceID: e.payload.doc.data()['ServiceID'],
-        VINNumber: e.payload.doc.data()['VINNumber'],
-        ServiceType: e.payload.doc.data()['ServiceType'],
-        Date: e.payload.doc.data()['Date']
-
-      };
-    })
-    console.log(this.serviceList);
-
-  });
+    });
   }
+  
   async removeService(id){
     const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Service',
@@ -77,5 +75,4 @@ export class SearchServicePage implements OnInit {
     confirmDeleteAlert.present();
 
   }
-
 }
