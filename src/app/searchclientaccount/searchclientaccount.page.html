@@ -16,85 +16,50 @@
 <ion-content>
   <ion-content class="ion-margin">
     <ion-item>
-<ion-label class="large">Search Clients</ion-label>
-</ion-item>
-<ion-searchbar class="isb"placeholder="Search Client" showCancelButton="focus" animated>
-  </ion-searchbar>
-  <ion-card>
-    <ion-grid class="ion-margin" class="ion-grid-padding">
-      <ion-row>
-        <ion-col>Client ID</ion-col>
-      <ion-col>Name</ion-col>
-      <ion-col>Email</ion-col>
-      <ion-col>Phone</ion-col>
-      <ion-col></ion-col>
-      <ion-col></ion-col>
-    </ion-row>
-    </ion-grid>
+      <ion-label class="large">Search Clients</ion-label>
+    </ion-item>
+    <ion-searchbar class="isb"placeholder="Search Client" showCancelButton="focus" animated></ion-searchbar>
+    <ion-card>
+      <ion-grid class="ion-margin" class="ion-grid-padding">
+        <ion-row>
+          <ion-col>Client ID</ion-col>
+          <ion-col>Name</ion-col>
+          <ion-col>Email</ion-col>
+          <ion-col>Phone</ion-col>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card>
-
-  <!-- <ion-row *ngFor="let clientItem of clientList">
-    <ion-item>
-    <ion-label> {{clientItem.clientID}}</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label> {{clientItem.Name}}</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label> {{clientItem.Email}}</ion-label>
-    <ion-item>
-  </ion-item>
-    <ion-label> {{clientItem.Phone}}</ion-label>
-    <ion-item>
-  </ion-item>
-    <ion-button [routerLink]="['/tabs/view']" style="color: #002850; font-size: medium;" >View</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-button [routerLink]="['/tabs/delete']" style="color: red; font-size: medium;">Remove</ion-button>
-  </ion-item>
-    </ion-row>
-    
-</ion-grid>
-</ion-card>
-</ion-content> -->
-
 
   <ion-title>
     Client Account
   </ion-title>
 
-
   <form [formGroup]="clientform" *ngFor="let item of clientList">
-
-  <ion-item>
-    <ion-label position="stacked">Title</ion-label>
-    <ion-input value="{{item.Title}}" readonly></ion-input>
-  </ion-item>
-
-<ion-item>
-  <ion-label position="stacked">First Name</ion-label>
-  <ion-input value="{{item.FirstName}}" readonly></ion-input>
-</ion-item>
-
-<ion-item >
-  <ion-label position="stacked">Last Name</ion-label>
-  <ion-input value="{{item.LastName}}" readonly></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Phone Number</ion-label>
-  <ion-input value="{{item.PhoneNumber}}" readonly></ion-input>
-</ion-item>
-
-<ion-item >
-  <ion-label position="stacked" >Email</ion-label> 
-  <ion-input value="{{item.Email}}" readonly></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Address</ion-label>
-  <ion-input value="{{item.Address}}" readonly> </ion-input>
-</ion-item>
-
-</form>
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input value="{{item.Title}}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">First Name</ion-label>
+      <ion-input value="{{item.FirstName}}" readonly></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label position="stacked">Last Name</ion-label>
+      <ion-input value="{{item.LastName}}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Phone Number</ion-label>
+      <ion-input value="{{item.PhoneNumber}}" readonly></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label position="stacked" >Email</ion-label> 
+      <ion-input value="{{item.Email}}" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Address</ion-label>
+      <ion-input value="{{item.Address}}" readonly> </ion-input>
+    </ion-item>
+  </form>
 </ion-content>

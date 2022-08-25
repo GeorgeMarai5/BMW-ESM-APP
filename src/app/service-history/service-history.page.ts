@@ -44,20 +44,20 @@ export class ServiceHistoryPage implements OnInit {
       VIN_Number: ['', [Validators.required]],
       Service_Type: ['', [Validators.required]],
       Date: ['', [Validators.required]]   
-  });
+    });
 
-  this._historyservice.gethistory().subscribe(data => {
-    this.HistoryList = data.map(e => {
-      return {
-        id: e.payload.doc.id,
-        VIN_Number: e.payload.doc.data()['VIN_Number'],
-        Service_Type: e.payload.doc.data()['Service_Type'],
-        Date: e.payload.doc.data()['Date']
+    this._historyservice.gethistory().subscribe(data => {
+      this.HistoryList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          VIN_Number: e.payload.doc.data()['VIN_Number'],
+          Service_Type: e.payload.doc.data()['Service_Type'],
+          Date: e.payload.doc.data()['Date']
 
-      };
-    })
-    console.log(this.HistoryList);
-  });
+        };
+      });
+      console.log(this.HistoryList);
+    });
   }
 
   async removeService(id){
@@ -83,30 +83,32 @@ export class ServiceHistoryPage implements OnInit {
     confirmDeleteAlert.present();
   }
 
-    generatePdf() {
-        var pdf = new jsPDF('p', 'pt', 'a4');
-        var y = 20;
-        pdf.setLineWidth(2);
-        pdf.text('Service History Report', 200, y = y + 30);
-        pdf.setFontSize(12);
-        pdf.setTextColor(99);
+  generatePdf() {
+      var pdf = new jsPDF('p', 'pt', 'a4');
+      var y = 20;
+      pdf.setLineWidth(2);
+      pdf.text('Service History Report', 200, y = y + 30);
+      pdf.setFontSize(12);
+      pdf.setTextColor(99);
 
 
-        (pdf as any).autoTable({
-          head: [['Vin Number', 'Service Type', 'Date']],
-          body: this.HistoryList.map(({VIN_Number, ServiceType, Date}) => [VIN_Number, ServiceType, Date]),
-          theme: 'grid',
-          columnStyles: {
-            0: {
-              halign: 'right',
-              tableWidth: 100,
-            },
-            1: {
-              tableWidth: 100,  
-            },
-            }
-      });
-        pdf.output('dataurlnewwindow');
-        pdf.save('Service_History_Report.pdf');
-    }  
+      (pdf as any).autoTable({
+        head: [['Vin Number', 'Service Type', 'Date']],
+        body: this.HistoryList.map(({VIN_Number, ServiceType, Date}) => [VIN_Number, ServiceType, Date]),
+        theme: 'grid',
+        columnStyles: {
+          0: {
+            halign: 'right',
+            tableWidth: 100,
+          },
+          1: {
+            tableWidth: 100,  
+          },
+          }
+    });
+
+      pdf.output('dataurlnewwindow');
+      pdf.save('Service_History_Report.pdf');
+
+  }  
 }

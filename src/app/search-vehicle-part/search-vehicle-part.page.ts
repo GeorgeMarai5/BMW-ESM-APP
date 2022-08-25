@@ -30,21 +30,21 @@ export class SearchVehiclePartPage implements OnInit {
       partType: ['', [Validators.required]],
       Description: ['', [Validators.required]],
       partStock: ['', [Validators.required]],
-  });
+    });
 
-  this.service.getAssignedParts().subscribe(data => {
-    this.assignedPartList = data.map(e => {
-      return {
-        id: e.payload.doc.id,
-        partName: e.payload.doc.data()['VehicleID'],
-        partType: e.payload.doc.data()['VIN_Number'],
-        Description: e.payload.doc.data()['VIN_Number'],
-        partStock: e.payload.doc.data()['VehicleModel']
-      };
-    })
-    console.log(this.assignedPartList);
+    this.service.getAssignedParts().subscribe(data => {
+      this.assignedPartList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          partName: e.payload.doc.data()['VehicleID'],
+          partType: e.payload.doc.data()['VIN_Number'],
+          Description: e.payload.doc.data()['VIN_Number'],
+          partStock: e.payload.doc.data()['VehicleModel']
+        };
+      })
+      console.log(this.assignedPartList);
 
-  });
+    });
   }
 
   async removePart(id){
@@ -69,6 +69,7 @@ export class SearchVehiclePartPage implements OnInit {
     });
 
     confirmDeleteAlert.present();
+
   }
 
   async presentToast() {
@@ -81,5 +82,4 @@ export class SearchVehiclePartPage implements OnInit {
     toast.present();
     
   }
-
 }

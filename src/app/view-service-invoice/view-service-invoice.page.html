@@ -9,53 +9,52 @@
                 Log Out
             </ion-button>
         </ion-buttons>
+    </ion-toolbar>
+</ion-header>
 
-
-        <ion-content>
-            <div class="contents">
-                <ion-title>
-                    <h1>Service Invoice</h1>
-                </ion-title>
-                <br>
-                <form [formGroup]="viewInvoiceForm" novalidate>
-                    <ion-grid>
-                        <ion-row>
-                            <ion-col>
-                                <ion-item lines="full">
-                                    <ion-label position="stacked"><b>Product</b></ion-label>
-                                    <ion-input formControlName="ClientName" type="text" required readonly></ion-input>
-                                </ion-item>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <ion-item lines="full">
-                                    <ion-label position="stacked"><b>Qty</b></ion-label>
-                                    <ion-input formControlName="Date" type="text" required readonly></ion-input>
-                                </ion-item>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <ion-item lines="full">
-                                    <ion-label position="stacked"><b>Amount</b></ion-label>
-                                    <ion-input formControlName="Description" type="text" required readonly></ion-input>
-                                </ion-item>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-
-                            </ion-col>
-                            <ion-col>
-                                <ion-button type="submit" class="main-Btn" expand="block">Back To Dashboard</ion-button>
-                            </ion-col>
-                            <ion-col>
-                                <ion-button class="light-Btn" expand="block">Generate PDF</ion-button>
-                            </ion-col>
-
-                        </ion-row>
-                    </ion-grid>
-                </form>
-            </div>
-        </ion-content>
+<ion-content>
+    <div class="contents">
+        <ion-title>
+            <h1>Service Invoice</h1>
+        </ion-title>
+        <br>
+        <form [formGroup]="viewInvoiceForm" novalidate>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Product</b></ion-label>
+                            <ion-input formControlName="ClientName" type="text" required readonly></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Qty</b></ion-label>
+                            <ion-input formControlName="Date" type="text" required readonly></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Amount</b></ion-label>
+                            <ion-input formControlName="Description" type="text" required readonly></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button type="submit" class="main-Btn" expand="block">Back To Dashboard</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button class="light-Btn" expand="block">Generate PDF</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+</ion-content>

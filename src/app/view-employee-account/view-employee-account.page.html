@@ -17,58 +17,33 @@
   <ion-title>
     Client Account
   </ion-title>
-
-
-
-
-<form>
-
-  <ion-item>
-    <ion-label position="stacked">Q Number</ion-label>
-    <ion-input value="12345" readonly></ion-input>
-  </ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Name</ion-label>
-  <ion-input value="Steven" readonly></ion-input>
-</ion-item>
-
-<ion-item >
-  <ion-label position="stacked">Surname</ion-label>
-  <ion-input value="Jacob" readonly></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Phone Number</ion-label>
-  <ion-input value="0836044765" readonly></ion-input>
-</ion-item>
-
-<ion-item >
-  <ion-label position="stacked" >Email</ion-label> 
-  <ion-input value="Steven@gmail.com" readonly></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Team name</ion-label>
-  <ion-input value="2" readonly> </ion-input>
-</ion-item>
-
-
-
-
- </form>
-
-
-
- <ion-button  [routerLink]="['/tabs/search/account/client']">back</ion-button>
-
-
-<ion-button  [routerLink]="['/tabs/update/client']">Update</ion-button>
-
-
-<ion-button  color="danger" [routerLink]="['/tabs/searchclientaccount']">Delete</ion-button>
-
-
-<!--(click)="deleteClient(ClientList)"-->
-
+  <form>
+    <ion-item>
+      <ion-label position="stacked">Q Number</ion-label>
+      <ion-input value="12345" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input value="Steven" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Surname</ion-label>
+      <ion-input value="Jacob" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Phone Number</ion-label>
+      <ion-input value="0836044765" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" >Email</ion-label> 
+      <ion-input value="Steven@gmail.com" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Team name</ion-label>
+      <ion-input value="2" readonly> </ion-input>
+    </ion-item>
+  </form>
+  <ion-button [routerLink]="['/tabs/search/account/client']">back</ion-button>
+  <ion-button [routerLink]="['/tabs/update/client']">Update</ion-button>
+  <ion-button color="danger" [routerLink]="['/tabs/searchclientaccount']">Delete</ion-button>
 </ion-content>

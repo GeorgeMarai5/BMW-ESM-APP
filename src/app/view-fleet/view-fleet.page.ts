@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { VehicleService } from '../services/vehicle.service';
 import { AlertController } from '@ionic/angular';
-import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
-
-
+import { Router } from '@angular/router';
 
 interface FleetData {
   FleetID: number;
   FleetName: string;
   FleetLocation: string;
   FleetVehicleQty: number;
-  
 }
 
 interface FleetVehicles{
@@ -22,7 +19,6 @@ interface FleetVehicles{
   ModelName: string;
   Year: string;
 }
-
 
 @Component({
   selector: 'app-view-fleet',
@@ -38,82 +34,76 @@ export class ViewFleetPage implements OnInit {
    fleetID: string;
    data: any;
 
-  constructor(public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService, 
-    private vehiclesService: VehicleService,public alertCtrl: AlertController, public router: Router,
-    public vehicleService: VehicleService) { 
+  constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, private vehiclesService: VehicleService,
+    public alertCtrl: AlertController, public router: Router, public vehicleService: VehicleService) { 
 
     this.VehicleData = {} as FleetVehicles;
 
   }
 
   ngOnInit() {
-
     this.fleetForm = this.fb.group({
       VehicleID: ['', [Validators.required]],
       VinNumber: ['', [Validators.required]],
       ModelName: ['', [Validators.required]],
       Year: ['', [Validators.required]],
-  });
+    });
 
+    this.vehiclesService.getVehicles().subscribe(data => {
+      this.vehicleList = data.map(e => {
+        let yearCode: string;
+        yearCode = e.payload.doc.data()['VIN_Number'];
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          VehicleID: e.payload.doc.data()['VehicleID'],
+          VinNumber: e.payload.doc.data()['VIN_Number'],
+          ModelName: e.payload.doc.data()['VehicleModel'],
+          Year: this.vehicleService.getYear(yearCode.substring(9, 10))
+        };
+      });
 
-  this.vehiclesService.getVehicles().subscribe(data => {
+      console.log(this.vehicleList);
 
-    this.vehicleList = data.map(e => {
-      let yearCode: string;
-      yearCode = e.payload.doc.data()['VIN_Number'];
-      return {
-        id: e.payload.doc.id,
-        isEdit: false,
-        VehicleID: e.payload.doc.data()['VehicleID'],
-        VinNumber: e.payload.doc.data()['VIN_Number'],
-        ModelName: e.payload.doc.data()['VehicleModel'],
-        Year: this.vehicleService.getYear(yearCode.substring(9, 10))
-      };
-    })
-    console.log(this.vehicleList);
-
-  });
-
-
-}
-RemoveFleet(ID) {
-  if (window.confirm('Do you really want to Remove This Fleet?')) {
-   
-  
-  this.vehiclesService.deleteVehicle(ID);
+    });
   }
-  console.log(ID)
-}
 
+  RemoveFleet(ID) {
+    if (window.confirm('Do you really want to Remove This Fleet?')) {
+      this.vehiclesService.deleteVehicle(ID);
+    }
 
-async Deletefleet(id){
-  const confirmDeleteAlert = await this.alertCtrl.create({
-    header: 'Remove Fleet',
-    message: 'Are you sure you would like to remove this Fleet from the system?',
-    buttons: [{
-      text: 'Cancel',
-      role: 'cancel',
-      handler: end => {
-        this.alertCtrl.dismiss();
-      }
-    },
-    {
-      text: 'Remove',
-      role: 'remove',
-      handler: () => {
-        this.fleetservice.delete_Fleet(id);
-        alert('Fleet was successfully removed');
-      }
-    }]
-  });
+    console.log(ID)
+  }
 
-  confirmDeleteAlert.present();
+  async Deletefleet(id){
+    const confirmDeleteAlert = await this.alertCtrl.create({
+      header: 'Remove Fleet',
+      message: 'Are you sure you would like to remove this Fleet from the system?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: end => {
+          this.alertCtrl.dismiss();
+        }
+      },
+      {
+        text: 'Remove',
+        role: 'remove',
+        handler: () => {
+          this.fleetservice.delete_Fleet(id);
+          alert('Fleet was successfully removed');
+        }
+      }]
+    });
 
-}
+    confirmDeleteAlert.present();
 
-navToUpdate() {
-  this.router.navigate(['/tabs/edit/fleet', this.data]);
-}
+  }
+
+  navToUpdate() {
+    this.router.navigate(['/tabs/edit/fleet', this.data]);
+  }
 
 
 

@@ -1,15 +1,8 @@
-import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControlName, FormControl } from "@angular/forms";
-import { AngularDelegate } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { ToastController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { Router,Route } from '@angular/router';
-import { PostService } from '../services/post.service';
-import { getApp } from 'firebase/app';
-import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
 import { MaintenancePlan } from '../models/Maintenance-Plan';
 import { ActivatedRoute } from '@angular/router';
-import { snapshotChanges } from '@angular/fire/compat/database';
 import { MaintenancePlanService } from '../services/MaintenancePlan.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -32,12 +25,12 @@ export class UpgradeMaintenancePlanPage implements OnInit {
     public planService: MaintenancePlanService, public firestore: AngularFirestore, public router: Router) {
     this.route.params.subscribe(params => {
       this.data = params.id;
-  });
-  this.upgradePlanForm = new FormGroup({
-    PlanName: new FormControl('', Validators.required),
-    NewPlanName: new FormControl('', Validators.required)
-  });
+    });
 
+    this.upgradePlanForm = new FormGroup({
+      PlanName: new FormControl('', Validators.required),
+      NewPlanName: new FormControl('', Validators.required)
+    });
   }
 
   submitForm(){
@@ -46,23 +39,25 @@ export class UpgradeMaintenancePlanPage implements OnInit {
       return false;
     }
     else{
-        const maintenanceplan = {
-          NewPlanName: this.upgradePlanForm.get('NewPlanName').value
-        }
-        this.planService.upgradeMaintenancePlan(this.data, maintenanceplan)
-        alert("Maintenance Plan was successfully upgraded.");
+      const maintenanceplan = {
+        NewPlanName: this.upgradePlanForm.get('NewPlanName').value
       }
-      this.router.navigate(['/tabs/view/maintenanceplan', this.data]);
+
+      this.planService.upgradeMaintenancePlan(this.data, maintenanceplan)
+      alert("Maintenance Plan was successfully upgraded.");
+    }
+
+    this.router.navigate(['/tabs/view/maintenanceplan', this.data]);
+
   }
 
   ngOnInit() {
-    this.planService.getMaintenancePlan(this.data).valueChanges()
-    .subscribe(res =>{
-    console.log(res)
-    this.upgradePlanForm.setValue({
-      PlanName: res['Plan_Name'],
-      NewPlanName: ''
-    })
+    this.planService.getMaintenancePlan(this.data).valueChanges().subscribe(res =>{
+      console.log(res)
+      this.upgradePlanForm.setValue({
+        PlanName: res['Plan_Name'],
+        NewPlanName: ''
+      })
     });
   }
 

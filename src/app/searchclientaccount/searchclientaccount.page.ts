@@ -22,38 +22,34 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export class SearchclientaccountPage implements OnInit {
 
-//   searchTerm: string;
-//   clients:any = [];
-//   public list: Array<Object> = [];
-//   private searchedItem: any;
-//   public searchField: FormControl;
-//  // public clientList$: Observable<any[]>;
-//   id: string;
-//   name: string;
-//   phone: number;
-//   email: string;
+  //   searchTerm: string;
+  //   clients:any = [];
+  //   public list: Array<Object> = [];
+  //   private searchedItem: any;
+  //   public searchField: FormControl;
+  //  // public clientList$: Observable<any[]>;
+  //   id: string;
+  //   name: string;
+  //   phone: number;
+  //   email: string;
   
- // Filter: string;
-public clientList: any;
-//clientList= [];
+  // Filter: string;
+  public clientList: any;
+  //clientList= [];
     
-clients: Clients;
-clientform : FormGroup;
+  clients: Clients;
+  clientform : FormGroup;
 
 
 
 constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
   public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
 
-this.clients = {} as Clients;
+  this.clients = {} as Clients;
 
   }
 
-
-
-
   ngOnInit() {
-
     this.clientform = this.fb.group({
       Title: [''],
       FirstName: [''],
@@ -61,27 +57,23 @@ this.clients = {} as Clients;
       PhoneNumber: [''],
       Email: [''],
       Address: [''],
-    })
+    });
 
+    this.clientService.read_Clients().subscribe(data =>{
+      this.clientList = data.map(e => {
+        return{
+          id: e.payload.doc.id,
+          Title: e.payload.doc.data()['Title'],
+          FirstName: e.payload.doc.data()['FirstName'],
+          LastName: e.payload.doc.data()['lastName'],
+          PhoneNumber: e.payload.doc.data()['phone'],
+          Email: e.payload.doc.data()['email'],
+          Address: e.payload.doc.data()['Address'],
+          };
+        });
 
-this.clientService.read_Clients().subscribe(data =>{
+      console.log(this.clientList);
 
-
-this.clientList = data.map(e =>{
-
-return{
-
-id: e.payload.doc.id,
-Title: e.payload.doc.data()['Title'],
-FirstName: e.payload.doc.data()['FirstName'],
-LastName: e.payload.doc.data()['lastName'],
-PhoneNumber: e.payload.doc.data()['phone'],
-Email: e.payload.doc.data()['email'],
-Address: e.payload.doc.data()['Address'],
-};
-
-})
-console.log(this.clientList);
-
-
-});}}
+    });
+  }
+}

@@ -30,19 +30,19 @@ export class SearchTeamPage implements OnInit {
       DealershipName: ['', [Validators.required]],
       TeamType: ['', [Validators.required]]
 
-  });
+    });
 
-  this.teamservice.getTeams().subscribe(data => {
-    this.teamList = data.map(e => {
-      return {
-        id: e.payload.doc.id,
-        TeamName: e.payload.doc.data()['TeamName'],
-        DealershipName: e.payload.doc.data()['DealershipName'],
-        TeamType: e.payload.doc.data()['TeamType'],
-      };
-    })
-    console.log(this.teamList);
-  });
+    this.teamservice.getTeams().subscribe(data => {
+      this.teamList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          TeamName: e.payload.doc.data()['TeamName'],
+          DealershipName: e.payload.doc.data()['DealershipName'],
+          TeamType: e.payload.doc.data()['TeamType'],
+        };
+      })
+      console.log(this.teamList);
+    });
   }
 
   async removeTeam(id){
@@ -65,6 +65,8 @@ export class SearchTeamPage implements OnInit {
         }
       }]
     });
+
     confirmDeleteAlert.present();
+    
   }
 }

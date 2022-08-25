@@ -29,6 +29,7 @@ export class ViewClientAccountPage implements OnInit {
           this.data = this.router.getCurrentNavigation().extras.state.id;
         }
       });
+
       this.viewClientForm = new FormGroup({
         Title: new FormControl('', Validators.required),
         FirstName: new FormControl('', Validators.required),
@@ -36,22 +37,20 @@ export class ViewClientAccountPage implements OnInit {
         PhoneNumber: new FormControl('', Validators.required),
         Email: new FormControl('', Validators.required),
         Address: new FormControl('', Validators.required)
-      })
+      });
      }
      
-
   ngOnInit() {
-    this.service.getClient('5jh9j0RPItYYHzLI4FisElc8hJF2').valueChanges()
-    .subscribe(res =>{
-    console.log(res)
-      this.viewClientForm.setValue({
-      Title: res['title'], 
-      FirstName: res['firstName'], 
-      LastName: res['lastName'],
-      PhoneNumber: res['phoneNum'],
-      Email: res['email'],
-      Address: res['address']
-    })
+    this.service.getClient('5jh9j0RPItYYHzLI4FisElc8hJF2').valueChanges().subscribe(res =>{
+      console.log(res)
+        this.viewClientForm.setValue({
+        Title: res['title'], 
+        FirstName: res['firstName'], 
+        LastName: res['lastName'],
+        PhoneNumber: res['phoneNum'],
+        Email: res['email'],
+        Address: res['address']
+      })
     });
   }
 
@@ -61,32 +60,28 @@ export class ViewClientAccountPage implements OnInit {
         id: '5jh9j0RPItYYHzLI4FisElc8hJF2'
       }
     };
+
     this.router.navigate(['tabs/update/client'], navigationExtras);
+
   }
 
-
-
   async removeAlert(){
-
     let toast = await this.toastCtrl.create({
       message: 'The client was removed',
       duration: 3000,
       position: 'top',
     });
-
   }
 
   back(){
-
     this.router.navigate(['SearchclientaccountPage'])
   }
 
   RemoveClient(ID) {
     if (window.confirm('Do you really want to Remove This Client?')) {
-     
-    
-    this.service.delete_Client(ID);
+      this.service.delete_Client(ID);
     }
+    
     console.log(ID)
   }
 

@@ -1,5 +1,3 @@
-
-<!---form [formGroup]= "Clientpage" (ngSubmit)="logForm()">--->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
@@ -11,62 +9,40 @@
         Log Out
       </ion-button>  
     </ion-buttons>
-    
   </ion-toolbar>
 </ion-header>
-
-
-
 
 <ion-content>
   <ion-title>
     Client Account
   </ion-title>
-
-
   <form [formGroup]="viewClientForm"  novalidate>
-
-  <ion-item>
-    <ion-label position="stacked">Title</ion-label>
-    <ion-input formControlName="Title" readonly></ion-input>
-  </ion-item>
-
-<ion-item>
-  <ion-label position="stacked">First Name</ion-label>
-  <ion-input formControlName="FirstName" readonly></ion-input>
-</ion-item>
-
-<ion-item >
-  <ion-label position="stacked">Last Name</ion-label>
-  <ion-input formControlName="LastName" readonly></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Phone Number</ion-label>
-  <ion-input formControlName="PhoneNumber" readonly></ion-input>
-</ion-item>
-
-<ion-item >
-  <ion-label position="stacked" >Email</ion-label> 
-  <ion-input formControlName="Email" readonly></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Address</ion-label>
-  <ion-input formControlName="Address" readonly> </ion-input>
-</ion-item>
-
-</form>
-
-<ion-button  [routerLink]="['/tabs/search/account/client']">back</ion-button>
-
-
-<ion-button  [routerLink]="['/tabs/update/client']">Update</ion-button>
-
-<ion-button  color="danger" >Delete</ion-button>
-
-
-
-<!--(click)="deleteClient(ClientList)"   <ion-button  color="danger" (click)="RemoveClient()">Delete</ion-button>                   -->
-
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input formControlName="Title" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">First Name</ion-label>
+      <ion-input formControlName="FirstName" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Last Name</ion-label>
+      <ion-input formControlName="LastName" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Phone Number</ion-label>
+      <ion-input formControlName="PhoneNumber" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" >Email</ion-label> 
+      <ion-input formControlName="Email" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Address</ion-label>
+      <ion-input formControlName="Address" readonly> </ion-input>
+    </ion-item>
+  </form>
+  <ion-button [routerLink]="['/tabs/search/account/client']">back</ion-button>
+  <ion-button [routerLink]="['/tabs/update/client']">Update</ion-button>
+  <ion-button color="danger">Delete</ion-button>
 </ion-content>

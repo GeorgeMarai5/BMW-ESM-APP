@@ -56,7 +56,4 @@ export class SelectMaintenanceplanPage implements OnInit {
 
     await alert.present();
   }
-
 }
-
-

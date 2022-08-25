@@ -9,9 +9,7 @@ interface QuoteData {
   Date: string;
   Description: string;
   Accepted: string;
-  
 }
-
 
 @Component({
   selector: 'app-view-quote',
@@ -19,69 +17,43 @@ interface QuoteData {
   styleUrls: ['./view-quote.page.scss'],
 })
 
-
-
-
-
-
 export class ViewQuotePage implements OnInit {
+  
   QuoteList = [];
   QuoteForm: FormGroup;
- quotedata: QuoteData;
+  quotedata: QuoteData;
   id: any;
 
-
-
-  constructor(public authService: AuthService,public router: Router, 
-    private actRoute: ActivatedRoute,private quoteservice: QuoteService,
+  constructor(public authService: AuthService, public router: Router, private actRoute: ActivatedRoute, private quoteservice: QuoteService,
     private fb:FormBuilder) {
-
-
       this.quotedata = {} as QuoteData;
-
    }
 
   ngOnInit() {
-
     this.QuoteForm = this.fb.group({
       ClientName: ['', [Validators.required]],
       Date: ['', [Validators.required]],
       Description: ['', [Validators.required]],
       Accepted: ['', [Validators.required]],
-  });
+    });
 
+    this.quoteservice.get_Quote().subscribe(data => {
+      this.QuoteList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          ClientName: e.payload.doc.data()['ClientName'],
+          Date: e.payload.doc.data()['Date'],
+          Description: e.payload.doc.data()['Description'],
+          Accepted: e.payload.doc.data()['Accepted'],
+        };
+      });
 
-  this.quoteservice.get_Quote().subscribe(data => {
-
-    this.QuoteList = data.map(e => {
-      
-      return {
-        id: e.payload.doc.id,
-        isEdit: false,
-        ClientName: e.payload.doc.data()['ClientName'],
-        Date: e.payload.doc.data()['Date'],
-        Description: e.payload.doc.data()['Description'],
-        Accepted: e.payload.doc.data()['Accepted'],
-      };
-    })
-    console.log(this.QuoteList);
-
-  });
-
-
-    
+      console.log(this.QuoteList);
+    });
   }
-
-
-  
-
-
 
   getQuotes(id){
 
-    
-     
-
-}
-
+  }
 }

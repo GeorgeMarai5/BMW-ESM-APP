@@ -31,21 +31,21 @@ export class SearchTeamMemberPage implements OnInit {
       phoneNumber: new FormControl('', Validators.required),
       emailAddress: new FormControl('', Validators.required),
       role: new FormControl('', Validators.required)
-  });
+    });
 
-  this.teamMemberservice.getTeamMembers().subscribe(data => {
-    this.teamMemberList = data.map(e => {
-      return {
-        id: e.payload.doc.id,
-        employeeName: e.payload.doc.data()['employeeName'],
-        employeeSurname: e.payload.doc.data()['employeeSurname'],
-        phoneNumber: e.payload.doc.data()['phoneNumber'],
-        emailAddress: e.payload.doc.data()['emailAddress'],
-        role: e.payload.doc.data()['role']
-      };
-    })
-    console.log(this.teamMemberList);
-  });
+    this.teamMemberservice.getTeamMembers().subscribe(data => {
+      this.teamMemberList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          employeeName: e.payload.doc.data()['employeeName'],
+          employeeSurname: e.payload.doc.data()['employeeSurname'],
+          phoneNumber: e.payload.doc.data()['phoneNumber'],
+          emailAddress: e.payload.doc.data()['emailAddress'],
+          role: e.payload.doc.data()['role']
+        };
+      })
+      console.log(this.teamMemberList);
+    });
   }
 
   async removeTeamMember(id){
@@ -68,6 +68,8 @@ export class SearchTeamMemberPage implements OnInit {
         }
       }]
     });
+
     confirmDeleteAlert.present();
+    
   }
 }

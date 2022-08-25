@@ -12,57 +12,54 @@
   </ion-toolbar>
 </ion-header>
 
-
-
-    <ion-content>
-      <div class="contents">
-        <ion-title><h1>Update Quote</h1></ion-title>
-      <br>
-        <form [formGroup]="QuoteForm"  >
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-item lines="full">
-                  <ion-label position="stacked"><b>Client Name</b></ion-label>
-                  <ion-input formControlName="ClientName" type="text" required ></ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-item lines="full">
-                  <ion-label position="stacked"><b>Date</b></ion-label>
-                  <ion-input formControlName="Date" type="text" required></ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-item lines="full">
-                  <ion-label position="stacked"><b>Description</b></ion-label>
-                  <ion-input formControlName="Description" type="text" required ></ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-item lines="full">
-                  <ion-label position="stacked"><b>Accepted</b></ion-label>
-                  <ion-input formControlName="Accepted" type="text" required></ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            
-            <ion-row>
-            <ion-col>
-                <ion-button type="submit" class="main-Btn" expand="block" [routerLink]="['/tabs/home']">Back</ion-button>
-                </ion-col>
-              <ion-col>
-                <ion-button type="submit" class="red-Btn" expand="block" (click)="updateQuote()"  [routerLink]="['/view/quote']">Update Quote</ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </form>
-      </div>
-    </ion-content>
-    
+<ion-content>
+  <div class="contents">
+    <ion-title><h1>Update Quote</h1></ion-title>
+    <br>
+    <form [formGroup]="QuoteForm"  >
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Client Name</b></ion-label>
+              <ion-input formControlName="ClientName" type="text" required ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Date</b></ion-label>
+              <ion-input formControlName="Date" type="text" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Description</b></ion-label>
+              <ion-input formControlName="Description" type="text" required ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Accepted</b></ion-label>
+              <ion-input formControlName="Accepted" type="text" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+        <ion-col>
+            <ion-button type="submit" class="main-Btn" expand="block" [routerLink]="['/tabs/home']">Back</ion-button>
+            </ion-col>
+          <ion-col>
+            <ion-button type="submit" class="red-Btn" expand="block" (click)="updateQuote()"  [routerLink]="['/view/quote']">Update Quote</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

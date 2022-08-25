@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { VehicleService } from 'src/app/services/vehicle.service';
@@ -17,23 +12,18 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './view-service-progress.page.html',
   styleUrls: ['./view-service-progress.page.scss'],
 })
+
 export class ViewServiceProgressPage implements OnInit {
+  
   isSubmitted = false;
   data: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    public fb: FormBuilder,
-    public authService: AuthService,
-    public firestore: AngularFirestore,
-    public router: Router,
-    public service: VehicleService,
-    private alertController: AlertController
-  ) {
-    this.route.params.subscribe((params) => {
-      this.data = params.id;
-    });
-  }
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
+    public router: Router, public service: VehicleService, private alertController: AlertController) {
+      this.route.params.subscribe((params) => {
+        this.data = params.id;
+      });
+    }
 
   ngOnInit() {}
 

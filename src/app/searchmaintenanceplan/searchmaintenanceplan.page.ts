@@ -1,14 +1,9 @@
-import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
-import { AngularDelegate } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { FormBuilder,Validators,FormGroup } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
-import { getApp } from 'firebase/app';
-import {getFirestore, collection,onSnapshot, addDoc, doc,setDoc, QuerySnapshot} from 'firebase/firestore'
 import { ActivatedRoute } from '@angular/router';
-import { snapshotChanges } from '@angular/fire/compat/database';
 import { MaintenancePlanService } from '../services/MaintenancePlan.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -38,20 +33,22 @@ ngOnInit(){
       Description: ['', [Validators.required]],
       Duration: ['', [Validators.required]],
       Price: ['', [Validators.required]],
-  });
+    });
 
-  this.planService.getPlans().subscribe(data => {
-    this.maintenanceplanList = data.map(e => {
+    this.planService.getPlans().subscribe(data => {
+      this.maintenanceplanList = data.map(e => {
 
-      return {
-        id: e.payload.doc.id,
-        PlanName: e.payload.doc.data()['Plan_Name'],
-        Description: e.payload.doc.data()['Description'],
-        Duration: e.payload.doc.data()['Duration'],
-        Price: e.payload.doc.data()['Price']
-      };
-    })
-    console.log(this.maintenanceplanList);
-  }
+        return {
+          id: e.payload.doc.id,
+          PlanName: e.payload.doc.data()['Plan_Name'],
+          Description: e.payload.doc.data()['Description'],
+          Duration: e.payload.doc.data()['Duration'],
+          Price: e.payload.doc.data()['Price']
+        };
+      });
+
+      console.log(this.maintenanceplanList);
+
+    }
   )}
 }
