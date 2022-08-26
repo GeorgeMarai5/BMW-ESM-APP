@@ -5,6 +5,7 @@ import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
 import { ClientService } from '../services/Client.service';
 import { AuthService } from '../services/auth.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-update-client',
@@ -17,7 +18,7 @@ export class UpdateClientPage implements OnInit {
   updateClientForm: FormGroup;
   isSubmitted = false;
 
-  constructor(public fb: FormBuilder, public authService: AuthService) {
+  constructor(public fb: FormBuilder, public authService: AuthService, public toastCtrl: ToastController) {
     this.updateClientForm = new FormGroup({
       title: new FormControl('', Validators.required),
       fName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -35,6 +36,7 @@ export class UpdateClientPage implements OnInit {
     }
     else{
       console.log(this.updateClientForm.value);
+      this.presentToast();
     }
     return false;
   }
@@ -45,6 +47,16 @@ export class UpdateClientPage implements OnInit {
 
   get errorControl() {
     return this.updateClientForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Client has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }
 

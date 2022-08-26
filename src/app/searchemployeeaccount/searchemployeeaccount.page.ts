@@ -30,4 +30,14 @@ export class SearchemployeeaccountPage implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Employee has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

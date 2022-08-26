@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder,Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
+import { ToastController } from '@ionic/angular';
 
 interface QuoteData {
   ClientName: string;
@@ -27,7 +28,7 @@ export class UpdateQuotePage implements OnInit {
   data: any;
   
   constructor(public authService: AuthService, public router: Router, private quoteservice: QuoteService, private fb: FormBuilder,
-    private route: ActivatedRoute) { 
+    private route: ActivatedRoute, public toastCtrl: ToastController) { 
       this.route.params.subscribe(params => {
         this.data = params.id;
     });
@@ -70,10 +71,20 @@ export class UpdateQuotePage implements OnInit {
       }
         
       this.quoteservice.updateQuote(this.data, service)
-      alert("Service was successfully updated.");
+      this.presentToast();
     }
 
     this.router.navigate(['/view/quote', this.data]);
 
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Quote has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

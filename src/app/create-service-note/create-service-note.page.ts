@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { ServiceNoteService } from '../services/servicenote.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastController } from '@ionic/angular';
 
 interface ServiceNoteData {
   Description: string;
@@ -26,13 +27,12 @@ export class CreateServiceNotePage implements OnInit {
 
   today = new Date();
 
-  constructor (private route: ActivatedRoute, public router: Router, public firestore: AngularFirestore,
-    public authService: AuthService, public fb: FormBuilder, private _serviceNote: ServiceNoteService
-  ) {
-    this.route.params.subscribe((params) => {});
-    this.addNoteForm = new FormGroup({
-      Description: new FormControl('', [Validators.required]),
-    });
+  constructor (private route: ActivatedRoute, public router: Router, public firestore: AngularFirestore, public authService: AuthService, 
+    public fb: FormBuilder, private _serviceNote: ServiceNoteService, public toastCtrl: ToastController) {
+      this.route.params.subscribe((params) => {});
+      this.addNoteForm = new FormGroup({
+        Description: new FormControl('', [Validators.required]),
+      });
   }
 
   submitForm() {
@@ -44,15 +44,13 @@ export class CreateServiceNotePage implements OnInit {
         Description: this.addNoteForm.get('Description').value,
       };
       console.log(serviceNote);
-      this.firestore
-        .collection('Service_Note')
-        .add(serviceNote)
-        .then(function (docRef) {
-          alert('Service Note has been created successfully');
-          const serviceNoteID = {
-            serviceNoteID: docRef.id,
-          };
-        });
+      this.firestore.collection('Service_Note').add(serviceNote).then(function (docRef) {
+        this.presentToast();
+        const serviceNoteID = {
+          serviceNoteID: docRef.id,
+        };
+      });
+
       this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
     }
   }
@@ -63,5 +61,15 @@ export class CreateServiceNotePage implements OnInit {
   
   get errorControl() {
     return this.addNoteForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'A new service note has been created successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

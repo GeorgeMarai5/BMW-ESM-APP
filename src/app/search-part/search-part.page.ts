@@ -18,8 +18,8 @@ export class SearchPartPage implements OnInit {
   partForm: FormGroup;
   searchTerm: string;
 
-  constructor(public authService: AuthService, private service: PartInfoService, public fb: FormBuilder, 
-    private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 
+  constructor(public authService: AuthService, private service: PartInfoService, public fb: FormBuilder, private firestore: AngularFirestore, 
+    public alertCtrl: AlertController, public router: Router) { 
       this.parts = {} as Part;
     }
 
@@ -28,22 +28,22 @@ export class SearchPartPage implements OnInit {
       PartID: ['', [Validators.required]],
       PartName: ['', [Validators.required]],
       Description: ['', [Validators.required]]
-  });
+    });
 
-  this.service.getParts().subscribe(data => {
-    this.partList = data.map(e => {
-      let yearCode: string;
-      yearCode = e.payload.doc.data()['VIN_Number'];
+    this.service.getParts().subscribe(data => {
+      this.partList = data.map(e => {
+        let yearCode: string;
+        yearCode = e.payload.doc.data()['VIN_Number'];
 
-      return {
-        id: e.payload.doc.id,
-        PartID: e.payload.doc.data()['PartID'],
-        PartName: e.payload.doc.data()['PartName'],
-        Description: e.payload.doc.data()['Description']
-      };
-    })
-    console.log(this.partList);
+        return {
+          id: e.payload.doc.id,
+          PartID: e.payload.doc.data()['PartID'],
+          PartName: e.payload.doc.data()['PartName'],
+          Description: e.payload.doc.data()['Description']
+        };
+      })
+      console.log(this.partList);
 
-  });
+    });
   }
 }

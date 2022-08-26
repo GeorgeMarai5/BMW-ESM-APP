@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-service',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditServicePage implements OnInit {
 
-  constructor() { }
+  constructor(public toastCtrl: ToastController) { }
 
   ngOnInit() {
   }
 
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Service has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

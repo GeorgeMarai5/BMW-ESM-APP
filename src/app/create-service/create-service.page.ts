@@ -5,6 +5,7 @@ import { Service } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
+import { ToastController } from '@ionic/angular';
 
 interface ServiceData {
   TeamName: string;
@@ -35,14 +36,16 @@ export class CreateServicePage implements OnInit {
   
     console.log(this.today);
   }
-  constructor(private route: ActivatedRoute, public router: Router,  public firestore: AngularFirestore, public authService: AuthService, public fb: FormBuilder, private _service: Service) {
+  constructor(private route: ActivatedRoute, public router: Router, public firestore: AngularFirestore, public authService: AuthService, 
+    public fb: FormBuilder, private service: Service, public toastCtrl: ToastController) {
     this.route.params.subscribe(params => {
       
     });
+
     this.serviceForm = new FormGroup({
       TeamName: new FormControl('', [Validators.required]),
       ServiceTypeName: new FormControl('', Validators.required)
-    })
+    });
       
    }
   
@@ -56,9 +59,10 @@ export class CreateServicePage implements OnInit {
         TeamName: this.serviceForm.get('TeamName').value,
         ServiceTypeName: this.serviceForm.get('ServiceTypeName').value
       }
+      
       console.log(service)
       this.firestore.collection('Service').add(service).then(function(docRef){
-        alert("Service has been created successfully");
+        this.presentToast();
         const serviceID = {
           serviceID: docRef.id
         } 
@@ -73,5 +77,15 @@ export class CreateServicePage implements OnInit {
 
   get errorControl() {
     return this.serviceForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'A service has been created successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

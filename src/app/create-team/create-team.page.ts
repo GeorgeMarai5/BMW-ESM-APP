@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -17,8 +18,8 @@ export class CreateTeamPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
-    public firestore: AngularFirestore, public teamservice: TeamService, public router: Router) { 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
+    public teamservice: TeamService, public router: Router, public toastCtrl: ToastController) { 
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
@@ -42,7 +43,7 @@ export class CreateTeamPage implements OnInit {
       }
 
       this.firestore.collection('Team').add(team).then(function(){
-        alert("New Team created successfully");
+        this.presentToast();
       });
     }
   }
@@ -53,5 +54,15 @@ export class CreateTeamPage implements OnInit {
 
   get errorControl() {
     return this.createTeamForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'A new team has been created successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

@@ -71,12 +71,11 @@ export class EditVehiclePartPage implements OnInit {
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
-      message: 'Assigned Part was successfully updated.',
+      message: 'Assigned Part has been updated successfully.',
       duration: 3000,
       position: 'top'
     });
   
     toast.present();
   }
-
 }

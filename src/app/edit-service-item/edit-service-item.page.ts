@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { Dealership } from '../models/Dealership';
 import { AuthService } from '../services/auth.service';
 import { DealershipService } from '../services/dealership.service';
@@ -19,8 +20,8 @@ export class EditServiceItemPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public service: DealershipService, public firestore: AngularFirestore, public router: Router) {
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public service: DealershipService, 
+    public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -40,20 +41,21 @@ export class EditServiceItemPage implements OnInit {
           itemName: this.editItemForm.get('itemName').value,
           itemDescription: this.editItemForm.get('itemDescription').value
         }
-        this.service.updateDealership(this.data, dealership)
-        alert("Dealership was successfully updated.");
-      }
+
+      this.service.updateDealership(this.data, dealership)
+      this.presentToast();
+    }
+
       this.router.navigate(['/tabs/view/dealership', this.data]);
   }
 
   ngOnInit() {
-    this.service.getDealership(this.data).valueChanges()
-    .subscribe(res =>{
-    console.log(res)
-    this.editItemForm.setValue({
-      dealershipName: res['DealershipName'], 
-      address: res['AddressName']
-    })
+    this.service.getDealership(this.data).valueChanges().subscribe(res =>{
+      console.log(res)
+      this.editItemForm.setValue({
+        dealershipName: res['DealershipName'], 
+        address: res['AddressName']
+      })
     });
   }
 
@@ -61,4 +63,13 @@ export class EditServiceItemPage implements OnInit {
     return this.editItemForm.controls;
   }
 
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Dealership has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

@@ -5,6 +5,7 @@ import { AuthService } from "../services/auth.service";
 import { UserService, User } from '../services/user.service';
 import { getAuth } from "firebase/auth";
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-account',
@@ -16,7 +17,8 @@ export class CreateAccountPage implements OnInit {
   createAccountForm: FormGroup;
   isSubmitted = false;
 
-  constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public userService: UserService, public firestore: AngularFirestore) {
+  constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public userService: UserService, 
+    public firestore: AngularFirestore, public toastCtrl: ToastController) {
     this.createAccountForm = new FormGroup({
       accountType: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -48,7 +50,7 @@ export class CreateAccountPage implements OnInit {
         email: email.value
       }
       await this.firestore.collection('User').add(user).then(function(){
-        alert("New account created successfully");
+        this.presentToast();
       });
 
       const auth = getAuth();
@@ -85,5 +87,15 @@ export class CreateAccountPage implements OnInit {
 
   get errorControl() {
     return this.createAccountForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Account has been created successfully created.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

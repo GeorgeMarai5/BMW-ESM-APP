@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Vehicle } from '../models/Vehicle';
 import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
@@ -19,8 +19,8 @@ export class SearchServiceItemPage implements OnInit {
   serviceItemForm: FormGroup;
   searchTerm: string;
 
-  constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, 
-    private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 
+  constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, private firestore: AngularFirestore, 
+    public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
       this.vehicles = {} as Vehicle;
     }
 
@@ -66,7 +66,7 @@ export class SearchServiceItemPage implements OnInit {
         role: 'remove',
         handler: () => {
           this.service.deleteVehicle(id);
-          alert('Vehicle was successfully removed');
+          this.presentToast('Vehicle has been removed successfully.');
         }
       }]
     });
@@ -92,12 +92,22 @@ export class SearchServiceItemPage implements OnInit {
         handler: () => {
           //Add Check in when backend added
           //this.service.deleteVehicle(id);
-          alert('Vehicle was successfully checked in');
+          this.presentToast('Vehicle check in successful.');
         }
       }]
     });
 
     confirmCheckInAlert.present();
 
+  }
+
+  async presentToast(_message) {
+    let toast = await this.toastCtrl.create({
+      message: _message,
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

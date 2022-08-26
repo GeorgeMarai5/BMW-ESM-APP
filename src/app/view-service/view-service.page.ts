@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, Form } from '@angular/
 import { Service } from '../services/service.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { stringify } from 'querystring';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import jsPDF from 'jspdf';
 
 // interface ServiceData {
@@ -38,7 +38,7 @@ export class ViewServicePage implements OnInit {
   ServiceData: ServiceVehicles;
 
   constructor(public authService: AuthService, private _service: Service, public router: Router, private fb: FormBuilder,
-    private alertController: AlertController) {
+    private alertController: AlertController, public toastCtrl: ToastController) {
 
       this.ServiceData = {} as ServiceVehicles;
 
@@ -106,5 +106,15 @@ export class ViewServicePage implements OnInit {
       pdf.output('dataurlnewwindow');
       pdf.save('Service_History_Report.pdf');
       
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Service has been concluded successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

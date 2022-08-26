@@ -5,6 +5,7 @@ import { employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-team-member',
@@ -19,8 +20,8 @@ export class EditTeamMemberPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public firestore: AngularFirestore, public teamMemberservice: TeamMemberService, public router: Router) {
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
+    public teamMemberservice: TeamMemberService, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -46,23 +47,24 @@ export class EditTeamMemberPage implements OnInit {
           emailAddress: this.editTeamMemberForm.get('emailAddress').value,
           role: this.editTeamMemberForm.get('role').value,
         }
-        this.teamMemberservice.updateTeamMember(this.data, teamMember)
-        alert("Team member was successfully updated.");
-      }
-      this.router.navigate(['/tabs/view-team-member', this.data]);
+
+      this.teamMemberservice.updateTeamMember(this.data, teamMember)
+      this.presentToast();
+    }
+
+    this.router.navigate(['/tabs/view-team-member', this.data]);
   }
 
   ngOnInit() {
-    this.teamMemberservice.getTeamMember(this.data).valueChanges()
-    .subscribe(res =>{
-    console.log(res)
-    this.editTeamMemberForm.setValue({
-      employeeName: res['employeeName'],
-      employeeSurname: res['employeeSurname'], 
-      phoneNumber: res['phoneNumber'],
-      emailAddress: res['emailAddress'], 
-      role: res['role'],
-    })
+    this.teamMemberservice.getTeamMember(this.data).valueChanges().subscribe(res =>{
+      console.log(res)
+      this.editTeamMemberForm.setValue({
+        employeeName: res['employeeName'],
+        employeeSurname: res['employeeSurname'], 
+        phoneNumber: res['phoneNumber'],
+        emailAddress: res['emailAddress'], 
+        role: res['role'],
+      })
     });
   }
 
@@ -70,4 +72,13 @@ export class EditTeamMemberPage implements OnInit {
     return this.editTeamMemberForm.controls;
   }
 
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Team member has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

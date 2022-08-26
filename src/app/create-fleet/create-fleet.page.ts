@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
+import { ToastController } from '@ionic/angular';
 
 interface FleetData {
   FleetName: string;
@@ -21,7 +22,7 @@ export class CreateFleetPage implements OnInit {
   fleetData: FleetData;
   fleetForm: FormGroup;
   
-  constructor (public authService: AuthService,public fb: FormBuilder, private fleetservice:FleetService) {
+  constructor (public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, public toastCtrl: ToastController) {
 
     this.fleetData = {} as FleetData;
   
@@ -39,10 +40,19 @@ export class CreateFleetPage implements OnInit {
     console.log(this.fleetForm.value);
     this.fleetservice.create_Fleet(this.fleetForm.value).then(resp => {
       this.fleetForm.reset();
-      alert("New Fleet created successfully")
-      console.log("successfully created")
+      this.presentToast();
     }).catch(error => {
         console.log(error);
       });
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'The fleet has been created successfully',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

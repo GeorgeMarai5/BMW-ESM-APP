@@ -60,4 +60,14 @@ export class ViewEmployeeAccountPage implements OnInit {
 
     });
   }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Employee has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

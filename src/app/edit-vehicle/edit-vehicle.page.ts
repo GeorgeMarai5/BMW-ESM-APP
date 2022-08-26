@@ -5,6 +5,7 @@ import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-vehicle',
@@ -20,8 +21,8 @@ export class EditVehiclePage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public service: VehicleService, public firestore: AngularFirestore, public router: Router) {
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public service: VehicleService, 
+    public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -45,22 +46,23 @@ export class EditVehiclePage implements OnInit {
           Registration: this.editVehicleForm.get('Registration').value,
           Warranty: this.editVehicleForm.get('warrantyPlan').value,
         }
-        this.service.updateVehicle(this.data, dealership)
-        alert("Vehicle was successfully updated.");
-      }
-      this.router.navigate(['/tabs/view/vehicle', this.data]);
+
+      this.service.updateVehicle(this.data, dealership)
+      this.presentToast();
+    }
+
+    this.router.navigate(['/tabs/view/vehicle', this.data]);
   }
 
   ngOnInit() {
-    this.service.getVehicle(this.data).valueChanges()
-    .subscribe(res =>{
-    console.log(res)
-    this.editVehicleForm.setValue({
-      VINNum: res['VIN_Number'],
-      vehicleModel: res['VehicleModel'], 
-      Registration: res['Registration'], 
-      warrantyPlan: res['Warranty']
-    })
+    this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
+      console.log(res)
+      this.editVehicleForm.setValue({
+        VINNum: res['VIN_Number'],
+        vehicleModel: res['VehicleModel'], 
+        Registration: res['Registration'], 
+        warrantyPlan: res['Warranty']
+      })
     });
   }
 
@@ -68,4 +70,13 @@ export class EditVehiclePage implements OnInit {
     return this.editVehicleForm.controls;
   }
 
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Vehicle has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

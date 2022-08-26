@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { Service } from '../services/service.service';
 
@@ -17,7 +18,7 @@ export class AssignDealershipPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
-    public service: Service, public router: Router) { 
+    public service: Service, public router: Router, private toastCtrl: ToastController) { 
         this.route.params.subscribe(params => {
           this.data = params['id'];
         });
@@ -39,11 +40,11 @@ export class AssignDealershipPage implements OnInit {
         AddressName: this.assignDealershipForm.get('address').value
       }
       this.firestore.collection('Dealership').add(dealership).then(function(docRef){
-        alert("Dealership has been assigned successfully");
         const dealershipID = {
           dealershipID: docRef.id
         }
-        this.service.updateService(this.data, {"DealershipID": dealershipID})
+        this.service.updateService(this.data, {"DealershipID": dealershipID});
+        this.presentToast();
       });
     }
 
@@ -56,5 +57,15 @@ export class AssignDealershipPage implements OnInit {
 
   get errorControl() {
     return this.assignDealershipForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Dealership has been assigned successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

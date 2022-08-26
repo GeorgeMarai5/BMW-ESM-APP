@@ -6,6 +6,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastController } from '@ionic/angular';
 
 interface FleetData {
   FleetName: string;
@@ -26,8 +27,8 @@ export class EditFleetPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public fleetservice: FleetService, public firestore: AngularFirestore, public router: Router) {
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public fleetservice: FleetService, 
+    public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -48,7 +49,7 @@ export class EditFleetPage implements OnInit {
           FleetLocation: this.fleetform.get('FleetLocation').value
         }
         this.fleetservice.update_Fleet(this.data,this.fleet)   //this.data, this.fleets
-        alert("Vehicle was successfully updated.");
+        this.presentToast();
       }
       this.router.navigate(['/tabs/view/fleet']);     // this.data
   }
@@ -82,5 +83,15 @@ export class EditFleetPage implements OnInit {
     this.fleetservice.update_Fleet(Fleet.id,Fleet);
     //Fleet.isEdit = false;
     console.log(Fleet,"successfully updated")
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Vehicle has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }
