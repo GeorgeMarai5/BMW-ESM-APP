@@ -74,7 +74,7 @@ Add_Address(data:any){
 
 
 
-getAddresList(): Observable<any[]>{
+getAddressList(): Observable<any[]>{
 
 
 return this.httpClient.get<any>(this.apiUrl + "/GetAllAddresses" );

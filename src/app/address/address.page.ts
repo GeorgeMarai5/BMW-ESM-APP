@@ -13,7 +13,6 @@ import { Observable } from 'rxjs';
 })
 export class AddressPage implements OnInit {
 
-
   AddressList = [];
   AddressList$!:Observable<any[]>;
   AddressForm: FormGroup;
@@ -21,48 +20,88 @@ export class AddressPage implements OnInit {
   AddressID: string;
   data: any;
   address: Address;
-
+ 
 
 
   constructor(public authService: AuthService, public fb: FormBuilder, private addressservice: AddressService, 
     public alertCtrl: AlertController, public router: Router,) { 
 
-      this.addressservice = {} as AddressService;
+      addressservice = {} as AddressService;
 
     }
 
-  ngOnInit(): void {
-    //this.AddressList$ = this.addressservice.getAddresList();
-    this.addressservice.getAddresList().subscribe(res => {
+  ngOnInit() {
+    //this.AddressList$ = this.addressservice.getAddressList();
+    this.addressservice.getAddressList().subscribe(res => {
  
       console.log(res);
-      })
 
-      this.AddressForm = this.fb.group({
-        AddressID: ['', [Validators.required]],
-        Address: ['', [Validators.required]],
-        PostalCode: ['', [Validators.required]],
-        Date_Of_Update: ['', [Validators.required]],
+      //this.AddressList = res;
+
+
+
+
     });
 
-    this.addressservice.getAddresList().subscribe((data) => {
+    this.addressservice.getAddressList().subscribe(res => {
 
-      this.AddressList = data.map(e => {
-        let yearCode: string;
-      
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          AddressID: e.payload.doc.data()['AddressID'],
-          Address: e.payload.doc.data()['Address'],
-          PostalCode: e.payload.doc.data()['PostalCode'],
-          Date_Of_Update: e.payload.doc.data()['Date_Of_Update'],
+    this.AddressForm = this.fb.group({
+      AddressID: res['addressID'],
+      Address: ['', [Validators.required]],
+      PostalCode: ['', [Validators.required]],
+      Date_Of_Update: ['', [Validators.required]],
+  });
+
+
+});
+
+    this.addressservice.getAddressList().subscribe(res => {
+
+     
+          
+           this.AddressForm.setValue({
+            
+
+            
+            AddressID: res['addressID'], 
+            Address: res['address'],
+            PostalCode: res['postal_Code'],
+            Date_Of_Update: res['date_of_update'],
+         })
+         console.log(res);
+       });
         
-        };
-      })
+     
+  }
 
-      console.log(this.AddressList);
 
-    });
+
+
+
+
+  do(){
+
+    this.AddressForm = this.fb.group({
+      AddressID: ['', [Validators.required]],
+      Address: ['', [Validators.required]],
+      PostalCode: ['', [Validators.required]],
+      Date_Of_Update: ['', [Validators.required]],
+  });
+
+    this.addressservice.getAddressList().subscribe(res => {
+
+     
+          
+           this.AddressForm.setValue({
+            
+            AddressID: res['AddressID'], 
+            Address: res['FleetLocation'],
+            PostalCode: res['PostalCode'],
+            Date_Of_Update: res['Date_Of_Update'],
+         })
+         console.log(res);
+       });
+        
+       
   }
 }

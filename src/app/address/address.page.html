@@ -15,11 +15,13 @@
 
 <ion-content>
 
+  <ion-button (click)="do()">do</ion-button>
+
 <div>
 
 <ion-row *ngFor="let item of AddressList">
   <ion-col>
-    <ion-label> {{item.AddressID}}</ion-label>
+    <ion-label>{{item.AddressID}} </ion-label>
   </ion-col>
   <ion-col>
     <ion-label> {{item.Address}}</ion-label>
