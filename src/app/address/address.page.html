@@ -15,22 +15,24 @@
 
 <ion-content>
 
+  <ion-label>{{information}}</ion-label>
+
   <ion-button (click)="do()">do</ion-button>
 
-<div [formGroup]="AddressForm">
+<div  *ngFor="let item of data">
 
 <ion-row >
   <ion-col>
-    <ion-label formControlName="addressID"> </ion-label>
+    <ion-label>{{data}}</ion-label>
   </ion-col>
   <ion-col>
-    <ion-label formControlName="address"> </ion-label>
+    <ion-label >are </ion-label>
   </ion-col>
   <ion-col>
-    <ion-label formControlName="postal_Code"> </ion-label>
+    <ion-label >we </ion-label>
   </ion-col>
   <ion-col>
-    <ion-label formControlName="date_Of_Update"> </ion-label>
+    <ion-label> are</ion-label>
   </ion-col>
 
 </ion-row>

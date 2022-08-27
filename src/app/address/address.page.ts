@@ -21,6 +21,7 @@ export class AddressPage implements OnInit {
   AddressID: string;
   data: any;
   address: Address;
+  information= null;
  
 
 
@@ -29,14 +30,14 @@ export class AddressPage implements OnInit {
 
       addressservice = {} as AddressService;
 
-  
-      this.AddressForm = new FormGroup({
-        addressID: new FormControl('', Validators.required),
-        address: new FormControl('', Validators.required),
-        postal_Code: new FormControl('', Validators.required),
-        date_Of_Update: new FormControl('', Validators.required)
+    
+     // this.AddressForm = new FormGroup({
+        //AddressID: new FormControl('', Validators.required),
+        //Address: new FormControl('', Validators.required),
+        //Postal_Code: new FormControl('', Validators.required),
+       // Date_Of_Update: new FormControl('', Validators.required)
 
-      })
+      //})
 
     }
 
@@ -45,6 +46,7 @@ export class AddressPage implements OnInit {
     this.addressservice.getAddressList().subscribe(res => {
  
       console.log(res);
+      this.information = res;
       
     });
       //this.AddressList = res;
