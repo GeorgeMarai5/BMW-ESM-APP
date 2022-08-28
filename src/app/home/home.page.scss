@@ -1,0 +1,37 @@
+@media (max-width: 390px) {
+    .logo{
+        margin-left: 4vw !important;
+    }
+    h1{
+        font-size: 12vh !important;
+    }
+    ion-row{
+        margin-top: 4vh !important;
+    }
+    .bmw{
+        visibility: hidden !important;
+    }
+    .accBtn{
+        width: 25vw !important;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .logo{
+        margin-left: 2vw !important;
+    }
+    h1{
+        font-size: 12vh !important;
+    }
+    ion-row{
+        margin-top: 4vh !important;
+    }
+    .bmw{
+        margin-top: 4vh !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .accBtn{
+        width: 15vw !important;
+    }
+  }
