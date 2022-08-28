@@ -22,14 +22,14 @@ export class AddressPage implements OnInit {
   data: any;
   address: Address;
   information= null;
- 
+  //addres: Address = {addressID: null, address:'',postal_Code:'',date_Of_Update: ''}
 
 
   constructor(public authService: AuthService, public fb: FormBuilder, private addressservice: AddressService, 
     public alertCtrl: AlertController, public router: Router,private ActivatedRoute: ActivatedRoute) { 
 
       addressservice = {} as AddressService;
-
+      this.data = [];
     
      // this.AddressForm = new FormGroup({
         //AddressID: new FormControl('', Validators.required),
@@ -42,12 +42,49 @@ export class AddressPage implements OnInit {
     }
 
   ngOnInit() {
-    //this.AddressList$ = this.addressservice.getAddressList();
-    this.addressservice.getAddressList().subscribe(res => {
- 
-      console.log(res);
-      this.information = res;
+    this.addressservice.getList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+
+
+
+
+  ionViewWillEnter() {
+    // Used ionViewWillEnter as ngOnInit is not 
+    // called due to view persistence in Ionic
+    this.do();
+  }
+
+  do(){
+
+    {
+      //Get saved list of students
+      this.addressservice.getList().subscribe(response => {
+        console.log(response);
+        this.data = response;
+      })
+    }
       
+  }
+}
+
+
+
+
+
+/*
+
+
+
+//this.AddressList$ = this.addressservice.getAddressList();
+    this.addressservice.getAddressList().subscribe(res => {
+
+      console.log(res);
+      //this.addres = res;
+
+
     });
       //this.AddressList = res;
 
@@ -106,16 +143,15 @@ this.addressservice.getAddressList().subscribe(res => {
        });
         */
      
-  }
 
 
 
 
 
 
-  do(){
 
-    
-      
-  }
-}
+
+
+
+
+

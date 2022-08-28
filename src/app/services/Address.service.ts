@@ -1,6 +1,6 @@
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, tap, map } from 'rxjs/operators';
+import { retry,catchError, tap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Address } from '../models/Address';
 
@@ -67,6 +67,22 @@ export class AddressService {
 ////////////////////////////////////////real
 
 
+getList(): Observable<Address> {
+  return this.httpClient
+    .get<Address>(this.apiUrl + '/GetAllAddresses')
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+}
+
+
+
+
+
+
+
+
 Add_Address(data:any){
 
   return this.httpClient.post(this.apiUrl + "/Create", data);
@@ -78,7 +94,7 @@ Add_Address(data:any){
 getAddressList(): Observable<any[]>{
 
 
-return this.httpClient.get<any>(this.apiUrl + "/GetAllAddresses" );
+return this.httpClient.get<any>(this.apiUrl + "/GetAllAddresses" ); //"/GetAllAddresses"
 
 }
 
