@@ -1,44 +1,55 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AngularFireObject } from '@angular/fire/compat/database';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { ServiceNote } from '../models/ServiceNote';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServiceNoteService {
-  intiateService(value: any) {
-    throw new Error('Method not implemented.');
-  }
+  // intiateService(value: any) {
+  //   throw new Error('Method not implemented.');
+  // }
 
-  ServiceRef: AngularFireObject<any>;
-  readService() {
-    return this.firestore.collection(this.collectionName).snapshotChanges();
-  }
-  collectionName = 'Service_Note';
+  // ServiceRef: AngularFireObject<any>;
+  // readService() {
+  //   return this.firestore.collection(this.collectionName).snapshotChanges();
+  // }
+  // collectionName = 'Service_Note';
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private httpClient: HttpClient) {}
 
   // getServices(id: string) {
   //   return this.firestore.collection('Service').snapshotChanges();
   // }
 
-  createServiceNote(ServiceNote) {
-    return this.firestore.collection(this.collectionName).add(ServiceNote);
+
+
+  apiUrl = 'https://localhost:7292/api'
+  httpOptions ={
+    headers: new HttpHeaders({
+      ContentType: 'application/json'
+    })
   }
 
-  getServiceNote(id: string) {
-    return this.firestore.collection(this.collectionName).doc(id);
+  // createServiceNote(createNote: ServiceNote){
+  //   return this.httpClient.post(`${this.apiUrl}/PostService_Note`, createNote, this.httpOptions)
+  // }
+  createServiceNote(data: any) {
+    return this.httpClient.post(this.apiUrl + "/ServiceNote/Create", data);
   }
-  getServiceNotes() {
-    return this.firestore.collection('Service_Note').snapshotChanges();
+
+  // getServiceNote(id: string) {
+  //   return this.firestore.collection(this.collectionName).doc(id);
+  // }
+  getServiceNotes(): Observable<any[]> {
+    return this.httpClient.get<any>(this.apiUrl + "/ServiceNote")
   }
-  updateServiceNote(id, service) {
-    this.firestore.doc(this.collectionName + '/' + id).update(service);
+  updateServiceNote(id: number | string, data: any) {
+    this.httpClient.put(this.apiUrl + "/ServiceNote/${id}", data)
   }
-  deleteServiceNote(id) {
-    this.firestore.doc(this.collectionName + '/' + id).delete();
+  deleteServiceNote(id:number | string) {
+    this.httpClient.delete(this.apiUrl + "/ServiceNote/${id}")
   }
 }
 // export class ServiceNoteService {

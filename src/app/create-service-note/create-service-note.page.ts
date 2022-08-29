@@ -3,7 +3,8 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ServiceNoteService } from '../services/servicenote.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { HttpClient } from '@angular/common/http';
+import { Service } from '../services/service.service';
 
 interface ServiceNoteData {
   Description: string;
@@ -16,19 +17,29 @@ interface ServiceNoteData {
 })
 
 export class CreateServiceNotePage implements OnInit {
+
+
+  addNoteForm: FormGroup = this.fb.group({
+    Description: ['', [Validators.required]]
+  })
   services: ServiceNoteService;
   serviceNoteList = [];
-  addNoteForm: FormGroup;
+
   searchTerm: string;
   deleteModal: HTMLElement;
   isSubmitted = false;
   data: any;
-
+serviceNotes : any;
   today = new Date();
 
-  constructor (private route: ActivatedRoute, public router: Router, public firestore: AngularFirestore,
+
+
+
+  constructor (private route: ActivatedRoute, public router: Router, public httpClient: HttpClient,
     public authService: AuthService, public fb: FormBuilder, private _serviceNote: ServiceNoteService
   ) {
+    _serviceNote = {} as ServiceNoteService;
+  
     this.route.params.subscribe((params) => {});
     this.addNoteForm = new FormGroup({
       Description: new FormControl('', [Validators.required]),
@@ -44,22 +55,39 @@ export class CreateServiceNotePage implements OnInit {
         Description: this.addNoteForm.get('Description').value,
       };
       console.log(serviceNote);
-      this.firestore
-        .collection('Service_Note')
-        .add(serviceNote)
-        .then(function (docRef) {
-          alert('Service Note has been created successfully');
-          const serviceNoteID = {
-            serviceNoteID: docRef.id,
-          };
-        });
-      this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
-    }
+    //   this.httpClient.get(serviceNote)
+    //     .then(function (docRef) {
+    //       alert('Service Note has been created successfully');
+    //       const serviceNoteID = {
+    //         serviceNoteID: docRef.id,
+    //       };
+    //     });
+    //   this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
+    // }
   }
+  }
+  
+  // createServiceNote(){
+  //   if(this.addNoteForm.valid){
+     
+  //     this._serviceNote.createServiceNote(this.addNoteForm.value).subscribe(()=>{
+  //       this.addNoteForm.reset();
+  //       this.router.navigate(['']).then((navigated: boolean)=>{
+  //         if(navigated){
+  //           alert(this.addNoteForm.value);
+  //           console.log("it works");
+  //         }
+  //       })
+  //     })
+  //   }
+  // }
+
 
   ngOnInit() {
-    this.addNoteForm.setValue({ Description: '' });
-  }
+    // this._serviceNote.createServiceNote(this.data).subscribe(res =>{
+    //   console.log(res);
+    // })
+    }
   
   get errorControl() {
     return this.addNoteForm.controls;
