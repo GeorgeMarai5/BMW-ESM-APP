@@ -76,46 +76,45 @@ getList(): Observable<Address> {
     )
 }
 
-
-
-
-
-
-
-
-Add_Address(data:any){
-
-  return this.httpClient.post(this.apiUrl + "/Create", data);
+// Create a new item
+createAddress(item): Observable<Address> {
+  return this.httpClient
+    .post<Address>(this.apiUrl + '/Create', JSON.stringify(item), this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
 }
 
-
-
-
-getAddressList(): Observable<any[]>{
-
-
-return this.httpClient.get<any>(this.apiUrl + "/GetAllAddresses" ); //"/GetAllAddresses"
-
+// Get single student data by ID
+getItem(id): Observable<Address> {
+  return this.httpClient
+    .get<Address>(this.apiUrl + '/AddressByid' + '/' + id)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
 }
 
-updateAddress(id:number|string,data:any){
-
-
-return this.httpClient.put(this.apiUrl + "/UpdateAddress/${id}",data)
-
+// Update item by id
+updateItem(id, item): Observable<Address> {
+  return this.httpClient
+    .put<Address>(this.apiUrl + '/UpdateAddress' + '/' + id, JSON.stringify(item), this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
 }
 
-DeleteAddress(id:number|string){
-
-return this.httpClient.delete(this.apiUrl + '/DeleteAddress/${id}');
-
+// Delete item by id
+deleteItem(id) {
+  return this.httpClient
+    .delete<Address>(this.apiUrl + '/DeleteAddress' + '/' + id, this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
 }
-
-
-
-
-
-
 
 
 
