@@ -7,12 +7,21 @@ import { Router } from '@angular/router';
 import { Address } from '../models/Address';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { ad } from '../models/Address';
 @Component({
   selector: 'app-address',
   templateUrl: './address.page.html',
   styleUrls: ['./address.page.scss'],
 })
+
+
+
+
 export class AddressPage implements OnInit {
+
+
+
+
 
   AddressList = [];
   AddressList$!:Observable<any[]>;
@@ -20,25 +29,19 @@ export class AddressPage implements OnInit {
   searchTerm: string;
   AddressID: string;
   data: any;
-  address: Address;
+  dat: ad
   information= null;
   //addres: Address = {addressID: null, address:'',postal_Code:'',date_Of_Update: ''}
 
 
   constructor(public authService: AuthService, public fb: FormBuilder, private addressservice: AddressService, 
-    public alertCtrl: AlertController, public router: Router,private ActivatedRoute: ActivatedRoute) { 
-
+    public alertCtrl: AlertController, public router: Router,public ActivatedRoute: ActivatedRoute) { 
+      
       addressservice = {} as AddressService;
       this.data = [];
+      this.dat = new ad();
     
-     // this.AddressForm = new FormGroup({
-        //AddressID: new FormControl('', Validators.required),
-        //Address: new FormControl('', Validators.required),
-        //Postal_Code: new FormControl('', Validators.required),
-       // Date_Of_Update: new FormControl('', Validators.required)
-
-      //})
-
+    
     }
 
   ngOnInit() {
@@ -68,6 +71,29 @@ export class AddressPage implements OnInit {
     }
       
   }
+
+create(){
+
+  
+    this.addressservice.createAddress(this.dat).subscribe((response) => {
+      console.log(response);
+      this.router.navigate(['student-list']);
+    });
+
+
+}
+
+delete(item) {
+  //Delete item in Student data
+  this.addressservice.deleteItem(item.id).subscribe(Response => {
+    //Update list after delete is successful
+    this.addressservice.getList();
+  });
+}
+
+
+
+
 }
 
 
