@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perform-postcheck',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerformPostcheckPage implements OnInit {
 
-  constructor() { }
+  constructor(public toastCtrl: ToastController) { }
 
   ngOnInit() {
   }
 
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Assigned Part has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

@@ -5,6 +5,7 @@ import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-team',
@@ -19,8 +20,8 @@ export class EditTeamPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public firestore: AngularFirestore, public teamservice: TeamService, public router: Router) {
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
+    public teamservice: TeamService, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -43,7 +44,7 @@ export class EditTeamPage implements OnInit {
           TeamType: this.editTeamForm.get('TeamType').value
         }
         this.teamservice.updateTeam(this.data, team)
-        alert("Team was successfully updated.");
+        this.presentToast();
       }
       this.router.navigate(['/tabs/view/team', this.data]);
   }
@@ -64,4 +65,13 @@ export class EditTeamPage implements OnInit {
     return this.editTeamForm.controls;
   }
 
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Team has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

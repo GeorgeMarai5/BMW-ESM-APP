@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder,FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 interface QuoteData {
   ClientName: string;
@@ -27,13 +27,12 @@ export class SearchQuotePage implements OnInit {
   searchTerm: string;
   ClientName: string;
 
-  constructor(public authService: AuthService,private fb: FormBuilder,public router: Router, 
-    private actRoute: ActivatedRoute,private quoteservice: QuoteService,
-    public alertCtrl: AlertController
-    ) { }
+  constructor(public authService: AuthService,private fb: FormBuilder,public router: Router, private actRoute: ActivatedRoute, 
+    private quoteservice: QuoteService, public alertCtrl: AlertController, public toastCtrl: ToastController) { 
+
+    }
 
   ngOnInit() {
-
     this.QuoteForm = this.fb.group({
       ClientName: ['', [Validators.required]],
       Date: ['', [Validators.required]],
@@ -75,12 +74,22 @@ export class SearchQuotePage implements OnInit {
         role: 'remove',
         handler: () => {
           this.quoteservice.delete_Quote(id);
-          alert('Fleet was successfully removed');
+          this.presentToast();
         }
       }]
     });
 
     confirmDeleteAlert.present();
 
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Fleet has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

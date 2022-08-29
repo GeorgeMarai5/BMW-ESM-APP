@@ -59,4 +59,14 @@ export class UpdateEmployeePage implements OnInit {
       console.log(this.employeeList);
     });
   }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Employee has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

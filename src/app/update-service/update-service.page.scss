@@ -26,3 +26,27 @@ span{
   font-size: small;
   margin-left: 1.4vw;
 }
+
+@media (max-width: 390px) {
+    .logo{
+        margin-left: 4vw !important;
+    }
+    h1{
+        font-size: 12vh !important;
+    }
+    .accBtn{
+        width: 25vw !important;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .logo{
+        margin-left: 2vw !important;
+    }
+    h1{
+        font-size: 12vh !important;
+    }
+    .accBtn{
+        width: 15vw !important;
+    }
+  }

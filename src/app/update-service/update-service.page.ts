@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Service } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 interface ServiceData {
   DealershipName: string;
@@ -25,8 +26,8 @@ export class UpdateServicePage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public _service: Service, public firestore: AngularFirestore, public router: Router) {
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public _service: Service, 
+    public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -51,7 +52,7 @@ export class UpdateServicePage implements OnInit {
       }
 
       this._service.updateService(this.data, service)
-      alert("Service was successfully updated.");
+      this.presentToast();
     }
 
     this.router.navigate(['/tabs/view/service', this.data]);
@@ -71,5 +72,15 @@ export class UpdateServicePage implements OnInit {
 
   get errorControl() {
     return this.serviceForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Service has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

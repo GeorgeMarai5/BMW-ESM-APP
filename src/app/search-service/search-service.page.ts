@@ -5,7 +5,7 @@ import { Service } from '../services/service.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -21,8 +21,8 @@ export class SearchServicePage implements OnInit {
   searchTerm: string;
   id: any;
 
-  constructor(public authService: AuthService, private _service: Service, public fb: FormBuilder, 
-    private firestore: AngularFirestore, public alertCtrl: AlertController) { 
+  constructor(public authService: AuthService, private _service: Service, public fb: FormBuilder, private firestore: AngularFirestore, 
+    public alertCtrl: AlertController, public toastCtrl: ToastController) { 
       this.services = {} as ModelService;
     }
 
@@ -67,12 +67,22 @@ export class SearchServicePage implements OnInit {
         role: 'remove',
         handler: () => {
           this._service.deleteService(id);
-          alert('Service was successfully removed');
+          this.presentToast();
         }
       }]
     });
 
     confirmDeleteAlert.present();
 
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Service has been canceled successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

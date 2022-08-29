@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { Part } from '../models/Part';
 import { AuthService } from '../services/auth.service';
 import { PartInfoService } from '../services/part-info.service';
@@ -20,7 +21,7 @@ export class AssignVehiclePartPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public service: PartInfoService, public firestore: AngularFirestore, public router: Router) {
+    public service: PartInfoService, public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -43,7 +44,7 @@ export class AssignVehiclePartPage implements OnInit {
           Description: this.assignPartForm.get('description').value
         }
         //this.service.updatePart(this.data, dealership)
-        alert("Dealership was successfully updated.");
+        this.presentToast()
       }
       this.router.navigate(['/tabs/view/dealership', this.data]);
   }
@@ -61,5 +62,15 @@ export class AssignVehiclePartPage implements OnInit {
 
   get errorControl() {
     return this.assignPartForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Part has been successfully assigned.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

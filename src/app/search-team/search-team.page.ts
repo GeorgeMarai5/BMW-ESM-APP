@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
@@ -19,8 +19,8 @@ export class SearchTeamPage implements OnInit {
   teamForm: FormGroup;
   searchTerm: string;
 
-  constructor(public authService: AuthService, private teamservice: TeamService, 
-    public firestore: AngularFirestore,public alertCtrl: AlertController, public fb: FormBuilder, public router: Router) { 
+  constructor(public authService: AuthService, private teamservice: TeamService, public firestore: AngularFirestore, 
+    public alertCtrl: AlertController, public fb: FormBuilder, public router: Router, public toastCtrl: ToastController) { 
       this.teams = {} as Team;
     }
 
@@ -61,12 +61,22 @@ export class SearchTeamPage implements OnInit {
         role: 'remove',
         handler: () => {
           this.teamservice.deleteTeam(id);
-          alert('Team was successfully removed');
+          this.presentToast();
         }
       }]
     });
 
     confirmDeleteAlert.present();
     
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'The team has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

@@ -26,29 +26,39 @@ export class InitiateServiceProcedurePage implements OnInit {
   serviceForm : FormGroup;
   myService: any;
 
-  constructor(public vehicleService: VehicleService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
+  constructor(public vehicleService: VehicleService , private zone: NgZone, private toastCtrl: ToastController, private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
     private firestore: AngularFirestore) { 
       this.vehicleService = {} as VehicleService;
     }
 
-    ngOnInit() {
-      this.serviceForm = this.fb.group({
-        DealershipName: ['', [Validators.required]],
-        FleetName: ['', [Validators.required]],
-        TeamName: ['', [Validators.required]],
-        date: ['', [Validators.required]],
-      })
-    }
+  ngOnInit() {
+    this.serviceForm = this.fb.group({
+      DealershipName: ['', [Validators.required]],
+      FleetName: ['', [Validators.required]],
+      TeamName: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+    })
+  }
+
+  InitiateService() {
+    console.log(this.serviceForm.value);
+    this.myService.intiateService(this.serviceForm.value).then(resp => {
+      this.serviceForm.reset();
+      this.presentToast();
+    })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Service initiated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
   
-    InitiateService() {
-      console.log(this.serviceForm.value);
-      this.myService.intiateService(this.serviceForm.value).then(resp => {
-        this.serviceForm.reset();
-        alert("A new service has been initiated successfully.")
-      })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+    toast.present();
+  }
 }

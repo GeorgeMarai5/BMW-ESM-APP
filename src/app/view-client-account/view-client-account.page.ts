@@ -85,9 +85,13 @@ export class ViewClientAccountPage implements OnInit {
     console.log(ID)
   }
 
-
-
-
-
-
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Client has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

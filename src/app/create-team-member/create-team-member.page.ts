@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-team-member',
@@ -16,8 +17,8 @@ export class CreateTeamMemberPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
-    public firestore: AngularFirestore, public teamMemberservice: TeamMemberService, public router: Router) { 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
+    public teamMemberservice: TeamMemberService, public router: Router, public toastCtrl: ToastController) { 
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
@@ -45,9 +46,8 @@ export class CreateTeamMemberPage implements OnInit {
         role: this.createTeamMemberForm.get('role').value
       }
 
-
       this.firestore.collection('Employee').add(teamMember).then(function(){
-        alert("New Team Member added successfully");
+        this.presentToast();
       });
     }
   }
@@ -58,5 +58,15 @@ export class CreateTeamMemberPage implements OnInit {
 
   get errorControl() {
     return this.createTeamMemberForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'A new team member has been created successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

@@ -4,7 +4,7 @@ import { DealershipService } from '../services/dealership.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Dealership } from '../models/Dealership';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -19,8 +19,8 @@ export class SearchDealershipPage implements OnInit {
   dealershipForm: FormGroup;
   searchTerm: string;
 
-  constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, 
-    private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 
+  constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
+    public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
       this.dealerships = {} as Dealership;
     }
 
@@ -62,12 +62,22 @@ export class SearchDealershipPage implements OnInit {
         role: 'remove',
         handler: () => {
           this.service.deleteDealership(id);
-          alert('Dealership was successfully removed');
+          this.presentToast();
         }
       }]
     });
 
     confirmDeleteAlert.present();
 
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Dealership has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

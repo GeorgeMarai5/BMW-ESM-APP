@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 interface FleetData {
   $key: string;
@@ -27,45 +27,37 @@ export class SearchFleetPage implements OnInit {
   fleetID: string;
 
   constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, 
-    public alertCtrl: AlertController) { 
+    public alertCtrl: AlertController, public toastCtrl: ToastController) { 
 
     this.fleetData = {} as FleetData;
 
   }
 
   ngOnInit() {
-
     this.fleetForm = this.fb.group({
       FleetName: ['', [Validators.required]],
       FleetLocation: ['', [Validators.required]],
       FleetID: ['', [Validators.required]],
       FleetVehicleQty: ['', [Validators.required]],
-  });
+    });
 
-  this.fleetservice.read_Fleet().subscribe(data => {
+    this.fleetservice.read_Fleet().subscribe(data => {
 
-    this.fleetList = data.map(e => {
-      return {
-        id: e.payload.doc.id,
-        isEdit: false,
-        FleetID: e.payload.doc.data()['FleetID'],
-        FleetVehicleQty: e.payload.doc.data()['FleetVehicleQty'],
-        FleetName: e.payload.doc.data()['FleetName'],
-        FleetLocation: e.payload.doc.data()['FleetLocation']
-      };
-    })
+      this.fleetList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          FleetID: e.payload.doc.data()['FleetID'],
+          FleetVehicleQty: e.payload.doc.data()['FleetVehicleQty'],
+          FleetName: e.payload.doc.data()['FleetName'],
+          FleetLocation: e.payload.doc.data()['FleetLocation']
+        };
+      })
 
-    console.log(this.fleetList);
+      console.log(this.fleetList);
 
-  });
-}
-
-RemoveFleet(ID) {
-  alert("Vehicle was successfully Removed.");
-  this.fleetservice.delete_Fleet(ID);
-  console.log(ID)
-}
-
+    });
+  }
 
   async Deletefleet(id){
     const confirmDeleteAlert = await this.alertCtrl.create({
@@ -83,12 +75,22 @@ RemoveFleet(ID) {
         role: 'remove',
         handler: () => {
           this.fleetservice.delete_Fleet(id);
-          alert('Fleet was successfully removed');
+          this.presentToast();
         }
       }]
     });
 
     confirmDeleteAlert.present();
 
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Fleet has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
 }

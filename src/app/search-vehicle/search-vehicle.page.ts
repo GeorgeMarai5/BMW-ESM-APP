@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { stringify } from 'querystring';
 import { generateKeyPair } from 'crypto';
 import { Console } from 'console';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import jsPDF from 'jspdf';
 //import 'jspdf-autotable';
@@ -24,8 +24,8 @@ export class SearchVehiclePage implements OnInit {
   vehicleForm: FormGroup;
   searchTerm: string;
 
-  constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, 
-    private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router) { 
+  constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, private firestore: AngularFirestore, 
+    public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
       this.vehicles = {} as Vehicle;
     }
 
@@ -71,7 +71,7 @@ export class SearchVehiclePage implements OnInit {
         role: 'remove',
         handler: () => {
           this.service.deleteVehicle(id);
-          alert('Vehicle was successfully removed');
+          this.presentToast('Vehicle has been removed successfully.');
         }
       }]
     });
@@ -97,7 +97,7 @@ export class SearchVehiclePage implements OnInit {
         handler: () => {
           //Add Check in when backend added
           //this.service.deleteVehicle(id);
-          alert('Vehicle was successfully checked in');
+          this.presentToast('Vehicle check in successful.');
         }
       }]
     });
@@ -134,4 +134,14 @@ export class SearchVehiclePage implements OnInit {
       pdf.save('Service_History_Report.pdf');
       
   } 
+
+  async presentToast(_message) {
+    let toast = await this.toastCtrl.create({
+      message: _message,
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }

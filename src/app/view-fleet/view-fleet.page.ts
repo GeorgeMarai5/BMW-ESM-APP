@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { VehicleService } from '../services/vehicle.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 interface FleetData {
@@ -35,7 +35,7 @@ export class ViewFleetPage implements OnInit {
    data: any;
 
   constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, private vehiclesService: VehicleService,
-    public alertCtrl: AlertController, public router: Router, public vehicleService: VehicleService) { 
+    public alertCtrl: AlertController, public router: Router, public vehicleService: VehicleService, public toastCtrl: ToastController) { 
 
     this.VehicleData = {} as FleetVehicles;
 
@@ -92,7 +92,7 @@ export class ViewFleetPage implements OnInit {
         role: 'remove',
         handler: () => {
           this.fleetservice.delete_Fleet(id);
-          alert('Fleet was successfully removed');
+          this.presentToast();
         }
       }]
     });
@@ -105,15 +105,19 @@ export class ViewFleetPage implements OnInit {
     this.router.navigate(['/tabs/edit/fleet', this.data]);
   }
 
-
-
-
-select(){
-  if(window.confirm('Fleet selected')){
-    
+  select(){
+    if(window.confirm('Fleet selected')){
+      
+    }
   }
-}
 
-
-
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Fleet has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
 }
