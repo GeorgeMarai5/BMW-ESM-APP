@@ -12,33 +12,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-margin">
   <div class="contents">
-    <ion-title>
-      <h1>Create Service Note</h1>
-    </ion-title>
-
-    <form [formGroup]="addNoteForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-title><h1>Inspection Details</h1></ion-title>
+    <form>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-item lines="full">
+            <ion-item lines="none">
               <ion-label position="stacked">Service Note</ion-label>
-              <ion-input
-                formControlName="Description"
-                type="text"
-                placeholder="Description..."
-              ></ion-input>
+              <ion-textarea placeholder="Description..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
             </ion-item>
           </ion-col>
         </ion-row>
-        <br />
+        <br/>
         <ion-row>
+          <ion-col></ion-col>
           <ion-col>
-            <ion-button type="submit" expand="block">Submit</ion-button>
+            <ion-button type="submit" expand="block">Back</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="light-Btn" type="submit" style="margin-right: 1vw" expand="block">Proceed</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
     </form>
   </div>
-</ion-content>
+</ion-content> 

@@ -14,23 +14,25 @@
 
 <ion-content class="ion-margin">
   <div class="contents">
-    <h1>Inspection Details</h1>
+    <ion-title><h1>Inspection Details</h1></ion-title>
     <form>
       <ion-grid>
-        <ion-row>
+        <ion-row *ngFor="let item of inspections">
           <ion-col>
             <ion-item lines="none">
-              <ion-label></ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(46, 46, 46); border-radius: 0.3rem;"></ion-textarea>
+              <ion-label position="stacked">{{ item }}</ion-label>
+              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
             </ion-item>
           </ion-col>
         </ion-row>
         <br/>
         <ion-row>
           <ion-col></ion-col>
-          <ion-col></ion-col>
           <ion-col>
-            <ion-button type="submit" expand="block" style="margin-right: 1rem;">Proceed</ion-button>
+            <ion-button type="submit" expand="block">Back</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="light-Btn" type="submit" style="margin-right: 1vw" expand="block">Proceed</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

@@ -13,6 +13,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class CreateTeamMemberPage implements OnInit {
 
+  roles = [];
   createTeamMemberForm: FormGroup;
   isSubmitted = false;
   data: any;

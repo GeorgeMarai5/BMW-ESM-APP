@@ -13,6 +13,7 @@ import { VehicleService } from '../services/vehicle.service';
 })
 export class CaptureInitialInspectionDetailsPage implements OnInit {
 
+  inspections: [];
   isSubmitted = false;
   data: any;
 

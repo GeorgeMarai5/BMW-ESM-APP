@@ -22,6 +22,8 @@ export class CreateServicePage implements OnInit {
 
   services: Service;
   serviceList = [];
+  teams = [];
+  serviceTypes = [];
   serviceForm: FormGroup;
   searchTerm: string;
   deleteModal: HTMLElement;

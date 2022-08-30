@@ -15,6 +15,7 @@ import { PartInfoService } from '../services/part-info.service';
 export class AssignVehiclePartPage implements OnInit {
 
   part: Part;
+  types: [];
   parts = {};
   assignPartForm: FormGroup;
   isSubmitted = false;
@@ -28,7 +29,8 @@ export class AssignVehiclePartPage implements OnInit {
       this.assignPartForm = new FormGroup({
         partName: new FormControl('', Validators.required),
         partType: new FormControl('', Validators.required),
-        Description: new FormControl('', Validators.required)
+        Description: new FormControl('', Validators.required),
+        partStock: new FormControl('', Validators.required)
       });
   }
 
@@ -50,14 +52,7 @@ export class AssignVehiclePartPage implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getPart(this.data).valueChanges()
-    .subscribe(res =>{
-    console.log(res)
-    this.assignPartForm.setValue({
-      dealershipName: res['DealershipName'], 
-      address: res['AddressName']
-    })
-    });
+    
   }
 
   get errorControl() {

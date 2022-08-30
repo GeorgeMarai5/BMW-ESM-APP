@@ -20,7 +20,9 @@ export class CreateFleetPage implements OnInit {
 
   //studentList = [];
   fleetData: FleetData;
-  fleetForm: FormGroup;
+  addFleetForm: FormGroup;
+  isSubmitted = false;
+  data: any;
   
   constructor (public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, public toastCtrl: ToastController) {
 
@@ -30,20 +32,27 @@ export class CreateFleetPage implements OnInit {
 
   ngOnInit() {
 
-    this.fleetForm = this.fb.group({
+    this.addFleetForm = this.fb.group({
       FleetName: ['', [Validators.required]],
       FleetLocation: ['', [Validators.required]],
     });
   }
 
-  CreateFleet() {
-    console.log(this.fleetForm.value);
-    this.fleetservice.create_Fleet(this.fleetForm.value).then(resp => {
-      this.fleetForm.reset();
-      this.presentToast();
-    }).catch(error => {
+  submit() {
+    this.isSubmitted = true;
+    if(!this.addFleetForm.valid){
+      return false;
+    }
+    else{
+      console.log(this.addFleetForm.value);
+      this.fleetservice.create_Fleet(this.addFleetForm.value).then(resp => {
+        this.addFleetForm.reset();
+        this.presentToast();
+      }).catch(error => {
+      
         console.log(error);
-      });
+        });
+    }
   }
 
   async presentToast() {
@@ -54,5 +63,9 @@ export class CreateFleetPage implements OnInit {
     });
   
     toast.present();
+  }
+
+  get errorControl() {
+    return this.addFleetForm.controls;
   }
 }

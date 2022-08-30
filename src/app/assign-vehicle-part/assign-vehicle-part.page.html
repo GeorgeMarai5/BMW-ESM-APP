@@ -26,8 +26,11 @@
                             <ion-label position="stacked"><b>Part Name</b></ion-label>
                             <ion-input formControlName="partName" type="text" required></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.required">
                             Part Name is required.
+                        </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.cannotContainSpace">
+                            Part Name can not contain spaces.
                         </span>
                     </ion-col>
                 </ion-row>
@@ -36,13 +39,10 @@
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Part Type</b></ion-label>
                             <ion-select formControlName="partType" type="text" required>
-                                <ion-select-option>Brakes</ion-select-option>
-                                <ion-select-option>Engine</ion-select-option>
-                                <ion-select-option>Spark Plugs</ion-select-option>
-                                <ion-select-option>Clutch</ion-select-option>
+                                <ion-select-option *ngFor="let item of types" >{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partType.errors?.required">
                             Part Type is required.
                         </span>
                     </ion-col>
@@ -53,7 +53,7 @@
                             <ion-label position="stacked"><b>Description</b></ion-label>
                             <ion-input formControlName="Description" type="text" required></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.description.errors?.required">
                             Description is required.
                         </span>
                     </ion-col>
@@ -64,8 +64,11 @@
                             <ion-label position="stacked"><b>Part In Stock</b></ion-label>
                             <ion-input formControlName="partStock" type="text" required></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Availability.errors?.required">
                             Part Availability is required.
+                        </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Availability.errors?.cannotContainSpace">
+                            Part Availability can not contain spaces.
                         </span>
                     </ion-col>
                 </ion-row>
@@ -73,10 +76,10 @@
                 <ion-row>
                     <ion-col></ion-col>
                     <ion-col>
-                        <ion-button [routerLink]="['/tabs/create/service']" expand="block" style="--background: #E02828;">Back</ion-button>
+                        <ion-button [routerLink]="['/tabs/create/service']" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button type="submit" expand="block">Assign Part</ion-button>
+                        <ion-button class="light-Btn" type="submit" expand="block">Assign Part</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

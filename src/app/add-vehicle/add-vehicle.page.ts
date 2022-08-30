@@ -12,6 +12,8 @@ import { VehicleService } from '../services/vehicle.service';
 })
 export class AddVehiclePage implements OnInit {
 
+  models = [];
+  plans = [];
   addVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;

@@ -14,6 +14,8 @@ import { ToastController } from '@ionic/angular';
 })
 export class CreateTeamPage implements OnInit {
 
+  teamTypes = [];
+  dealerships = [];
   createTeamForm: FormGroup;
   isSubmitted = false;
   data: any;

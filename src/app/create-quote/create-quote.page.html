@@ -15,7 +15,6 @@
 <ion-content>
   <div class="contents">
     <ion-title><h1>Create Quote</h1></ion-title>
-    <br>
     <form [formGroup]="QuoteForm" (ngSubmit)="submit()" >
       <ion-grid>
         <ion-row>
@@ -30,7 +29,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Date</b></ion-label>
-              <ion-input formControlName="Date" type="text" required ></ion-input>
+              <ion-input formControlName="Date" type="date" required ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -46,13 +45,20 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Accepted</b></ion-label>
-              <ion-input formControlName="Accepted" type="text" required ></ion-input>
+              <ion-select formControlName="Accepted" type="text" required >
+                <ion-select-option>Yes</ion-select-option>
+                <ion-select-option>No</ion-select-option>
+              </ion-select>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
+          <ion-col></ion-col>
           <ion-col>
-            <ion-button type="submit" class="red-Btn" expand="block">Create Quote</ion-button>
+            <ion-button type="submit" expand="block">Back</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="light-Btn" type="submit" expand="block">Create</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

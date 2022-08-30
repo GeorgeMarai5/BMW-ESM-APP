@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Console } from 'console';
 import { AuthService } from '../services/auth.service';
 import { Service } from '../services/service.service';
 
@@ -67,5 +68,14 @@ export class AssignDealershipPage implements OnInit {
     });
   
     toast.present();
+  }
+
+  checkWhiteSpaces(str){
+    if (!/\S/.test(str)) {
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
