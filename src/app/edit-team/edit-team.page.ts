@@ -71,7 +71,6 @@ export class EditTeamPage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 }
