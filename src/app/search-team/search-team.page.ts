@@ -31,7 +31,7 @@ export class SearchTeamPage implements OnInit {
       TeamType: ['', [Validators.required]]
 
     });
-
+ /*
     this.teamservice.getTeams().subscribe(data => {
       this.teamList = data.map(e => {
         return {
@@ -44,7 +44,8 @@ export class SearchTeamPage implements OnInit {
       console.log(this.teamList);
     });
   }
-
+*/
+  }
   async removeTeam(id){
     const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Team',
