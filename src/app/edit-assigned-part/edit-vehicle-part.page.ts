@@ -17,6 +17,7 @@ export class EditVehiclePartPage implements OnInit {
 
   assignedParts: AssignedPart;
   assignedPart = {};
+  partTypes = [];
   editPartForm: FormGroup;
   isSubmitted = false;
   data: any;

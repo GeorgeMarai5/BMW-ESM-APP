@@ -39,10 +39,7 @@
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Part Type</b></ion-label>
                             <ion-select formControlName="partType" type="text" required>
-                                <ion-select-option>Brakes</ion-select-option>
-                                <ion-select-option>Engine</ion-select-option>
-                                <ion-select-option>Spark Plugs</ion-select-option>
-                                <ion-select-option>Clutch</ion-select-option>
+                                <ion-select-option *ngFor="let item of partTypes">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partType.errors?.required">

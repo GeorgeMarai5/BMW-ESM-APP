@@ -15,8 +15,10 @@ import { Observable } from 'rxjs';
 })
 export class CreateTeamPage implements OnInit {
 
+  isSubmitted = false;
   teamTypes = [];
   TeamList = [];
+  dealerships = [];
   TeamList$!:Observable<any[]>;
   createTeamForm: FormGroup;
   AddressID: string;
@@ -28,13 +30,14 @@ export class CreateTeamPage implements OnInit {
     public alertCtrl: AlertController, public router: Router,public ActivatedRoute: ActivatedRoute) { 
       teamService = {} as TeamService;
       this.data = [];
-      this.dat = new Team();
+      //this.dat = new Team();
     }
 
   ngOnInit() {
     this.createTeamForm = this.fb.group({
-      teamN: ['', [Validators.required]],
-      FleetLocation: ['', [Validators.required]],
+      TeamName: ['', [Validators.required]],
+      DealershipName: ['', [Validators.required]],
+      TeamType: ['', [Validators.required]]
     });
   }
 
@@ -45,4 +48,7 @@ create(){
     });
   }
 
+  get errorControl() {
+    return this.createTeamForm.controls;
+  }
 }

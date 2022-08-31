@@ -24,7 +24,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Item Name</ion-label>
-                            <ion-input formControlName="itemName" type="text" readonly></ion-input>
+                            <ion-input formControlName="itemName" type="text" ></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -32,18 +32,19 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Description</ion-label>
-                            <ion-input formControlName="itemDescription" type="text" readonly></ion-input>
+                            <ion-input formControlName="itemDescription" type="text" ></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
                 <br/>
                 <ion-row>
                     <ion-col></ion-col>
+                    <ion-col></ion-col>
                     <ion-col>
-                        <ion-button [routerLink]="['/tabs/create/service-item']" expand="block" style="--background: #E02828;">Back</ion-button>
+                        <ion-button [routerLink]="['/tabs/create/service-item']" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button type="submit" expand="block">Submit</ion-button>
+                        <ion-button class="light-Btn" type="submit" expand="block">Submit</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

@@ -25,9 +25,7 @@
                     <ion-item lines="full">
                         <ion-label position="stacked"><b>Select Dealership</b></ion-label>
                         <ion-select formControlName="DealershipName" type="text" required>
-                            <ion-select-option>Sandton</ion-select-option>
-                            <ion-select-option>Midrand</ion-select-option>
-                            <ion-select-option>Menlyn</ion-select-option>
+                            <ion-select-option *ngFor="let item of dealerships">{{ item }}</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
@@ -37,12 +35,7 @@
                   <ion-item lines="full">
                       <ion-label position="stacked"><b>Select Team</b></ion-label>
                       <ion-select formControlName="TeamName" type="text" required>
-                        <ion-select-option>BMST001</ion-select-option>
-                        <ion-select-option>BMST002</ion-select-option>
-                        <ion-select-option>BMST003</ion-select-option>
-                        <ion-select-option>BMMR001</ion-select-option>
-                        <ion-select-option>BMMR002</ion-select-option>
-                        <ion-select-option>BMMR003</ion-select-option>
+                        <ion-select-option *ngFor="let item of teams">{{ item }}</ion-select-option>
                       </ion-select>
                   </ion-item>
               </ion-col>
@@ -52,23 +45,21 @@
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Service Type</b></ion-label>
                             <ion-select formControlName="ServiceTypeName" type="text" required>
-                                <ion-select-option>Brake fluid flush overdue</ion-select-option>
-                                <ion-select-option>Front brake pads due</ion-select-option>
-                                <ion-select-option>Rear brake pads due</ion-select-option>
-                                <ion-select-option>Micro filter due</ion-select-option>
-                                <ion-select-option>Oil service</ion-select-option>
-                                <ion-select-option>Service action</ion-select-option>
-                                <ion-select-option>Vehicle check service due</ion-select-option>
-                                <ion-select-option>Service overdue</ion-select-option>
+                                <ion-select-option *ngFor="let item of serviceTypes">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
                 </ion-row>
                 <br/>
                 <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col></ion-col>
                     <ion-col>
-                        <ion-button type="submit" expand="block">Update</ion-button>
-                    </ion-col>
+                        <ion-button type="submit" expand="block">Back</ion-button>
+                      </ion-col>
+                      <ion-col>
+                        <ion-button class="light-Btn" type="submit" expand="block">Update</ion-button>
+                      </ion-col>
                 </ion-row>
             </ion-grid>
         </form>

@@ -16,6 +16,8 @@ export class EditTeamPage implements OnInit {
 
   teams: Team;
   team = {};
+  dealerships = [];
+  teamTypes = [];
   editTeamForm: FormGroup;
   isSubmitted = false;
   data: any;
@@ -50,7 +52,7 @@ export class EditTeamPage implements OnInit {
   }
 
   ngOnInit() {
-    this.teamservice.getTeam(this.data).valueChanges()
+    this.teamservice.getTeam(this.data)
     .subscribe(res =>{
     console.log(res)
     this.editTeamForm.setValue({

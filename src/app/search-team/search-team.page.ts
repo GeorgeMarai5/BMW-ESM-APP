@@ -32,7 +32,7 @@ export class SearchTeamPage implements OnInit {
 
     });
 
-    this.teamservice.getTeams().subscribe(data => {
+    /*this.teamservice.getTeams().subscribe(data => {
       this.teamList = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -42,7 +42,7 @@ export class SearchTeamPage implements OnInit {
         };
       })
       console.log(this.teamList);
-    });
+    });*/
   }
 
   async removeTeam(id){

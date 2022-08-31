@@ -16,6 +16,7 @@ export class EditTeamMemberPage implements OnInit {
 
   teamMembers: employee;
   teamMember = {};
+  roles = [];
   editTeamMemberForm: FormGroup;
   isSubmitted = false;
   data: any;

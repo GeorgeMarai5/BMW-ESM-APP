@@ -17,6 +17,8 @@ export class EditVehiclePage implements OnInit {
 
   vehicles: Vehicle;
   vehicle = {};
+  plans = [];
+  models = [];
   editVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;

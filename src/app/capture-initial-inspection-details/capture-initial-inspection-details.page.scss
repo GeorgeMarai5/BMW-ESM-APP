@@ -7,7 +7,7 @@
 
 h1{
   color: #002850;
-  font-size: 2em;
+  font-size: 2em !important;
 }
 
 form{
@@ -20,6 +20,10 @@ form{
 
 ion-label{
   font-size: 1.125em !important;
+}
+
+ion-title{
+  margin-top: 4vh;
 }
 
 span{

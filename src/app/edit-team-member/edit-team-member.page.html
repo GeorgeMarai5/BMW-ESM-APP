@@ -69,9 +69,7 @@
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Role</b></ion-label>
                             <ion-select formControlName="role" type="text" required>
-                                <ion-select-option>Technician</ion-select-option>
-                                <ion-select-option>Foreman</ion-select-option>
-                                <ion-select-option>After Sales</ion-select-option>
+                                <ion-select-option *ngFor="let item of roles">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
@@ -82,11 +80,12 @@
                 <br/>
                 <ion-row>
                     <ion-col></ion-col>
+                    <ion-col></ion-col>
                     <ion-col>
-                        <ion-button [routerLink]="['/tabs/view/team-member']" expand="block" style="--background: #E02828;">Back</ion-button>
+                        <ion-button [routerLink]="['/tabs/view/team-member']" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button type="submit" expand="block">Submit</ion-button>
+                        <ion-button class="light-Btn" type="submit" expand="block">Submit</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

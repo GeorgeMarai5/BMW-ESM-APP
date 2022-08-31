@@ -21,6 +21,9 @@ interface ServiceData {
 export class UpdateServicePage implements OnInit {
 
   services: Service;
+  dealerships = [];
+  teams = [];
+  serviceTypes = [];
   service = {};
   serviceForm: FormGroup;
   isSubmitted = false;
