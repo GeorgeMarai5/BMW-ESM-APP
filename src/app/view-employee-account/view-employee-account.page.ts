@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../services/Employee.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { employee } from '../models/Employee';
+import { Employee } from '../models/Employee';
 
 @Component({
   selector: 'app-view-employee-account',
@@ -22,14 +22,14 @@ export class ViewEmployeeAccountPage implements OnInit {
   //private currentClient;
   employeeList = [];
   employeeform: FormGroup;
-  employee: employee;
+  employee: Employee;
   //public eventList: Clients[] = [];
   //ClientList: any;   //[]
 
   constructor(public employeeService: EmployeeService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
 
-      this.employee = {} as employee;
+      this.employee = {} as Employee;
 
     }
 
