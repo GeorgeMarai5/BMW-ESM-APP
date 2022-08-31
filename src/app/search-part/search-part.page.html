@@ -14,11 +14,10 @@
 
 <ion-content class="ion-margin">
   <div class="contents">
-    <h1>Search Part</h1>
+    <ion-title><h1>Search Part</h1></ion-title>
     <ion-searchbar class="isb" placeholder="Search Part..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
       <ion-grid class="ion-margin" class="ion-grid-padding">
         <ion-row>
-          <ion-col>Part ID</ion-col>
           <ion-col>Part Name</ion-col>
           <ion-col>Description</ion-col>
           <ion-col></ion-col>
@@ -26,9 +25,6 @@
         </ion-row>
         <ion-item-divider></ion-item-divider>
         <ion-row *ngFor="let item of partList | filter: searchTerm">
-          <ion-col>
-            <ion-label> {{item.partID}}</ion-label>
-          </ion-col>
           <ion-col>
             <ion-label> {{item.partName}}</ion-label>
           </ion-col>
@@ -44,6 +40,8 @@
           </ion-col>
         </ion-row>
         <ion-item-divider></ion-item-divider>
+        <br/>
       </ion-grid>
+      <ion-button style="float: right; width: 8vw;" [routerLink]="['/tabs/view/part']">Back</ion-button>
   </div>
 </ion-content>

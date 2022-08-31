@@ -15,8 +15,8 @@
 
 <ion-content class="ion-margin">
   <div class="contents">
-    <h1>Precheck</h1>
-    <form>
+    <ion-title><h1>Precheck</h1></ion-title>
+    <form [formGroup]="selectChecksForm" (ngSubmit)="submitForm()" novalidate>
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -24,59 +24,59 @@
               <ion-label><b>Select Vehicle Checks to Be Performed</b></ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="safetySystemsCheck"></ion-checkbox>
               <ion-label class="label">Safety Systems</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="interiorLightsCheck"></ion-checkbox>
               <ion-label class="label">Interior Lights</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="exteriorLightsCheck"></ion-checkbox>
               <ion-label class="label">Exterior Lights</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="windscreenCheck"></ion-checkbox>
               <ion-label class="label">Windscreen Washer System And Fluids</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="tyreCheck"></ion-checkbox>
               <ion-label class="label">Tyres</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="mobilityCheck"></ion-checkbox>
               <ion-label class="label">BMW Mobility System</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="coolantCheck"></ion-checkbox>
               <ion-label class="label">Engine Coolant Checks</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="headlampCheck"></ion-checkbox>
               <ion-label class="label">Headlamp Exterior Condition And Functionality</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="steeringFluidCheck"></ion-checkbox>
               <ion-label class="label">Steering Fluid Reservoir Oil Level</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="brakeCheck"></ion-checkbox>
               <ion-label class="label">Brake Lines And Connections</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="underBodyCheck"></ion-checkbox>
               <ion-label class="label">Under Body Panelling</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="steeringSystemCheck"></ion-checkbox>
               <ion-label class="label">Steering System</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="sparkPlugsCheck"></ion-checkbox>
               <ion-label class="label">Spark Plugs</ion-label>
             </ion-item>
             <ion-item>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="otherCheck"></ion-checkbox>
               <ion-label class="label">Other</ion-label>
             </ion-item>
           </ion-col>
@@ -86,7 +86,10 @@
           <ion-col></ion-col>
           <ion-col></ion-col>
           <ion-col>
-            <ion-button type="submit" expand="block">Proceed</ion-button>
+            <ion-button type="submit" expand="block">Back</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="light-Btn" type="submit" expand="block">Proceed</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

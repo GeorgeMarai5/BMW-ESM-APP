@@ -14,22 +14,17 @@
 
 <ion-content class="ion-margin">
   <div class="contents">
-    <h1>Search Fleet</h1>
-    <ion-searchbar class="isb" placeholder="Search Vehicle..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
+    <ion-title><h1>Search Your Fleet</h1></ion-title>
+    <ion-searchbar class="isb" placeholder="Search Fleet..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
       <ion-grid class="ion-margin" class="ion-grid-padding">
         <ion-row>
-          <ion-col>Fleet ID</ion-col>
           <ion-col>Fleet Name</ion-col>
           <ion-col>Fleet Location</ion-col>
           <ion-col>Vehicle Qty</ion-col>
           <ion-col></ion-col>
-          
         </ion-row>
         <ion-item-divider></ion-item-divider>
-        <ion-row *ngFor="let item of fleetList| filter: searchTerm | filter: fleetID" >
-          <ion-col>
-            <ion-label> {{item.FleetID}}</ion-label>
-          </ion-col>
+        <ion-row *ngFor="let item of fleetList | filter: searchTerm | filter: fleetID" >
           <ion-col>
             <ion-label> {{item.FleetName}}</ion-label>
           </ion-col>
@@ -40,8 +35,8 @@
             <ion-label> {{item.FleetVehicleQty}}</ion-label>
           </ion-col>
           <ion-col>
-            <ion-button class="light-Btn" [routerLink]="['/tabs/view/fleet',this.item.id]">View</ion-button>
             <ion-button class="red-Btn" (click)="Deletefleet(item.id)">Remove</ion-button>
+            <ion-button class="light-Btn" [routerLink]="['/tabs/view/fleet',this.item.id]">View</ion-button>
           </ion-col>
         </ion-row>
         <ion-item-divider></ion-item-divider>

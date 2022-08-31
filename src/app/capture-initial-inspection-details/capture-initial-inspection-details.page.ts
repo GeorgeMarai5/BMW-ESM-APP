@@ -16,6 +16,8 @@ export class CaptureInitialInspectionDetailsPage implements OnInit {
   inspections: [];
   isSubmitted = false;
   data: any;
+  checkList = {};
+  inspectionDetailsForm: FormGroup;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
     public service: VehicleService, public router: Router, public toastCtrl: ToastController) { 
@@ -25,11 +27,12 @@ export class CaptureInitialInspectionDetailsPage implements OnInit {
     }
 
   ngOnInit() {
+    this.checkList = JSON.parse(sessionStorage.getItem('checkList'));
   }
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
-      message: 'Assigned Part has been successfully updated.',
+      message: 'Initial inspection details have been successfully captured.',
       duration: 3000,
       position: 'top'
     });

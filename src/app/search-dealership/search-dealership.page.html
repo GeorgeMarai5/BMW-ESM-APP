@@ -14,20 +14,16 @@
 
 <ion-content class="ion-margin">
   <div class="contents">
-    <h1>Search Dealership</h1>
-    <ion-searchbar class="isb" placeholder="Search Vehicle..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
+    <ion-title><h1>Search Dealership</h1></ion-title>
+    <ion-searchbar class="isb" placeholder="Search Dealership..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
     <ion-grid class="ion-margin" class="ion-grid-padding">
       <ion-row>
-        <ion-col>Dealership ID</ion-col>
         <ion-col>Dealership Name</ion-col>
         <ion-col>Dealership Location</ion-col>
         <ion-col></ion-col>
       </ion-row>
       <ion-item-divider></ion-item-divider>
       <ion-row *ngFor="let item of dealershipList | filter: searchTerm">
-        <ion-col>
-          <ion-label> {{item.DealershipID}}</ion-label>
-        </ion-col>
         <ion-col>
           <ion-label> {{item.DealershipName}}</ion-label>
         </ion-col>
@@ -36,7 +32,7 @@
         </ion-col>
         <ion-col>
           <ion-button class="red-Btn" (click)="removeDealership(this.item.id)">Remove</ion-button>
-          <ion-button class="light-Btn" [routerLink]="['/tabs/view/dealership', this.item.id]">View</ion-button>
+          <ion-button class="light-Btn" [routerLink]="['/tabs/edit/dealership', this.item.id]">Update</ion-button>
         </ion-col>
       </ion-row>
       <ion-item-divider></ion-item-divider>
