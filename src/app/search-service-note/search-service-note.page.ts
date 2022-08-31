@@ -32,54 +32,55 @@ export class SearchServiceNotePage implements OnInit {
       ServiceID: ['', [Validators.required]],
       Desscription: ['', [Validators.required]],
     });
-
-    this._serviceNote.getServiceNotes().subscribe((data) => {
-      this.serviceNoteList = data.map((e) => {
-        return {
-          id: e.payload.doc.id,
-          ServiceID: e.payload.doc.data()['ServiceID'],
-          NoteID: e.payload.doc.data()['NoteID'],
-          Description: e.payload.doc.data()['Description'],
-        };
-      });
-      console.log(this.serviceNoteList);
-    });
-  }
-  
-  async removeServiceNote(id) {
-    const confirmDeleteAlert = await this.alertCtrl.create({
-      header: 'Remove Service',
-      message:
-        'Are you sure you would like to remove this service from the system?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: (end) => {
-            this.alertCtrl.dismiss();
-          },
-        },
-        {
-          text: 'Remove',
-          role: 'remove',
-          handler: () => {
-            this._serviceNote.deleteServiceNote(id);
-            this.presentToast();
-          },
-        },
-      ],
-    });
-
-    confirmDeleteAlert.present();
-  }
-
-  async presentToast() {
-    let toast = await this.toastCtrl.create({
-      message: 'Service note has been removed successfully.',
-      duration: 3000,
-      position: 'top'
-    });
-  
-    toast.present();
   }
 }
+//     this._serviceNote.getServiceNoteList().subscribe((data) => {
+//       this.serviceNoteList = data.map((e) => {
+//         return {
+//           id: e.payload.doc.id,
+//           ServiceID: e.payload.doc.data()['ServiceID'],
+//           NoteID: e.payload.doc.data()['NoteID'],
+//           Description: e.payload.doc.data()['Description'],
+//         };
+//       });
+//       console.log(this.serviceNoteList);
+//     });
+//   }
+  
+//   async removeServiceNote(id) {
+//     const confirmDeleteAlert = await this.alertCtrl.create({
+//       header: 'Remove Service',
+//       message:
+//         'Are you sure you would like to remove this service from the system?',
+//       buttons: [
+//         {
+//           text: 'Cancel',
+//           role: 'cancel',
+//           handler: (end) => {
+//             this.alertCtrl.dismiss();
+//           },
+//         },
+//         {
+//           text: 'Remove',
+//           role: 'remove',
+//           handler: () => {
+//             this._serviceNote.deleteServiceNote(id);
+//             this.presentToast();
+//           },
+//         },
+//       ],
+//     });
+
+//     confirmDeleteAlert.present();
+//   }
+
+//   async presentToast() {
+//     let toast = await this.toastCtrl.create({
+//       message: 'Service note has been removed successfully.',
+//       duration: 3000,
+//       position: 'top'
+//     });
+  
+//     toast.present();
+//   }
+// }
