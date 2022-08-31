@@ -1,4 +1,4 @@
-export interface Team {
+export class Team {
     DealershipName: string;
     TeamType: string;
     Quantity: string;

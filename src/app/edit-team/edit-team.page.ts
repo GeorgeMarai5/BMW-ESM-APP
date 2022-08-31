@@ -50,7 +50,7 @@ export class EditTeamPage implements OnInit {
   }
 
   ngOnInit() {
-    this.teamservice.getTeam(this.data).valueChanges()
+    this.teamservice.getTeam(this.data)
     .subscribe(res =>{
     console.log(res)
     this.editTeamForm.setValue({
@@ -71,7 +71,6 @@ export class EditTeamPage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 }
