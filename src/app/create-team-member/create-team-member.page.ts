@@ -5,6 +5,8 @@ import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { Team } from '../models/Team';
 
 @Component({
   selector: 'app-create-team-member',
@@ -16,45 +18,35 @@ export class CreateTeamMemberPage implements OnInit {
   roles = [];
   createTeamMemberForm: FormGroup;
   isSubmitted = false;
+  MemberList = [];
+  dealerships = [];
+  MemberList$!:Observable<any[]>;
   data: any;
+  dat: Team;
+  information= null;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
     public teamMemberservice: TeamMemberService, public router: Router, public toastCtrl: ToastController) { 
-    this.route.params.subscribe(params => {
-      this.data = params['id'];
-    });
+      teamMemberservice = {} as TeamMemberService;
+      this.data = [];
+      //this.dat = new Team();
+    }
     
-    this.createTeamMemberForm = new FormGroup({
-      employeeName: new FormControl('', Validators.required),
-      employeeSurname: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', Validators.required),
-      emailAddress: new FormControl('', Validators.required),
-      role: new FormControl('', Validators.required)
-    })
-  }
+    ngOnInit() {
+      this.createTeamMemberForm = new FormGroup({
+        employeeName: new FormControl('', Validators.required),
+        employeeSurname: new FormControl('', Validators.required),
+        phoneNumber: new FormControl('', Validators.required),
+        emailAddress: new FormControl('', Validators.required),
+        role: new FormControl('', Validators.required)
+      })
+    }
 
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.createTeamMemberForm.valid){
-      return false;
-    }
-    else{
-      const teamMember = {
-        employeeName: this.createTeamMemberForm.get('employeeName').value,
-        employeeSurname: this.createTeamMemberForm.get('employeeSurname').value,
-        phoneNumber: this.createTeamMemberForm.get('phoneNumber').value,
-        emailAddress: this.createTeamMemberForm.get('emailAddress').value,
-        role: this.createTeamMemberForm.get('role').value
-      }
-
-      this.firestore.collection('Employee').add(teamMember).then(function(){
-        this.presentToast();
-      });
-    }
-  }
-
-  ngOnInit() {
-    this.createTeamMemberForm.setValue({employeeName: '', employeeSurname: '', phoneNumber: '', emailAddress: '', role: ''});
+    this.teamMemberservice.createTeamMember(this.dat).subscribe((response) => {
+      console.log(response);
+      this.router.navigate(['student-list']);
+    });
   }
 
   get errorControl() {

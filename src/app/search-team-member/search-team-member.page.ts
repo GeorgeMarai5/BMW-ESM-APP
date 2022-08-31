@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
-import { employee } from '../models/Employee';
+import { Employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -14,14 +14,14 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class SearchTeamMemberPage implements OnInit {
 
-  teamMembers: employee;
+  teamMembers: Employee;
   teamMemberList = [];
   teamMemberForm: FormGroup;
   searchTerm: string;
 
   constructor(public authService: AuthService, private teamMemberservice: TeamMemberService, public fb: FormBuilder, public firestore: AngularFirestore, 
      public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
-      this.teamMembers = {} as employee;
+      this.teamMembers = {} as Employee;
     }
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class SearchTeamMemberPage implements OnInit {
       role: new FormControl('', Validators.required)
     });
 
-    this.teamMemberservice.getTeamMembers().subscribe(data => {
+    /*this.teamMemberservice.getTeamMembers().subscribe(data => {
       this.teamMemberList = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -45,7 +45,8 @@ export class SearchTeamMemberPage implements OnInit {
         };
       })
       console.log(this.teamMemberList);
-    });
+    });*/
+    
   }
 
   async removeTeamMember(id){

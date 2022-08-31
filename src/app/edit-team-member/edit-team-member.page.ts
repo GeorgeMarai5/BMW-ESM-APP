@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { employee } from '../models/Employee';
+import { Employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -14,7 +14,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class EditTeamMemberPage implements OnInit {
 
-  teamMembers: employee;
+  teamMembers: Employee;
   teamMember = {};
   roles = [];
   editTeamMemberForm: FormGroup;
@@ -57,7 +57,7 @@ export class EditTeamMemberPage implements OnInit {
   }
 
   ngOnInit() {
-    this.teamMemberservice.getTeamMember(this.data).valueChanges().subscribe(res =>{
+    this.teamMemberservice.getTeamMember(this.data).subscribe(res =>{
       console.log(res)
       this.editTeamMemberForm.setValue({
         employeeName: res['employeeName'],
