@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { retry,catchError, tap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Address } from '../models/Address';
-
+import { ad } from '../models/Address';
 
 @Injectable({
   providedIn: 'root'
@@ -77,9 +77,9 @@ getList(): Observable<Address> {
 }
 
 // Create a new item
-createAddress(item): Observable<Address> {
+createAddress(item): Observable<ad> {
   return this.httpClient
-    .post<Address>(this.apiUrl + '/Create', JSON.stringify(item), this.httpOptions)
+    .post<ad>(this.apiUrl + '/Create',JSON.stringify(item), this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError)

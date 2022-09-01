@@ -7,9 +7,9 @@ export interface Address{
 
 
 export class ad {
-    AddressID: number;
-    Address: string;
-    Postal_Code: string;
-    Date_Of_Update: Date;
+    addressID: number;
+    address: string;
+    postal_Code: string;
+    date_Of_Update: Date;
   }
 

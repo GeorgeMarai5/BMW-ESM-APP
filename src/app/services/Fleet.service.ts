@@ -52,7 +52,7 @@ export class FleetService {
   // Create a new item
   createFleet(item): Observable<Fleet> {
     return this.httpClient
-      .post<Fleet>(this.apiUrl + '/Create', JSON.stringify(item), this.httpOptions)
+      .post<Fleet>(this.apiUrl + '/api/Fleet/GetAllFleets', JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

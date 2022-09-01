@@ -8,6 +8,7 @@ import { Address } from '../models/Address';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ad } from '../models/Address';
+
 @Component({
   selector: 'app-address',
   templateUrl: './address.page.html',
@@ -77,7 +78,7 @@ create(){
   
     this.addressservice.createAddress(this.dat).subscribe((response) => {
       console.log(response);
-      this.router.navigate(['student-list']);
+      //this.router.navigate(['student-list']);
     });
 
 

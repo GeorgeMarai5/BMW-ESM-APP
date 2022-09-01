@@ -7,7 +7,7 @@ export interface Fleet {
     
   }
 
-  export class Fleet {
+  export class Fleets {
    
     FleetID: number;
     FleetName: string;

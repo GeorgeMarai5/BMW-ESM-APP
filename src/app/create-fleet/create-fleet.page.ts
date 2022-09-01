@@ -4,35 +4,55 @@ import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { ToastController } from '@ionic/angular';
+import { Fleets } from '../models/Fleet';
 
-interface FleetData {
-  FleetName: string;
-  FleetLocation: string;
+
+
+
+//interface FleetData {
+//  FleetName: string;
+ // FleetLocation: string;
   
-}
+//}
 
 @Component({
   selector: 'app-create-fleet',
   templateUrl: './create-fleet.page.html',
   styleUrls: ['./create-fleet.page.scss'],
 })
+
+
 export class CreateFleetPage implements OnInit {
 
   //studentList = [];
-  fleetData: FleetData;
+  
   addFleetForm: FormGroup;
   isSubmitted = false;
-  data: any;
-  
+  //data: any;
+  data: Fleets;
   constructor (public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, public toastCtrl: ToastController) {
 
-    this.fleetData = {} as FleetData;
-  
+    fleetservice = {} as FleetService;
+    this.data = new Fleets();
   }
 
   ngOnInit() {
 
   }
+
+  create(){
+
+  
+    this.fleetservice.createFleet(this.data).subscribe((response) => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+
+
+}
+
+
+
 
 }
 
