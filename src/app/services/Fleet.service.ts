@@ -1,24 +1,136 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from "@angular/fire/compat/firestore";
-import {
-  AngularFireDatabase,
-  AngularFireList,
-  AngularFireObject
-} from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
-
+import { Fleet } from '../models/fleet';
+import { Observable,of, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { retry,catchError, tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FleetService {
 
-  collectionName = 'Fleet';
-  FleetRef: AngularFireObject<any>;
+  //collectionName = 'Fleet';
+  //FleetRef: AngularFireObject<any>;
+  apiUrl = 'https://localhost:7292'
+  httpOptions ={
+    headers: new HttpHeaders({
+      ContentType: 'application/json'
+    })
+  }
+  constructor(private httpClient: HttpClient) { }                                             //private db: AngularFireDatabase,private firestore: AngularFirestore
+  
 
-  constructor(private db: AngularFireDatabase,
-    private firestore: AngularFirestore
-  ) { }
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError('Something bad happened; please try again later.');
+    
+  }
+
+
+
+
+
+  getList(): Observable<Fleet> {
+    return this.httpClient
+      .get<Fleet>(this.apiUrl + '/api/Fleet/GetAllFleets')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  // Create a new item
+  createFleet(item): Observable<Fleet> {
+    return this.httpClient
+      .post<Fleet>(this.apiUrl + '/Create', JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  // Get single student data by ID
+  getItem(id): Observable<Fleet> {
+    return this.httpClient
+      .get<Fleet>(this.apiUrl + '/AddressByid' + '/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  // Update item by id
+  updateItem(id, item): Observable<Fleet> {
+    return this.httpClient
+      .put<Fleet>(this.apiUrl + '/UpdateAddress' + '/' + id, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  // Delete item by id
+  deleteItem(id) {
+    return this.httpClient
+      .delete<Fleet>(this.apiUrl + '/DeleteAddress' + '/' + id, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+  import { AngularFirestore } from "@angular/fire/compat/firestore";
+  import {AngularFireDatabase,AngularFireList,AngularFireObject} from '@angular/fire/compat/database';
+
 
   create_Fleet(Fleet) {
     return this.firestore.collection(this.collectionName).add(Fleet);
@@ -56,3 +168,5 @@ export class FleetService {
     this.firestore.doc(this.collectionName + '/' + Fleet_ID).delete();
   }
 }
+
+*/

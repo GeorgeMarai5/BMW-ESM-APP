@@ -42,7 +42,33 @@ export class ViewFleetPage implements OnInit {
   }
 
   ngOnInit() {
-    this.fleetForm = this.fb.group({
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ this.fleetForm = this.fb.group({
       VehicleID: ['', [Validators.required]],
       VinNumber: ['', [Validators.required]],
       ModelName: ['', [Validators.required]],
@@ -121,3 +147,9 @@ export class ViewFleetPage implements OnInit {
     toast.present();
   }
 }
+
+
+
+
+
+*/

@@ -25,15 +25,96 @@ export class SearchFleetPage implements OnInit {
   fleetForm: FormGroup;
   searchTerm: string;
   fleetID: string;
-
+  data: any;
   constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, 
     public alertCtrl: AlertController, public toastCtrl: ToastController) { 
 
-    this.fleetData = {} as FleetData;
+    fleetservice = {} as FleetService;
 
   }
 
   ngOnInit() {
+
+
+
+    this.fleetservice.getList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+
+  })
+
+    }
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
     this.fleetForm = this.fb.group({
       FleetName: ['', [Validators.required]],
       FleetLocation: ['', [Validators.required]],
@@ -94,3 +175,12 @@ export class SearchFleetPage implements OnInit {
     toast.present();
   }
 }
+
+
+*/
+
+
+
+
+
+

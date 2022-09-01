@@ -32,7 +32,36 @@ export class CreateFleetPage implements OnInit {
 
   ngOnInit() {
 
-    this.addFleetForm = this.fb.group({
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ this.addFleetForm = this.fb.group({
       FleetName: ['', [Validators.required]],
       FleetLocation: ['', [Validators.required]],
     });
@@ -69,3 +98,16 @@ export class CreateFleetPage implements OnInit {
     return this.addFleetForm.controls;
   }
 }
+
+
+
+
+
+*/
+
+
+
+
+
+
+

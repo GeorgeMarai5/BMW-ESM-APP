@@ -38,8 +38,52 @@ export class EditFleetPage implements OnInit {
     })
   }
 
+
+
+
+  ngOnInit() {
+  }
+
   submitForm(){
-    this.isSubmitted = true;
+  }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ this.isSubmitted = true;
     if(!this.fleetform.valid){
       return false;
     }
@@ -95,3 +139,13 @@ export class EditFleetPage implements OnInit {
     toast.present();
   }
 }
+
+
+
+
+*/
+
+
+
+
+
