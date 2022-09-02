@@ -4,7 +4,7 @@ import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { ToastController } from '@ionic/angular';
-import { Fleet } from '../models/Fleet';
+import { Fleet, Fleets } from '../models/Fleet';
 
 
 
@@ -29,7 +29,7 @@ export class CreateFleetPage implements OnInit {
   addFleetForm: FormGroup;
   isSubmitted = false;
   //data: any;
-  data: Fleet;
+  data: Fleets;
   constructor (public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, public toastCtrl: ToastController) {
 
     fleetservice = {} as FleetService;
@@ -43,7 +43,7 @@ export class CreateFleetPage implements OnInit {
   create(){
 
   
-    this.fleetservice.createFleet(this.data).subscribe((response) => {
+    this.fleetservice.AddFleet(this.data).subscribe((response) => {
       console.log(response);
       //this.router.navigate(['student-list']);
     });
