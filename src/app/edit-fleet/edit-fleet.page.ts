@@ -23,7 +23,7 @@ export class EditFleetPage implements OnInit {
 
   fleets: FleetData;
   fleet = {};
-  fleetform: FormGroup;
+  editFleetForm: FormGroup;
   isSubmitted = false;
   data: any;
 
@@ -32,7 +32,7 @@ export class EditFleetPage implements OnInit {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-    this.fleetform = new FormGroup({
+    this.editFleetForm = new FormGroup({
       FleetName: new FormControl('', Validators.required),
       FleetLocation: new FormControl('', Validators.required)
     })
@@ -49,7 +49,9 @@ export class EditFleetPage implements OnInit {
 
 
 
-
+  get errorControl() {
+    return this.editFleetForm.controls;
+  }
 
 }
 

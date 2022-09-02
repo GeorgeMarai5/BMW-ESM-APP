@@ -13,99 +13,126 @@
   </ion-header>
 
 <ion-content>
-    <ion-grid class="content">
-        <ion-row>
-            <ion-col>
-                <h1>Welcome </h1>
-            </ion-col>
-            <ion-col>
-                <ion-card style="margin-top: 3vh;">
-                    <ion-row>
-                        <ion-col>
-                            <ion-icon name="construct"></ion-icon><ion-text></ion-text>
-                        </ion-col>
-                        <ion-col>
-                            <ion-text>Role: </ion-text>
-                        </ion-col>
-                        <ion-col>
-                            <ion-text>Team Status: Active</ion-text>
-                        </ion-col>
-                    </ion-row>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    <ion-grid class="content">
-        <ion-row>
-            <ion-col size="4">
-                <ion-card>
-                    <ion-item-divider>
-                        <h3>Team</h3>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <p>A. Davis</p>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <p>J. Andille</p>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <p>B. Frode</p>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <p>P. Grand</p>
-                        </ion-label>
-                    </ion-item-divider>
-                </ion-card>
-            </ion-col>
-            <ion-col size="4">
-                <ion-card>
-                    <ion-item-divider>
-                        <h3>Team Peformance</h3>
-                    </ion-item-divider>
-                    <div id="gaugeArea"></div>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Description:</h3>
-                            <ion-text>This metric is based on the feedback received from the clients about the service conducted.</ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                </ion-card>
-            </ion-col>
-            <ion-col size="4">
-                <ion-card>
-                    <ion-item-divider>
-                        <h3>Team Details</h3>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Team Name</h3>
-                            <br>
-                            <ion-text>B-ZAG-SN-02</ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Team Type</h3>
-                            <br>
-                            <ion-text>Fully Integrated</ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Dealership</h3>
-                            <br>
-                            <ion-text>BMW Sandton</ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    <div class="contents">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title><h1>{{ 'Welcome ' + team }}</h1></ion-title>
+                </ion-col>
+                <ion-col>
+                    <ion-card style="margin-top: 4.5vh;">
+                        <ion-row>
+                            <ion-col>
+                                <ion-icon name="construct"></ion-icon><ion-text></ion-text>
+                            </ion-col>
+                            <ion-col>
+                                <ion-text>Role: </ion-text>
+                            </ion-col>
+                            <ion-col>
+                                <ion-text>Team Status: </ion-text>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col size="4">
+                    <ion-card>
+                        <ion-item-divider>
+                            <h3>Team</h3>
+                        </ion-item-divider>
+                        <ion-row style="margin-top: 0.5em;" *ngFor="let item of team">
+                            <ion-col>
+                                <ion-label>{{ item.fName.substring(0,1) + '. ' + item.lName }}</ion-label>
+                            </ion-col>
+                            <ion-col>{{ item.role }}</ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col></ion-col>
+                            <ion-col></ion-col>
+                            <ion-col>
+                                <ion-button>Add</ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-card>
+                        <ion-item-divider>
+                            <h3>Current Service</h3>
+                        </ion-item-divider>
+                        <ion-row>
+                            <ion-col>
+                                <ngx-gauge class="gauge" [type]="'semi'" 
+                                        [value]="gaugeValue" 
+                                        [label]="gaugeLabel"  
+                                        [append]="gaugeAppendText"
+                                        [thick]="10"
+                                        [foregroundColor]="'#1976D2'"
+                                        [animate]="true"
+                                        [duration]="2000">
+                                </ngx-gauge>
+                            </ion-col>
+                        </ion-row>
+                        <div class="btns">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-button expand="block">Next Step <ion-icon name="arrow-forward" style="margin-left: 0.3em;"></ion-icon></ion-button>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-button expand="block" class="light-Btn" style="margin-top: -0.4em;">Quote</ion-button>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-button expand="block" class="light-Btn" style="margin-top: -0.4em;">Notes</ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-card>
+                        <ion-item-divider>
+                            <h3>Team Details</h3>
+                        </ion-item-divider>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label position="stacked">Team Name</ion-label>
+                                    <ion-text>{{ team }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label position="stacked">Team Type</ion-label>
+                                    <ion-text>{{ team }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label position="stacked">Dealership</ion-label>
+                                    <ion-text>{{ team }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col></ion-col>
+                            <ion-col></ion-col>
+                            <ion-col>
+                                <ion-button>View Team</ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 </ion-content>

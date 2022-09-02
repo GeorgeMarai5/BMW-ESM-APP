@@ -51,7 +51,9 @@ export class CreateFleetPage implements OnInit {
 
 }
 
-
+get errorControl() {
+  return this.addFleetForm.controls;
+}
 
 
 }

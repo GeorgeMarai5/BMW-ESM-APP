@@ -24,7 +24,7 @@
               <ion-label position="stacked"><b>Fleet Name</b></ion-label>
               <ion-input [(ngModel)]="data.FleetName" name="first" placeholder="Enter Fleet Name"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && errorControl.partName.errors?.cannotContainSpace">
+            <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
               Fleet Name can not contain spaces.
           </span>
           </ion-col>
@@ -35,8 +35,8 @@
               <ion-label position="stacked"><b>Fleet Location</b></ion-label>
               <ion-input  placeholder="Enter Fleet Location"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && errorControl.partName.errors?.cannotContainSpace">
-              Fleet Location can not contain spaces.
+            <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+              Fleet Location is invalid.
           </span>
           </ion-col>
         </ion-row>

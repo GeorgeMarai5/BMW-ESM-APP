@@ -42,11 +42,8 @@
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
             Email is required.
           </span>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email">
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email || !errorControl.Registration.value.trim()">
             Please enter a valid email.
-          </span>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.cannotContainSpace">
-            Email can not contain spaces.
           </span>
           <ion-item lines="full">
             <ion-label position="floating">Password</ion-label>
@@ -55,8 +52,8 @@
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
             Password is required.
           </span>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.cannotContainSpace">
-            Password can not contain spaces.
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+            Password is invalid.
           </span>
           <ion-item lines="full">
             <ion-label position="floating">Confirm Password</ion-label>
@@ -68,8 +65,8 @@
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password != errorControl.confirmPassword">
             Confirmed password does not match.
           </span><br/>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.cannotContainSpace">
-            Confirmed Password can not contain spaces.
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+            Confirmed Password is invalid.
         </span>
           <ion-row>
             <ion-col> 

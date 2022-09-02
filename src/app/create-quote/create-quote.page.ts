@@ -25,7 +25,8 @@ interface QuoteData {
 export class CreateQuotePage implements OnInit {
 
   QuoteData: QuoteData;
-  QuoteForm: FormGroup;
+  createQuoteForm: FormGroup;
+  isSubmitted = false;
 
   constructor(public authService: AuthService, public fb: FormBuilder, public router: Router, private quoteservice: QuoteService,
     private zone: NgZone, public toastCtrl: ToastController) { 
@@ -36,7 +37,7 @@ export class CreateQuotePage implements OnInit {
 
   ngOnInit() {
 
-    this.QuoteForm = this.fb.group({
+    this.createQuoteForm = this.fb.group({
       ClientName: ['', [Validators.required]],
       Date: ['', [Validators.required]],
       Description: ['', [Validators.required]],
@@ -45,9 +46,9 @@ export class CreateQuotePage implements OnInit {
   }
 
   submit(){
-    console.log(this.QuoteForm.value);
-    this.quoteservice.create_Quote(this.QuoteForm.value).then(resp => {
-      this.QuoteForm.reset();
+    console.log(this.createQuoteForm.value);
+    this.quoteservice.create_Quote(this.createQuoteForm.value).then(resp => {
+      this.createQuoteForm.reset();
       this.presentToast();
     }).catch(error => {
         console.log(error);
@@ -64,5 +65,9 @@ export class CreateQuotePage implements OnInit {
     });
   
     toast.present();
+  }
+
+  get errorControl() {
+    return this.createQuoteForm.controls;
   }
 }

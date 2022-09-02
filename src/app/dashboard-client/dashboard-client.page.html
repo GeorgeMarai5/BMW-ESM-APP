@@ -13,110 +13,138 @@
   </ion-header>
 
 <ion-content>
-    <ion-grid class="content">
-        <ion-row>
-            <ion-col>
-                <h1>Welcome </h1>
-            </ion-col>
-            <ion-col>
-                <ion-card style="margin-top: 3vh;">
-                    <ion-row>
-                        <ion-col>
-                            <ion-icon name="construct"></ion-icon><ion-text></ion-text>
-                        </ion-col>
-                        <ion-col>
-                        <ion-text>#</ion-text>
-                        </ion-col>
-                        <ion-col>
-                            <ion-text>km </ion-text>
-                        </ion-col>
-                        <ion-col>
-                            <ion-text>Status: <span class="status">Active</span></ion-text>
-                        </ion-col>
-                    </ion-row>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    <ion-grid class="content">
-        <ion-row>
-            <ion-col size="4">
-                <ion-card>
-                    <ion-item-divider>
-                        <h3>Fleet Health</h3>
-                    </ion-item-divider>
-                    <div class="gaugeChart"></div>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Description:</h3>
-                            <ion-text>This metric is based on the feedback received from <br/>the clients about the service conducted.</ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                </ion-card>
-            </ion-col>
-            <ion-col size="4">
-                <ion-card>
-                    <ion-item-divider>
-                        <h3>Previous Service <br/>Summary</h3>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Number of Vehicles:</h3>
-                            <br>
-                            <ion-text></ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Service Type:</h3>
-                            <br>
-                            <ion-text></ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Service Date:</h3>
-                            <br>
-                            <ion-text></ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Service Price:</h3>
-                            <br>
-                            <ion-text>R</ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                </ion-card>
-            </ion-col>
-            <ion-col size="4">
-                <ion-card>
-                    <ion-item-divider>
-                        <h3>Fleet Details</h3>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Client Name</h3>
-                            <br>
-                            <ion-text></ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Fleet Name</h3>
-                            <br>
-                            <ion-text></ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                    <ion-item-divider>
-                        <ion-label>
-                            <h3>Fleet Location</h3>
-                            <br>
-                            <ion-text></ion-text>
-                        </ion-label>
-                    </ion-item-divider>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    <div class="contents">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title><h1>{{ 'Welcome ' + fleet }}</h1></ion-title>
+                </ion-col>
+                <ion-col>
+                    <ion-card style="margin-top: 3vh;">
+                        <ion-row>
+                            <ion-col>
+                                <ion-icon name="construct"></ion-icon><ion-text></ion-text>
+                            </ion-col>
+                            <ion-col>
+                            <ion-text>#</ion-text>
+                            </ion-col>
+                            <ion-col>
+                                <ion-text>km </ion-text>
+                            </ion-col>
+                            <ion-col>
+                                <ion-text>Status: <span class="status"></span></ion-text>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="4">
+                    <ion-card>
+                        <ion-item-divider>
+                            <h3>Fleet Health</h3>
+                        </ion-item-divider>
+                        <ion-row>
+                            <ion-col>
+                                <ngx-gauge class="gauge" [type]="'semi'" 
+                                        [value]="gaugeValue" 
+                                        [label]="gaugeLabel"  
+                                        [append]="gaugeAppendText"
+                                        [thick]="10"
+                                        [foregroundColor]="'#1976D2'"
+                                        [animate]="true"
+                                        [duration]="2000">
+                                </ngx-gauge>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row style="margin-top: -2.5em;">
+                            <ion-col>
+                                <h3>Description:</h3>
+                                <ion-text>This metric is based on the feedback received from <br/>the clients about the service conducted.</ion-text>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-card>
+                        <ion-item-divider>
+                            <h3>Previous Service Summary</h3>
+                        </ion-item-divider>
+                        <ion-row style="margin-top: 0.5em;">
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label>Number of Vehicles:</ion-label>
+                                    <ion-text>{{ service }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label>Service Type:</ion-label>
+                                    <ion-text>{{ service }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label>Service Date:</ion-label>
+                                    <ion-text>{{ service }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label>Service Price:</ion-label>
+                                    <ion-text>{{ service }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-card>
+                        <ion-item-divider>
+                            <h3>Fleet Details</h3>
+                        </ion-item-divider>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label position="stacked">Client Name</ion-label>
+                                    <ion-text>{{ fleet }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label position="stacked">Fleet Name</ion-label>
+                                    <ion-text>{{ service }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label position="stacked">Fleet Location</ion-label>
+                                    <ion-text>{{ service }}</ion-text>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col></ion-col>
+                            <ion-col></ion-col>
+                            <ion-col>
+                                <ion-button>Add</ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 </ion-content>

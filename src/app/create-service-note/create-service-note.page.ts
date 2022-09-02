@@ -96,5 +96,7 @@ console.log(this.data)
   //   }
   // }
 
-
+  get errorControl() {
+    return this.addNoteForm.controls;
+  }
 }

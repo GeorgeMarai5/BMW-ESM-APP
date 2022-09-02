@@ -32,7 +32,7 @@ export class UpdateEmployeePage implements OnInit {
 
     this.employee = {} as Employee;
     this.updateEmployeeForm = new FormGroup({
-      qNum: new FormControl('', Validators.required),
+      qNum: new FormControl('', [Validators.required, Validators.maxLength(7)]),
       fName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
       lName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
       phoneNum: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),

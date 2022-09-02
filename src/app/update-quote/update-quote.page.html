@@ -23,6 +23,12 @@
             <ion-item lines="full">
               <ion-label position="stacked"><b>Client Name</b></ion-label>
               <ion-input formControlName="ClientName" type="text" required ></ion-input>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.ClientName.errors?.required">
+                Client Name is required.
+              </span>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.ClientName.value.trim()">
+                Client Name is invalid.
+            </span>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -30,7 +36,13 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Date</b></ion-label>
-              <ion-input formControlName="Date" type="text" required></ion-input>
+              <ion-input formControlName="Date" type="date" required></ion-input>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Date.errors?.required">
+                Date is required.
+              </span>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Date.value.trim()">
+                Date is invalid.
+            </span>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -39,6 +51,12 @@
             <ion-item lines="full">
               <ion-label position="stacked"><b>Description</b></ion-label>
               <ion-input formControlName="Description" type="text" required ></ion-input>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.required">
+                Description is required.
+              </span>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Description.value.trim()">
+                Description is invalid.
+            </span>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -47,6 +65,12 @@
             <ion-item lines="full">
               <ion-label position="stacked"><b>Accepted</b></ion-label>
               <ion-input formControlName="Accepted" type="text" required></ion-input>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Accepted.errors?.required">
+                Accepted is required.
+              </span>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Accepted.value.trim()">
+                Accepted is invalid.
+            </span>
             </ion-item>
           </ion-col>
         </ion-row>

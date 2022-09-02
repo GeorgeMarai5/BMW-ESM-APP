@@ -23,10 +23,8 @@ export class AddServiceItemPage implements OnInit {
       this.data = params['id'];
     });
     this.addItemForm = new FormGroup({
-      VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-      vehicleModel: new FormControl('', Validators.required),
-      Registration: new FormControl('', Validators.required),
-      warrantyPlan: new FormControl('', Validators.required)
+      itemName: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
+      itemDescription: new FormControl('', Validators.required),
     })
   }
 
@@ -61,7 +59,7 @@ export class AddServiceItemPage implements OnInit {
   }
 
   ngOnInit() {
-    this.addItemForm.setValue({VINNum: '', vehicleModel: '', Registration: '', warrantyPlan: ''});
+    
   }
 
   get errorControl() {

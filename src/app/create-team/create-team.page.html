@@ -31,6 +31,9 @@
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamName.errors?.required">
                             Team Name is required.
                         </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.TeamName.value.trim()">
+                            Team Name is invalid.
+                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>

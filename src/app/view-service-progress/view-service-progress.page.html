@@ -13,7 +13,6 @@
 </ion-header>
 
 <ion-content>
-  <div class="contents">
     <ol class="progress">
       <li class="is-active" data-step="1">
         <b>Check In <br />& Inspection</b>
@@ -28,7 +27,49 @@
         <b>Service <br />Completed</b>
       </li>
     </ol>
+  <br/>
+  <div class="contents">
+    <ion-card style="border: black solid 0.2em; border-radius: 1em; padding-bottom: 5em;">
+      <ion-item-divider>
+        <h2 style="font-weight: bold;">Live Quote</h2>
+      </ion-item-divider>
+      <ion-grid>
+        <ion-row style="margin-top: -0.4em;">
+          <ion-item-divider>
+            <ion-col>
+              <h3>Product</h3>
+            </ion-col>
+            <ion-col>
+              <h3>Qty</h3>
+            </ion-col>
+            <ion-col>
+              <h3>Amount</h3>
+            </ion-col>
+          </ion-item-divider>
+        </ion-row>
+        <ion-row *ngFor="let item of serviceItems">
+          <ion-col>
+            {{ item }} <ion-icon name="information-circle-outline" [routerLink]=""></ion-icon>
+          </ion-col>
+          <ion-col>
+            <ion-label>x</ion-label>{{ item }}
+          </ion-col>
+          <ion-col>
+            {{ item }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+          <ion-col>
+            <ion-button fill="solid" class="light-Btn" (click)="provideFeedbackAlert()">Provide Feedback</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button fill="solid" color="primary" [routerLink]="['/tabs/view/service-progress']">Conclude Quote</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
   </div>
-  <ion-button fill="solid" class="light-Btn" (click)="provideFeedbackAlert()">Provide Feedback</ion-button>
-  <ion-button fill="solid" color="primary" [routerLink]="['/tabs/view/service-progress']">Conclude Quote</ion-button>
 </ion-content>

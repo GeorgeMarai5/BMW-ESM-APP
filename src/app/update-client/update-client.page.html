@@ -40,6 +40,9 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.maxlength">
               First Name can't be longer than 20 characters.
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.fName.value.trim()">
+              First Name is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -54,6 +57,9 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.lName.errors?.maxlength">
               Last Name can't be longer than 20 characters.
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.lName.value.trim()">
+              Last Name is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -66,7 +72,7 @@
               Phone Number is required.
             </span>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNum.errors?.maxlength || 
-            errorControl.phoneNum.errors?.maxlength">
+            errorControl.phoneNum.errors?.maxlength || !errorControl.phoneNum.value.trim()">
               Invalid Phone Number.
             </span>
           </ion-col>
@@ -80,7 +86,7 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
               Email is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email || !errorControl.email.value.trim()">
               Invalid Email Address.
             </span>
           </ion-col>
@@ -94,6 +100,9 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
               Address is required.
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.address.value.trim()">
+              Address is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <br/>

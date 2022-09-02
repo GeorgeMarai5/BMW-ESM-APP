@@ -28,7 +28,7 @@
               VIN Number is required.
             </span>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.min || 
-            errorControl.VINNum.errors?.max">
+            errorControl.VINNum.errors?.max || !errorControl.Registration.value.trim()">
               VIN Number is invalid.
             </span>
           </ion-col>
@@ -55,6 +55,9 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.required">
               Registration is required.
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+              Registration is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <ion-row>

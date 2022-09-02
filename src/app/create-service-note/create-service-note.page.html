@@ -22,6 +22,12 @@
             <ion-item lines="none">
               <ion-label position="stacked">Service Note</ion-label>
               <ion-textarea [(ngModel)]="data.Description"[ngModelOptions]="{standalone: true}"placeholder="Description..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.required">
+                Registration is required.
+              </span>
+              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                Registration is invalid.
+            </span>
             </ion-item>
           </ion-col>
         </ion-row>

@@ -17,44 +17,47 @@
         <ion-title>
             <h1>Service Invoice</h1>
         </ion-title>
-        <br>
-        <form [formGroup]="viewInvoiceForm" novalidate>
+        <ion-card style="border: black solid 0.2em; border-radius: 1em; padding-bottom: 15em;">
+            <ion-item-divider>
+            <h2 style="font-weight: bold;">Live Quote</h2>
+            </ion-item-divider>
             <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Product</b></ion-label>
-                            <ion-input formControlName="ClientName" type="text" required readonly></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Qty</b></ion-label>
-                            <ion-input formControlName="Date" type="text" required readonly></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Amount</b></ion-label>
-                            <ion-input formControlName="Description" type="text" required readonly></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                    </ion-col>
-                    <ion-col>
-                        <ion-button type="submit" class="main-Btn" expand="block">Back To Dashboard</ion-button>
-                    </ion-col>
-                    <ion-col>
-                        <ion-button class="light-Btn" expand="block">Generate PDF</ion-button>
-                    </ion-col>
-                </ion-row>
+            <ion-row style="margin-top: -0.4em;">
+                <ion-item-divider>
+                <ion-col>
+                    <h3>Product</h3>
+                </ion-col>
+                <ion-col>
+                    <h3>Qty</h3>
+                </ion-col>
+                <ion-col>
+                    <h3>Amount</h3>
+                </ion-col>
+                </ion-item-divider>
+            </ion-row>
+            <ion-row *ngFor="let item of serviceItems">
+                <ion-col>
+                {{ item }} <ion-icon name="information-circle-outline" [routerLink]=""></ion-icon>
+                </ion-col>
+                <ion-col>
+                <ion-label>x</ion-label>{{ item }}
+                </ion-col>
+                <ion-col>
+                {{ item }}
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col></ion-col>
+                <ion-col></ion-col>
+                <ion-col></ion-col>
+                <ion-col>
+                <ion-button type="submit" class="main-Btn" expand="block">Back To Dashboard</ion-button>
+                </ion-col>
+                <ion-col>
+                <ion-button class="light-Btn" expand="block">Generate PDF</ion-button>
+                </ion-col>
+            </ion-row>
             </ion-grid>
-        </form>
+        </ion-card>
     </div>
 </ion-content>

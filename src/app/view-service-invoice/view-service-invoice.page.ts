@@ -16,6 +16,7 @@ export class ViewServiceInvoicePage implements OnInit {
 
   vehicles: Vehicle;
   vehicle = [];
+  serviceItems = [];
   viewInvoiceForm: FormGroup;
   isSubmitted = false;
   data: any;
@@ -26,25 +27,10 @@ export class ViewServiceInvoicePage implements OnInit {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-
-      this.viewInvoiceForm = new FormGroup({
-        VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-        vehicleModel: new FormControl('', Validators.required),
-        Registration: new FormControl('', Validators.required),
-        warrantyPlan: new FormControl('', Validators.required)
-      });
      }
 
   ngOnInit() {
-    this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
-      console.log(res)
-      this.viewInvoiceForm.setValue({
-        vehicleModel: res['VehicleModel'], 
-        Registration: res['Registration'],
-        VINNum: res['VIN_Number'], 
-        warrantyPlan: res['Warranty']
-      });
-    });
+    
   }
 
   submitForm(){

@@ -16,7 +16,7 @@
   <div class="contents">
     <ion-title><h1>Edit Fleet</h1></ion-title>
   
-    <form [formGroup]="fleetform" (ngSubmit)="submitForm()" novalidate>
+    <form [formGroup]="editFleetForm" (ngSubmit)="submitForm()" novalidate>
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -24,9 +24,12 @@
               <ion-label position="stacked">Fleet Name</ion-label>
               <ion-input formControlName="FleetName" type="text" required></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.FleetName.errors?.required">
               Fleet Name is required
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.FleetName.value.trim()">
+              Fleet Name is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -35,9 +38,12 @@
               <ion-label position="stacked"><b>Fleet Location</b></ion-label>
               <ion-input formControlName="FleetLocation" type="text" required></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.FleetLocation.errors?.required">
               Fleet Location is required
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.FleetLocation.value.trim()">
+              Fleet Location is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <br/>

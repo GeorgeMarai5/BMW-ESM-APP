@@ -24,12 +24,15 @@
               <ion-label position="stacked"><b>Q Number</b></ion-label>
               <ion-input formControlName="qNum" type="text" required></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.required">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.qNum.errors?.required">
               Q Number is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.maxlength">
-              Q Number can't be longer than 20 characters.
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.qNum.errors?.maxlength">
+              Q Number can't be longer than 7 characters.
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.qNum.value.trim()">
+              Q Number is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -44,6 +47,9 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.maxlength">
               First Name can't be longer than 20 characters.
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.fName.value.trim()">
+              First Name is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -58,6 +64,9 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.lName.errors?.maxlength">
               Surname can't be longer than 20 characters.
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.lName.value.trim()">
+              Surname is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -70,8 +79,8 @@
               Phone Number is required.
             </span>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNum.errors?.maxlength || 
-            errorControl.phoneNum.errors?.maxlength">
-              Invalid Phone Number.
+            errorControl.phoneNum.errors?.maxlength || !errorControl.Registration.value.trim()">
+              Phone Number is invalid.
             </span>
           </ion-col>
         </ion-row>
@@ -84,7 +93,7 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
               Email is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email || !errorControl.Registration.value.trim()">
               Invalid Email Address.
             </span>
           </ion-col>
@@ -95,10 +104,10 @@
               <ion-label position="stacked"><b>Team Name</b></ion-label>
               <ion-input formControlName="teamName" type="text" required></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-              Address is required.
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.teamName.errors?.required">
+              Team Name is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.teamName.errors?.email">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.teamName.errors?.email || !errorControl.Registration.value.trim()">
               Invalid Team Name.
             </span>
           </ion-col>

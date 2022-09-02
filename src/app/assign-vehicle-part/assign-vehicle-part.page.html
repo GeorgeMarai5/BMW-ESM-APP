@@ -29,8 +29,8 @@
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.required">
                             Part Name is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.cannotContainSpace">
-                            Part Name can not contain spaces.
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.partName.value.trim()">
+                            Part Name is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
@@ -56,6 +56,9 @@
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.description.errors?.required">
                             Description is required.
                         </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.description.value.trim()">
+                            Description is invalid.
+                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -67,7 +70,7 @@
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Availability.errors?.required">
                             Part Availability is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Availability.errors?.cannotContainSpace">
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Availability.value.trim()">
                             Part Availability can not contain spaces.
                         </span>
                     </ion-col>

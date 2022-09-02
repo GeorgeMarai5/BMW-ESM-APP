@@ -1,13 +1,18 @@
-.contents {
-    width: 40%;
-    margin-top: 2vh;
+.contents{
+    width: 90%;
+    height: 100%;
     margin-left: 3vw;
-}
-
-h1 {
+    margin-bottom: 0px !important;
+  }
+  
+  h1{
     color: #002850;
-    font-size: xx-large;
-}
+    font-size: 1.8em !important;
+  }
+
+  h3{
+    color: #002850;
+  }
 
 form {
     margin-top: -3vh;
@@ -21,13 +26,24 @@ form {
     --background: #5CB85C;
 }
 
-ion-label {
-    font-size: large;
-}
+ion-label{
+    font-size: 1.125em !important;
+    margin-bottom: 0.5em !important;
+  }
 
 span {
     color: red;
     margin-top: 2vh;
     font-size: small;
     margin-left: 1.4vw;
+}
+
+.gauge{
+    margin: 0.4em 20%;
+}
+
+.btns{
+    width: 60%; 
+    margin: auto; 
+    margin-top: -1.7em !important;
 }

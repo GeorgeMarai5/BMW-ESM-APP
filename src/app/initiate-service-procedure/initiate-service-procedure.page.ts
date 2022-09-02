@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -23,28 +23,30 @@ export class InitiateServiceProcedurePage implements OnInit {
   dealership: Dealership;
   fleet: Fleet;
   team: Team;
-  serviceForm : FormGroup;
+  initiateServiceForm : FormGroup;
   myService: any;
 
   constructor(public vehicleService: VehicleService , private zone: NgZone, private toastCtrl: ToastController, private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
     private firestore: AngularFirestore) { 
       this.vehicleService = {} as VehicleService;
+
+      this.initiateServiceForm = new FormGroup({
+        dealership: new FormControl('', Validators.required),
+        fleet: new FormControl('', Validators.required),
+        team: new FormControl('', Validators.required),
+        date: new FormControl('', Validators.required)
+      });
     }
 
   ngOnInit() {
-    this.serviceForm = this.fb.group({
-      DealershipName: ['', [Validators.required]],
-      FleetName: ['', [Validators.required]],
-      TeamName: ['', [Validators.required]],
-      date: ['', [Validators.required]],
-    })
+    
   }
 
   InitiateService() {
-    console.log(this.serviceForm.value);
-    this.myService.intiateService(this.serviceForm.value).then(resp => {
-      this.serviceForm.reset();
+    console.log(this.initiateServiceForm.value);
+    this.myService.intiateService(this.initiateServiceForm.value).then(resp => {
+      this.initiateServiceForm.reset();
       this.presentToast();
     })
       .catch(error => {

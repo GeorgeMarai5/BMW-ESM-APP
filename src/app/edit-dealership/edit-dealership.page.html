@@ -27,6 +27,9 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
               Dealership Name is required.
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.dealershipName.value.trim()">
+              Dealership Name is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -38,6 +41,9 @@
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
               Address is required.
             </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.address.value.trim()">
+              Address is invalid.
+          </span>
           </ion-col>
         </ion-row>
         <br/>

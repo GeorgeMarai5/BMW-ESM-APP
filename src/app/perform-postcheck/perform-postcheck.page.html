@@ -28,7 +28,7 @@
               This check is required.
             </span>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.check.errors?.min || 
-              errorControl.VINNum.errors?.max">
+              errorControl.VINNum.errors?.max || !errorControl.Registration.value.trim()">
               This check is invalid.
             </span>
           </ion-col>

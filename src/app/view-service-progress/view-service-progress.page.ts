@@ -17,6 +17,7 @@ export class ViewServiceProgressPage implements OnInit {
   
   isSubmitted = false;
   data: any;
+  serviceItems = [];
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService, private alertController: AlertController) {
@@ -29,7 +30,7 @@ export class ViewServiceProgressPage implements OnInit {
 
   async provideFeedbackAlert() {
     const alert = await this.alertController.create({
-      header: 'Feedback',
+      header: 'CaptureFeedback',
       buttons: ['Submit', 'Cancel'],
       inputs: [
         {

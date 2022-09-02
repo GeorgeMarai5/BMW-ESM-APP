@@ -13,34 +13,59 @@
   </ion-header>
 
 <ion-content>
+  <div class="contents">
     <ion-title>
-        Confirm Service Information
+      <h1>Confirm Service Details</h1>
     </ion-title>
 
-    <form [formGroup]="serviceForm" *ngFor="let serivceItem of serviceList">
-
-        <ion-item>
-            <ion-label position="stacked">Dealership Name</ion-label>
-            <ion-input value="BMW Menlyn" readonly></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="stacked">Fleet Name</ion-label>
-            <ion-input value="Avis Pretoria" readonly></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="stacked">Team Name</ion-label>
-            <ion-input value="BMST001" readonly></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="stacked">Service Date</ion-label>
-            <ion-input value="01/02/2023" readonly></ion-input>/
-        </ion-item>
-
+    <form [formGroup]="initiateServiceForm" novalidate>
+      <ion-grid>
+          <ion-row>
+              <ion-col>
+                <ion-item lines="full">
+                  <ion-label position="stacked">Dealership Name</ion-label>
+                  <ion-input formControlName="dealership" readonly></ion-input>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                <ion-item lines="full">
+                  <ion-label position="stacked">Fleet Name</ion-label>
+                  <ion-input formControlName="fleet" readonly></ion-input>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                  <ion-item lines="full">
+                    <ion-label position="stacked">Team Name</ion-label>
+                    <ion-input formControlName="team" readonly></ion-input>
+                  </ion-item>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                  <ion-item lines="full">
+                    <ion-label position="stacked">Service Date</ion-label>
+                    <ion-input formControlName="date" readonly></ion-input>
+                  </ion-item>
+              </ion-col>
+          </ion-row>
+          <br/>
+          <ion-row>
+              <ion-col></ion-col>
+              <ion-col></ion-col>
+              <ion-col></ion-col>
+              <ion-col></ion-col>
+              <ion-col>
+                <ion-button [routerLink]="['/tabs/search/account/employee']">Back</ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button class="light-Btn" [routerLink]="['/tabs/update/employee']">Initiate Service</ion-button>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
     </form>
-
-    <ion-button [routerLink]="['/tabs/search/account/client']">Initiate Service</ion-button>
-
+  </div>
 </ion-content>

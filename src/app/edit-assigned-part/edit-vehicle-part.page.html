@@ -29,8 +29,8 @@
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.required">
                             Part Name is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.cannotContainSpace">
-                            Part Name can not contain spaces.
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.partName.value.trim()">
+                            Part Name is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
@@ -45,8 +45,8 @@
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partType.errors?.required">
                             Part Type is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partType.errors?.cannotContainSpace">
-                            Part Type can not contain spaces.
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.partType.value.trim()">
+                            Part Type is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
@@ -59,8 +59,8 @@
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.required">
                             Description is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.cannotContainSpace">
-                            Description can not contain spaces.
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Description.value.trim()">
+                            Description is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
@@ -73,8 +73,8 @@
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partStock.errors?.required">
                             Part Availability is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partStock.errors?.cannotContainSpace">
-                            Part Availability can not contain spaces.
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.partStock.value.trim()">
+                            Part Availability is invalid.
                         </span>
                     </ion-col>
                 </ion-row>

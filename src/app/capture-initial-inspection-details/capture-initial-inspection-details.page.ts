@@ -39,4 +39,8 @@ export class CaptureInitialInspectionDetailsPage implements OnInit {
   
     toast.present();
   }
+
+  get errorControl() {
+    return this.inspectionDetailsForm.controls;
+  }
 }
