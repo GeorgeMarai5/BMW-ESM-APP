@@ -22,7 +22,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export class SearchclientaccountPage implements OnInit {
 
-  //   searchTerm: string;
+  searchTerm: string;
   //   clients:any = [];
   //   public list: Array<Object> = [];
   //   private searchedItem: any;
@@ -75,6 +75,10 @@ constructor(public clientService: ClientService , private zone: NgZone,private t
       console.log(this.clientList);
 
     });
+  }
+
+  async removeClient(id){
+
   }
 
   async presentToast() {

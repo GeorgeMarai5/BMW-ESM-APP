@@ -45,6 +45,10 @@ export class SearchFleetPage implements OnInit {
 
     }
 
+  deleteFleet(id){
+
+  }
+
 
   }
 

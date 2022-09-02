@@ -17,6 +17,7 @@ export class UpdateClientPage implements OnInit {
   
   updateClientForm: FormGroup;
   isSubmitted = false;
+  titles = [];
 
   constructor(public fb: FormBuilder, public authService: AuthService, public toastCtrl: ToastController) {
     this.updateClientForm = new FormGroup({

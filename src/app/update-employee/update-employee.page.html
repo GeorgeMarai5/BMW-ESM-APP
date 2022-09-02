@@ -13,36 +13,110 @@
 </ion-header>
   
 <ion-content>
-  <ion-title>
-    Client Account
-  </ion-title>
-  <form>
-    <ion-item>
-      <ion-label position="stacked">Q Number</ion-label>
-      <ion-input value="12345" readonly></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Name</ion-label>
-      <ion-input value="Steven" readonly></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Surname</ion-label>
-      <ion-input value="Jacob" readonly></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Phone Number</ion-label>
-      <ion-input value="0836044765" readonly></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked" >Email</ion-label> 
-      <ion-input value="Steven@gmail.com" readonly></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Team name</ion-label>
-      <ion-input value="2" readonly> </ion-input>
-    </ion-item>
-  </form>
-  <ion-button  [routerLink]="['/tabs/search/account/client']">back</ion-button>
-  <ion-button  [routerLink]="['/tabs/update/client']">Update</ion-button>
-  <ion-button  color="danger" [routerLink]="['/tabs/searchclientaccount']">Delete</ion-button>
+  <div class="contents">
+    <ion-title><h1>Update Account Details</h1></ion-title>
+  
+    <form [formGroup]="updateEmployeeForm" (ngSubmit)="submitForm()" novalidate>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Q Number</b></ion-label>
+              <ion-input formControlName="qNum" type="text" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.required">
+              Q Number is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.maxlength">
+              Q Number can't be longer than 20 characters.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Name</b></ion-label>
+              <ion-input formControlName="fName" type="text" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.required">
+              First Name is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.maxlength">
+              First Name can't be longer than 20 characters.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Surname</b></ion-label>
+              <ion-input formControlName="lName" type="text" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.lName.errors?.required">
+              Surname is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.lName.errors?.maxlength">
+              Surname can't be longer than 20 characters.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Phone Number</b></ion-label>
+              <ion-input formControlName="phoneNum" type="text" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNum.errors?.required">
+              Phone Number is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNum.errors?.maxlength || 
+            errorControl.phoneNum.errors?.maxlength">
+              Invalid Phone Number.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Email Address</b></ion-label>
+              <ion-input formControlName="email" type="email" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
+              Email is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email">
+              Invalid Email Address.
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full">
+              <ion-label position="stacked"><b>Team Name</b></ion-label>
+              <ion-input formControlName="teamName" type="text" required></ion-input>
+            </ion-item>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+              Address is required.
+            </span>
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.teamName.errors?.email">
+              Invalid Team Name.
+            </span>
+          </ion-col>
+        </ion-row>
+        <br/>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col>
+            <ion-button [routerLink]="['/tabs/view/employee']" expand="block">Back</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="light-Btn" [routerLink]="['/tabs/reset/password']" expand="block">Update Password</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button type="submit" expand="block">Submit</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
 </ion-content>

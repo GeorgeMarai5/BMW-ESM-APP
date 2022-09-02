@@ -44,6 +44,18 @@ export class ViewFleetPage implements OnInit {
   ngOnInit() {
   }
 
+  async deleteFleet(id){
+
+  }
+
+  async select(){
+
+  }
+
+  async checkIn(id){
+
+  }
+
 }
 
 

@@ -20,7 +20,7 @@ interface QuoteData {
 export class ViewQuotePage implements OnInit {
   
   QuoteList = [];
-  QuoteForm: FormGroup;
+  viewQuoteForm: FormGroup;
   quotedata: QuoteData;
   id: any;
 
@@ -30,13 +30,6 @@ export class ViewQuotePage implements OnInit {
    }
 
   ngOnInit() {
-    this.QuoteForm = this.fb.group({
-      ClientName: ['', [Validators.required]],
-      Date: ['', [Validators.required]],
-      Description: ['', [Validators.required]],
-      Accepted: ['', [Validators.required]],
-    });
-
     this.quoteservice.get_Quote().subscribe(data => {
       this.QuoteList = data.map(e => {
         return {

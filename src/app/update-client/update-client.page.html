@@ -23,10 +23,7 @@
             <ion-item lines="full">
               <ion-label position="stacked"><b>Title</b></ion-label>
               <ion-select formControlName="title" type="text" required>
-                <ion-select-option>Mr</ion-select-option>
-                <ion-select-option>Ms</ion-select-option>
-                <ion-select-option>Mrs</ion-select-option>
-                <ion-select-option>Dr</ion-select-option>
+                <ion-select-option *ngFor="let item of titles">{{ item }}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
@@ -101,6 +98,7 @@
         </ion-row>
         <br/>
         <ion-row>
+          <ion-col></ion-col>
           <ion-col>
             <ion-button [routerLink]="['/tabs/view/client']" expand="block">Back</ion-button>
           </ion-col>

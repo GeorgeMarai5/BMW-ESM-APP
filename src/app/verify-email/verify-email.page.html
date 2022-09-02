@@ -13,15 +13,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <h2>Verify Email</h2>
-      <p>
-        Please check your email and click on the link to verfiy your email address.
-      </p>
-      <ion-button type="submit" (click)="authService.SendVerificationMail()" expand="block">
-        Resend Verification Email
-      </ion-button>
-    </ion-row>
-  </ion-grid>
+  <div class="contents">
+      <ion-title><h1>Verify Email</h1></ion-title>
+    <ion-grid>
+      <ion-row>
+          <ion-col>
+            <ion-item lines="none">Please check your email and click on the link to verfiy your email address.</ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+          <ion-col>
+            <ion-item lines="none">
+              <ion-button type="submit" (click)="authService.SendVerificationMail()" expand="block">
+                Resend Verification Email
+              </ion-button>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

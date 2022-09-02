@@ -17,7 +17,7 @@ import { ToastController } from '@ionic/angular';
 export class UpgradeMaintenancePlanPage implements OnInit {
   
   plans: MaintenancePlan;
-  maintenanceplan = {};
+  maintenanceplans = [];
   upgradePlanForm: FormGroup;
   isSubmitted = false;
   data: any;

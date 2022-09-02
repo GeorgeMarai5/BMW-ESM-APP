@@ -32,10 +32,6 @@ const routes: Routes = [
         loadChildren: () => import('../update-client/update-client.module').then( m => m.UpdateClientPageModule)
       },
       {
-        path: 'update/password',
-        loadChildren: () => import('../update-password/update-password.module').then( m => m.UpdatePasswordPageModule)
-      },
-      {
         path: 'dashboard/client',
         loadChildren: () => import('../dashboard-client/dashboard-client.module').then( m => m.DashboardClientPageModule)
       },
@@ -85,7 +81,7 @@ const routes: Routes = [
         loadChildren: () => import('../view-client-account/view-client-account.module').then( m => m.ViewClientAccountPageModule)
       },
       {
-        path: 'view/employee-account',
+        path: 'view/employee',
         loadChildren: () => import('../view-employee-account/view-employee-account.module').then( m => m.ViewEmployeeAccountPageModule)
       },
       {

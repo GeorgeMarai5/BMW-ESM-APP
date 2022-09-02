@@ -51,7 +51,7 @@ export class SearchServicePage implements OnInit {
     });
   }
   
-  async removeService(id){
+  async cancelService(id){
     const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Service',
       message: 'Are you sure you would like to remove this service from the system?',

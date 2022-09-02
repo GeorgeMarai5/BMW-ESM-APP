@@ -50,13 +50,15 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        
+        <br/>
         <ion-row>
-        <ion-col>
-            <ion-button type="submit" class="main-Btn" expand="block" [routerLink]="['/tabs/home']">Back</ion-button>
-            </ion-col>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
           <ion-col>
-            <ion-button type="submit" class="red-Btn" expand="block" (click)="updateQuote()"  [routerLink]="['/view/quote']">Update Quote</ion-button>
+            <ion-button expand="block" [routerLink]="['/tabs/home']">Back</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button type="submit" class="light-Btn" expand="block" (click)="updateQuote()">Update Quote</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

@@ -14,41 +14,32 @@
 
 <ion-content>
   <ion-content class="ion-margin">
-    <ion-item>
-      <ion-label class="large">Search Employee</ion-label>
-    </ion-item>
-    <ion-searchbar class="isb"placeholder="Search Employee" showCancelButton="focus" animated></ion-searchbar>
-    <ion-card>
+    <div class="contents">
+    <ion-title><h1>Search Employee</h1></ion-title>
+    <ion-searchbar class="isb"placeholder="Search Employee..." showCancelButton="focus" animated></ion-searchbar><br/>
       <ion-grid class="ion-margin" class="ion-grid-padding">
         <ion-row>
-          <ion-col>Employee ID</ion-col>
           <ion-col>Name</ion-col>
           <ion-col>Email</ion-col>
-          <ion-col>Phone</ion-col>
-          <ion-col></ion-col>
+          <ion-col>Role</ion-col>
           <ion-col></ion-col>
         </ion-row>
+        <ion-item-divider></ion-item-divider>
+        <ion-row *ngFor="let item of clientList | filter: searchTerm">
+          <ion-col>
+              <ion-label>{{item.FirstName.substring(0, 1) + ". " + item.LastName}}</ion-label>
+          </ion-col>
+          <ion-col>
+              <ion-label>{{item.Email}}</ion-label>
+          </ion-col>
+          <ion-col>
+              <ion-label>{{item.Role}}</ion-label>
+          </ion-col>
+          <ion-col>
+              <ion-button class="red-Btn" (click)="removeEmployee(this.item.id)">Remove</ion-button>
+              <ion-button class="light-Btn" [routerLink]="['/tabs/view/client', this.item.id]">View</ion-button>
+          </ion-col>
+        </ion-row>
       </ion-grid>
-    </ion-card>
-
-    <ion-row *ngFor="let clientItem of clientList">
-      <ion-item>
-        <ion-label> {{clientItem.clientID}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label> {{clientItem.Name}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label> {{clientItem.Email}}</ion-label>
-      <ion-item>
-      </ion-item>
-        <ion-label> {{clientItem.Phone}}</ion-label>
-      <ion-item>
-      </ion-item>
-        <ion-button [routerLink]="['/tabs/view']" style="color: #002850; font-size: medium;" >View</ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-button [routerLink]="['/tabs/delete']" style="color: red; font-size: medium;">Remove</ion-button>
-      </ion-item>
-    </ion-row>
+  </div>
 </ion-content>

@@ -19,9 +19,9 @@ export class SelectMaintenanceplanPage implements OnInit {
 
   maintenanceplanList = [];
   plans: MaintenancePlan;
-  planform : FormGroup;
+  planForm : FormGroup;
   data: any;
-  
+  isSubmitted = false;
  
   constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController, private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
@@ -29,7 +29,7 @@ export class SelectMaintenanceplanPage implements OnInit {
       this.route.params.subscribe(params => {
         this.data = params.id;
       });
-      this.planform = new FormGroup({
+      this.planForm = new FormGroup({
         PlanName: new FormControl('', Validators.required),
         Description: new FormControl('', Validators.required),
         Duration: new FormControl('', Validators.required),
@@ -38,12 +38,15 @@ export class SelectMaintenanceplanPage implements OnInit {
     }
 
   ngOnInit() {
-    interface AlertButton {
-      text: string;
-      role?: 'cancel' | 'destructive' | string;
-      cssClass?: string | string[];
-      handler?: (value: any) => boolean | void | {[key: string]: any};
-    }
+  
+  }
+
+  submitForm(){
+
+  }
+
+  get errorControl() {
+    return this.planForm.controls;
   }
 
   async presentAlertMultipleButtons() {

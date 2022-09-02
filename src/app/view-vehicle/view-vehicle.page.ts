@@ -21,6 +21,8 @@ export class ViewVehiclePage implements OnInit {
   isSubmitted = false;
   data: any;
   maintenanceplanID: any;
+  models = [];
+  plans = [];
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService) {

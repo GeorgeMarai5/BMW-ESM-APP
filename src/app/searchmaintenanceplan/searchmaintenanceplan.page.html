@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-      <a href="/tabs/home"><ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img></a>
+      <a href="/tabs/home"><ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img></a>
       <ion-buttons slot="end">
         <ion-button [routerLink]="['/tabs/view/client']">
           <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
@@ -14,7 +14,7 @@
 
 <ion-content class="ion-margin">
     <div class="contents">
-        <h1>Search Maintenance Plans</h1>
+        <ion-title><h1>Search Maintenance Plans</h1></ion-title>
         <ion-searchbar class="isb" placeholder="Search Maintenance Plan..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
         <ion-grid class="ion-margin" class="ion-grid-padding">
             <ion-row>

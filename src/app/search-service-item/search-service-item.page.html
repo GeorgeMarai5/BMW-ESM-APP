@@ -14,13 +14,13 @@
 
 <ion-content class="ion-margin">
     <div class="contents">
-        <h1>Search Service Item</h1>
-        <ion-searchbar class="isb" placeholder="Search Team..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
+        <ion-title><h1>Search Service Item</h1></ion-title>
+        <ion-searchbar class="isb" placeholder="Search Service Item..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
         <ion-grid class="ion-margin" class="ion-grid-padding">
             <ion-row>
-                <ion-col>Item ID</ion-col>
                 <ion-col>Item Name</ion-col>
                 <ion-col>Description</ion-col>
+                <ion-col></ion-col>
                 <ion-col></ion-col>
             </ion-row>
             <ion-item-divider></ion-item-divider>
@@ -36,8 +36,8 @@
                 </ion-col>
                 <ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" [routerLink]="['/tabs/view/team', this.item.id]">View</ion-button>
                         <ion-button class="red-Btn" (click)="removeItem(this.item.id)">Remove</ion-button>
+                        <ion-button class="light-Btn" [routerLink]="['/tabs/view/team', this.item.id]">View</ion-button>
                     </ion-col>
                 </ion-col>
             </ion-row>

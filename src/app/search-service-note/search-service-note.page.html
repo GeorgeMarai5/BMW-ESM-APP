@@ -14,20 +14,17 @@
 
 <ion-content class="ion-margin">
   <div class="contents">
-    <h1>Search Service Note</h1>
+    <ion-title><h1>Search Service Note</h1></ion-title>
     <ion-searchbar class="isb" placeholder="Search Note..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br />
     <ion-grid class="ion-margin" class="ion-grid-padding">
       <ion-row>
-        <ion-col>Note ID</ion-col>
         <ion-col>Service ID</ion-col>
-        <ion-col>Description</ion-col>
+        <ion-col>Note</ion-col>
+        <ion-col></ion-col>
         <ion-col></ion-col>
       </ion-row>
       <ion-item-divider></ion-item-divider>
       <ion-row *ngFor="let item of serviceNoteList | filter: searchTerm | filter: serviceNote">
-        <ion-col>
-          <ion-label> {{item.NoteID}}</ion-label>
-        </ion-col>
         <ion-col>
           <ion-label> {{item.ServiceID}}</ion-label>
         </ion-col>
@@ -36,13 +33,14 @@
         </ion-col>
         <ion-col>
           <ion-col>
-            <ion-button class="light-Btn" [routerLink]="['/tabs/view/service/note', this.item.id]">View</ion-button>
             <ion-button class="red-Btn" (click)="removeServiceNote(this.item.id)">Remove</ion-button>
+            <ion-button class="light-Btn" [routerLink]="['/tabs/view/service/note', this.item.id]">View</ion-button>
           </ion-col>
         </ion-col>
         <ion-col> </ion-col>
       </ion-row>
       <ion-item-divider></ion-item-divider>
-    </ion-grid>
+    </ion-grid><br/>
+    <ion-button style="float: right; width: 10vw;" [routerLink]="['/tabs/create/service-note']">Add Note</ion-button>
   </div>
 </ion-content>

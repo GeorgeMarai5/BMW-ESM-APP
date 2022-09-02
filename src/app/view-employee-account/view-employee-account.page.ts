@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -21,7 +21,7 @@ export class ViewEmployeeAccountPage implements OnInit {
   //private Clientid: String;
   //private currentClient;
   employeeList = [];
-  employeeform: FormGroup;
+  viewEmployeeForm: FormGroup;
   employee: Employee;
   //public eventList: Clients[] = [];
   //ClientList: any;   //[]
@@ -31,18 +31,17 @@ export class ViewEmployeeAccountPage implements OnInit {
 
       this.employee = {} as Employee;
 
+      this.viewEmployeeForm = new FormGroup({
+        qNum: new FormControl('', Validators.required),
+        fName: new FormControl('', Validators.required),
+        lName: new FormControl('', Validators.required),
+        PhoneNumber: new FormControl('', Validators.required),
+        Email: new FormControl('', Validators.required),
+        teamName: new FormControl('', Validators.required)
+      });
     }
 
   ngOnInit() {
-    this.employeeform = this.fb.group({
-      QNumber: [''],
-      Name: [''],
-      Surname: [''],
-      PhoneNumber: [''],
-      Email: [''],
-      Team: [''],
-    });
-
     this.employeeService.read_Employee().subscribe(data =>{
       this.employeeList = data.map(e =>{
         return{

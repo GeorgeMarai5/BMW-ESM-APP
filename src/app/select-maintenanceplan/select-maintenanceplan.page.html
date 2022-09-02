@@ -17,56 +17,95 @@
         <ion-title>
             <h1>Plan Details</h1>
         </ion-title>
-
-        <form [formGroup]="planform" *ngFor="let planItem of maintenanceplanList">
+        <form [formGroup]="planForm" (ngSubmit)="submitForm()" novalidate>
             <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked">Plan Name</ion-label>
-                            <ion-input value={{planItem.PlanName}} readonly></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked">Description</ion-label>
-                            <ion-input value={{planItem.Description}} readonly></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked">Duration</ion-label>
-                            <ion-input value={{planItem.Price}} readonly></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked">Price</ion-label>
-                            <ion-input value={{planItem.Price}} readonly></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <br/>
-                <ion-row>
-                    <ion-col></ion-col>
-                    <ion-col></ion-col>
-                    <ion-col>
-                        <ion-button type="submit" expand="block">Back</ion-button>
-                    </ion-col>
-                    <ion-col>
-                        <ion-button class="light-Btn" [routerLink]="['/tabs/upgrade/maintenanceplan', 'LhV0lKeg0Cokxc0nrIDT']" expand="block">Upgrade Plan</ion-button>
-                    </ion-col>
-                    <ion-col>
-                        <ion-button type="submit" class="green-Btn" expand="block">Select Plan</ion-button>
-                    </ion-col>
-                </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="full">
+                    <ion-label position="stacked"><b>Plan Name</b></ion-label>
+                    <ion-input formControlName="PlanName" type="text" required></ion-input>
+                  </ion-item>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.required">
+                    Plan Name is required.
+                  </span>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.min || 
+                  errorControl.PlanName.errors?.max">
+                    Plan Name is invalid.
+                  </span>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.cannotContainSpace">
+                    Plan Name can not contain spaces.
+                </span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="full">
+                    <ion-label position="stacked"><b>Description</b></ion-label>
+                    <ion-input formControlName="Description" type="text" required></ion-input>
+                  </ion-item>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.required">
+                    Description is required.
+                  </span>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.min || 
+                  errorControl.Description.errors?.max">
+                    Description is invalid.
+                  </span>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.cannotContainSpace">
+                    Description can not contain spaces.
+                </span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="full">
+                    <ion-label position="stacked"><b>Duration</b></ion-label>
+                    <ion-input formControlName="Duration" type="text" required></ion-input>
+                  </ion-item>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Duration.errors?.required">
+                    Duration is required.
+                  </span>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Duration.errors?.min || 
+                  errorControl.Duration.errors?.max">
+                    Duration is invalid.
+                  </span>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Duration.errors?.cannotContainSpace">
+                    Duration can not contain spaces.
+                </span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="full">
+                    <ion-label position="stacked"><b>Price</b></ion-label>
+                    <ion-input formControlName="Price" type="text" required></ion-input>
+                  </ion-item>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Price.errors?.required">
+                    Price is required.
+                  </span>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Price.errors?.min || 
+                  errorControl.Price.errors?.max">
+                    Price is invalid.
+                  </span>
+                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Price.errors?.cannotContainSpace">
+                    Price can not contain spaces.
+                </span>
+                </ion-col>
+              </ion-row>
+              <br/>
+              <ion-row>
+                <ion-col></ion-col>
+                <ion-col></ion-col>
+                <ion-col>
+                    <ion-button type="submit" expand="block">Back</ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button class="light-Btn" [routerLink]="['/tabs/upgrade/maintenanceplan']" expand="block">Upgrade Plan</ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button type="submit" class="green-Btn" expand="block">Select Plan</ion-button>
+                </ion-col>
+              </ion-row>
             </ion-grid>
-        </form>
+          </form>
     </div>
 </ion-content>

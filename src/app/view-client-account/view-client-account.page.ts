@@ -41,7 +41,7 @@ export class ViewClientAccountPage implements OnInit {
      }
      
   ngOnInit() {
-    this.service.getClient('5jh9j0RPItYYHzLI4FisElc8hJF2').valueChanges().subscribe(res =>{
+    this.service.getClient(this.data).valueChanges().subscribe(res =>{
       console.log(res)
         this.viewClientForm.setValue({
         Title: res['title'], 

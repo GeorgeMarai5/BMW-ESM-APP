@@ -43,13 +43,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'update/password',
-    loadChildren: () =>
-      import('./update-password/update-password.module').then(
-        (m) => m.UpdatePasswordPageModule
-      ),
-  },
-  {
     path: 'search/account/employee',
     loadChildren: () =>
       import('./searchemployeeaccount/searchemployeeaccount.module').then(

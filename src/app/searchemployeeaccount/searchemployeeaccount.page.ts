@@ -18,6 +18,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class SearchemployeeaccountPage implements OnInit {
 
   public clientList: any;
+  searchTerm: string;
   clients: Clients;
   employeeform : FormGroup;
 
@@ -27,8 +28,12 @@ export class SearchemployeeaccountPage implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit() {
+    
+  }
+
+  async removeEmployee(id){
+
   }
 
   async presentToast() {

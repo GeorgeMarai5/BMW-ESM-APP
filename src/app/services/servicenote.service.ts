@@ -98,7 +98,7 @@ updateServiceNote(id, item): Observable<Service_Note> {
 }
 
 // Delete item by id
-deleteItem(id) {
+deleteServiceNote(id) {
   return this.httpClient
     .delete<Service_Note>(this.apiUrl + '/' + id, this.httpOptions)
 

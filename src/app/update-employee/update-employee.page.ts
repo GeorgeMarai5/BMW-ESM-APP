@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -21,8 +21,9 @@ export class UpdateEmployeePage implements OnInit {
   //private Clientid: String;
   //private currentClient;
     employeeList = [];
-    employeeform: FormGroup;
+    updateEmployeeForm: FormGroup;
     employee: Employee;
+    isSubmitted = false;
     //public eventList: Clients[] = [];
     //ClientList: any;   //[]
 
@@ -30,19 +31,17 @@ export class UpdateEmployeePage implements OnInit {
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
 
     this.employee = {} as Employee;
-
+    this.updateEmployeeForm = new FormGroup({
+      qNum: new FormControl('', Validators.required),
+      fName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      lName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      phoneNum: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      teamName: new FormControl('', Validators.required)
+    });
   }
 
   ngOnInit() {
-
-    this.employeeform = this.fb.group({
-      QNumber: [''],
-      Name: [''],
-      Surname: [''],
-      PhoneNumber: [''],
-      Email: [''],
-      Team: [''],
-    });
 
     this.employeeService.read_Employee().subscribe(data =>{
       this.employeeList = data.map(e =>{
@@ -58,6 +57,14 @@ export class UpdateEmployeePage implements OnInit {
         });
       console.log(this.employeeList);
     });
+  }
+
+  submitForm(){
+
+  }
+
+  get errorControl() {
+    return this.updateEmployeeForm.controls;
   }
 
   async presentToast() {

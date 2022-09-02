@@ -36,19 +36,20 @@
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>New Plan</b></ion-label>
                             <ion-select formControlName="NewPlanName" type="text" required>
-                                <ion-select-option>BMW Service</ion-select-option>
-                                <ion-select-option>BMW Motorplan</ion-select-option>
-                                <ion-select-option>BMW Motorplan Extended</ion-select-option>
-                                <ion-select-option>BMW Value Service</ion-select-option>
-                                <ion-select-option>My BMW Maintenance Plan</ion-select-option>
+                                <ion-select-option *ngFor="let item of maintenanceplans">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
                 </ion-row>
                 <br/>
                 <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col></ion-col>
                     <ion-col>
-                        <ion-button type="submit" expand="block">Upgrade</ion-button>
+                        <ion-button type="submit" expand="block">Back</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button class="light-Btn" type="submit" expand="block">Upgrade</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

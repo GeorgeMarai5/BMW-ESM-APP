@@ -14,11 +14,10 @@
 
 <ion-content class="ion-margin">
     <div class="contents">
-        <h1>Search Team</h1>
+        <ion-title><h1>Search Team</h1></ion-title>
         <ion-searchbar class="isb" placeholder="Search Team..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
         <ion-grid class="ion-margin" class="ion-grid-padding">
             <ion-row>
-                <ion-col>Team ID</ion-col>
                 <ion-col>Team Name</ion-col>
                 <ion-col>Dealership</ion-col>
                 <ion-col>Team Type</ion-col>
@@ -40,8 +39,9 @@
                 </ion-col>
                 <ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" [routerLink]="['/tabs/view/team', this.item.id]">View</ion-button>
                         <ion-button class="red-Btn" (click)="removeTeam(this.item.id)">Remove</ion-button>
+                        <ion-button class="light-Btn" [routerLink]="['/tabs/edit/team', this.item.id]">Update</ion-button>
+                        <ion-button class="green-Btn" [routerLink]="['/tabs/search/team-member', this.item.id]">Assign Member</ion-button>
                     </ion-col>
                 </ion-col>
             </ion-row>
