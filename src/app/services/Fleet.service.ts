@@ -3,6 +3,7 @@ import { Fleet } from '../models/fleet';
 import { Observable,of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { retry,catchError, tap, map } from 'rxjs/operators';
+import { Fleets } from '../models/fleet';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,11 @@ export class FleetService {
   }
 
 
+  AddFleet(fleet: Fleets){
+    return this.httpClient.post(this.apiUrl + '/api/Fleet/Create' , fleet, this.httpOptions)
 
+
+  }
 
 
   getList(): Observable<Fleet> {
@@ -48,16 +53,7 @@ export class FleetService {
         catchError(this.handleError)
       )
   }
-  
-  // Create a new item
-  createFleet(item): Observable<Fleet> {
-    return this.httpClient
-      .post<Fleet>(this.apiUrl + '/api/Fleet/GetAllFleets', JSON.stringify(item), this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
+
   
   // Get single student data by ID
   getItem(id): Observable<Fleet> {
@@ -88,6 +84,11 @@ export class FleetService {
         catchError(this.handleError)
       )
   }
+
+
+
+
+  
   
 
 

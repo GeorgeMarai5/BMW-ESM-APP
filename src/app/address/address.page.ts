@@ -75,14 +75,27 @@ export class AddressPage implements OnInit {
 
 create(){
 
+this.addressservice.AddAddress(this.dat).subscribe((response)=>{
+  console.log(response);
+})
+
   
-    this.addressservice.createAddress(this.dat).subscribe((response) => {
-      console.log(response);
+   // this.addressservice.createAddress(this.dat).subscribe((response) => {
+      //console.log(response + "success2");
       //this.router.navigate(['student-list']);
-    });
+   // });
 
 
 }
+
+
+
+
+
+
+
+
+
 
 delete(item) {
   //Delete item in Student data

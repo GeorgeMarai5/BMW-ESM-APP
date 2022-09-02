@@ -9,9 +9,9 @@ export interface Fleet {
 
   export class Fleets {
    
-    FleetID: number;
-    FleetName: string;
-    FleetLocation: string;
-    FleetVehicleQty: number;
+    //fleet_ID: number;
+    fleet_Name: string;
+    fleet_Location: string;
+    //FleetVehicleQty: number;
     
   }
