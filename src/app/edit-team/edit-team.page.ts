@@ -44,13 +44,13 @@ export class EditTeamPage implements OnInit {
     });
   }
 
-  async getFleet(item){
-    this.teamservice.getTeamList(item.teamID).subscribe(response => {
-      console.log(response);
-      this.data = response;
-    })
+  //async getFleet(item){
+    //this.teamservice.getTeamList(item.teamID).subscribe(response => {
+     // console.log(response);
+     // this.data = response;
+    //})
   
-  }
+  //}
   
   update() {
     this.teamservice.updateTeam(this.data).subscribe(response => {
