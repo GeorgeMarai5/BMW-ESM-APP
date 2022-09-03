@@ -89,7 +89,7 @@ export class FleetService {
 
   deleteFleet(id: string): Observable<{}> {
   
-    return this.httpClient.delete(this.apiUrl + '/api/Fleet/DeleteFleet' + '/${' + id +'}' , this.httpOptions)
+    return this.httpClient.delete(this.apiUrl + '/api/Fleet/DeleteFleet' + '/' +  id , this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
