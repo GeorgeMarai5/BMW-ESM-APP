@@ -23,12 +23,15 @@ export class ViewEmployeeAccountPage implements OnInit {
   employeeList = [];
   viewEmployeeForm: FormGroup;
   employee: Employee;
+  data: any;
   //public eventList: Clients[] = [];
   //ClientList: any;   //[]
 
   constructor(public employeeService: EmployeeService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
-
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+      });
       this.employee = {} as Employee;
 
       this.viewEmployeeForm = new FormGroup({
@@ -58,6 +61,10 @@ export class ViewEmployeeAccountPage implements OnInit {
       console.log(this.employeeList);
 
     });
+  }
+
+  navToUpdate() {
+    this.router.navigate(['tabs/edit/account/employee', this.data]);
   }
 
   async presentToast() {

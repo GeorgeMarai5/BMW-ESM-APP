@@ -116,7 +116,7 @@
         <ion-row>
           <ion-col></ion-col>
           <ion-col>
-            <ion-button [routerLink]="['/tabs/view/employee']" expand="block">Back</ion-button>
+            <ion-button (click)="back()" expand="block">Back</ion-button>
           </ion-col>
           <ion-col>
             <ion-button class="light-Btn" [routerLink]="['/tabs/reset/password']" expand="block">Update Password</ion-button>

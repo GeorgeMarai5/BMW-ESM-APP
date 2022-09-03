@@ -49,6 +49,10 @@ export class EditTeamMemberPage implements OnInit {
     return this.editTeamMemberForm.controls;
   }
 
+  back(){
+    this.router.navigate(['tabs/view/team-member', this.data]);
+  }
+
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Team member has been updated successfully.',

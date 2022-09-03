@@ -36,7 +36,7 @@ item: any
   }
   submitForm() {
     this.service.updateItem(this.id, this.item).subscribe((response) => {
-      this.router.navigate(['/tabs/search/vehiclee']);
+      this.router.navigate(['/tabs/search/vehicle']);
     });
 console.log(this.data)
   }
@@ -74,6 +74,10 @@ console.log(this.data)
 
   get errorControl() {
     return this.editVehicleForm.controls;
+  }
+
+  back(){
+    this.router.navigate(['tabs/view/vehicle', this.data]);
   }
 
   async presentToast() {

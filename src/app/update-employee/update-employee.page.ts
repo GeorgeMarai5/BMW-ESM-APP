@@ -24,11 +24,15 @@ export class UpdateEmployeePage implements OnInit {
     updateEmployeeForm: FormGroup;
     employee: Employee;
     isSubmitted = false;
+    data: any;
     //public eventList: Clients[] = [];
     //ClientList: any;   //[]
 
   constructor(public employeeService: EmployeeService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+    });
 
     this.employee = {} as Employee;
     this.updateEmployeeForm = new FormGroup({
@@ -61,6 +65,10 @@ export class UpdateEmployeePage implements OnInit {
 
   submitForm(){
 
+  }
+
+  back(){
+    this.router.navigate(['tabs/view/employee', this.data]);
   }
 
   get errorControl() {

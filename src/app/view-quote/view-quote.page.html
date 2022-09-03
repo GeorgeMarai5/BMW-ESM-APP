@@ -53,13 +53,13 @@
           <ion-col></ion-col>
           <ion-col></ion-col>
           <ion-col>
-            <ion-button type="submit" expand="block" [routerLink]="['/tabs/home']">Back</ion-button>
+            <ion-button type="submit" expand="block" [routerLink]="['/search/quote']">Back</ion-button>
           </ion-col>
           <ion-col>               
-            <ion-button class="green-Btn" style="--border-radius: 0.2em;" expand="block"  [routerLink]="['/view-service-note']">View Service Note</ion-button>
+            <ion-button class="green-Btn" style="--border-radius: 0.2em;" expand="block" (click)="viewServiceNote()">View Service Note</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button type="submit" class="light-Btn" style="--border-radius: 0.2em;" expand="block" [routerLink]="['/update/quote']">Update Quote</ion-button>
+            <ion-button type="submit" class="light-Btn" style="--border-radius: 0.2em;" expand="block" (click)="navToUpdate()">Update Quote</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

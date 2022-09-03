@@ -18,8 +18,12 @@ export class UpdateClientPage implements OnInit {
   updateClientForm: FormGroup;
   isSubmitted = false;
   titles = [];
+  data: any;
 
-  constructor(public fb: FormBuilder, public authService: AuthService, public toastCtrl: ToastController) {
+  constructor(public fb: FormBuilder, public authService: AuthService, public toastCtrl: ToastController, public router: Router, public route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.data = params.id;
+    });
     this.updateClientForm = new FormGroup({
       title: new FormControl('', Validators.required),
       fName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -44,6 +48,10 @@ export class UpdateClientPage implements OnInit {
 
   ngOnInit() {
     this.updateClientForm.setValue({title: '', fName: '', lName: '', phoneNum: '', email: '', address: ''});
+  }
+
+  back(){
+    this.router.navigate(['tabs/view/client', this.data]);
   }
 
   get errorControl() {

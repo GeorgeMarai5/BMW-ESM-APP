@@ -62,6 +62,10 @@ export class EditDealershipPage implements OnInit {
     return this.editDealershipForm.controls;
   }
 
+  back(){
+    this.router.navigate(['tabs/view/dealership', this.data]);
+  }
+
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Dealership has been updated successfully.',

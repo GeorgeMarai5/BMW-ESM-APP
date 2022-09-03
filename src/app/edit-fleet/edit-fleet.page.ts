@@ -89,11 +89,24 @@ async getFleet(item){
   submitForm(){
   }
 
-
+  back(){
+    this.router.navigate(['tabs/view/fleet', this.data]);
+  }
 
   get errorControl() {
     return this.editFleetForm.controls;
   }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Fleet has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
+
 
 }
 

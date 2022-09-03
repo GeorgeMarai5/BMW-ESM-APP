@@ -74,8 +74,12 @@ export class UpdateQuotePage implements OnInit {
       this.presentToast();
     }
 
-    this.router.navigate(['/view/quote', this.data]);
+    this.router.navigate(['tabs/view/quote', this.data]);
 
+  }
+
+  back(){
+    this.router.navigate(['tabs/view/quote', this.data]);
   }
 
   async presentToast() {

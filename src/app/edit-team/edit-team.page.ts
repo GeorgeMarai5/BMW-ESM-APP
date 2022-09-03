@@ -59,6 +59,10 @@ export class EditTeamPage implements OnInit {
       });
     }
 
+    back(){
+      this.router.navigate(['tabs/view/team', this.data]);
+    }
+
   get errorControl() {
     return this.editTeamForm.controls;
   }
