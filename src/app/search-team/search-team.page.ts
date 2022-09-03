@@ -34,7 +34,7 @@ export class SearchTeamPage implements OnInit {
   }
 
   async deleteTeam(item){
-    this.teamservice.deleteTeam(item.fleetID).subscribe(Response => {
+    this.teamservice.deleteTeam(item.teamID).subscribe(Response => {
       console.log(Response);
     });
   }

@@ -82,7 +82,7 @@
                     <ion-col>
                         <ion-item lines="full ">
                             <ion-label position="stacked "><b>Role</b></ion-label>
-                            <ion-select [(ngModel)]="data.Role" placeholder=" Select Employee Role " [ngModelOptions]="{standalone: true} " required>
+                            <ion-select [(ngModel)]="data.Role" placeholder=" Select Employee Role " [ngModelOptions]="{standalone: true} ">
                                 <ion-select-option *ngFor="let item of roles ">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>

@@ -22,50 +22,27 @@ export class EditTeamMemberPage implements OnInit {
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
     public teamMemberservice: TeamMemberService, public router: Router, public toastCtrl: ToastController) {
-      this.route.params.subscribe(params => {
-          this.data = params.id;
-      });
-    this.editTeamMemberForm = new FormGroup({
-      employeeName: new FormControl('', Validators.required),
-      employeeSurname: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', Validators.required),
-      emailAddress: new FormControl('', Validators.required),
-      role: new FormControl('', Validators.required)
-    })
+      teamMemberservice = {} as TeamMemberService;
+  
+      this.teamMembers = new Employee();
   }
 
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.editTeamMemberForm.valid){
-      return false;
-    }
-    else{
-        const teamMember = {
-          employeeName: this.editTeamMemberForm.get('employeeName').value,
-          employeeSurname: this.editTeamMemberForm.get('employeeSurname').value,
-          phoneNumber: this.editTeamMemberForm.get('phoneNumber').value,
-          emailAddress: this.editTeamMemberForm.get('emailAddress').value,
-          role: this.editTeamMemberForm.get('role').value,
-        }
 
-      this.teamMemberservice.updateTeamMember(this.data, teamMember)
-      this.presentToast();
-    }
-
-    this.router.navigate(['/tabs/search-team-member', this.data]);
   }
 
   ngOnInit() {
-    this.teamMemberservice.getTeamMember(this.data).subscribe(res =>{
-      console.log(res)
-      this.editTeamMemberForm.setValue({
-        employeeName: res['employeeName'],
-        employeeSurname: res['employeeSurname'], 
-        phoneNumber: res['phoneNumber'],
-        emailAddress: res['emailAddress'], 
-        role: res['role'],
-      })
+    this.teamMemberservice.getTeamMember(this.teamMember).subscribe(response => {
+      console.log(response);
+      this.data = response;
     });
+  }
+
+  async getTeamMember(item){
+    this.teamMemberservice.getTeamMember(item.employeeID).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
   }
 
   get errorControl() {

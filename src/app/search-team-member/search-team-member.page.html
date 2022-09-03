@@ -16,7 +16,9 @@
 
 <ion-content class="ion-margin">
     <div class="contents">
-        <ion-title><h1>Search Team Member</h1></ion-title>
+        <ion-title>
+            <h1>Search Team Member</h1>
+        </ion-title>
         <ion-searchbar class="isb" placeholder="Search Member..." showCancelButton="focus" [(ngModel)]="searchTerm" animated>
         </ion-searchbar><br/>
         <ion-grid class="ion-margin" class="ion-grid-padding">
@@ -27,7 +29,7 @@
                 <ion-col></ion-col>
             </ion-row>
             <ion-item-divider></ion-item-divider>
-            <ion-row *ngFor="let item of teamMemberList | filter: searchTerm">
+            <ion-row *ngFor="let item of teamMemberList | filter: searchTerm" | filter:temMemberID>
                 <ion-col>
                     <ion-label> {{item.employeeName}}</ion-label>
                 </ion-col>

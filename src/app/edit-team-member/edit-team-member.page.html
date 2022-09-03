@@ -26,7 +26,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Name</b></ion-label>
-                            <ion-input formControlName="employeeName" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.Name" placeholder="Enter Employee Name" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.employeeName.errors?.required">
                             Employee Name is required.
@@ -40,7 +40,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Surname</b></ion-label>
-                            <ion-input formControlName="employeeSurname" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.Surname" placeholder=" Enter Employee Surname " [ngModelOptions]="{standalone: true} "></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.employeeSurname.errors?.required">
                             Employee Surname is required.
@@ -54,7 +54,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Phone Number</b></ion-label>
-                            <ion-input formControlName="phoneNumber" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.PhoneNumber" placeholder="Enter Phone Number" [ngModelOptions]="{standalone: true} "></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNumber.errors?.required">
                             Phone Number is required.
@@ -68,7 +68,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Email</b></ion-label>
-                            <ion-input formControlName="emailAddress" type="email" required></ion-input>
+                            <ion-input [(ngModel)]="data.Email" placeholder="Enter Email Address " [ngModelOptions]="{standalone: true} "></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.emailAddress.errors?.required">
                             Email Address is required.
@@ -82,7 +82,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Role</b></ion-label>
-                            <ion-select formControlName="role" type="text" required>
+                            <ion-select [(ngModel)]="data.Role" placeholder=" Select Employee Role " [ngModelOptions]="{standalone: true} ">
                                 <ion-select-option *ngFor="let item of roles">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
