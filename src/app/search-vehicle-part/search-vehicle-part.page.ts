@@ -32,7 +32,8 @@ export class SearchVehiclePartPage implements OnInit {
       partStock: ['', [Validators.required]],
     });
 
-    this.service.getAssignedParts().subscribe(data => {
+    /*
+    this.service.getList().subscribe(data => {
       this.assignedPartList = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -45,6 +46,7 @@ export class SearchVehiclePartPage implements OnInit {
       console.log(this.assignedPartList);
 
     });
+    */
   }
 
   async removePart(id){
@@ -62,7 +64,7 @@ export class SearchVehiclePartPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteAssignedPart(id);
+          this.service.deleteItem(id);
           this.presentToast();
         }
       }]

@@ -38,7 +38,7 @@ export class PerformPostcheckPage implements OnInit {
         const assignedPart = {
           check: this.postServiceForm.get('check').value
         }
-        this.service.updateAssignedPart(this.data, assignedPart)
+        this.service.updateItem(this.data, assignedPart)
         this.presentToast();
       }
       this.router.navigate(['/tabs/view/assigned-part', this.data]);

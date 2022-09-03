@@ -42,7 +42,7 @@ export class EditServiceItemPage implements OnInit {
           itemDescription: this.editItemForm.get('itemDescription').value
         }
 
-      this.service.updateDealership(this.data, dealership)
+      this.service.updateItem(this.data, dealership)
       this.presentToast();
     }
 
@@ -50,7 +50,8 @@ export class EditServiceItemPage implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getDealership(this.data).valueChanges().subscribe(res =>{
+    this.service.getItem(this.data)
+    .subscribe(res =>{
       console.log(res)
       this.editItemForm.setValue({
         dealershipName: res['DealershipName'], 
