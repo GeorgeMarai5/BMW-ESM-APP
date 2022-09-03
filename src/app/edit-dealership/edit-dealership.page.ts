@@ -41,14 +41,15 @@ export class EditDealershipPage implements OnInit {
           DealershipName: this.editDealershipForm.get('dealershipName').value,
           AddressName: this.editDealershipForm.get('address').value
         }
-        this.service.updateDealership(this.data, dealership)
+        this.service.updateItem(this.data, dealership)
         this.presentToast();
       }
       this.router.navigate(['/tabs/view/dealership', this.data]);
   }
 
   ngOnInit() {
-    this.service.getDealership(this.data).valueChanges().subscribe(res =>{
+    this.service.getItem(this.data)
+    .subscribe(res =>{
       console.log(res)
       this.editDealershipForm.setValue({
         dealershipName: res['DealershipName'], 

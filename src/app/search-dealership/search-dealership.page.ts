@@ -32,7 +32,8 @@ export class SearchDealershipPage implements OnInit {
       FleetVehicleQty: ['', [Validators.required]],
   });
 
-  this.service.getDealerships().subscribe(data => {
+  /*
+  this.service.getList().subscribe(data => {
     this.dealershipList = data.map(e => {
       return {
         id: e.payload.doc.id,
@@ -44,6 +45,8 @@ export class SearchDealershipPage implements OnInit {
     console.log(this.dealershipList);
 
   });
+  */
+ 
   }
 
   async removeDealership(id){
@@ -61,7 +64,7 @@ export class SearchDealershipPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteDealership(id);
+          this.service.deleteItem(id);
           this.presentToast();
         }
       }]
