@@ -95,6 +95,17 @@ async getFleet(item){
     return this.editFleetForm.controls;
   }
 
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Fleet has been updated successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
+
+
 }
 
 
