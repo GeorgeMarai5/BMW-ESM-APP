@@ -30,7 +30,7 @@ export class CreateTeamPage implements OnInit {
     public alertCtrl: AlertController, public router: Router,public ActivatedRoute: ActivatedRoute) { 
       teamService = {} as TeamService;
       this.data = [];
-      this.dat = new Team();
+      //this.dat = new Team();
     }
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class CreateTeamPage implements OnInit {
 create(){  
     this.teamService.createItem(this.dat).subscribe((response) => {
       console.log(response);
-      this.router.navigate(['team-list']);
+      this.router.navigate(['student-list']);
     });
   }
 
