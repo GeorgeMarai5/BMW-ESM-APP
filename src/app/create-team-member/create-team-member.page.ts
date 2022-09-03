@@ -6,6 +6,7 @@ import { TeamMemberService } from '../services/team-member.service';
 import { ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Team } from '../models/Team';
+import { Employee } from '../models/Employee';
 
 @Component({
   selector: 'app-create-team-member',
@@ -14,30 +15,20 @@ import { Team } from '../models/Team';
 })
 export class CreateTeamMemberPage implements OnInit {
 
-  roles = [];
+  roles: [];
   createTeamMemberForm: FormGroup;
   isSubmitted = false;
-  MemberList = [];
-  dealerships = [];
-  MemberList$!:Observable<any[]>;
-  data: Team;
-  information= null;
+  data: Employee;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
     public teamMemberservice: TeamMemberService, public router: Router, public toastCtrl: ToastController) { 
       teamMemberservice = {} as TeamMemberService;
-      this.data = new Team();
+      this.data = new Employee();
     }
     
-    ngOnInit() {
-      this.createTeamMemberForm = new FormGroup({
-        employeeName: new FormControl('', Validators.required),
-        employeeSurname: new FormControl('', Validators.required),
-        phoneNumber: new FormControl('', Validators.required),
-        emailAddress: new FormControl('', Validators.required),
-        role: new FormControl('', Validators.required)
-      })
-    }
+  ngOnInit() {
+
+  }
 
   submitForm(){
     this.teamMemberservice.createTeamMember(this.data).subscribe((response) => {
@@ -56,7 +47,6 @@ export class CreateTeamMemberPage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 }

@@ -1,4 +1,4 @@
-export interface Employee{
+export class Employee{
     QNumber: string;
     Name: string;
     Surname: string;

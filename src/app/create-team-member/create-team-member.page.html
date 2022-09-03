@@ -1,16 +1,18 @@
 <ion-header>
     <ion-toolbar>
-      <a href="/tabs/home"><ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img></a>
-      <ion-buttons slot="end">
-        <ion-button [routerLink]="['/tabs/view/client']">
-          <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
-        </ion-button>  
-        <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
-          Log Out
-        </ion-button>  
-      </ion-buttons>
+        <a href="/tabs/home">
+            <ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        </a>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
 
 <ion-content>
     <div class="contents">
@@ -24,67 +26,67 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Name</b></ion-label>
-                            <ion-input formControlName="employeeName" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.Name" placeholder="Enter Employee Name" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.employeeName.errors?.required">
+                        <span color=" danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.employeeName.errors?.required ">
                             Employee Name is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.employeeName.value.trim()">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.employeeName.value.trim() ">
                             Employee Name is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Surname</b></ion-label>
-                            <ion-input formControlName="employeeSurname" type="text" required></ion-input>
+                        <ion-item lines="full ">
+                            <ion-label position="stacked "><b>Surname</b></ion-label>
+                            <ion-input [(ngModel)]="data.Surname" placeholder=" Enter Employee Surname " [ngModelOptions]="{standalone: true} "></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.employeeSurname.errors?.required">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.employeeSurname.errors?.required ">
                             Employee Surname is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.employeeSurname.value.trim()">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.employeeSurname.value.trim() ">
                             Employee Surname is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Phone Number</b></ion-label>
-                            <ion-input formControlName="phoneNumber" type="text" required></ion-input>
+                        <ion-item lines="full ">
+                            <ion-label position="stacked "><b>Phone Number</b></ion-label>
+                            <ion-input [(ngModel)]="data.PhoneNumber" placeholder="Enter Phone Number" [ngModelOptions]="{standalone: true} "></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNumber.errors?.required">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNumber.errors?.required ">
                             Phone Number is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.phoneNumber.value.trim()">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.phoneNumber.value.trim() ">
                             Phone Number is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Email</b></ion-label>
-                            <ion-input formControlName="emailAddress" type="email" required></ion-input>
+                        <ion-item lines="full ">
+                            <ion-label position="stacked "><b>Email</b></ion-label>
+                            <ion-input [(ngModel)]="data.Email" placeholder="Enter Email Address " [ngModelOptions]="{standalone: true} "></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.emailAddress.errors?.required">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.emailAddress.errors?.required ">
                             Email Address is required.
                         </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.emailAddress.value.trim()">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.emailAddress.value.trim() ">
                             Email Address is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-item lines="full">
-                            <ion-label position="stacked"><b>Role</b></ion-label>
-                            <ion-select formControlName="role" type="text" required>
-                                <ion-select-option *ngFor="let item of roles">{{ item }}</ion-select-option>
+                        <ion-item lines="full ">
+                            <ion-label position="stacked "><b>Role</b></ion-label>
+                            <ion-select [(ngModel)]="data.Role" placeholder=" Select Employee Role " [ngModelOptions]="{standalone: true} " required>
+                                <ion-select-option *ngFor="let item of roles ">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required ">
                             Employee Role is required.
                         </span>
                     </ion-col>
@@ -93,10 +95,10 @@
                 <ion-row>
                     <ion-col></ion-col>
                     <ion-col>
-                        <ion-button [routerLink]="['/tabs/create-team']" expand="block">Back</ion-button>
+                        <ion-button [routerLink]="[ '/tabs/create-team'] " expand="block ">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" type="submit" expand="block">Create</ion-button>
+                        <ion-button class="light-Btn " type="submit " expand="block ">Create</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
