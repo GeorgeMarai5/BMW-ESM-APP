@@ -23,39 +23,20 @@ export class SearchTeamPage implements OnInit {
 
   constructor(public authService: AuthService, private teamservice: TeamService, public firestore: AngularFirestore, 
     public alertCtrl: AlertController, public fb: FormBuilder, public router: Router, public toastCtrl: ToastController) { 
-      this.teams = {} as Team;
+      teamservice = {} as TeamService;
     }
 
   ngOnInit() {
-      this.teamservice.getTeamList().subscribe(response => {
+    this.teamservice.getTeamList().subscribe(response => {
       console.log(response);
       this.data = response;
-    });
+    })
   }
 
-  async removeTeam(id){
-    const confirmDeleteAlert = await this.alertCtrl.create({
-      header: 'Remove Team',
-      message: 'Are you sure you would like to remove this team from the system?',
-      buttons: [{
-        text: 'Cancel',
-        role: 'cancel',
-        handler: end => {
-          this.alertCtrl.dismiss();
-        }
-      },
-      {
-        text: 'Remove',
-        role: 'remove',
-        handler: () => {
-          this.teamservice.deleteTeam(id);
-          this.presentToast();
-        }
-      }]
+  async deleteTeam(item){
+    this.teamservice.deleteTeam(item.fleetID).subscribe(Response => {
+      console.log(Response);
     });
-
-    confirmDeleteAlert.present();
-    
   }
 
   async presentToast() {

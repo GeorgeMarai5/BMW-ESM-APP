@@ -39,27 +39,25 @@ export class TeamService {
     return this.httpClient.post(this.apiUrl + '/api/Team/Create' , team, this.httpOptions)
   }
 
-  getTeam(id): Observable<Team> {
-    return this.http
-      .get<Team>(this.apiUrl + '/' + id)
+  getTeam(id): Observable<{}> {
+    return this.httpClient.get(this.apiUrl + '/api/Team/id?id=' +  id , this.httpOptions)
       .pipe(
-        retry(2),
         catchError(this.handleError)
-      )
+      );
   }
 
   getTeamList(): Observable<Team> {
     return this.http
-      .get<Team>(this.apiUrl)
+      .get<Team>(this.apiUrl + '/api/Team/GetAllTeams')
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  updateTeam(id, item): Observable<Team> {
+  updateTeam(item): Observable<Team> {
     return this.http
-      .put<Team>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
+      .put<Team>(this.apiUrl + '/api/Team/UpdateTeam' + '?' + item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -68,11 +66,10 @@ export class TeamService {
 
   deleteTeam(id) {
     return this.http
-      .delete<Team>(this.apiUrl + '/' + id, this.httpOptions)
+      .delete<Team>(this.apiUrl + '/api/Team/DeleteTeam?id=' + id, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
-
 }

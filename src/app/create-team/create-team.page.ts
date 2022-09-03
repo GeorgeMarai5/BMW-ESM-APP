@@ -31,14 +31,10 @@ export class CreateTeamPage implements OnInit {
     }
 
   ngOnInit() {
-    this.createTeamForm = this.fb.group({
-      TeamName: ['', [Validators.required]],
-      DealershipName: ['', [Validators.required]],
-      TeamType: ['', [Validators.required]]
-    });
+
   }
 
-create(){  
+  create(){  
     this.teamService.createTeam(this.data).
     subscribe((response) => {
       console.log(response);
@@ -50,15 +46,3 @@ create(){
     return this.createTeamForm.controls;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

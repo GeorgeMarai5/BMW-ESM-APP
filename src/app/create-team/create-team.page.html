@@ -26,7 +26,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Name</b></ion-label>
-                            <ion-input formControlName="TeamName" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.TeamName" placeholder="Enter Team Name" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamName.errors?.required">
                             Team Name is required.
@@ -40,7 +40,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Dealership</b></ion-label>
-                            <ion-select formControlName="DealershipName" type="text" required>
+                            <ion-select [(ngModel)]="data.DealershipName" placeholder="Enter Dealership Name" [ngModelOptions]="{standalone: true}">
                                 <ion-select-option *ngFor="let item of dealerships">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
@@ -53,11 +53,11 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Type</b></ion-label>
-                            <ion-select formControlName="TeamType" type="text" required>
-                                <ion-select-option *ngFor="let item of teamTypes">{{ item }}</ion-select-option>
+                            <ion-select [(ngModel)]="data.TeamType" placeholder=" Enter Team Type " [ngModelOptions]="{standalone: true} ">
+                                <ion-select-option *ngFor="let item of teamTypes ">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamType.errors?.required">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamType.errors?.required ">
                             Team Type is required.
                         </span>
                     </ion-col>
@@ -67,10 +67,10 @@
                     <ion-col></ion-col>
                     <ion-col></ion-col>
                     <ion-col>
-                        <ion-button [routerLink]="['/tabs/create/service']" expand="block">Back</ion-button>
+                        <ion-button [routerLink]="[ '/tabs/create/service'] " expand="block ">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" type="submit" expand="block">Create</ion-button>
+                        <ion-button class="light-Btn " type="submit " expand="block ">Create</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

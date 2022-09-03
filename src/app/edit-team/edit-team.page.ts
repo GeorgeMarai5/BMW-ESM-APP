@@ -34,33 +34,30 @@ export class EditTeamPage implements OnInit {
   }
 
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.editTeamForm.valid){
-      return false;
-    }
-    else{
-        const team = {
-          TeamName: this.editTeamForm.get('TeamName').value,
-          DealershipName: this.editTeamForm.get('DealershipName').value,
-          TeamType: this.editTeamForm.get('TeamType').value
-        }
-        this.teamservice.updateTeam(this.data, team)
-        this.presentToast();
-      }
-      this.router.navigate(['/tabs/search/team', this.data]);
+
   }
 
   ngOnInit() {
-    this.teamservice.getTeam(this.data)
-    .subscribe(res =>{
-    console.log(res)
-    this.editTeamForm.setValue({
-      TeamName: res['TeamName'],
-      DealershipName: res['DealershipName'], 
-      TeamType: res['TeamType']
-    })
+    this.teamservice.getTeam(this.team).subscribe(response => {
+      console.log(response);
+      this.data = response;
     });
   }
+
+  async getFleet(item){
+    this.teamservice.getTeamList(item.teamID).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  
+  }
+  
+  update() {
+    this.teamservice.updateTeam(this.data).subscribe(response => {
+      console.log(response)
+      //this.router.navigate(['student-list']);
+      });
+    }
 
   get errorControl() {
     return this.editTeamForm.controls;

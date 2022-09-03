@@ -1,20 +1,24 @@
 <ion-header>
     <ion-toolbar>
-      <a href="/tabs/home"><ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img></a>
-      <ion-buttons slot="end">
-        <ion-button [routerLink]="['/tabs/view/client']">
-          <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
-        </ion-button>  
-        <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
-          Log Out
-        </ion-button>  
-      </ion-buttons>
+        <a href="/tabs/home">
+            <ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        </a>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
 
 <ion-content class="ion-margin">
     <div class="contents">
-        <ion-title><h1>Search Team</h1></ion-title>
+        <ion-title>
+            <h1>Search Team</h1>
+        </ion-title>
         <ion-searchbar class="isb" placeholder="Search Team..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
         <ion-grid class="ion-margin" class="ion-grid-padding">
             <ion-row>
@@ -24,7 +28,7 @@
                 <ion-col></ion-col>
             </ion-row>
             <ion-item-divider></ion-item-divider>
-            <ion-row *ngFor="let item of teamList | filter: searchTerm">
+            <ion-row *ngFor="let item of teamList | filter: searchTerm | filter: teamID">
                 <ion-col>
                     <ion-label> {{item.TeamID}}</ion-label>
                 </ion-col>
@@ -39,7 +43,7 @@
                 </ion-col>
                 <ion-col>
                     <ion-col>
-                        <ion-button class="red-Btn" (click)="removeTeam(this.item.id)">Remove</ion-button>
+                        <ion-button class="red-Btn" (click)="deleteTeam(this.item.id)">Remove</ion-button>
                         <ion-button class="light-Btn" [routerLink]="['/tabs/edit/team', this.item.id]">Update</ion-button>
                         <ion-button class="green-Btn" [routerLink]="['/tabs/search/team-member', this.item.id]">Assign Member</ion-button>
                     </ion-col>
