@@ -48,7 +48,7 @@ export class SearchFleetPage implements OnInit {
     async deleteFleet(id){
 
       //Delete item in Student data
-      this.fleetservice.deleteFleet(id).subscribe(Response => {
+      this.fleetservice.delete(id).subscribe(Response => {
         //Update list after delete is successful
         console.log(Response);
 
