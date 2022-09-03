@@ -33,7 +33,7 @@ export class CreateFleetPage implements OnInit {
   constructor (public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, public toastCtrl: ToastController) {
 
     fleetservice = {} as FleetService;
-    //this.data = new Fleet();
+    this.data = new Fleets();
   }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class CreateFleetPage implements OnInit {
   create(){
 
   
-    this.fleetservice.AddFleet(this.data).subscribe((response) => {
+    this.fleetservice.AddFleet(this.data).subscribe(response => {
       console.log(response);
       //this.router.navigate(['student-list']);
     });

@@ -38,8 +38,8 @@ export class FleetService {
   }
 
 
-  AddFleet(fleet: Fleets){
-    return this.httpClient.post(this.apiUrl + '/api/Fleet/Create' , fleet, this.httpOptions)
+  AddFleet(Fleet: Fleets){
+    return this.httpClient.post(this.apiUrl + '/api/Fleet/Create' , Fleet, this.httpOptions)
 
 
   }
