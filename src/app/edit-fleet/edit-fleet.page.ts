@@ -7,6 +7,8 @@ import{FleetService} from '../services/fleet.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastController } from '@ionic/angular';
+import { Fleets } from '../models/fleet';
+
 
 interface FleetData {
   FleetName: string;
@@ -25,23 +27,63 @@ export class EditFleetPage implements OnInit {
   fleet = {};
   editFleetForm: FormGroup;
   isSubmitted = false;
-  data: any;
+  dat: any;
+  
+  data: Fleets;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public fleetservice: FleetService, 
     public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
-      this.route.params.subscribe(params => {
-          this.data = params.id;
-      });
-    this.editFleetForm = new FormGroup({
-      FleetName: new FormControl('', Validators.required),
-      FleetLocation: new FormControl('', Validators.required)
-    })
+
+
+      fleetservice = {} as FleetService;
+  
+      this.data = new Fleets();
+
+
+
   }
 
 
 
 
   ngOnInit() {
+
+
+    this.fleetservice.getFleet(this.fleet).subscribe(response => {
+      console.log(response);
+      this.dat = response;
+
+    })
+    //this.id = this.activatedRoute.snapshot.params["id"];
+    //get item details using id
+    //this.fleetservice.getItem(this.fleet).subscribe(response => {
+      //console.log(response);
+      //this.data = response;
+    //})
+  }
+
+  
+  
+async getFleet(item){
+
+  this.fleetservice.getFleet(item.fleetID).subscribe(response => {
+    console.log(response);
+    this.dat = response;
+  })
+
+}
+
+
+
+
+
+
+  update() {
+    //Update item by taking id and updated data object
+    this.fleetservice.updateItem(this.data).subscribe(response => {
+      console.log(response)
+      //this.router.navigate(['student-list']);
+    })
   }
 
   submitForm(){

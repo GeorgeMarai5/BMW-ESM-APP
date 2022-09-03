@@ -58,7 +58,7 @@ export class FleetService {
   // Get single student data by ID
   getItem(id): Observable<Fleet> {
     return this.httpClient
-      .get<Fleet>(this.apiUrl + '/AddressByid' + '/' + id)
+      .get<Fleet>(this.apiUrl + '/api/Fleet/id?id=' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -66,9 +66,9 @@ export class FleetService {
   }
   
   // Update item by id
-  updateItem(id, item): Observable<Fleet> {
+  updateItem(item): Observable<Fleet> {
     return this.httpClient
-      .put<Fleet>(this.apiUrl + '/UpdateAddress' + '/' + id, JSON.stringify(item), this.httpOptions)
+      .put<Fleet>(this.apiUrl + '/api/Fleet/UpdateFleet' + '?' + item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -96,7 +96,13 @@ export class FleetService {
   }
 
 
-
+  getFleet(id): Observable<{}> {
+  
+    return this.httpClient.get(this.apiUrl + '/api/Fleet/id?id=' +  id , this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
   
   
 
