@@ -10,41 +10,33 @@ import { retry, catchError } from 'rxjs/operators';
 export class TeamService {
 
   apiUrl = 'https://localhost:7292';
+  httpClient: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
 
-  // Http Options
+  }
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   }
 
-  // Handle API errors
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
   };
 
 
-  createItem(item): Observable<Team> {
-    return this.http
-      .post<Team>(this.apiUrl, JSON.stringify(item), this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+  createTeam(team: Team) {
+    return this.httpClient.post(this.apiUrl + '/api/Team/Create' , team, this.httpOptions)
   }
 
   getTeam(id): Observable<Team> {
@@ -56,7 +48,7 @@ export class TeamService {
       )
   }
 
-  getTeams(): Observable<Team> {
+  getTeamList(): Observable<Team> {
     return this.http
       .get<Team>(this.apiUrl)
       .pipe(

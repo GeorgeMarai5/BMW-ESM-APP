@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Team } from '../models/Team';
@@ -21,15 +20,13 @@ export class CreateTeamMemberPage implements OnInit {
   MemberList = [];
   dealerships = [];
   MemberList$!:Observable<any[]>;
-  data: any;
-  dat: Team;
+  data: Team;
   information= null;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
     public teamMemberservice: TeamMemberService, public router: Router, public toastCtrl: ToastController) { 
       teamMemberservice = {} as TeamMemberService;
-      this.data = [];
-      //this.dat = new Team();
+      this.data = new Team();
     }
     
     ngOnInit() {
@@ -43,9 +40,9 @@ export class CreateTeamMemberPage implements OnInit {
     }
 
   submitForm(){
-    this.teamMemberservice.createTeamMember(this.dat).subscribe((response) => {
+    this.teamMemberservice.createTeamMember(this.data).subscribe((response) => {
       console.log(response);
-      this.router.navigate(['student-list']);
+      //this.router.navigate(['teamMember-list']);
     });
   }
 

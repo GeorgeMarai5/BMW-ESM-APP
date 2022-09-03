@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -21,7 +20,7 @@ export class EditTeamMemberPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
     public teamMemberservice: TeamMemberService, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
@@ -53,7 +52,7 @@ export class EditTeamMemberPage implements OnInit {
       this.presentToast();
     }
 
-    this.router.navigate(['/tabs/view-team-member', this.data]);
+    this.router.navigate(['/tabs/search-team-member', this.data]);
   }
 
   ngOnInit() {

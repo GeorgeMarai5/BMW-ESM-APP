@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Team } from '../models/team';
 import { Observable } from 'rxjs';
@@ -22,15 +21,13 @@ export class CreateTeamPage implements OnInit {
   TeamList$!:Observable<any[]>;
   createTeamForm: FormGroup;
   AddressID: string;
-  data: any;
-  dat: Team;
+  data: Team;
   information= null;
 
   constructor(public authService: AuthService, public fb: FormBuilder, private teamService: TeamService, 
     public alertCtrl: AlertController, public router: Router,public ActivatedRoute: ActivatedRoute) { 
       teamService = {} as TeamService;
-      this.data = [];
-      this.dat = new Team();
+      this.data = new Team();
     }
 
   ngOnInit() {
@@ -42,9 +39,10 @@ export class CreateTeamPage implements OnInit {
   }
 
 create(){  
-    this.teamService.createItem(this.dat).subscribe((response) => {
+    this.teamService.createTeam(this.data).
+    subscribe((response) => {
       console.log(response);
-      this.router.navigate(['team-list']);
+      //this.router.navigate(['team-list']);
     });
   }
 

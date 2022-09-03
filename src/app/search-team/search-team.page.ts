@@ -18,6 +18,8 @@ export class SearchTeamPage implements OnInit {
   teamList = [];
   teamForm: FormGroup;
   searchTerm: string;
+  teamID: string;
+  data: any;
 
   constructor(public authService: AuthService, private teamservice: TeamService, public firestore: AngularFirestore, 
     public alertCtrl: AlertController, public fb: FormBuilder, public router: Router, public toastCtrl: ToastController) { 
@@ -25,24 +27,10 @@ export class SearchTeamPage implements OnInit {
     }
 
   ngOnInit() {
-    this.teamForm = this.fb.group({
-      TeamName: ['', [Validators.required]],
-      DealershipName: ['', [Validators.required]],
-      TeamType: ['', [Validators.required]]
-
+      this.teamservice.getTeamList().subscribe(response => {
+      console.log(response);
+      this.data = response;
     });
-
-    /*this.teamservice.getTeams().subscribe(data => {
-      this.teamList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          TeamName: e.payload.doc.data()['TeamName'],
-          DealershipName: e.payload.doc.data()['DealershipName'],
-          TeamType: e.payload.doc.data()['TeamType'],
-        };
-      })
-      console.log(this.teamList);
-    });*/
   }
 
   async removeTeam(id){
@@ -76,7 +64,6 @@ export class SearchTeamPage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 }
