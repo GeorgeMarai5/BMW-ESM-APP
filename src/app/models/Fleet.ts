@@ -9,7 +9,7 @@ export interface Fleet {
 
   export class Fleets {
    
-    //fleet_ID: number;
+    fleetID: number;
     fleet_Name: string;
     fleet_Location: string;
     //FleetVehicleQty: number;

@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { AlertController, ToastController } from '@ionic/angular';
+import {  Fleets } from '../models/Fleet';
 
 interface FleetData {
   $key: string;
@@ -24,7 +25,6 @@ export class SearchFleetPage implements OnInit {
   fleetData: FleetData;
   fleetForm: FormGroup;
   searchTerm: string;
-  fleetID: string;
   data: any;
   constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, 
     public alertCtrl: AlertController, public toastCtrl: ToastController) { 
@@ -45,10 +45,11 @@ export class SearchFleetPage implements OnInit {
 
     }
 
-    async deleteFleet(id){
+    
+    async deleteFleet(item){
 
       //Delete item in Student data
-      this.fleetservice.delete(id).subscribe(Response => {
+      this.fleetservice.deleteFleet(item.fleetID).subscribe(Response => {
         //Update list after delete is successful
         console.log(Response);
 
