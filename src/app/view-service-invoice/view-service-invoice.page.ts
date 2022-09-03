@@ -34,7 +34,7 @@ export class ViewServiceInvoicePage implements OnInit {
   }
 
   submitForm(){
-    this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
+    this.service.getItem(this.data).subscribe(res =>{
       this.maintenanceplanID = res['MaintenanceID'];
     });
     

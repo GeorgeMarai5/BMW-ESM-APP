@@ -1,34 +1,113 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import { Vehicle } from '../models/Vehicle';
+import { Observable,of, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { retry,catchError, tap, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
 
   collectionName = 'Vehicle';
+  apiUrl = 'https://localhost:7292'
+  httpOptions ={
+    headers: new HttpHeaders({
+      ContentType: 'application/json'
+    })
+  }
+  constructor(private httpClient: HttpClient) { }                                             //private db: AngularFireDatabase,private firestore: AngularFirestore
+  
 
-  constructor(private firestore: AngularFirestore) { }
-
-  getVehicles() {
-    return this.firestore.collection('Vehicle').snapshotChanges();
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError('Something bad happened; please try again later.');
+    
   }
 
-  createVehicle(vehicle) {
-    return this.firestore.collection(this.collectionName).add(vehicle);
+
+
+  // getVehicles() {
+  //   return this.firestore.collection('Vehicle').snapshotChanges();
+  // }
+
+  createVehicle(Vehicle: Vehicle) {
+    return this.httpClient.post(this.apiUrl + '/Vehicle', Vehicle, this.httpOptions);
   }
 
-  getVehicle(id: string){
-    return this.firestore.collection(this.collectionName).doc(id);
+  // getVehicle(id: string){
+  //   return this.firestore.collection(this.collectionName).doc(id);
+  // }
+
+  // updateVehicle(id, vehicle) {
+  //   this.firestore.doc(this.collectionName + '/' + id).update(vehicle);
+  // }
+
+  // deleteVehicle(id) {
+  //   this.firestore.doc(this.collectionName + '/' + id).delete();
+  // }
+
+
+  
+  getList(): Observable<Vehicle> {
+    return this.httpClient
+      .get<Vehicle>(this.apiUrl + '/api/Vehicle/GetAllVehicles')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
 
-  updateVehicle(id, vehicle) {
-    this.firestore.doc(this.collectionName + '/' + id).update(vehicle);
+  
+  // Get single student data by ID
+  getItem(id): Observable<Vehicle> {
+    return this.httpClient
+      .get<Vehicle>(this.apiUrl + '/VehicleByid' + '/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  // Update item by id
+  updateItem(id, item): Observable<Vehicle> {
+    return this.httpClient
+      .put<Vehicle>(this.apiUrl + '/UpdateVehicle' + '/' + id, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  // Delete item by id
+  delete(id) {
+    return this.httpClient
+      .delete<Vehicle>(this.apiUrl + '/api/Vehicle/DeleteVehicle' + '/' + id, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
 
-  deleteVehicle(id) {
-    this.firestore.doc(this.collectionName + '/' + id).delete();
+
+
+  deleteVehicle(id: string): Observable<{}> {
+  
+    return this.httpClient.delete(this.apiUrl + '/api/Vehicle/DeleteVehicle' + '/${' + id +'}' , this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
+
 
   getYear(yearCode: string){
     let yearFromCode = '';
