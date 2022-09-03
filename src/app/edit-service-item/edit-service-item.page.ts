@@ -60,6 +60,10 @@ export class EditServiceItemPage implements OnInit {
     });
   }
 
+  back(){
+    this.router.navigate(['tabs/view/service-item', this.data]);
+  }
+
   get errorControl() {
     return this.editItemForm.controls;
   }

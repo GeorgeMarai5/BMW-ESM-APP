@@ -78,7 +78,7 @@
                 <ion-button [routerLink]="['/tabs/search/account/employee']">Back</ion-button>
               </ion-col>
               <ion-col>
-                <ion-button class="light-Btn" [routerLink]="['/tabs/update/employee']">Update Details</ion-button>
+                <ion-button class="light-Btn" (click)="navToUpdate()">Update Details</ion-button>
               </ion-col>
           </ion-row>
       </ion-grid>

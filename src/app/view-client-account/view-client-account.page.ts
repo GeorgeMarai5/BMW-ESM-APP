@@ -24,11 +24,9 @@ export class ViewClientAccountPage implements OnInit {
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: ClientService,private toastCtrl: ToastController) {
-      this.route.queryParams.subscribe(params => {
-        if (this.router.getCurrentNavigation().extras.state) {
-          this.data = this.router.getCurrentNavigation().extras.state.id;
-        }
-      });
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+    });
 
       this.viewClientForm = new FormGroup({
         Title: new FormControl('', Validators.required),
@@ -54,17 +52,6 @@ export class ViewClientAccountPage implements OnInit {
     });
   }
 
-  openDetailsWithState() {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        id: '5jh9j0RPItYYHzLI4FisElc8hJF2'
-      }
-    };
-
-    this.router.navigate(['tabs/update/client'], navigationExtras);
-
-  }
-
   async removeAlert(){
     let toast = await this.toastCtrl.create({
       message: 'The client was removed',
@@ -73,8 +60,8 @@ export class ViewClientAccountPage implements OnInit {
     });
   }
 
-  back(){
-    this.router.navigate(['SearchclientaccountPage'])
+  navToUpdate() {
+    this.router.navigate(['tabs/update/client', this.data]);
   }
 
   RemoveClient(ID) {

@@ -62,6 +62,10 @@ export class UpgradeMaintenancePlanPage implements OnInit {
     });
   }
 
+  back(){
+    this.router.navigate(['tabs/view/maintenanceplan', this.data]);
+  }
+
   get errorControl() {
     return this.upgradePlanForm.controls;
   }

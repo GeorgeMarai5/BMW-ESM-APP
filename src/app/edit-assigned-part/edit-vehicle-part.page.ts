@@ -70,6 +70,10 @@ export class EditVehiclePartPage implements OnInit {
     return this.editPartForm.controls;
   }
 
+  back(){
+    this.router.navigate(['tabs/view/assigned-part', this.data]);
+  }
+
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Assigned Part has been updated successfully.',
