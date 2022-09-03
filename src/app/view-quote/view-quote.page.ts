@@ -22,10 +22,13 @@ export class ViewQuotePage implements OnInit {
   QuoteList = [];
   viewQuoteForm: FormGroup;
   quotedata: QuoteData;
-  id: any;
+  data: any;
 
-  constructor(public authService: AuthService, public router: Router, private actRoute: ActivatedRoute, private quoteservice: QuoteService,
+  constructor(public authService: AuthService, public router: Router, private route: ActivatedRoute, private quoteservice: QuoteService,
     private fb:FormBuilder) {
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+    });
       this.quotedata = {} as QuoteData;
    }
 
@@ -44,6 +47,14 @@ export class ViewQuotePage implements OnInit {
 
       console.log(this.QuoteList);
     });
+  }
+
+  navToUpdate() {
+    this.router.navigate(['tabs/update/quote', this.data]);
+  }
+
+  viewServiceNote() {
+    this.router.navigate(['tabs/view/service-note', this.data]);
   }
 
   getQuotes(id){

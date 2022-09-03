@@ -89,7 +89,9 @@ async getFleet(item){
   submitForm(){
   }
 
-
+  back(){
+    this.router.navigate(['tabs/view/fleet', this.data]);
+  }
 
   get errorControl() {
     return this.editFleetForm.controls;

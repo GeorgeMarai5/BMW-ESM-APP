@@ -73,6 +73,10 @@ export class UpdateServicePage implements OnInit {
     });
   }
 
+  back(){
+    this.router.navigate(['tabs/view/service', this.data]);
+  }
+
   get errorControl() {
     return this.serviceForm.controls;
   }
