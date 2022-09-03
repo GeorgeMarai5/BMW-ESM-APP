@@ -47,14 +47,14 @@ export class EditVehiclePartPage implements OnInit {
           Description: this.editPartForm.get('Description').value,
           partStock: this.editPartForm.get('partStock').value,
         }
-        this.service.updateAssignedPart(this.data, assignedPart)
+        this.service.updateItem(this.data, assignedPart)
         this.presentToast();
       }
       this.router.navigate(['/tabs/view/assigned-part', this.data]);
   }
 
   ngOnInit() {
-    this.service.getAssignedPart(this.data).valueChanges()
+    this.service.getItem(this.data)
     .subscribe(res =>{
     console.log(res)
     this.editPartForm.setValue({
