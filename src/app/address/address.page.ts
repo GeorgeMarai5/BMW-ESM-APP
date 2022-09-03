@@ -89,7 +89,14 @@ this.addressservice.AddAddress(this.dat).subscribe((response)=>{
 }
 
 
+Update(){
 
+  this.addressservice.AddAddress(this.dat).subscribe((response)=>{
+    console.log(response);
+  })
+
+
+}
 
 
 

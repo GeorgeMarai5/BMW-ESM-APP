@@ -45,12 +45,29 @@ export class SearchFleetPage implements OnInit {
 
     }
 
-  deleteFleet(id){
+    async deleteFleet(id){
+
+      //Delete item in Student data
+      this.fleetservice.deleteFleet(id).subscribe(Response => {
+        //Update list after delete is successful
+        console.log(Response);
+
+
+      });
+    }
+  
+
+
+
+
+
+
+
 
   }
 
 
-  }
+  
 
 
 

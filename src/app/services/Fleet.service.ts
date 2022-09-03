@@ -76,15 +76,24 @@ export class FleetService {
   }
   
   // Delete item by id
-  deleteItem(id) {
+  delete(id) {
     return this.httpClient
-      .delete<Fleet>(this.apiUrl + '/DeleteAddress' + '/' + id, this.httpOptions)
+      .delete<Fleet>(this.apiUrl + '/api/Fleet/DeleteFleet' + '/' + id, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
+
+
+  deleteFleet(id: string): Observable<{}> {
+  
+    return this.httpClient.delete(this.apiUrl + '/api/Fleet/DeleteFleet' + '/${' + id +'}' , this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
 
 
