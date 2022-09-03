@@ -20,6 +20,7 @@ export class EditTeamPage implements OnInit {
   editTeamForm: FormGroup;
   isSubmitted = false;
   data: any;
+  teamID: string;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
     public teamservice: TeamService, public router: Router, public toastCtrl: ToastController) {
@@ -44,18 +45,17 @@ export class EditTeamPage implements OnInit {
     });
   }
 
-  //async getFleet(item){
-    //this.teamservice.getTeamList(item.teamID).subscribe(response => {
-     // console.log(response);
-     // this.data = response;
-    //})
-  
-  //}
+  async getTeam(item){
+    this.teamservice.getTeam(item.teamID).subscribe(response => {
+     console.log(response);
+     this.data = response;
+    });
+  }
   
   update() {
     this.teamservice.updateTeam(this.data).subscribe(response => {
       console.log(response)
-      //this.router.navigate(['student-list']);
+      //this.router.navigate(['team-list']);
       });
     }
 
