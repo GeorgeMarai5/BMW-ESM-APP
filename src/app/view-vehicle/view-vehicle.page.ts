@@ -38,30 +38,30 @@ export class ViewVehiclePage implements OnInit {
      }
 
   ngOnInit() {
-    this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
-      console.log(res)
-      this.viewVehicleForm.setValue({
-        vehicleModel: res['VehicleModel'], 
-        Registration: res['Registration'],
-        VINNum: res['VIN_Number'], 
-        warrantyPlan: res['Warranty']
-      })
-    });
+    // this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
+    //   console.log(res)
+    //   this.viewVehicleForm.setValue({
+    //     vehicleModel: res['VehicleModel'], 
+    //     Registration: res['Registration'],
+    //     VINNum: res['VIN_Number'], 
+    //     warrantyPlan: res['Warranty']
+    //   })
+    // });
   }
 
   submitForm(){
-    this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
-      this.maintenanceplanID = res['MaintenanceID'];
-    });
+    // this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
+    //   this.maintenanceplanID = res['MaintenanceID'];
+    // });
 
-    console.log(this.maintenanceplanID)
+    // console.log(this.maintenanceplanID)
 
-    if(this.maintenanceplanID != null || this.maintenanceplanID != undefined){
-      this.router.navigate(['/tabs/view/maintenanceplan', '7jk7GWQB5eC6SdZuzU6P']);
-    }
-    else{
-      this.router.navigate(['/tabs/search/maintenanceplan']);
-    }
+    // if(this.maintenanceplanID != null || this.maintenanceplanID != undefined){
+    //   this.router.navigate(['/tabs/view/maintenanceplan', '7jk7GWQB5eC6SdZuzU6P']);
+    // }
+    // else{
+    //   this.router.navigate(['/tabs/search/maintenanceplan']);
+    // }
   }
 
   navToUpdate() {

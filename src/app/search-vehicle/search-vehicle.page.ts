@@ -37,22 +37,22 @@ export class SearchVehiclePage implements OnInit {
       FleetVehicleQty: ['', [Validators.required]],
     });
 
-    this.service.getVehicles().subscribe(data => {
-      this.vehicleList = data.map(e => {
-        let yearCode: string;
-        yearCode = e.payload.doc.data()['VIN_Number'];
+    // this.service.getVehicles().subscribe(data => {
+    //   this.vehicleList = data.map(e => {
+    //     let yearCode: string;
+    //     yearCode = e.payload.doc.data()['VIN_Number'];
 
-        return {
-          id: e.payload.doc.id,
-          VehicleID: e.payload.doc.data()['VehicleID'],
-          VINNumber: e.payload.doc.data()['VIN_Number'],
-          vehicleModel: e.payload.doc.data()['VehicleModel'],
-          year: this.service.getYear(yearCode.substring(9, 10))
-        };
-      })
-      console.log(this.vehicleList);
+    //     return {
+    //       id: e.payload.doc.id,
+    //       VehicleID: e.payload.doc.data()['VehicleID'],
+    //       VINNumber: e.payload.doc.data()['VIN_Number'],
+    //       vehicleModel: e.payload.doc.data()['VehicleModel'],
+    //       year: this.service.getYear(yearCode.substring(9, 10))
+    //     };
+    //   })
+    //   console.log(this.vehicleList);
 
-    });
+    // });
   }
 
   async removeVehicle(id){

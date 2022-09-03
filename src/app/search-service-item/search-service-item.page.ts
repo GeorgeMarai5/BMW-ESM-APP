@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
@@ -18,8 +17,8 @@ export class SearchServiceItemPage implements OnInit {
   serviceItemList = [];
   serviceItemForm: FormGroup;
   searchTerm: string;
-
-  constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, private firestore: AngularFirestore, 
+id: any;
+  constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
       this.vehicles = {} as Vehicle;
     }
@@ -32,7 +31,7 @@ export class SearchServiceItemPage implements OnInit {
       FleetVehicleQty: ['', [Validators.required]],
     });
 
-    this.service.getVehicles().subscribe(data => {
+    this.service.getItem(this.id).subscribe(data => {
       this.serviceItemList = data.map(e => {
         let yearCode: string;
         yearCode = e.payload.doc.data()['VIN_Number'];
