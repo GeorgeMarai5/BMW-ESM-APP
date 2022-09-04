@@ -1,0 +1,250 @@
+[{
+        "partID": 1,
+        "partName": "Anti-lock braking system (ABS)",
+        "description": "string"
+    },
+    {
+        "partID": 2,
+        "partName": "Decklid",
+        "description": "string"
+    },
+    {
+        "partID": 3,
+        "partName": "Brake backing pad",
+        "description": "string"
+    },
+    {
+        "partID": 4,
+        "partName": "Hydrogen tank",
+        "description": "string"
+    },
+    {
+        "partID": 5,
+        "partName": "Engine valve",
+        "description": "string"
+    },
+    {
+        "partID": 6,
+        "partName": "Camshaft",
+        "description": "string"
+    },
+    {
+        "partID": 7,
+        "partName": "Cooling fan",
+        "description": "string"
+    },
+    {
+        "partID": 8,
+        "partName": "Resonator",
+        "description": "string"
+    },
+    {
+        "partID": 9,
+        "partName": "Intake manifold",
+        "description": "string"
+    },
+    {
+        "partID": 10,
+        "partName": "Sparking cable",
+        "description": "string"
+    },
+    {
+        "partID": 11,
+        "partName": "Shock absorber",
+        "description": "string"
+    },
+    {
+        "partID": 12,
+        "partName": "Clutch disk",
+        "description": "string"
+    },
+    {
+        "partID": 13,
+        "partName": "Axle",
+        "description": "string"
+    },
+    {
+        "partID": 14,
+        "partName": "Fuel filter",
+        "description": "string"
+    },
+    {
+        "partID": 15,
+        "partName": "Brake backing pad",
+        "description": "string"
+    },
+    {
+        "partID": 16,
+        "partName": "Silencer",
+        "description": "string"
+    },
+    {
+        "partID": 17,
+        "partName": "Oil pump",
+        "description": "string"
+    },
+    {
+        "partID": 18,
+        "partName": "Fan belt",
+        "description": "string"
+    },
+    {
+        "partID": 19,
+        "partName": "Engine block",
+        "description": "string"
+    },
+    {
+        "partID": 20,
+        "partName": "High voltage battery pack",
+        "description": "string"
+    },
+    {
+        "partID": 21,
+        "partName": "Brake Fluid",
+        "description": "string"
+    },
+    {
+        "partID": 22,
+        "partName": "Engine control unit",
+        "description": "string"
+    },
+    {
+        "partID": 23,
+        "partName": "Battery",
+        "description": "string"
+    },
+    {
+        "partID": 24,
+        "partName": "Starter motor",
+        "description": "string"
+    },
+    {
+        "partID": 25,
+        "partName": "Airbag sensors",
+        "description": "string"
+    },
+    {
+        "partID": 26,
+        "partName": "Electronic timing controller",
+        "description": "string"
+    },
+    {
+        "partID": 27,
+        "partName": "Caliper",
+        "description": "string"
+    },
+    {
+        "partID": 28,
+        "partName": "Hydrogen tank",
+        "description": "string"
+    },
+    {
+        "partID": 29,
+        "partName": "Turbocharger",
+        "description": "string"
+    },
+    {
+        "partID": 30,
+        "partName": "Supercharger",
+        "description": "string"
+    },
+    {
+        "partID": 31,
+        "partName": "Water pump gasket",
+        "description": "string"
+    },
+    {
+        "partID": 32,
+        "partName": "Resonator",
+        "description": "string"
+    },
+    {
+        "partID": 33,
+        "partName": "Oil pipe",
+        "description": "string"
+    },
+    {
+        "partID": 34,
+        "partName": "Exhaust gas recirculation valve",
+        "description": "string"
+    },
+    {
+        "partID": 35,
+        "partName": "Camber arm",
+        "description": "string"
+    },
+    {
+        "partID": 36,
+        "partName": "Flywheel clutch",
+        "description": "string"
+    },
+    {
+        "partID": 37,
+        "partName": "Differential",
+        "description": "string"
+    },
+    {
+        "partID": 38,
+        "partName": "Fuel pump gasket",
+        "description": "string"
+    },
+    {
+        "partID": 39,
+        "partName": "Heat shield",
+        "description": "string"
+    },
+    {
+        "partID": 40,
+        "partName": "Valve cover",
+        "description": "string"
+    },
+    {
+        "partID": 41,
+        "partName": "Brake pedal",
+        "description": "string"
+    },
+    {
+        "partID": 42,
+        "partName": "Brake pad",
+        "description": "string"
+    },
+    {
+        "partID": 43,
+        "partName": "Engine computer and management system",
+        "description": "string"
+    },
+    {
+        "partID": 44,
+        "partName": "Oil pressure sensor",
+        "description": "string"
+    },
+    {
+        "partID": 45,
+        "partName": "Headlight",
+        "description": "string"
+    },
+    {
+        "partID": 46,
+        "partName": "Catalytic converter",
+        "description": "string"
+    },
+    {
+        "partID": 47,
+        "partName": "Shock absorber",
+        "description": "string"
+    },
+    {
+        "partID": 48,
+        "partName": "Trailing arm",
+        "description": "string"
+    },
+    {
+        "partID": 49,
+        "partName": "Output shaft",
+        "description": "string"
+    }, {
+        "partID": 50,
+        "partName": "Other belts",
+        "description": "string"
+    }
+]
