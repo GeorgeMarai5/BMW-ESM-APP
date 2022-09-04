@@ -37,14 +37,23 @@ export class SearchFleetPage implements OnInit {
 
   ngOnInit() {
 
+    this.getallFleets()
+
+    //this.fleetservice.getList().subscribe(response => {
+      //console.log(response);
+      //this.data = response;
+
+  //})
+
+    }
 
 
-    this.fleetservice.getList().subscribe(response => {
-      console.log(response);
-      this.data = response;
+    getallFleets(){
 
-  })
-
+      this.fleetservice.getList().subscribe(response => {
+        console.log(response);
+        this.data = response;
+      })
     }
 
     
@@ -54,7 +63,7 @@ export class SearchFleetPage implements OnInit {
       this.fleetservice.deleteFleet(item.fleetID).subscribe(Response => {
         //Update list after delete is successful
         console.log(Response);
-
+        this.getallFleets()
 
       });
     }

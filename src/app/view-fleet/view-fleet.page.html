@@ -43,7 +43,7 @@
         <ion-item-divider></ion-item-divider>
       </ion-grid><br/>
       <ion-button fill="solid" style="float: right; --border-radius: 0.2em;" class="green-Btn" (click)="select()">Select</ion-button>
-      <ion-button fill="solid" class="light-Btn" style="--border-radius: 0.2em;" [routerLink]="['/tabs/edit/fleet']">Update</ion-button>
+      <ion-button fill="solid" class="light-Btn" style="--border-radius: 0.2em;" [routerLink]="['/tabs/edit/fleet/{{item.id}}']">Update</ion-button>
       <ion-button fill="solid" style="float: right;" color="primary" [routerLink]="['/tabs/search/fleet']">Back</ion-button>
   </div>
 </ion-content>

@@ -28,11 +28,12 @@ export class EditFleetPage implements OnInit {
   editFleetForm: FormGroup;
   isSubmitted = false;
   dat: any;
+  id: number;
   
   data: Fleets;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public fleetservice: FleetService, 
-    public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
+    public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController, public activatedRoute: ActivatedRoute) {
 
 
       fleetservice = {} as FleetService;
@@ -48,8 +49,11 @@ export class EditFleetPage implements OnInit {
 
   ngOnInit() {
 
+    this.id = this.activatedRoute.snapshot.params["fleetID"];
 
-    this.fleetservice.getFleet(this.fleet).subscribe(response => {
+
+
+    this.fleetservice.getFleet(this.id).subscribe(response => {
       console.log(response);
       this.dat = response;
 
@@ -64,9 +68,9 @@ export class EditFleetPage implements OnInit {
 
   
   
-async getFleet(item){
+async getFleet(dat){
 
-  this.fleetservice.getFleet(item.fleetID).subscribe(response => {
+  this.fleetservice.getFleet(dat.fleetID).subscribe(response => {
     console.log(response);
     this.dat = response;
   })

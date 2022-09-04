@@ -48,7 +48,7 @@
             <ion-button type="submit" expand="block">Back</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="light-Btn" type="submit" expand="block" (click)="create()">Submit</ion-button>
+            <ion-button class="light-Btn" type="submit" expand="block" (click)="create()" (click)="presentToast()" [routerLink]="['/tabs/search/fleet']">Submit</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

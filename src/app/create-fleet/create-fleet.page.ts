@@ -56,6 +56,17 @@ get errorControl() {
 }
 
 
+
+async presentToast() {
+  let toast = await this.toastCtrl.create({
+    message: 'The fleet has been created successfully',
+    duration: 3000,
+    position: 'top'
+  });
+
+  toast.present();
+}
+
 }
 
 

@@ -4,7 +4,8 @@ import { FormBuilder,Validators,FormGroup } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { VehicleService } from '../services/vehicle.service';
 import { AlertController, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Fleets } from '../models/fleet';
 
 interface FleetData {
   FleetID: number;
@@ -33,15 +34,32 @@ export class ViewFleetPage implements OnInit {
    searchTerm: string;
    fleetID: string;
    data: any;
+   id: number;
+   dat: any;
 
   constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, private vehiclesService: VehicleService,
-    public alertCtrl: AlertController, public router: Router, public vehicleService: VehicleService, public toastCtrl: ToastController) { 
+    public alertCtrl: AlertController, public router: Router, public vehicleService: VehicleService, public toastCtrl: ToastController,
+    public activatedRoute: ActivatedRoute) { 
 
     this.VehicleData = {} as FleetVehicles;
 
   }
 
   ngOnInit() {
+
+    this.id = this.activatedRoute.snapshot.params["fleetID"];
+
+
+
+    this.fleetservice.getFleet(this.id).subscribe(response => {
+      console.log(response);
+      this.dat = response;
+
+    })
+
+
+
+
   }
 
   async deleteFleet(id){
