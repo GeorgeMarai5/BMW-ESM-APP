@@ -18,13 +18,21 @@ export class SearchDealershipPage implements OnInit {
   dealershipList = [];
   dealershipForm: FormGroup;
   searchTerm: string;
+  data:any;
 
   constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
+
       this.dealerships = {} as Dealership;
     }
 
   ngOnInit() {
+
+
+    this.getallDealerships();
+
+
+
     this.dealershipForm = this.fb.group({
       FleetName: ['', [Validators.required]],
       FleetLocation: ['', [Validators.required]],
@@ -48,6 +56,16 @@ export class SearchDealershipPage implements OnInit {
   */
  
   }
+
+  getallDealerships(){
+
+    this.service.getList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+
+
 
   async removeDealership(id){
     const confirmDeleteAlert = await this.alertCtrl.create({

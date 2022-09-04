@@ -38,7 +38,7 @@ export class SearchQuotePage implements OnInit {
     
 
 
-    this.getallFleets();
+    this.getallQuotes();
 
 
 
@@ -47,7 +47,7 @@ export class SearchQuotePage implements OnInit {
 
   }
 
-  getallFleets(){
+  getallQuotes(){
 
     this.quoteservice.getList().subscribe(response => {
       console.log(response);

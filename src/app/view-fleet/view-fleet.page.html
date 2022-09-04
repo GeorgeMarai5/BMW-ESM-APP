@@ -24,15 +24,15 @@
           <ion-col></ion-col>
         </ion-row>
         <ion-item-divider></ion-item-divider>
-        <ion-row *ngFor="let item of vehicleList | filter: searchTerm | filter: fleetID">
+        <ion-row *ngFor="let item of dat | filter: searchTerm | filter: fleetID">
           <ion-col>
-            <ion-label> {{item.VinNumber}}</ion-label>
+            <ion-label></ion-label>
           </ion-col>
           <ion-col>
-            <ion-label> {{item.ModelName}}</ion-label>
+            <ion-label> </ion-label>
           </ion-col>
           <ion-col>
-            <ion-label> {{item.Year}}</ion-label>
+            <ion-label> </ion-label>
           </ion-col>
           <ion-col>
             <ion-button class="red-Btn" (click)="deleteFleet(item.id)">Remove</ion-button>
@@ -47,7 +47,6 @@
       <ion-button fill="solid" style="float: right;" color="primary" [routerLink]="['/tabs/search/fleet']">Back</ion-button>
   </div>
 </ion-content>
-
 
 
 

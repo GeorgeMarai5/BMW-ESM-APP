@@ -3,7 +3,7 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
-import { Quote } from '../models/Quote';
+import { Quote, Quotes } from '../models/Quote';
 import { ToastController } from '@ionic/angular';
 
 
@@ -27,15 +27,18 @@ export class CreateQuotePage implements OnInit {
   QuoteData: QuoteData;
   createQuoteForm: FormGroup;
   isSubmitted = false;
+  data:Quotes;
 
   constructor(public authService: AuthService, public fb: FormBuilder, public router: Router, private quoteservice: QuoteService,
     private zone: NgZone, public toastCtrl: ToastController) { 
 
       this.QuoteData = {} as QuoteData;
-
+      this.data = new Quotes();
     }
 
   ngOnInit() {
+
+    
 
     this.createQuoteForm = this.fb.group({
       ClientName: ['', [Validators.required]],
@@ -56,6 +59,19 @@ export class CreateQuotePage implements OnInit {
 
       this.router.navigate(['/search/quote']);
   }
+
+
+
+  create(){
+
+  
+    this.quoteservice.AddQuote(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+  }
+
+
 
   async presentToast() {
     let toast = await this.toastCtrl.create({

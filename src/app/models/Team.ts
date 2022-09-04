@@ -5,3 +5,4 @@ export class Team {
     WorkStatus: string;
     TeamName: string;
 }
+

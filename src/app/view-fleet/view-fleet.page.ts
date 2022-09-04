@@ -47,17 +47,11 @@ export class ViewFleetPage implements OnInit {
 
   ngOnInit() {
 
-    this.id = this.activatedRoute.snapshot.params["fleetID"];
+    //this.id = this.activatedRoute.snapshot.params["fleetID"];
 
 
 
-    this.fleetservice.getFleet(this.id).subscribe(response => {
-      console.log(response);
-      this.dat = response;
-
-    })
-
-
+    
 
 
   }
@@ -67,6 +61,13 @@ export class ViewFleetPage implements OnInit {
   }
 
   async select(){
+    this.fleetservice.getFleet("1").subscribe(response => {
+      console.log(response);
+      this.dat = response;
+
+    })
+
+
 
   }
 

@@ -42,7 +42,7 @@ export class DealershipService {
 
   getList(): Observable<Dealership> {
     return this.httpClient
-      .get<Dealership>(this.apiUrl + '/api/Dealership/GetAllDealerships')
+      .get<Dealership>(this.apiUrl + '/api/Dealership')
       .pipe(
         retry(2),
         catchError(this.handleError)

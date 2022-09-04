@@ -23,7 +23,7 @@ export class SearchVehiclePage implements OnInit {
   vehicleList = [];
   vehicleForm: FormGroup;
   searchTerm: string;
-
+  data:any;
   constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
       this.vehicles = {} as Vehicle;
@@ -36,6 +36,9 @@ export class SearchVehiclePage implements OnInit {
       FleetID: ['', [Validators.required]],
       FleetVehicleQty: ['', [Validators.required]],
     });
+
+
+    this.getallVehicles();
 
     // this.service.getVehicles().subscribe(data => {
     //   this.vehicleList = data.map(e => {
@@ -53,6 +56,15 @@ export class SearchVehiclePage implements OnInit {
     //   console.log(this.vehicleList);
 
     // });
+  }
+
+
+  getallVehicles(){
+
+    this.service.getList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
   }
 
   async removeVehicle(id){
