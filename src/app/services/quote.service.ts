@@ -5,7 +5,10 @@ import {
   AngularFireList,
   AngularFireObject
 } from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { Quote } from '../models/Quote';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { retry,catchError, tap, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -13,12 +16,72 @@ import { Observable } from 'rxjs';
 })
 export class QuoteService {
 
-  collectionName = 'Quote';
+  apiUrl = 'https://localhost:7292'
+  httpOptions ={
+    headers: new HttpHeaders({
+      ContentType: 'application/json'
+    })
+  }
+
+
+
+
+
+
+
+
+ collectionName = 'Quote';
   QuoteRef: AngularFireObject<any>;
 
   constructor(private db: AngularFireDatabase,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,private httpClient: HttpClient
   ) { }
+
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError('Something bad happened; please try again later.');
+    
+  }
+
+
+
+
+
+  AddQuote(quote: Quote){
+    return this.httpClient.post(this.apiUrl + '/api/Fleet/Create' , quote, this.httpOptions)
+
+
+  }
+
+
+  getList(): Observable<Quote> {
+    return this.httpClient
+      .get<Quote>(this.apiUrl + '/api/Quote/GetAllQuotes')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+
+
+
+
+
+
+
+
 
   create_Quote(Quote) {
     return this.firestore.collection(this.collectionName).add(Quote);

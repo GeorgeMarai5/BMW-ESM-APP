@@ -24,16 +24,98 @@ export class SearchQuotePage implements OnInit {
   QuoteForm: FormGroup;
   quotedata: QuoteData;
   id: any;
+  data: any;
   searchTerm: string;
   ClientName: string;
 
   constructor(public authService: AuthService,private fb: FormBuilder,public router: Router, private actRoute: ActivatedRoute, 
     private quoteservice: QuoteService, public alertCtrl: AlertController, public toastCtrl: ToastController) { 
+      quoteservice = {} as QuoteService;
 
     }
 
   ngOnInit() {
-    this.QuoteForm = this.fb.group({
+    
+
+
+    this.getallFleets();
+
+
+
+
+
+
+  }
+
+  getallFleets(){
+
+    this.quoteservice.getList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+
+
+
+
+
+
+  async DeleteQuote(id){
+    const confirmDeleteAlert = await this.alertCtrl.create({
+      header: 'Remove Fleet',
+      message: 'Are you sure you would like to remove this Fleet from the system?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: end => {
+          this.alertCtrl.dismiss();
+        }
+      },
+      {
+        text: 'Remove',
+        role: 'remove',
+        handler: () => {
+          //this.quoteservice.delete_Quote(id);
+          this.presentToast();
+        }
+      }]
+    });
+
+    confirmDeleteAlert.present();
+
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Fleet has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+this.QuoteForm = this.fb.group({
       ClientName: ['', [Validators.required]],
       Date: ['', [Validators.required]],
       Description: ['', [Validators.required]],
@@ -56,40 +138,8 @@ export class SearchQuotePage implements OnInit {
       console.log(this.QuoteList);
 
     });
-  }
 
-  async DeleteQuote(id){
-    const confirmDeleteAlert = await this.alertCtrl.create({
-      header: 'Remove Fleet',
-      message: 'Are you sure you would like to remove this Fleet from the system?',
-      buttons: [{
-        text: 'Cancel',
-        role: 'cancel',
-        handler: end => {
-          this.alertCtrl.dismiss();
-        }
-      },
-      {
-        text: 'Remove',
-        role: 'remove',
-        handler: () => {
-          this.quoteservice.delete_Quote(id);
-          this.presentToast();
-        }
-      }]
-    });
 
-    confirmDeleteAlert.present();
 
-  }
 
-  async presentToast() {
-    let toast = await this.toastCtrl.create({
-      message: 'Fleet has been removed successfully.',
-      duration: 3000,
-      position: 'top'
-    });
-  
-    toast.present();
-  }
-}
+*/

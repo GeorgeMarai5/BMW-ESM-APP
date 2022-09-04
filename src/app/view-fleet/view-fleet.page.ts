@@ -74,6 +74,18 @@ export class ViewFleetPage implements OnInit {
 
   }
 
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Fleet has been removed successfully.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
+
+
 }
 
 

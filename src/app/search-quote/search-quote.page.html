@@ -14,7 +14,7 @@
 
 <ion-content class="ion-margin">
   <div class="contents">
-    <ion-title><h1>Search Fleet</h1></ion-title>
+    <ion-title><h1>Search Quote</h1></ion-title>
     <ion-searchbar class="isb" placeholder="Search Fleet..." showCancelButton="focus" animated></ion-searchbar><br/>
     <ion-grid class="ion-margin" class="ion-grid-padding">
       <ion-row>
@@ -24,15 +24,15 @@
         <ion-col></ion-col>
       </ion-row>
       <ion-item-divider></ion-item-divider>
-      <ion-row *ngFor="let item of QuoteList| filter: searchTerm | filter: ClientName">
+      <ion-row *ngFor="let item of data| filter: searchTerm | filter: ClientName">
         <ion-col>
-          <ion-label>{{item.ClientName}}</ion-label>
+          <ion-label>{{item.description}}</ion-label>
         </ion-col>
         <ion-col>
-          <ion-label>{{item.Date}}</ion-label>
+          <ion-label>{{item.date}}</ion-label>
         </ion-col>
         <ion-col>
-          <ion-label>{{item.Accepted}}</ion-label>
+          <ion-label>{{item.isAccepted}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-button class="red-Btn" (click)="DeleteQuote(item.id)">Remove</ion-button>
