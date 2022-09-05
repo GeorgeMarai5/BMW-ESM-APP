@@ -48,7 +48,7 @@ export class SearchFleetPage implements OnInit {
     }
 
 
-    getallFleets(){
+    async getallFleets(){
 
       this.fleetservice.getList().subscribe(response => {
         console.log(response);

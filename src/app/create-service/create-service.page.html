@@ -23,7 +23,7 @@
             <ion-item lines="full">
               <ion-label position="stacked"><b>Select Team</b></ion-label>
               <ion-select formControlName="TeamName" type="text" required placeholder="Select Team...">
-                <ion-select-option *ngFor="let item of teams">{{ item }}</ion-select-option>
+                <ion-select-option *ngFor="let item of data">{{ item.team_Name }}</ion-select-option>
               </ion-select>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamName.errors?.required">
@@ -39,7 +39,7 @@
             <ion-item lines="full">
               <ion-label position="stacked"><b>Select Service Type</b></ion-label>
               <ion-select formControlName="ServiceTypeName" type="text" required placeholder="Select Service Type...">
-                <ion-select-option *ngFor="let item of serviceTypes">{{ item }}</ion-select-option>
+                <ion-select-option *ngFor="let item of dat">{{ item.type_Description }}</ion-select-option>
               </ion-select>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.ServiceTypeName.errors?.required">
@@ -52,10 +52,10 @@
           <ion-col></ion-col>
           <ion-col></ion-col>
           <ion-col>
-            <ion-button type="submit" expand="block">Back</ion-button>
+            <ion-button type="submit" expand="block" [routerLink]="[ '/tabs/home']">Back</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="light-Btn" type="submit" expand="block">Continue</ion-button>
+            <ion-button class="light-Btn" type="submit" expand="block" >Continue</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

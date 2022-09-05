@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
 import { ToastController } from '@ionic/angular';
-
+import {TeamService} from '../services/team.service';
 interface ServiceData {
   TeamName: string;
   ServiceTypeName: string;
@@ -29,6 +29,7 @@ export class CreateServicePage implements OnInit {
   deleteModal: HTMLElement;
   isSubmitted = false;
   data: any;
+  dat:any;
 
   today = new Date();
 
@@ -39,7 +40,17 @@ export class CreateServicePage implements OnInit {
     console.log(this.today);
   }
   constructor(private route: ActivatedRoute, public router: Router, public firestore: AngularFirestore, public authService: AuthService, 
-    public fb: FormBuilder, private service: Service, public toastCtrl: ToastController) {
+    public fb: FormBuilder, private service: Service, public toastCtrl: ToastController, private teamservice: TeamService) {
+
+
+      service = {} as Service;
+      teamservice = {} as TeamService;
+      //this.data = new Fleets();
+
+
+
+
+
     this.route.params.subscribe(params => {
       
     });
@@ -74,7 +85,25 @@ export class CreateServicePage implements OnInit {
   }
 
   ngOnInit() {
-    this.serviceForm.setValue({TeamName: '', ServiceTypeName: ''});
+
+
+    this.teamservice.getServiceType().subscribe(response => {
+      console.log(response);
+      this.dat = response;
+    })
+
+
+
+    this.teamservice.getTeamList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+
+    })
+
+
+
+
+    //this.serviceForm.setValue({TeamName: '', ServiceTypeName: ''});
   }
 
   get errorControl() {

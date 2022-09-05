@@ -3,6 +3,7 @@ import { Vehicle } from '../models/Vehicle';
 import { Observable,of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { retry,catchError, tap, map } from 'rxjs/operators';
+import { Model } from '../models/Model';
 @Injectable({
   providedIn: 'root'
 })
@@ -66,6 +67,18 @@ export class VehicleService {
         catchError(this.handleError)
       )
   }
+
+  getListModelAndYear(): Observable<Model> {
+    return this.httpClient
+      .get<Model>(this.apiUrl + '/api/Vehicle/GetModelANDYear')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+
+
 
   
   // Get single student data by ID

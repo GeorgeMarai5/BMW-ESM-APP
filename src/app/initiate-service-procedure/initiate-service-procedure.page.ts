@@ -10,6 +10,14 @@ import { Dealership } from '../models/Dealership';
 import { Fleet } from '../models/fleet';
 import { Team } from '../models/Team';
 import { VehicleService } from '../services/vehicle.service';
+import {  Fleets } from '../models/Fleet';
+import{FleetService} from '../services/fleet.service';
+import { TeamService } from '../services/team.service';
+import { DealershipService } from '../services/dealership.service';
+
+
+
+
 
 @Component({
   selector: 'app-initiate-service-procedure',
@@ -25,22 +33,44 @@ export class InitiateServiceProcedurePage implements OnInit {
   team: Team;
   initiateServiceForm : FormGroup;
   myService: any;
+  data:any;
+  fle:any;
+  de:any;
 
   constructor(public vehicleService: VehicleService , private zone: NgZone, private toastCtrl: ToastController, private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
-    private firestore: AngularFirestore) { 
-      this.vehicleService = {} as VehicleService;
+    private firestore: AngularFirestore,private fleetservice: FleetService,private teamservice: TeamService,private dealershipservice: DealershipService) { 
+      vehicleService = {} as VehicleService;
+      fleetservice= {} as FleetService;
+      teamservice= {} as TeamService;
+      dealershipservice= {} as DealershipService;
+
+      //this.data = new Team();
+
+
 
       this.initiateServiceForm = new FormGroup({
-        dealership: new FormControl('', Validators.required),
-        fleet: new FormControl('', Validators.required),
-        team: new FormControl('', Validators.required),
-        date: new FormControl('', Validators.required)
+        dealership: new FormControl(''),
+        fleet: new FormControl(''),
+        team: new FormControl(''),
+        date: new FormControl('')
       });
     }
 
   ngOnInit() {
+
+
+
+
+    this.dealershipservice.getList().subscribe(response => {
+      console.log(response);
+      this.de = response;
+    })
     
+//this.getFleet();
+//this.getDealership();
+this.getTeam();
+
   }
 
   InitiateService() {
@@ -53,6 +83,50 @@ export class InitiateServiceProcedurePage implements OnInit {
         console.log(error);
       });
   }
+
+
+async getFleet(){
+  this.fleetservice.getList().subscribe(response => {
+    console.log(response);
+    this.fle = response;
+  })
+
+}
+
+
+
+async getDealership(){
+
+  this.dealershipservice.getList().subscribe(response => {
+    console.log(response);
+    this.de = response;
+  })
+
+
+}
+
+async getTeam(){
+
+  this.teamservice.getTeamList().subscribe(response => {
+    console.log(response);
+    this.data = response;
+  })
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   async presentToast() {
     let toast = await this.toastCtrl.create({

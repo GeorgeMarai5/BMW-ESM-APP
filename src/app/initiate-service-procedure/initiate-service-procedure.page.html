@@ -23,8 +23,8 @@
           <ion-row>
               <ion-col>
                 <ion-item lines="full">
-                  <ion-label position="stacked">Dealership Name</ion-label>
-                  <ion-input formControlName="dealership" readonly></ion-input>
+                  <ion-label position="stacked" >Dealership Name</ion-label>
+                  <ion-input formControlName="dealership"  readonly></ion-input>
                 </ion-item>
               </ion-col>
           </ion-row>
@@ -32,15 +32,15 @@
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked">Fleet Name</ion-label>
-                  <ion-input formControlName="fleet" readonly></ion-input>
+                  <ion-input formControlName="fleet"  readonly></ion-input>
                 </ion-item>
               </ion-col>
           </ion-row>
           <ion-row>
               <ion-col>
                   <ion-item lines="full">
-                    <ion-label position="stacked">Team Name</ion-label>
-                    <ion-input formControlName="team" readonly></ion-input>
+                    <ion-label position="stacked" >Team Name</ion-label>
+                    <ion-input formControlName="team" [(ngModel)]="data.team_Name" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                   </ion-item>
               </ion-col>
           </ion-row>
@@ -48,7 +48,7 @@
               <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked">Service Date</ion-label>
-                    <ion-input formControlName="date" readonly></ion-input>
+                    <ion-input formControlName="date" placeholder="2022/09/03" readonly></ion-input>
                   </ion-item>
               </ion-col>
           </ion-row>
@@ -69,3 +69,17 @@
     </form>
   </div>
 </ion-content>
+
+
+
+
+
+
+
+
+<!--------------[(ngModel)]="de.dealership_Name" [ngModelOptions]="{standalone: true}"-->
+<!------------[(ngModel)]="fle.fleet_Name" [ngModelOptions]="{standalone: true}"
+  [(ngModel)]="data.team_Name" [ngModelOptions]="{standalone: true}"
+  
+  
+  ---->

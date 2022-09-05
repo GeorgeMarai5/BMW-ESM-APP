@@ -10,15 +10,15 @@ import { retry, catchError } from 'rxjs/operators';
 export class TeamService {
 
   apiUrl = 'https://localhost:7292';
-  httpClient: any;
+  
 
-  constructor(private http: HttpClient) { 
+  constructor(private httpClient: HttpClient) { 
 
   }
 
-  httpOptions = {
+  httpOptions ={
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      ContentType: 'application/json'
     })
   }
 
@@ -47,7 +47,7 @@ export class TeamService {
   }
 
   getTeamList(): Observable<Team> {
-    return this.http
+    return this.httpClient
       .get<Team>(this.apiUrl + '/api/Team/GetAllTeams')
       .pipe(
         retry(2),
@@ -55,8 +55,25 @@ export class TeamService {
       )
   }
 
+  getServiceType(): Observable<Team> {
+    return this.httpClient
+      .get<Team>(this.apiUrl + '/api/Team/GetServiceType')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+
+
+
+
+
+
+
+
   updateTeam(item): Observable<Team> {
-    return this.http
+    return this.httpClient
       .put<Team>(this.apiUrl + '/api/Team/UpdateTeam' + '?' + item, this.httpOptions)
       .pipe(
         retry(2),
@@ -65,7 +82,7 @@ export class TeamService {
   }
 
   deleteTeam(id) {
-    return this.http
+    return this.httpClient
       .delete<Team>(this.apiUrl + '/api/Team/DeleteTeam?id=' + id, this.httpOptions)
       .pipe(
         retry(2),

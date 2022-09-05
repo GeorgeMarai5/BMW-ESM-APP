@@ -4,8 +4,13 @@ import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms"
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Console } from 'console';
+import { Dealership } from '../models/Dealership';
 import { AuthService } from '../services/auth.service';
 import { Service } from '../services/service.service';
+import { DealershipService } from '../services/dealership.service';
+
+
+
 
 @Component({
   selector: 'app-assign-dealership',
@@ -16,27 +21,38 @@ export class AssignDealershipPage implements OnInit {
 
   assignDealershipForm: FormGroup;
   isSubmitted = false;
-  data: any;
+  data:Dealership;
+  dat:any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
-    public service: Service, public router: Router, private toastCtrl: ToastController) { 
-        this.route.params.subscribe(params => {
-          this.data = params['id'];
-        });
+    public service: Service, public router: Router, private toastCtrl: ToastController,private dealershipservice: DealershipService) { 
+
+      dealershipservice = {} as DealershipService;
+      this.data = new Dealership();
+
+
+
+
+       // this.route.params.subscribe(params => {
+        //  this.data = params['id'];
+       // });
       this.assignDealershipForm = new FormGroup({
         dealershipName: new FormControl('', Validators.required),
         address: new FormControl('', Validators.required)
       })
   }
 
-  submitForm(){
+  //submitForm(){
+
+
+    /*
     this.isSubmitted = true;
     if(!this.assignDealershipForm.valid){
       return false;
     }
     else{
       const dealership = {
-        DealershipID: '00' /*add id*/,
+        DealershipID: '00' ,
         DealershipName: this.assignDealershipForm.get('dealershipName').value,
         AddressName: this.assignDealershipForm.get('address').value
       }
@@ -49,12 +65,34 @@ export class AssignDealershipPage implements OnInit {
       });
     }
 
-    this.router.navigate(['tabs/search/dealership'], this.data);
+    this.router.navigate(['tabs/search/dealership'], this.dat);
   }
 
+*/
+  //}
+
   ngOnInit() {
-    this.assignDealershipForm.setValue({dealershipName: '', address: ''});
+    //this.assignDealershipForm.setValue({dealershipName: '', address: ''});
+    //this.assignDealership()
   }
+
+
+  async assignDealership(){
+
+  
+    this.dealershipservice.AssignDealership(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+
+
+}
+
+
+
+
+
+
 
   get errorControl() {
     return this.assignDealershipForm.controls;

@@ -7,6 +7,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Fleets } from '../models/fleet';
 
+
 interface FleetData {
   FleetID: number;
   FleetName: string;
@@ -36,23 +37,31 @@ export class ViewFleetPage implements OnInit {
    data: any;
    id: number;
    dat: any;
+   combinedArray: { dat: any, data: any }[] = [];
 
   constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, private vehiclesService: VehicleService,
-    public alertCtrl: AlertController, public router: Router, public vehicleService: VehicleService, public toastCtrl: ToastController,
+    public alertCtrl: AlertController, public router: Router, public vehicleservice: VehicleService, public toastCtrl: ToastController,
     public activatedRoute: ActivatedRoute) { 
 
-    this.VehicleData = {} as FleetVehicles;
-
+    vehicleservice = {} as VehicleService;
+    
   }
 
   ngOnInit() {
 
     //this.id = this.activatedRoute.snapshot.params["fleetID"];
 
+    //this.feedbacks.forEach((fb, index)
+    //=> this.combinedArray.push({ feedback: fb, result: this.results[index] }));
 
+
+
+
+
+    this.getVin();
 
     
-
+    this.getModelAndYear();
 
   }
 
@@ -60,7 +69,36 @@ export class ViewFleetPage implements OnInit {
 
   }
 
-  async select(){
+
+  async getVin(){
+
+    this.vehicleservice.getList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    
+    })
+
+    this.vehicleservice.getListModelAndYear().subscribe(res => {
+      console.log(res);
+      this.dat = res;
+    })
+  
+
+
+    
+  }
+
+  async getModelAndYear(){
+
+    this.vehicleservice.getListModelAndYear().subscribe(response => {
+      console.log(response);
+      this.dat = response;
+    })
+  }
+
+
+
+  async Get(id){
     this.fleetservice.getFleet("1").subscribe(response => {
       console.log(response);
       this.dat = response;
