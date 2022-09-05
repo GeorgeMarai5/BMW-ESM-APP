@@ -35,9 +35,9 @@
             <ion-label>{{items.year}} </ion-label>
           </ion-col>
           <ion-col>
-            <ion-button class="red-Btn" (click)="deleteFleet(item.id)">Remove</ion-button>
+            <ion-button class="red-Btn" (click)="deleteVehicles(item)">Remove</ion-button>
             <ion-button class="light-Btn" [routerLink]="['/tabs/view/vehicle',this.item.id]">View</ion-button>
-            <ion-button class="green-Btn" (click)="checkIn(this.item.id)">Check In</ion-button>
+            <ion-button class="green-Btn" (click)="checkIn()" [routerLink]="['/tabs/view-service-progress]"  >Check In</ion-button>
           </ion-col>
         </ion-row>
         <ion-item-divider></ion-item-divider>

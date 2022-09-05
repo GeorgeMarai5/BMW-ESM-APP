@@ -41,7 +41,7 @@ export class SearchServicePage implements OnInit {
           id: e.payload.doc.id,
           ServiceID: e.payload.doc.data()['ServiceID'],
           VINNumber: e.payload.doc.data()['VINNumber'],
-          ServiceType: e.payload.doc.data()['ServiceType'],
+          ServiceTypeName: e.payload.doc.data()['ServiceTypeName'],
           Date: e.payload.doc.data()['Date']
 
         };

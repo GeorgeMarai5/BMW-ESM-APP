@@ -45,7 +45,7 @@ export class CreateFleetPage implements OnInit {
   
     this.fleetservice.AddFleet(this.data).subscribe(response => {
       console.log(response);
-      //this.router.navigate(['student-list']);
+      //this.router.navigate(['']);
     });
 
 

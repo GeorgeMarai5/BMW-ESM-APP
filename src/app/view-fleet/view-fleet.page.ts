@@ -65,9 +65,24 @@ export class ViewFleetPage implements OnInit {
 
   }
 
-  async deleteFleet(id){
+  async deleteVehicles(item){
 
-  }
+
+
+    
+
+      //Delete item in Student data
+      this.vehicleservice.deleteVehicles(item.vehicleID).subscribe(Response => {
+        //Update list after delete is successful
+        console.log(Response);
+        //this.getallFleets()
+
+      });
+    }
+
+
+
+  
 
 
   async getVin(){
@@ -109,9 +124,20 @@ export class ViewFleetPage implements OnInit {
 
   }
 
-  async checkIn(id){
+  async checkIn(){
 
+
+    let toast = await this.toastCtrl.create({
+      message: 'Fleet has been successfully checked in.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
   }
+
+
+  
 
 
   async presentToast() {

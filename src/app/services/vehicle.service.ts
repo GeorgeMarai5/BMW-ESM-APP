@@ -121,6 +121,16 @@ export class VehicleService {
       );
   }
 
+  deleteVehicles(id): Observable<{}> {
+  
+    return this.httpClient.delete(this.apiUrl + '/api/Vehicle/DeleteVehicle?id=' +  id , this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+
+
 
   getYear(yearCode: string){
     let yearFromCode = '';
