@@ -24,7 +24,7 @@
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked" >Dealership Name</ion-label>
-                  <ion-input formControlName="dealership"  readonly></ion-input>
+                  <ion-input *ngFor="let item of de | slice:0:1; let i=index"> {{item.dealership_Name}}</ion-input>
                 </ion-item>
               </ion-col>
           </ion-row>
@@ -32,7 +32,7 @@
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked">Fleet Name</ion-label>
-                  <ion-input formControlName="fleet"  readonly></ion-input>
+                  <ion-input *ngFor="let item of fle | slice:0:1; let i=index">{{item.fleet_Name}}</ion-input>
                 </ion-item>
               </ion-col>
           </ion-row>
@@ -40,7 +40,7 @@
               <ion-col ng-model="data">
                   <ion-item lines="full">
                     <ion-label position="stacked" >Team Name</ion-label>
-                    <ion-input formControlName="team"  readonly>{{data.team_Name}}</ion-input>
+                    <ion-input  *ngFor="let item of data | slice:0:1; let i=index">{{item.team_Name}}</ion-input>
                   </ion-item>
               </ion-col>
           </ion-row>
@@ -81,5 +81,5 @@
 <!------------[(ngModel)]="fle.fleet_Name" [ngModelOptions]="{standalone: true}"
   [(ngModel)]="data.team_Name" [ngModelOptions]="{standalone: true}"
   
-  
+  formControlName="dealership"
   ---->

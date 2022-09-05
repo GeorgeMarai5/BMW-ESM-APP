@@ -47,7 +47,9 @@ export class InitiateServiceProcedurePage implements OnInit {
 
       //this.data = new Team();
 
+    }
 
+/*
 
       this.initiateServiceForm = new FormGroup({
         dealership: new FormControl(''),
@@ -56,6 +58,10 @@ export class InitiateServiceProcedurePage implements OnInit {
         date: new FormControl('')
       });
     }
+*/
+
+
+
 
   ngOnInit() {
 
@@ -67,7 +73,7 @@ export class InitiateServiceProcedurePage implements OnInit {
       this.de = response;
     })
     
-//this.getFleet();
+this.getFleet();
 //this.getDealership();
 this.getTeam();
 
