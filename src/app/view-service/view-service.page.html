@@ -17,7 +17,7 @@
         <ion-title>
             <h1>Service Details</h1>
         </ion-title>
-        <form [formGroup]="serviceForm" novalidate>
+        <form [formGroup]="viewServiceForm" novalidate>
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -65,7 +65,7 @@
                         <ion-button type="submit" class="main-Btn" expand="block" [routerLink]="['/tabs/search/service']">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" expand="block">Inspection<br/>Details</ion-button>
+                        <ion-button class="light-Btn" (click)="captureInspection()" expand="block">Inspection<br/>Details</ion-button>
                     </ion-col>
                     <ion-col>
                         <ion-button class="light-Btn" expand="block" (click)="generatePdf()">Data<br/>Report</ion-button>

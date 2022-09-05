@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { Service } from '../services/service.service';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { stringify } from 'querystring';
 import { AlertController, ToastController } from '@ionic/angular';
 import jsPDF from 'jspdf';
@@ -32,26 +32,30 @@ interface ServiceVehicles {
 export class ViewServicePage implements OnInit {
   
   serviceList = [];
-  serviceForm: FormGroup;
+  viewServiceForm: FormGroup;
   services: Service;
   searchTerm: string;
   ServiceData: ServiceVehicles;
+  data: any;
 
   constructor(public authService: AuthService, private _service: Service, public router: Router, private fb: FormBuilder,
-    private alertController: AlertController, public toastCtrl: ToastController) {
+    private alertController: AlertController, public toastCtrl: ToastController, public route: ActivatedRoute) {
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+    });
+    this.viewServiceForm = new FormGroup({
+      ServiceID: new FormControl('', [Validators.required]),
+      DealershipName: new FormControl('', [Validators.required]),
+      TeamName: new FormControl('', [Validators.required]),
+      ServiceType: new FormControl('', [Validators.required]),
+      ServiceStatus: new FormControl('', [Validators.required]),
+    })
 
       this.ServiceData = {} as ServiceVehicles;
 
   }
 
   ngOnInit() {
-    this.serviceForm = this.fb.group({
-      ServiceID: ['', [Validators.required]],
-      DealershipName: ['', [Validators.required]],
-      TeamName: ['', [Validators.required]],
-      ServiceType: ['', [Validators.required]],
-      ServiceStatus: ['', [Validators.required]],
-    });
 
     this._service.getServices().subscribe((data) => {
       this.serviceList = data.map((e) => {
@@ -67,6 +71,10 @@ export class ViewServicePage implements OnInit {
       });
       console.log(this.serviceList);
     });
+  }
+
+  async captureInspection(){
+    this.router.navigate(['tabs/capture-initial-inspection-details', this.data]);
   }
 
   async concludeServiceAlert() {

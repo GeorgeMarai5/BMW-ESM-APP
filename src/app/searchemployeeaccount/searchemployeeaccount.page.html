@@ -25,7 +25,7 @@
           <ion-col></ion-col>
         </ion-row>
         <ion-item-divider></ion-item-divider>
-        <ion-row *ngFor="let item of clientList | filter: searchTerm">
+        <ion-row *ngFor="let item of employeeList | filter: searchTerm">
           <ion-col>
               <ion-label>{{item.FirstName.substring(0, 1) + ". " + item.LastName}}</ion-label>
           </ion-col>
@@ -37,7 +37,7 @@
           </ion-col>
           <ion-col>
               <ion-button class="red-Btn" (click)="removeEmployee(this.item.id)">Remove</ion-button>
-              <ion-button class="light-Btn" [routerLink]="['/tabs/view/client', this.item.id]">View</ion-button>
+              <ion-button class="light-Btn" [routerLink]="['/tabs/view/employee', this.item.id]">View</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

@@ -17,7 +17,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export class SearchemployeeaccountPage implements OnInit {
 
-  public clientList: any;
+  employeeList = [];
   searchTerm: string;
   clients: Clients;
   employeeform : FormGroup;

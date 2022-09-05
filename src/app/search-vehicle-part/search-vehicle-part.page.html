@@ -37,7 +37,7 @@
                 <ion-col>
                     <ion-button class="red-Btn" (click)="removePart(this.item.id)">Remove</ion-button>
                     <ion-button class="light-Btn" [routerLink]="['/tabs/edit/assigned-part', this.item.id]">Update</ion-button>
-                    <ion-button style="--border-radius: 20em; float: right;" (click)="removePart(this.item.id)">Assign</ion-button>
+                    <ion-button style="--border-radius: 20em; float: right;" (click)="assignPart(this.item.id)">Assign</ion-button>
                 </ion-col>
             </ion-row>
             <ion-item-divider></ion-item-divider>

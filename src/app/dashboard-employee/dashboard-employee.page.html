@@ -54,7 +54,7 @@
                             <ion-col></ion-col>
                             <ion-col></ion-col>
                             <ion-col>
-                                <ion-button>Add</ion-button>
+                                <ion-button [routerLink]="['/tabs/create/team']">Add</ion-button>
                             </ion-col>
                         </ion-row>
                     </ion-card>
@@ -127,7 +127,7 @@
                             <ion-col></ion-col>
                             <ion-col></ion-col>
                             <ion-col>
-                                <ion-button>View Team</ion-button>
+                                <ion-button (click)="viewTeam(team)">View Team</ion-button>
                             </ion-col>
                         </ion-row>
                     </ion-card>

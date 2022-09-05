@@ -74,6 +74,10 @@ export class SearchVehiclePartPage implements OnInit {
 
   }
 
+  async assignPart(id){
+    
+  }
+
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Assigned Part was successfully removed.',
