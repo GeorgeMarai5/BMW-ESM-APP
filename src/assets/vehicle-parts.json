@@ -1,0 +1,251 @@
+[{
+        "partID": 1,
+        "partName": "Anti-lock braking system (ABS)",
+        "description": "An anti-lock braking system is a safety anti-skid braking system used on vehicles"
+    },
+    {
+        "partID": 2,
+        "partName": "Decklid",
+        "description": "The hinged lid forming the upper surface of an automobile deck."
+    },
+    {
+        "partID": 3,
+        "partName": "Brake backing pad",
+        "description": "Backing plates are metal plates that function as the solid foundation for drum brake."
+    },
+    {
+        "partID": 4,
+        "partName": "Air filter",
+        "description": "An apparatus placed between the air intake and the engine of an automobile that removes impurities from the air before it is mixed with the fuel"
+    },
+    {
+        "partID": 5,
+        "partName": "Engine valve",
+        "description": "Engine valves are mechanical components used in internal combustion engines to allow or restrict the flow of fluid or gas to and from the combustion chambers or cylinders during engine operation."
+    },
+    {
+        "partID": 6,
+        "partName": "Camshaft",
+        "description": "The camshaft is a rotating object— usually made of metal— that contains pointed cams, which converts rotational motion to reciprocal motion."
+    },
+    {
+        "partID": 7,
+        "partName": "Cooling fan",
+        "description": "A device that keeps an engine cool."
+    },
+    {
+        "partID": 8,
+        "partName": "Resonator",
+        "description": "An engine device that displays electrical resonance, especially one used for the detection of radio waves."
+    },
+    {
+        "partID": 9,
+        "partName": "Intake manifold",
+        "description": "Intake manifold is the part of an engine that supplies the fuel/air mixture to the cylinders."
+    },
+    {
+        "partID": 10,
+        "partName": "Sparking cable",
+        "description": "A wire with thick rubber insulation that carries the high voltage current from the ignition coil to the spark plug."
+    },
+    {
+        "partID": 11,
+        "partName": "Shock absorber",
+        "description": "A shock absorber or damper is a mechanical or hydraulic device designed to absorb and damp shock impulses"
+    },
+    {
+        "partID": 12,
+        "partName": "Clutch disk",
+        "description": "The clutch disk or clutch plate is the rotating part of the clutch, to which the friction material is attached."
+    },
+    {
+        "partID": 13,
+        "partName": "Axle",
+        "description": "An axle is a rod or shaft that rotates the wheels and supports the weight of your vehicle."
+    },
+    {
+        "partID": 14,
+        "partName": "Fuel filter",
+        "description": "A fuel filter is a filter in a fuel line that screens out dirt and rust particles from the fuel, and is normally made into cartridges containing a filter paper. "
+    },
+    {
+        "partID": 15,
+        "partName": "Metering valve",
+        "description": "A metering valve is a device found in the braking systems of vehicles with rear drum brakes and front disc brakes."
+    },
+    {
+        "partID": 16,
+        "partName": "Silencer",
+        "description": "Silencer is a device for reducing the noise emitted by the exhaust of an internal combustion engine—especially a noise-deadening device forming part of the exhaust system of an automobile."
+    },
+    {
+        "partID": 17,
+        "partName": "Oil pump",
+        "description": "The oil pump is an internal combustion engine part that circulates engine oil under pressure to the rotating bearings, the sliding pistons and the camshaft of the engine."
+    },
+    {
+        "partID": 18,
+        "partName": "Fan belt",
+        "description": "The fan belt is the belt that drives the fan which keeps the engine cool."
+    },
+    {
+        "partID": 19,
+        "partName": "Engine block",
+        "description": "Engine Blocks are the large casings that contain the Cylinder and its internal components, intake and exhaust passages, coolant passages, crankcases, and other internal components."
+    },
+    {
+        "partID": 20,
+        "partName": "High voltage battery pack",
+        "description": "The high-voltage battery system is a high-voltage, lithium-ion battery system, the pack is located in the rear cargo area."
+    },
+    {
+        "partID": 21,
+        "partName": "Brake Fluid",
+        "description": "Brake fluid is the liquid chemical solution used in the hydraulic braking systems of modern cars."
+    },
+    {
+        "partID": 22,
+        "partName": "Engine control unit",
+        "description": "An engine control unit, also commonly called an engine control module, is a type of electronic control unit that controls a series of actuators on an internal combustion engine to ensure optimal engine performance."
+    },
+    {
+        "partID": 23,
+        "partName": "Battery",
+        "description": "Car battery is a rechargeable battery that is used to start a motor vehicle, its main purpose is to provide an electric current to the electric-powered starting motor, which in turn starts the chemically-powered internal combustion engine that actually propels the vehicle."
+    },
+    {
+        "partID": 24,
+        "partName": "Starter motor",
+        "description": "A starter is a device used to rotate (crank) an internal-combustion engine so as to initiate the engine's operation under its own power."
+    },
+    {
+        "partID": 25,
+        "partName": "Airbag sensors",
+        "description": "Airbag sensors are small pieces of electronics are designed to tell when the vehicle has been damaged in an accident."
+    },
+    {
+        "partID": 26,
+        "partName": "Electronic timing controller",
+        "description": "A system for controlling the ignition timing of an internal combustion engine in response to the characteristics of an engine."
+    },
+    {
+        "partID": 27,
+        "partName": "Caliper",
+        "description": "A caliper is part of the disc brake system, the type most cars have in their front brakes."
+    },
+    {
+        "partID": 28,
+        "partName": "Thermal management system",
+        "description": "Thermal management includes technologies to regulate the temperature within the passenger cabin such as heating, ventilation, and air-conditioning (HVAC) systems, glazing, and others."
+    },
+    {
+        "partID": 29,
+        "partName": "Turbocharger",
+        "description": "In an internal combustion engine, a turbocharger (often called a turbo) is a forced induction device that is powered by the flow of exhaust gasses."
+    },
+    {
+        "partID": 30,
+        "partName": "Supercharger",
+        "description": "In an internal combustion engine, a supercharger compresses the intake gas, forcing more air into the engine in order to produce more power for a given displacement."
+    },
+    {
+        "partID": 31,
+        "partName": "Water pump gasket",
+        "description": "The water pump mounting gasket ensures coolant transfers from the engine to the pump without external leakage."
+    },
+    {
+        "partID": 32,
+        "partName": "Drive belt",
+        "description": "Drive belt is a single, continuous belt used to drive multiple peripheral devices in an automotive engine, such as an alternator, power steering pump, water pump, air conditioning compressor, air pump, etc."
+    },
+    {
+        "partID": 33,
+        "partName": "Oil sump",
+        "description": "The oil sump contains the engine oil required for lubrication."
+    },
+    {
+        "partID": 34,
+        "partName": "Exhaust gas recirculation valve",
+        "description": "Exhaust Gas Recirculation valve, is a vacuum controlled valve which allows a specific amount of your exhaust back into the intake manifold."
+    },
+    {
+        "partID": 35,
+        "partName": "Camber arm",
+        "description": "The camber arms are one of the core components of a suspension system and serve as the direct connection points between the front wheel assemblies and the vehicle's frame."
+    },
+    {
+        "partID": 36,
+        "partName": "Flywheel clutch",
+        "description": "the flywheel in your car is a vital part of the drivetrain that does wonders for the power delivery from the engine, it resembles a large, heavy disc that is connected to the end of the crankshaft and interacts with the clutch disc to engage drive to the wheels."
+    },
+    {
+        "partID": 37,
+        "partName": "Differential",
+        "description": "The differential is a system of gears that allows different drive wheels (the wheels to which power is delivered from the engine) on the same axle to rotate at different speeds, such as when the car is turning."
+    },
+    {
+        "partID": 38,
+        "partName": "Fuel pump gasket",
+        "description": "A fuel pump gasket is a gasket, or a piece of flexible material intended to prevent leakage, that is positioned between a mechanical fuel pump and the mounting surface on the side of the engine. The fuel pump gasket prevents the engine oil from leaking out."
+    },
+    {
+        "partID": 39,
+        "partName": "Heat shield",
+        "description": "Heat shield is a thermal barrier designed to protect objects from overheating."
+    },
+    {
+        "partID": 40,
+        "partName": "Valve cover",
+        "description": "Valve Cover - also called a rocker cover, is a vital component of the engine; it's a plastic or metal component that is bolted to the top of the cylinder head."
+    },
+    {
+        "partID": 41,
+        "partName": "Brake pedal",
+        "description": "The pedal that you push down with your foot to make a vehicle slow down or stop. The interior of vehicles."
+    },
+    {
+        "partID": 42,
+        "partName": "Brake pad",
+        "description": "Brake pads are a component of disc brakes used in automotive and other applications. Brake pads are composed of steel backing plates with friction material bound to the surface that faces the disc brake rotors."
+    },
+    {
+        "partID": 43,
+        "partName": "Engine computer and management system",
+        "description": "The engine management system is the arrangement of the devices for controlling a vehicle's engine. If the car is stolen, the unit will block the vehicle's engine management system and prevent the engine being restarted. The engine management system shuts down four of the eight cylinders when the power isn't needed."
+    },
+    {
+        "partID": 44,
+        "partName": "Oil pressure sensor",
+        "description": "An oil pressure sensor is a device used to measure the oil pressure on an engine. Oil pressure sensor is actually a term that covers at least two different and distinct types of sensor - an oil pressure switch and and oil pressure sender."
+    },
+    {
+        "partID": 45,
+        "partName": "Headlight",
+        "description": "A headlight is a light attached to the front of a vehicle to illuminate the road ahead."
+    },
+    {
+        "partID": 46,
+        "partName": "Catalytic converter",
+        "description": "A catalytic converter is an exhaust emission control device that converts toxic gases and pollutants in exhaust gas from an internal combustion engine into less-toxic pollutants by catalyzing a redox reaction."
+    },
+    {
+        "partID": 47,
+        "partName": "Panhard rod",
+        "description": "A Panhard rod (also called Panhard bar, track bar, or track rod) is a suspension link that provides lateral location of the axle."
+    },
+    {
+        "partID": 48,
+        "partName": "Trailing arm",
+        "description": "A trailing arm is part of the suspension for the axle of a vehicle which moves up and down as the vehicle travels over a bumpy surface."
+    },
+    {
+        "partID": 49,
+        "partName": "Output shaft",
+        "description": "An output shaft connects the drive wheels to the automatic gearbox in your vehicle. The output shaft is the component that carries the power out of the transmission to the wheels"
+    },
+    {
+        "partID": 50,
+        "partName": "Transfer case",
+        "description": "A transfer case is a part of the drivetrain of four-wheel-drive, all-wheel-drive, and other multiple powered axle vehicles."
+    }
+]

@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-search-part',
@@ -19,7 +20,7 @@ export class SearchPartPage implements OnInit {
   searchTerm: string;
 
   constructor(public authService: AuthService, private service: PartInfoService, public fb: FormBuilder, private firestore: AngularFirestore, 
-    public alertCtrl: AlertController, public router: Router) { 
+    public alertCtrl: AlertController, public router: Router, private httpClient: HttpClient) { 
       this.parts = {} as Part;
     }
 
@@ -29,21 +30,8 @@ export class SearchPartPage implements OnInit {
       PartName: ['', [Validators.required]],
       Description: ['', [Validators.required]]
     });
-
-    this.service.getParts().subscribe(data => {
-      this.partList = data.map(e => {
-        let yearCode: string;
-        yearCode = e.payload.doc.data()['VIN_Number'];
-
-        return {
-          id: e.payload.doc.id,
-          PartID: e.payload.doc.data()['PartID'],
-          PartName: e.payload.doc.data()['PartName'],
-          Description: e.payload.doc.data()['Description']
-        };
-      })
-      console.log(this.partList);
-
-    });
+    this.httpClient.get<any>("assets/vehicle-parts.json").subscribe((data)=>
+      this.partList = data
+    )
   }
 }
