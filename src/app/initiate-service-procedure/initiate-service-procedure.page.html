@@ -37,10 +37,10 @@
               </ion-col>
           </ion-row>
           <ion-row>
-              <ion-col>
+              <ion-col ng-model="data">
                   <ion-item lines="full">
                     <ion-label position="stacked" >Team Name</ion-label>
-                    <ion-input formControlName="team" [(ngModel)]="data.team_Name" [ngModelOptions]="{standalone: true}" readonly></ion-input>
+                    <ion-input formControlName="team"  readonly>{{data.team_Name}}</ion-input>
                   </ion-item>
               </ion-col>
           </ion-row>

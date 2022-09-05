@@ -131,7 +131,7 @@ export class ServiceHistoryPage implements OnInit {
   }
 
   async getDocumentDefinition() {
-    sessionStorage.setItem('service', JSON.stringify(this.serviceHistory));​    
+    sessionStorage.setItem('service', JSON.stringify(this.serviceHistory))  
     return {
       content: [
         {
@@ -175,7 +175,7 @@ export class ServiceHistoryPage implements OnInit {
           style: 'VINNumber'
         },
         {
-          text: this.vehicle.VINNumber,
+          text: this.vehicle.viN_Number,
           style: 'Vehicle'
         }
         ]
@@ -189,7 +189,7 @@ export class ServiceHistoryPage implements OnInit {
               style: 'Date'
             },
             {
-              text: this.dealership.DealershipName,
+              text: this.dealership.dealership_Name,
               style: 'Dealership'
             },
             {
