@@ -2,7 +2,7 @@ import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { ModelService } from '../models/VehicleService';
+import { VehicleService } from '../models/VehicleService';
 import { Service } from './service.service';
 
 @Injectable({
@@ -32,14 +32,14 @@ export class HistoryService {
   }
 
 
-  AddFleet(Service: ModelService){
+  AddFleet(Service: VehicleService){
     return this.httpClient.post(this.apiUrl + '/api/Service/Create' , Service, this.httpOptions)
   }
 
 
-  getServiceList(): Observable<ModelService> {
+  getServiceList(): Observable<VehicleService> {
     return this.httpClient
-      .get<ModelService>(this.apiUrl + '/api/Service/GetAllServices')
+      .get<VehicleService>(this.apiUrl + '/api/Service/GetAllServices')
       .pipe(
         retry(2),
         catchError(this.handleError)

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModelService } from '../models/VehicleService';
+import { VehicleService } from '../models/VehicleService';
 import { AuthService } from '../services/auth.service';
 import { Service } from '../services/service.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class SearchServicePage implements OnInit {
   deleteModal: HTMLElement;
-  services: ModelService;
+  services: VehicleService;
   serviceList = [];
   serviceForm: FormGroup;
   searchTerm: string;
@@ -24,7 +24,7 @@ export class SearchServicePage implements OnInit {
 
   constructor(public router: Router, public authService: AuthService, private _service: Service, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public toastCtrl: ToastController) { 
-      this.services = {} as ModelService;
+      this.services = {} as VehicleService;
     }
 
   ngOnInit() {

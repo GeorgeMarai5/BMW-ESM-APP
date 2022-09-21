@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HistoryService } from '../services/History.service';
 import { AlertController } from '@ionic/angular';
-import { ModelService } from '../models/VehicleService';
+import { VehicleService } from '../models/VehicleService';
 import { Dealership } from '../models/Dealership';
 import { Clients } from '../models/Clients';
 import { Team } from '../models/Team';
@@ -35,7 +35,7 @@ export class ServiceHistoryPage implements OnInit {
   searchTerm: string;
   id: any;
   data: any;
-  serviceHistory: ModelService;
+  serviceHistory: VehicleService;
   dealership: Dealership;
   team: Team;
   client: Clients;

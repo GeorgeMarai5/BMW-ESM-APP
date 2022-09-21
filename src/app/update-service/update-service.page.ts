@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ServiceService } from '../services/service.service';
+import { Service } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
@@ -20,7 +20,7 @@ interface ServiceData {
 
 export class UpdateServicePage implements OnInit {
 
-  services: ServiceService;
+  services: Service;
   dealerships = [];
   teams = [];
   serviceTypes = [];
@@ -29,7 +29,7 @@ export class UpdateServicePage implements OnInit {
   isSubmitted = false;
   data: any;
 serviceID: any;
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public _service: ServiceService, 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public _service: Service, 
     public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
@@ -54,7 +54,7 @@ serviceID: any;
         ServiceTypeName: this.serviceForm.get('ServiceTypeName').value
       }
 
-      this._service.updateVehicleService(this.data, service)
+      this._service.updateService(this.data, service)
       this.presentToast();
     }
 
@@ -80,10 +80,10 @@ serviceID: any;
   get errorControl() {
     return this.serviceForm.controls;
   }
-  async updateService(id, item){
-    this._service.updateVehicleService(id, item.serviceID).subscribe(resty => {  console.log(resty); });
+  //async updateService(id, item){
+  //  this._service.updateService(id, item.serviceID).subscribe(resty => {  console.log(resty); });
 
-  }
+  //}
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Service has been updated successfully.',

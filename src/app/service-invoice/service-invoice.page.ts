@@ -11,7 +11,6 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import { Service } from 'app/services/service.service';
 import { Clients } from 'app/models/Clients';
 import { Dealership } from 'app/models/Dealership';
-import { ModelService } from 'app/models/VehicleService';
 import { Team } from 'app/models/Team';
 import { Quotes } from 'app/models/Quote';
 import { Service_Note } from 'app/models/Service_Note';
@@ -30,7 +29,7 @@ export class ServiceInvoicePage implements OnInit {
   searchTerm: string;
   id: any;
   data: any;
-  service: ModelService;
+  service: VehicleService;
   dealership: Dealership;
   team: Team;
   client: Clients;
