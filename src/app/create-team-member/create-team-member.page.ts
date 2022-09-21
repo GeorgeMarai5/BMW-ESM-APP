@@ -18,14 +18,48 @@ export class CreateTeamMemberPage implements OnInit {
   roles: [];
   createTeamMemberForm: FormGroup;
   isSubmitted = false;
-  data: Employee;
+  teamMember: Employee;
+  data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public teamMemberservice: TeamMemberService, public router: Router, public toastCtrl: ToastController) { 
-      teamMemberservice = {} as TeamMemberService;
-      this.data = new Employee();
+  constructor(private route: ActivatedRoute, 
+    public fb: FormBuilder, 
+    public authService: AuthService, 
+    public teamMemberservice: TeamMemberService, 
+    public router: Router, 
+    public toastCtrl: ToastController) { 
+      
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+      });
+      this.createTeamMemberForm = new FormGroup({
+        Name: new FormControl('', Validators.required),
+        Surname: new FormControl('', Validators.required),
+        PhoneNumber: new FormControl('', Validators.required),
+        Email: new FormControl('', Validators.required),
+        Role: new FormControl('', Validators.required)
+      });
+
+  }
+
+  submitForm(){
+    this.isSubmitted = true;
+    if(!this.createTeamMemberForm.valid){
+      return false;
     }
-    
+    else{
+        const Employee = {
+          Name: this.createTeamMemberForm.get('Name').value,
+          Surname: this.createTeamMemberForm.get('Surname').value,
+          PhoneNumber: this.createTeamMemberForm.get('PhoneNumber').value,
+          Email: this.createTeamMemberForm.get('Email').value,
+          Role: this.createTeamMemberForm.get('Role').value
+        }
+        //this.teamMemberservice.updateTeaMember(this.teamMember, Employee)
+        this.presentToast()
+      }
+      this.router.navigate(['/tabs/search/team-member', this.teamMember]);
+  }  
+
   ngOnInit() {
     if(this.authService.isLoggedIn){
       return true;
@@ -33,13 +67,6 @@ export class CreateTeamMemberPage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-  }
-
-  submitForm(){
-    this.teamMemberservice.createTeamMember(this.data).subscribe((response) => {
-      console.log(response);
-      //this.router.navigate(['teamMember-list']);
-    });
   }
 
   get errorControl() {
@@ -54,4 +81,5 @@ export class CreateTeamMemberPage implements OnInit {
     });
     toast.present();
   }
+
 }

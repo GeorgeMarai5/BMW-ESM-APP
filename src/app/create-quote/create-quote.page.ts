@@ -1,7 +1,7 @@
 import { Component, OnInit ,NgZone} from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
 import { Quotes } from '../models/Quote';
 import { ToastController } from '@ionic/angular';
@@ -29,12 +29,43 @@ export class CreateQuotePage implements OnInit {
   isSubmitted = false;
   data:Quotes;
 
-  constructor(public authService: AuthService, public fb: FormBuilder, public router: Router, private quoteservice: QuoteService,
-    private zone: NgZone, public toastCtrl: ToastController) { 
+  constructor(public route : ActivatedRoute,
+    public authService: AuthService, 
+    public fb: FormBuilder, 
+    public router: Router, 
+    private quoteservice: QuoteService,
+    private zone: NgZone, 
+    public toastCtrl: ToastController) { 
+   
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+      });
+      this.createQuoteForm = this.fb.group({
+        ClientName: ['', [Validators.required]],
+        Date: ['', [Validators.required]],
+        Description: ['', [Validators.required]],
+        Accepted: ['', [Validators.required]],
+      });
 
-      this.QuoteData = {} as QuoteData;
-      this.data = new Quotes();
     }
+
+  submitForm(){
+    this.isSubmitted = true;
+    if(!this.createQuoteForm.valid){
+      return false;
+    }
+    else{
+        const dealership = {
+          ClientName: this.createQuoteForm.get('ClientName').value,
+          Date: this.createQuoteForm.get('Date').value,
+          Description: this.createQuoteForm.get('Description').value,
+          Accepted: this.createQuoteForm.get('Accepted').value
+        }
+        //this.quoteservice.updateQuote(this.data, QuoteData)
+        this.presentToast()
+      }
+      this.router.navigate(['/tabs/view/dealership', this.data]);
+  }
 
   ngOnInit() {
     if(this.authService.isLoggedIn){
@@ -43,40 +74,8 @@ export class CreateQuotePage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-    
 
-    this.createQuoteForm = this.fb.group({
-      ClientName: ['', [Validators.required]],
-      Date: ['', [Validators.required]],
-      Description: ['', [Validators.required]],
-      Accepted: ['', [Validators.required]],
-    });
   }
-
-  submit(){
-    console.log(this.createQuoteForm.value);
-    this.quoteservice.create_Quote(this.createQuoteForm.value).then(resp => {
-      this.createQuoteForm.reset();
-      this.presentToast();
-    }).catch(error => {
-        console.log(error);
-      });
-
-      this.router.navigate(['/search/quote']);
-  }
-
-
-
-  create(){
-
-  
-    this.quoteservice.AddQuote(this.data).subscribe(response => {
-      console.log(response);
-      //this.router.navigate(['student-list']);
-    });
-  }
-
-
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
@@ -84,7 +83,6 @@ export class CreateQuotePage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 

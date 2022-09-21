@@ -5,16 +5,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { ToastController } from '@ionic/angular';
 import { Fleets } from '../models/Fleet';
-import { Router } from '@angular/router';
-
-
-
-
-//interface FleetData {
-//  FleetName: string;
- // FleetLocation: string;
-  
-//}
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-fleet',
@@ -25,96 +16,55 @@ import { Router } from '@angular/router';
 
 export class CreateFleetPage implements OnInit {
 
-  //studentList = [];
-  
   addFleetForm: FormGroup;
   isSubmitted = false;
-  //data: any;
-  data: Fleets;
-  constructor (public router: Router, public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, public toastCtrl: ToastController) {
+  data: any;
+  fleet: Fleets;
 
-    fleetservice = {} as FleetService;
-    this.data = new Fleets();
-  }
+  constructor (private route: ActivatedRoute, 
+    public router: Router, 
+    public authService: AuthService, 
+    public fb: FormBuilder, 
+    private fleetservice: FleetService, 
+    public toastCtrl: ToastController) {
 
-  ngOnInit() {
-  }
-
-  create(){
-
-  
-    this.fleetservice.AddFleet(this.data).subscribe(response => {
-      console.log(response);
-      //this.router.navigate(['']);
+    this.route.params.subscribe(params => {
+      this.data = params.id;
     });
+    this.addFleetForm = new FormGroup({
+      FleetName: new FormControl('', Validators.required),
+      FleetLocation: new FormControl('', Validators.required)
+    }); 
 
-
-}
-
-get errorControl() {
-  return this.addFleetForm.controls;
-}
-
-
-
-async presentToast() {
-  let toast = await this.toastCtrl.create({
-    message: 'The fleet has been created successfully',
-    duration: 3000,
-    position: 'top'
-  });
-
-  toast.present();
-}
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
- this.addFleetForm = this.fb.group({
-      FleetName: ['', [Validators.required]],
-      FleetLocation: ['', [Validators.required]],
-    });
   }
 
-  submit() {
+  submitForm(){
     this.isSubmitted = true;
     if(!this.addFleetForm.valid){
       return false;
     }
     else{
-      console.log(this.addFleetForm.value);
-      this.fleetservice.create_Fleet(this.addFleetForm.value).then(resp => {
-        this.addFleetForm.reset();
-        this.presentToast();
-      }).catch(error => {
-      
-        console.log(error);
-        });
+        const fleet = {
+          FleetName: this.addFleetForm.get('FleetName').value,
+          FleetLocation: this.addFleetForm.get('FleetLocation').value
+        }
+        //this.fleetservice.updateItem(this.data, fleet)
+        this.presentToast()
+      }
+      this.router.navigate(['/tabs/search/vehicle', this.data]);
+  }
+
+  ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
     }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+  }
+
+  get errorControl() {
+    return this.addFleetForm.controls;
   }
 
   async presentToast() {
@@ -123,24 +73,7 @@ async presentToast() {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 
-  get errorControl() {
-    return this.addFleetForm.controls;
-  }
 }
-
-
-
-
-
-*/
-
-
-
-
-
-
-

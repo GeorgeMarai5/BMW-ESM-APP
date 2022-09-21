@@ -1,46 +1,48 @@
-// import { Observable, throwError } from 'rxjs';
-// import { Injectable } from '@angular/core';
-// import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
-// //import { Service_Item } from '../models/Service_Item';
-// import { retry, catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import { ServiceItem } from '../models/ServiceItem';
+import { retry, catchError } from 'rxjs/operators';
 
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class ServiceItemService {
+@Injectable({
+  providedIn: 'root',
+})
 
-//   apiUrl = 'https://localhost:7292/api/ServiceItem';
+export class ServiceItemService {
 
-//   constructor(private httpClient: HttpClient) {}
+ apiUrl = 'https://localhost:7292/api/ServiceItem';
 
-//   httpOptions = {
-//    headers: new HttpHeaders({
-//     'Content-Type': 'application/json'
-//     })
-//     }
-    
-//   createServiceItem(item): Observable<Service_Item> {
-//     return this.httpClient
-//       .post<Service_Item>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
-//   }
+  constructor(private httpClient: HttpClient) {}
 
-// getServiceItem(id): Observable<Service_Item> {
-//   return this.httpClient
-//     .get<Service_Item>(this.apiUrl + '/' + id)
-// }
+  httpOptions = {
+  headers: new HttpHeaders({
+   'Content-Type': 'application/json'
+   })
+    }
+   
+createServiceItem(item): Observable<ServiceItem> {
+    return this.httpClient
+      .post<ServiceItem>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
+  }
 
-// getServiceItemList(): Observable<Service_Item> {
-//   return this.httpClient
-//     .get<Service_Item>(this.apiUrl)
-// }
+getServiceItem(id): Observable<ServiceItem> {
+  return this.httpClient
+    .get<ServiceItem>(this.apiUrl + '/' + id)
+}
 
-// updateServiceItem(id, item): Observable<Service_Item> {
-//   return this.httpClient
-//     .put<Service_Item>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
-// }
+getServiceItemList(): Observable<ServiceItem> {
+  return this.httpClient
+    .get<ServiceItem>(this.apiUrl)
+}
 
-// deleteServiceItem(id) {
-//   return this.httpClient
-//     .delete<Service_Item>(this.apiUrl + '/' + id, this.httpOptions)
-// }
-// }
+updateServiceItem(id, item): Observable<ServiceItem> {
+  return this.httpClient
+    .put<ServiceItem>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
+}
+
+deleteServiceItem(id) {
+      return this.httpClient
+   .delete<ServiceItem>(this.apiUrl + '/' + id, this.httpOptions)
+}
+
+}

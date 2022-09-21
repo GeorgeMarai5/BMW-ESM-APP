@@ -7,11 +7,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
 import { ToastController } from '@ionic/angular';
 import {TeamService} from '../services/team.service';
-interface ServiceData {
-  TeamName: string;
-  ServiceTypeName: string;
-  
-}
 
 @Component({
   selector: 'app-create-service',
@@ -29,32 +24,26 @@ export class CreateServicePage implements OnInit {
   deleteModal: HTMLElement;
   isSubmitted = false;
   data: any;
-  dat:any;
-
   today = new Date();
 
   pipe = new DatePipe('en-US');
   changeFormat(today){
     let ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
-  
     console.log(this.today);
   }
-  constructor(private route: ActivatedRoute, public router: Router, public firestore: AngularFirestore, public authService: AuthService, 
-    public fb: FormBuilder, private service: Service, public toastCtrl: ToastController, private teamservice: TeamService) {
 
-
-      service = {} as Service;
-      teamservice = {} as TeamService;
-      //this.data = new Fleets();
-
-
-
-
+  constructor(private route: ActivatedRoute, 
+    public router: Router, 
+    public firestore: AngularFirestore, 
+    public authService: AuthService, 
+    public fb: FormBuilder, 
+    private service: Service, 
+    public toastCtrl: ToastController, 
+    private teamservice: TeamService) {
 
     this.route.params.subscribe(params => {
-      
-    });
-
+      this.data = params.id;
+    }); 
     this.serviceForm = new FormGroup({
       TeamName: new FormControl('', [Validators.required]),
       ServiceTypeName: new FormControl('', Validators.required)
@@ -72,16 +61,10 @@ export class CreateServicePage implements OnInit {
         TeamName: this.serviceForm.get('TeamName').value,
         ServiceTypeName: this.serviceForm.get('ServiceTypeName').value
       }
-      
-      console.log(service)
-      this.firestore.collection('Service').add(service).then(function(docRef){
-        this.presentToast();
-        const serviceID = {
-          serviceID: docRef.id
-        } 
-      });
-      this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
+      //this.services.updateService(this.data, service)
+      this.presentToast();
     }
+    this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
   }
 
   ngOnInit() {
@@ -94,7 +77,7 @@ export class CreateServicePage implements OnInit {
 
     this.teamservice.getServiceType().subscribe(response => {
       console.log(response);
-      this.dat = response;
+      this.data = response;
     })
 
 
@@ -105,10 +88,8 @@ export class CreateServicePage implements OnInit {
 
     })
 
-
-
-
     //this.serviceForm.setValue({TeamName: '', ServiceTypeName: ''});
+
   }
 
   get errorControl() {

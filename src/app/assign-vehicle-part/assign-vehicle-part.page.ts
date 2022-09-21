@@ -21,8 +21,13 @@ export class AssignVehiclePartPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public service: PartInfoService, public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
+  constructor(private route: ActivatedRoute,
+    public fb: FormBuilder, 
+    public authService: AuthService, 
+    public service: PartInfoService, 
+    public router: Router, 
+    public toastCtrl: ToastController) {
+
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -32,6 +37,7 @@ export class AssignVehiclePartPage implements OnInit {
         Description: new FormControl('', Validators.required),
         partStock: new FormControl('', Validators.required)
       });
+
   }
 
   submitForm(){
@@ -40,22 +46,22 @@ export class AssignVehiclePartPage implements OnInit {
       return false;
     }
     else{
-        const dealership = {
+        const vehicleParts = {
           partName: this.assignPartForm.get('partName').value,
           partType: this.assignPartForm.get('partType').value,
           Description: this.assignPartForm.get('description').value
         }
-        //this.service.updatePart(this.data, dealership)
+        //this.service.updatePart(this.data, vehicleParts)
         this.presentToast()
       }
-      this.router.navigate(['/tabs/view/dealership', this.data]);
+      this.router.navigate(['/tabs/search/vehicle-part', this.data]);
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
+    if(this.authService.isLoggedIn) {
       return true;
     }
-    else{
+    else {
       this.router.navigate(['/tabs/login']);
     }
   }
@@ -70,7 +76,7 @@ export class AssignVehiclePartPage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
+
 }
