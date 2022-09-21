@@ -5,8 +5,10 @@ import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
-import jsPDF from 'jspdf';
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-view-vehicle',
@@ -16,13 +18,20 @@ import jsPDF from 'jspdf';
 export class ViewVehiclePage implements OnInit {
 
   vehicles: Vehicle;
-  vehicle = [];
+  vehicle = {
+    VINNum: 'AHJS27HA39',
+    Registration: '42641 GP',
+    warrantyPlan: 'Standard'
+  };
   viewVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;
   maintenanceplanID: any;
-  models = [];
-  plans = [];
+  models = ['I8'];
+  plans = ['Standard'];
+  pdfObj = null;
+  base64Img = null;
+  logoData = null;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService) {
@@ -38,7 +47,7 @@ export class ViewVehiclePage implements OnInit {
      }
 
   ngOnInit() {
-    // this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
+    /* this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
     //   console.log(res)
     //   this.viewVehicleForm.setValue({
     //     vehicleModel: res['VehicleModel'], 
@@ -47,62 +56,126 @@ export class ViewVehiclePage implements OnInit {
     //     warrantyPlan: res['Warranty']
     //   })
     // });
+    */
   }
 
   submitForm(){
-    // this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
-    //   this.maintenanceplanID = res['MaintenanceID'];
-    // });
-
-    // console.log(this.maintenanceplanID)
-
-    // if(this.maintenanceplanID != null || this.maintenanceplanID != undefined){
-    //   this.router.navigate(['/tabs/view/maintenanceplan', '7jk7GWQB5eC6SdZuzU6P']);
-    // }
-    // else{
-    //   this.router.navigate(['/tabs/search/maintenanceplan']);
-    // }
+    /* 
+    this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
+      this.maintenanceplanID = res['MaintenanceID'];
+    });
+    console.log(this.maintenanceplanID)
+    if (this.maintenanceplanID != null || this.maintenanceplanID != undefined) {
+      this.router.navigate(['/tabs/view/maintenanceplan', '7jk7GWQB5eC6SdZuzU6P']);
+    }
+      else {
+        this.router.navigate(['/tabs/search/maintenanceplan']);
+    }
+    */
   }
 
   navToUpdate() {
     this.router.navigate(['tabs/edit/vehicle', this.data]);
   }
 
-  getReport() {
-    var pdf = new jsPDF('p', 'pt', 'a4');
-      var y = 20;
-      pdf.setLineWidth(2);
-      pdf.text('Vehicle Performance Report', 200, y = y + 30);
-      pdf.setFontSize(12);
-      pdf.setTextColor(99);
+  getBase64ImageFromURL(url) {
+    return new Promise((resolve, reject) => {
+      var img = new Image();
+      img.setAttribute("crossOrigin", "anonymous");
+  
+      img.onload = () => {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+  
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+  
+        var dataURL = canvas.toDataURL("image/png");
+  
+        resolve(dataURL);
+      };
+  
+      img.onerror = error => {
+        reject(error);
+      };
+  
+      img.src = url;
+    });
+  }
 
-      (pdf as any).autoTable({
-        head: [ ['Vin Number'], [], ['Model Name', 'Registration' ,'Year']],
-        body: this.vehicle.map(({ModelName, Registration, Year}) => [ ModelName, Registration, Year]),
-        theme: 'grid',
-        columnStyles: {
-          0: {
-            halign: 'right',
-            tableWidth: 100,
+  async getReport() {
+    let docDefinition = {  
+      header: {
+        margin: 10,
+        columns: [
+            {
+                margin: [10, 0, 10, 0],
+                text: 'Vehicle Performance Report',  
+                fontSize: 20,  
+                float: 'right',  
+                color: '#000000' 
+            }
+        ]
+      },
+      content: [
+        {
+          columns: [  
+            [  
+                {  
+                    text: 'VIN Number',  
+                    fontSize: 16, 
+                    bold: true
+                },  
+                { text: this.vehicle.VINNum }
+            ]
+          ], 
+        },
+        {  
+          text: 'Metric',  
+          style: 'sectionHeader'  
+        },
+        {
+          table: {
+            headerRows: 1,
+            width: ['*', 'auto', 'auto', 'auto'],
+            body: [
+              ['Age', 'Number Of Services', 'Number Of Parts Replaced'],
+              [{text: '5'}, {text: '0'}, {text: '0'},]
+            ]
           },
-          1: {
-            tableWidth: 100,  
-          },
-          2: {
-            halign: 'right',
-            tableWidth: 100,
-          },
-          3: {
-            halign: 'right',  
-            tableWidth: 100,
-          }
+          layout: 'noBorders',
+          style: 'superMargin'
+        },
+      ],
+      styles: {  
+        sectionHeader: {  
+            bold: true,  
+            decoration: 'underline',  
+            fontSize: 14,  
+            margin: [0, 15, 0, 15]  
+        },
+        superMargin: {
+          margin: [20, 0, 40, 0],
+        }   
+      }
+    };  
+    var createPdf = pdfMake.createPdf(docDefinition);
+    var base64data = null;
+
+    createPdf.getBase64(function(encodedString) {
+        base64data = encodedString;
+        console.log(base64data);
+
+
+        var byteCharacters = atob(base64data);
+        var byteNumbers = new Array(byteCharacters.length);
+        for (var i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
         }
-      });
-
-      // Open PDF document in browser's new tab
-      pdf.output('dataurlnewwindow');
-
-      // Download PDF doc  
-      pdf.save('Service_History_Report.pdf');
-  } 
-}
+        var byteArray = new Uint8Array(byteNumbers);
+        var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+  });
+}}

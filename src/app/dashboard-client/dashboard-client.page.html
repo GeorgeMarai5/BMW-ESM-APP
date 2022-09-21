@@ -17,22 +17,22 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <ion-title><h1>{{ 'Welcome ' + fleet }}</h1></ion-title>
+                    <ion-title><h1>{{ 'Welcome ' + client.name }}</h1></ion-title>
                 </ion-col>
                 <ion-col>
                     <ion-card style="margin-top: 3vh;">
                         <ion-row>
                             <ion-col>
-                                <ion-icon name="construct"></ion-icon><ion-text></ion-text>
+                                <ion-icon name="construct"></ion-icon><ion-text>1</ion-text>
                             </ion-col>
                             <ion-col>
-                            <ion-text>#</ion-text>
+                            <ion-text>#5</ion-text>
                             </ion-col>
                             <ion-col>
-                                <ion-text>km </ion-text>
+                                <ion-text>500 000km </ion-text>
                             </ion-col>
                             <ion-col>
-                                <ion-text>Status: <span class="status"></span></ion-text>
+                                <ion-text>Status: <span class="status">Active</span></ion-text>
                             </ion-col>
                         </ion-row>
                     </ion-card>
@@ -76,7 +76,7 @@
                             <ion-col>
                                 <ion-item>
                                     <ion-label>Number of Vehicles:</ion-label>
-                                    <ion-text>{{ service }}</ion-text>
+                                    <ion-text>{{ service.count }}</ion-text>
                                 </ion-item>
                             </ion-col>
                         </ion-row>
@@ -84,7 +84,7 @@
                             <ion-col>
                                 <ion-item>
                                     <ion-label>Service Type:</ion-label>
-                                    <ion-text>{{ service }}</ion-text>
+                                    <ion-text>{{ service.type }}</ion-text>
                                 </ion-item>
                             </ion-col>
                         </ion-row>
@@ -92,7 +92,7 @@
                             <ion-col>
                                 <ion-item>
                                     <ion-label>Service Date:</ion-label>
-                                    <ion-text>{{ service }}</ion-text>
+                                    <ion-text>{{ service.date }}</ion-text>
                                 </ion-item>
                             </ion-col>
                         </ion-row>
@@ -100,7 +100,7 @@
                             <ion-col>
                                 <ion-item>
                                     <ion-label>Service Price:</ion-label>
-                                    <ion-text>{{ service }}</ion-text>
+                                    <ion-text>{{ service.price }}</ion-text>
                                 </ion-item>
                             </ion-col>
                         </ion-row>
@@ -115,7 +115,7 @@
                             <ion-col>
                                 <ion-item>
                                     <ion-label position="stacked">Client Name</ion-label>
-                                    <ion-text>{{ fleet }}</ion-text>
+                                    <ion-text>{{ client.name }}</ion-text>
                                 </ion-item>
                             </ion-col>
                         </ion-row>
@@ -123,7 +123,7 @@
                             <ion-col>
                                 <ion-item>
                                     <ion-label position="stacked">Fleet Name</ion-label>
-                                    <ion-text>{{ service }}</ion-text>
+                                    <ion-text>{{ fleet.name }}</ion-text>
                                 </ion-item>
                             </ion-col>
                         </ion-row>
@@ -131,7 +131,7 @@
                             <ion-col>
                                 <ion-item>
                                     <ion-label position="stacked">Fleet Location</ion-label>
-                                    <ion-text>{{ service }}</ion-text>
+                                    <ion-text>{{ fleet.location }}</ion-text>
                                 </ion-item>
                             </ion-col>
                         </ion-row>
@@ -139,7 +139,7 @@
                             <ion-col></ion-col>
                             <ion-col></ion-col>
                             <ion-col>
-                                <ion-button [routerLink]="['/tabs/create/fleet']">Add</ion-button>
+                                <ion-button disabled="true" [routerLink]="['/tabs/create/fleet']">Add</ion-button>
                             </ion-col>
                         </ion-row>
                     </ion-card>

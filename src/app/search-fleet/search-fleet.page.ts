@@ -47,6 +47,18 @@ export class SearchFleetPage implements OnInit {
 
     }
 
+gotoview(id){
+
+
+  //this.router.navigate(['/tabs/view/fleet', this.data]);
+
+
+
+}
+
+
+
+
 
     async getallFleets(){
 

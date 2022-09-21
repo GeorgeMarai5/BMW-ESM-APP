@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-toolbar>
+        <a href="/tabs/home">
+            <ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        </a>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="contents">
+        <ion-card style="border: black solid 0.2em; border-radius: 1em; padding-bottom: 5em;">
+            <ion-item-divider>
+                <h2 style="font-weight: bold;">Service Invoice</h2>
+            </ion-item-divider>
+            <ion-grid>
+                <ion-row style="margin-top: -0.4em;">
+                    <ion-item-divider>
+                        <ion-col>
+                            <h3>Product</h3>
+                        </ion-col>
+                        <ion-col>
+                            <h3>Qty</h3>
+                        </ion-col>
+                        <ion-col>
+                            <h3>Amount</h3>
+                        </ion-col>
+                    </ion-item-divider>
+                </ion-row>
+                <ion-row *ngFor="let item of serviceList">
+                    <ion-col>
+                        {{ item }}
+                        <ion-icon name="information-circle-outline" [routerLink]=""></ion-icon>
+                    </ion-col>
+                    <ion-col>
+                        <ion-label>x</ion-label>{{ item }}
+                    </ion-col>
+                    <ion-col>
+                        {{ item }}
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col>
+                        <ion-button fill="solid" color="primary" [routerLink]="['/tabs/dashboard/client']">Back To Dashboard</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button fill="solid" class="light-Btn" (click)="getReport()">Generate PDF</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card>
+    </div>
+</ion-content>

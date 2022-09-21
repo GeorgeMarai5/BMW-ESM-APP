@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
             this.router.navigate(['/tabs/dashboard/client']); 
           }
           else if(accountType.value == "Employee"){
-            this.router.navigate(['/tabs/dashboard-employee']); 
+            this.router.navigate(['/tabs/dashboard/employee']); 
           }       
         } 
         else {

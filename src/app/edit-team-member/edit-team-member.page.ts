@@ -32,6 +32,12 @@ export class EditTeamMemberPage implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     this.teamMemberservice.getTeamMember(this.teamMember).subscribe(response => {
       console.log(response);
       this.data = response;

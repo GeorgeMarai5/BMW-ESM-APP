@@ -24,7 +24,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>VIN Number</b></ion-label>
-                            <ion-input formControlName="VINNum" type="text" required readonly></ion-input>
+                            <ion-input formControlName="VINNum" type="text" required readonly>{{vehicle.VINNum}}</ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -33,7 +33,7 @@
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Vehicle Model</b></ion-label>
                             <ion-select formControlName="vehicleModel" type="text" required>
-                                <ion-select-option *ngFor="let item of models">{{ item }}</ion-select-option>
+                                <ion-select-option *ngFor="let item of models">{{ models[0] }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
@@ -42,7 +42,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Registration</b></ion-label>
-                            <ion-input formControlName="Registration" type="text" required readonly></ion-input>
+                            <ion-input formControlName="Registration" type="text" required readonly>{{vehicle.Registration}}</ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -51,7 +51,7 @@
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Warranty Plan</b></ion-label>
                             <ion-select formControlName="warrantyPlan" type="text" required>
-                                <ion-select-option *ngFor="let item of plans">{{ item }}</ion-select-option>
+                                <ion-select-option *ngFor="let item of plans">{{ plans[0] }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>

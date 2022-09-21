@@ -58,12 +58,7 @@ export class EditFleetPage implements OnInit {
       this.dat = response;
 
     })
-    //this.id = this.activatedRoute.snapshot.params["id"];
-    //get item details using id
-    //this.fleetservice.getItem(this.fleet).subscribe(response => {
-      //console.log(response);
-      //this.data = response;
-    //})
+    
   }
 
   

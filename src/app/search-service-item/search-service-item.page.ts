@@ -17,13 +17,21 @@ export class SearchServiceItemPage implements OnInit {
   serviceItemList = [];
   serviceItemForm: FormGroup;
   searchTerm: string;
-id: any;
+  id: any;
+  data: any;
+
   constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
       this.vehicles = {} as Vehicle;
     }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     this.serviceItemForm = this.fb.group({
       FleetName: ['', [Validators.required]],
       FleetLocation: ['', [Validators.required]],
@@ -31,6 +39,12 @@ id: any;
       FleetVehicleQty: ['', [Validators.required]],
     });
 
+
+
+this.getall();
+
+
+/*
     this.service.getItem(this.id).subscribe(data => {
       this.serviceItemList = data.map(e => {
         let yearCode: string;
@@ -47,7 +61,23 @@ id: any;
       console.log(this.serviceItemList);
 
     });
+
+    */
   }
+
+
+  async getall(){
+
+    this.service.getList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+
+
+  }
+
+
+
 
   async removeItem(id){
     const confirmDeleteAlert = await this.alertCtrl.create({

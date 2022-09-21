@@ -5,16 +5,19 @@ import { Service } from '../services/service.service';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { stringify } from 'querystring';
 import { AlertController, ToastController } from '@ionic/angular';
-import jsPDF from 'jspdf';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-// interface ServiceData {
-//   ServiceID: number;
-//   DealershipName: string;
-//   TeamName: string;
-//   ServiceType: string;
-//   ServiceStatus: string;
-
-// }
+/*
+interface ServiceData {
+    ServiceID: number;
+    DealershipName: string;
+    TeamName: string;
+    ServiceType: string;
+    ServiceStatus: string;
+}
+*/
 
 interface ServiceVehicles {
   VehicleID: number;
@@ -37,6 +40,11 @@ export class ViewServicePage implements OnInit {
   searchTerm: string;
   ServiceData: ServiceVehicles;
   data: any;
+  vehicle = {
+    VINNum: 'AHJS27HA39',
+    Registration: '42641 GP',
+    warrantyPlan: 'Standard'
+  };
 
   constructor(public authService: AuthService, private _service: Service, public router: Router, private fb: FormBuilder,
     private alertController: AlertController, public toastCtrl: ToastController, public route: ActivatedRoute) {
@@ -72,7 +80,7 @@ export class ViewServicePage implements OnInit {
       console.log(this.serviceList);
     });
   }
-
+  
   async captureInspection(){
     this.router.navigate(['tabs/capture-initial-inspection-details', this.data]);
   }
@@ -87,35 +95,6 @@ export class ViewServicePage implements OnInit {
     await alert.present();
   }
 
-  generatePdf() {
-      var pdf = new jsPDF('p', 'pt', 'a4');
-      var y = 20;
-      pdf.setLineWidth(2);
-      pdf.text('End Of Service Report', 200, y = y + 30);
-      pdf.setFontSize(12);
-      pdf.setTextColor(99);
-
-
-      (pdf as any).autoTable({
-        theme: 'grid',
-        head: [['VIN Number', 'Service ID', 'Service Type', 'Date']],
-        body: this.serviceList.map(({VIN_Number, ServiceID, ServiceType, Date}) => [VIN_Number, ServiceID, ServiceType, Date]),
-        columnStyles: {
-          0: {
-            halign: 'right',
-            tableWidth: 10,
-          },
-          1: {
-            tableWidth: 10,  
-          },
-          },
-    });
-
-      pdf.output('dataurlnewwindow');
-      pdf.save('Service_History_Report.pdf');
-      
-  }
-
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Service has been concluded successfully.',
@@ -125,4 +104,73 @@ export class ViewServicePage implements OnInit {
   
     toast.present();
   }
+
+  getReport() {
+    let docDefinition = {  
+      header: {
+        margin: 10,
+        columns: [
+          {
+            image: '',
+            width: 12,
+          },
+            {
+                margin: [10, 0, 0, 0],
+                text: 'Service Data Report',  
+                fontSize: 20,  
+                float: 'right',  
+                color: '#000000' 
+            }
+        ]
+      },
+      content: [
+        {
+          columns: [  
+            [  
+                {  
+                    text: 'Team Name',  
+                    fontSize: 16, 
+                    bold: true
+                },  
+                { text: 'BMMAS01' }
+            ],
+            [  
+              {  
+                  text: 'Service ID',  
+                  fontSize: 16, 
+                  bold: true
+              },  
+              { text: '1920AHJSK9229DTW' }
+          ]
+          ], 
+        },
+        {
+          table: {
+            headerRows: 1,
+            width: ['*', 'auto', 'auto', 'auto'],
+            body: [
+              ['Service Items', '', ''],
+              [{text: 'Oil Change' + '\t\t\t R2 000' + '\n' + 'Quantity: 1'}, {text: 'Brake Disk Replacement' + '\t\t\t R4 000' + '\n' + 'Quantity: 4'},
+            {text: 'Grand Total' + '\t\t\t R6 480' + '\n' + '+VAT (8%)'}]
+            ]
+          },
+          style: 'superMargin'
+        },
+      ],
+      styles: {  
+        sectionHeader: {  
+            bold: true,  
+            decoration: 'underline',  
+            fontSize: 14,  
+            margin: [0, 15, 0, 15]  
+        },
+        superMargin: {
+          margin: [20, 0, 40, 0],
+        }  
+      }
+    };  
+    pdfMake.createPdf(docDefinition).download();
+    pdfMake.createPdf(docDefinition).open();
+  }
+
 }

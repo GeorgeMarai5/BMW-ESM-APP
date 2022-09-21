@@ -72,6 +72,12 @@ serviceNotes : any;
     // this._serviceNote.createServiceNote(this.data).subscribe(res =>{
     //   console.log(res);
     // })
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     }
   
 

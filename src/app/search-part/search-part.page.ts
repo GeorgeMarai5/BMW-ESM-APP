@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Part } from 'src/app/models/Part';
-import { AuthService } from 'src/app/services/auth.service';
-import { PartInfoService } from 'src/app/services/part-info.service';
+import { Part } from '../models/Part';
+import { AuthService } from '../services/auth.service';
+import { PartInfoService } from '../services/part-info.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';

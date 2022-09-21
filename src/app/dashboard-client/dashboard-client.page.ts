@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { IonDatetime, Platform } from '@ionic/angular';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { AuthService } from "../services/auth.service";
 import { Clients } from '../models/Clients';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-client',
@@ -12,14 +13,25 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class DashboardClientPage implements OnInit {
 
-  fleet = [];
-  service = [];
+  fleet = {
+    name: 'Avis Hatfield',
+    location: 'Hatfield'
+  };
+  service = {
+    count: 5,
+    type: '100 000km',
+    date: '02/04/2022',
+    price: 'R36 000'
+  };
+  client = {
+    name: "George"
+  };
   gaugeType = "semi";
-  gaugeValue = 28.3;
+  gaugeValue = 82;
   gaugeLabel = "Health";
   gaugeAppendText = "%";
 
-  constructor(
+  constructor(public router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     public authService: AuthService,
@@ -35,5 +47,11 @@ export class DashboardClientPage implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
   }
 }

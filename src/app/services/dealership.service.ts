@@ -42,7 +42,7 @@ export class DealershipService {
 
   getList(): Observable<Dealership> {
     return this.httpClient
-      .get<Dealership>(this.apiUrl + '/api/Dealership/GetAllDealerships')
+      .get<Dealership>(this.apiUrl + '/api/Dealership/')
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -52,12 +52,22 @@ export class DealershipService {
 
   getItem(id): Observable<Dealership> {
     return this.httpClient
-      .get<Dealership>(this.apiUrl + '/DealershipByid' + '/' + id)
+      .get<Dealership>(this.apiUrl + '/api/Dealership/GetDealership/1')
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
+
+
+
+
+
+
+
+
+
+
   
   updateItem(id, item): Observable<Dealership> {
     return this.httpClient

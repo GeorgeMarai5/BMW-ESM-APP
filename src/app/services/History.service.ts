@@ -2,7 +2,7 @@ import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { ModelService } from '../models/ModelService';
+import { ModelService } from '../models/VehicleService';
 import { Service } from './service.service';
 
 @Injectable({

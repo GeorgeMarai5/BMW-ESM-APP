@@ -6,7 +6,7 @@ import {
   AngularFireObject
 } from '@angular/fire/compat/database';
 import { Observable, throwError } from 'rxjs';
-import { Quote } from '../models/Quote';
+import { Quotes } from '../models/Quote';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { retry,catchError, tap, map } from 'rxjs/operators';
 
@@ -58,16 +58,16 @@ export class QuoteService {
 
 
 
-  AddQuote(quote: Quote){
+  AddQuote(quote: Quotes){
     return this.httpClient.post(this.apiUrl + '/api/Fleet/Create' , quote, this.httpOptions)
 
 
   }
 
 
-  getList(): Observable<Quote> {
+  getList(): Observable<Quotes> {
     return this.httpClient
-      .get<Quote>(this.apiUrl + '/api/Quote/GetAllQuotes')
+      .get<Quotes>(this.apiUrl + '/api/Quote/GetAllQuotes')
       .pipe(
         retry(2),
         catchError(this.handleError)

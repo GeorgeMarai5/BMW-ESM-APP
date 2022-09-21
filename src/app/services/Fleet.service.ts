@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Fleet } from '../models/fleet';
+//import { Fleet } from '../models/fleet';
 import { Observable,of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { retry,catchError, tap, map } from 'rxjs/operators';
@@ -45,9 +45,9 @@ export class FleetService {
   }
 
 
-  getList(): Observable<Fleet> {
+  getList(): Observable<Fleets> {
     return this.httpClient
-      .get<Fleet>(this.apiUrl + '/api/Fleet/GetAllFleets')
+      .get<Fleets>(this.apiUrl + '/api/Fleet/GetAllFleets')
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -56,9 +56,9 @@ export class FleetService {
 
   
   // Get single student data by ID
-  getItem(id): Observable<Fleet> {
+  getItem(id): Observable<Fleets> {
     return this.httpClient
-      .get<Fleet>(this.apiUrl + '/api/Fleet/id?id=' + id)
+      .get<Fleets>(this.apiUrl + '/api/Fleet/id?id=' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -66,9 +66,9 @@ export class FleetService {
   }
   
   // Update item by id
-  updateItem(item): Observable<Fleet> {
+  updateItem(item): Observable<Fleets> {
     return this.httpClient
-      .put<Fleet>(this.apiUrl + '/api/Fleet/UpdateFleet' + '?' + item, this.httpOptions)
+      .put<Fleets>(this.apiUrl + '/api/Fleet/UpdateFleet' + '?' + item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -78,7 +78,7 @@ export class FleetService {
   // Delete item by id
   delete(id) {
     return this.httpClient
-      .delete<Fleet>(this.apiUrl + '/api/Fleet/DeleteFleet' + '/' + id, this.httpOptions)
+      .delete<Fleets>(this.apiUrl + '/api/Fleet/DeleteFleet' + '/' + id, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -98,7 +98,7 @@ export class FleetService {
 
   getFleet(id): Observable<{}> {
   
-    return this.httpClient.get(this.apiUrl + '/api/Fleet/id?id=' +  id , this.httpOptions)
+    return this.httpClient.get<Fleets>(this.apiUrl + '/api/Fleet/id?id=' +  id , this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );

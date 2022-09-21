@@ -7,6 +7,7 @@ import { Dealership } from '../models/Dealership';
 import { AuthService } from '../services/auth.service';
 import { DealershipService } from '../services/dealership.service';
 
+
 @Component({
   selector: 'app-edit-dealership',
   templateUrl: './edit-dealership.page.html',
@@ -18,18 +19,57 @@ export class EditDealershipPage implements OnInit {
   dealership = {};
   editDealershipForm: FormGroup;
   isSubmitted = false;
-  data: any;
+  data: Dealership;
+  id : any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public service: DealershipService, 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public Dservice: DealershipService, 
     public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
-      this.route.params.subscribe(params => {
-          this.data = params.id;
-      });
-    this.editDealershipForm = new FormGroup({
-      dealershipName: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required)
+      
+    this.id = this.route.snapshot.paramMap.get('id');
+
+
+  }
+
+
+  ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+
+    this.fetchUser(this.id);
+    this.editDealershipForm = this.fb.group({
+      dealership_Name: [''],
+      address: [''],
+     
     })
   }
+
+  fetchUser(id) {
+    this.Dservice.getItem(id).subscribe((data) => {
+      this.editDealershipForm.setValue({
+        dealership_Name: data['dealership_Name'],
+        address: data['address'],
+        
+      });
+
+      console.log(data);
+    });
+
+
+
+
+  }
+
+
+
+
+}
+
+
+  /*
 
   submitForm(){
     this.isSubmitted = true;
@@ -41,22 +81,27 @@ export class EditDealershipPage implements OnInit {
           DealershipName: this.editDealershipForm.get('dealershipName').value,
           AddressName: this.editDealershipForm.get('address').value
         }
-        this.service.updateItem(this.data, dealership)
+        this.Dservice.updateItem(this.data, dealership)
         this.presentToast();
       }
       this.router.navigate(['/tabs/view/dealership', this.data]);
   }
 
   ngOnInit() {
-    this.service.getItem(this.data)
-    .subscribe(res =>{
-      console.log(res)
-      this.editDealershipForm.setValue({
-        dealershipName: res['DealershipName'], 
-        address: res['AddressName']
-      })
-    });
+
+
+    this.id = this.route.snapshot.params["dealershipID"];
+    //get item details using id
+    this.Dservice.getItem(this.id).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+
   }
+
+
+
+
 
   get errorControl() {
     return this.editDealershipForm.controls;
@@ -76,3 +121,42 @@ export class EditDealershipPage implements OnInit {
     toast.present();
   }
 }
+
+
+
+*/
+
+/*
+
+this.service.getItem(this.data)
+    .subscribe(res =>{
+      console.log(res)
+      this.editDealershipForm.setValue({
+        dealershipName: res['DealershipName'], 
+        address: res['AddressName']
+      })
+    });
+
+
+
+
+
+this.route.params.subscribe(params => {
+        this.data = params.id;
+      });
+    this.editDealershipForm = new FormGroup({
+      dealershipName: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required)
+    })
+
+
+
+
+
+
+
+
+
+
+
+*/

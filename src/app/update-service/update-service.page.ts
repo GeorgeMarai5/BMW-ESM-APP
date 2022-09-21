@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Service } from '../services/service.service';
+import { ServiceService } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
@@ -20,7 +20,7 @@ interface ServiceData {
 
 export class UpdateServicePage implements OnInit {
 
-  services: Service;
+  services: ServiceService;
   dealerships = [];
   teams = [];
   serviceTypes = [];
@@ -28,8 +28,8 @@ export class UpdateServicePage implements OnInit {
   serviceForm: FormGroup;
   isSubmitted = false;
   data: any;
-
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public _service: Service, 
+serviceID: any;
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public _service: ServiceService, 
     public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
@@ -54,7 +54,7 @@ export class UpdateServicePage implements OnInit {
         ServiceTypeName: this.serviceForm.get('ServiceTypeName').value
       }
 
-      this._service.updateService(this.data, service)
+      this._service.updateVehicleService(this.data, service)
       this.presentToast();
     }
 
@@ -63,14 +63,14 @@ export class UpdateServicePage implements OnInit {
   }
 
   ngOnInit() {
-    this._service.getService(this.data).valueChanges().subscribe(res =>{
-      console.log(res)
-      this.serviceForm.setValue({
-        DealershipName: res['DealershipName'], 
-        TeamName: res['TeamName'],
-        ServiceTypeName: res['ServiceTypeName']
-      })
-    });
+    // this._service.getVehicleServiceItem(this.data).valueChanges().subscribe(res =>{
+    //   console.log(res)
+    //   this.serviceForm.setValue({
+    //     DealershipName: res['DealershipName'], 
+    //     TeamName: res['TeamName'],
+    //     ServiceTypeName: res['ServiceTypeName']
+    //   })
+    // });
   }
 
   back(){
@@ -80,7 +80,10 @@ export class UpdateServicePage implements OnInit {
   get errorControl() {
     return this.serviceForm.controls;
   }
+  async updateService(id, item){
+    this._service.updateVehicleService(id, item.serviceID).subscribe(resty => {  console.log(resty); });
 
+  }
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Service has been updated successfully.',

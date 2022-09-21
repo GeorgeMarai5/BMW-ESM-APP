@@ -7,10 +7,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Dealership } from '../models/Dealership';
-import { Fleet } from '../models/fleet';
+import { Fleets } from '../models/fleet';
 import { Team } from '../models/Team';
 import { VehicleService } from '../services/vehicle.service';
-import {  Fleets } from '../models/Fleet';
 import{FleetService} from '../services/fleet.service';
 import { TeamService } from '../services/team.service';
 import { DealershipService } from '../services/dealership.service';
@@ -29,7 +28,7 @@ export class InitiateServiceProcedurePage implements OnInit {
 
   serviceList = [];
   dealership: Dealership;
-  fleet: Fleet;
+  fleet: Fleets;
   team: Team;
   initiateServiceForm : FormGroup;
   myService: any;
@@ -64,7 +63,12 @@ export class InitiateServiceProcedurePage implements OnInit {
 
 
   ngOnInit() {
-
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
 
 
 

@@ -1,4 +1,4 @@
-export interface MaintenancePlan {
+export class MaintenancePlan {
     PlanName: string;
     Description: string;
     Duration: string;

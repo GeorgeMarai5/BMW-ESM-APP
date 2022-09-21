@@ -37,13 +37,13 @@
             </ion-row>
             <ion-row *ngFor="let item of serviceItems">
                 <ion-col>
-                {{ item }} <ion-icon name="information-circle-outline" [routerLink]=""></ion-icon>
+                {{ item.name }} <ion-icon name="information-circle-outline" [routerLink]=""></ion-icon>
                 </ion-col>
                 <ion-col>
-                <ion-label>x</ion-label>{{ item }}
+                <ion-label>x</ion-label>{{ item.quantity }}
                 </ion-col>
                 <ion-col>
-                {{ item }}
+                {{ item.price }}
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -51,10 +51,10 @@
                 <ion-col></ion-col>
                 <ion-col></ion-col>
                 <ion-col>
-                <ion-button type="submit" class="main-Btn" expand="block">Back To Dashboard</ion-button>
+                <ion-button type="submit" class="main-Btn" expand="block" [routerLink]="['/dashboard/client']">Back To Dashboard</ion-button>
                 </ion-col>
                 <ion-col>
-                <ion-button class="light-Btn" expand="block">Generate PDF</ion-button>
+                <ion-button class="light-Btn" expand="block" (click)="getReport()">Generate PDF</ion-button>
                 </ion-col>
             </ion-row>
             </ion-grid>

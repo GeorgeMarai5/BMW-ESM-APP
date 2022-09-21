@@ -1,4 +1,4 @@
- export interface Clients{
+ export class Clients{
     Title: string;
     FirstName: string;
     LastName: string;

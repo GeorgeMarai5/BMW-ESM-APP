@@ -4,10 +4,9 @@ import { FormBuilder,Validators,FormGroup,FormControl } from '@angular/forms';
 import { AddressService } from '../services/Address.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Address } from '../models/Address';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { ad } from '../models/Address';
+import { Address } from '../models/Address';
 
 @Component({
   selector: 'app-address',
@@ -30,8 +29,9 @@ export class AddressPage implements OnInit {
   searchTerm: string;
   AddressID: string;
   data: any;
-  dat: ad
+  dat: Address
   information= null;
+  id: number;
   //addres: Address = {addressID: null, address:'',postal_Code:'',date_Of_Update: ''}
 
 
@@ -40,12 +40,19 @@ export class AddressPage implements OnInit {
       
       addressservice = {} as AddressService;
       this.data = [];
-      this.dat = new ad();
+      this.dat = new Address();
     
-    
+
     }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+
     this.addressservice.getList().subscribe(response => {
       console.log(response);
       this.data = response;
@@ -100,7 +107,21 @@ Update(){
 
 
 
+getbyID(item){
 
+  this.id = this.ActivatedRoute.snapshot.params["id"];
+
+
+  //get item details using id
+  this.addressservice.getItem(item.id).subscribe(response => {
+    console.log(response);
+    this.data = response;
+  })
+
+
+
+
+}
 
 
 

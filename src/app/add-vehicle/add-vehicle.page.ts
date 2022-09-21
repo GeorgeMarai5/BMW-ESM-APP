@@ -30,7 +30,7 @@ export class AddVehiclePage implements OnInit {
     })
   }
   submitForm() {
-    this.service.createVehicle(this.data).subscribe((response) => {
+    this.service.createVehicle(this.data).then((response) => {
       this.router.navigate(['/tabs/search/vehicle']);
     });
 console.log(this.data)
@@ -66,6 +66,13 @@ console.log(this.data)
   // }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+
     this.addVehicleForm.setValue({VINNum: '', vehicleModel: '', Registration: '', warrantyPlan: ''});
   }
 

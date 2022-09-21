@@ -27,6 +27,12 @@ export class SearchTeamPage implements OnInit {
     }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     this.teamservice.getTeamList().subscribe(response => {
       console.log(response);
       this.data = response;

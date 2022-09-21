@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Fleets } from '../models/fleet';
 
 
+
 interface FleetData {
   FleetID: number;
   FleetName: string;
@@ -35,7 +36,7 @@ export class ViewFleetPage implements OnInit {
    searchTerm: string;
    fleetID: string;
    data: any;
-   id: number;
+   id: any;
    dat: any;
    combinedArray: { dat: any, data: any }[] = [];
 
@@ -44,6 +45,17 @@ export class ViewFleetPage implements OnInit {
     public activatedRoute: ActivatedRoute) { 
 
     vehicleservice = {} as VehicleService;
+    fleetservice = {} as FleetService;
+
+   // this.id = this.activatedRoute.snapshot.paramMap.get('fleetID');
+
+    this.activatedRoute.params.subscribe(params => {
+      this.data = params.id;
+  });
+
+
+
+    //this.dat = new Fleets();
     
   }
 
@@ -54,14 +66,21 @@ export class ViewFleetPage implements OnInit {
     //this.feedbacks.forEach((fb, index)
     //=> this.combinedArray.push({ feedback: fb, result: this.results[index] }));
 
+   
+//this.getFleetDetails();
 
-
-
-
-    this.getVin();
+      //this.Get(this.id);
+    //this.getVin();
 
     
-    this.getModelAndYear();
+
+
+    this.fleetservice.getFleet(this.data).subscribe(response => {
+      console.log(response);
+      this.dat = response;
+    })
+
+    //this.getModelAndYear();
 
   }
 
@@ -81,7 +100,16 @@ export class ViewFleetPage implements OnInit {
     }
 
 
+async getFleetDetails(){
 
+  this.fleetservice.getList().subscribe(response => {
+    console.log(response);
+    this.data = response;
+  })
+
+
+
+}
   
 
 
@@ -113,8 +141,8 @@ export class ViewFleetPage implements OnInit {
 
 
 
-  async Get(id){
-    this.fleetservice.getFleet("1").subscribe(response => {
+  async Get(item){
+    this.fleetservice.getFleet(item.FleetID).subscribe(response => {
       console.log(response);
       this.dat = response;
 
@@ -148,6 +176,10 @@ export class ViewFleetPage implements OnInit {
     });
   
     toast.present();
+  }
+
+  select(){
+
   }
 
 

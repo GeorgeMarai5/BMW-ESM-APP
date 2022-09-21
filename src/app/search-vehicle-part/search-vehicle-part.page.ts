@@ -25,6 +25,13 @@ export class SearchVehiclePartPage implements OnInit {
     }
 
   ngOnInit() {
+
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     this.partForm = this.fb.group({
       partName: ['', [Validators.required]],
       partType: ['', [Validators.required]],

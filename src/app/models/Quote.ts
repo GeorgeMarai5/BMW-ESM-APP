@@ -1,18 +1,8 @@
-export interface Quote{
-    //QuoteID: string;
-    ClientName: string;
-    //Service_Note: string;
-   // Service_Price: string;
-    Date: Date;
-    Description: string;
-    Accepted: boolean;
-}
-
 export class Quotes{
-    //QuoteID: string;
+    QuoteID: string;
     ClientName: string;
-    //Service_Note: string;
-   // Service_Price: string;
+    Service_Note: string;
+    Service_Price: string;
     Date: Date;
     Description: string;
     Accepted: boolean;

@@ -45,7 +45,12 @@ export class PerformPostcheckPage implements OnInit {
   }
 
   ngOnInit() {
-
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
   }
 
   get errorControl() {

@@ -51,6 +51,8 @@ export class CreateAccountPage implements OnInit {
       }
       await this.firestore.collection('User').add(user).then(function(){
         this.presentToast();
+        this.authService.SendVerificationMail()
+        this.router.navigate(['verify-email']);
       });
 
       const auth = getAuth();
@@ -76,12 +78,11 @@ export class CreateAccountPage implements OnInit {
         }
         await this.firestore.collection('Employee').doc(currUser.uid).set(employee)
       }
-      this.authService.SendVerificationMail()
-      this.router.navigate(['verify-email']);
     }).catch((error) => {
-      window.alert(error.message)
+      
     })
     }
+    this.router.navigate(['/tabs/login']); 
     return false; 
   }
 

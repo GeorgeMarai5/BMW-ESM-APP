@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ModelService } from '../models/ModelService';
+import { ModelService } from '../models/VehicleService';
 import { AuthService } from '../services/auth.service';
 import { Service } from '../services/service.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { AlertController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,12 +22,18 @@ export class SearchServicePage implements OnInit {
   searchTerm: string;
   id: any;
 
-  constructor(public authService: AuthService, private _service: Service, public fb: FormBuilder, private firestore: AngularFirestore, 
+  constructor(public router: Router, public authService: AuthService, private _service: Service, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public toastCtrl: ToastController) { 
       this.services = {} as ModelService;
     }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     this.serviceForm = this.fb.group({
       ServiceID: ['', [Validators.required]],
       VINNumber: ['', [Validators.required]],

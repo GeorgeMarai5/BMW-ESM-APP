@@ -41,6 +41,12 @@ export class PerformPrecheckPage implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
   }
 
   submitForm(){

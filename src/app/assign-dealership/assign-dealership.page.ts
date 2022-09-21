@@ -74,6 +74,12 @@ export class AssignDealershipPage implements OnInit {
   ngOnInit() {
     //this.assignDealershipForm.setValue({dealershipName: '', address: ''});
     //this.assignDealership()
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
   }
 
 

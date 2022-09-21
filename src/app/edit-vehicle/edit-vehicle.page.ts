@@ -61,6 +61,7 @@ console.log(this.data)
   // }
 
   ngOnInit() {
+    
     // this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
     //   console.log(res)
     //   this.editVehicleForm.setValue({

@@ -3,7 +3,7 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
-import { Quote, Quotes } from '../models/Quote';
+import { Quotes } from '../models/Quote';
 import { ToastController } from '@ionic/angular';
 
 
@@ -37,7 +37,12 @@ export class CreateQuotePage implements OnInit {
     }
 
   ngOnInit() {
-
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     
 
     this.createQuoteForm = this.fb.group({

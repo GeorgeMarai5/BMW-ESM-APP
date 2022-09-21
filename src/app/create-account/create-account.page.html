@@ -22,7 +22,7 @@
               <ion-button expand="full" fill="none" [routerLink]="['/tabs/login']" style="color: #002850; font-size: medium;">Log In</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button expand="full" fill="none" [routerLink]="['/tabs/create-account']" style="color: #002850; font-size: medium;">Create Account</ion-button>
+              <ion-button expand="full" fill="none" [routerLink]="['/tabs/create/account']" style="color: #002850; font-size: medium;">Create Account</ion-button>
             </ion-col>
           </ion-row>
           <ion-item-divider style="margin-top: -7%;"></ion-item-divider>
@@ -42,7 +42,7 @@
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
             Email is required.
           </span>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email || !errorControl.Registration.value.trim()">
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email">
             Please enter a valid email.
           </span>
           <ion-item lines="full">
@@ -52,9 +52,6 @@
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
             Password is required.
           </span>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
-            Password is invalid.
-          </span>
           <ion-item lines="full">
             <ion-label position="floating">Confirm Password</ion-label>
             <ion-input type="password" #confirmPassword formControlName="confirmPassword" required></ion-input>
@@ -62,12 +59,9 @@
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
             Confirmed Password is required.
           </span>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password != errorControl.confirmPassword">
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.value != errorControl.confirmPassword.value">
             Confirmed password does not match.
           </span><br/>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
-            Confirmed Password is invalid.
-        </span>
           <ion-row>
             <ion-col> 
               <ion-button type="submit" (click)="createAccount(email, password, accountType)" expand="block" style="--background: #1976D2;">Create Account</ion-button>

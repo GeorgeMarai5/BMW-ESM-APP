@@ -4,6 +4,7 @@ import { Observable,of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { retry,catchError, tap, map } from 'rxjs/operators';
 import { Model } from '../models/Model';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +17,7 @@ export class VehicleService {
       ContentType: 'application/json'
     })
   }
-  constructor(private httpClient: HttpClient) { }                                             //private db: AngularFireDatabase,private firestore: AngularFirestore
+  constructor(private firestore: AngularFirestore, private httpClient: HttpClient) { }                                             //private db: AngularFireDatabase,private firestore: AngularFirestore
   
 
   private handleError(error: HttpErrorResponse) {
@@ -37,25 +38,26 @@ export class VehicleService {
 
 
 
-  // getVehicles() {
-  //   return this.firestore.collection('Vehicle').snapshotChanges();
-  // }
+   getVehicles() {
+     return this.firestore.collection('Vehicle').snapshotChanges();
+   }
 
   createVehicle(Vehicle: Vehicle) {
-    return this.httpClient.post(this.apiUrl + '/Vehicle', Vehicle, this.httpOptions);
+    //return this.httpClient.post(this.apiUrl + '/Vehicle', Vehicle, this.httpOptions);
+    return this.firestore.collection('Vehicle').add(Vehicle);
   }
 
-  // getVehicle(id: string){
-  //   return this.firestore.collection(this.collectionName).doc(id);
-  // }
+  getVehicle(id: string){
+     return this.firestore.collection('Vehicle').doc(id);
+   }
 
-  // updateVehicle(id, vehicle) {
-  //   this.firestore.doc(this.collectionName + '/' + id).update(vehicle);
-  // }
+   updateVehicle(id, vehicle) {
+     this.firestore.doc(this.collectionName + '/' + id).update(vehicle);
+   }
 
-  // deleteVehicle(id) {
-  //   this.firestore.doc(this.collectionName + '/' + id).delete();
-  // }
+   deleteVehicle(id) {
+     this.firestore.doc(this.collectionName + '/' + id).delete();
+   }
 
 
   
@@ -113,13 +115,13 @@ export class VehicleService {
 
 
 
-  deleteVehicle(id: string): Observable<{}> {
+  //deleteVehicle(id: string): Observable<{}> {
   
-    return this.httpClient.delete(this.apiUrl + '/api/Vehicle/DeleteVehicle' + '/${' + id +'}' , this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
+    //return this.httpClient.delete(this.apiUrl + '/api/Vehicle/DeleteVehicle' + '/${' + id +'}' , this.httpOptions)
+      //.pipe(
+        //catchError(this.handleError)
+      //);
+  //}
 
   deleteVehicles(id): Observable<{}> {
   

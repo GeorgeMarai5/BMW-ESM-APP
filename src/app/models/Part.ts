@@ -1,4 +1,4 @@
-export interface Part{
+export class Part{
     partID: number;
     partName: string;
     description: string;
