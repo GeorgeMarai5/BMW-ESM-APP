@@ -9,9 +9,6 @@ import { AuthService } from '../services/auth.service';
 import { Service } from '../services/service.service';
 import { DealershipService } from '../services/dealership.service';
 
-
-
-
 @Component({
   selector: 'app-assign-dealership',
   templateUrl: './assign-dealership.page.html',
@@ -41,22 +38,22 @@ export class AssignDealershipPage implements OnInit {
 
   }
 
-  submitForm(){
-    this.isSubmitted = true;
-    if(!this.assignDealershipForm.valid){
-      return false;
-    }
-    else{
-      const dealership = {
-        DealershipID: '00' ,
-        DealershipName: this.assignDealershipForm.get('dealershipName').value,
-        AddressName: this.assignDealershipForm.get('address').value
-      }
-        //this.service.updateService(this.dealership, {"DealershipID": Dealership});
-        this.presentToast();
-    }
-    this.router.navigate(['tabs/search/dealership'], this.data);
-  }
+  // submitForm(){
+  //   this.isSubmitted = true;
+  //   if(!this.assignDealershipForm.valid){
+  //     return false;
+  //   }
+  //   else{
+  //     const dealership = {
+  //       DealershipID: '00' ,
+  //       DealershipName: this.assignDealershipForm.get('dealershipName').value,
+  //       AddressName: this.assignDealershipForm.get('address').value
+  //     }
+  //       //this.service.updateService(this.dealership, {"DealershipID": Dealership});
+  //       this.presentToast();
+  //   }
+  //   this.router.navigate(['tabs/search/dealership'], this.data);
+  // }
 
   ngOnInit() {
     this.assignDealershipForm.setValue({dealershipName: '', address: ''});
@@ -74,7 +71,30 @@ export class AssignDealershipPage implements OnInit {
       console.log(response);
       //this.router.navigate(['student-list']);
     });
+
+
+}
+submitForm(){
+  this.isSubmitted = true;
+  if(!this.assignDealershipForm.valid){
+    return false;
   }
+  else{
+      const assignedDealership = {
+        dealershipName: this.assignDealershipForm.get('dealershipName').value,
+        address: this.assignDealershipForm.get('address').value
+      }
+      this.dealershipservice.AssignDealership(this.data)
+      this.presentToast();
+    }
+    this.router.navigate(['/tabs/search/fleet', this.data]);
+}
+
+
+
+
+
+
 
   get errorControl() {
     return this.assignDealershipForm.controls;

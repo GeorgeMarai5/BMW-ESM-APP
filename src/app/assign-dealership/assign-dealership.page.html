@@ -20,7 +20,7 @@
             <h1>Dealership Details</h1>
         </ion-title>
 
-        <form [formGroup]="assignDealershipForm" novalidate>
+        <form [formGroup]="assignDealershipForm"  novalidate (ngSubmit)="submitForm()">
             <ion-grid>
                 <ion-row>
                     <ion-col>
