@@ -37,7 +37,7 @@ export class DealershipService {
   }
 
   AssignDealership(dealership: Dealership){
-    return this.httpClient.post(this.apiUrl + '/api/Dealership/Create' , dealership, this.httpOptions)
+    return this.httpClient.post(this.apiUrl + '/api/Dealerships' , dealership, this.httpOptions)
   }
 
   getList(): Observable<Dealership> {

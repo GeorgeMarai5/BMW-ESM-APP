@@ -28,6 +28,12 @@ export class CreateTeamPage implements OnInit {
     public alertCtrl: AlertController, public router: Router,public ActivatedRoute: ActivatedRoute) { 
       teamService = {} as TeamService;
       this.data = new Team();
+
+      this.createTeamForm = new FormGroup({
+        teamName: new FormControl('', Validators.required),
+        dealershipName: new FormControl('', Validators.required),
+        teamType: new FormControl('', Validators.required)
+      })
     }
 
   ngOnInit() {

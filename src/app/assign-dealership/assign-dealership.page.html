@@ -18,13 +18,13 @@
             <h1>Dealership Details</h1>
         </ion-title>
 
-        <form [formGroup]="assignDealershipForm"  novalidate>
+        <form [formGroup]="assignDealershipForm"  novalidate (ngSubmit)="submitForm()">
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Dealership Name</b></ion-label>
-                            <ion-input [(ngModel)]="data.dealership_Name" [ngModelOptions]="{standalone: true}" formControlName="dealershipName" type="text" required></ion-input>
+                            <ion-input formControlName="dealershipName" type="text" required></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
                             Dealership Name is required.

@@ -9,9 +9,6 @@ import { AuthService } from '../services/auth.service';
 import { Service } from '../services/service.service';
 import { DealershipService } from '../services/dealership.service';
 
-
-
-
 @Component({
   selector: 'app-assign-dealership',
   templateUrl: './assign-dealership.page.html',
@@ -22,7 +19,6 @@ export class AssignDealershipPage implements OnInit {
   assignDealershipForm: FormGroup;
   isSubmitted = false;
   data:Dealership;
-  dat:any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
     public service: Service, public router: Router, private toastCtrl: ToastController,private dealershipservice: DealershipService) { 
@@ -92,6 +88,21 @@ export class AssignDealershipPage implements OnInit {
     });
 
 
+}
+submitForm(){
+  this.isSubmitted = true;
+  if(!this.assignDealershipForm.valid){
+    return false;
+  }
+  else{
+      const assignedDealership = {
+        dealershipName: this.assignDealershipForm.get('dealershipName').value,
+        address: this.assignDealershipForm.get('address').value
+      }
+      this.dealershipservice.AssignDealership(this.data)
+      this.presentToast();
+    }
+    this.router.navigate(['/tabs/search/fleet', this.data]);
 }
 
 
