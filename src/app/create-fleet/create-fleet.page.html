@@ -1,61 +1,62 @@
 <ion-header>
-  <ion-toolbar>
-    <a href="/tabs/home"><ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img></a>
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/tabs/view/client']">
-        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
-      </ion-button>  
-      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
-        Log Out
-      </ion-button>  
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <a href="/tabs/home">
+            <ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        </a>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="contents">
-    <br/><ion-title><h1>Create Fleet</h1></ion-title>
+    <div class="contents">
+        <br/>
+        <ion-title>
+            <h1>Create Fleet</h1>
+        </ion-title>
 
-    <form >
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="full">
-              <ion-label position="stacked"><b>Fleet Name</b></ion-label>
-              <ion-input [(ngModel)]="data.fleet_Name"  placeholder="Enter Fleet Name" [ngModelOptions]="{standalone: true}"></ion-input>
-            </ion-item>
-            <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+        <form form [formGroup]="addFleetForm" (ngSubmit)="submitForm()" novalidate>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Fleet Name</b></ion-label>
+                            <ion-input formControlName="FleetName" type="text" required></ion-input>
+                        </ion-item>
+                        <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
               Fleet Name can not contain spaces.
           </span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="full">
-              <ion-label position="stacked"><b>Fleet Location</b></ion-label>
-              <ion-input [(ngModel)]="data.fleet_Location" placeholder="Enter Fleet Location" [ngModelOptions]="{standalone: true}"></ion-input>
-            </ion-item>
-            <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="full">
+                            <ion-label position="stacked"><b>Fleet Location</b></ion-label>
+                            <ion-input formControlName="FleetLocation" type="text" required></ion-input>
+                        </ion-item>
+                        <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
               Fleet Location is invalid.
           </span>
-          </ion-col>
-        </ion-row>
-        <br/>
-        <ion-row>
-          <ion-col></ion-col>
-          <ion-col></ion-col>
-          <ion-col>
-            <ion-button type="submit" expand="block" [routerLink]="[ '/tabs/home'] " >Back</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button class="light-Btn" type="submit" expand="block" [routerLink]="[ '/tabs/search/fleet'] " (click)="create()">Submit</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </form>
-  </div>
+                    </ion-col>
+                </ion-row>
+                <br/>
+                <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col>
+                        <ion-button type="submit" expand="block" [routerLink]="[ '/tabs/home'] ">Back</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button class="light-Btn" type="submit" expand="block" [routerLink]="[ '/tabs/search/fleet'] ">Submit</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
 </ion-content>
-
-
-
-<!-----------------[formGroup]="addFleetForm" (ngSubmit)="submit()"     [(ngModel)]="dat.FleetLocation"     [(ngModel)]="dat.FleetName"-->

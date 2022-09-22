@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
-import { AlertController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Team } from '../models/team';
 import { Observable } from 'rxjs';
 
@@ -18,23 +18,45 @@ export class CreateTeamPage implements OnInit {
   teamTypes = [];
   TeamList = [];
   dealerships = [];
-  TeamList$!:Observable<any[]>;
   createTeamForm: FormGroup;
   AddressID: string;
-  data: Team;
-  information= null;
+  team: Team;
+  data: any;
 
-  constructor(public authService: AuthService, public fb: FormBuilder, private teamService: TeamService, 
-    public alertCtrl: AlertController, public router: Router,public ActivatedRoute: ActivatedRoute) { 
-      teamService = {} as TeamService;
-      this.data = new Team();
+  constructor(public authService: AuthService, 
+    public fb: FormBuilder, 
+    private teamService: TeamService, 
+    public router: Router,
+    public route: ActivatedRoute, 
+    public toastCtrl: ToastController) {  
 
-      this.createTeamForm = new FormGroup({
-        teamName: new FormControl('', Validators.required),
-        dealershipName: new FormControl('', Validators.required),
-        teamType: new FormControl('', Validators.required)
-      })
+    this.route.params.subscribe(params => {
+      this.team = params.id;
+    });
+    this.createTeamForm = new FormGroup({
+      TeamName: new FormControl('', Validators.required),
+      Dealership: new FormControl('', Validators.required),
+      TeamType: new FormControl('', Validators.required)
+    });
+
+  }
+
+  submitForm(){
+    this.isSubmitted = true;
+    if(!this.createTeamForm.valid){
+      return false;
     }
+    else{
+        const Team = {
+          TeamName: this.createTeamForm.get('TeamName').value,
+          Dealership: this.createTeamForm.get('Dealership').value,
+          TeamType: this.createTeamForm.get('TeamType').value
+        }
+        //this.teamService.updateTeam(this.team, Team)
+        this.presentToast()
+      }
+      this.router.navigate(['/tabs/create/service', this.team]);
+  }
 
   ngOnInit() {
     if(this.authService.isLoggedIn){
@@ -45,15 +67,17 @@ export class CreateTeamPage implements OnInit {
     }
   }
 
-  create(){  
-    this.teamService.createTeam(this.data).
-    subscribe((response) => {
-      console.log(response);
-      //this.router.navigate(['team-list']);
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Team has been successfully created.',
+      duration: 3000,
+      position: 'top'
     });
+    toast.present();
   }
 
   get errorControl() {
     return this.createTeamForm.controls;
   }
+  
 }

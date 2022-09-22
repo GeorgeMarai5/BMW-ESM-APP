@@ -3,8 +3,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { VehicleService } from '../services/vehicle.service';
-
+import { ServiceItem } from 'app/models/ServiceItem';
+import { ServiceItemService } from 'app/services/service-item.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-service-item',
@@ -16,9 +17,16 @@ export class AddServiceItemPage implements OnInit {
   addItemForm: FormGroup;
   isSubmitted = false;
   data: any;
+  serviceItem: ServiceItem;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public firestore: AngularFirestore, public service: VehicleService, public router: Router) { 
+  constructor(private route: ActivatedRoute, 
+    public fb: FormBuilder, 
+    public authService: AuthService, 
+    public firestore: AngularFirestore, 
+    public ServiceItem: ServiceItemService, 
+    public router: Router, 
+    public toastCtrl: ToastController) { 
+
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
@@ -26,6 +34,7 @@ export class AddServiceItemPage implements OnInit {
       itemName: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
       itemDescription: new FormControl('', Validators.required),
     })
+
   }
 
   submitForm(){
@@ -34,28 +43,14 @@ export class AddServiceItemPage implements OnInit {
       return false;
     }
     else{
-      const vehicle = {
-        VIN_Number: this.addItemForm.get('VINNum').value,
-        VehicleModel: this.addItemForm.get('vehicleModel').value,
-        Registration: this.addItemForm.get('Registration').value,
-        Warranty: this.addItemForm.get('warrantyPlan').value,
-        FleetID: ''
+      const serviceItem = {
+        itemName: this.addItemForm.get('itemName').value,
+        itemDescription: this.addItemForm.get('itemDescription').value,
       }
-
-      if(this.data != null || this.data != undefined){
-        vehicle.FleetID = this.data;
-      }
-      else{
-        vehicle.FleetID = '';
-      }
-
-      this.firestore.collection('Vehicle').add(vehicle).then(function(){
-        alert("New vehicle created successfully");
-      });
+      //this.ServiceItem.updateServiceItem(this.data, serviceItem)
+      this.presentToast()
     }
-     
     this.router.navigate(['/tabs/view/fleet'], this.data);
-
   }
 
   ngOnInit() {
@@ -69,6 +64,15 @@ export class AddServiceItemPage implements OnInit {
 
   get errorControl() {
     return this.addItemForm.controls;
+  }
+
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Service item has been successfully created.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 
 }

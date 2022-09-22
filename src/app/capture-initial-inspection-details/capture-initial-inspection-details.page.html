@@ -1,188 +1,192 @@
 <ion-header>
-  <ion-toolbar>
-    <a href="/tabs/home"><ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img></a>
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/tabs/view/client']">
-        <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
-      </ion-button>  
-      <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
-        Log Out
-      </ion-button>  
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <a href="/tabs/home">
+            <ion-img class="logo" style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
+        </a>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/tabs/view/client']">
+                <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
+            </ion-button>
+            <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+                Log Out
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-margin">
-  <div class="contents">
-    <ion-title><h1>Inspection Details</h1></ion-title>
-    <form>
-      <ion-grid>
-        <ion-row *ngIf="checkList['safetySystemsCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Safety Systems</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+    <div class="contents">
+        <ion-title>
+            <h1>Inspection Details</h1>
+        </ion-title>
+        <form>
+            <ion-grid>
+                <ion-row *ngIf="checkList['safetySystemsCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Safety Systems</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['interiorLightsCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Interior Lights</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['interiorLightsCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Interior Lights</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['exteriorLightsCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Exterior Lights</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['exteriorLightsCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Exterior Lights</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['windscreenCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Windscreen Washer System And Fluids</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['windscreenCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Windscreen Washer System And Fluids</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['tyreCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Tyres</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['tyreCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Tyres</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['mobilityCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">BMW Mobility System</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['mobilityCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">BMW Mobility System</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['coolantCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Engine Coolant Checks</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['coolantCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Engine Coolant Checks</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['headlampCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Headlamp Exterior Condition And Functionality</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['headlampCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Headlamp Exterior Condition And Functionality</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['steeringFluidCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Steering Fluid Reservoir Oil Level</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['steeringFluidCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Steering Fluid Reservoir Oil Level</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['brakeCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Brake Lines And Connections</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['brakeCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Brake Lines And Connections</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['underBodyCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Under Body Panelling</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['underBodyCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Under Body Panelling</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['steeringSystemCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Steering System</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['steeringSystemCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Steering System</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['sparkPlugsCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Spark Plugs</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['sparkPlugsCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Spark Plugs</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="checkList['otherCheck'] == true">
-          <ion-col>
-            <ion-item lines="none">
-              <ion-label position="stacked">Other</ion-label>
-              <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="checkList['otherCheck'] == true">
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Other</ion-label>
+                            <ion-textarea placeholder="Notes..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
                 Note is invalid.
             </span>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <br/>
-        <ion-row>
-          <ion-col></ion-col>
-          <ion-col></ion-col>
-          <ion-col>
-            <ion-button type="submit" expand="block">Back</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button class="light-Btn" type="submit" [routerLink]="[ '/tabs/search/service-item']  style="margin-right: 1vw" expand="block">Proceed</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </form>
-  </div>
-</ion-content> 
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <br/>
+                <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col>
+                        <ion-button type="submit" expand="block">Back</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button class="light-Btn" type="submit" [routerLink]="[ '/tabs/search/service-item']" style="margin-right: 1vw " expand="block ">Proceed</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+</ion-content>
