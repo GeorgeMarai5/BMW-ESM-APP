@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { Dealership } from '../models/Dealership';
+import { ServiceItem } from 'app/models/ServiceItem';
 import { AuthService } from '../services/auth.service';
-import { DealershipService } from '../services/dealership.service';
+import { ServiceItemService } from 'app/services/service-item.service';
 
 @Component({
   selector: 'app-edit-service-item',
@@ -14,14 +13,19 @@ import { DealershipService } from '../services/dealership.service';
 })
 export class EditServiceItemPage implements OnInit {
 
-  dealerships: Dealership;
-  dealership = {};
+  serviceItem: ServiceItem;
+  serviceItems = {};
   editItemForm: FormGroup;
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public service: DealershipService, 
-    public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
+  constructor(private route: ActivatedRoute, 
+    public fb: FormBuilder, 
+    public authService: AuthService, 
+    public service: ServiceItemService,  
+    public router: Router, 
+    public toastCtrl: ToastController) {
+
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
@@ -29,6 +33,7 @@ export class EditServiceItemPage implements OnInit {
       itemName: new FormControl('', Validators.required),
       itemDescription: new FormControl('', Validators.required)
     })
+    
   }
 
   submitForm(){
@@ -37,16 +42,16 @@ export class EditServiceItemPage implements OnInit {
       return false;
     }
     else{
-        const dealership = {
+        const serviceItems = {
           itemName: this.editItemForm.get('itemName').value,
           itemDescription: this.editItemForm.get('itemDescription').value
         }
 
-      this.service.updateItem(this.data, dealership)
+      this.service.updateServiceItem(this.data, serviceItems)
       this.presentToast();
     }
 
-      this.router.navigate(['/tabs/view/dealership', this.data]);
+      this.router.navigate(['tabs/search/service-item', this.data]);
   }
 
   ngOnInit() {
@@ -56,18 +61,19 @@ export class EditServiceItemPage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-    this.service.getItem(this.data)
+
+    this.service.getServiceItem(this.data)
     .subscribe(res =>{
       console.log(res)
       this.editItemForm.setValue({
-        dealershipName: res['DealershipName'], 
-        address: res['AddressName']
+        itemName: res['itemName'], 
+        itemDescription: res['itemDescription']
       })
     });
   }
 
   back(){
-    this.router.navigate(['tabs/view/service-item', this.data]);
+    this.router.navigate(['tabs/search/service-item', this.data]);
   }
 
   get errorControl() {
@@ -80,7 +86,6 @@ export class EditServiceItemPage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 }

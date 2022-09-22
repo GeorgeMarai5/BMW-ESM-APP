@@ -6,7 +6,6 @@ import { QuoteService } from '../services/quote.service';
 import { Quotes } from '../models/Quote';
 import { ToastController } from '@ionic/angular';
 
-
 interface QuoteData {
 
   ClientName: String;
@@ -55,13 +54,13 @@ export class CreateQuotePage implements OnInit {
       return false;
     }
     else{
-        const dealership = {
+        const QuoteData = {
           ClientName: this.createQuoteForm.get('ClientName').value,
           Date: this.createQuoteForm.get('Date').value,
           Description: this.createQuoteForm.get('Description').value,
           Accepted: this.createQuoteForm.get('Accepted').value
         }
-        //this.quoteservice.updateQuote(this.data, QuoteData)
+        //this.quoteservice.AddQuote(this.data, QuoteData)
         this.presentToast()
       }
       this.router.navigate(['/tabs/view/dealership', this.data]);

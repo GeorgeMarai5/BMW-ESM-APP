@@ -20,22 +20,41 @@ export class EditTeamPage implements OnInit {
   editTeamForm: FormGroup;
   isSubmitted = false;
   data: any;
-  teamID: string;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
-    public teamservice: TeamService, public router: Router, public toastCtrl: ToastController) {
-      this.route.params.subscribe(params => {
-          this.data = params.id;
-      });
+  constructor(private route: ActivatedRoute, 
+    public fb: FormBuilder, 
+    public authService: AuthService,
+    public teamservice: TeamService, 
+    public router: Router, 
+    public toastCtrl: ToastController) {
+      
+    this.route.params.subscribe(params => {
+        this.data = params.id;
+    });
+
     this.editTeamForm = new FormGroup({
       TeamName: new FormControl('', Validators.required),
       DealershipName: new FormControl('', Validators.required),
       TeamType: new FormControl('', Validators.required)
-    })
+    });
+
   }
 
-  submitForm(){
-
+  submitForm() {
+    this.isSubmitted = true;
+    if(!this.editTeamForm.valid){
+      return false;
+    }
+    else{
+        const teams = {
+          TeamName: this.editTeamForm.get('TeamName').value,
+          Dealership: this.editTeamForm.get('Dealership').value,
+          TeamType: this.editTeamForm.get('TeamType').value
+        }
+        //this.teamservice.updateTeam(this.team, teams)
+        this.presentToast()
+      }
+      this.router.navigate(['/tabs/search/team', this.team]);
   }
 
   ngOnInit() {
@@ -45,29 +64,21 @@ export class EditTeamPage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-    this.teamservice.getTeam(this.team).subscribe(response => {
-      console.log(response);
-      this.data = response;
+
+    this.teamservice.getTeam(this.data)
+    .subscribe(res =>{
+    console.log(res)
+    this.editTeamForm.setValue({
+      TeamName: res['TeamName'],
+      Dealership: res['Dealership'], 
+      TeamType: res['TeamType']
+    })
     });
   }
 
-  async getTeam(item){
-    this.teamservice.getTeam(item.teamID).subscribe(response => {
-     console.log(response);
-     this.data = response;
-    });
+  back() {
+    this.router.navigate(['tabs/search/team', this.data]);
   }
-  
-  update() {
-    this.teamservice.updateTeam(this.data).subscribe(response => {
-      console.log(response)
-      //this.router.navigate(['team-list']);
-      });
-    }
-
-    back(){
-      this.router.navigate(['tabs/view/team', this.data]);
-    }
 
   get errorControl() {
     return this.editTeamForm.controls;

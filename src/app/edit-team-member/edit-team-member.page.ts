@@ -20,15 +20,43 @@ export class EditTeamMemberPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService,
-    public teamMemberservice: TeamMemberService, public router: Router, public toastCtrl: ToastController) {
-      teamMemberservice = {} as TeamMemberService;
-  
-      this.teamMembers = new Employee();
+  constructor(private route: ActivatedRoute, 
+    public fb: FormBuilder, 
+    public authService: AuthService,
+    public teamMemberservice: TeamMemberService, 
+    public router: Router, 
+    public toastCtrl: ToastController) {
+      
+      this.route.params.subscribe(params => {
+        this.data = params.id;
+      });
+      this.editTeamMemberForm = new FormGroup({
+        Name: new FormControl('', Validators.required),
+        Surname: new FormControl('', Validators.required),
+        PhoneNumber: new FormControl('', Validators.required),
+        Email: new FormControl('', Validators.required),
+        Role: new FormControl('', Validators.required)
+      });
+
   }
 
   submitForm(){
-
+    this.isSubmitted = true;
+    if(!this.editTeamMemberForm.valid){
+      return false;
+    }
+    else{
+        const teamMember = {
+          Name: this.editTeamMemberForm.get('Name').value,
+          Surname: this.editTeamMemberForm.get('Surname').value,
+          PhoneNumber: this.editTeamMemberForm.get('PhoneNumber').value,
+          Email: this.editTeamMemberForm.get('Email').value,
+          Role: this.editTeamMemberForm.get('Role').value
+        }
+        //this.teamMemberservice.updateTeaMember(this.teamMember, teamMember)
+        this.presentToast()
+      }
+      this.router.navigate(['/tabs/search/team-member', this.teamMember]);
   }
 
   ngOnInit() {
@@ -38,17 +66,18 @@ export class EditTeamMemberPage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-    this.teamMemberservice.getTeamMember(this.teamMember).subscribe(response => {
-      console.log(response);
-      this.data = response;
-    });
-  }
-
-  async getTeamMember(item){
-    this.teamMemberservice.getTeamMember(item.employeeID).subscribe(response => {
-      console.log(response);
-      this.data = response;
+    
+    this.teamMemberservice.getTeamMember(this.data)
+    .subscribe(res =>{
+    console.log(res)
+    this.editTeamMemberForm.setValue({
+      Name: res['Name'],
+      Surname: res['Surname'], 
+      PhoneNumber: res['PhoneNumber'], 
+      Email: res['Email'],
+      Role: res['Role']
     })
+    });
   }
 
   get errorControl() {
@@ -56,7 +85,7 @@ export class EditTeamMemberPage implements OnInit {
   }
 
   back(){
-    this.router.navigate(['tabs/view/team-member', this.data]);
+    this.router.navigate(['tabs/search/team-member', this.data]);
   }
 
   async presentToast() {
@@ -65,7 +94,6 @@ export class EditTeamMemberPage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 }

@@ -21,10 +21,15 @@ export class EditVehiclePage implements OnInit {
   editVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;
-id: any
-item: any
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public service: VehicleService, public router: Router, public toastCtrl: ToastController) {
-      this.route.params.subscribe(params => {
+
+  constructor(private route: ActivatedRoute, 
+    public fb: FormBuilder, 
+    public authService: AuthService, 
+    public service: VehicleService, 
+    public router: Router, 
+    public toastCtrl: ToastController) {
+      
+    this.route.params.subscribe(params => {
           this.data = params.id;
       });
     this.editVehicleForm = new FormGroup({
@@ -33,44 +38,46 @@ item: any
       Registration: new FormControl('', Validators.required),
       warrantyPlan: new FormControl('', Validators.required)
     })
-  }
-  submitForm() {
-    this.service.updateItem(this.id, this.item).subscribe((response) => {
-      this.router.navigate(['/tabs/search/vehicle']);
-    });
-console.log(this.data)
-  }
-  // submitForm(){
-  //   this.isSubmitted = true;
-  //   if(!this.editVehicleForm.valid){
-  //     return false;
-  //   }
-  //   else{
-  //       const dealership = {
-  //         VIN_Number: this.editVehicleForm.get('VINNum').value,
-  //         VehicleModel: this.editVehicleForm.get('vehicleModel').value,
-  //         Registration: this.editVehicleForm.get('Registration').value,
-  //         Warranty: this.editVehicleForm.get('warrantyPlan').value,
-  //       }
 
-  //     this.service.updateVehicle(this.data, dealership)
-  //     this.presentToast();
-  //   }
+  }
 
-  //   this.router.navigate(['/tabs/view/vehicle', this.data]);
-  // }
+  submitForm(){
+    this.isSubmitted = true;
+    if(!this.editVehicleForm.valid){
+      return false;
+    }
+    else{
+
+      const dealership = {
+        VIN_Number: this.editVehicleForm.get('VINNum').value,
+        VehicleModel: this.editVehicleForm.get('vehicleModel').value,
+        Registration: this.editVehicleForm.get('Registration').value,
+        Warranty: this.editVehicleForm.get('warrantyPlan').value,
+      }
+      this.service.updateVehicle(this.data, dealership)
+      this.presentToast();
+    }
+    this.router.navigate(['/tabs/view/vehicle', this.data]);
+  }
 
   ngOnInit() {
-    
-    // this.service.getVehicle(this.data).valueChanges().subscribe(res =>{
-    //   console.log(res)
-    //   this.editVehicleForm.setValue({
-    //     VINNum: res['VIN_Number'],
-    //     vehicleModel: res['VehicleModel'], 
-    //     Registration: res['Registration'], 
-    //     warrantyPlan: res['Warranty']
-    //   })
-    // });
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+
+    this.service.getItem(this.data)
+    .subscribe(res =>{
+    console.log(res)
+    this.editVehicleForm.setValue({
+      VINNum: res['VIN_Number'],
+      vehicleModel: res['VehicleModel'], 
+      Registration: res['Registration'],
+      warrantyPlan: res['Warranty']
+    })
+    });
   }
 
   get errorControl() {
@@ -87,7 +94,6 @@ console.log(this.data)
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 }

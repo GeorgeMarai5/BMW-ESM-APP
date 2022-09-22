@@ -87,7 +87,6 @@ export class EditVehiclePartPage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-  
     toast.present();
   }
 }

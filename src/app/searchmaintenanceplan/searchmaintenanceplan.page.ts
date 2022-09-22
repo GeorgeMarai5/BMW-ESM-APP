@@ -8,6 +8,7 @@ import { MaintenancePlanService } from '../services/MaintenancePlan.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MaintenancePlan } from '../models/Maintenance-Plan';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-searchmaintenanceplan',
@@ -22,7 +23,7 @@ plans: MaintenancePlan;
 planform : FormGroup;
 searchTerm: string;
 
-constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
+constructor(public planService: MaintenancePlanService, public alertController: AlertController, private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
   public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) {
     this.plans = {} as MaintenancePlan; 
 }
@@ -51,4 +52,15 @@ ngOnInit(){
 
     }
   )}
+
+  async presentAlertMultipleButtons() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Select Plan',
+      message: 'Are you sure you would like to select this plan?',
+      buttons: ['Select', 'Cancel']
+    });
+
+    await alert.present();
+  }
 }

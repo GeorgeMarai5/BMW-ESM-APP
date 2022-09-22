@@ -47,14 +47,14 @@ export class CreateTeamMemberPage implements OnInit {
       return false;
     }
     else{
-        const Employee = {
+        const teamMember = {
           Name: this.createTeamMemberForm.get('Name').value,
           Surname: this.createTeamMemberForm.get('Surname').value,
           PhoneNumber: this.createTeamMemberForm.get('PhoneNumber').value,
           Email: this.createTeamMemberForm.get('Email').value,
           Role: this.createTeamMemberForm.get('Role').value
         }
-        //this.teamMemberservice.updateTeaMember(this.teamMember, Employee)
+        //this.teamMemberservice.createTeamMember(this.teamMember, teamMember)
         this.presentToast()
       }
       this.router.navigate(['/tabs/search/team-member', this.teamMember]);
