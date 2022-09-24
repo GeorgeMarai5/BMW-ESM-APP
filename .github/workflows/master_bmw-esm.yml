@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'BMW-ESM'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AAA0E5B3D25242819A1A200C097BEE64 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB3C44EB348E4228AD523B4F7AAF990C }}
           package: .
