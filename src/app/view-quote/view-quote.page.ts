@@ -33,20 +33,20 @@ export class ViewQuotePage implements OnInit {
    }
 
   ngOnInit() {
-    this.quoteservice.get_Quote().subscribe(data => {
-      this.QuoteList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          ClientName: e.payload.doc.data()['ClientName'],
-          Date: e.payload.doc.data()['Date'],
-          Description: e.payload.doc.data()['Description'],
-          Accepted: e.payload.doc.data()['Accepted'],
-        };
-      });
+    // this.quoteservice.getQuoteList().subscribe(data => {
+    //   this.QuoteList = data.map(e => {
+    //     return {
+    //       id: e.payload.doc.id,
+    //       isEdit: false,
+    //       ClientName: e.payload.doc.data()['ClientName'],
+    //       Date: e.payload.doc.data()['Date'],
+    //       Description: e.payload.doc.data()['Description'],
+    //       Accepted: e.payload.doc.data()['Accepted'],
+    //     };
+    //   });
 
-      console.log(this.QuoteList);
-    });
+    //   console.log(this.QuoteList);
+    // });
   }
 
   navToUpdate() {

@@ -36,16 +36,16 @@ export class ViewMaintenancePlanPage implements OnInit {
   }
 
   ngOnInit() {
-    this.planService.getMaintenancePlan(this.data).valueChanges()
-      .subscribe(res =>{
-      console.log(res)
-      this.planform.setValue({
-        PlanName: res['Plan_Name'], 
-        Description: res['Description'],
-        Duration: res['Duration'], 
-        Price: res['Price']
-      })
-    });
+    // this.planService.getMaintenancePlan(this.data).valueChanges()
+    //   .subscribe(res =>{
+    //   console.log(res)
+    //   this.planform.setValue({
+    //     PlanName: res['Plan_Name'], 
+    //     Description: res['Description'],
+    //     Duration: res['Duration'], 
+    //     Price: res['Price']
+    //   })
+    // });
   }
 
   navToUpdate() {

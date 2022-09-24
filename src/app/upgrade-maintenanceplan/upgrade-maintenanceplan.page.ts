@@ -44,7 +44,7 @@ export class UpgradeMaintenancePlanPage implements OnInit {
         NewPlanName: this.upgradePlanForm.get('NewPlanName').value
       }
 
-      this.planService.upgradeMaintenancePlan(this.data, maintenanceplan)
+      this.planService.updateMaintenancePlan(this.data, maintenanceplan)
       this.presentToast();
     }
 
@@ -53,13 +53,13 @@ export class UpgradeMaintenancePlanPage implements OnInit {
   }
 
   ngOnInit() {
-    this.planService.getMaintenancePlan(this.data).valueChanges().subscribe(res =>{
-      console.log(res)
-      this.upgradePlanForm.setValue({
-        PlanName: res['Plan_Name'],
-        NewPlanName: ''
-      })
-    });
+    // this.planService.getMaintenancePlan(this.data).valueChanges().subscribe(res =>{
+    //   console.log(res)
+    //   this.upgradePlanForm.setValue({
+    //     PlanName: res['Plan_Name'],
+    //     NewPlanName: ''
+    //   })
+    // });
   }
 
   back(){

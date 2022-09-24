@@ -1,4 +1,4 @@
-export class Quotes{
+export class Quote{
     QuoteID: string;
     ClientName: string;
     Service_Note: string;

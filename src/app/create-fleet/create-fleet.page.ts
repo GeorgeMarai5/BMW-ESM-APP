@@ -4,7 +4,7 @@ import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { ToastController } from '@ionic/angular';
-import { Fleets } from '../models/Fleet';
+import { Fleet } from '../models/Fleet';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ export class CreateFleetPage implements OnInit {
   addFleetForm: FormGroup;
   isSubmitted = false;
   data: any;
-  fleet: Fleets;
+  fleet: Fleet;
 
   constructor (private route: ActivatedRoute, 
     public router: Router, 

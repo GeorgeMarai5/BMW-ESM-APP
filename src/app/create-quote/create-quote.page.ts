@@ -3,7 +3,7 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
-import { Quotes } from '../models/Quote';
+import { Quote } from '../models/Quote';
 import { ToastController } from '@ionic/angular';
 
 interface QuoteData {
@@ -26,7 +26,7 @@ export class CreateQuotePage implements OnInit {
   QuoteData: QuoteData;
   createQuoteForm: FormGroup;
   isSubmitted = false;
-  data:Quotes;
+  data:Quote;
 
   constructor(public route : ActivatedRoute,
     public authService: AuthService, 

@@ -57,7 +57,7 @@ export class AssignDealershipPage implements OnInit {
 
   ngOnInit() {
     this.assignDealershipForm.setValue({dealershipName: '', address: ''});
-    this.assignDealership()
+    // this.assignDealership()
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -66,14 +66,14 @@ export class AssignDealershipPage implements OnInit {
     }
   }
 
-  async assignDealership(){
-    this.dealershipservice.AssignDealership(this.data).subscribe(response => {
-      console.log(response);
-      //this.router.navigate(['student-list']);
-    });
+  // async assignDealership(){
+  //   this.dealershipservice.createDealership(this.data).subscribe(response => {
+  //     console.log(response);
+  //     //this.router.navigate(['student-list']);
+  //   });
 
 
-}
+
 submitForm(){
   this.isSubmitted = true;
   if(!this.assignDealershipForm.valid){
@@ -84,7 +84,8 @@ submitForm(){
         dealershipName: this.assignDealershipForm.get('dealershipName').value,
         address: this.assignDealershipForm.get('address').value
       }
-      this.dealershipservice.AssignDealership(this.data)
+      console.log(assignedDealership);
+      this.dealershipservice.createDealership(this.data)
       this.presentToast();
     }
     this.router.navigate(['/tabs/search/fleet', this.data]);

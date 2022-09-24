@@ -5,7 +5,7 @@ import{FleetService} from '../services/fleet.service';
 import { VehicleService } from '../services/vehicle.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Fleets } from '../models/fleet';
+import { Fleet } from '../models/fleet';
 
 
 
@@ -91,7 +91,7 @@ export class ViewFleetPage implements OnInit {
     
 
       //Delete item in Student data
-      this.vehicleservice.deleteVehicles(item.vehicleID).subscribe(Response => {
+      this.vehicleservice.deleteVehicle(item.vehicleID).subscribe(Response => {
         //Update list after delete is successful
         console.log(Response);
         //this.getallFleets()
@@ -102,7 +102,7 @@ export class ViewFleetPage implements OnInit {
 
 async getFleetDetails(){
 
-  this.fleetservice.getList().subscribe(response => {
+  this.fleetservice.getFleetList().subscribe(response => {
     console.log(response);
     this.data = response;
   })
@@ -115,29 +115,29 @@ async getFleetDetails(){
 
   async getVin(){
 
-    this.vehicleservice.getList().subscribe(response => {
+    this.vehicleservice.getVehicleList().subscribe(response => {
       console.log(response);
       this.data = response;
     
     })
 
-    this.vehicleservice.getListModelAndYear().subscribe(res => {
-      console.log(res);
-      this.dat = res;
-    })
+    // this.vehicleservice.getListModelAndYear().subscribe(res => {
+    //   console.log(res);
+    //   this.dat = res;
+    // })
   
 
 
     
   }
 
-  async getModelAndYear(){
+  // async getModelAndYear(){
 
-    this.vehicleservice.getListModelAndYear().subscribe(response => {
-      console.log(response);
-      this.dat = response;
-    })
-  }
+  //   this.vehicleservice.getListModelAndYear().subscribe(response => {
+  //     console.log(response);
+  //     this.dat = response;
+  //   })
+  // }
 
 
 

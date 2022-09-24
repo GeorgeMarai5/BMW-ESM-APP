@@ -1,117 +1,162 @@
+import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Vehicle } from '../models/Vehicle';
-import { Observable,of, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { retry,catchError, tap, map } from 'rxjs/operators';
-import { Model } from '../models/Model';
+import { retry, catchError } from 'rxjs/operators';
+import { Model } from 'app/models/Model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class VehicleService {
 
-  collectionName = 'Vehicle';
-  apiUrl = 'https://localhost:7292'
-  httpOptions ={
-    headers: new HttpHeaders({
-      ContentType: 'application/json'
-    })
-  }
-  constructor(private firestore: AngularFirestore, private httpClient: HttpClient) { }                                             //private db: AngularFireDatabase,private firestore: AngularFirestore
-  
+ apiUrl = 'https://localhost:7163/api/Vehicles';
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+  constructor(private httpClient: HttpClient) {}
+
+  httpOptions = {
+  headers: new HttpHeaders({
+   'Content-Type': 'application/json'
+   })
     }
-    // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later.');
+   
+createVehicle(item): Observable<Vehicle> {
+    return this.httpClient
+      .post<Vehicle>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
+  }
+
+getVehicle(id): Observable<Vehicle> {
+  return this.httpClient
+    .get<Vehicle>(this.apiUrl + '/' + id)
+}
+
+getVehicleList(): Observable<Vehicle> {
+  return this.httpClient
+    .get<Vehicle>(this.apiUrl)
+}
+
+updateVehicle(id, item): Observable<Vehicle> {
+  return this.httpClient
+    .put<Vehicle>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
+}
+
+deleteVehicle(id) {
+      return this.httpClient
+   .delete<Vehicle>(this.apiUrl + '/' + id, this.httpOptions)
+}
+
+
+
+
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class VehicleService {
+
+//   collectionName = 'Vehicle';
+//   apiUrl = 'https://localhost:7292'
+//   httpOptions ={
+//     headers: new HttpHeaders({
+//       ContentType: 'application/json'
+//     })
+//   }
+//   constructor(private firestore: AngularFirestore, private httpClient: HttpClient) { }                                             //private db: AngularFireDatabase,private firestore: AngularFirestore
+  
+
+  // private handleError(error: HttpErrorResponse) {
+  //   if (error.error instanceof ErrorEvent) {
+  //     // A client-side or network error occurred. Handle it accordingly.
+  //     console.error('An error occurred:', error.error.message);
+  //   } else {
+  //     // The backend returned an unsuccessful response code.
+  //     // The response body may contain clues as to what went wrong,
+  //     console.error(
+  //       `Backend returned code ${error.status}, ` +
+  //       `body was: ${error.error}`);
+  //   }
+  //   // return an observable with a user-facing error message
+  //   return throwError('Something bad happened; please try again later.');
     
-  }
+  // }
 
 
 
-   getVehicles() {
-     return this.firestore.collection('Vehicle').snapshotChanges();
-   }
+  //  getVehicles() {
+  //    return this.firestore.collection('Vehicle').snapshotChanges();
+  //  }
 
-  createVehicle(Vehicle: Vehicle) {
-    //return this.httpClient.post(this.apiUrl + '/Vehicle', Vehicle, this.httpOptions);
-    return this.firestore.collection('Vehicle').add(Vehicle);
-  }
+  // createVehicle(Vehicle: Vehicle) {
+  //   //return this.httpClient.post(this.apiUrl + '/Vehicle', Vehicle, this.httpOptions);
+  //   return this.firestore.collection('Vehicle').add(Vehicle);
+  // }
 
-  getVehicle(id: string){
-     return this.firestore.collection('Vehicle').doc(id);
-   }
+  // getVehicle(id: string){
+  //    return this.firestore.collection('Vehicle').doc(id);
+  //  }
 
-   updateVehicle(id, vehicle) {
-     this.firestore.doc(this.collectionName + '/' + id).update(vehicle);
-   }
+  //  updateVehicle(id, vehicle) {
+  //    this.firestore.doc(this.collectionName + '/' + id).update(vehicle);
+  //  }
 
-   deleteVehicle(id) {
-     this.firestore.doc(this.collectionName + '/' + id).delete();
-   }
-
-
-  
-  getList(): Observable<Vehicle> {
-    return this.httpClient
-      .get<Vehicle>(this.apiUrl + '/api/Vehicle/GetAllVehicles')
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-
-  getListModelAndYear(): Observable<Model> {
-    return this.httpClient
-      .get<Model>(this.apiUrl + '/api/Vehicle/GetModelANDYear')
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-
-
+  //  deleteVehicle(id) {
+  //    this.firestore.doc(this.collectionName + '/' + id).delete();
+  //  }
 
 
   
-  // Get single student data by ID
-  getItem(id): Observable<Vehicle> {
-    return this.httpClient
-      .get<Vehicle>(this.apiUrl + '/VehicleByid' + '/' + id)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
+  // getList(): Observable<Vehicle> {
+  //   return this.httpClient
+  //     .get<Vehicle>(this.apiUrl + '/api/Vehicle/GetAllVehicles')
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
+
+  // getListModelAndYear(): Observable<Model> {
+  //   return this.httpClient
+  //     .get<Model>(this.apiUrl + '/api/Vehicle/GetModelANDYear')
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
+
+
+
+
   
-  // Update item by id
-  updateItem(id, item): Observable<Vehicle> {
-    return this.httpClient
-      .put<Vehicle>(this.apiUrl + '/UpdateVehicle' + '/' + id, JSON.stringify(item), this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
+  // // Get single student data by ID
+  // getItem(id): Observable<Vehicle> {
+  //   return this.httpClient
+  //     .get<Vehicle>(this.apiUrl + '/VehicleByid' + '/' + id)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
   
-  // Delete item by id
-  delete(id) {
-    return this.httpClient
-      .delete<Vehicle>(this.apiUrl + '/api/Vehicle/DeleteVehicle' + '/' + id, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
+  // // Update item by id
+  // updateItem(id, item): Observable<Vehicle> {
+  //   return this.httpClient
+  //     .put<Vehicle>(this.apiUrl + '/UpdateVehicle' + '/' + id, JSON.stringify(item), this.httpOptions)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
+  
+  // // Delete item by id
+  // delete(id) {
+  //   return this.httpClient
+  //     .delete<Vehicle>(this.apiUrl + '/api/Vehicle/DeleteVehicle' + '/' + id, this.httpOptions)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
 
 
 
@@ -123,13 +168,13 @@ export class VehicleService {
       //);
   //}
 
-  deleteVehicles(id): Observable<{}> {
+  // deleteVehicles(id): Observable<{}> {
   
-    return this.httpClient.delete(this.apiUrl + '/api/Vehicle/DeleteVehicle?id=' +  id , this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
+  //   return this.httpClient.delete(this.apiUrl + '/api/Vehicle/DeleteVehicle?id=' +  id , this.httpOptions)
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     );
+  // }
 
 
 

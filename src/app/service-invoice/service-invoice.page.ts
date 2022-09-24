@@ -12,7 +12,7 @@ import { Service } from 'app/services/service.service';
 import { Clients } from 'app/models/Clients';
 import { Dealership } from 'app/models/Dealership';
 import { Team } from 'app/models/Team';
-import { Quotes } from 'app/models/Quote';
+import { Quote } from 'app/models/Quote';
 import { Service_Note } from 'app/models/Service_Note';
 import { AssignedPart } from 'app/models/AssignedPart';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -34,7 +34,7 @@ export class ServiceInvoicePage implements OnInit {
   team: Team;
   client: Clients;
   vehicle: Vehicle;
-  invoice: Quotes;
+  invoice: Quote;
   note: Service_Note;
   serviceItem: AssignedPart;
 

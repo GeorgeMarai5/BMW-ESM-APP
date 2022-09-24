@@ -35,23 +35,23 @@ ngOnInit(){
       Duration: ['', [Validators.required]],
       Price: ['', [Validators.required]],
     });
+  }
+    // this.planService.getMaintenancePlanList().subscribe(data => {
+    //   this.maintenanceplanList = data.map(e => {
 
-    this.planService.getPlans().subscribe(data => {
-      this.maintenanceplanList = data.map(e => {
+    //     return {
+    //       id: e.payload.doc.id,
+    //       PlanName: e.payload.doc.data()['Plan_Name'],
+    //       Description: e.payload.doc.data()['Description'],
+    //       Duration: e.payload.doc.data()['Duration'],
+    //       Price: e.payload.doc.data()['Price']
+    //     };
+    //   });
 
-        return {
-          id: e.payload.doc.id,
-          PlanName: e.payload.doc.data()['Plan_Name'],
-          Description: e.payload.doc.data()['Description'],
-          Duration: e.payload.doc.data()['Duration'],
-          Price: e.payload.doc.data()['Price']
-        };
-      });
+    //   console.log(this.maintenanceplanList);
 
-      console.log(this.maintenanceplanList);
-
-    }
-  )}
+    // }
+  // )}
 
   async presentAlertMultipleButtons() {
     const alert = await this.alertController.create({

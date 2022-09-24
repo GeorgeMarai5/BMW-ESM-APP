@@ -68,7 +68,7 @@ this.getall();
 
   async getall(){
 
-    this.service.getList().subscribe(response => {
+    this.service.getVehicleList().subscribe(response => {
       console.log(response);
       this.data = response;
     })

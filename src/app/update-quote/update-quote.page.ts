@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
 import { ToastController } from '@ionic/angular';
-import { Quotes } from 'app/models/Quote';
+import { Quote } from 'app/models/Quote';
 
 @Component({
   selector: 'app-update-quote',
@@ -14,7 +14,7 @@ import { Quotes } from 'app/models/Quote';
 export class UpdateQuotePage implements OnInit {
 
   editquoteForm: FormGroup;
-  quotedata: Quotes;
+  quotedata: Quote;
   QuoteList = [];
   isSubmitted = false;
   data: any;

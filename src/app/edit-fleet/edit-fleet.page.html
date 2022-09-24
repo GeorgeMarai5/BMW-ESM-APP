@@ -22,7 +22,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked">Fleet Name</ion-label>
-              <ion-input [(ngModel)]="dat.fleet_Name" 
+              <ion-input [(ngModel)]="data.fleet_Name" 
                [ngModelOptions]="{standalone: true}" type="text" required></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.FleetName.errors?.required">
@@ -37,7 +37,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Fleet Location</b></ion-label>
-              <ion-input  [(ngModel)]="dat.fleet_Location" 
+              <ion-input  [(ngModel)]="data.fleet_Location" 
                [ngModelOptions]="{standalone: true}" type="text" required></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.FleetLocation.errors?.required">

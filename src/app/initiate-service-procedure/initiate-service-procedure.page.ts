@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Dealership } from '../models/Dealership';
-import { Fleets } from '../models/fleet';
+import { Fleet } from '../models/fleet';
 import { Team } from '../models/Team';
 import { VehicleService } from '../services/vehicle.service';
 import{FleetService} from '../services/fleet.service';
@@ -28,7 +28,7 @@ export class InitiateServiceProcedurePage implements OnInit {
 
   serviceList = [];
   dealership: Dealership;
-  fleet: Fleets;
+  fleet: Fleet;
   team: Team;
   initiateServiceForm : FormGroup;
   myService: any;
@@ -72,7 +72,7 @@ export class InitiateServiceProcedurePage implements OnInit {
 
 
 
-    this.dealershipservice.getList().subscribe(response => {
+    this.dealershipservice.getDealershipList().subscribe(response => {
       console.log(response);
       this.de = response;
     })
@@ -96,7 +96,7 @@ this.getTeam();
 
 
 async getFleet(){
-  this.fleetservice.getList().subscribe(response => {
+  this.fleetservice.getFleetList().subscribe(response => {
     console.log(response);
     this.fle = response;
   })
@@ -107,7 +107,7 @@ async getFleet(){
 
 async getDealership(){
 
-  this.dealershipservice.getList().subscribe(response => {
+  this.dealershipservice.getDealershipList().subscribe(response => {
     console.log(response);
     this.de = response;
   })

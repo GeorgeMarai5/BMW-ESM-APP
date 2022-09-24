@@ -47,7 +47,7 @@ export class EditDealershipPage implements OnInit {
           DealershipName: this.editDealershipForm.get('dealershipName').value,
           AddressName: this.editDealershipForm.get('address').value
         }
-        this.dealershipService.updateItem(this.data, dealership)
+        this.dealershipService.updateDealership(this.data, dealership)
         this.presentToast();
       }
       this.router.navigate(['/tabs/search/dealership', this.data]);
@@ -61,7 +61,7 @@ export class EditDealershipPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.dealershipService.getItem(this.data)
+    this.dealershipService.getDealership(this.data)
     .subscribe(res =>{
       console.log(res)
       this.editDealershipForm.setValue({

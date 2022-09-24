@@ -64,7 +64,7 @@ export class SearchDealershipPage implements OnInit {
 
   getallDealerships(){
 
-    this.service.getList().subscribe(response => {
+    this.service.getDealershipList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
@@ -87,7 +87,7 @@ export class SearchDealershipPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteItem(id);
+          this.service.deleteDealership(id);
           this.presentToast();
         }
       }]

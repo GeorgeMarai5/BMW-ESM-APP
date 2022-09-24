@@ -53,7 +53,7 @@ export class AddressPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.addressservice.getList().subscribe(response => {
+    this.addressservice.getAddressList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
@@ -72,7 +72,7 @@ export class AddressPage implements OnInit {
 
     {
       //Get saved list of students
-      this.addressservice.getList().subscribe(response => {
+      this.addressservice.getAddressList().subscribe(response => {
         console.log(response);
         this.data = response;
       })
@@ -82,7 +82,7 @@ export class AddressPage implements OnInit {
 
 create(){
 
-this.addressservice.AddAddress(this.dat).subscribe((response)=>{
+this.addressservice.createAddress(this.dat).subscribe((response)=>{
   console.log(response);
 })
 
@@ -98,7 +98,7 @@ this.addressservice.AddAddress(this.dat).subscribe((response)=>{
 
 Update(){
 
-  this.addressservice.AddAddress(this.dat).subscribe((response)=>{
+  this.addressservice.createAddress(this.dat).subscribe((response)=>{
     console.log(response);
   })
 
@@ -113,7 +113,7 @@ getbyID(item){
 
 
   //get item details using id
-  this.addressservice.getItem(item.id).subscribe(response => {
+  this.addressservice.getAddress(item.id).subscribe(response => {
     console.log(response);
     this.data = response;
   })
@@ -127,9 +127,9 @@ getbyID(item){
 
 delete(item) {
   //Delete item in Student data
-  this.addressservice.deleteItem(item.id).subscribe(Response => {
+  this.addressservice.deleteAddress(item.id).subscribe(Response => {
     //Update list after delete is successful
-    this.addressservice.getList();
+    this.addressservice.getAddressList();
   });
 }
 

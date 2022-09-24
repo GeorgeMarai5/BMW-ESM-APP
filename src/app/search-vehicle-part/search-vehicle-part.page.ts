@@ -71,7 +71,7 @@ export class SearchVehiclePartPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteItem(id);
+          this.service.deleteAssignedPart(id);
           this.presentToast();
         }
       }]

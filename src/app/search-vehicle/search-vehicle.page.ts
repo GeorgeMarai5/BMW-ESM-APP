@@ -45,28 +45,28 @@ export class SearchVehiclePage implements OnInit {
 
     //this.getallVehicles();
 
-     this.service.getVehicles().subscribe(data => {
-       this.vehicleList = data.map(e => {
-         let yearCode: string;
-         yearCode = e.payload.doc.data()['VIN_Number'];
+    //  this.service.getVehicleList().subscribe(data => {
+    //    this.vehicleList = data.map(e => {
+    //      let yearCode: string;
+    //      yearCode = e.payload.doc.data()['VIN_Number'];
 
-         return {
-           id: e.payload.doc.id,
-           VehicleID: e.payload.doc.data()['VehicleID'],
-           VINNum: e.payload.doc.data()['VIN_Number'],
-           model: e.payload.doc.data()['VehicleModel'],
-           year: this.service.getYear(yearCode.substring(9, 10))
-         };
-       })
-       console.log(this.vehicleList);
+    //      return {
+    //        id: e.payload.doc.id,
+    //        VehicleID: e.payload.doc.data()['VehicleID'],
+    //        VINNum: e.payload.doc.data()['VIN_Number'],
+    //        model: e.payload.doc.data()['VehicleModel'],
+    //        year: this.service.getYear(yearCode.substring(9, 10))
+    //      };
+    //    })
+    //    console.log(this.vehicleList);
 
-     });
+    //  });
   }
 
 
   getallVehicles(){
 
-    this.service.getList().subscribe(response => {
+    this.service.getVehicleList().subscribe(response => {
       console.log(response);
       this.data = response;
     })

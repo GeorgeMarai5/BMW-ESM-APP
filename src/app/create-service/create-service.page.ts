@@ -25,7 +25,7 @@ export class CreateServicePage implements OnInit {
   isSubmitted = false;
   data: any;
   today = new Date();
-
+id :any;
   pipe = new DatePipe('en-US');
   changeFormat(today){
     let ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
@@ -75,7 +75,7 @@ export class CreateServicePage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.teamservice.getServiceType().subscribe(response => {
+    this.teamservice.getServiceType(this.id).subscribe(response => {
       console.log(response);
       this.data = response;
     })

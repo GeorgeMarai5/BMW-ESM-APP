@@ -1,92 +1,141 @@
-import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { throwError, Observable } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Dealership } from '../models/Dealership';
+import { retry, catchError } from 'rxjs/operators';
+import { Model } from 'app/models/Model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class DealershipService {
 
-  apiUrl = 'https://localhost:7292'
-  httpOptions ={
-    headers: new HttpHeaders({
-      ContentType: 'application/json'
-    })
-  }
+ apiUrl = 'https://localhost:7163/api/Dealerships';
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient) {}
 
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+  httpOptions = {
+  headers: new HttpHeaders({
+   'Content-Type': 'application/json'
+   })
     }
-    // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later.');
-  }
-
-  AssignDealership(dealership: Dealership){
-    return this.httpClient.post(this.apiUrl + '/api/Dealerships' , dealership, this.httpOptions)
-  }
-
-  getList(): Observable<Dealership> {
+   
+createDealership(item): Observable<Dealership> {
     return this.httpClient
-      .get<Dealership>(this.apiUrl + '/api/Dealership/')
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+      .post<Dealership>(this.apiUrl, JSON.stringify(item), this.httpOptions)  
   }
 
-
-  getItem(id): Observable<Dealership> {
-    return this.httpClient
-      .get<Dealership>(this.apiUrl + '/api/Dealership/GetDealership/1')
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-
-
-
-
-
-
-
-
-
-
-  
-  updateItem(id, item): Observable<Dealership> {
-    return this.httpClient
-      .put<Dealership>(this.apiUrl + '/UpdateDealership' + '/' + id, JSON.stringify(item), this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-  
-  deleteItem(id) {
-    return this.httpClient
-      .delete<Dealership>(this.apiUrl + '/DeleteDealership' + '/' + id, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
+getDealership(id): Observable<Dealership> {
+  return this.httpClient
+    .get<Dealership>(this.apiUrl + '/' + id)
 }
+
+getDealershipList(): Observable<Dealership> {
+  return this.httpClient
+    .get<Dealership>(this.apiUrl)
+}
+
+updateDealership(id, item): Observable<Dealership> {
+  return this.httpClient
+    .put<Dealership>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
+}
+
+deleteDealership(id) {
+      return this.httpClient
+   .delete<Dealership>(this.apiUrl + '/' + id, this.httpOptions)
+}
+
+}
+// import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
+// import { Injectable } from '@angular/core';
+// import { AngularFirestore } from '@angular/fire/compat/firestore';
+// import { throwError, Observable } from 'rxjs';
+// import { retry, catchError } from 'rxjs/operators';
+// import { Dealership } from '../models/Dealership';
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class DealershipService {
+
+//   apiUrl = 'https://localhost:7163'
+//   httpOptions ={
+//     headers: new HttpHeaders({
+//       ContentType: 'application/json'
+//     })
+//   }
+
+//   constructor(private httpClient: HttpClient) { 
+
+//   }
+
+//   private handleError(error: HttpErrorResponse) {
+//     if (error.error instanceof ErrorEvent) {
+//       // A client-side or network error occurred. Handle it accordingly.
+//       console.error('An error occurred:', error.error.message);
+//     } else {
+//       // The backend returned an unsuccessful response code.
+//       // The response body may contain clues as to what went wrong,
+//       console.error(
+//         `Backend returned code ${error.status}, ` +
+//         `body was: ${error.error}`);
+//     }
+//     // return an observable with a user-facing error message
+//     return throwError('Something bad happened; please try again later.');
+//   }
+
+//   AssignDealership(dealership: Dealership){
+//     return this.httpClient.post(this.apiUrl + '/api/Dealerships' , dealership, this.httpOptions)
+//   }
+
+//   getList(): Observable<Dealership> {
+//     return this.httpClient
+//       .get<Dealership>(this.apiUrl + '/api/Dealership/')
+//       .pipe(
+//         retry(2),
+//         catchError(this.handleError)
+//       )
+//   }
+
+
+//   getItem(id): Observable<Dealership> {
+//     return this.httpClient
+//       .get<Dealership>(this.apiUrl + '/api/Dealership/GetDealership/1')
+//       .pipe(
+//         retry(2),
+//         catchError(this.handleError)
+//       )
+//   }
+
+
+
+
+
+
+
+
+
+
+  
+//   updateItem(id, item): Observable<Dealership> {
+//     return this.httpClient
+//       .put<Dealership>(this.apiUrl + '/UpdateDealership' + '/' + id, JSON.stringify(item), this.httpOptions)
+//       .pipe(
+//         retry(2),
+//         catchError(this.handleError)
+//       )
+//   }
+  
+//   deleteItem(id) {
+//     return this.httpClient
+//       .delete<Dealership>(this.apiUrl + '/DeleteDealership' + '/' + id, this.httpOptions)
+//       .pipe(
+//         retry(2),
+//         catchError(this.handleError)
+//       )
+//   }
+// }
 
 
 

@@ -1,124 +1,174 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from "@angular/fire/compat/firestore";
-import {
-  AngularFireDatabase,
-  AngularFireList,
-  AngularFireObject
-} from '@angular/fire/compat/database';
 import { Observable, throwError } from 'rxjs';
-import { Quotes } from '../models/Quote';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { retry,catchError, tap, map } from 'rxjs/operators';
-
-
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import { Quote } from '../models/Quote';
+import { retry, catchError } from 'rxjs/operators';
+import { Model } from 'app/models/Model';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class QuoteService {
 
-  apiUrl = 'https://localhost:7292'
-  httpOptions ={
-    headers: new HttpHeaders({
-      ContentType: 'application/json'
-    })
-  }
+ apiUrl = 'https://localhost:7163/api/Quotes';
 
+  constructor(private httpClient: HttpClient) {}
 
-
-
-
-
-
-
- collectionName = 'Quote';
-  QuoteRef: AngularFireObject<any>;
-
-  constructor(private db: AngularFireDatabase,
-    private firestore: AngularFirestore,private httpClient: HttpClient
-  ) { }
-
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+  httpOptions = {
+  headers: new HttpHeaders({
+   'Content-Type': 'application/json'
+   })
     }
-    // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later.');
-    
-  }
-
-
-
-
-
-  AddQuote(quote: Quotes){
-    return this.httpClient.post(this.apiUrl + '/api/Fleet/Create' , quote, this.httpOptions)
-
-
-  }
-
-
-  getList(): Observable<Quotes> {
+   
+createQuote(item): Observable<Quote> {
     return this.httpClient
-      .get<Quotes>(this.apiUrl + '/api/Quote/GetAllQuotes')
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+      .post<Quote>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
   }
 
-
-
-
-
-
-
-
-
-
-  create_Quote(Quote) {
-    return this.firestore.collection(this.collectionName).add(Quote);
-  }
-
-  read_Quote() {
-    return this.firestore.collection(this.collectionName).snapshotChanges();
-  }
-
-  get_Quote(){
-    return this.firestore.collection('Quote').snapshotChanges();
-  }
-
-  getQuote(id: string){
-    return this.firestore.collection(this.collectionName).doc(id);
-  }
-
-  update_Quote(FleetID,Fleet) {
-    this.firestore.doc(this.collectionName + '/' + FleetID).update(Fleet);
-  }
-
-  updateQuote(id, Quote) {
-    this.firestore.doc(this.collectionName + '/' + id).update(Quote);
-  }
-
-  deleteQuote(id: string) {
-    this.QuoteRef = this.db.object('/Quote/' + id);
-    this.QuoteRef.remove();
-  }
-
-
-
-
-  delete_Quote(Fleet_ID) {
-    this.firestore.doc(this.collectionName + '/' + Fleet_ID).delete();
-  }
+getQuote(id): Observable<Quote> {
+  return this.httpClient
+    .get<Quote>(this.apiUrl + '/' + id)
 }
+
+getQuoteList(): Observable<Quote> {
+  return this.httpClient
+    .get<Quote>(this.apiUrl)
+}
+
+updateQuote(id, item): Observable<Quote> {
+  return this.httpClient
+    .put<Quote>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
+}
+
+deleteQuote(id) {
+      return this.httpClient
+   .delete<Quote>(this.apiUrl + '/' + id, this.httpOptions)
+}
+
+
+}
+// import { Injectable } from '@angular/core';
+// import { AngularFirestore } from "@angular/fire/compat/firestore";
+// import {
+//   AngularFireDatabase,
+//   AngularFireList,
+//   AngularFireObject
+// } from '@angular/fire/compat/database';
+// import { Observable, throwError } from 'rxjs';
+// import { Quotes } from '../models/Quote';
+// import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+// import { retry,catchError, tap, map } from 'rxjs/operators';
+
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class QuoteService {
+
+//   apiUrl = 'https://localhost:7292'
+//   httpOptions ={
+//     headers: new HttpHeaders({
+//       ContentType: 'application/json'
+//     })
+//   }
+
+
+
+
+
+
+
+
+//  collectionName = 'Quote';
+//   QuoteRef: AngularFireObject<any>;
+
+//   constructor(private db: AngularFireDatabase,
+//     private firestore: AngularFirestore,private httpClient: HttpClient
+//   ) { }
+
+
+//   private handleError(error: HttpErrorResponse) {
+//     if (error.error instanceof ErrorEvent) {
+//       // A client-side or network error occurred. Handle it accordingly.
+//       console.error('An error occurred:', error.error.message);
+//     } else {
+//       // The backend returned an unsuccessful response code.
+//       // The response body may contain clues as to what went wrong,
+//       console.error(
+//         `Backend returned code ${error.status}, ` +
+//         `body was: ${error.error}`);
+//     }
+//     // return an observable with a user-facing error message
+//     return throwError('Something bad happened; please try again later.');
+    
+//   }
+
+
+
+
+
+//   AddQuote(quote: Quotes){
+//     return this.httpClient.post(this.apiUrl + '/api/Fleet/Create' , quote, this.httpOptions)
+
+
+//   }
+
+
+//   getList(): Observable<Quotes> {
+//     return this.httpClient
+//       .get<Quotes>(this.apiUrl + '/api/Quote/GetAllQuotes')
+//       .pipe(
+//         retry(2),
+//         catchError(this.handleError)
+//       )
+//   }
+
+
+
+
+
+
+
+
+
+
+//   create_Quote(Quote) {
+//     return this.firestore.collection(this.collectionName).add(Quote);
+//   }
+
+//   read_Quote() {
+//     return this.firestore.collection(this.collectionName).snapshotChanges();
+//   }
+
+//   get_Quote(){
+//     return this.firestore.collection('Quote').snapshotChanges();
+//   }
+
+//   getQuote(id: string){
+//     return this.firestore.collection(this.collectionName).doc(id);
+//   }
+
+//   update_Quote(FleetID,Fleet) {
+//     this.firestore.doc(this.collectionName + '/' + FleetID).update(Fleet);
+//   }
+
+//   updateQuote(id, Quote) {
+//     this.firestore.doc(this.collectionName + '/' + id).update(Quote);
+//   }
+
+//   deleteQuote(id: string) {
+//     this.QuoteRef = this.db.object('/Quote/' + id);
+//     this.QuoteRef.remove();
+//   }
+
+
+
+
+//   delete_Quote(Fleet_ID) {
+//     this.firestore.doc(this.collectionName + '/' + Fleet_ID).delete();
+//   }
+// }
 
 
 

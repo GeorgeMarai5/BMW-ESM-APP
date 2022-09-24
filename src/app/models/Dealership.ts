@@ -1,5 +1,5 @@
 export class Dealership {
-    dealershipID: string;
+    dealershipId: string;
     address: string;
     dealershipName: string;
 }

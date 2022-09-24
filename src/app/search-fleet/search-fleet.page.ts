@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { AlertController, ToastController } from '@ionic/angular';
-import {  Fleets } from '../models/Fleet';
+import {  Fleet } from '../models/Fleet';
 
 interface FleetData {
   $key: string;
@@ -62,7 +62,7 @@ gotoview(id){
 
     async getallFleets(){
 
-      this.fleetservice.getList().subscribe(response => {
+      this.fleetservice.getFleetList().subscribe(response => {
         console.log(response);
         this.data = response;
       })

@@ -54,7 +54,7 @@ export class SearchQuotePage implements OnInit {
 
   getallQuotes(){
 
-    this.quoteservice.getList().subscribe(response => {
+    this.quoteservice.getQuoteList().subscribe(response => {
       console.log(response);
       this.data = response;
     })

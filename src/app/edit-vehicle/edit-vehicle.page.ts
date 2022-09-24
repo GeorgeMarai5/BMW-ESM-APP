@@ -68,7 +68,7 @@ export class EditVehiclePage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.service.getItem(this.data)
+    this.service.getVehicle(this.data)
     .subscribe(res =>{
     console.log(res)
     this.editVehicleForm.setValue({

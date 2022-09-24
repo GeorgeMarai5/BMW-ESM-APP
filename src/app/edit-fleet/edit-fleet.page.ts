@@ -7,7 +7,7 @@ import { FleetService } from '../services/fleet.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastController } from '@ionic/angular';
-import { Fleets } from '../models/fleet';
+import { Fleet } from '../models/fleet';
 
 @Component({
   selector: 'app-edit-fleet',
@@ -21,7 +21,7 @@ export class EditFleetPage implements OnInit {
   editFleetForm: FormGroup;
   isSubmitted = false;
   data: any;
-  fleets: Fleets;
+  fleets: Fleet;
 
   constructor(private route: ActivatedRoute, 
     public fb: FormBuilder, 
@@ -66,7 +66,7 @@ export class EditFleetPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.fleetservice.getItem(this.data)
+    this.fleetservice.getFleet(this.data)
     .subscribe(res =>{
     console.log(res)
       this.editFleetForm.setValue({
