@@ -25,8 +25,9 @@ export class CreateServicePage implements OnInit {
   isSubmitted = false;
   data: any;
   today = new Date();
-id :any;
+  id :any;
   pipe = new DatePipe('en-US');
+
   changeFormat(today){
     let ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
     console.log(this.today);
@@ -57,11 +58,11 @@ id :any;
       return false;
     }
     else{
-      const service = {
+      const vehicleService = {
         TeamName: this.serviceForm.get('TeamName').value,
         ServiceTypeName: this.serviceForm.get('ServiceTypeName').value
       }
-      //this.services.updateService(this.data, service)
+      this.services.createService(vehicleService)
       this.presentToast();
     }
     this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
