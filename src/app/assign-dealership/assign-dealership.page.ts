@@ -29,7 +29,7 @@ export class AssignDealershipPage implements OnInit {
 
       dealershipservice = {} as DealershipService;
       this.route.params.subscribe(params => {
-       this.dealership = params['id'];
+       this.data = params['id'];
       });
       this.assignDealershipForm = new FormGroup({
         dealershipName: new FormControl('', Validators.required),
@@ -57,7 +57,7 @@ export class AssignDealershipPage implements OnInit {
 
   ngOnInit() {
     this.assignDealershipForm.setValue({dealershipName: '', address: ''});
-    // this.assignDealership()
+    this.assignDealership()
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -66,13 +66,13 @@ export class AssignDealershipPage implements OnInit {
     }
   }
 
-  // async assignDealership(){
-  //   this.dealershipservice.createDealership(this.data).subscribe(response => {
-  //     console.log(response);
-  //     //this.router.navigate(['student-list']);
-  //   });
+  async assignDealership(){
+    this.dealershipservice.createDealership(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
 
-
+  }
 
 submitForm(){
   this.isSubmitted = true;
@@ -80,23 +80,31 @@ submitForm(){
     return false;
   }
   else{
-      const assignedDealership = {
-        dealershipName: this.assignDealershipForm.get('dealershipName').value,
-        address: this.assignDealershipForm.get('address').value
-      }
-      console.log(assignedDealership);
-      this.dealershipservice.createDealership(this.data)
-      this.presentToast();
+      const dealershipGroup = this.fb.group({dealershipName : ""});
+      this.assignDealershipForm = this.fb.group({
+        address: this.fb.group({
+          dealershipName: ""
+        })
+        });
     }
-    this.router.navigate(['/tabs/search/fleet', this.data]);
+    this.presentToast();
+    this.router.navigate(['/tabs/search/fleet']);
+      //  dealershipId: this.assignDealershipForm.get('dealershipId').value,
+      //   dealershipName: this.assignDealershipForm.get('dealershipName').value,
+      //   address: this.assignDealershipForm.get('address').value
+      // const assignedDealership = {
+      //   name: this.assignDealershipForm.get("dealershipName").get("address").value;
+      // //  dealershipId: this.assignDealershipForm.get('dealershipId').value,
+      // //   dealershipName: this.assignDealershipForm.get('dealershipName').value,
+      // //   address: this.assignDealershipForm.get('address').value
+      // }
+      //console.log(assignedDealership);
+     // this.dealershipservice.createDealership(assignedDealership);
+      
 }
-
-
-
-
-
-
-
+getValue(){
+  console.log(this.assignDealershipForm.get("address").get("dealershipName").value);
+}
   get errorControl() {
     return this.assignDealershipForm.controls;
   }
@@ -119,4 +127,8 @@ submitForm(){
       return false;
     }
   }
+}
+
+function getValue() {
+  throw new Error('Function not implemented.');
 }

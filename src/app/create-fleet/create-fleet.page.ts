@@ -36,6 +36,7 @@ export class CreateFleetPage implements OnInit {
       FleetLocation: new FormControl('', Validators.required)
     }); 
 
+  
   }
 
   submitForm(){
@@ -45,13 +46,16 @@ export class CreateFleetPage implements OnInit {
     }
     else{
         const fleet = {
-          FleetName: this.addFleetForm.get('FleetName').value,
-          FleetLocation: this.addFleetForm.get('FleetLocation').value
+          FleetName: this.addFleetForm.get('fleetName').value,
+          fleetID: this.addFleetForm.get('fleetID').value,
+         FleetVehicleQty: this.addFleetForm.get('FleetVehicleQty').value,
+         FleetLocation: this.addFleetForm.get('fleetLocation').value
         }
-        //this.fleetservice.updateItem(this.data, fleet)
+        this.fleetservice.createFleet(fleet);
+        console.log(fleet);
         this.presentToast()
       }
-      this.router.navigate(['/tabs/search/vehicle', this.data]);
+      this.router.navigate(['/tabs/search/vehicle']);
   }
 
   ngOnInit() {

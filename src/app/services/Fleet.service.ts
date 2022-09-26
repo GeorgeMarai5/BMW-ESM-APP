@@ -61,7 +61,7 @@ export class FleetService {
 
   //collectionName = 'Fleet';
   //FleetRef: AngularFireObject<any>;
-  apiUrl = 'https://localhost:7163/api/Fleets'
+  apiUrl = 'https://localhost:7163'
   httpOptions ={
     headers: new HttpHeaders({
       ContentType: 'application/json'
@@ -87,14 +87,14 @@ export class FleetService {
   }
 
 
-  AddFleet(Fleet: Fleet){
-    return this.httpClient.post(this.apiUrl + '/api/Fleet/Create' , Fleet, this.httpOptions)
+  createFleet(Fleet: Fleet){
+    return this.httpClient.post(this.apiUrl + '/api/Fleets' , Fleet, this.httpOptions)
 
 
   }
 
 
-  getList(): Observable<Fleet> {
+  getFleetList(): Observable<Fleet> {
     return this.httpClient
       .get<Fleet>(this.apiUrl + '/api/Fleet/GetAllFleets')
       .pipe(
@@ -105,7 +105,7 @@ export class FleetService {
 
   
   // Get single student data by ID
-  getItem(id): Observable<Fleet> {
+  getFleet(id): Observable<Fleet> {
     return this.httpClient
       .get<Fleet>(this.apiUrl + '/api/Fleet/id?id=' + id)
       .pipe(
@@ -115,7 +115,7 @@ export class FleetService {
   }
   
   // Update item by id
-  updateItem(item): Observable<Fleet> {
+  updateFleet(item): Observable<Fleet> {
     return this.httpClient
       .put<Fleet>(this.apiUrl + '/api/Fleet/UpdateFleet' + '?' + item, this.httpOptions)
       .pipe(
@@ -145,12 +145,12 @@ export class FleetService {
   }
 
 
-  getFleet(id): Observable<{}> {
+  // getFleet(id): Observable<{}> {
   
-    return this.httpClient.get<Fleet>(this.apiUrl + '/api/Fleet/id?id=' +  id , this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
+  //   return this.httpClient.get<Fleet>(this.apiUrl + '/api/Fleet/id?id=' +  id , this.httpOptions)
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     );
   }
   
   
@@ -158,7 +158,6 @@ export class FleetService {
 
 
 
-}
 
 
 

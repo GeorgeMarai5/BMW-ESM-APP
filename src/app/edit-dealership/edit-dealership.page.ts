@@ -47,7 +47,7 @@ export class EditDealershipPage implements OnInit {
           DealershipName: this.editDealershipForm.get('dealershipName').value,
           AddressName: this.editDealershipForm.get('address').value
         }
-        this.dealershipService.updateDealership(this.data, dealership)
+        this.dealershipService.updateDealership(dealership)
         this.presentToast();
       }
       this.router.navigate(['/tabs/search/dealership', this.data]);
