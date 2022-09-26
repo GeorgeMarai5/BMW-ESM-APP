@@ -51,10 +51,10 @@ export class AssignVehiclePartPage implements OnInit {
           partType: this.assignPartForm.get('partType').value,
           Description: this.assignPartForm.get('description').value
         }
-        //this.service.updatePart(this.data, vehicleParts)
+        this.service.getPart(vehicleParts)
         this.presentToast()
       }
-      this.router.navigate(['/tabs/search/vehicle-part', this.data]);
+      this.router.navigate(['/tabs/search/vehicle-part']);
   }
 
   ngOnInit() {

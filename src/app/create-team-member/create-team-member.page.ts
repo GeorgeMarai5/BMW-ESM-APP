@@ -52,12 +52,13 @@ export class CreateTeamMemberPage implements OnInit {
           Surname: this.createTeamMemberForm.get('Surname').value,
           PhoneNumber: this.createTeamMemberForm.get('PhoneNumber').value,
           Email: this.createTeamMemberForm.get('Email').value,
-          Role: this.createTeamMemberForm.get('Role').value
+          Role: this.createTeamMemberForm.get('Role').value,
+          Team: this.createTeamMemberForm.get('Team').value,
         }
-        //this.teamMemberservice.createTeamMember(this.teamMember, teamMember)
+        this.teamMemberservice.createTeamMember(teamMember)
         this.presentToast()
       }
-      this.router.navigate(['/tabs/search/team-member', this.teamMember]);
+      this.router.navigate(['/tabs/search/team-member']);
   }  
 
   ngOnInit() {

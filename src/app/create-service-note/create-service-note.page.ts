@@ -55,10 +55,10 @@ export class CreateServiceNotePage implements OnInit {
        const serviceNote = {
          Description: this.addNoteForm.get('Description').value,
        }
-      //this._serviceNote.updateServiceNote(this.data, serviceNote)
+      this._serviceNote.createServiceNote(serviceNote)
       this.presentToast()
       }
-    this.router.navigate(['/tabs/view/dealership', this.data]);
+    this.router.navigate(['/tabs/view/dealership']);
   }
     
   ngOnInit() {

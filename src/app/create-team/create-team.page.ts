@@ -31,7 +31,7 @@ export class CreateTeamPage implements OnInit {
     public toastCtrl: ToastController) {  
 
     this.route.params.subscribe(params => {
-      this.team = params.id;
+      this.data = params.id;
     });
     this.createTeamForm = new FormGroup({
       TeamName: new FormControl('', Validators.required),
@@ -52,10 +52,10 @@ export class CreateTeamPage implements OnInit {
           Dealership: this.createTeamForm.get('Dealership').value,
           TeamType: this.createTeamForm.get('TeamType').value
         }
-        //this.teamService.updateTeam(this.team, Team)
+        this.teamService.createTeam(Team)
         this.presentToast()
       }
-      this.router.navigate(['/tabs/create/service', this.team]);
+      this.router.navigate(['/tabs/create/service']);
   }
 
   ngOnInit() {

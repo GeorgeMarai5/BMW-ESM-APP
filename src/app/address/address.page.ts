@@ -53,7 +53,7 @@ export class AddressPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.addressservice.getAddressList().subscribe(response => {
+    this.addressservice.getList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
@@ -72,7 +72,7 @@ export class AddressPage implements OnInit {
 
     {
       //Get saved list of students
-      this.addressservice.getAddressList().subscribe(response => {
+      this.addressservice.getList().subscribe(response => {
         console.log(response);
         this.data = response;
       })
@@ -113,10 +113,10 @@ getbyID(item){
 
 
   //get item details using id
-  this.addressservice.getAddress(item.id).subscribe(response => {
-    console.log(response);
-    this.data = response;
-  })
+  //this.addressservice.getAddress(item.id).subscribe(response => {
+    //console.log(response);
+   // this.data = response;
+  //})
 
 
 

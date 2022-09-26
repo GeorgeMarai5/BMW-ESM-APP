@@ -10,6 +10,7 @@ import { VehicleService } from '../services/vehicle.service';
   templateUrl: './add-vehicle.page.html',
   styleUrls: ['./add-vehicle.page.scss'],
 })
+
 export class AddVehiclePage implements OnInit {
 
   models = [];
@@ -20,6 +21,7 @@ export class AddVehiclePage implements OnInit {
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
     public service: VehicleService, public router: Router, public toastCtrl: ToastController) { 
+    
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
@@ -29,6 +31,7 @@ export class AddVehiclePage implements OnInit {
       Registration: new FormControl('', Validators.required),
       warrantyPlan: new FormControl('', Validators.required)
     })
+
   }
 
   submitForm(){
@@ -51,10 +54,10 @@ export class AddVehiclePage implements OnInit {
       else{
         vehicle.FleetID = '';
       }
-      //this.service.updateVehicle(this.data, vehicle)
+      this.service.createVehicle(vehicle)
       this.presentToast()
     }
-    this.router.navigate(['/tabs/view/fleet'], this.data);
+    this.router.navigate(['/tabs/view/fleet']);
   }
 
   ngOnInit() {

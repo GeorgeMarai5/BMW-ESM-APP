@@ -47,10 +47,10 @@ export class AddServiceItemPage implements OnInit {
         itemName: this.addItemForm.get('itemName').value,
         itemDescription: this.addItemForm.get('itemDescription').value,
       }
-      //this.ServiceItem.updateServiceItem(this.data, serviceItem)
+      this.ServiceItem.createServiceItem(serviceItem)
       this.presentToast()
     }
-    this.router.navigate(['/tabs/view/fleet'], this.data);
+    this.router.navigate(['/tabs/view/fleet']);
   }
 
   ngOnInit() {
