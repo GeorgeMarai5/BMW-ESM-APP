@@ -86,22 +86,22 @@ export class DealershipService {
     // Update item by id
     updateDealership(item): Observable<Dealership> {
       return this.httpClient
-        .put<Dealership>(this.apiUrl + '/api/Dealerships/PutDealership' + '?' + item, this.httpOptions)
+        .put<Dealership>(this.apiUrl + '/api/Dealerships/' + '?' + item, this.httpOptions)
         .pipe(
           retry(2),
           catchError(this.handleError)
         )
     }
     
-    // Delete item by id
-    delete(id) {
-      return this.httpClient
-        .delete<Dealership>(this.apiUrl + '/api/Fleet/DeleteFleet' + '/' + id, this.httpOptions)
-        .pipe(
-          retry(2),
-          catchError(this.handleError)
-        )
-    }
+    // // Delete item by id
+    // delete(id) {
+    //   return this.httpClient
+    //     .delete<Dealership>(this.apiUrl + '/api/Fleet/DeleteFleet' + '/' + id, this.httpOptions)
+    //     .pipe(
+    //       retry(2),
+    //       catchError(this.handleError)
+    //     )
+    // }
   
   
   

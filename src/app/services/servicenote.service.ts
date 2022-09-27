@@ -8,27 +8,10 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ServiceNoteService {
-  // intiateService(value: any) {
-  //   throw new Error('Method not implemented.');
-  // }
-
-  // ServiceRef: AngularFireObject<any>;
-  // readService() {
-  //   return this.firestore.collection(this.collectionName).snapshotChanges();
-  // }
-  // collectionName = 'Service_Note';
-  apiUrl = 'https://localhost:7292/api/ServiceNote';
+  
+  apiUrl = 'https://localhost:7163';
  
-
   constructor(private httpClient: HttpClient) {}
-
-  // getServices(id: string) {
-  //   return this.firestore.collection('Service').snapshotChanges();
-  // }
-
-
-
-
 
   httpOptions ={
    headers: new HttpHeaders({
@@ -36,6 +19,56 @@ export class ServiceNoteService {
     })
     }
     
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    return throwError('Something bad happened; please try again later.');
+  }
+
+
+  createServiceNote(createServiceNote: Service_Note){
+    return this.httpClient.post(this.apiUrl + '/api/ServiceNotes/CreateServiceNote' , Service_Note, this.httpOptions)
+  }
+
+  getServiceNoteList(): Observable<Service_Note> {
+    return this.httpClient
+      .get<Service_Note>(this.apiUrl + '/api/ServiceNotes/GetServiceNoteList')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getServiceNote(id): Observable<Service_Note> {
+    return this.httpClient
+      .get<Service_Note>(this.apiUrl + '/api/ServiceNotes/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  updateServiceNote(item): Observable<Service_Note> {
+    return this.httpClient
+      .put<Service_Note>(this.apiUrl + '/api/ServiceNotes/' + '?' + item, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  deleteServiceNote(id): Observable<{}> {
+  
+    return this.httpClient.delete(this.apiUrl + '/api/ServiceNotes/' +  id , this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
   // handleError(error: HttpErrorResponse) {
   //   if (error.error instanceof ErrorEvent) {
   //     // A client-side or network error occurred. Handle it accordingly.
@@ -56,11 +89,11 @@ export class ServiceNoteService {
   // createServiceNote(createNote: ServiceNote){
   //   return this.httpClient.post(`${this.apiUrl}/PostService_Note`, createNote, this.httpOptions)
   // }
-  createServiceNote(item): Observable<Service_Note> {
-    return this.httpClient
-      .post<Service_Note>(this.apiUrl , JSON.stringify(item), this.httpOptions)
+  // createServiceNote(item): Observable<Service_Note> {
+  //   return this.httpClient
+  //     .post<Service_Note>(this.apiUrl , JSON.stringify(item), this.httpOptions)
       
-  }
+  // }
 
   // .pipe(
   //   retry(2),
@@ -76,33 +109,33 @@ export class ServiceNoteService {
   // }
 
 
-// Get single student data by ID
-getServiceNote(id): Observable<Service_Note> {
-  return this.httpClient
-    .get<Service_Note>(this.apiUrl + '/' + id)
+// // Get single student data by ID
+// getServiceNote(id): Observable<Service_Note> {
+//   return this.httpClient
+//     .get<Service_Note>(this.apiUrl + '/' + id)
 
-}
+// }
 
-// Get students data
-getServiceNoteList(): Observable<Service_Note> {
-  return this.httpClient
-    .get<Service_Note>(this.apiUrl)
+// // Get students data
+// getServiceNoteList(): Observable<Service_Note> {
+//   return this.httpClient
+//     .get<Service_Note>(this.apiUrl)
   
-}
+// }
 
-// Update item by id
-updateServiceNote(id, item): Observable<Service_Note> {
-  return this.httpClient
-    .put<Service_Note>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
+// // Update item by id
+// updateServiceNote(id, item): Observable<Service_Note> {
+//   return this.httpClient
+//     .put<Service_Note>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
 
-}
+// }
 
-// Delete item by id
-deleteServiceNote(id) {
-  return this.httpClient
-    .delete<Service_Note>(this.apiUrl + '/' + id, this.httpOptions)
+// // Delete item by id
+// deleteServiceNote(id) {
+//   return this.httpClient
+//     .delete<Service_Note>(this.apiUrl + '/' + id, this.httpOptions)
 
-}
+// }
 
 
 
@@ -143,3 +176,19 @@ deleteServiceNote(id) {
 //     );
 //   }
 // }
+
+
+// intiateService(value: any) {
+  //   throw new Error('Method not implemented.');
+  // }
+
+  // ServiceRef: AngularFireObject<any>;
+  // readService() {
+  //   return this.firestore.collection(this.collectionName).snapshotChanges();
+  // }
+  // collectionName = 'Service_Note';
+
+  
+  // getServices(id: string) {
+  //   return this.firestore.collection('Service').snapshotChanges();
+  // }
