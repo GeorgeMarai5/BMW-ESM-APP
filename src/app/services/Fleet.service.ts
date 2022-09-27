@@ -107,7 +107,7 @@ export class FleetService {
   // Get single student data by ID
   getFleet(id): Observable<Fleet> {
     return this.httpClient
-      .get<Fleet>(this.apiUrl + '/api/Fleet/id?id=' + id)
+      .get<Fleet>(this.apiUrl + '/api/Fleet/' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
