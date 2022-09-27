@@ -38,6 +38,9 @@ export class AddressPage implements OnInit {
   constructor(public authService: AuthService, public fb: FormBuilder, private addressservice: AddressService, 
     public alertCtrl: AlertController, public router: Router,public ActivatedRoute: ActivatedRoute) { 
       
+      
+
+
       addressservice = {} as AddressService;
       this.data = [];
       this.dat = new Address();

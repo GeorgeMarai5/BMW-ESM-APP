@@ -28,18 +28,24 @@ export class CreateFleetPage implements OnInit {
     private fleetservice: FleetService, 
     public toastCtrl: ToastController) {
 
-    this.route.params.subscribe(params => {
-      this.data = params.id;
-    });
-    this.addFleetForm = new FormGroup({
-      fleetName: new FormControl('', Validators.required),
-      fleetLocation: new FormControl('', Validators.required)
-    }); 
+
+
+      fleetservice = {} as FleetService;
+      //this.data = new Fleet();
+      this.data = new Fleet();
+
+   // this.route.params.subscribe(params => {
+    //  this.data = params.id;
+   // });
+    //this.addFleetForm = new FormGroup({
+      //fleetName: new FormControl('', Validators.required),
+      //fleetLocation: new FormControl('', Validators.required)
+    //}); 
 
   
   }
 
-  submitForm(){
+  /*submitForm(){
     this.isSubmitted = true;
     if(!this.addFleetForm.valid){
       return false;
@@ -57,14 +63,32 @@ export class CreateFleetPage implements OnInit {
       }
       this.router.navigate(['/tabs/search/vehicle']);
   }
+  */
+
+
+
+  async create(){
+
+  this.fleetservice.createFleet(this.data).subscribe(response => {
+    console.log(response);
+    //this.router.navigate(['student-list']);
+  });
+
+  this.presentToast();
+
+}
+
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
+    /*if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
+    */
+
+
   }
 
   get errorControl() {

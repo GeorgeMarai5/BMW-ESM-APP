@@ -5,14 +5,7 @@ import{FleetService} from '../services/fleet.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import {  Fleet } from '../models/Fleet';
 
-interface FleetData {
-  $key: string;
-  FleetID: number;
-  FleetName: string;
-  FleetLocation: string;
-  FleetVehicleQty: number;
-  
-}
+
 
 @Component({
   selector: 'app-search-fleet',
@@ -22,7 +15,7 @@ interface FleetData {
 export class SearchFleetPage implements OnInit {
 
   fleetList = [];
-  fleetData: FleetData;
+  
   fleetForm: FormGroup;
   searchTerm: string;
   data: any;

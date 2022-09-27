@@ -21,13 +21,13 @@
             <h1>Create Fleet</h1>
         </ion-title>
 
-        <form form [formGroup]="addFleetForm" (ngSubmit)="submitForm()" novalidate>
+        <form form >
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Fleet Name</b></ion-label>
-                            <ion-input formControlName="fleetName" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.fleetName" placeholder="Enter Fleet Location" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
               Fleet Name can not contain spaces.
@@ -38,7 +38,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Fleet Location</b></ion-label>
-                            <ion-input formControlName="fleetLocation" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.fleetLocation" placeholder="Enter Fleet Location" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
               Fleet Location is invalid.
@@ -53,7 +53,7 @@
                         <ion-button type="submit" expand="block" [routerLink]="[ '/tabs/home'] ">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" click="submitform()" type="submit" expand="block">Submit</ion-button>
+                        <ion-button class="light-Btn" (click)="create()" type="submit" expand="block">Submit</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -63,4 +63,4 @@
 
 
 
-<!--- [routerLink]="[ '/tabs/search/fleet']-->
+<!--- [routerLink]="[ '/tabs/search/fleet']       [formGroup]="addFleetForm" (ngSubmit)="submitForm()" novalidate-->

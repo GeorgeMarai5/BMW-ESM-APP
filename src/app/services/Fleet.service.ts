@@ -96,7 +96,7 @@ export class FleetService {
 
   getFleetList(): Observable<Fleet> {
     return this.httpClient
-      .get<Fleet>(this.apiUrl + '/api/Fleet/GetAllFleets')
+      .get<Fleet>(this.apiUrl + '/api/Fleets/GetAll')
       .pipe(
         retry(2),
         catchError(this.handleError)
