@@ -23,12 +23,12 @@
             <ion-item lines="full">
               <ion-label position="stacked">Fleet Name</ion-label>
               <ion-input [(ngModel)]="data.fleet_Name" 
-               [ngModelOptions]="{standalone: true}" type="text" required></ion-input>
+               [ngModelOptions]="{standalone: true}" type="text"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.FleetName.errors?.required">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Fleet_Name.errors?.required">
               Fleet Name is required
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.FleetName.value.trim()">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Fleet_Name.value.trim()">
               Fleet Name is invalid.
           </span>
           </ion-col>
@@ -38,12 +38,12 @@
             <ion-item lines="full">
               <ion-label position="stacked"><b>Fleet Location</b></ion-label>
               <ion-input  [(ngModel)]="data.fleet_Location" 
-               [ngModelOptions]="{standalone: true}" type="text" required></ion-input>
+               [ngModelOptions]="{standalone: true}" type="text"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.FleetLocation.errors?.required">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Fleet_Location.errors?.required">
               Fleet Location is required
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.FleetLocation.value.trim()">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Fleet_Location.value.trim()">
               Fleet Location is invalid.
           </span>
           </ion-col>

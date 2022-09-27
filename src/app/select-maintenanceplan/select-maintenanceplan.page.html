@@ -23,7 +23,7 @@
                 <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked"><b>Plan Name</b></ion-label>
-                    <ion-input formControlName="PlanName" type="text" required></ion-input>
+                    <ion-input [(ngModel)]="data.PlanName" placeholder="Enter Plan Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                   </ion-item>
                   <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.required">
                     Plan Name is required.
@@ -41,7 +41,7 @@
                 <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked"><b>Description</b></ion-label>
-                    <ion-input formControlName="Description" type="text" required></ion-input>
+                    <ion-input [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
                   </ion-item>
                   <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.required">
                     Description is required.
@@ -59,7 +59,7 @@
                 <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked"><b>Duration</b></ion-label>
-                    <ion-input formControlName="Duration" type="text" required></ion-input>
+                    <ion-input [(ngModel)]="data.Duration" placeholder="Enter Duration..." [ngModelOptions]="{standalone: true}"></ion-input>
                   </ion-item>
                   <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Duration.errors?.required">
                     Duration is required.
@@ -77,7 +77,7 @@
                 <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked"><b>Price</b></ion-label>
-                    <ion-input formControlName="Price" type="text" required></ion-input>
+                    <ion-input [(ngModel)]="data.Price" placeholder="Enter Price..." [ngModelOptions]="{standalone: true}"></ion-input>
                   </ion-item>
                   <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Price.errors?.required">
                     Price is required.

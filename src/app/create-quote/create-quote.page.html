@@ -25,7 +25,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Client Name</b></ion-label>
-                            <ion-input formControlName="ClientName" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.ClientName" placeholder="Enter Client Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.ClientName.errors?.required">
                 Client Name is required.
               </span>
@@ -39,7 +39,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Date</b></ion-label>
-                            <ion-input formControlName="Date" type="date" required></ion-input>
+                            <ion-input [(ngModel)]="data.Date" placeholder="Enter Date..." [ngModelOptions]="{standalone: true}" type="date"></ion-input>
                             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Date.errors?.required">
                 Date is required.
               </span>
@@ -53,7 +53,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Description</b></ion-label>
-                            <ion-input formControlName="Description" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
                             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.required">
                 Description is required.
               </span>
@@ -67,7 +67,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Accepted</b></ion-label>
-                            <ion-select formControlName="Accepted" type="text" required>
+                            <ion-select [(ngModel)]="data.isAccepted" placeholder="Select an option..." [ngModelOptions]="{standalone: true}">
                                 <ion-select-option>Yes</ion-select-option>
                                 <ion-select-option>No</ion-select-option>
                             </ion-select>

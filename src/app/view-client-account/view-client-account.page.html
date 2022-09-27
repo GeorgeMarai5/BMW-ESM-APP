@@ -24,7 +24,7 @@
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked">Title</ion-label>
-                  <ion-input formControlName="Title" readonly></ion-input>
+                  <ion-input [(ngModel)]="data.Title" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                 </ion-item>
               </ion-col>
           </ion-row>
@@ -32,7 +32,7 @@
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked">First Name</ion-label>
-                  <ion-input formControlName="FirstName" readonly></ion-input>
+                  <ion-input [(ngModel)]="data.FirstName" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                 </ion-item>
               </ion-col>
           </ion-row>
@@ -40,7 +40,7 @@
               <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked">Last Name</ion-label>
-                    <ion-input formControlName="LastName" readonly></ion-input>
+                    <ion-input [(ngModel)]="data.LastName" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                   </ion-item>
               </ion-col>
           </ion-row>
@@ -48,7 +48,7 @@
               <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked">Phone Number</ion-label>
-                    <ion-input formControlName="PhoneNumber" readonly></ion-input>
+                    <ion-input [(ngModel)]="data.PhoneNumber" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                   </ion-item>
               </ion-col>
           </ion-row>
@@ -56,7 +56,7 @@
             <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked" >Email</ion-label> 
-                  <ion-input formControlName="Email" readonly></ion-input>
+                  <ion-input [(ngModel)]="data.Email" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                 </ion-item>
             </ion-col>
           </ion-row>
@@ -64,15 +64,7 @@
             <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked">Address</ion-label>
-                  <ion-input formControlName="Address" readonly> </ion-input>
-                </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-                <ion-item lines="full">
-                  <ion-label position="stacked">Phone Number</ion-label>
-                  <ion-input formControlName="PhoneNumber" readonly></ion-input>
+                  <ion-input [(ngModel)]="data.Address" [ngModelOptions]="{standalone: true}" readonly> </ion-input>
                 </ion-item>
             </ion-col>
           </ion-row>

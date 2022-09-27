@@ -6,6 +6,9 @@ import { UserService, User } from '../services/user.service';
 import { getAuth } from "firebase/auth";
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { ToastController } from '@ionic/angular';
+import { ClientService } from 'app/services/Client.service';
+import { EmployeeService } from 'app/services/Employee.service';
+import { Clients } from 'app/models/Clients';
 
 @Component({
   selector: 'app-create-account',
@@ -16,9 +19,11 @@ export class CreateAccountPage implements OnInit {
 
   createAccountForm: FormGroup;
   isSubmitted = false;
+  client: Clients;
+  data: any;
 
   constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public userService: UserService, 
-    public firestore: AngularFirestore, public toastCtrl: ToastController) {
+    public firestore: AngularFirestore, public toastCtrl: ToastController, public clientService: ClientService, public employeeService: EmployeeService) {
     this.createAccountForm = new FormGroup({
       accountType: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -61,22 +66,24 @@ export class CreateAccountPage implements OnInit {
       if(accountType.value == 'Client'){
         const client = {
           address: '',
-          title: '',
-          firstName: email.value,
-          lastName: '',
-          email: email.value,
-          phoneNum: ''
+          Title: '',
+          FirstName: email.value,
+          LastName: '',
+          Email: email.value,
+          PhoneNumber: ''
         }
-        await this.firestore.collection('Client').doc(currUser.uid).set(client)
+        await this.clientService.createClient(client);
       }
       else if(accountType.value == 'Employee'){
         const employee = {
-          email: email.value,
-          name: email.value,
-          phoneNum: '',
-          QNumber: ''
+          Name: email.value,
+          Surname: '',
+          PhoneNumber: '',
+          Email: email.value,
+          Team: '',
+          Role: ''
         }
-        await this.firestore.collection('Employee').doc(currUser.uid).set(employee)
+        await this.employeeService.createEmployee(employee);
       }
     }).catch((error) => {
       

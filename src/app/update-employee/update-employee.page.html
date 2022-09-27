@@ -21,25 +21,8 @@
         <ion-row>
           <ion-col>
             <ion-item lines="full">
-              <ion-label position="stacked"><b>Q Number</b></ion-label>
-              <ion-input formControlName="qNum" type="text" required></ion-input>
-            </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.qNum.errors?.required">
-              Q Number is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.qNum.errors?.maxlength">
-              Q Number can't be longer than 7 characters.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.qNum.value.trim()">
-              Q Number is invalid.
-          </span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="full">
               <ion-label position="stacked"><b>Name</b></ion-label>
-              <ion-input formControlName="fName" type="text" required></ion-input>
+              <ion-input [(ngModel)]="data.fName" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.required">
               First Name is required.
@@ -56,7 +39,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Surname</b></ion-label>
-              <ion-input formControlName="lName" type="text" required></ion-input>
+              <ion-input [(ngModel)]="data.lName" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.lName.errors?.required">
               Surname is required.
@@ -73,7 +56,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Phone Number</b></ion-label>
-              <ion-input formControlName="phoneNum" type="text" required></ion-input>
+              <ion-input [(ngModel)]="data.phoneNum" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNum.errors?.required">
               Phone Number is required.
@@ -88,7 +71,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Email Address</b></ion-label>
-              <ion-input formControlName="email" type="email" required></ion-input>
+              <ion-input [(ngModel)]="data.email" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
               Email is required.
@@ -102,7 +85,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Team Name</b></ion-label>
-              <ion-input formControlName="teamName" type="text" required></ion-input>
+              <ion-input [(ngModel)]="data.teamName" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.teamName.errors?.required">
               Team Name is required.

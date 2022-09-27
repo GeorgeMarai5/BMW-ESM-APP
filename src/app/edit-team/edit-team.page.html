@@ -26,7 +26,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Name</b></ion-label>
-                            <ion-input formControlName="TeamName" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.TeamName" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamName.errors?.required">
                             Team Name is required.
@@ -40,7 +40,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Dealership</b></ion-label>
-                            <ion-select [formControlName="DealershipName" type="text" required>
+                            <ion-select [(ngModel)]="data.DealershipName" [ngModelOptions]="{standalone: true}">
                                 <ion-select-option *ngFor="let item of dealerships">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
@@ -53,7 +53,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Type</b></ion-label>
-                            <ion-select formControlName="TeamType" type="text" required>
+                            <ion-select [(ngModel)]="data.TeamType" [ngModelOptions]="{standalone: true}">
                                 <ion-select-option *ngFor="let item of teamTypes">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>

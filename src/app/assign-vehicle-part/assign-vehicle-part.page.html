@@ -24,7 +24,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Part Name</b></ion-label>
-                            <ion-input formControlName="partName" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.partName" placeholder="Enter Part Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.required">
                             Part Name is required.
@@ -38,7 +38,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Part Type</b></ion-label>
-                            <ion-select formControlName="partType" type="text" required>
+                            <ion-select [(ngModel)]="data.partType" placeholder="Select A Part Type..." [ngModelOptions]="{standalone: true}">
                                 <ion-select-option *ngFor="let item of types" >{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
@@ -51,7 +51,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Description</b></ion-label>
-                            <ion-input formControlName="Description" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.description.errors?.required">
                             Description is required.
@@ -65,7 +65,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Part In Stock</b></ion-label>
-                            <ion-input formControlName="partStock" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.Availability" placeholder="Enter Part Status" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Availability.errors?.required">
                             Part Availability is required.

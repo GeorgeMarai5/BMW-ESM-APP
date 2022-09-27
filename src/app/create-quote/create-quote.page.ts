@@ -17,7 +17,7 @@ export class CreateQuotePage implements OnInit {
   QuoteData: Quote;
   createQuoteForm: FormGroup;
   isSubmitted = false;
-  data:Quote;
+  data:any;
 
   constructor(public route : ActivatedRoute,
     public authService: AuthService, 

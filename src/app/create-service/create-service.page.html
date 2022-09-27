@@ -22,7 +22,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Select Team</b></ion-label>
-              <ion-select formControlName="TeamName" type="text" required placeholder="Select Team...">
+              <ion-select [(ngModel)]="data.TeamName" placeholder="Select A Team..." [ngModelOptions]="{standalone: true}">
                 <ion-select-option *ngFor="let item of data">{{ item.team_Name }}</ion-select-option>
               </ion-select>
             </ion-item>
@@ -38,8 +38,8 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Select Service Type</b></ion-label>
-              <ion-select formControlName="ServiceTypeName" type="text" required placeholder="Select Service Type...">
-                <ion-select-option *ngFor="let item of dat">{{ item.type_Description }}</ion-select-option>
+              <ion-select [(ngModel)]="data.ServiceTypeName" [ngModelOptions]="{standalone: true}" placeholder="Select Service Type...">
+                <ion-select-option *ngFor="let item of data">{{ item.type_Description }}</ion-select-option>
               </ion-select>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.ServiceTypeName.errors?.required">
