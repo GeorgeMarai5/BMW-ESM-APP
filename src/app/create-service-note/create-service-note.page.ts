@@ -8,10 +8,6 @@ import { Service } from '../services/service.service';
 import { Service_Note } from '../models/Service_Note'
 import { ToastController } from '@ionic/angular';
 
-// interface ServiceNoteData {
-//   Description: string;
-// }
-
 @Component({
   selector: 'app-create-service-note',
   templateUrl: './create-service-note.page.html',
@@ -20,14 +16,13 @@ import { ToastController } from '@ionic/angular';
 
 export class CreateServiceNotePage implements OnInit {
 
-  data: Service_Note
+  serviceNotes: Service_Note
   addNoteForm: FormGroup
-  services: ServiceNoteService;
   serviceNoteList = [];
   searchTerm: string;
   deleteModal: HTMLElement;
   isSubmitted = false;
-  serviceNotes : any;
+  data : any;
   today = new Date();
 
   constructor (private route: ActivatedRoute, 
@@ -36,38 +31,29 @@ export class CreateServiceNotePage implements OnInit {
     public authService: AuthService, 
     public fb: FormBuilder, 
     private _serviceNote: ServiceNoteService, 
-    public toastCtrl: ToastController
-  ) {
+    public toastCtrl: ToastController) {
 
-    this.route.params.subscribe((params) => {});
-    this.addNoteForm = new FormGroup({
-       Description: new FormControl('', [Validators.required]),
-    });
+    _serviceNote = {} as ServiceNoteService;
+    this.data = new Service_Note();
 
   }
 
   submitForm() {
-     this.isSubmitted = true;
-     if (!this.addNoteForm.valid) {
-       return false;
-     } 
-     else {
-       const serviceNote = {
-         Description: this.addNoteForm.get('Description').value,
-       }
-      this._serviceNote.createServiceNote(serviceNote)
-      this.presentToast()
-      }
-    this.router.navigate(['/tabs/view/dealership']);
+    this._serviceNote.createServiceNote(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+  
+    this.presentToast();
   }
     
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+    //if(this.authService.isLoggedIn){
+    //  return true;
+    //}
+    //else{
+    //  this.router.navigate(['/tabs/login']);
+    //}
   }
 
   get errorControl() {
