@@ -65,7 +65,7 @@ gotoview(id){
     async deleteFleet(item){
 
       //Delete item in Student data
-      this.fleetservice.deleteFleet(item.fleetID).subscribe(Response => {
+      this.fleetservice.deleteFleet(item.fleetId).subscribe(Response => {
         //Update list after delete is successful
         console.log(Response);
         this.getallFleets()

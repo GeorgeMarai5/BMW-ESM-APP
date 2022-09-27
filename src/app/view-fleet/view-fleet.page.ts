@@ -8,21 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Fleet } from '../models/fleet';
 
 
-
-interface FleetData {
-  FleetID: number;
-  FleetName: string;
-  FleetLocation: string;
-  FleetVehicleQty: number;
-}
-
-interface FleetVehicles{
-  VehicleID: number;
-  VinNumber: string;
-  ModelName: string;
-  Year: string;
-}
-
 @Component({
   selector: 'app-view-fleet',
   templateUrl: './view-fleet.page.html',
@@ -30,15 +15,14 @@ interface FleetVehicles{
 })
 export class ViewFleetPage implements OnInit {
 
-   vehicleList = [];
-   VehicleData: FleetVehicles;
+   
+   
    fleetForm: FormGroup;
    searchTerm: string;
    fleetID: string;
-   data: any;
    id: any;
-   dat: any;
-   combinedArray: { dat: any, data: any }[] = [];
+   data: any;
+   //combinedArray: { dat: any, data: any }[] = [];
 
   constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, private vehiclesService: VehicleService,
     public alertCtrl: AlertController, public router: Router, public vehicleservice: VehicleService, public toastCtrl: ToastController,
@@ -77,7 +61,7 @@ export class ViewFleetPage implements OnInit {
 
     this.fleetservice.getFleet(this.data).subscribe(response => {
       console.log(response);
-      this.dat = response;
+      this.data = response;
     })
 
     //this.getModelAndYear();
@@ -144,7 +128,7 @@ async getFleetDetails(){
   async Get(item){
     this.fleetservice.getFleet(item.FleetID).subscribe(response => {
       console.log(response);
-      this.dat = response;
+      this.data = response;
 
     })
 
