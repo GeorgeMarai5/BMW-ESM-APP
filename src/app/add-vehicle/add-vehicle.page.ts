@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Vehicle } from 'app/models/Vehicle';
 import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
 
@@ -22,6 +23,9 @@ export class AddVehiclePage implements OnInit {
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
     public service: VehicleService, public router: Router, public toastCtrl: ToastController) { 
     
+      service = {} as VehicleService;
+      this.data = new Vehicle();
+    /*
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
@@ -31,42 +35,25 @@ export class AddVehiclePage implements OnInit {
       Registration: new FormControl('', Validators.required),
       warrantyPlan: new FormControl('', Validators.required)
     })
-
+    */
   }
 
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.addVehicleForm.valid){
-      return false;
-    }
-    else{
-      const vehicle = {
-        VIN_Number: this.addVehicleForm.get('VINNum').value,
-        VehicleModel: this.addVehicleForm.get('vehicleModel').value,
-        Registration: this.addVehicleForm.get('Registration').value,
-        Warranty: this.addVehicleForm.get('warrantyPlan').value,
-        FleetID: ''
-      }
-
-      if(this.data != null || this.data != undefined){
-        vehicle.FleetID = this.data;
-      }
-      else{
-        vehicle.FleetID = '';
-      }
-      this.service.createVehicle(vehicle)
-      this.presentToast()
-    }
-    this.router.navigate(['/tabs/view/fleet']);
+    this.service.createVehicle(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+  
+    this.presentToast();
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+    //if(this.authService.isLoggedIn){
+    //  return true;
+    //}
+    //else{
+    //  this.router.navigate(['/tabs/login']);
+    //}
 
     this.addVehicleForm.setValue({VINNum: '', vehicleModel: '', Registration: '', warrantyPlan: ''});
   }

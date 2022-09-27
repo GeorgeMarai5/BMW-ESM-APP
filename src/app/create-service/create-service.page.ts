@@ -6,7 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
 import { ToastController } from '@ionic/angular';
-import {TeamService} from '../services/team.service';
+import { TeamService } from '../services/team.service';
+import { VehicleService } from 'app/models/VehicleService';
 
 @Component({
   selector: 'app-create-service',
@@ -15,7 +16,7 @@ import {TeamService} from '../services/team.service';
 })
 export class CreateServicePage implements OnInit {
 
-  services: Service;
+  services: VehicleService;
   serviceList = [];
   teams = [];
   serviceTypes = [];
@@ -42,6 +43,9 @@ export class CreateServicePage implements OnInit {
     public toastCtrl: ToastController, 
     private teamservice: TeamService) {
 
+      service = {} as Service;
+      this.data = new VehicleService();
+    /*  
     this.route.params.subscribe(params => {
       this.data = params.id;
     }); 
@@ -49,26 +53,21 @@ export class CreateServicePage implements OnInit {
       TeamName: new FormControl('', [Validators.required]),
       ServiceTypeName: new FormControl('', Validators.required)
     });
-      
+    */  
    }
   
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.serviceForm.valid){
-      return false;
-    }
-    else{
-      const vehicleService = {
-        TeamName: this.serviceForm.get('TeamName').value,
-        ServiceTypeName: this.serviceForm.get('ServiceTypeName').value
-      }
-      this.services.createService(vehicleService)
-      this.presentToast();
-    }
-    this.router.navigate(['/tabs/assign/dealership', '5KhjLkr2TKc0LYc2pQ4v']);
+
+    this.service.createService(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+  
+    this.presentToast(); 
   }
 
   ngOnInit() {
+    /*
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -81,8 +80,6 @@ export class CreateServicePage implements OnInit {
       this.data = response;
     })
 
-
-
     this.teamservice.getTeamList().subscribe(response => {
       console.log(response);
       this.data = response;
@@ -90,7 +87,7 @@ export class CreateServicePage implements OnInit {
     })
 
     //this.serviceForm.setValue({TeamName: '', ServiceTypeName: ''});
-
+    */
   }
 
   get errorControl() {
