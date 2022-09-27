@@ -32,8 +32,8 @@ export class CreateFleetPage implements OnInit {
       this.data = params.id;
     });
     this.addFleetForm = new FormGroup({
-      FleetName: new FormControl('', Validators.required),
-      FleetLocation: new FormControl('', Validators.required)
+      fleetName: new FormControl('', Validators.required),
+      fleetLocation: new FormControl('', Validators.required)
     }); 
 
   
@@ -46,10 +46,10 @@ export class CreateFleetPage implements OnInit {
     }
     else{
         const fleet = {
-          FleetName: this.addFleetForm.get('fleetName').value,
+          fleetName: this.addFleetForm.get('fleetName').value,
           fleetID: this.addFleetForm.get('fleetID').value,
-         FleetVehicleQty: this.addFleetForm.get('FleetVehicleQty').value,
-         FleetLocation: this.addFleetForm.get('fleetLocation').value
+          vehicleAmount: this.addFleetForm.get('vehicleAmount').value,
+          fleetLocation: this.addFleetForm.get('fleetLocation').value
         }
         this.fleetservice.createFleet(fleet);
         console.log(fleet);

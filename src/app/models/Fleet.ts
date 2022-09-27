@@ -1,6 +1,6 @@
 export class Fleet {
     fleetID: number;
-    FleetName: string;
-    FleetLocation: string;
-    FleetVehicleQty: number;
+    fleetName: string;
+    fleetLocation: string;
+    vehicleAmount: number;
   }
