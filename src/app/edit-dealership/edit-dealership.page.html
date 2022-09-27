@@ -22,7 +22,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Dealership Name</b></ion-label>
-              <ion-input formControlName="dealership_Name" type="text" required></ion-input>
+              <ion-input [(ngModel)]="data.dealershipName" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
               Dealership Name is required.
@@ -36,7 +36,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Address</b></ion-label>
-              <ion-input formControlName="address" type="text" required></ion-input>
+              <ion-input [(ngModel)]="data.address" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
               Address is required.

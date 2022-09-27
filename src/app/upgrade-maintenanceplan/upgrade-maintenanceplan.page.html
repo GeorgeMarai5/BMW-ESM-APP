@@ -24,7 +24,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Current Plan</b></ion-label>
-                            <ion-input formControlName="PlanName" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.PlanName" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.required">
                             Plan Name is required.
@@ -35,7 +35,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>New Plan</b></ion-label>
-                            <ion-select formControlName="NewPlanName" type="text" required>
+                            <ion-select [(ngModel)]="data.newPlanName" [ngModelOptions]="{standalone: true}">
                                 <ion-select-option *ngFor="let item of maintenanceplans">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>

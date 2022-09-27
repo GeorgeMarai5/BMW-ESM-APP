@@ -16,13 +16,13 @@
   <div class="contents">
     <ion-title><h1>Update Quote</h1></ion-title>
     <br>
-    <form [formGroup]="QuoteForm"  >
+    <form [formGroup]="editquoteForm"  >
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Client Name</b></ion-label>
-              <ion-input formControlName="ClientName" type="text" required ></ion-input>
+              <ion-input [(ngModel)]="data.ClientName" [ngModelOptions]="{standalone: true}"></ion-input>
               <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.ClientName.errors?.required">
                 Client Name is required.
               </span>
@@ -36,7 +36,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Date</b></ion-label>
-              <ion-input formControlName="Date" type="date" required></ion-input>
+              <ion-input [(ngModel)]="data.Date" [ngModelOptions]="{standalone: true}"></ion-input>
               <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Date.errors?.required">
                 Date is required.
               </span>
@@ -50,7 +50,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Description</b></ion-label>
-              <ion-input formControlName="Description" type="text" required ></ion-input>
+              <ion-input [(ngModel)]="data.Description" [ngModelOptions]="{standalone: true}"></ion-input>
               <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.required">
                 Description is required.
               </span>
@@ -64,7 +64,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Accepted</b></ion-label>
-              <ion-input formControlName="Accepted" type="text" required></ion-input>
+              <ion-input [(ngModel)]="data.Accepted" [ngModelOptions]="{standalone: true}"></ion-input>
               <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Accepted.errors?.required">
                 Accepted is required.
               </span>
@@ -82,7 +82,7 @@
             <ion-button expand="block" (click)="back()">Back</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button type="submit" class="light-Btn" expand="block" (click)="updateQuote()">Update Quote</ion-button>
+            <ion-button type="submit" class="light-Btn" expand="block">Update Quote</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

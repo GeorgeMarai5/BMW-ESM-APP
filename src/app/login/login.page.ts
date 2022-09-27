@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
   isSubmitted = false;
+  data: any;
 
   constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public toastCtrl: ToastController) { 
     this.loginForm = new FormGroup({

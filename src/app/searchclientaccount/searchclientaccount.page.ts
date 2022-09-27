@@ -59,16 +59,16 @@ constructor(public clientService: ClientService , private zone: NgZone,private t
       Address: [''],
     });
 
-    this.clientService.read_Clients().subscribe(data =>{
-      this.clientList = data.map(e => {
+    this.clientService.getClientList().subscribe(data =>{
+      this.clientList.subscribe(e => {
         return{
           id: e.payload.doc.id,
-          Title: e.payload.doc.data()['Title'],
-          FirstName: e.payload.doc.data()['FirstName'],
-          LastName: e.payload.doc.data()['lastName'],
-          PhoneNumber: e.payload.doc.data()['phone'],
-          Email: e.payload.doc.data()['email'],
-          Address: e.payload.doc.data()['Address'],
+          Title: data.Title,
+          FirstName: data.FirstName,
+          LastName: data.LastName,
+          PhoneNumber: data.PhoneNumber,
+          Email: data.Email,
+          Address: data.address,
           };
         });
 

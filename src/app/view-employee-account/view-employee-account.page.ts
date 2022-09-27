@@ -45,8 +45,8 @@ export class ViewEmployeeAccountPage implements OnInit {
     }
 
   ngOnInit() {
-    this.employeeService.read_Employee().subscribe(data =>{
-      this.employeeList = data.map(e =>{
+    this.employeeService.getEmployee(this.data).subscribe(data =>{
+      this.employeeList.map(e =>{
         return{
           id: e.payload.doc.id,
           QNumber: e.payload.doc.data()['qnumber'],

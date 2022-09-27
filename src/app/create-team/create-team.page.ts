@@ -30,6 +30,9 @@ export class CreateTeamPage implements OnInit {
     public route: ActivatedRoute, 
     public toastCtrl: ToastController) {  
 
+      teamService = {} as TeamService;
+      this.data = new Team();
+    /*
     this.route.params.subscribe(params => {
       this.data = params.id;
     });
@@ -38,10 +41,18 @@ export class CreateTeamPage implements OnInit {
       Dealership: new FormControl('', Validators.required),
       TeamType: new FormControl('', Validators.required)
     });
-
+    */
   }
 
   submitForm(){
+    this.teamService.createTeam(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+  
+    this.presentToast();
+    
+    /*
     this.isSubmitted = true;
     if(!this.createTeamForm.valid){
       return false;
@@ -56,15 +67,30 @@ export class CreateTeamPage implements OnInit {
         this.presentToast()
       }
       this.router.navigate(['/tabs/create/service']);
+      */
   }
 
+  /*
+  async create(){
+
+    this.teamService.createTeam(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+  
+    this.presentToast();
+  
+  }*/
+
   ngOnInit() {
+    /*
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
+    */
   }
 
   async presentToast() {

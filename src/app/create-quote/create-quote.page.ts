@@ -17,7 +17,7 @@ export class CreateQuotePage implements OnInit {
   QuoteData: Quote;
   createQuoteForm: FormGroup;
   isSubmitted = false;
-  data:Quote;
+  data:any;
 
   constructor(public route : ActivatedRoute,
     public authService: AuthService, 
@@ -27,6 +27,10 @@ export class CreateQuotePage implements OnInit {
     private zone: NgZone, 
     public toastCtrl: ToastController) { 
    
+      quoteservice = {} as QuoteService;
+      this.data = new Quote();
+
+      /*
       this.route.params.subscribe(params => {
         this.data = params.id;
       });
@@ -36,10 +40,17 @@ export class CreateQuotePage implements OnInit {
         Description: ['', [Validators.required]],
         Accepted: ['', [Validators.required]],
       });
-
+      */
     }
 
   submitForm(){
+    this.quoteservice.createQuote(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+  
+    this.presentToast();
+    /*
     this.isSubmitted = true;
     if(!this.createQuoteForm.valid){
       return false;
@@ -55,15 +66,16 @@ export class CreateQuotePage implements OnInit {
         this.presentToast()
       }
       this.router.navigate(['/tabs/view/dealership']);
+      */
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+    //if(this.authService.isLoggedIn){
+    //  return true;
+    //}
+    //else{
+    //  this.router.navigate(['/tabs/login']);
+    //}
 
   }
 

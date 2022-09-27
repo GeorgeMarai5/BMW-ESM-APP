@@ -25,7 +25,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Service ID</b></ion-label>
-                            <ion-input formControlName="ServiceID" type="text" required readonly></ion-input>
+                            <ion-input [(ngModel)]="data.serviceID" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -33,7 +33,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Dealership Name</b></ion-label>
-                            <ion-input formControlName="DealershipName" type="text" required readonly></ion-input>
+                            <ion-input [(ngModel)]="data.dealershipName" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -41,7 +41,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team</b></ion-label>
-                            <ion-input formControlName="TeamName" type="text" required readonly></ion-input>
+                            <ion-input [(ngModel)]="data.TeamName" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -49,7 +49,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Service Type</b></ion-label>
-                            <ion-input formControlName="ServiceType" type="text" required readonly></ion-input>
+                            <ion-input [(ngModel)]="data.serviceType" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -57,7 +57,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Service Status</b></ion-label>
-                            <ion-input formControlName="ServiceStatus" type="text" required readonly></ion-input>
+                            <ion-input [(ngModel)]="data.serviceStatus" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>

@@ -24,7 +24,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Plan Name</ion-label>
-                            <ion-input formControlName="PlanName" type="text" readonly></ion-input>
+                            <ion-input [(ngModel)]="data.planName" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -32,7 +32,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Description</ion-label>
-                            <ion-input formControlName="Description" type="text" readonly></ion-input>
+                            <ion-input [(ngModel)]="data.Description" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -40,7 +40,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Duration</ion-label>
-                            <ion-input formControlName="Duration" type="text" readonly></ion-input>
+                            <ion-input [(ngModel)]="data.Duration" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -48,7 +48,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Price</ion-label>
-                            <ion-input formControlName="Price" type="text" readonly></ion-input>
+                            <ion-input [(ngModel)]="data.Price" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>

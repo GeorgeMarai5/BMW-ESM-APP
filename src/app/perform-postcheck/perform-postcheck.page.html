@@ -22,7 +22,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>{{ item }}</b></ion-label>
-              <ion-textarea formControlName="check" type="text" placeholder="Check Feedback..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;" required></ion-textarea>
+              <ion-textarea [(ngModel)]="data.item" [ngModelOptions]="{standalone: true}" placeholder="Check Feedback..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;" required></ion-textarea>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.check.errors?.required">
               This check is required.

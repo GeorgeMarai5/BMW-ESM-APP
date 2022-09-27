@@ -3,11 +3,11 @@ import { FormBuilder,Validators,FormGroup } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PostService } from '../services/post.service';
-import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
-import { ClientService } from '../services/Client.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Employee } from 'app/models/Employee';
+import { EmployeeService } from 'app/services/Employee.service';
 
 @Component({
   selector: 'app-searchemployeeaccount',
@@ -17,19 +17,45 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export class SearchemployeeaccountPage implements OnInit {
 
-  employeeList = [];
+  employeeList: any;
   searchTerm: string;
-  clients: Clients;
+  employee: Employee;
   employeeform : FormGroup;
 
-  constructor(public clientService: ClientService , private zone: NgZone, private toastCtrl: ToastController,
+  constructor(public employeeService: EmployeeService , private zone: NgZone, private toastCtrl: ToastController,
     private service: PostService, public fb: FormBuilder, private router: Router, private route: ActivatedRoute, 
     public authService: AuthService, private firestore: AngularFirestore) { 
+
+      this.employee = {} as Employee;
 
   }
 
   ngOnInit() {
-    
+    this.employeeform = this.fb.group({
+      Name: [''],
+      Surname: [''],
+      PhoneNumber: [''],
+      Email: [''],
+      Team: [''],
+      Role: ['']
+    });
+
+    this.employeeService.getEmployeeList().subscribe(data =>{
+      this.employeeList.subscribe(e => {
+        return{
+          id: e.payload.doc.id,
+          Name: data.Name,
+          Surname: data.Surname,
+          PhoneNumber: data.PhoneNumber,
+          Email: data.Email,
+          Team: data.Team,
+          Role: data.Role
+          };
+        });
+
+      console.log(this.employeeList);
+
+    });
   }
 
   async removeEmployee(id){
