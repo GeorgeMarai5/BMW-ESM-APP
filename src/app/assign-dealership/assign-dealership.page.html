@@ -20,13 +20,13 @@
             <h1>Dealership Details</h1>
         </ion-title>
 
-        <form [formGroup]="assignDealershipForm"  novalidate (ngSubmit)="submitForm()">
+        <form form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Dealership Name</b></ion-label>
-                            <ion-input formControlName="dealershipName" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.dealershipName" placeholder="Enter Dealership Name"  [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
                             Dealership Name is required.
@@ -40,7 +40,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Address</b></ion-label>
-                            <ion-input formControlName="address" type="text" required></ion-input>
+                            <ion-input [(ngModel)]="data.address" placeholder="Enter Address" [ngModelOptions]="{standalone: true}"  ></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
                             Address is required.
@@ -58,7 +58,7 @@
                         <ion-button [routerLink]="['/tabs/create/service']" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" type="submit" [routerLink]="['/tabs/search/fleet']" (click)="presentToast()" expand="block">Submit</ion-button>
+                        <ion-button class="light-Btn" type="submit" [routerLink]="['/tabs/search/fleet']" (click)="createDealership()" expand="block">Submit</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -67,4 +67,4 @@
 </ion-content>
 
 
-<!------[(ngModel)]="data.addressID" [ngModelOptions]="{standalone: true}"   (click)="assignDealership()"  (click)="getValue()"    (ngSubmit)="submitForm()"-->
+<!------[(ngModel)]="data.addressID" [ngModelOptions]="{standalone: true}"   [formGroup]="assignDealershipForm"  novalidate (ngSubmit)="submitForm()" (click)="assignDealership()"  (click)="getValue()"    (ngSubmit)="submitForm()"-->

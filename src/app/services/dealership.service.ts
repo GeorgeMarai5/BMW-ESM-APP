@@ -11,7 +11,7 @@ import { Model } from 'app/models/Model';
 
 export class DealershipService {
 
- apiUrl = 'https://localhost:7163/Dealerships/PostDealership';
+ apiUrl = 'https://localhost:7163';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -36,14 +36,17 @@ export class DealershipService {
       
     }
 
-    createDealership(dealership: Dealership): Observable<Dealership> {
+    // createDealership(dealership: Dealership): Observable<Dealership> {
     
-      return this.httpClient
-        .post<Dealership>(this.apiUrl, dealership).pipe(
-          retry(2),
-          catchError(this.handleError))
-    }
+    //   return this.httpClient
+    //     .post<Dealership>(this.apiUrl, dealership).pipe(
+    //       retry(2),
+    //       catchError(this.handleError))
+    // }
 
+    createDealership(Dealership: Dealership){
+      return this.httpClient.post(this.apiUrl + '/api/Dealerships/Create' , Dealership, this.httpOptions)
+    }
     // createDealership(item): Observable<Dealership> {
     //   return this.httpClient
     //     .post<Dealership>(this.apiUrl , JSON.stringify(item), this.httpOptions).pipe(
