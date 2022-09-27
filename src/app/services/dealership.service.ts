@@ -11,7 +11,7 @@ import { Model } from 'app/models/Model';
 
 export class DealershipService {
 
- apiUrl = 'https://localhost:7163';
+ apiUrl = 'https://localhost:7163/Dealerships/PostDealership';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -35,12 +35,31 @@ export class DealershipService {
       return throwError('Something bad happened; please try again later.');
       
     }
-    createDealership(Dealership: Dealership){
-      return this.httpClient.post(this.apiUrl + '/api/Dealerships/PostDealership' , Dealership, this.httpOptions)
-  
-  
+
+    createDealership(dealership: Dealership): Observable<Dealership> {
+    
+      return this.httpClient
+        .post<Dealership>(this.apiUrl, dealership).pipe(
+          retry(2),
+          catchError(this.handleError))
     }
-  
+
+    // createDealership(item): Observable<Dealership> {
+    //   return this.httpClient
+    //     .post<Dealership>(this.apiUrl , JSON.stringify(item), this.httpOptions).pipe(
+    //       retry(2),
+    //       catchError(this.handleError))
+    // }
+
+  //     createPlayer(player): Observable<Player> {
+  //   return this.httpClient.post<Player>(this.apiURL + '/players/', JSON.stringify(player), this.httpOptions)
+  //     .pipe(
+  //       catchError(this.errorHandler)
+  //     );
+  // }
+    // createDealership(Dealership: Dealership){
+    //   return this.httpClient.post(this.apiUrl + '/api/Dealerships/PostDealership' , Dealership, this.httpOptions)
+    // }
   
     getDealershipList(): Observable<Dealership> {
       return this.httpClient
@@ -51,7 +70,6 @@ export class DealershipService {
         )
     }
   
-    
     // Get single student data by ID
     getDealership(id): Observable<Dealership> {
       return this.httpClient

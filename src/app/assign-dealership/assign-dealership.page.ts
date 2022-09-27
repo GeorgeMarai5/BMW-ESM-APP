@@ -17,9 +17,14 @@ import { DealershipService } from '../services/dealership.service';
 export class AssignDealershipPage implements OnInit {
   assignDealershipForm: FormGroup;
   isSubmitted = false;
-  dealership: Dealership;
-  data: any;
-
+  //dealership: Dealership;
+ // data: any;
+ dealership: Dealership = {
+  dealershipId: '',
+    address: '',
+    dealershipName: ''
+ }
+  dealerships: Dealership[] = [];
   constructor(private route: ActivatedRoute,
     public fb: FormBuilder, 
     public authService: AuthService,
@@ -27,15 +32,18 @@ export class AssignDealershipPage implements OnInit {
     private toastCtrl: ToastController, 
     private dealershipservice: DealershipService) { 
 
-      dealershipservice = {} as DealershipService;
-      this.route.params.subscribe(params => {
-       this.data = params['id'];
+      // dealershipservice = {} as DealershipService;
+      // this.route.params.subscribe(params => {
+      //  this.data = params['id'];
+      // });
+      // this.assignDealershipForm = new FormGroup({
+      //   dealershipName: new FormControl('', Validators.required),
+      //   address: new FormControl('', Validators.required)
+      // })
+      this.assignDealershipForm = this.fb.group({
+        dealershipName: ['', Validators.required],
+        address: ['', Validators.required]
       });
-      this.assignDealershipForm = new FormGroup({
-        dealershipName: new FormControl('', Validators.required),
-        address: new FormControl('', Validators.required)
-      })
-
   }
 
   // submitForm(){
@@ -54,41 +62,51 @@ export class AssignDealershipPage implements OnInit {
   //   }
   //   this.router.navigate(['tabs/search/dealership'], this.data);
   // }
-
-  ngOnInit() {
-    this.assignDealershipForm.setValue({dealershipName: '', address: ''});
-    this.assignDealership()
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+ 
+  ngOnInit() : void {
+    // this.assignDealershipForm.setValue({dealershipName: '', address: ''});
+    // this.assignDealership()
+    // if(this.authService.isLoggedIn){
+    //   return true;
+    // }
+    // else{
+    //   this.router.navigate(['/tabs/login']);
+    // }
+    // this.dealershipservice.getDealershipList().subscribe((data: Dealership[]) => {
+    //   this.dealerships = data;
+    // });
   }
 
-  async assignDealership(){
-    this.dealershipservice.createDealership(this.data).subscribe(response => {
-      console.log(response);
-      //this.router.navigate(['student-list']);
-    });
+  // async assignDealership(){
+  //   this.dealershipservice.createDealership(this.data).subscribe(response => {
+  //     console.log(response);
+  //     //this.router.navigate(['student-list']);
+  //   });
 
-  }
+  // }
 
 submitForm(){
   this.isSubmitted = true;
-  if(!this.assignDealershipForm.valid){
-    return false;
-  }
-  else{
-      const dealershipGroup = this.fb.group({dealershipName : ""});
-      this.assignDealershipForm = this.fb.group({
-        address: this.fb.group({
-          dealershipName: ""
-        })
-        });
-    }
-    this.presentToast();
-    this.router.navigate(['/tabs/search/fleet']);
+  // if(!this.assignDealershipForm.valid){
+  //   return false;
+  // }
+  // else{
+  //     const dealershipGroup = this.fb.group({dealershipName : ""});
+  //     this.assignDealershipForm = this.fb.group({
+  //       address: this.fb.group({
+  //         dealershipName: ""
+  //       })
+  //       });
+  //   }
+
+  // this.dealershipservice.createDealership(FormData).subscribe(res => {
+  //   this.presentToast();
+  //   this.router.navigate(['/tabs/search/fleet']);
+  // });
+    
+    this.dealershipservice.createDealership(this.dealership).subscribe(res => {
+      console.log(res);
+    })
       //  dealershipId: this.assignDealershipForm.get('dealershipId').value,
       //   dealershipName: this.assignDealershipForm.get('dealershipName').value,
       //   address: this.assignDealershipForm.get('address').value
@@ -102,9 +120,9 @@ submitForm(){
      // this.dealershipservice.createDealership(assignedDealership);
       
 }
-getValue(){
-  console.log(this.assignDealershipForm.get("address").get("dealershipName").value);
-}
+// getValue(){
+//   console.log(this.assignDealershipForm.get("address").get("dealershipName").value);
+// }
   get errorControl() {
     return this.assignDealershipForm.controls;
   }
@@ -127,8 +145,4 @@ getValue(){
       return false;
     }
   }
-}
-
-function getValue() {
-  throw new Error('Function not implemented.');
 }
