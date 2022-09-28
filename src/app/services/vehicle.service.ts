@@ -11,7 +11,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export class VehicleService {
 
- apiUrl = 'https://localhost:7163';
+ apiUrl = 'https://localhost:7163/api/Vehicles';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -21,79 +21,30 @@ export class VehicleService {
    })
     }
    
-    private handleError(error: HttpErrorResponse) {
-      if (error.error instanceof ErrorEvent) {
-        console.error('An error occurred:', error.error.message);
-      } else {
-        console.error(
-          `Backend returned code ${error.status}, ` +
-          `body was: ${error.error}`);
-      }
-      return throwError('Something bad happened; please try again later.');
-    }
-  
-  createVehicle(createVehicle: Vehicle){
-    return this.httpClient.post(this.apiUrl + '/api/Vehicles/CreateVehicle' , Vehicle, this.httpOptions)
-  }
-
-  getVehicleList(): Observable<Vehicle> {
+createVehicle(item): Observable<Vehicle> {
     return this.httpClient
-      .get<Vehicle>(this.apiUrl + '/api/Vehicles/GetVehicleList')
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+      .post<Vehicle>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
   }
 
-  getVehicle(id): Observable<Vehicle> {
-    return this.httpClient
-      .get<Vehicle>(this.apiUrl + '/api/Vehicles/' + id)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-  
-  updateVehicle(item): Observable<Vehicle> {
-    return this.httpClient
-      .put<Vehicle>(this.apiUrl + '/api/Vehicles/' + '?' + item, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-  
-  deleteVehicle(id): Observable<{}> {
-  
-    return this.httpClient.delete(this.apiUrl + '/api/Vehicles/' +  id , this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-// createVehicle(item): Observable<Vehicle> {
-//     return this.httpClient
-//       .post<Vehicle>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
-//   }
+getVehicle(id): Observable<Vehicle> {
+  return this.httpClient
+    .get<Vehicle>(this.apiUrl + '/' + id)
+}
 
-// getVehicle(id): Observable<Vehicle> {
-//   return this.httpClient
-//     .get<Vehicle>(this.apiUrl + '/' + id)
-// }
+getVehicleList(): Observable<Vehicle> {
+  return this.httpClient
+    .get<Vehicle>(this.apiUrl)
+}
 
-// getVehicleList(): Observable<Vehicle> {
-//   return this.httpClient
-//     .get<Vehicle>(this.apiUrl)
-// }
+updateVehicle(id, item): Observable<Vehicle> {
+  return this.httpClient
+    .put<Vehicle>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
+}
 
-// updateVehicle(id, item): Observable<Vehicle> {
-//   return this.httpClient
-//     .put<Vehicle>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
-// }
-
-// deleteVehicle(id) {
-//       return this.httpClient
-//    .delete<Vehicle>(this.apiUrl + '/' + id, this.httpOptions)
-// }
+deleteVehicle(id) {
+      return this.httpClient
+   .delete<Vehicle>(this.apiUrl + '/' + id, this.httpOptions)
+}
 
 
 

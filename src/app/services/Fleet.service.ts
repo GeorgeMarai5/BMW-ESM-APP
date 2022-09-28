@@ -117,22 +117,22 @@ export class FleetService {
   // Update item by id
   updateFleet(item): Observable<Fleet> {
     return this.httpClient
-      .put<Fleet>(this.apiUrl + '/api/Fleet/' + '?' + item, this.httpOptions)
+      .put<Fleet>(this.apiUrl + '/api/Fleet/UpdateFleet' + '?' + item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
   
-  // // Delete item by id
-  // delete(id) {
-  //   return this.httpClient
-  //     .delete<Fleet>(this.apiUrl + '/api/Fleets' + '/' + id, this.httpOptions)
-  //     .pipe(
-  //       retry(2),
-  //       catchError(this.handleError)
-  //     )
-  // }
+  // Delete item by id
+  delete(id) {
+    return this.httpClient
+      .delete<Fleet>(this.apiUrl + '/api/Fleets' + '/' + id, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
 
 
 

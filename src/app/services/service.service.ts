@@ -1,121 +1,46 @@
-import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
-import { VehicleService } from '../models/VehicleService';
-import { retry, catchError } from 'rxjs/operators';
-import { Model } from 'app/models/Model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {
+  AngularFireDatabase,
+  AngularFireList,
+  AngularFireObject
+} from '@angular/fire/compat/database';
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-
-export class ServiceService {
-
- apiUrl = 'https://localhost:7163';
-
-  constructor(private httpClient: HttpClient) {}
-
-  httpOptions = {
-  headers: new HttpHeaders({
-   'Content-Type': 'application/json'
-   })
-    }
-   
-    private handleError(error: HttpErrorResponse) {
-      if (error.error instanceof ErrorEvent) {
-        console.error('An error occurred:', error.error.message);
-      } else {
-        console.error(
-          `Backend returned code ${error.status}, ` +
-          `body was: ${error.error}`);
-      }
-      return throwError('Something bad happened; please try again later.');
-    }
-  
-  createService(createService: VehicleService){
-    return this.httpClient.post(this.apiUrl + '/api/Services/CreateService' , VehicleService, this.httpOptions)
+export class Service {
+  intiateService(value: any) {
+    throw new Error('Method not implemented.');
   }
 
-  getServiceList(): Observable<VehicleService> {
-    return this.httpClient
-      .get<VehicleService>(this.apiUrl + '/api/Services/GetServiceList')
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+  ServiceRef: AngularFireObject<any>;
+  readService() {
+    return this.firestore.collection(this.collectionName).snapshotChanges();
+  }
+  collectionName = 'Service';
+
+  constructor(private firestore: AngularFirestore) { }
+
+  // getServices(id: string) {
+  //   return this.firestore.collection('Service').snapshotChanges();
+  // }
+
+  createService(Service) {
+    return this.firestore.collection(this.collectionName).add(Service);
   }
 
-  getService(id): Observable<VehicleService> {
-    return this.httpClient
-      .get<VehicleService>(this.apiUrl + '/api/Services/' + id)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+  getService(id: string){
+    return this.firestore.collection(this.collectionName).doc(id);
   }
-  
-  updateService(item): Observable<VehicleService> {
-    return this.httpClient
-      .put<VehicleService>(this.apiUrl + '/api/Services/' + '?' + item, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+  getServices() {
+    return this.firestore.collection('Service').snapshotChanges();
   }
-  
-  deleteService(id): Observable<{}> {
-  
-    return this.httpClient.delete(this.apiUrl + '/api/Services/' +  id , this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
+  updateService(id, service) {
+    this.firestore.doc(this.collectionName + '/' + id).update(service);
   }
-
-
-
-// import { Injectable } from '@angular/core';
-// import { AngularFirestore } from '@angular/fire/compat/firestore';
-// import {
-//   AngularFireDatabase,
-//   AngularFireList,
-//   AngularFireObject
-// } from '@angular/fire/compat/database';
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class Service {
-//   intiateService(value: any) {
-//     throw new Error('Method not implemented.');
-//   }
-
-//   ServiceRef: AngularFireObject<any>;
-//   readService() {
-//     return this.firestore.collection(this.collectionName).snapshotChanges();
-//   }
-//   collectionName = 'Service';
-
-//   constructor(private firestore: AngularFirestore) { }
-
-//   // getServices(id: string) {
-//   //   return this.firestore.collection('Service').snapshotChanges();
-//   // }
-
-//   createService(Service) {
-//     return this.firestore.collection(this.collectionName).add(Service);
-//   }
-
-//   getService(id: string){
-//     return this.firestore.collection(this.collectionName).doc(id);
-//   }
-//   getServices() {
-//     return this.firestore.collection('Service').snapshotChanges();
-//   }
-//   updateService(id, service) {
-//     this.firestore.doc(this.collectionName + '/' + id).update(service);
-//   }
-//   deleteService(id) {
-//     this.firestore.doc(this.collectionName + '/' + id).delete();
-//   }
+  deleteService(id) {
+    this.firestore.doc(this.collectionName + '/' + id).delete();
+  }
 
 
 getYear(yearCode: string){

@@ -10,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export class AssignedPartService {
 
- apiUrl = 'https://localhost:7163';
+ apiUrl = 'https://localhost:7163/api/Parts';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -20,82 +20,31 @@ export class AssignedPartService {
    })
     }
    
-    private handleError(error: HttpErrorResponse) {
-      if (error.error instanceof ErrorEvent) {
-        console.error('An error occurred:', error.error.message);
-      } else {
-        console.error(
-          `Backend returned code ${error.status}, ` +
-          `body was: ${error.error}`);
-      }
-      return throwError('Something bad happened; please try again later.');
-    }
-  
-  createAssignedPart(createAssignedPart: AssignedPart){
-    return this.httpClient.post(this.apiUrl + '/api/AssignedParts/CreateAssignedPart' , AssignedPart, this.httpOptions)
+createAssignedPart(item): Observable<AssignedPart> {
+    return this.httpClient
+      .post<AssignedPart>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
   }
 
-  getAssignedPartList(): Observable<AssignedPart> {
-    return this.httpClient
-      .get<AssignedPart>(this.apiUrl + '/api/AssignedParts/GetAssignedPartList')
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-
-  getAssignedPart(id): Observable<AssignedPart> {
-    return this.httpClient
-      .get<AssignedPart>(this.apiUrl + '/api/AssignedParts/' + id)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-  
-  updateAssignedPart(item): Observable<AssignedPart> {
-    return this.httpClient
-      .put<AssignedPart>(this.apiUrl + '/api/AssignedParts/' + '?' + item, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-  
-  deleteAssignedPart(id): Observable<{}> {
-  
-    return this.httpClient.delete(this.apiUrl + '/api/AssignedParts/' +  id , this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
+getAssignedPart(id): Observable<AssignedPart> {
+  return this.httpClient
+    .get<AssignedPart>(this.apiUrl + '/' + id)
 }
 
-// createAssignedPart(item): Observable<AssignedPart> {
-//     return this.httpClient
-//       .post<AssignedPart>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
-//   }
+getAssignedPartList(): Observable<AssignedPart> {
+  return this.httpClient
+    .get<AssignedPart>(this.apiUrl)
+}
 
-// getAssignedPart(id): Observable<AssignedPart> {
-//   return this.httpClient
-//     .get<AssignedPart>(this.apiUrl + '/' + id)
-// }
+updateAssignedPart(id, item): Observable<AssignedPart> {
+  return this.httpClient
+    .put<AssignedPart>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
+}
 
-// getAssignedPartList(): Observable<AssignedPart> {
-//   return this.httpClient
-//     .get<AssignedPart>(this.apiUrl)
-// }
-
-// updateAssignedPart(id, item): Observable<AssignedPart> {
-//   return this.httpClient
-//     .put<AssignedPart>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
-// }
-
-// deleteAssignedPart(id) {
-//       return this.httpClient
-//    .delete<AssignedPart>(this.apiUrl + '/' + id, this.httpOptions)
-// }
-// }
+deleteAssignedPart(id) {
+      return this.httpClient
+   .delete<AssignedPart>(this.apiUrl + '/' + id, this.httpOptions)
+}
+}
 // import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 // import { Injectable } from '@angular/core';
 // import { AngularFirestore } from '@angular/fire/compat/firestore';

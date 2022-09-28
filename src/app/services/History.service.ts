@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { VehicleService } from '../models/VehicleService';
-import { ServiceService } from './service.service';
+import { Service } from './service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -46,9 +46,9 @@ export class HistoryService {
       )
   }
   
-  updateService(item): Observable<ServiceService> {
+  updateService(item): Observable<Service> {
     return this.httpClient
-      .put<ServiceService>(this.apiUrl + '/api/Service/UpdateService' + '?' + item, this.httpOptions)
+      .put<Service>(this.apiUrl + '/api/Service/UpdateService' + '?' + item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
