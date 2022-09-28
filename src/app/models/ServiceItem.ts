@@ -1,7 +1,7 @@
-import { Service } from '../services/service.service';
+//import { ServiceService } from '../services/service.service';
 
 export class ServiceItem {
   ServiceItemID: string;
-  ServiceID: Service;
+  ServiceID: string;
   Description: string;
 }

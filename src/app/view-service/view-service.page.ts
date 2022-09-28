@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, FormControl, Validators, Form } from '@angular/forms';
-import { Service } from '../services/service.service';
+import { ServiceService } from '../services/service.service';
+import { VehicleService } from 'app/models/VehicleService';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { stringify } from 'querystring';
 import { AlertController, ToastController } from '@ionic/angular';
@@ -19,13 +20,7 @@ interface ServiceData {
 }
 */
 
-interface ServiceVehicles {
-  VehicleID: number;
-  DealershipName: string;
-  TeamName: string;
-  ServiceTypeName: string;
-  ServiceStatus: string;
-}
+
 
 @Component({
   selector: 'app-view-service',
@@ -36,9 +31,9 @@ export class ViewServicePage implements OnInit {
   
   serviceList = [];
   viewServiceForm: FormGroup;
-  services: Service;
+  services: ServiceService;
   searchTerm: string;
-  ServiceData: ServiceVehicles;
+  ServiceData: VehicleService;
   data: any;
   vehicle = {
     VINNum: 'AHJS27HA39',
@@ -46,7 +41,7 @@ export class ViewServicePage implements OnInit {
     warrantyPlan: 'Standard'
   };
 
-  constructor(public authService: AuthService, private _service: Service, public router: Router, private fb: FormBuilder,
+  constructor(public authService: AuthService, private _service: ServiceService, public router: Router, private fb: FormBuilder,
     private alertController: AlertController, public toastCtrl: ToastController, public route: ActivatedRoute) {
       this.route.params.subscribe(params => {
         this.data = params.id;
@@ -59,7 +54,7 @@ export class ViewServicePage implements OnInit {
       ServiceStatus: new FormControl('', [Validators.required]),
     })
 
-      this.ServiceData = {} as ServiceVehicles;
+      this.ServiceData = {} as VehicleService;
 
   }
 

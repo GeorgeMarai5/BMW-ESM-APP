@@ -8,7 +8,7 @@ import { Vehicle } from '../models/Vehicle';
 import { AlertController } from '@ionic/angular';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { Service } from 'app/services/service.service';
+import { ServiceService } from 'app/services/service.service';
 import { Clients } from 'app/models/Clients';
 import { Dealership } from 'app/models/Dealership';
 import { Team } from 'app/models/Team';
@@ -39,7 +39,7 @@ export class ServiceInvoicePage implements OnInit {
   serviceItem: AssignedPart;
 
   constructor(public authService: AuthService, public router: Router, private route: ActivatedRoute,
-    private fb:FormBuilder, private _service: Service) { 
+    private fb:FormBuilder, private _service: ServiceService) { 
       this.route.params.subscribe((params) => {
         this.data = params.id;
       });

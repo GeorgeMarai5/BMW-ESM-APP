@@ -4,7 +4,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { ServiceNoteService } from '../services/servicenote.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Service } from '../services/service.service';
+import { ServiceService } from '../services/service.service';
 import { Service_Note } from '../models/Service_Note'
 import { ToastController } from '@ionic/angular';
 

@@ -10,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export class QuoteService {
 
- apiUrl = 'https://localhost:7163/api/Quotes';
+ apiUrl = 'https://localhost:7163';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -20,33 +20,57 @@ export class QuoteService {
    })
     }
    
-createQuote(item): Observable<Quote> {
-    return this.httpClient
-      .post<Quote>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
+    private handleError(error: HttpErrorResponse) {
+      if (error.error instanceof ErrorEvent) {
+        console.error('An error occurred:', error.error.message);
+      } else {
+        console.error(
+          `Backend returned code ${error.status}, ` +
+          `body was: ${error.error}`);
+      }
+      return throwError('Something bad happened; please try again later.');
+    }
+  
+  createQuote(createQuote: Quote){
+    return this.httpClient.post(this.apiUrl + '/api/Quotes/CreateQuote' , Quote, this.httpOptions)
   }
 
-getQuote(id): Observable<Quote> {
-  return this.httpClient
-    .get<Quote>(this.apiUrl + '/' + id)
+  getQuoteList(): Observable<Quote> {
+    return this.httpClient
+      .get<Quote>(this.apiUrl + '/api/Quotes/GetQuoteList')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getQuote(id): Observable<Quote> {
+    return this.httpClient
+      .get<Quote>(this.apiUrl + '/api/Quotes/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  updateQuote(item): Observable<Quote> {
+    return this.httpClient
+      .put<Quote>(this.apiUrl + '/api/Quotes/' + '?' + item, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  deleteQuote(id): Observable<{}> {
+  
+    return this.httpClient.delete(this.apiUrl + '/api/Quotes/' +  id , this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 }
 
-getQuoteList(): Observable<Quote> {
-  return this.httpClient
-    .get<Quote>(this.apiUrl)
-}
-
-updateQuote(id, item): Observable<Quote> {
-  return this.httpClient
-    .put<Quote>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
-}
-
-deleteQuote(id) {
-      return this.httpClient
-   .delete<Quote>(this.apiUrl + '/' + id, this.httpOptions)
-}
-
-
-}
 // import { Injectable } from '@angular/core';
 // import { AngularFirestore } from "@angular/fire/compat/firestore";
 // import {

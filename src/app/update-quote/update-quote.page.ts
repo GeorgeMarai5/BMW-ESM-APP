@@ -39,6 +39,7 @@ export class UpdateQuotePage implements OnInit {
   }
 
   submitForm(){
+    /*
     this.isSubmitted = true;
     if(!this.editquoteForm.valid){
       return false;
@@ -50,10 +51,11 @@ export class UpdateQuotePage implements OnInit {
           Description: this.editquoteForm.get('Description').value,
           Accepted: this.editquoteForm.get('Accepted').value
         }
-        this.quoteservice.updateQuote(this.data, QuoteData)
+        this.quoteservice.updateQuote(this.data)
         this.presentToast()
       }
       this.router.navigate(['/tabs/view/dealership', this.data]);
+      */
   }
 
   ngOnInit() {

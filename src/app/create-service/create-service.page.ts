@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { Service } from '../services/service.service';
+import { ServiceService } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
@@ -39,11 +39,11 @@ export class CreateServicePage implements OnInit {
     public firestore: AngularFirestore, 
     public authService: AuthService, 
     public fb: FormBuilder, 
-    private service: Service, 
+    private service: ServiceService, 
     public toastCtrl: ToastController, 
     private teamservice: TeamService) {
 
-      service = {} as Service;
+      service = {} as ServiceService;
       this.data = new VehicleService();
     /*  
     this.route.params.subscribe(params => {
@@ -57,13 +57,14 @@ export class CreateServicePage implements OnInit {
    }
   
   submitForm(){
-
+/*
     this.service.createService(this.data).subscribe(response => {
       console.log(response);
       //this.router.navigate(['student-list']);
     });
   
     this.presentToast(); 
+    */
   }
 
   ngOnInit() {

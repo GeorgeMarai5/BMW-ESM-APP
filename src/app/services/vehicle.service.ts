@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Vehicle } from '../models/Vehicle';
 import { retry, catchError } from 'rxjs/operators';
-import { Model } from 'app/models/VehicleModel';
+import { VehicleModel } from 'app/models/VehicleModel';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Injectable({
   providedIn: 'root',

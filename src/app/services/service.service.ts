@@ -8,7 +8,7 @@ import {
 @Injectable({
   providedIn: 'root'
 })
-export class Service {
+export class ServiceService {
   intiateService(value: any) {
     throw new Error('Method not implemented.');
   }

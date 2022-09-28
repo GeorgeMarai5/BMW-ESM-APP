@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../models/VehicleService';
 import { AuthService } from '../services/auth.service';
-import { Service } from '../services/service.service';
+import { ServiceService } from '../services/service.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -22,7 +22,7 @@ export class SearchServicePage implements OnInit {
   searchTerm: string;
   id: any;
 
-  constructor(public router: Router, public authService: AuthService, private _service: Service, public fb: FormBuilder, private firestore: AngularFirestore, 
+  constructor(public router: Router, public authService: AuthService, private _service: ServiceService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public toastCtrl: ToastController) { 
       this.services = {} as VehicleService;
     }

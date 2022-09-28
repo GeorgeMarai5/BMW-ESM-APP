@@ -83,7 +83,7 @@ export class CreateAccountPage implements OnInit {
           Team: '',
           Role: ''
         }
-        await this.employeeService.createEmployee(employee);
+        await this.employeeService.CreateEmployee(employee);
       }
     }).catch((error) => {
       

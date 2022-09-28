@@ -47,20 +47,7 @@ export class UpdateEmployeePage implements OnInit {
 
   ngOnInit() {
 
-    this.employeeService.getEmployee(this.data).subscribe(data =>{
-      this.employeeList.map(e =>{
-        return{
-          id: e.payload.doc.id,
-          QNumber: e.payload.doc.data()['qnumber'],
-          Name: e.payload.doc.data()['name'],
-          Surname: e.payload.doc.data()['surname'],
-          PhoneNumber: e.payload.doc.data()['phone'],
-          Email: e.payload.doc.data()['email'],
-          Team: e.payload.doc.data()['team'],
-          };
-        });
-      console.log(this.employeeList);
-    });
+    
   }
 
   submitForm(){

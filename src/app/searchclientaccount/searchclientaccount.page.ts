@@ -59,7 +59,7 @@ constructor(public clientService: ClientService , private zone: NgZone,private t
       Address: [''],
     });
 
-    this.clientService.getClientList().subscribe(data =>{
+    this.clientService.GetClientList().subscribe(data =>{
       this.clientList.subscribe(e => {
         return{
           id: e.payload.doc.id,

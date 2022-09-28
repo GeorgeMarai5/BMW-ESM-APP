@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Service } from '../services/service.service';
+import { ServiceService } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
@@ -14,7 +14,7 @@ import { ToastController } from '@ionic/angular';
 
 export class UpdateServicePage implements OnInit {
 
-  services: Service;
+  services: ServiceService;
   dealerships = [];
   teams = [];
   serviceTypes = [];
@@ -26,7 +26,7 @@ export class UpdateServicePage implements OnInit {
   constructor(private route: ActivatedRoute, 
     public fb: FormBuilder, 
     public authService: AuthService, 
-    public _service: Service,
+    public _service: ServiceService,
     public router: Router, 
     public toastCtrl: ToastController) {
       

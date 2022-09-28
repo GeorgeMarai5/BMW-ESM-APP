@@ -39,17 +39,7 @@ export class ViewClientAccountPage implements OnInit {
      }
      
   ngOnInit() {
-    this.service.getClient(this.data).subscribe(res =>{
-      console.log(res)
-        this.viewClientForm.setValue({
-        Title: res['title'], 
-        FirstName: res['firstName'], 
-        LastName: res['lastName'],
-        PhoneNumber: res['phoneNum'],
-        Email: res['email'],
-        Address: res['address']
-      })
-    });
+    
   }
 
   async removeAlert(){
@@ -65,11 +55,14 @@ export class ViewClientAccountPage implements OnInit {
   }
 
   RemoveClient(ID) {
+
+    /*
     if (window.confirm('Do you really want to Remove This Client?')) {
       this.service.deleteClient(ID);
     }
     
     console.log(ID)
+    */
   }
 
   async presentToast() {
