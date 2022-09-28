@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Dealership } from '../models/Dealership';
 import { retry, catchError } from 'rxjs/operators';
-import { Model } from 'app/models/VehicleModel';
 
 @Injectable({
   providedIn: 'root',

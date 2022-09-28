@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { MaintenancePlan } from '../models/Maintenance-Plan';
 import { retry, catchError } from 'rxjs/operators';
-import { Model } from 'app/models/VehicleModel';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Injectable({
   providedIn: 'root',
