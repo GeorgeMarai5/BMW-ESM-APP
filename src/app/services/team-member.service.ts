@@ -9,10 +9,9 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class TeamMemberService {
 
-  apiUrl = 'https://localhost:7292';
-  httpClient: any;
+  apiUrl = 'https://localhost:7163';
 
-  constructor(private http: HttpClient) { 
+  constructor(private httpClient: HttpClient) { 
 
   }
 
@@ -35,41 +34,42 @@ export class TeamMemberService {
   };
 
 
-  createTeamMember(teamMember: Employee) {
-    return this.httpClient.post(this.apiUrl + '/api/Employee/Create' , teamMember, this.httpOptions)
-  }
-
-  getTeamMember(id): Observable<{}> {
-    return this.httpClient.get(this.apiUrl + '/api/Employee/id?id=' +  id , this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
+  createTeamMember(createTeamMember: Employee){
+    return this.httpClient.post(this.apiUrl + '/api/Employee/CreateTeamMember' , Employee, this.httpOptions)
   }
 
   getTeamMemberList(): Observable<Employee> {
-    return this.http
-      .get<Employee>(this.apiUrl + '/api/Employee/GetAllEmployees')
+    return this.httpClient
+      .get<Employee>(this.apiUrl + '/api/Employee/GetTeamMemberList')
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  updateTeaMember(item): Observable<Employee> {
-    return this.http
-      .put<Employee>(this.apiUrl + '/api/Employee/UpdateEmployee' + '?' + item, this.httpOptions)
+  getTeamMember(id): Observable<Employee> {
+    return this.httpClient
+      .get<Employee>(this.apiUrl + '/api/Employee/' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
-
-  deleteTeamMember(id) {
-    return this.http
-      .delete<Employee>(this.apiUrl + '/api/Employee/DeleteEmployee?id=' + id, this.httpOptions)
+  
+  updateTeamMember(item): Observable<Employee> {
+    return this.httpClient
+      .put<Employee>(this.apiUrl + '/api/Employee/' + '?' + item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
+  }
+  
+  deleteTeamMember(id): Observable<{}> {
+  
+    return this.httpClient.delete(this.apiUrl + '/api/Employee/' +  id , this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 }
