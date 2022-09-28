@@ -5,7 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { Console } from 'console';
 import { Dealership } from '../models/Dealership';
 import { AuthService } from '../services/auth.service';
-import { Service } from '../services/service.service';
+import { ServiceService } from '../services/service.service';
 import { DealershipService } from '../services/dealership.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class AssignDealershipPage implements OnInit {
   constructor(private route: ActivatedRoute,
     public fb: FormBuilder, 
     public authService: AuthService,
-    public service: Service, public router: Router, 
+    public service: ServiceService, public router: Router, 
     private toastCtrl: ToastController, 
     private dealershipservice: DealershipService) { 
 
