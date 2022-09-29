@@ -88,11 +88,7 @@ export class SearchDealershipPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteDealership(dealershipID);
-          this.dealershipservice.deleteDealership(id);
           this.service.deleteDealership(id);
-          this.service.deleteDealership(dealershipID);
-          this.service.deleteDealership(dealershipID);
           this.presentToast();
         }
       }]
