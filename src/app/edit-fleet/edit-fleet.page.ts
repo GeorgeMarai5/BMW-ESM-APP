@@ -73,7 +73,7 @@ export class EditFleetPage implements OnInit {
 
 }
     
-  async update(){
+  async update(id, data){
 
     this.fleetservice.updatefleet(this.id,this.data).subscribe(response => {
       console.log(response);

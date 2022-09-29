@@ -38,7 +38,11 @@ export class AddVehiclePage implements OnInit {
     */
   }
 
-  submitForm(){
+  submitForm() {
+    //
+  }
+
+  async create(){
     this.service.createVehicle(this.data).subscribe(response => {
       console.log(response);
       //this.router.navigate(['student-list']);
@@ -55,7 +59,7 @@ export class AddVehiclePage implements OnInit {
     //  this.router.navigate(['/tabs/login']);
     //}
 
-    this.addVehicleForm.setValue({VINNum: '', vehicleModel: '', Registration: '', warrantyPlan: ''});
+    //this.addVehicleForm.setValue({VINNum: '', vehicleModel: '', Registration: '', warrantyPlan: ''});
   }
 
   async presentToast() {

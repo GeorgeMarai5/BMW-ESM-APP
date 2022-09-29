@@ -37,7 +37,11 @@ export class AddressService {
           
         }
 
-   
+        AddAddress(address: Address){
+               return this.httpClient.post(this.apiUrl , address, this.httpOptions)
+          
+        }
+             
 createAddress(item): Observable<Address> {
     return this.httpClient
       .post<Address>(this.apiUrl , JSON.stringify(item), this.httpOptions)  

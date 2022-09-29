@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Dealership } from '../models/Dealership';
 import { retry, catchError } from 'rxjs/operators';
+import { Address } from 'app/models/Address';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +37,11 @@ export class DealershipService {
     }
 
     createDealership(Dealership: Dealership){
-      return this.httpClient.post(this.apiUrl + '/api/Dealerships/Create' , Dealership, this.httpOptions)
+      return this.httpClient.post(this.apiUrl + '/api/Dealerships/CreateDealerships' , Dealership , this.httpOptions)
+    }
+
+    createDealerships(Dealership: Dealership,address: Address){
+      return this.httpClient.post(this.apiUrl + '/api/Dealerships/CreateDealerships' , Dealership && address, this.httpOptions)
     }
   
     getDealershipList(): Observable<Dealership> {

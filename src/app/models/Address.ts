@@ -1,5 +1,5 @@
 export class Address {
-    addressID: number;
+    addressId: string;
     address: string;
     postal_Code: string;
     date_Of_Update: Date;

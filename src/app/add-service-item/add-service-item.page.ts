@@ -23,10 +23,13 @@ export class AddServiceItemPage implements OnInit {
     public fb: FormBuilder, 
     public authService: AuthService, 
     public firestore: AngularFirestore, 
-    public ServiceItem: ServiceItemService, 
+    public service: ServiceItemService, 
     public router: Router, 
     public toastCtrl: ToastController) { 
-
+    
+      service = {} as ServiceItemService;
+      this.data = new ServiceItem();
+    /*
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
@@ -34,10 +37,12 @@ export class AddServiceItemPage implements OnInit {
       itemName: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
       itemDescription: new FormControl('', Validators.required),
     })
-
+    */
   }
 
   submitForm(){
+
+    /*
     this.isSubmitted = true;
     if(!this.addItemForm.valid){
       return false;
@@ -47,10 +52,22 @@ export class AddServiceItemPage implements OnInit {
         itemName: this.addItemForm.get('itemName').value,
         itemDescription: this.addItemForm.get('itemDescription').value,
       }
-      this.ServiceItem.createServiceItem(serviceItem)
+      this.service.createServiceItem(serviceItem)
       this.presentToast()
     }
     this.router.navigate(['/tabs/view/fleet']);
+    */
+  }
+
+  async create(){
+
+    this.service.createServiceItem(this.data).subscribe(response => {
+      console.log(response);
+      //this.router.navigate(['student-list']);
+    });
+  
+    this.presentToast();
+  
   }
 
   ngOnInit() {

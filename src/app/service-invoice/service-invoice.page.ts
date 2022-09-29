@@ -46,20 +46,20 @@ export class ServiceInvoicePage implements OnInit {
     }
 
   ngOnInit() {
-    // this._service.getServices().subscribe((data) => {
-    //   this.serviceList = data.map((e) => {
-    //     return {
-    //       id: e.payload.doc.id,
-    //       isEdit: false,
-    //       ServiceID: e.payload.doc.data()['ServiceID'],
-    //       DealershipName: e.payload.doc.data()['DealershipName'],
-    //       TeamName: e.payload.doc.data()['TeamName'],
-    //       ServiceType: e.payload.doc.data()['ServiceType'],
-    //       ServiceStatus: e.payload.doc.data()['ServiceStatus'],
-    //     };
-    //   });
-    //   console.log(this.serviceList);
-    // });
+    this._service.getServices().subscribe((data) => {
+      this.serviceList = data.map((e) => {
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          ServiceID: e.payload.doc.data()['ServiceID'],
+          DealershipName: e.payload.doc.data()['DealershipName'],
+          TeamName: e.payload.doc.data()['TeamName'],
+          ServiceType: e.payload.doc.data()['ServiceType'],
+          ServiceStatus: e.payload.doc.data()['ServiceStatus'],
+        };
+      });
+      console.log(this.serviceList);
+    });
   }
 
   getReport() {

@@ -14,81 +14,92 @@ import { ToastController } from '@ionic/angular';
 
 export class CreateQuotePage implements OnInit {
 
-  QuoteData: Quote;
   createQuoteForm: FormGroup;
   isSubmitted = false;
-  data:any;
+  data: any;
+  quote: Quote;
 
-  constructor(public route : ActivatedRoute,
+  constructor (private route: ActivatedRoute, 
+    public router: Router, 
     public authService: AuthService, 
     public fb: FormBuilder, 
-    public router: Router, 
-    private quoteservice: QuoteService,
-    private zone: NgZone, 
-    public toastCtrl: ToastController) { 
-   
+    private quoteservice: QuoteService, 
+    public toastCtrl: ToastController) {
+
+
+
       quoteservice = {} as QuoteService;
+      //this.data = new Fleet();
       this.data = new Quote();
 
-      /*
-      this.route.params.subscribe(params => {
-        this.data = params.id;
-      });
-      this.createQuoteForm = this.fb.group({
-        ClientName: ['', [Validators.required]],
-        Date: ['', [Validators.required]],
-        Description: ['', [Validators.required]],
-        Accepted: ['', [Validators.required]],
-      });
-      */
-    }
+   // this.route.params.subscribe(params => {
+    //  this.data = params.id;
+   // });
+    //this.addFleetForm = new FormGroup({
+      //fleetName: new FormControl('', Validators.required),
+      //fleetLocation: new FormControl('', Validators.required)
+    //}); 
 
-  submitForm(){
-    this.quoteservice.createQuote(this.data).subscribe(response => {
-      console.log(response);
-      //this.router.navigate(['student-list']);
-    });
   
-    this.presentToast();
-    /*
+  }
+
+  /*submitForm(){
     this.isSubmitted = true;
-    if(!this.createQuoteForm.valid){
+    if(!this.addFleetForm.valid){
       return false;
     }
     else{
-        const QuoteData = {
-          ClientName: this.createQuoteForm.get('ClientName').value,
-          Date: this.createQuoteForm.get('Date').value,
-          Description: this.createQuoteForm.get('Description').value,
-          Accepted: this.createQuoteForm.get('Accepted').value
+        const fleet = {
+          fleetName: this.addFleetForm.get('fleetName').value,
+          fleetID: this.addFleetForm.get('fleetID').value,
+          vehicleAmount: this.addFleetForm.get('vehicleAmount').value,
+          fleetLocation: this.addFleetForm.get('fleetLocation').value
         }
-        this.quoteservice.createQuote(QuoteData)
+        this.fleetservice.createFleet(fleet);
+        console.log(fleet);
         this.presentToast()
       }
-      this.router.navigate(['/tabs/view/dealership']);
-      */
+      this.router.navigate(['/tabs/search/vehicle']);
   }
+  */
+
+
+
+  async create(){
+
+  this.quoteservice.createQuote(this.data).subscribe(response => {
+    console.log(response);
+    //this.router.navigate(['student-list']);
+  });
+
+  this.presentToast();
+
+}
+
 
   ngOnInit() {
-    //if(this.authService.isLoggedIn){
-    //  return true;
-    //}
-    //else{
-    //  this.router.navigate(['/tabs/login']);
-    //}
+    /*if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+    */
 
+
+  }
+
+  get errorControl() {
+    return this.createQuoteForm.controls;
   }
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
-      message: 'A new quote has been created successfully',
+      message: 'The quote has been created successfully',
       duration: 3000,
       position: 'top'
     });
     toast.present();
   }
 
-  get errorControl() {
-    return this.createQuoteForm.controls;
-  }
 }

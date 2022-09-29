@@ -23,7 +23,6 @@ export class CreateServiceNotePage implements OnInit {
   deleteModal: HTMLElement;
   isSubmitted = false;
   data : any;
-  serviceNote: Service_Note;
   today = new Date();
 
   constructor (private route: ActivatedRoute, 
@@ -40,23 +39,14 @@ export class CreateServiceNotePage implements OnInit {
   }
 
   submitForm() {
-    // this._serviceNote.createServiceNote(this.data).subscribe(response => {
-    //   console.log(response);
-    //   //this.router.navigate(['student-list']);
-    // });
-  
-    // this.presentToast();
-  }
-  async createServiceNote(){
-
     this._serviceNote.createServiceNote(this.data).subscribe(response => {
       console.log(response);
       //this.router.navigate(['student-list']);
     });
   
     this.presentToast();
-  
   }
+    
   ngOnInit() {
     //if(this.authService.isLoggedIn){
     //  return true;
@@ -72,7 +62,7 @@ export class CreateServiceNotePage implements OnInit {
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
-      message: 'Service Note has been successfully created.',
+      message: 'Service note has been successfully created.',
       duration: 3000,
       position: 'top'
     });

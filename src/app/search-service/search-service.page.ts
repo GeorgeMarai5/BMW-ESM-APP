@@ -20,8 +20,7 @@ export class SearchServicePage implements OnInit {
   serviceList = [];
   serviceForm: FormGroup;
   searchTerm: string;
-  serviceID: any;
-  data: any;
+  id: any;
 
   constructor(public router: Router, public authService: AuthService, private _service: ServiceService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public toastCtrl: ToastController) { 
@@ -35,31 +34,31 @@ export class SearchServicePage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-    // this.serviceForm = this.fb.group({
-    //   ServiceID: ['', [Validators.required]],
-    //   VINNumber: ['', [Validators.required]],
-    //   ServiceType: ['', [Validators.required]],
-    //   Date: ['', [Validators.required]]
-    // });
+    this.serviceForm = this.fb.group({
+      ServiceID: ['', [Validators.required]],
+      VINNumber: ['', [Validators.required]],
+      ServiceType: ['', [Validators.required]],
+      Date: ['', [Validators.required]]
+    });
     
-    // this._service.getServices().subscribe(data => {
-    //   this.serviceList = data.map(e => {
+    this._service.getServices().subscribe(data => {
+      this.serviceList = data.map(e => {
 
-    //     return {
-    //       id: e.payload.doc.id,
-    //       ServiceID: e.payload.doc.data()['ServiceID'],
-    //       VINNumber: e.payload.doc.data()['VINNumber'],
-    //       ServiceTypeName: e.payload.doc.data()['ServiceTypeName'],
-    //       Date: e.payload.doc.data()['Date']
+        return {
+          id: e.payload.doc.id,
+          ServiceID: e.payload.doc.data()['ServiceID'],
+          VINNumber: e.payload.doc.data()['VINNumber'],
+          ServiceTypeName: e.payload.doc.data()['ServiceTypeName'],
+          Date: e.payload.doc.data()['Date']
 
-    //     };
-    //   })
-    //   console.log(this.serviceList);
+        };
+      })
+      console.log(this.serviceList);
 
-    // });
+    });
   }
   
-  async cancelService(serviceID){
+  async cancelService(id){
     const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Service',
       message: 'Are you sure you would like to remove this service from the system?',
@@ -74,7 +73,7 @@ export class SearchServicePage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this._service.deleteService(serviceID);
+          this._service.deleteService(id);
           this.presentToast();
         }
       }]
@@ -86,7 +85,7 @@ export class SearchServicePage implements OnInit {
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
-      message: 'Service has been cancelled successfully.',
+      message: 'Service has been canceled successfully.',
       duration: 3000,
       position: 'top'
     });

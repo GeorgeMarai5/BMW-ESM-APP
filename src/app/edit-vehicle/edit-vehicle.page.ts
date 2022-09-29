@@ -54,7 +54,7 @@ export class EditVehiclePage implements OnInit {
         Registration: this.editVehicleForm.get('Registration').value,
         Warranty: this.editVehicleForm.get('warrantyPlan').value,
       }
-      this.service.updateVehicle(this.data, dealership)
+      this.service.updateVehicle(this.data)
       this.presentToast();
     }
     this.router.navigate(['/tabs/view/vehicle', this.data]);

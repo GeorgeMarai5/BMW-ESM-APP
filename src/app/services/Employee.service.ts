@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-//import { Fleet } from '../models/fleet';
 import { Observable,of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { retry,catchError, tap, map } from 'rxjs/operators';
@@ -10,17 +9,17 @@ import { Employee } from '../models/employee';
 })
 export class EmployeeService {
 
-  //collectionName = 'Fleet';
-  //FleetRef: AngularFireObject<any>;
   apiUrl = 'https://localhost:7163'
   httpOptions ={
     headers: new HttpHeaders({
       ContentType: 'application/json'
     })
   }
-  constructor(private httpClient: HttpClient) { }                                             //private db: AngularFireDatabase,private firestore: AngularFirestore
   
+  constructor(private httpClient: HttpClient) { 
 
+  }
+  
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -37,62 +36,50 @@ export class EmployeeService {
     
   }
 
-
   CreateEmployee(Employee: Employee){
-    return this.httpClient.post(this.apiUrl + '/api/Fleets/Create' , Employee, this.httpOptions)
-
-
+    return this.httpClient.post(this.apiUrl + '/api/Employees/CreateEmployee' , Employee, this.httpOptions)
   }
-
 
   getEmployeeList(): Observable<Employee> {
     return this.httpClient
-      .get<Employee>(this.apiUrl + '/api/Fleets/GetAll')
+      .get<Employee>(this.apiUrl + '/api/Employees/GetEmployees')
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  
-  // Get single student data by ID
   getEmployee(id): Observable<Employee> {
     return this.httpClient
-      .get<Employee>(this.apiUrl + '/api/Fleet/' + id)
+      .get<Employee>(this.apiUrl + '/api/Employees/' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
   
-  // Update item by id
   updateEmployee(item): Observable<Employee> {
     return this.httpClient
-      .put<Employee>(this.apiUrl + '/api/Fleet/UpdateFleet' + '?' + item, this.httpOptions)
+      .put<Employee>(this.apiUrl + '/api/Employees/PutEmployee' + '?' + item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
   
-  // Delete item by id
   delete(id) {
     return this.httpClient
-      .delete<Employee>(this.apiUrl + '/api/Fleets' + '/' + id, this.httpOptions)
+      .delete<Employee>(this.apiUrl + '/api/Employees' + '/' + id, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-
-
-  deleteFleet(id): Observable<{}> {
-  
-    return this.httpClient.delete(this.apiUrl + '/api/Fleets/' +  id , this.httpOptions)
+  deleteEmployee(id): Observable<{}> {
+    return this.httpClient.delete(this.apiUrl + '/api/Employees/' +  id , this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
-
 }

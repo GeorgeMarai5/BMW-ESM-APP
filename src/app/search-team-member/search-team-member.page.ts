@@ -27,22 +27,53 @@ export class SearchTeamMemberPage implements OnInit {
     }
 
   ngOnInit() {
+
+    /*
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
+    */
+
+    this.getallTeamMembers();
+  }
+
+  async getallTeamMembers(){
     this.teamMemberservice.getTeamMemberList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
   }
 
-  async deleteTeam(item){
-    this.teamMemberservice.deleteTeamMember(item.teamMemberID).subscribe(Response => {
-      console.log(Response);
+  async assignTeamMember(id){
+
+  }
+
+  async deleteTeamMember(item){
+    const confirmDeleteAlert = await this.alertCtrl.create({
+      header: 'Remove Team Memeber',
+      message: 'Are you sure you would like to remove this team member from this team?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: end => {
+          this.alertCtrl.dismiss();
+        }
+      },
+      {
+        text: 'Remove',
+        role: 'remove',
+        handler: () => {
+          this.teamMemberservice.deleteTeamMember(item.teamMemberID).subscribe(Response => {
+            console.log(Response);
+          });
+          this.presentToast();
+        }
+      }]
     });
+    confirmDeleteAlert.present();
   }
 
   async presentToast() {

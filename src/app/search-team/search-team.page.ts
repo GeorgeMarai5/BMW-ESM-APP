@@ -27,12 +27,17 @@ export class SearchTeamPage implements OnInit {
     }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
+    /*if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
+    */
+    this.getallTeams();
+  }
+
+  async getallTeams(){
     this.teamservice.getTeamList().subscribe(response => {
       console.log(response);
       this.data = response;
@@ -40,9 +45,28 @@ export class SearchTeamPage implements OnInit {
   }
 
   async deleteTeam(item){
-    this.teamservice.deleteTeam(item.teamID).subscribe(Response => {
-      console.log(Response);
+    const confirmDeleteAlert = await this.alertCtrl.create({
+      header: 'Remove Team',
+      message: 'Are you sure you would like to remove this team from the system?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: end => {
+          this.alertCtrl.dismiss();
+        }
+      },
+      {
+        text: 'Remove',
+        role: 'remove',
+        handler: () => {
+          this.teamservice.deleteTeam(item.teamID).subscribe(Response => {
+            console.log(Response);
+          });
+          this.presentToast();
+        }
+      }]
     });
+    confirmDeleteAlert.present();
   }
 
   async presentToast() {

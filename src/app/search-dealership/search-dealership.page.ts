@@ -19,7 +19,6 @@ export class SearchDealershipPage implements OnInit {
   dealershipForm: FormGroup;
   searchTerm: string;
   data:any;
-  dealershipID: string;
 
   constructor(public authService: AuthService, private dealershipservice: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
@@ -31,16 +30,20 @@ export class SearchDealershipPage implements OnInit {
     
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   //   this.getallDealerships();
+=======
+    this.getallDealerships();
+>>>>>>> parent of 8ecf2ac (changes)
 
 
 
-  //   this.dealershipForm = this.fb.group({
-  //     FleetName: ['', [Validators.required]],
-  //     FleetLocation: ['', [Validators.required]],
-  //     FleetID: ['', [Validators.required]],
-  //     FleetVehicleQty: ['', [Validators.required]],
-  // });
+    this.dealershipForm = this.fb.group({
+      FleetName: ['', [Validators.required]],
+      FleetLocation: ['', [Validators.required]],
+      FleetID: ['', [Validators.required]],
+      FleetVehicleQty: ['', [Validators.required]],
+  });
 
   /*
   this.service.getList().subscribe(data => {
@@ -72,7 +75,7 @@ export class SearchDealershipPage implements OnInit {
 
 
 
-  async removeDealership(dealershipID){
+  async removeDealership(id){
     const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Dealership',
       message: 'Are you sure you would like to remove this dealership from the system?',
@@ -88,10 +91,14 @@ export class SearchDealershipPage implements OnInit {
         role: 'remove',
         handler: () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
           this.service.deleteDealership(dealershipID);
 =======
           this.dealershipservice.deleteDealership(id);
 >>>>>>> a6593f7130021485db44e9f0ab47503ba5876a34
+=======
+          this.service.deleteDealership(id);
+>>>>>>> parent of 8ecf2ac (changes)
           this.presentToast();
         }
       }]

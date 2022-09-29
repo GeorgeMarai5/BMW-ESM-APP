@@ -18,9 +18,8 @@ export class SearchServiceNotePage implements OnInit {
   serviceNoteList = [];
   serviceForm: FormGroup;
   searchTerm: string;
-  serviceNoteID: any;
+  id: any;
   serviceNote: string;
-  data: any;
 
   constructor(public router: Router, public authService: AuthService, private _serviceNote: ServiceNoteService, public fb: FormBuilder,
     private firestore: AngularFirestore, public alertCtrl: AlertController, public toastCtrl: ToastController) {
@@ -35,11 +34,11 @@ export class SearchServiceNotePage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-    // this.serviceForm = this.fb.group({
-    //   NoteID: ['', [Validators.required]],
-    //   ServiceID: ['', [Validators.required]],
-    //   Desscription: ['', [Validators.required]],
-    // });
+    this.serviceForm = this.fb.group({
+      NoteID: ['', [Validators.required]],
+      ServiceID: ['', [Validators.required]],
+      Desscription: ['', [Validators.required]],
+    });
   }
 
 //     this._serviceNote.getServiceNoteList().subscribe((data) => {
@@ -54,19 +53,12 @@ export class SearchServiceNotePage implements OnInit {
 //       console.log(this.serviceNoteList);
 //     });
 //   }
-async getAllServiceNotes(){
-
-  this._serviceNote.getServiceNoteList().subscribe(response => {
-    console.log(response);
-    this.data = response;
-  })
-}
-
-   async removeServiceNote(serviceNoteID) {
+  
+   async removeServiceNote(id) {
      const confirmDeleteAlert = await this.alertCtrl.create({
        header: 'Remove Service',
        message:
-        'Are you sure you would like to remove this Service Note from the system?',
+        'Are you sure you would like to remove this service from the system?',
        buttons: [
          {
            text: 'Cancel',
@@ -79,7 +71,7 @@ async getAllServiceNotes(){
            text: 'Remove',
            role: 'remove',
            handler: () => {
-             this._serviceNote.deleteServiceNote(serviceNoteID);
+             this._serviceNote.deleteServiceNote(id);
              this.presentToast();
            },
          },
@@ -91,7 +83,7 @@ async getAllServiceNotes(){
 
    async presentToast() {
      let toast = await this.toastCtrl.create({
-       message: 'Service Note has been removed successfully.',
+       message: 'Service note has been removed successfully.',
        duration: 3000,
        position: 'top'
      });
