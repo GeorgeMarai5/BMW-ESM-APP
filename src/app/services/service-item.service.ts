@@ -10,39 +10,92 @@ import { retry, catchError } from 'rxjs/operators';
 
 export class ServiceItemService {
 
- apiUrl = 'https://localhost:7292/api/ServiceItem';
+  apiUrl = 'https://localhost:7292/api/ServiceItem';
 
   constructor(private httpClient: HttpClient) {}
 
-  httpOptions = {
-  headers: new HttpHeaders({
-   'Content-Type': 'application/json'
-   })
+  httpOptions ={
+    headers: new HttpHeaders({
+      ContentType: 'application/json'
+    })
+  }                                         
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
     }
-   
-createServiceItem(item): Observable<ServiceItem> {
-    return this.httpClient
-      .post<ServiceItem>(this.apiUrl , JSON.stringify(item), this.httpOptions)  
+    // return an observable with a user-facing error message
+    return throwError('Something bad happened; please try again later.');
+    
   }
 
-getServiceItem(id): Observable<ServiceItem> {
-  return this.httpClient
-    .get<ServiceItem>(this.apiUrl + '/' + id)
-}
 
-getServiceItemList(): Observable<ServiceItem> {
-  return this.httpClient
-    .get<ServiceItem>(this.apiUrl)
-}
+  createServiceItem(ServiceItem: ServiceItem){
+    return this.httpClient.post(this.apiUrl + '/api/ServiceItems/Create' , ServiceItem, this.httpOptions)
+  }
 
-updateServiceItem(id, item): Observable<ServiceItem> {
-  return this.httpClient
-    .put<ServiceItem>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
-}
 
-deleteServiceItem(id) {
-      return this.httpClient
-   .delete<ServiceItem>(this.apiUrl + '/' + id, this.httpOptions)
-}
+  getServiceItemList(): Observable<ServiceItem> {
+    return this.httpClient
+      .get<ServiceItem>(this.apiUrl + '/api/ServiceItems/GetAll')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  // Get single student data by ID
+  getServiceItem(id): Observable<ServiceItem> {
+    return this.httpClient
+      .get<ServiceItem>(this.apiUrl + '/api/ServiceItems/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  // Update item by id
+  updateServiceItem(item): Observable<ServiceItem> {
+    return this.httpClient
+      .put<ServiceItem>(this.apiUrl + '/api/Fleets/' + item, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  updateserviceItem(id, item): Observable<ServiceItem> {
+    return this.httpClient
+      .put<ServiceItem>(this.apiUrl + '/api/ServiceItems/' + id, item, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  // Delete item by id
+  delete(id) {
+    return this.httpClient
+      .delete<ServiceItem>(this.apiUrl + '/api/ServiceItems' + '/' + id, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  deleteServiceItem(id): Observable<{}> {
+  
+    return this.httpClient.delete(this.apiUrl + '/api/ServiceItems/' +  id , this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
 }

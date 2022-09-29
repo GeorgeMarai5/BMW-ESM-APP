@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Vehicle } from '../models/Vehicle';
 import { AuthService } from '../services/auth.service';
-import { VehicleService } from '../services/vehicle.service';
+import { ServiceItemService } from 'app/services/service-item.service';
 
 @Component({
   selector: 'app-search-service-item',
@@ -19,13 +19,16 @@ export class SearchServiceItemPage implements OnInit {
   searchTerm: string;
   id: any;
   data: any;
+  serviceItemID: string;
 
-  constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, 
+  constructor(public authService: AuthService, private service: ServiceItemService, public fb: FormBuilder, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
-      this.vehicles = {} as Vehicle;
+      service = {} as ServiceItemService;
     }
 
   ngOnInit() {
+
+    /*
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -38,10 +41,10 @@ export class SearchServiceItemPage implements OnInit {
       FleetID: ['', [Validators.required]],
       FleetVehicleQty: ['', [Validators.required]],
     });
+    */
 
 
-
-this.getall();
+    this.getAllServiceItems();
 
 
 /*
@@ -66,9 +69,9 @@ this.getall();
   }
 
 
-  async getall(){
+  async getAllServiceItems(){
 
-    this.service.getVehicleList().subscribe(response => {
+    this.service.getServiceItemList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
@@ -77,12 +80,10 @@ this.getall();
   }
 
 
-
-
-  async removeItem(id){
+  async removeItem(item){
     const confirmDeleteAlert = await this.alertCtrl.create({
-      header: 'Remove Vehicle',
-      message: 'Are you sure you would like to remove this vehicle from the system?',
+      header: 'Remove Service Item',
+      message: 'Are you sure you would like to remove this item from the service?',
       buttons: [{
         text: 'Cancel',
         role: 'cancel',
@@ -94,41 +95,19 @@ this.getall();
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteVehicle(id);
-          this.presentToast('Vehicle has been removed successfully.');
+          this.service.deleteServiceItem(item.serviceItemID).subscribe(Response => {
+            //Update list after delete is successful
+            console.log(Response);
+            this.getAllServiceItems()
+          });
+          this.presentToast('Service Item has been removed successfully.');
         }
       }]
     });
 
     confirmDeleteAlert.present();
 
-  }
-
-  async checkInVehicle(id){
-    const confirmCheckInAlert = await this.alertCtrl.create({
-      header: 'Check-in Vehicle',
-      message: 'Would you like to check in this vehicle?',
-      buttons: [{
-        text: 'Cancel',
-        role: 'cancel',
-        handler: end => {
-          this.alertCtrl.dismiss();
-        }
-      },
-      {
-        text: 'Check-in',
-        role: 'check-in',
-        handler: () => {
-          //Add Check in when backend added
-          //this.service.deleteVehicle(id);
-          this.presentToast('Vehicle check in successful.');
-        }
-      }]
-    });
-
-    confirmCheckInAlert.present();
-
-  }
+  } 
 
   async presentToast(_message) {
     let toast = await this.toastCtrl.create({

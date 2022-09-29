@@ -140,7 +140,7 @@ async getFleetDetails(){
 
 
     let toast = await this.toastCtrl.create({
-      message: 'Fleet has been successfully checked in.',
+      message: 'Vehicle has been successfully checked in.',
       duration: 3000,
       position: 'top'
     });

@@ -191,4 +191,6 @@ export class ViewVehiclePage implements OnInit {
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL);
   });
-}}
+}
+
+}

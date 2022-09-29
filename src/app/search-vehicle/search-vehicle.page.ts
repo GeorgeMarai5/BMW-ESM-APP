@@ -26,6 +26,10 @@ export class SearchVehiclePage implements OnInit {
   data:any;
   constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
+    
+      service = {} as VehicleService;
+      
+      /*
       this.vehicles = {} as Vehicle;
       this.vehicleForm = new FormGroup({
         VehicleID: new FormControl('', Validators.required),
@@ -33,9 +37,13 @@ export class SearchVehiclePage implements OnInit {
         model: new FormControl('', Validators.required),
         year: new FormControl('', Validators.required),
       })
+      */
     }
 
   ngOnInit() {
+
+    this.getallVehicles()
+    /*
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -61,6 +69,7 @@ export class SearchVehiclePage implements OnInit {
     //    console.log(this.vehicleList);
 
     //  });
+    */
   }
 
 
@@ -72,7 +81,7 @@ export class SearchVehiclePage implements OnInit {
     })
   }
 
-  async removeVehicle(id){
+  async removeVehicle(item){
     const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Vehicle',
       message: 'Are you sure you would like to remove this vehicle from the system?',
@@ -87,14 +96,15 @@ export class SearchVehiclePage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteVehicle(id);
+          this.service.deleteVehicle(item.VehicleID).subscribe(Response => {
+            console.log(Response);
+            this.getallVehicles()
+          });
           this.presentToast('Vehicle has been removed successfully.');
         }
       }]
     });
-
     confirmDeleteAlert.present();
-
   }
 
   async checkInVehicle(id){
