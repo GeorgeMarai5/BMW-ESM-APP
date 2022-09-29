@@ -23,6 +23,7 @@ export class AssignDealershipPage implements OnInit {
   data: any;
   ad: any;
   dealership: Dealership;
+  address: Address;
 
   constructor(private route: ActivatedRoute,
     public fb: FormBuilder, 
@@ -54,8 +55,11 @@ export class AssignDealershipPage implements OnInit {
   }
 
   async createDealership(){
+
+    //this.data.addressId = 
     this.dealershipservice.createDealership(this.data).subscribe(response => {
       console.log(response);
+      
     });
     this.presentToast();
     //this.presentToast();
@@ -81,7 +85,12 @@ export class AssignDealershipPage implements OnInit {
 
   async CreateAddress(){
     this.addresservice.AddAddress(this.ad).subscribe(response => {
+      //response.valueOf().toString().includes("addressId");
       console.log(response);
+
+     
+
+      //console.log(this.address.addressId)
       
   });
     this.presentToast();
