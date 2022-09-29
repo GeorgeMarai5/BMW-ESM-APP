@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { UntypedFormBuilder,Validators,UntypedFormGroup } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -20,11 +20,11 @@ export class SearchMaintenancePlanPage implements OnInit {
 
 maintenanceplanList = [];
 plans: MaintenancePlan;
-planform : UntypedFormGroup;
+planform : FormGroup;
 searchTerm: string;
 
 constructor(public planService: MaintenancePlanService, public alertController: AlertController, private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-  public fb: UntypedFormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) {
+  public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) {
     this.plans = {} as MaintenancePlan; 
 }
 

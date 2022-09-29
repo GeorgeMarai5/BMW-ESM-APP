@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { UntypedFormBuilder,UntypedFormGroup, FormControl, Validators, Form } from '@angular/forms';
+import { FormBuilder,FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
 import { AlertController, ToastController } from '@ionic/angular';
@@ -21,14 +21,14 @@ interface QuoteData {
 export class SearchQuotePage implements OnInit {
 
   QuoteList = [];
-  QuoteForm: UntypedFormGroup;
+  QuoteForm: FormGroup;
   quotedata: QuoteData;
   id: any;
   data: any;
   searchTerm: string;
   ClientName: string;
 
-  constructor(public authService: AuthService, public fb: UntypedFormBuilder, private quoteservice: QuoteService, 
+  constructor(public authService: AuthService, public fb: FormBuilder, private quoteservice: QuoteService, 
     public alertCtrl: AlertController, public toastCtrl: ToastController, public router: Router) { 
 
     quoteservice = {} as QuoteService;

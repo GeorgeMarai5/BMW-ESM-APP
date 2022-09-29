@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, UntypedFormBuilder,Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder,Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ServiceDataPage implements OnInit {
 
   constructor(public authService: AuthService,
-    public fb: UntypedFormBuilder,
+    public fb: FormBuilder,
     public router: Router) { }
 
   ngOnInit() {

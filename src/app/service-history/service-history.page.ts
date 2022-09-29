@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder,Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder,Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HistoryService } from '../services/History.service';
@@ -31,7 +31,7 @@ export class ServiceHistoryPage implements OnInit {
   deleteModal: HTMLElement;
   history: HistoryData;
   HistoryList = [];
-  historyForm: UntypedFormGroup;
+  historyForm: FormGroup;
   searchTerm: string;
   id: any;
   data: any;
@@ -41,7 +41,7 @@ export class ServiceHistoryPage implements OnInit {
   client: Clients;
   vehicle: Vehicle;
 
-  constructor(public authService: AuthService, private _historyservice: HistoryService, public fb: UntypedFormBuilder, 
+  constructor(public authService: AuthService, private _historyservice: HistoryService, public fb: FormBuilder, 
      public alertCtrl: AlertController) { 
       this.history = {} as HistoryData;
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
@@ -18,13 +18,13 @@ export class CreateTeamPage implements OnInit {
   teamTypes = [];
   TeamList = [];
   dealerships = [];
-  createTeamForm: UntypedFormGroup;
+  createTeamForm: FormGroup;
   AddressID: string;
   team: Team;
   data: any;
 
   constructor(public authService: AuthService, 
-    public fb: UntypedFormBuilder, 
+    public fb: FormBuilder, 
     private teamService: TeamService, 
     public router: Router,
     public route: ActivatedRoute, 

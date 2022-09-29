@@ -1,5 +1,5 @@
 import { Component, OnInit ,NgZone} from '@angular/core';
-import { UntypedFormBuilder,UntypedFormGroup,Validators } from '@angular/forms';
+import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
@@ -14,7 +14,7 @@ import { ToastController } from '@ionic/angular';
 
 export class CreateQuotePage implements OnInit {
 
-  createQuoteForm: UntypedFormGroup;
+  createQuoteForm: FormGroup;
   isSubmitted = false;
   data: any;
   quote: Quote;
@@ -22,7 +22,7 @@ export class CreateQuotePage implements OnInit {
   constructor (private route: ActivatedRoute, 
     public router: Router, 
     public authService: AuthService, 
-    public fb: UntypedFormBuilder, 
+    public fb: FormBuilder, 
     private quoteservice: QuoteService, 
     public toastCtrl: ToastController) {
 

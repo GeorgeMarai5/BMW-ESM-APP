@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { UntypedFormBuilder, Validators, UntypedFormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ServiceNoteService } from '../services/servicenote.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +17,7 @@ import { ToastController } from '@ionic/angular';
 export class CreateServiceNotePage implements OnInit {
 
   serviceNotes: Service_Note
-  addNoteForm: UntypedFormGroup
+  addNoteForm: FormGroup
   serviceNoteList = [];
   searchTerm: string;
   deleteModal: HTMLElement;
@@ -29,7 +29,7 @@ export class CreateServiceNotePage implements OnInit {
     public router: Router, 
     public httpClient: HttpClient,
     public authService: AuthService, 
-    public fb: UntypedFormBuilder, 
+    public fb: FormBuilder, 
     private _serviceNote: ServiceNoteService, 
     public toastCtrl: ToastController) {
 

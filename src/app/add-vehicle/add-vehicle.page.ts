@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Vehicle } from 'app/models/Vehicle';
@@ -16,11 +16,11 @@ export class AddVehiclePage implements OnInit {
 
   models = [];
   plans = [];
-  addVehicleForm: UntypedFormGroup;
+  addVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: UntypedFormBuilder, public authService: AuthService, 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
     public service: VehicleService, public router: Router, public toastCtrl: ToastController) { 
     
       service = {} as VehicleService;

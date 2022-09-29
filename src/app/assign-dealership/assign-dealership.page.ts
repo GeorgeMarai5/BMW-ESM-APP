@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Console } from 'console';
@@ -16,13 +16,13 @@ import { DealershipService } from '../services/dealership.service';
 
 export class AssignDealershipPage implements OnInit {
 
-  assignDealershipForm: UntypedFormGroup;
+  assignDealershipForm: FormGroup;
   isSubmitted = false;
   data: any;
   dealership: Dealership;
 
   constructor(private route: ActivatedRoute,
-    public fb: UntypedFormBuilder, 
+    public fb: FormBuilder, 
     public authService: AuthService,
     public service: ServiceService, public router: Router, 
     private toastCtrl: ToastController, 

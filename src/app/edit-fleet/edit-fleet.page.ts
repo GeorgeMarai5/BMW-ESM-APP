@@ -1,7 +1,7 @@
 
 import { Component, OnInit,NgZone } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { UntypedFormBuilder, Validators, UntypedFormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FleetService } from '../services/fleet.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +19,7 @@ import { updateCurrentUser } from 'firebase/auth';
 export class EditFleetPage implements OnInit {
 
   //fleet = {};
-  editFleetForm: UntypedFormGroup;
+  editFleetForm: FormGroup;
   isSubmitted = false;
   
   //data: Fleet;
@@ -30,7 +30,7 @@ export class EditFleetPage implements OnInit {
   fleet:Fleet;
 
   constructor(private route: ActivatedRoute, 
-    public fb: UntypedFormBuilder, 
+    public fb: FormBuilder, 
     public authService: AuthService, 
     public fleetservice: FleetService, 
     public firestore: AngularFirestore, 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Vehicle } from '../models/Vehicle';
@@ -15,13 +15,13 @@ export class SearchServiceItemPage implements OnInit {
 
   vehicles: Vehicle;
   serviceItemList = [];
-  serviceItemForm: UntypedFormGroup;
+  serviceItemForm: FormGroup;
   searchTerm: string;
   id: any;
   data: any;
   serviceItemID: string;
 
-  constructor(public authService: AuthService, private service: ServiceItemService, public fb: UntypedFormBuilder, 
+  constructor(public authService: AuthService, private service: ServiceItemService, public fb: FormBuilder, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
       service = {} as ServiceItemService;
     }

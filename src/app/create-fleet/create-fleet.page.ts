@@ -1,6 +1,6 @@
 import { Component, OnInit,NgZone } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { UntypedFormBuilder,Validators,UntypedFormGroup, FormControl } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { ToastController } from '@ionic/angular';
@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class CreateFleetPage implements OnInit {
 
-  addFleetForm: UntypedFormGroup;
+  addFleetForm: FormGroup;
   isSubmitted = false;
   data: any;
   fleet: Fleet;
@@ -24,7 +24,7 @@ export class CreateFleetPage implements OnInit {
   constructor (private route: ActivatedRoute, 
     public router: Router, 
     public authService: AuthService, 
-    public fb: UntypedFormBuilder, 
+    public fb: FormBuilder, 
     private fleetservice: FleetService, 
     public toastCtrl: ToastController) {
 

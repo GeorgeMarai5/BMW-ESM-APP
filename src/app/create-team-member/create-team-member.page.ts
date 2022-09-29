@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
@@ -16,13 +16,13 @@ import { Employee } from '../models/Employee';
 export class CreateTeamMemberPage implements OnInit {
 
   roles: [];
-  createTeamMemberForm: UntypedFormGroup;
+  createTeamMemberForm: FormGroup;
   isSubmitted = false;
   teamMember: Employee;
   data: any;
 
   constructor(private route: ActivatedRoute, 
-    public fb: UntypedFormBuilder, 
+    public fb: FormBuilder, 
     public authService: AuthService, 
     public teamMemberservice: TeamMemberService, 
     public router: Router, 

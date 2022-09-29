@@ -19,16 +19,17 @@ import { Component } from '@angular/core';
 
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireAuthModule,
-        AngularFirestoreModule,
-        AngularFireStorageModule,
-        AngularFireDatabaseModule,
-        ReactiveFormsModule
-    ],
-    providers: [SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    ],
-    bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AngularFireModule.initializeApp(environment.firebaseConfig), 
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    ReactiveFormsModule
+  ],
+  providers: [SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignedPart } from '../models/AssignedPart';
 import { AuthService } from '../services/auth.service';
@@ -18,20 +18,20 @@ export class EditVehiclePartPage implements OnInit {
   assignedParts: AssignedPart;
   assignedPart = {};
   partTypes = [];
-  editPartForm: UntypedFormGroup;
+  editPartForm: FormGroup;
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: UntypedFormBuilder, public authService: AuthService, 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
     public service: AssignedPartService, public firestore: AngularFirestore, public router: Router, private toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-    this.editPartForm = new UntypedFormGroup({
-      partName: new UntypedFormControl('', [Validators.required]),
-      partType: new UntypedFormControl('', Validators.required),
-      Description: new UntypedFormControl('', Validators.required),
-      partStock: new UntypedFormControl('', Validators.required)
+    this.editPartForm = new FormGroup({
+      partName: new FormControl('', [Validators.required]),
+      partType: new FormControl('', Validators.required),
+      Description: new FormControl('', Validators.required),
+      partStock: new FormControl('', Validators.required)
     })
   }
 

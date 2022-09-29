@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { DealershipService } from '../services/dealership.service'; 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Dealership } from '../models/Dealership';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
@@ -16,11 +16,11 @@ export class SearchDealershipPage implements OnInit {
 
   dealerships: Dealership;
   dealershipList = [];
-  dealershipForm: UntypedFormGroup;
+  dealershipForm: FormGroup;
   searchTerm: string;
   data:any;
 
-  constructor(public authService: AuthService, private service: DealershipService, public fb: UntypedFormBuilder, private firestore: AngularFirestore, 
+  constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
 
       this.dealerships = {} as Dealership;

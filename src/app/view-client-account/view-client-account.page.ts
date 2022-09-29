@@ -2,7 +2,7 @@ import { ToastController } from '@ionic/angular';
 import { Clients } from '../models/Clients';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ClientService } from '../services/Client.service';
@@ -17,24 +17,24 @@ export class ViewClientAccountPage implements OnInit {
 
   clients: Clients;
   client = [];
-  viewClientForm: UntypedFormGroup;
+  viewClientForm: FormGroup;
   isSubmitted = false;
   data: any;
-  editVehicleForm: UntypedFormGroup;
+  editVehicleForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, public fb: UntypedFormBuilder, public authService: AuthService, public firestore: AngularFirestore,
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: ClientService,private toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
         this.data = params.id;
     });
 
-      this.viewClientForm = new UntypedFormGroup({
-        Title: new UntypedFormControl('', Validators.required),
-        FirstName: new UntypedFormControl('', Validators.required),
-        LastName: new UntypedFormControl('', Validators.required),
-        PhoneNumber: new UntypedFormControl('', Validators.required),
-        Email: new UntypedFormControl('', Validators.required),
-        Address: new UntypedFormControl('', Validators.required)
+      this.viewClientForm = new FormGroup({
+        Title: new FormControl('', Validators.required),
+        FirstName: new FormControl('', Validators.required),
+        LastName: new FormControl('', Validators.required),
+        PhoneNumber: new FormControl('', Validators.required),
+        Email: new FormControl('', Validators.required),
+        Address: new FormControl('', Validators.required)
       });
      }
      

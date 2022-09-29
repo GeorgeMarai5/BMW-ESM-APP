@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { UntypedFormBuilder,UntypedFormGroup, FormControl, Validators, Form } from '@angular/forms';
+import { FormBuilder,FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { Router, NavigationExtras,ActivatedRoute } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
 
@@ -20,12 +20,12 @@ interface QuoteData {
 export class ViewQuotePage implements OnInit {
   
   QuoteList = [];
-  viewQuoteForm: UntypedFormGroup;
+  viewQuoteForm: FormGroup;
   quotedata: QuoteData;
   data: any;
 
   constructor(public authService: AuthService, public router: Router, private route: ActivatedRoute, private quoteservice: QuoteService,
-    private fb:UntypedFormBuilder) {
+    private fb:FormBuilder) {
       this.route.params.subscribe(params => {
         this.data = params.id;
     });

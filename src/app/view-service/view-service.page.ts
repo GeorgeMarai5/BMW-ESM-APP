@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl, Validators, Form } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { ServiceService } from '../services/service.service';
 import { VehicleService } from 'app/models/VehicleService';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
@@ -30,7 +30,7 @@ interface ServiceData {
 export class ViewServicePage implements OnInit {
   
   serviceList = [];
-  viewServiceForm: UntypedFormGroup;
+  viewServiceForm: FormGroup;
   services: ServiceService;
   searchTerm: string;
   ServiceData: VehicleService;
@@ -41,17 +41,17 @@ export class ViewServicePage implements OnInit {
     warrantyPlan: 'Standard'
   };
 
-  constructor(public authService: AuthService, private _service: ServiceService, public router: Router, private fb: UntypedFormBuilder,
+  constructor(public authService: AuthService, private _service: ServiceService, public router: Router, private fb: FormBuilder,
     private alertController: AlertController, public toastCtrl: ToastController, public route: ActivatedRoute) {
       this.route.params.subscribe(params => {
         this.data = params.id;
     });
-    this.viewServiceForm = new UntypedFormGroup({
-      ServiceID: new UntypedFormControl('', [Validators.required]),
-      DealershipName: new UntypedFormControl('', [Validators.required]),
-      TeamName: new UntypedFormControl('', [Validators.required]),
-      ServiceType: new UntypedFormControl('', [Validators.required]),
-      ServiceStatus: new UntypedFormControl('', [Validators.required]),
+    this.viewServiceForm = new FormGroup({
+      ServiceID: new FormControl('', [Validators.required]),
+      DealershipName: new FormControl('', [Validators.required]),
+      TeamName: new FormControl('', [Validators.required]),
+      ServiceType: new FormControl('', [Validators.required]),
+      ServiceStatus: new FormControl('', [Validators.required]),
     })
 
       this.ServiceData = {} as VehicleService;

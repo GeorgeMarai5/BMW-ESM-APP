@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ServiceItem } from 'app/models/ServiceItem';
@@ -14,13 +14,13 @@ import { ToastController } from '@ionic/angular';
 })
 export class AddServiceItemPage implements OnInit {
 
-  addItemForm: UntypedFormGroup;
+  addItemForm: FormGroup;
   isSubmitted = false;
   data: any;
   serviceItem: ServiceItem;
 
   constructor(private route: ActivatedRoute, 
-    public fb: UntypedFormBuilder, 
+    public fb: FormBuilder, 
     public authService: AuthService, 
     public firestore: AngularFirestore, 
     public service: ServiceItemService, 

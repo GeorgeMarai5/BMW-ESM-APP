@@ -1,5 +1,5 @@
 import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
-import { UntypedFormBuilder,Validators,UntypedFormGroup, AnyForUntypedForms } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup, AnyForUntypedForms } from '@angular/forms';
 import { AngularDelegate } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
@@ -38,12 +38,12 @@ export class SearchclientaccountPage implements OnInit {
   //clientList= [];
     
   clients: Clients;
-  clientform : UntypedFormGroup;
+  clientform : FormGroup;
 
 
 
 constructor(public clientService: ClientService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-  public fb: UntypedFormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+  public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
 
   this.clients = {} as Clients;
 

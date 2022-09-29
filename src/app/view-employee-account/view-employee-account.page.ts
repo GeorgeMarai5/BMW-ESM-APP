@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { UntypedFormBuilder,Validators,UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -21,26 +21,26 @@ export class ViewEmployeeAccountPage implements OnInit {
   //private Clientid: String;
   //private currentClient;
   employeeList = [];
-  viewEmployeeForm: UntypedFormGroup;
+  viewEmployeeForm: FormGroup;
   employee: Employee;
   data: any;
   //public eventList: Clients[] = [];
   //ClientList: any;   //[]
 
   constructor(public employeeService: EmployeeService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    public fb: UntypedFormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
       this.route.params.subscribe(params => {
         this.data = params.id;
       });
       this.employee = {} as Employee;
 
-      this.viewEmployeeForm = new UntypedFormGroup({
-        qNum: new UntypedFormControl('', Validators.required),
-        fName: new UntypedFormControl('', Validators.required),
-        lName: new UntypedFormControl('', Validators.required),
-        PhoneNumber: new UntypedFormControl('', Validators.required),
-        Email: new UntypedFormControl('', Validators.required),
-        teamName: new UntypedFormControl('', Validators.required)
+      this.viewEmployeeForm = new FormGroup({
+        qNum: new FormControl('', Validators.required),
+        fName: new FormControl('', Validators.required),
+        lName: new FormControl('', Validators.required),
+        PhoneNumber: new FormControl('', Validators.required),
+        Email: new FormControl('', Validators.required),
+        teamName: new FormControl('', Validators.required)
       });
     }
 

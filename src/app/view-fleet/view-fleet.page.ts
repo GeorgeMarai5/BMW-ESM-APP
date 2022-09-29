@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { UntypedFormBuilder,Validators,UntypedFormGroup } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { VehicleService } from '../services/vehicle.service';
 import { AlertController, ToastController } from '@ionic/angular';
@@ -17,14 +17,14 @@ export class ViewFleetPage implements OnInit {
 
    
    
-   fleetForm: UntypedFormGroup;
+   fleetForm: FormGroup;
    searchTerm: string;
    fleetID: string;
    id: any;
    data: any;
    //combinedArray: { dat: any, data: any }[] = [];
 
-  constructor(public authService: AuthService, public fb: UntypedFormBuilder, private fleetservice: FleetService, private vehiclesService: VehicleService,
+  constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, private vehiclesService: VehicleService,
     public alertCtrl: AlertController, public router: Router, public vehicleservice: VehicleService, public toastCtrl: ToastController,
     public activatedRoute: ActivatedRoute) { 
 

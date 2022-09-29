@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { UntypedFormBuilder,Validators,UntypedFormGroup,FormControl } from '@angular/forms';
+import { FormBuilder,Validators,FormGroup,FormControl } from '@angular/forms';
 import { AddressService } from '../services/Address.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ export class AddressPage implements OnInit {
 
   AddressList = [];
   AddressList$!:Observable<any[]>;
-  AddressForm: UntypedFormGroup;
+  AddressForm: FormGroup;
   searchTerm: string;
   AddressID: string;
   data: any;
@@ -35,7 +35,7 @@ export class AddressPage implements OnInit {
   //addres: Address = {addressID: null, address:'',postal_Code:'',date_Of_Update: ''}
 
 
-  constructor(public authService: AuthService, public fb: UntypedFormBuilder, private addressservice: AddressService, 
+  constructor(public authService: AuthService, public fb: FormBuilder, private addressservice: AddressService, 
     public alertCtrl: AlertController, public router: Router,public ActivatedRoute: ActivatedRoute) { 
       
       

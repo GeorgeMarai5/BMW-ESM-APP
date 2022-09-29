@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
@@ -17,12 +17,12 @@ export class EditTeamPage implements OnInit {
   team = {};
   dealerships = [];
   teamTypes = [];
-  editTeamForm: UntypedFormGroup;
+  editTeamForm: FormGroup;
   isSubmitted = false;
   data: any;
 
   constructor(private route: ActivatedRoute, 
-    public fb: UntypedFormBuilder, 
+    public fb: FormBuilder, 
     public authService: AuthService,
     public teamservice: TeamService, 
     public router: Router, 
@@ -32,10 +32,10 @@ export class EditTeamPage implements OnInit {
         this.data = params.id;
     });
 
-    this.editTeamForm = new UntypedFormGroup({
-      TeamName: new UntypedFormControl('', Validators.required),
-      DealershipName: new UntypedFormControl('', Validators.required),
-      TeamType: new UntypedFormControl('', Validators.required)
+    this.editTeamForm = new FormGroup({
+      TeamName: new FormControl('', Validators.required),
+      DealershipName: new FormControl('', Validators.required),
+      TeamType: new FormControl('', Validators.required)
     });
 
   }
