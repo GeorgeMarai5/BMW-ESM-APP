@@ -47,6 +47,10 @@ export class SearchTeamMemberPage implements OnInit {
     })
   }
 
+  async assignTeamMember(id){
+
+  }
+
   async deleteTeamMember(item){
     const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Team Memeber',

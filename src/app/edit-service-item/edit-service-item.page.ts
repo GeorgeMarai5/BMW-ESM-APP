@@ -47,7 +47,7 @@ export class EditServiceItemPage implements OnInit {
           itemDescription: this.editItemForm.get('itemDescription').value
         }
 
-      this.service.updateServiceItem(this.data, serviceItems)
+      this.service.updateServiceItem(this.data)
       this.presentToast();
     }
 
