@@ -21,20 +21,16 @@ export class SearchDealershipPage implements OnInit {
   data:any;
   dealershipID: string;
 
-  constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
+  constructor(public authService: AuthService, private dealershipservice: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
 
-      this.dealerships = {} as Dealership;
+      dealershipservice = {} as DealershipService;
     }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+    
 
+<<<<<<< HEAD
   //   this.getallDealerships();
 
 
@@ -60,12 +56,15 @@ export class SearchDealershipPage implements OnInit {
 
   });
   */
+=======
+    this.getallDealerships();
+>>>>>>> a6593f7130021485db44e9f0ab47503ba5876a34
  
   }
 
-  getallDealerships(){
+  async getallDealerships(){
 
-    this.service.getDealershipList().subscribe(response => {
+    this.dealershipservice.getDealershipList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
@@ -88,7 +87,11 @@ export class SearchDealershipPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
+<<<<<<< HEAD
           this.service.deleteDealership(dealershipID);
+=======
+          this.dealershipservice.deleteDealership(id);
+>>>>>>> a6593f7130021485db44e9f0ab47503ba5876a34
           this.presentToast();
         }
       }]
@@ -108,3 +111,12 @@ export class SearchDealershipPage implements OnInit {
     toast.present();
   }
 }
+
+
+
+/*if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }*/
