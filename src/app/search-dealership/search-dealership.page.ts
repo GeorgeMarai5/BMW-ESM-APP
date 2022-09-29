@@ -34,15 +34,8 @@ export class SearchDealershipPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of c054e1b (changes)
   //   this.getallDealerships();
-=======
     this.getallDealerships();
->>>>>>> parent of 8ecf2ac (changes)
 
 
 
@@ -95,19 +88,11 @@ export class SearchDealershipPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
           this.service.deleteDealership(dealershipID);
-=======
           this.dealershipservice.deleteDealership(id);
->>>>>>> a6593f7130021485db44e9f0ab47503ba5876a34
-=======
           this.service.deleteDealership(id);
->>>>>>> parent of 8ecf2ac (changes)
-=======
           this.service.deleteDealership(dealershipID);
->>>>>>> parent of c054e1b (changes)
+          this.service.deleteDealership(dealershipID);
           this.presentToast();
         }
       }]
