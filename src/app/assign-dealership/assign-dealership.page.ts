@@ -6,7 +6,9 @@ import { Console } from 'console';
 import { Dealership } from '../models/Dealership';
 import { AuthService } from '../services/auth.service';
 import { ServiceService } from '../services/service.service';
+import { AddressService } from 'app/services/Address.service';
 import { DealershipService } from '../services/dealership.service';
+import { Address } from 'app/models/Address';
 
 @Component({
   selector: 'app-assign-dealership',
@@ -19,6 +21,7 @@ export class AssignDealershipPage implements OnInit {
   assignDealershipForm: FormGroup;
   isSubmitted = false;
   data: any;
+  ad: any;
   dealership: Dealership;
 
   constructor(private route: ActivatedRoute,
@@ -26,10 +29,12 @@ export class AssignDealershipPage implements OnInit {
     public authService: AuthService,
     public service: ServiceService, public router: Router, 
     private toastCtrl: ToastController, 
-    private dealershipservice: DealershipService) { 
+    private dealershipservice: DealershipService, private addresservice: AddressService) { 
 
       dealershipservice = {} as DealershipService;
+      addresservice = {} as AddressService;
       this.data = new Dealership();
+      this.ad = new Address();
 
   }
  
@@ -57,6 +62,13 @@ export class AssignDealershipPage implements OnInit {
     //this.router.navigate(['/tabs/search/fleet']);
   }
 
+
+  async assignID(){
+
+//this.dealershipservice.createDealership(this.ad).subscribe(response =>)
+
+  }
+
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Dealership has been assigned successfully.',
@@ -65,6 +77,16 @@ export class AssignDealershipPage implements OnInit {
     });
   
     toast.present();
+  }
+
+  async CreateAddress(){
+    this.addresservice.AddAddress(this.ad).subscribe(response => {
+      console.log(response);
+      
+  });
+    this.presentToast();
+    //this.presentToast();
+    //this.router.navigate(['/tabs/search/fleet']);
   }
 
   checkWhiteSpaces(str){

@@ -20,51 +20,22 @@ export class SearchDealershipPage implements OnInit {
   searchTerm: string;
   data:any;
 
-  constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
+  constructor(public authService: AuthService, private dealershipservice: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
 
-      this.dealerships = {} as Dealership;
+      dealershipservice = {} as DealershipService;
     }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+    
 
     this.getallDealerships();
-
-
-
-    this.dealershipForm = this.fb.group({
-      FleetName: ['', [Validators.required]],
-      FleetLocation: ['', [Validators.required]],
-      FleetID: ['', [Validators.required]],
-      FleetVehicleQty: ['', [Validators.required]],
-  });
-
-  /*
-  this.service.getList().subscribe(data => {
-    this.dealershipList = data.map(e => {
-      return {
-        id: e.payload.doc.id,
-        DealershipID: e.payload.doc.data()['DealershipID'],
-        DealershipName: e.payload.doc.data()['DealershipName'],
-        AddressName: e.payload.doc.data()['AddressName'],
-      };
-    })
-    console.log(this.dealershipList);
-
-  });
-  */
  
   }
 
-  getallDealerships(){
+  async getallDealerships(){
 
-    this.service.getDealershipList().subscribe(response => {
+    this.dealershipservice.getDealershipList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
@@ -87,7 +58,7 @@ export class SearchDealershipPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteDealership(id);
+          this.dealershipservice.deleteDealership(id);
           this.presentToast();
         }
       }]
@@ -107,3 +78,12 @@ export class SearchDealershipPage implements OnInit {
     toast.present();
   }
 }
+
+
+
+/*if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }*/
