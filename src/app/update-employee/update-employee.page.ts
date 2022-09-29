@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormBuilder,Validators,UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -21,7 +21,7 @@ export class UpdateEmployeePage implements OnInit {
   //private Clientid: String;
   //private currentClient;
     employeeList = [];
-    updateEmployeeForm: FormGroup;
+    updateEmployeeForm: UntypedFormGroup;
     employee: Employee;
     isSubmitted = false;
     data: any;
@@ -29,19 +29,19 @@ export class UpdateEmployeePage implements OnInit {
     //ClientList: any;   //[]
 
   constructor(public employeeService: EmployeeService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+    public fb: UntypedFormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
       this.route.params.subscribe(params => {
         this.data = params.id;
     });
 
     this.employee = {} as Employee;
-    this.updateEmployeeForm = new FormGroup({
-      qNum: new FormControl('', [Validators.required, Validators.maxLength(7)]),
-      fName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-      lName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-      phoneNum: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      teamName: new FormControl('', Validators.required)
+    this.updateEmployeeForm = new UntypedFormGroup({
+      qNum: new UntypedFormControl('', [Validators.required, Validators.maxLength(7)]),
+      fName: new UntypedFormControl('', [Validators.required, Validators.maxLength(20)]),
+      lName: new UntypedFormControl('', [Validators.required, Validators.maxLength(20)]),
+      phoneNum: new UntypedFormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      email: new UntypedFormControl('', [Validators.required, Validators.email]),
+      teamName: new UntypedFormControl('', Validators.required)
     });
   }
 

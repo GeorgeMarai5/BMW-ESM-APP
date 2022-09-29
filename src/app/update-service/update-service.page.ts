@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ServiceService } from '../services/service.service';
@@ -19,12 +19,12 @@ export class UpdateServicePage implements OnInit {
   teams = [];
   serviceTypes = [];
   service = {};
-  editserviceForm: FormGroup;
+  editserviceForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
 
   constructor(private route: ActivatedRoute, 
-    public fb: FormBuilder, 
+    public fb: UntypedFormBuilder, 
     public authService: AuthService, 
     public _service: ServiceService,
     public router: Router, 
@@ -33,10 +33,10 @@ export class UpdateServicePage implements OnInit {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-      this.editserviceForm = new FormGroup({
-        DealershipName: new FormControl('', Validators.required),
-        TeamName: new FormControl('', Validators.required),
-        ServiceTypeName: new FormControl('', Validators.required)
+      this.editserviceForm = new UntypedFormGroup({
+        DealershipName: new UntypedFormControl('', Validators.required),
+        TeamName: new UntypedFormControl('', Validators.required),
+        ServiceTypeName: new UntypedFormControl('', Validators.required)
       });
 
   }

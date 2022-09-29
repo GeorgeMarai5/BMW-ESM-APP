@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
@@ -16,13 +16,13 @@ export class SearchTeamPage implements OnInit {
 
   teams: Team;
   teamList = [];
-  teamForm: FormGroup;
+  teamForm: UntypedFormGroup;
   searchTerm: string;
   teamID: string;
   data: any;
 
   constructor(public authService: AuthService, private teamservice: TeamService, public firestore: AngularFirestore, 
-    public alertCtrl: AlertController, public fb: FormBuilder, public router: Router, public toastCtrl: ToastController) { 
+    public alertCtrl: AlertController, public fb: UntypedFormBuilder, public router: Router, public toastCtrl: ToastController) { 
       teamservice = {} as TeamService;
     }
 

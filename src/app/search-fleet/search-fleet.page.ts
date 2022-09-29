@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormBuilder,Validators,UntypedFormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import {  Fleet } from '../models/Fleet';
@@ -16,12 +16,12 @@ export class SearchFleetPage implements OnInit {
 
   fleetList = [];
   
-  fleetForm: FormGroup;
+  fleetForm: UntypedFormGroup;
   searchTerm: string;
   data: any;
   fleetID: string;
   
-  constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, 
+  constructor(public authService: AuthService, public fb: UntypedFormBuilder, private fleetservice: FleetService, 
     public alertCtrl: AlertController, public toastCtrl: ToastController) { 
 
     fleetservice = {} as FleetService;

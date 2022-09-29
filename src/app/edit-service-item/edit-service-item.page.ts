@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ServiceItem } from 'app/models/ServiceItem';
@@ -15,12 +15,12 @@ export class EditServiceItemPage implements OnInit {
 
   serviceItem: ServiceItem;
   serviceItems = {};
-  editItemForm: FormGroup;
+  editItemForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
 
   constructor(private route: ActivatedRoute, 
-    public fb: FormBuilder, 
+    public fb: UntypedFormBuilder, 
     public authService: AuthService, 
     public service: ServiceItemService,  
     public router: Router, 
@@ -29,9 +29,9 @@ export class EditServiceItemPage implements OnInit {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-    this.editItemForm = new FormGroup({
-      itemName: new FormControl('', Validators.required),
-      itemDescription: new FormControl('', Validators.required)
+    this.editItemForm = new UntypedFormGroup({
+      itemName: new UntypedFormControl('', Validators.required),
+      itemDescription: new UntypedFormControl('', Validators.required)
     })
     
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { VehicleService } from '../services/vehicle.service';
@@ -39,7 +39,7 @@ export class ServiceInvoicePage implements OnInit {
   serviceItem: AssignedPart;
 
   constructor(public authService: AuthService, public router: Router, private route: ActivatedRoute,
-    private fb:FormBuilder, private _service: ServiceService) { 
+    private fb:UntypedFormBuilder, private _service: ServiceService) { 
       this.route.params.subscribe((params) => {
         this.data = params.id;
       });

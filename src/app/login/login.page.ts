@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from "@angular/forms";
 import { ToastController } from '@ionic/angular';
 
 
@@ -13,15 +13,15 @@ import { ToastController } from '@ionic/angular';
 
 export class LoginPage implements OnInit {
 
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
 
-  constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public toastCtrl: ToastController) { 
-    this.loginForm = new FormGroup({
-      accountType: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
+  constructor(public fb: UntypedFormBuilder, public authService: AuthService, public router: Router, public toastCtrl: ToastController) { 
+    this.loginForm = new UntypedFormGroup({
+      accountType: new UntypedFormControl('', Validators.required),
+      email: new UntypedFormControl('', [Validators.required, Validators.email]),
+      password: new UntypedFormControl('', Validators.required)
     });
   }
 

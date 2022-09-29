@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormBuilder,Validators,UntypedFormGroup, FormControl } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router,Route } from '@angular/router';
 import { PostService } from '../services/post.service';
@@ -30,14 +30,14 @@ export class InitiateServiceProcedurePage implements OnInit {
   dealership: Dealership;
   fleet: Fleet;
   team: Team;
-  initiateServiceForm : FormGroup;
+  initiateServiceForm : UntypedFormGroup;
   myService: any;
   data:any;
   fle:any;
   de:any;
 
   constructor(public vehicleService: VehicleService , private zone: NgZone, private toastCtrl: ToastController, private service: PostService, 
-    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
+    public fb: UntypedFormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
     private firestore: AngularFirestore,private fleetservice: FleetService,private teamservice: TeamService,private dealershipservice: DealershipService) { 
       vehicleService = {} as VehicleService;
       fleetservice= {} as FleetService;

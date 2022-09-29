@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { Vehicle } from '../models/Vehicle';
@@ -33,12 +33,12 @@ export class ViewServiceInvoicePage implements OnInit {
     }
   }
   serviceItems = [this.newItems.item1, this.newItems.item2];
-  viewInvoiceForm: FormGroup;
+  viewInvoiceForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
   maintenanceplanID: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
+  constructor(private route: ActivatedRoute, public fb: UntypedFormBuilder, public authService: AuthService, 
     public firestore: AngularFirestore, public router: Router, public service: VehicleService) {
       this.route.params.subscribe(params => {
           this.data = params.id;

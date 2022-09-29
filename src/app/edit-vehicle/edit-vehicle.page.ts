@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
@@ -18,12 +18,12 @@ export class EditVehiclePage implements OnInit {
   vehicle = {};
   plans = [];
   models = [];
-  editVehicleForm: FormGroup;
+  editVehicleForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
 
   constructor(private route: ActivatedRoute, 
-    public fb: FormBuilder, 
+    public fb: UntypedFormBuilder, 
     public authService: AuthService, 
     public service: VehicleService, 
     public router: Router, 
@@ -32,11 +32,11 @@ export class EditVehiclePage implements OnInit {
     this.route.params.subscribe(params => {
           this.data = params.id;
       });
-    this.editVehicleForm = new FormGroup({
-      VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-      vehicleModel: new FormControl('', Validators.required),
-      Registration: new FormControl('', Validators.required),
-      warrantyPlan: new FormControl('', Validators.required)
+    this.editVehicleForm = new UntypedFormGroup({
+      VINNum: new UntypedFormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
+      vehicleModel: new UntypedFormControl('', Validators.required),
+      Registration: new UntypedFormControl('', Validators.required),
+      warrantyPlan: new UntypedFormControl('', Validators.required)
     })
 
   }

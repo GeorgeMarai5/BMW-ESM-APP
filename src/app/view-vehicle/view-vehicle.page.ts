@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { VehicleService } from '../services/vehicle.service';
@@ -23,7 +23,7 @@ export class ViewVehiclePage implements OnInit {
     Registration: '42641 GP',
     warrantyPlan: 'Standard'
   };
-  viewVehicleForm: FormGroup;
+  viewVehicleForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
   maintenanceplanID: any;
@@ -33,16 +33,16 @@ export class ViewVehiclePage implements OnInit {
   base64Img = null;
   logoData = null;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
+  constructor(private route: ActivatedRoute, public fb: UntypedFormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-      this.viewVehicleForm = new FormGroup({
-        VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-        vehicleModel: new FormControl('', Validators.required),
-        Registration: new FormControl('', Validators.required),
-        warrantyPlan: new FormControl('', Validators.required)
+      this.viewVehicleForm = new UntypedFormGroup({
+        VINNum: new UntypedFormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
+        vehicleModel: new UntypedFormControl('', Validators.required),
+        Registration: new UntypedFormControl('', Validators.required),
+        warrantyPlan: new UntypedFormControl('', Validators.required)
       })
      }
 

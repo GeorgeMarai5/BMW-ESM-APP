@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { MaintenancePlan } from '../models/Maintenance-Plan';
@@ -19,21 +19,21 @@ export class SelectMaintenanceplanPage implements OnInit {
 
   maintenanceplanList = [];
   plans: MaintenancePlan;
-  planForm : FormGroup;
+  planForm : UntypedFormGroup;
   data: any;
   isSubmitted = false;
  
   constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController, private service: PostService, 
-    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
+    public fb: UntypedFormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
     public alertController: AlertController,private firestore: AngularFirestore) { 
       this.route.params.subscribe(params => {
         this.data = params.id;
       });
-      this.planForm = new FormGroup({
-        PlanName: new FormControl('', Validators.required),
-        Description: new FormControl('', Validators.required),
-        Duration: new FormControl('', Validators.required),
-        Price: new FormControl('', Validators.required)
+      this.planForm = new UntypedFormGroup({
+        PlanName: new UntypedFormControl('', Validators.required),
+        Description: new UntypedFormControl('', Validators.required),
+        Duration: new UntypedFormControl('', Validators.required),
+        Price: new UntypedFormControl('', Validators.required)
       })
     }
 

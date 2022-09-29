@@ -3,7 +3,7 @@ import { VehicleService } from '../models/VehicleService';
 import { AuthService } from '../services/auth.service';
 import { ServiceNoteService } from '../services/servicenote.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -16,12 +16,12 @@ export class SearchServiceNotePage implements OnInit {
   deleteModal: HTMLElement;
   services: VehicleService;
   serviceNoteList = [];
-  serviceForm: FormGroup;
+  serviceForm: UntypedFormGroup;
   searchTerm: string;
   id: any;
   serviceNote: string;
 
-  constructor(public router: Router, public authService: AuthService, private _serviceNote: ServiceNoteService, public fb: FormBuilder,
+  constructor(public router: Router, public authService: AuthService, private _serviceNote: ServiceNoteService, public fb: UntypedFormBuilder,
     private firestore: AngularFirestore, public alertCtrl: AlertController, public toastCtrl: ToastController) {
     
       this.services = {} as VehicleService;

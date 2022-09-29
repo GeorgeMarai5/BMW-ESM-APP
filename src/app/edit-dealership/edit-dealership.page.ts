@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Dealership } from '../models/Dealership';
@@ -15,13 +15,13 @@ export class EditDealershipPage implements OnInit {
 
   dealserships = {};
   address = [];
-  editDealershipForm: FormGroup;
+  editDealershipForm: UntypedFormGroup;
   isSubmitted = false;
   dealership: Dealership;
   data: any;
 
   constructor(private route: ActivatedRoute, 
-    public fb: FormBuilder, 
+    public fb: UntypedFormBuilder, 
     public authService: AuthService, 
     public dealershipService: DealershipService, 
     public router: Router, 
@@ -30,9 +30,9 @@ export class EditDealershipPage implements OnInit {
       this.route.params.subscribe(params => {
         this.dealership = params['id'];
       });
-      this.editDealershipForm = new FormGroup({
-        dealershipName: new FormControl('', Validators.required),
-        address: new FormControl('', Validators.required)
+      this.editDealershipForm = new UntypedFormGroup({
+        dealershipName: new UntypedFormControl('', Validators.required),
+        address: new UntypedFormControl('', Validators.required)
       })
 
   }

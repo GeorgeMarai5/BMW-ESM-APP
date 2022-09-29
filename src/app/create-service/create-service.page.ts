@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, Validators, UntypedFormGroup, FormControl } from '@angular/forms';
 import { ServiceService } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -20,7 +20,7 @@ export class CreateServicePage implements OnInit {
   serviceList = [];
   teams = [];
   serviceTypes = [];
-  serviceForm: FormGroup;
+  serviceForm: UntypedFormGroup;
   searchTerm: string;
   deleteModal: HTMLElement;
   isSubmitted = false;
@@ -38,7 +38,7 @@ export class CreateServicePage implements OnInit {
     public router: Router, 
     public firestore: AngularFirestore, 
     public authService: AuthService, 
-    public fb: FormBuilder, 
+    public fb: UntypedFormBuilder, 
     private service: ServiceService, 
     public toastCtrl: ToastController, 
     private teamservice: TeamService) {

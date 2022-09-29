@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { UserService, User } from '../services/user.service';
 import { getAuth } from "firebase/auth";
-import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl, AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { ToastController } from '@ionic/angular';
 import { ClientService } from 'app/services/Client.service';
 import { EmployeeService } from 'app/services/Employee.service';
@@ -17,18 +17,18 @@ import { Clients } from 'app/models/Clients';
 })
 export class CreateAccountPage implements OnInit {
 
-  createAccountForm: FormGroup;
+  createAccountForm: UntypedFormGroup;
   isSubmitted = false;
   client: Clients;
   data: any;
 
-  constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public userService: UserService, 
+  constructor(public fb: UntypedFormBuilder, public authService: AuthService, public router: Router, public userService: UserService, 
     public firestore: AngularFirestore, public toastCtrl: ToastController, public clientService: ClientService, public employeeService: EmployeeService) {
-    this.createAccountForm = new FormGroup({
-      accountType: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+    this.createAccountForm = new UntypedFormGroup({
+      accountType: new UntypedFormControl('', Validators.required),
+      email: new UntypedFormControl('', [Validators.required, Validators.email]),
+      password: new UntypedFormControl('', Validators.required),
+      confirmPassword: new UntypedFormControl('', Validators.required)
     }, { validators: this.passwordMatchingValidatior });
    }
 

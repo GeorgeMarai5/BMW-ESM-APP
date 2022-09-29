@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AssignedPartService } from '../services/assigned-part.service';
@@ -15,17 +15,17 @@ export class PerformPostcheckPage implements OnInit {
 
   assignedPart = {};
   checks = [];
-  postServiceForm: FormGroup;
+  postServiceForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
+  constructor(private route: ActivatedRoute, public fb: UntypedFormBuilder, public authService: AuthService, 
     public service: AssignedPartService, public firestore: AngularFirestore, public router: Router, private toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-    this.postServiceForm = new FormGroup({
-      check: new FormControl('', [Validators.required])
+    this.postServiceForm = new UntypedFormGroup({
+      check: new UntypedFormControl('', [Validators.required])
     })
   }
 

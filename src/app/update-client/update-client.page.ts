@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from "@angular/forms";
 import { Router,Route } from '@angular/router';
 import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
@@ -15,22 +15,22 @@ import { ToastController } from '@ionic/angular';
 
 export class UpdateClientPage implements OnInit {
   
-  updateClientForm: FormGroup;
+  updateClientForm: UntypedFormGroup;
   isSubmitted = false;
   titles = [];
   data: any;
 
-  constructor(public fb: FormBuilder, public authService: AuthService, public toastCtrl: ToastController, public router: Router, public route: ActivatedRoute) {
+  constructor(public fb: UntypedFormBuilder, public authService: AuthService, public toastCtrl: ToastController, public router: Router, public route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.data = params.id;
     });
-    this.updateClientForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      fName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-      lName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-      phoneNum: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      address: new FormControl()
+    this.updateClientForm = new UntypedFormGroup({
+      title: new UntypedFormControl('', Validators.required),
+      fName: new UntypedFormControl('', [Validators.required, Validators.maxLength(20)]),
+      lName: new UntypedFormControl('', [Validators.required, Validators.maxLength(20)]),
+      phoneNum: new UntypedFormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      email: new UntypedFormControl('', [Validators.required, Validators.email]),
+      address: new UntypedFormControl()
     });
   }
 

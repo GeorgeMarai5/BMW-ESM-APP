@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -7,13 +7,13 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class PostService {
   [x: string]: any;
 
-  static areEqual(formGroup: FormGroup) {
+  static areEqual(formGroup: UntypedFormGroup) {
     let va;
     let valid = true;
 
     for (let key in formGroup.controls) {
       if (formGroup.controls.hasOwnProperty(key)) {
-        let con: FormControl = <FormControl>formGroup.controls[key];
+        let con: UntypedFormControl = <UntypedFormControl>formGroup.controls[key];
 
         if (va === undefined) {
           va = con.value

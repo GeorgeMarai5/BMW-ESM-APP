@@ -3,7 +3,7 @@ import { Vehicle } from '../models/Vehicle';
 import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from '@angular/forms';
 import { stringify } from 'querystring';
 import { generateKeyPair } from 'crypto';
 import { Console } from 'console';
@@ -21,10 +21,10 @@ export class SearchVehiclePage implements OnInit {
 
   vehicles: Vehicle;
   vehicleList = [];
-  vehicleForm: FormGroup;
+  vehicleForm: UntypedFormGroup;
   searchTerm: string;
   data:any;
-  constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, private firestore: AngularFirestore, 
+  constructor(public authService: AuthService, private service: VehicleService, public fb: UntypedFormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
     
       service = {} as VehicleService;

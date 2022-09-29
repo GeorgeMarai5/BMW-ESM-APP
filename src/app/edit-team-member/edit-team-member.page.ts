@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
@@ -16,12 +16,12 @@ export class EditTeamMemberPage implements OnInit {
   teamMembers: Employee;
   teamMember = {};
   roles = [];
-  editTeamMemberForm: FormGroup;
+  editTeamMemberForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
 
   constructor(private route: ActivatedRoute, 
-    public fb: FormBuilder, 
+    public fb: UntypedFormBuilder, 
     public authService: AuthService,
     public teamMemberservice: TeamMemberService, 
     public router: Router, 
@@ -30,12 +30,12 @@ export class EditTeamMemberPage implements OnInit {
       this.route.params.subscribe(params => {
         this.data = params.id;
       });
-      this.editTeamMemberForm = new FormGroup({
-        Name: new FormControl('', Validators.required),
-        Surname: new FormControl('', Validators.required),
-        PhoneNumber: new FormControl('', Validators.required),
-        Email: new FormControl('', Validators.required),
-        Role: new FormControl('', Validators.required)
+      this.editTeamMemberForm = new UntypedFormGroup({
+        Name: new UntypedFormControl('', Validators.required),
+        Surname: new UntypedFormControl('', Validators.required),
+        PhoneNumber: new UntypedFormControl('', Validators.required),
+        Email: new UntypedFormControl('', Validators.required),
+        Role: new UntypedFormControl('', Validators.required)
       });
 
   }

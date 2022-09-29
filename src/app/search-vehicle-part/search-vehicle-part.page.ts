@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AssignedPart } from '../models/AssignedPart';
@@ -16,10 +16,10 @@ export class SearchVehiclePartPage implements OnInit {
 
   assignedParts: AssignedPart;
   assignedPartList = [];
-  partForm: FormGroup;
+  partForm: UntypedFormGroup;
   searchTerm: string;
 
-  constructor(public authService: AuthService, private service: AssignedPartService, public fb: FormBuilder, 
+  constructor(public authService: AuthService, private service: AssignedPartService, public fb: UntypedFormBuilder, 
     private firestore: AngularFirestore, public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
       this.assignedParts = {} as AssignedPart;
     }

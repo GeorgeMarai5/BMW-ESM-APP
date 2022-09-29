@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Part } from '../models/Part';
 import { AuthService } from '../services/auth.service';
 import { PartInfoService } from '../services/part-info.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -16,12 +16,12 @@ import { HttpClient } from '@angular/common/http';
 export class SearchPartPage implements OnInit {
   parts: Part;
   partList = [];
-  partForm: FormGroup;
+  partForm: UntypedFormGroup;
   searchTerm: string;
 
   constructor(public authService: AuthService, 
     private service: PartInfoService, 
-    public fb: FormBuilder,  
+    public fb: UntypedFormBuilder,  
     public alertCtrl: AlertController, 
     public router: Router, 
     private httpClient: HttpClient) { 

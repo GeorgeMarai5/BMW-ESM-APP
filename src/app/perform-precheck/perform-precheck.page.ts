@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
@@ -13,30 +13,30 @@ import { VehicleService } from '../services/vehicle.service';
 })
 export class PerformPrecheckPage implements OnInit {
 
-  selectChecksForm: FormGroup;
+  selectChecksForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
+  constructor(private route: ActivatedRoute, public fb: UntypedFormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
     public service: VehicleService, public router: Router, public toastCtrl: ToastController) { 
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
-    this.selectChecksForm = new FormGroup({
-      safetySystemsCheck: new FormControl(),
-      interiorLightsCheck: new FormControl(),
-      exteriorLightsCheck: new FormControl(),
-      windscreenCheck: new FormControl(),
-      tyreCheck: new FormControl(),
-      mobilityCheck: new FormControl(),
-      coolantCheck: new FormControl(),
-      headlampCheck: new FormControl(),
-      steeringFluidCheck: new FormControl(),
-      brakeCheck: new FormControl(),
-      underBodyCheck: new FormControl(),
-      steeringSystemCheck: new FormControl(),
-      sparkPlugsCheck: new FormControl(),
-      otherCheck: new FormControl()
+    this.selectChecksForm = new UntypedFormGroup({
+      safetySystemsCheck: new UntypedFormControl(),
+      interiorLightsCheck: new UntypedFormControl(),
+      exteriorLightsCheck: new UntypedFormControl(),
+      windscreenCheck: new UntypedFormControl(),
+      tyreCheck: new UntypedFormControl(),
+      mobilityCheck: new UntypedFormControl(),
+      coolantCheck: new UntypedFormControl(),
+      headlampCheck: new UntypedFormControl(),
+      steeringFluidCheck: new UntypedFormControl(),
+      brakeCheck: new UntypedFormControl(),
+      underBodyCheck: new UntypedFormControl(),
+      steeringSystemCheck: new UntypedFormControl(),
+      sparkPlugsCheck: new UntypedFormControl(),
+      otherCheck: new UntypedFormControl()
     })
   }
 

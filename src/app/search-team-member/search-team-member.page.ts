@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Employee } from '../models/Employee';
@@ -16,12 +16,12 @@ export class SearchTeamMemberPage implements OnInit {
 
   teamMembers: Employee;
   teamMemberList = [];
-  teamMemberForm: FormGroup;
+  teamMemberForm: UntypedFormGroup;
   searchTerm: string;
   teamMemberID: string;
   data: any;
 
-  constructor(public authService: AuthService, private teamMemberservice: TeamMemberService, public fb: FormBuilder, public firestore: AngularFirestore, 
+  constructor(public authService: AuthService, private teamMemberservice: TeamMemberService, public fb: UntypedFormBuilder, public firestore: AngularFirestore, 
      public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
       this.teamMembers = {} as Employee;
     }

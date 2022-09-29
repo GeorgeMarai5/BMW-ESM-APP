@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { VehicleService } from '../services/vehicle.service';
@@ -38,7 +38,7 @@ export class ViewServiceProgressPage implements OnInit {
   }
   serviceItems = [this.newItems.item1, this.newItems.item2];
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
+  constructor(private route: ActivatedRoute, public fb: UntypedFormBuilder, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService, private alertController: AlertController) {
       this.route.params.subscribe((params) => {
         this.data = params.id;

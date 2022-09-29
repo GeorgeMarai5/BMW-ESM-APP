@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from "@angular/forms";
 import { Router,Route } from '@angular/router';
 import { MaintenancePlan } from '../models/Maintenance-Plan';
 import { ActivatedRoute } from '@angular/router';
@@ -18,19 +18,19 @@ export class UpgradeMaintenancePlanPage implements OnInit {
   
   plans: MaintenancePlan;
   maintenanceplans = [];
-  upgradePlanForm: FormGroup;
+  upgradePlanForm: UntypedFormGroup;
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public planService: MaintenancePlanService, 
+  constructor(private route: ActivatedRoute, public fb: UntypedFormBuilder, public authService: AuthService, public planService: MaintenancePlanService, 
     public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
     this.route.params.subscribe(params => {
       this.data = params.id;
     });
 
-    this.upgradePlanForm = new FormGroup({
-      PlanName: new FormControl('', Validators.required),
-      NewPlanName: new FormControl('', Validators.required)
+    this.upgradePlanForm = new UntypedFormGroup({
+      PlanName: new UntypedFormControl('', Validators.required),
+      NewPlanName: new UntypedFormControl('', Validators.required)
     });
   }
 
