@@ -28,13 +28,15 @@ export class SearchQuotePage implements OnInit {
   searchTerm: string;
   ClientName: string;
 
-  constructor(public authService: AuthService,private fb: FormBuilder,public router: Router, private actRoute: ActivatedRoute, 
-    private quoteservice: QuoteService, public alertCtrl: AlertController, public toastCtrl: ToastController) { 
-      quoteservice = {} as QuoteService;
+  constructor(public authService: AuthService, public fb: FormBuilder, private quoteservice: QuoteService, 
+    public alertCtrl: AlertController, public toastCtrl: ToastController, public router: Router) { 
 
-    }
+    quoteservice = {} as QuoteService;
+
+  }
 
   ngOnInit() {
+
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -45,54 +47,70 @@ export class SearchQuotePage implements OnInit {
 
     this.getallQuotes();
 
+    //this.fleetservice.getList().subscribe(response => {
+      //console.log(response);
+      //this.data = response;
+
+  //})
+
+    }
+
+gotoview(id){
+
+
+  //this.router.navigate(['/tabs/view/fleet', this.data]);
+
+
+
+}
 
 
 
 
 
-  }
+    async getallQuotes(){
 
-  getallQuotes(){
+      this.quoteservice.getQuoteList().subscribe(response => {
+        console.log(response);
+        this.data = response;
+      })
+    }
 
-    this.quoteservice.getQuoteList().subscribe(response => {
-      console.log(response);
-      this.data = response;
-    })
-  }
-
-
-
-
-
-
-  async DeleteQuote(id){
-    const confirmDeleteAlert = await this.alertCtrl.create({
-      header: 'Remove Fleet',
-      message: 'Are you sure you would like to remove this Fleet from the system?',
-      buttons: [{
-        text: 'Cancel',
-        role: 'cancel',
-        handler: end => {
-          this.alertCtrl.dismiss();
-        }
-      },
-      {
-        text: 'Remove',
-        role: 'remove',
-        handler: () => {
-          //this.quoteservice.delete_Quote(id);
-          this.presentToast();
-        }
-      }]
-    });
-
-    confirmDeleteAlert.present();
-
-  }
+    
+    async deleteQuote(item){
+      const confirmDeleteAlert = await this.alertCtrl.create({
+        header: 'Remove Quote',
+        message: 'Are you sure you would like to remove this Quote from the system?',
+        buttons: [{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: end => {
+            this.alertCtrl.dismiss();
+          }
+        },
+        {
+          text: 'Remove',
+          role: 'remove',
+          handler: () => {
+            this.quoteservice.deleteQuote(item.QuoteID).subscribe(Response => {
+              //Update list after delete is successful
+              console.log(Response);
+              this.getallQuotes()
+      
+            });
+            this.presentToast();
+          }
+        }]
+      });
+  
+      confirmDeleteAlert.present();
+      //Delete item in Student data
+      
+    }
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
-      message: 'Fleet has been removed successfully.',
+      message: 'Quote has been removed successfully.',
       duration: 3000,
       position: 'top'
     });
