@@ -19,6 +19,7 @@ export class SearchDealershipPage implements OnInit {
   dealershipForm: FormGroup;
   searchTerm: string;
   data:any;
+  dealershipID: string;
 
   constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
@@ -34,16 +35,16 @@ export class SearchDealershipPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.getallDealerships();
+  //   this.getallDealerships();
 
 
 
-    this.dealershipForm = this.fb.group({
-      FleetName: ['', [Validators.required]],
-      FleetLocation: ['', [Validators.required]],
-      FleetID: ['', [Validators.required]],
-      FleetVehicleQty: ['', [Validators.required]],
-  });
+  //   this.dealershipForm = this.fb.group({
+  //     FleetName: ['', [Validators.required]],
+  //     FleetLocation: ['', [Validators.required]],
+  //     FleetID: ['', [Validators.required]],
+  //     FleetVehicleQty: ['', [Validators.required]],
+  // });
 
   /*
   this.service.getList().subscribe(data => {
@@ -72,7 +73,7 @@ export class SearchDealershipPage implements OnInit {
 
 
 
-  async removeDealership(id){
+  async removeDealership(dealershipID){
     const confirmDeleteAlert = await this.alertCtrl.create({
       header: 'Remove Dealership',
       message: 'Are you sure you would like to remove this dealership from the system?',
@@ -87,7 +88,7 @@ export class SearchDealershipPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteDealership(id);
+          this.service.deleteDealership(dealershipID);
           this.presentToast();
         }
       }]

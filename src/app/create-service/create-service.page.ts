@@ -17,6 +17,7 @@ import { VehicleService } from 'app/models/VehicleService';
 export class CreateServicePage implements OnInit {
 
   services: VehicleService;
+  service: ServiceService;
   serviceList = [];
   teams = [];
   serviceTypes = [];
@@ -39,11 +40,11 @@ export class CreateServicePage implements OnInit {
     public firestore: AngularFirestore, 
     public authService: AuthService, 
     public fb: FormBuilder, 
-    private service: ServiceService, 
+    private _service: ServiceService, 
     public toastCtrl: ToastController, 
     private teamservice: TeamService) {
 
-      service = {} as ServiceService;
+      _service = {} as ServiceService;
       this.data = new VehicleService();
     /*  
     this.route.params.subscribe(params => {

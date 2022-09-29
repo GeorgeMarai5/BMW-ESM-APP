@@ -1,46 +1,151 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-  AngularFireObject
-} from '@angular/fire/compat/database';
+import { Observable,of, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { retry,catchError, tap, map } from 'rxjs/operators';
+import { VehicleService } from '../models/VehicleService';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
-  intiateService(value: any) {
-    throw new Error('Method not implemented.');
+
+
+  apiUrl = 'https://localhost:7163'
+  httpOptions ={
+    headers: new HttpHeaders({
+      ContentType: 'application/json'
+    })
+  }
+  constructor(private httpClient: HttpClient) { }                                             
+  
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+  
+      console.error('An error occurred:', error.error.message);
+    } else {
+
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+
+    return throwError('Something bad happened; please try again later.');
+    
   }
 
-  ServiceRef: AngularFireObject<any>;
-  readService() {
-    return this.firestore.collection(this.collectionName).snapshotChanges();
-  }
-  collectionName = 'Service';
 
-  constructor(private firestore: AngularFirestore) { }
+  createService(Service: VehicleService){
+    return this.httpClient.post(this.apiUrl + '/api/Services/Create' , Service, this.httpOptions)
 
-  // getServices(id: string) {
-  //   return this.firestore.collection('Service').snapshotChanges();
-  // }
 
-  createService(Service) {
-    return this.firestore.collection(this.collectionName).add(Service);
   }
 
-  getService(id: string){
-    return this.firestore.collection(this.collectionName).doc(id);
+
+  getServiceList(): Observable<VehicleService> {
+    return this.httpClient
+      .get<VehicleService>(this.apiUrl + '/api/Services/GetAll')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
-  getServices() {
-    return this.firestore.collection('Service').snapshotChanges();
+
+  
+
+  getService(id): Observable<VehicleService> {
+    return this.httpClient
+      .get<VehicleService>(this.apiUrl + '/api/Services/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
-  updateService(id, service) {
-    this.firestore.doc(this.collectionName + '/' + id).update(service);
+  
+
+  updateservice(item): Observable<VehicleService> {
+    return this.httpClient
+      .put<VehicleService>(this.apiUrl + '/api/Services/' + item, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
-  deleteService(id) {
-    this.firestore.doc(this.collectionName + '/' + id).delete();
+
+  updateService(id, item): Observable<VehicleService> {
+    return this.httpClient
+      .put<VehicleService>(this.apiUrl + '/api/Services/' + id, item, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
+  
+  
+  delete(id) {
+    return this.httpClient
+      .delete<VehicleService>(this.apiUrl + '/api/Services' + '/' + id, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+
+
+  deleteService(id): Observable<{}> {
+  
+    return this.httpClient.delete(this.apiUrl + '/api/Services/' +  id , this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+
+
+// import { Injectable } from '@angular/core';
+// import { AngularFirestore } from '@angular/fire/compat/firestore';
+// import {
+//   AngularFireDatabase,
+//   AngularFireList,
+//   AngularFireObject
+// } from '@angular/fire/compat/database';
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class ServiceService {
+//   intiateService(value: any) {
+//     throw new Error('Method not implemented.');
+//   }
+
+//   ServiceRef: AngularFireObject<any>;
+//   readService() {
+//     return this.firestore.collection(this.collectionName).snapshotChanges();
+//   }
+//   collectionName = 'Service';
+
+//   constructor(private firestore: AngularFirestore) { }
+
+//   // getServices(id: string) {
+//   //   return this.firestore.collection('Service').snapshotChanges();
+//   // }
+
+//   createService(Service) {
+//     return this.firestore.collection(this.collectionName).add(Service);
+//   }
+
+//   getService(id: string){
+//     return this.firestore.collection(this.collectionName).doc(id);
+//   }
+//   getServices() {
+//     return this.firestore.collection('Service').snapshotChanges();
+//   }
+//   updateService(id, service) {
+//     this.firestore.doc(this.collectionName + '/' + id).update(service);
+//   }
+//   deleteService(id) {
+//     this.firestore.doc(this.collectionName + '/' + id).delete();
+//   }
 
 
 getYear(yearCode: string){

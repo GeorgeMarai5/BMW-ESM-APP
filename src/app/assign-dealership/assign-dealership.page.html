@@ -26,7 +26,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Dealership Name</b></ion-label>
-                            <ion-input [(ngModel)]="data.dealershipName" placeholder="Enter Dealership Name"  [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input [(ngModel)]="data.dealershipName" placeholder="Enter Dealership Name..."  [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
                             Dealership Name is required.
@@ -40,7 +40,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Address</b></ion-label>
-                            <ion-input [(ngModel)]="data.address" placeholder="Enter Address" [ngModelOptions]="{standalone: true}"  ></ion-input>
+                            <ion-input [(ngModel)]="data.address" placeholder="Enter Address..." [ngModelOptions]="{standalone: true}"  ></ion-input>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
                             Address is required.

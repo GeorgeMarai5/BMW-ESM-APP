@@ -16,7 +16,7 @@
   <div class="contents">
     <ion-title><h1>Create Service</h1></ion-title>
   
-    <form [formGroup]="serviceForm" (ngSubmit)="submitForm()" novalidate>
+    <form>
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -55,7 +55,7 @@
             <ion-button type="submit" expand="block" [routerLink]="[ '/tabs/home']">Back</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="light-Btn" type="submit" expand="block" >Continue</ion-button>
+            <ion-button class="light-Btn" type="submit" expand="block">Continue</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

@@ -22,19 +22,23 @@ maintenanceplanList = [];
 plans: MaintenancePlan;
 planform : FormGroup;
 searchTerm: string;
+maintenancePlanID: string;
+data: any;
 
 constructor(public planService: MaintenancePlanService, public alertController: AlertController, private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
   public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) {
-    this.plans = {} as MaintenancePlan; 
+   // this.plans = {} as MaintenancePlan; 
+service = {} as MaintenancePlanService;
 }
 
 ngOnInit(){
-    this.planform = this.fb.group({
-      PlanName: ['', [Validators.required]],
-      Description: ['', [Validators.required]],
-      Duration: ['', [Validators.required]],
-      Price: ['', [Validators.required]],
-    });
+  this.getAllMaintenancePlans();
+    // this.planform = this.fb.group({
+    //   PlanName: ['', [Validators.required]],
+    //   Description: ['', [Validators.required]],
+    //   Duration: ['', [Validators.required]],
+    //   Price: ['', [Validators.required]],
+    // });
   }
     // this.planService.getMaintenancePlanList().subscribe(data => {
     //   this.maintenanceplanList = data.map(e => {
@@ -52,6 +56,23 @@ ngOnInit(){
 
     // }
   // )}
+
+  async getAllMaintenancePlans(){
+
+    this.service.getMaintenancePlanList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+
+  async deleteMaintenancePlan(item){
+    this.service.deleteMaintenancePlan(item.fleetId).subscribe(Response => {
+      console.log(Response);
+      this.getAllMaintenancePlans()
+
+    });
+  }
+
 
   async presentAlertMultipleButtons() {
     const alert = await this.alertController.create({
