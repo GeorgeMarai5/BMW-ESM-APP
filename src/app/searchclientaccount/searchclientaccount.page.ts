@@ -1,5 +1,5 @@
 import { Component, OnInit,ElementRef, Input, Output, NgZone } from '@angular/core';
-import { UntypedFormBuilder,Validators,UntypedFormGroup, AnyForUntypedForms } from '@angular/forms';
+import { UntypedFormBuilder,Validators,UntypedFormGroup } from '@angular/forms';
 import { AngularDelegate } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
