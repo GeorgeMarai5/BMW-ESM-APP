@@ -42,6 +42,7 @@
                             <ion-label position="stacked"><b>Address</b></ion-label>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <ion-input [(ngModel)]="data.address" placeholder="Enter Address..." [ngModelOptions]="{standalone: true}"  ></ion-input>
 =======
                             <ion-input [(ngModel)]="ad.address1" placeholder="Enter Address" [ngModelOptions]="{standalone: true}"  ></ion-input>
@@ -49,6 +50,9 @@
 =======
                             <ion-input [(ngModel)]="data.address" placeholder="Enter Address" [ngModelOptions]="{standalone: true}"  ></ion-input>
 >>>>>>> parent of 8ecf2ac (changes)
+=======
+                            <ion-input [(ngModel)]="data.address" placeholder="Enter Address..." [ngModelOptions]="{standalone: true}"  ></ion-input>
+>>>>>>> parent of c054e1b (changes)
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
                             Address is required.
@@ -66,7 +70,7 @@
                         <ion-button [routerLink]="['/tabs/create/service']" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" type="submit" [routerLink]="['/tabs/search/fleet']" (click)="createDealership()" (click)="CreateAddress()" expand="block">Submit</ion-button>
+                        <ion-button class="light-Btn" type="submit" [routerLink]="['/tabs/search/fleet']" (click)="createDealership()" expand="block">Submit</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

@@ -20,17 +20,25 @@ export class SearchDealershipPage implements OnInit {
   searchTerm: string;
   data:any;
 
-  constructor(public authService: AuthService, private dealershipservice: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
+  constructor(public authService: AuthService, private service: DealershipService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
 
-      dealershipservice = {} as DealershipService;
+      this.dealerships = {} as Dealership;
     }
 
   ngOnInit() {
-    
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of c054e1b (changes)
   //   this.getallDealerships();
 =======
     this.getallDealerships();
@@ -59,15 +67,12 @@ export class SearchDealershipPage implements OnInit {
 
   });
   */
-=======
-    this.getallDealerships();
->>>>>>> a6593f7130021485db44e9f0ab47503ba5876a34
  
   }
 
-  async getallDealerships(){
+  getallDealerships(){
 
-    this.dealershipservice.getDealershipList().subscribe(response => {
+    this.service.getDealershipList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
@@ -92,6 +97,7 @@ export class SearchDealershipPage implements OnInit {
         handler: () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           this.service.deleteDealership(dealershipID);
 =======
           this.dealershipservice.deleteDealership(id);
@@ -99,6 +105,9 @@ export class SearchDealershipPage implements OnInit {
 =======
           this.service.deleteDealership(id);
 >>>>>>> parent of 8ecf2ac (changes)
+=======
+          this.service.deleteDealership(dealershipID);
+>>>>>>> parent of c054e1b (changes)
           this.presentToast();
         }
       }]
@@ -118,12 +127,3 @@ export class SearchDealershipPage implements OnInit {
     toast.present();
   }
 }
-
-
-
-/*if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }*/
