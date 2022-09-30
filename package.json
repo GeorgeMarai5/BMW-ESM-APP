@@ -22,7 +22,6 @@
     "@angular/platform-browser": "~13.3.6",
     "@angular/platform-browser-dynamic": "~13.3.6",
     "@angular/router": "~13.3.6",
-    "@angular/service-worker": "~13.3.6",
     "@awesome-cordova-plugins/file-opener": "^5.45.0",
     "@awesome-cordova-plugins/firebase": "^5.41.0",
     "@awesome-cordova-plugins/splash-screen": "^5.43.0",
