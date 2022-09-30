@@ -19,6 +19,7 @@ export class EditDealershipPage implements OnInit {
   isSubmitted = false;
   dealership: Dealership;
   data: any;
+  id:any;
 
   constructor(private route: ActivatedRoute, 
     public fb: FormBuilder, 
@@ -47,7 +48,7 @@ export class EditDealershipPage implements OnInit {
           DealershipName: this.editDealershipForm.get('dealershipName').value,
           AddressName: this.editDealershipForm.get('address').value
         }
-        this.dealershipService.updateDealership(dealership, this.data)
+        this.dealershipService.updateDealership(this.id,this.data)
         this.presentToast();
       }
       this.router.navigate(['/tabs/search/dealership', this.data]);

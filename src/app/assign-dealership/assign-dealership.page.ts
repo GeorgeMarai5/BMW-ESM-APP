@@ -17,6 +17,8 @@ import { Address } from 'app/models/Address';
 })
 
 export class AssignDealershipPage implements OnInit {
+assignDealershipForm: FormGroup;
+  isSubmitted = false; 
 
   dealership: Dealership = {
     dealershipId: '',
@@ -91,8 +93,8 @@ export class AssignDealershipPage implements OnInit {
 
 // export class AssignDealershipPage implements OnInit {
 
-  assignDealershipForm: FormGroup;
-  isSubmitted = false;
+  //assignDealershipForm: FormGroup;
+  //isSubmitted = false;
 //   data: any;
 //   ad: any;
 //   dealership: Dealership;

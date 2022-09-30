@@ -62,7 +62,24 @@ export class AddressPage implements OnInit {
     })
   }
 
+/*
+  saveTutorial(): void {
+    const data = {
+      this.AddressID: this.tutorial.title,
+      description: this.tutorial.description
+    };
 
+    this.tutorialService.create(data)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.submitted = true;
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+*/
 
 
   ionViewWillEnter() {
