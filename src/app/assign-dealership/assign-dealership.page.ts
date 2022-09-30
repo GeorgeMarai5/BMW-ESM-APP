@@ -58,6 +58,7 @@ export class AssignDealershipPage implements OnInit {
         },
         error: (e) => console.error(e)
       });
+    
   }
 
   newDealership(): void {

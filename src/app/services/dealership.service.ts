@@ -11,7 +11,7 @@ import { Address } from 'app/models/Address';
 
 export class DealershipService {
 
- apiUrl = 'https://localhost:8080/api/Dealerships';
+ apiUrl = 'https://localhost:1433/api/Dealerships';
 
   constructor(private httpClient: HttpClient) {}
 
