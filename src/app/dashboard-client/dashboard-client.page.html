@@ -34,6 +34,25 @@
                             <ion-col>
                                 <ion-text>Status: <span class="status">Active</span></ion-text>
                             </ion-col>
+                            <ion-col>
+                                <ion-button id="open-modal" expand="block">Service Process</ion-button>
+                                <ion-modal trigger="open-modal">
+                                    <ng-template>
+                                      <ion-header>
+                                        <ion-toolbar>
+                                          <ion-title>Our Service Process</ion-title>
+                                        </ion-toolbar>
+                                      </ion-header>
+                                      <ion-content class="ion-padding">
+                                        <ion-item>
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/2Y6lfSlKIio" title="YouTube video player" 
+                                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                                            gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </ion-item>
+                                      </ion-content>
+                                    </ng-template>
+                                  </ion-modal>
+                            </ion-col>
                         </ion-row>
                     </ion-card>
                 </ion-col>
