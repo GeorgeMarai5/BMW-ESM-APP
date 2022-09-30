@@ -15,13 +15,13 @@
   "private": true,
   "dependencies": {
     "-": "^0.0.1",
-    "@angular/common": "~13.3.6",
-    "@angular/core": "~13.3.6",
+    "@angular/common": "~13.3.9",
+    "@angular/core": "~13.3.9",
     "@angular/fire": "^7.3.0",
-    "@angular/forms": "~13.3.6",
-    "@angular/platform-browser": "~13.3.6",
-    "@angular/platform-browser-dynamic": "~13.3.6",
-    "@angular/router": "~13.3.6",
+    "@angular/forms": "~13.3.9",
+    "@angular/platform-browser": "~13.3.9",
+    "@angular/platform-browser-dynamic": "~13.3.9",
+    "@angular/router": "~13.3.9",
     "@angular/service-worker": "~13.3.6",
     "@awesome-cordova-plugins/file-opener": "^5.45.0",
     "@awesome-cordova-plugins/firebase": "^5.41.0",
@@ -77,15 +77,15 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.3.5",
+    "@angular-devkit/build-angular": "~13.3.9",
     "@angular-eslint/builder": "~13.0.1",
     "@angular-eslint/eslint-plugin": "~13.0.1",
     "@angular-eslint/eslint-plugin-template": "~13.0.1",
     "@angular-eslint/template-parser": "~13.0.1",
-    "@angular/cli": "^13.3.5",
-    "@angular/compiler": "~13.3.6",
-    "@angular/compiler-cli": "~13.3.6",
-    "@angular/language-service": "~13.3.6",
+    "@angular/cli": "^13.3.9",
+    "@angular/compiler": "~13.3.9",
+    "@angular/compiler-cli": "~13.3.9",
+    "@angular/language-service": "~13.3.9",
     "@capacitor/cli": "3.5.0",
     "@ionic/angular-toolkit": "^6.0.0",
     "@types/jasmine": "~3.6.0",
@@ -134,5 +134,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/GeorgeMarai5/BMW-ESM-APP/issues"
-  }
+  },
+  "keywords": []
 }
