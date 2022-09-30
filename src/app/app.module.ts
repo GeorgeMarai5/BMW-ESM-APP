@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -26,7 +27,13 @@ import { Component } from '@angular/core';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
