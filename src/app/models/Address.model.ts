@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       postal_Code: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.STRING
       },
       date_Of_Update: {
         type: Sequelize.DATE
