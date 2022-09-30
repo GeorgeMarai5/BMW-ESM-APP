@@ -9,9 +9,6 @@ module.exports = (sequelize, Sequelize) => {
       dealershipName: {
         type: Sequelize.BOOLEAN
       },
-      date_Of_Update: {
-        type: Sequelize.DATE
-      },
       addressId: {
         type: Sequelize.DATE
       }
