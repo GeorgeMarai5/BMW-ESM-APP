@@ -225,7 +225,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'select/maintenance-plan',
+    path: 'select/maintenanceplan',
     loadChildren: () =>
       import('./select-maintenanceplan/select-maintenanceplan.module').then(
         (m) => m.SelectMaintenanceplanPageModule

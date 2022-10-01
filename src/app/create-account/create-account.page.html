@@ -30,14 +30,14 @@
         <div style="padding-left: 4%; padding-right: 4%; padding-bottom: 5%">
           <ion-item>
             <ion-label position="floating">Select Account Type</ion-label>
-            <ion-select #accountType [(ngModel)]="data.accountType" placeholder="Select Account Type" [ngModelOptions]="{standalone: true}">
+            <ion-select #accountType placeholder="Select Account Type">
               <ion-select-option>Client</ion-select-option>
               <ion-select-option>Employee</ion-select-option>
             </ion-select>
           </ion-item>    
           <ion-item lines="full">
             <ion-label position="floating">Email</ion-label>
-            <ion-input #email [(ngModel)]="data.email" placeholder="Enter Email..." [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-input #email placeholder="Enter Email..."></ion-input>
           </ion-item> 
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
             Email is required.
@@ -47,14 +47,14 @@
           </span>
           <ion-item lines="full">
             <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" #password [(ngModel)]="data.password" placeholder="Enter Password..." [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-input type="password" #password placeholder="Enter Password..."></ion-input>
           </ion-item>
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
             Password is required.
           </span>
           <ion-item lines="full">
             <ion-label position="floating">Confirm Password</ion-label>
-            <ion-input type="password" #confirmPassword [(ngModel)]="data.confirmPassword" placeholder="Re-Enter Password" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-input type="password" #confirmPassword placeholder="Re-Enter Password"></ion-input>
           </ion-item>
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
             Confirmed Password is required.
@@ -70,5 +70,18 @@
         </div> 
       </ion-card>
     </form>
+  </div>
+  <button type="button" class="collapsible">Help Chat
+    <ion-icon id="up" style="float: right; margin-top: 0.2em;" name="chevron-up-outline">
+    </ion-icon>
+    <ion-icon id="down" style="float: right; display: none; margin-top: 0.2em;" name="chevron-down-outline"></ion-icon>
+  </button>
+  <div class="content">
+    <iframe style="border: none;"
+      allow="microphone;"
+      width="350"
+      height="430"
+      src="https://console.dialogflow.com/api-client/demo/embedded/9a6d9339-edec-4934-869e-c563312600c3">
+    </iframe>
   </div>
 </ion-content>

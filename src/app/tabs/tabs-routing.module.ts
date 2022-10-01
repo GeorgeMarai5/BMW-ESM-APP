@@ -150,7 +150,7 @@ const routes: Routes = [
         loadChildren: () => import('../searchmaintenanceplan/searchmaintenanceplan.module').then( m => m.SearchmaintenanceplanPageModule)
       },
       {
-        path: 'select-maintenanceplan',
+        path: 'select/maintenanceplan',
         loadChildren: () => import('../select-maintenanceplan/select-maintenanceplan.module').then( m => m.SelectMaintenanceplanPageModule)
       },
       {
