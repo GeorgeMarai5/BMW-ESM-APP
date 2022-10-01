@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { LoginHelpComponent } from 'app/components/login-help/login-help.component';
 
 
 @Component({
@@ -12,12 +13,12 @@ import { ToastController } from '@ionic/angular';
 })
 
 export class LoginPage implements OnInit {
-
+  
   loginForm: FormGroup;
   isSubmitted = false;
   data: any;
 
-  constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public toastCtrl: ToastController) { 
+  constructor(public fb: FormBuilder, public helpModal: ModalController, public authService: AuthService, public router: Router, public toastCtrl: ToastController) { 
     this.loginForm = new FormGroup({
       accountType: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -27,6 +28,12 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: LoginHelpComponent});
+      return await modal.present();
   }
 
   logIn(email, password, accountType) {
