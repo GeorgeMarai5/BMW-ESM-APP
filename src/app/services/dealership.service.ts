@@ -35,7 +35,7 @@ export class DealershipService {
     
     
      createDealership(dealership: Dealership){
-      return this.httpClient.post(this.apiUrl + '/CreateDealerships' , dealership , this.httpOptions)
+      return this.httpClient.post(this.apiUrl + '/CreateDealerships' , dealership, this.httpOptions)
     }
 
      createDealerships(Dealership: Dealership,address: Address){
