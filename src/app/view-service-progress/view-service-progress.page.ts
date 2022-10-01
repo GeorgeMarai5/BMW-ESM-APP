@@ -9,6 +9,10 @@ import { AlertController } from '@ionic/angular';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { sendPasswordResetEmail } from 'firebase/auth';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -38,17 +42,18 @@ export class ViewServiceProgressPage implements OnInit {
   }
   serviceItems = [this.newItems.item1, this.newItems.item2];
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore,
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, private httpClient: HttpClient, public authService: AuthService, public firestore: AngularFirestore,
     public router: Router, public service: VehicleService, private alertController: AlertController) {
       this.route.params.subscribe((params) => {
         this.data = params.id;
       });
     }
-    readonly  twilioNumber = '+19859806244';
-readonly accountSid = 'AC2b54afb9d76e88c12db2ba3f5d5d911d';
-readonly authToken = '6ee0efe44516b7df5de5b1680d2e1a69';
+//     readonly  twilioNumber = '+19859806244';
+// readonly accountSid = 'AC2b54afb9d76e88c12db2ba3f5d5d911d';
+// readonly authToken = '6ee0efe44516b7df5de5b1680d2e1a69';
   ngOnInit() {}
-
+  
+  
   async myDateTimeFunction(){
     /*var inputValue = (<HTMLInputElement>document.getElementById('daytime')).value;
     console.log(inputValue);*/
@@ -71,7 +76,8 @@ readonly authToken = '6ee0efe44516b7df5de5b1680d2e1a69';
 
     await alert.present();
   }
-
+  
+    
   async provideFeedbackAlert() {
     const alert = await this.alertController.create({
       header: 'CaptureFeedback',
@@ -86,7 +92,29 @@ readonly authToken = '6ee0efe44516b7df5de5b1680d2e1a69';
     await alert.present();
   }
 
+  // public text: string;
+  // public from: string;
+  // public to: string;
 
+
+  // public sendSms() {
+  //   const payload = new HttpParams()
+  //     .set('from', this.from)
+  //     .set('to', this.to)
+  //     .set('text', this.text);
+
+  //   return this.httpClient.post('http://sms.com:3000/send-sms', payload)
+  //     .pipe(
+  //       catchError((error: HttpErrorResponse) => {
+  //         this.alertController.create({ message: 'Oops!'})
+  //           .then((alert) => alert.present());
+  //         return throwError('Oops!');
+  //       }))
+  //     .subscribe(async (resp: any) => {
+  //       const alert = await this.alertController.create({ message: resp.message });
+  //       await alert.present();
+  //     });
+  // }
 
 // start sending message
 // readonly client = Twilio(this.accountSid, this.authToken);
@@ -177,5 +205,9 @@ readonly authToken = '6ee0efe44516b7df5de5b1680d2e1a69';
     pdfMake.createPdf(docDefinition).download();
     pdfMake.createPdf(docDefinition).open();
   }
+  // async myFunction(){
+  //   this.sms.send('27716333611', 'Your service has been concluded successfully!');
+  //   console.log(this.sms);
+  //   }
 
 }
