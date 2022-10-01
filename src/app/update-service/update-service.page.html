@@ -18,7 +18,7 @@
             <h1>Update Service</h1>
         </ion-title>
         <br>
-        <form [formGroup]="editserviceForm" (ngSubmit)="submitForm()" >
+        <form>
            <ion-grid>
               <ion-row>
                 <ion-col>
@@ -58,7 +58,7 @@
                         <ion-button (click)="back()" expand="block">Back</ion-button>
                       </ion-col>
                       <ion-col>
-                        <ion-button class="light-Btn" type="submit" expand="block">Update</ion-button>
+                        <ion-button class="light-Btn" type="submit" expand="block" (click)="updateService(this.id, this.data)">Update</ion-button>
                       </ion-col>
                 </ion-row>
             </ion-grid>

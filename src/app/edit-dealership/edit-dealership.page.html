@@ -16,7 +16,7 @@
   <div class="contents">
     <ion-title><h1>Edit Dealership Details</h1></ion-title>
   
-    <form [formGroup]="editDealershipForm" (ngSubmit)="submitForm()" novalidate>
+    <form>
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -54,7 +54,7 @@
             <ion-button (click)="back()" expand="block" [routerLink]="[ '/tabs/search/dealership'] ">Back</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="light-Btn" type="submit" expand="block">Update</ion-button>
+            <ion-button class="light-Btn" type="submit" expand="block" (click)="updateDealership(this.id, this.data)">Update</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

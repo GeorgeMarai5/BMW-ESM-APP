@@ -13,49 +13,51 @@ import { ToastController } from '@ionic/angular';
 })
 export class EditTeamMemberPage implements OnInit {
 
-  teamMembers: Employee;
-  teamMember = {};
+  teamMember: Employee;
   roles = [];
   editTeamMemberForm: FormGroup;
   isSubmitted = false;
   data: any;
+  id: any;
 
   constructor(private route: ActivatedRoute, 
     public fb: FormBuilder, 
     public authService: AuthService,
-    public teamMemberservice: TeamMemberService, 
+    public teamMemberService: TeamMemberService, 
     public router: Router, 
     public toastCtrl: ToastController) {
       
-      this.route.params.subscribe(params => {
-        this.data = params.id;
-      });
-      this.editTeamMemberForm = new FormGroup({
-        Name: new FormControl('', Validators.required),
-        Surname: new FormControl('', Validators.required),
-        PhoneNumber: new FormControl('', Validators.required),
-        Email: new FormControl('', Validators.required),
-        Role: new FormControl('', Validators.required)
-      });
-
+      // this.route.params.subscribe(params => {
+      //   this.data = params.id;
+      // });
+      // this.editTeamMemberForm = new FormGroup({
+      //   Name: new FormControl('', Validators.required),
+      //   Surname: new FormControl('', Validators.required),
+      //   PhoneNumber: new FormControl('', Validators.required),
+      //   Email: new FormControl('', Validators.required),
+      //   Role: new FormControl('', Validators.required)
+      // });
+      teamMemberService = {} as TeamMemberService;
+      this.teamMember = new Employee();
+  
   }
 
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.editTeamMemberForm.valid){
-      return false;
-    }
-    else{
-        const teamMember = {
-          Name: this.editTeamMemberForm.get('Name').value,
-          Surname: this.editTeamMemberForm.get('Surname').value,
-          PhoneNumber: this.editTeamMemberForm.get('PhoneNumber').value,
-          Email: this.editTeamMemberForm.get('Email').value,
-          Role: this.editTeamMemberForm.get('Role').value
-        }
-        //this.teamMemberservice.updateTeaMember(this.teamMember, teamMember)
-        this.presentToast()
-      }
+    // this.isSubmitted = true;
+    // if(!this.editTeamMemberForm.valid){
+    //   return false;
+    // }
+    // else{
+    //     const teamMember = {
+    //       Name: this.editTeamMemberForm.get('Name').value,
+    //       Surname: this.editTeamMemberForm.get('Surname').value,
+    //       PhoneNumber: this.editTeamMemberForm.get('PhoneNumber').value,
+    //       Email: this.editTeamMemberForm.get('Email').value,
+    //       Role: this.editTeamMemberForm.get('Role').value
+    //     }
+    //     //this.teamMemberservice.updateTeaMember(this.teamMember, teamMember)
+    //     this.presentToast()
+    //   }
       this.router.navigate(['/tabs/search/team-member', this.teamMember]);
   }
 
@@ -67,23 +69,31 @@ export class EditTeamMemberPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
     
-    this.teamMemberservice.getTeamMember(this.data)
-    .subscribe(res =>{
-    console.log(res)
-    this.editTeamMemberForm.setValue({
-      Name: res['Name'],
-      Surname: res['Surname'], 
-      PhoneNumber: res['PhoneNumber'], 
-      Email: res['Email'],
-      Role: res['Role']
-    })
-    });
+    // this.teamMemberservice.getTeamMember(this.data)
+    // .subscribe(res =>{
+    // console.log(res)
+    // this.editTeamMemberForm.setValue({
+    //   Name: res['Name'],
+    //   Surname: res['Surname'], 
+    //   PhoneNumber: res['PhoneNumber'], 
+    //   Email: res['Email'],
+    //   Role: res['Role']
+    // })
+    // });
   }
 
   get errorControl() {
     return this.editTeamMemberForm.controls;
   }
+  async updateTeamMember(id, data){
 
+    this.teamMemberService.updateTeamMember(this.id,this.data).subscribe(response => {
+      console.log(response);
+      //this.data = response;
+      //this.router.navigate(['student-list']);
+      
+    })
+  }
   back(){
     this.router.navigate(['tabs/search/team-member', this.data]);
   }

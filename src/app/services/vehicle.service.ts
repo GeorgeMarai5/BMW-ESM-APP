@@ -60,9 +60,9 @@ getVehicle(id): Observable<Vehicle> {
 }
 
 // Update item by id
-updateVehicle(item): Observable<Vehicle> {
+updateVehicle(id, item): Observable<Vehicle> {
   return this.httpClient
-    .put<Vehicle>(this.apiUrl + '/api/Vehicle/UpdateVehicle' + '?' + item, this.httpOptions)
+    .put<Vehicle>(this.apiUrl + '/api/Vehicle/UpdateVehicle' + id, item, this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError)

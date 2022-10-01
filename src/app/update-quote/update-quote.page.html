@@ -16,7 +16,7 @@
   <div class="contents">
     <ion-title><h1>Update Quote</h1></ion-title>
     <br>
-    <form [formGroup]="editquoteForm"  >
+    <form>
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -82,7 +82,7 @@
             <ion-button expand="block" (click)="back()">Back</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button type="submit" class="light-Btn" expand="block">Update Quote</ion-button>
+            <ion-button type="submit" class="light-Btn" expand="block" (click)="updateQuote(this.id, this.data)">Update Quote</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

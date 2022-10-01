@@ -8,6 +8,8 @@ import { DatePipe } from '@angular/common';
 import { ToastController } from '@ionic/angular';
 import { TeamService } from '../services/team.service';
 import { VehicleService } from 'app/models/VehicleService';
+import { Team } from 'app/models/Team';
+import { ServiceType } from 'app/models/ServiceType';
 
 @Component({
   selector: 'app-create-service',
@@ -23,16 +25,20 @@ export class CreateServicePage implements OnInit {
   serviceForm: FormGroup;
   searchTerm: string;
   deleteModal: HTMLElement;
-  isSubmitted = false;
+  //isSubmitted = false;
   data: any;
-  today = new Date();
+  TeamData:any;
+  //today = new Date();
   id :any;
-  pipe = new DatePipe('en-US');
-
+  //pipe = new DatePipe('en-US');
+  team: Team;
+  type: ServiceType;
+/*
   changeFormat(today){
     let ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
     console.log(this.today);
   }
+  */
 
   constructor(private route: ActivatedRoute, 
     public router: Router, 
@@ -43,8 +49,11 @@ export class CreateServicePage implements OnInit {
     public toastCtrl: ToastController, 
     private teamservice: TeamService) {
 
-      service = {} as ServiceService;
-      this.data = new VehicleService();
+      //service = {} as ServiceService;
+      //this.data = new VehicleService();
+      teamservice = {} as TeamService;
+      this.type = new ServiceType();
+      this.team = new Team();
     /*  
     this.route.params.subscribe(params => {
       this.data = params.id;
@@ -68,28 +77,47 @@ export class CreateServicePage implements OnInit {
   }
 
   ngOnInit() {
+
     /*
+   
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
+*/
+    
+this.getTeam();
 
-    this.teamservice.getServiceType(this.id).subscribe(response => {
-      console.log(response);
-      this.data = response;
-    })
+this.getType();
+    
 
-    this.teamservice.getTeamList().subscribe(response => {
-      console.log(response);
-      this.data = response;
-
-    })
-
-    //this.serviceForm.setValue({TeamName: '', ServiceTypeName: ''});
-    */
+   
   }
+
+async getTeam(){
+
+  this.teamservice.getTeamList().subscribe(response => {
+    console.log(response);
+    this.TeamData = response;
+
+  });
+
+}
+
+async getType(){
+
+  this.teamservice.getServiceTypeList().subscribe(response => {
+    console.log(response);
+    this.data = response;
+  })
+}
+
+
+
+
+
 
   get errorControl() {
     return this.serviceForm.controls;

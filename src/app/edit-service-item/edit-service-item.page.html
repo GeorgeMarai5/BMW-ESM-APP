@@ -18,7 +18,7 @@
             <h1>Edit Service Item</h1>
         </ion-title>
 
-        <form [formGroup]="editItemForm" (ngSubmit)="submitForm()" novalidate>
+        <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -56,7 +56,7 @@
                         <ion-button (click)="back()" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" type="submit" expand="block">Submit</ion-button>
+                        <ion-button class="light-Btn" type="submit" expand="block" (click)="updateServiceItem(this.id, this.data)">Submit</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

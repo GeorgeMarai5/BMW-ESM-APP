@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ServiceService } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { VehicleService } from 'app/models/VehicleService';
 
 @Component({
   selector: 'app-update-service',
@@ -14,48 +15,54 @@ import { ToastController } from '@ionic/angular';
 
 export class UpdateServicePage implements OnInit {
 
-  services: ServiceService;
   dealerships = [];
   teams = [];
   serviceTypes = [];
-  service = {};
+  service: VehicleService;
   editserviceForm: FormGroup;
   isSubmitted = false;
   data: any;
+  id: any;
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private activatedRoute: ActivatedRoute, 
     public fb: FormBuilder, 
     public authService: AuthService, 
     public _service: ServiceService,
     public router: Router, 
     public toastCtrl: ToastController) {
       
-      this.route.params.subscribe(params => {
-          this.data = params.id;
-      });
-      this.editserviceForm = new FormGroup({
-        DealershipName: new FormControl('', Validators.required),
-        TeamName: new FormControl('', Validators.required),
-        ServiceTypeName: new FormControl('', Validators.required)
-      });
+      // this.route.params.subscribe(params => {
+      //     this.data = params.id;
+      // });
+      // this.editserviceForm = new FormGroup({
+      //   DealershipName: new FormControl('', Validators.required),
+      //   TeamName: new FormControl('', Validators.required),
+      //   ServiceTypeName: new FormControl('', Validators.required)
+      // });
+      _service = {} as ServiceService;
+      this.service = new VehicleService();
+  
+      this.activatedRoute.params.subscribe(params => {
+        this.id = params.id;
+    });
 
   }
 
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.editserviceForm.valid){
-      return false;
-    }
-    else{
-      const service = {
-        DealershipName: this.editserviceForm.get('DealershipName').value,
-        TeamName: this.editserviceForm.get('TeamName').value,
-        ServiceTypeName: this.editserviceForm.get('ServiceTypeName').value
-      }
-      this._service.updateService(this.data, service)
-      this.presentToast();
-    }
-    this.router.navigate(['/tabs/view/service', this.data]);
+    // this.isSubmitted = true;
+    // if(!this.editserviceForm.valid){
+    //   return false;
+    // }
+    // else{
+    //   const service = {
+    //     DealershipName: this.editserviceForm.get('DealershipName').value,
+    //     TeamName: this.editserviceForm.get('TeamName').value,
+    //     ServiceTypeName: this.editserviceForm.get('ServiceTypeName').value
+    //   }
+    //   this._service.updateService(this.data, service)
+    //   this.presentToast();
+    // }
+    
   }
 
   ngOnInit() {
@@ -77,7 +84,14 @@ export class UpdateServicePage implements OnInit {
     })
     });*/
   }
+  async updateService(id, data){
 
+    this._service.updateService(this.id,this.data).subscribe(response => {
+      console.log(response);
+    })
+    this.router.navigate(['/tabs/view/service', this.data]);
+    await this.presentToast();
+  }
   back(){
     this.router.navigate(['tabs/view/service', this.data]);
   }

@@ -21,32 +21,32 @@ export class UpgradeMaintenancePlanPage implements OnInit {
   upgradePlanForm: FormGroup;
   isSubmitted = false;
   data: any;
-
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public planService: MaintenancePlanService, 
+id: any;
+  constructor(private activatedRoute: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public planService: MaintenancePlanService, 
     public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
-    this.route.params.subscribe(params => {
-      this.data = params.id;
-    });
+    // this.route.params.subscribe(params => {
+    //   this.data = params.id;
+    // });
 
-    this.upgradePlanForm = new FormGroup({
-      PlanName: new FormControl('', Validators.required),
-      NewPlanName: new FormControl('', Validators.required)
-    });
+    // this.upgradePlanForm = new FormGroup({
+    //   PlanName: new FormControl('', Validators.required),
+    //   NewPlanName: new FormControl('', Validators.required)
+    // });
   }
 
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.upgradePlanForm.valid){
-      return false;
-    }
-    else{
-      const maintenanceplan = {
-        NewPlanName: this.upgradePlanForm.get('NewPlanName').value
-      }
+    // this.isSubmitted = true;
+    // if(!this.upgradePlanForm.valid){
+    //   return false;
+    // }
+    // else{
+    //   const maintenanceplan = {
+    //     NewPlanName: this.upgradePlanForm.get('NewPlanName').value
+    //   }
 
-      this.planService.updateMaintenancePlan(this.data, maintenanceplan)
-      this.presentToast();
-    }
+    //   this.planService.updateMaintenancePlan(this.data, maintenanceplan)
+    //   this.presentToast();
+    // }
 
     this.router.navigate(['/tabs/view/maintenanceplan', this.data]);
 
@@ -61,7 +61,13 @@ export class UpgradeMaintenancePlanPage implements OnInit {
     //   })
     // });
   }
+  async updateMaintenancePlan(id, data){
 
+    this.planService.updateMaintenancePlan(this.id,this.data).subscribe(response => {
+      console.log(response);
+      
+    })
+  }
   back(){
     this.router.navigate(['tabs/view/maintenanceplan', this.data]);
   }

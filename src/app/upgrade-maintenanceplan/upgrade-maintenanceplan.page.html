@@ -18,7 +18,7 @@
             <h1>Upgrade Maintenance Plan</h1>
         </ion-title>
 
-        <form [formGroup]="upgradePlanForm" (ngSubmit)="submitForm()" novalidate>
+        <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -49,7 +49,7 @@
                         <ion-button (click)="back()" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" type="submit" expand="block">Upgrade</ion-button>
+                        <ion-button class="light-Btn" type="submit" expand="block" click()="updateMaintenancePlan()">Upgrade</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
