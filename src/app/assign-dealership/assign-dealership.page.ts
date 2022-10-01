@@ -22,6 +22,7 @@ assignDealershipForm: FormGroup;
 isSubmitted = false;
 data: any;
 ad: any;
+adID: string;
 dealership: Dealership;
 address: Address;
 
@@ -55,9 +56,18 @@ else{
   }
 
    async createDealership(){
-
-    
+//this.data.addressId.toString() = this.ad.addressId.toString();
+this.addresservice.AddAddress(this.ad).subscribe(response => {
+  //this.adID = this.addresservice.getItem(this.ad.addressId) 
+  //this.ad.addressId = this.adID;
+  console.log(response);
+  console.log(response.toString("addressId"));
+});
+//this.data.addressId = this.adID;
+//this.adID = this.addresservice.getItem(this.ad.addressId) 
     this.dealershipservice.createDealership(this.data).subscribe(response => {
+     //this.adID = this.addresservice.getItem(this.ad.addressId) 
+     
       console.log(response);
       
     });

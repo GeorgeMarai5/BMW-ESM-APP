@@ -70,6 +70,15 @@ updateAddress(id, item): Observable<Address> {
     .put<Address>(this.apiUrl + '/' + id, JSON.stringify(item), this.httpOptions)
 }
 
+getItem(id): Observable<Address> {
+     return this.httpClient
+       .get<Address>(this.apiUrl  + '/' + id)
+       .pipe(
+         retry(2),
+         catchError(this.handleError)
+       )
+   }
+
 deleteAddress(id) {
       return this.httpClient
    .delete<Address>(this.apiUrl + '/' + id, this.httpOptions)
