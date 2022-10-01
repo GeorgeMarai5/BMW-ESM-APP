@@ -34,28 +34,28 @@ export class SearchServicePage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-    this.serviceForm = this.fb.group({
-      ServiceID: ['', [Validators.required]],
-      VINNumber: ['', [Validators.required]],
-      ServiceType: ['', [Validators.required]],
-      Date: ['', [Validators.required]]
-    });
+    // this.serviceForm = this.fb.group({
+    //   ServiceID: ['', [Validators.required]],
+    //   VINNumber: ['', [Validators.required]],
+    //   ServiceType: ['', [Validators.required]],
+    //   Date: ['', [Validators.required]]
+    // });
     
-    this._service.getServices().subscribe(data => {
-      this.serviceList = data.map(e => {
+    // this._service.getServices().subscribe(data => {
+    //   this.serviceList = data.map(e => {
 
-        return {
-          id: e.payload.doc.id,
-          ServiceID: e.payload.doc.data()['ServiceID'],
-          VINNumber: e.payload.doc.data()['VINNumber'],
-          ServiceTypeName: e.payload.doc.data()['ServiceTypeName'],
-          Date: e.payload.doc.data()['Date']
+    //     return {
+    //       id: e.payload.doc.id,
+    //       ServiceID: e.payload.doc.data()['ServiceID'],
+    //       VINNumber: e.payload.doc.data()['VINNumber'],
+    //       ServiceTypeName: e.payload.doc.data()['ServiceTypeName'],
+    //       Date: e.payload.doc.data()['Date']
 
-        };
-      })
-      console.log(this.serviceList);
+    //     };
+    //   })
+    //   console.log(this.serviceList);
 
-    });
+    // });
   }
   
   async cancelService(id){

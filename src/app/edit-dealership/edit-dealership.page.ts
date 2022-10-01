@@ -26,32 +26,38 @@ export class EditDealershipPage implements OnInit {
     public authService: AuthService, 
     public dealershipService: DealershipService, 
     public router: Router, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public activatedRoute: ActivatedRoute) {
       
-      this.route.params.subscribe(params => {
-        this.dealership = params['id'];
-      });
-      this.editDealershipForm = new FormGroup({
-        dealershipName: new FormControl('', Validators.required),
-        address: new FormControl('', Validators.required)
-      })
+      // this.route.params.subscribe(params => {
+      //   this.dealership = params['id'];
+      // });
+      // this.editDealershipForm = new FormGroup({
+      //   dealershipName: new FormControl('', Validators.required),
+      //   address: new FormControl('', Validators.required)
+      // })
+dealershipService = {} as DealershipService;
+this.dealership = new Dealership();
 
-  }
+this.activatedRoute.params.subscribe(params => {
+  this.id = params.id;
 
-  submitForm(){
-    this.isSubmitted = true;
-    if(!this.editDealershipForm.valid){
-      return false;
+  })
     }
-    else{
-        const dealership = {
-          DealershipName: this.editDealershipForm.get('dealershipName').value,
-          AddressName: this.editDealershipForm.get('address').value
-        }
-        this.dealershipService.updateDealership(this.id)
-        this.presentToast();
-      }
-      this.router.navigate(['/tabs/search/dealership', this.data]);
+  submitForm(){
+    // this.isSubmitted = true;
+    // if(!this.editDealershipForm.valid){
+    //   return false;
+    // }
+    // else{
+    //     const dealership = {
+    //       DealershipName: this.editDealershipForm.get('dealershipName').value,
+    //       AddressName: this.editDealershipForm.get('address').value
+    //     }
+    //     this.dealershipService.updateDealership(this.id)
+    //     this.presentToast();
+    //   }
+    //   this.router.navigate(['/tabs/search/dealership', this.data]);
   }
 
   ngOnInit() {
@@ -62,15 +68,23 @@ export class EditDealershipPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.dealershipService.getDealership(this.data)
-    .subscribe(res =>{
-      console.log(res)
-      this.editDealershipForm.setValue({
-        DealershipName: res['dealershipName'],
-        AddressName: res['address']
-      })
-    });
+    // this.dealershipService.getDealership(this.data)
+    // .subscribe(res =>{
+    //   console.log(res)
+    //   this.editDealershipForm.setValue({
+    //     DealershipName: res['dealershipName'],
+    //     AddressName: res['address']
+    //   })
+    // });
   }
+
+
+async updateDealership(id, data){
+  this.dealershipService.updateDealership(this.id,this.data).subscribe(response => {
+    console.log(response);
+    
+  })
+}
 
   get errorControl() {
     return this.editDealershipForm.controls;

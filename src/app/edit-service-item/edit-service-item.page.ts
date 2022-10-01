@@ -18,40 +18,52 @@ export class EditServiceItemPage implements OnInit {
   editItemForm: FormGroup;
   isSubmitted = false;
   data: any;
+  id: any;
+  
 
   constructor(private route: ActivatedRoute, 
     public fb: FormBuilder, 
     public authService: AuthService, 
-    public service: ServiceItemService,  
+    public _service: ServiceItemService,  
     public router: Router, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public activatedRoute: ActivatedRoute) {
 
-      this.route.params.subscribe(params => {
-          this.data = params.id;
-      });
-    this.editItemForm = new FormGroup({
-      itemName: new FormControl('', Validators.required),
-      itemDescription: new FormControl('', Validators.required)
-    })
+    //   this.route.params.subscribe(params => {
+    //       this.data = params.id;
+    //   });
+    // this.editItemForm = new FormGroup({
+    //   itemName: new FormControl('', Validators.required),
+    //   itemDescription: new FormControl('', Validators.required)
+    // })
+
+     _service = {} as ServiceItemService;
+     this.serviceItem = new ServiceItem();
+ 
+  
+ 
+     this.activatedRoute.params.subscribe(params => {
+       this.id = params.id;
+   });
     
   }
 
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.editItemForm.valid){
-      return false;
-    }
-    else{
-        const serviceItems = {
-          itemName: this.editItemForm.get('itemName').value,
-          itemDescription: this.editItemForm.get('itemDescription').value
-        }
+    // this.isSubmitted = true;
+    // if(!this.editItemForm.valid){
+    //   return false;
+    // }
+    // else{
+    //     const serviceItems = {
+    //       itemName: this.editItemForm.get('itemName').value,
+    //       itemDescription: this.editItemForm.get('itemDescription').value
+    //     }
 
-      this.service.updateServiceItem(this.data)
-      this.presentToast();
-    }
+    //   this.service.updateServiceItem(this.data)
+    //   this.presentToast();
+    // }
 
-      this.router.navigate(['tabs/search/service-item', this.data]);
+    // this.router.navigate(['tabs/search/service-item', this.data]);
   }
 
   ngOnInit() {
@@ -62,16 +74,22 @@ export class EditServiceItemPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.service.getServiceItem(this.data)
-    .subscribe(res =>{
-      console.log(res)
-      this.editItemForm.setValue({
-        itemName: res['itemName'], 
-        itemDescription: res['itemDescription']
-      })
-    });
+    // this.service.getServiceItem(this.data)
+    // .subscribe(res =>{
+    //   console.log(res)
+    //   this.editItemForm.setValue({
+    //     itemName: res['itemName'], 
+    //     itemDescription: res['itemDescription']
+    //   })
+    // });
   }
+  async updateServiceItem(id, data){
 
+    this._service.updateserviceItem(this.id,this.data).subscribe(response => {
+      console.log(response);
+    })
+    await this.presentToast();
+  }
   back(){
     this.router.navigate(['tabs/search/service-item', this.data]);
   }

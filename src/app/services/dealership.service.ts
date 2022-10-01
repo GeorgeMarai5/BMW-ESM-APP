@@ -60,24 +60,15 @@ export class DealershipService {
          )
      }
     
-     updateDealership(item): Observable<Dealership> {
+     updateDealership(id, item): Observable<Dealership> {
        return this.httpClient
-         .put<Dealership>(this.apiUrl + '/api/Dealerships/PutDealership' + '?' + item, this.httpOptions)
+         .put<Dealership>(this.apiUrl + '/api/Dealerships/PutDealership' + id, item, this.httpOptions)
          .pipe(
            retry(2),
            catchError(this.handleError)
          )
      }
     
-     delete(id) {
-       return this.httpClient
-         .delete<Dealership>(this.apiUrl + '/api/Fleet/DeleteFleet' + '/' + id, this.httpOptions)
-         .pipe(
-           retry(2),
-           catchError(this.handleError)
-         )
-     }
-     
   
      deleteDealership(id): Observable<{}> {
        return this.httpClient.delete(this.apiUrl + '/api/Dealerships/' +  id , this.httpOptions)

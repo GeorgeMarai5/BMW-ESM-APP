@@ -21,42 +21,43 @@ export class EditVehiclePage implements OnInit {
   editVehicleForm: FormGroup;
   isSubmitted = false;
   data: any;
+  id: any;
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private activatedRoute: ActivatedRoute, 
     public fb: FormBuilder, 
     public authService: AuthService, 
-    public service: VehicleService, 
+    public _service: VehicleService, 
     public router: Router, 
     public toastCtrl: ToastController) {
       
-    this.route.params.subscribe(params => {
-          this.data = params.id;
-      });
-    this.editVehicleForm = new FormGroup({
-      VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-      vehicleModel: new FormControl('', Validators.required),
-      Registration: new FormControl('', Validators.required),
-      warrantyPlan: new FormControl('', Validators.required)
-    })
+    // this.route.params.subscribe(params => {
+    //       this.data = params.id;
+    //   });
+    // this.editVehicleForm = new FormGroup({
+    //   VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
+    //   vehicleModel: new FormControl('', Validators.required),
+    //   Registration: new FormControl('', Validators.required),
+    //   warrantyPlan: new FormControl('', Validators.required)
+    // })
 
   }
 
   submitForm(){
-    this.isSubmitted = true;
-    if(!this.editVehicleForm.valid){
-      return false;
-    }
-    else{
+    // this.isSubmitted = true;
+    // if(!this.editVehicleForm.valid){
+    //   return false;
+    // }
+    // else{
 
-      const dealership = {
-        VIN_Number: this.editVehicleForm.get('VINNum').value,
-        VehicleModel: this.editVehicleForm.get('vehicleModel').value,
-        Registration: this.editVehicleForm.get('Registration').value,
-        Warranty: this.editVehicleForm.get('warrantyPlan').value,
-      }
-      this.service.updateVehicle(this.data)
-      this.presentToast();
-    }
+    //   const dealership = {
+    //     VIN_Number: this.editVehicleForm.get('VINNum').value,
+    //     VehicleModel: this.editVehicleForm.get('vehicleModel').value,
+    //     Registration: this.editVehicleForm.get('Registration').value,
+    //     Warranty: this.editVehicleForm.get('warrantyPlan').value,
+    //   }
+    //   this.service.updateVehicle(this.data)
+    //   this.presentToast();
+    // }
     this.router.navigate(['/tabs/view/vehicle', this.data]);
   }
 
@@ -68,22 +69,30 @@ export class EditVehiclePage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    this.service.getVehicle(this.data)
-    .subscribe(res =>{
-    console.log(res)
-    this.editVehicleForm.setValue({
-      VINNum: res['VIN_Number'],
-      vehicleModel: res['VehicleModel'], 
-      Registration: res['Registration'],
-      warrantyPlan: res['Warranty']
-    })
-    });
+    // this.service.getVehicle(this.data)
+    // .subscribe(res =>{
+    // console.log(res)
+    // this.editVehicleForm.setValue({
+    //   VINNum: res['VIN_Number'],
+    //   vehicleModel: res['VehicleModel'], 
+    //   Registration: res['Registration'],
+    //   warrantyPlan: res['Warranty']
+    // })
+    // });
   }
 
   get errorControl() {
     return this.editVehicleForm.controls;
   }
+  async update(id, data){
 
+    this._service.updateVehicle(this.id,this.data).subscribe(response => {
+      console.log(response);
+      //this.data = response;
+      //this.router.navigate(['student-list']);
+      
+    })
+  }
   back(){
     this.router.navigate(['tabs/view/vehicle', this.data]);
   }

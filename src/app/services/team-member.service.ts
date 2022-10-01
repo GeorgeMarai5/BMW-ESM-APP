@@ -55,9 +55,9 @@ export class TeamMemberService {
       )
   }
 
-  updateTeaMember(item): Observable<Employee> {
+  updateTeamMember(id, item): Observable<Employee> {
     return this.http
-      .put<Employee>(this.apiUrl + '/api/Employee/UpdateEmployee' + '?' + item, this.httpOptions)
+      .put<Employee>(this.apiUrl + '/api/Employee/UpdateEmployee' + id, item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

@@ -53,9 +53,9 @@ export class QuoteService {
       )
   }
   
-  updateQuote(item): Observable<Quote> {
+  updateQuote(id, item): Observable<Quote> {
     return this.httpClient
-      .put<Quote>(this.apiUrl + '/api/Quotes/' + '?' + item, this.httpOptions)
+      .put<Quote>(this.apiUrl + '/api/Quotes/' + id,  item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
