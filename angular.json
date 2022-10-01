@@ -1,14 +1,14 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "defaultProject": "BMW ESM",
+  "defaultProject": "app",
   "newProjectRoot": "projects",
   "projects": {
     "app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "BMW ESM",
+      "prefix": "app",
       "schematics": {},
       "architect": {
         "build": {

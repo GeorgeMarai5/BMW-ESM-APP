@@ -618,7 +618,8 @@ const routes: Routes = [
   {
     path: 'address',
     loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
-  },  {
+  },
+  {
     path: 'service-invoice',
     loadChildren: () => import('./service-invoice/service-invoice.module').then( m => m.ServiceInvoicePageModule)
   },
