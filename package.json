@@ -22,9 +22,10 @@
     "@angular/platform-browser": "~13.3.6",
     "@angular/platform-browser-dynamic": "~13.3.6",
     "@angular/router": "~13.3.6",
-    "@angular/service-worker": "~13.3.6",
+    "@angular/service-worker": "^13.3.6",
     "@awesome-cordova-plugins/file-opener": "^5.45.0",
     "@awesome-cordova-plugins/firebase": "^5.41.0",
+    "@awesome-cordova-plugins/sms": "^5.45.0",
     "@awesome-cordova-plugins/splash-screen": "^5.43.0",
     "@aws-amplify/cli": "^10.0.0",
     "@aws-amplify/ui-angular": "^2.3.15",
@@ -33,6 +34,7 @@
     "@capacitor/haptics": "1.1.4",
     "@capacitor/keyboard": "1.2.2",
     "@capacitor/status-bar": "1.0.8",
+    "@hapi/hapi": "^20.2.2",
     "@ionic-native/file-opener": "^5.36.0",
     "@ionic-native/pdf-generator": "^5.36.0",
     "@ionic-native/splash-screen": "^5.36.0",
@@ -51,6 +53,7 @@
     "cordova-plugin-file-opener2": "^3.0.5",
     "cordova-plugin-firebase": "^2.0.5",
     "cordova-plugin-splashscreen": "^6.0.1",
+    "cordova-sms-plugin": "1.0.2",
     "cors": "^2.8.5",
     "cotter": "^0.3.35",
     "express": "^4.18.1",
@@ -63,6 +66,7 @@
     "ionic": "^4.1.2",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.25",
+    "nexmo": "^2.9.1",
     "ng2-search-filter": "^0.5.1",
     "ngx-gauge": "^5.0.0",
     "node-modules": "^0.0.1",
@@ -74,6 +78,7 @@
     "sequelize-cli": "^6.5.1",
     "tedious": "^15.1.0",
     "tslib": "^2.2.0",
+    "twilio": "^3.82.1",
     "webpack": "^5.74.0",
     "zone.js": "~0.11.4"
   },
@@ -121,7 +126,8 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-sms-plugin": {}
     },
     "platforms": [
       "browser"

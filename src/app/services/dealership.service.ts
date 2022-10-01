@@ -11,7 +11,7 @@ import { Address } from 'app/models/Address';
 
 export class DealershipService {
 
- apiUrl = 'https://localhost:1433/api/Dealerships';
+ apiUrl = 'https://localhost:7163/api/Dealerships';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -32,83 +32,57 @@ export class DealershipService {
     }
     
     
-      getDealershipList(): Observable<Dealership[]> {
-        return this.httpClient.get<Dealership[]>(this.apiUrl);
-      }
     
-      getDealership(id: any): Observable<any> {
-        return this.httpClient.get(`${this.apiUrl}/${id}`);
-      }
     
-      createDealership(data: any): Observable<any> {
-        return this.httpClient.post(this.apiUrl, data);
-      }
-    
-      updateDealership(id: any, data: any): Observable<any> {
-        return this.httpClient.put(`${this.apiUrl}/${id}`, data);
-      }
-    
-      deleteDealership(id: any): Observable<any> {
-        return this.httpClient.delete(`${this.apiUrl}/${id}`);
-      }
-    
-      deleteAll(): Observable<any> {
-        return this.httpClient.delete(this.apiUrl);
-      }
-    
-      findByTitle(title: any): Observable<Dealership[]> {
-        return this.httpClient.get<Dealership[]>(`${this.apiUrl}?title=${title}`);
-      }
+     createDealership(dealership: Dealership){
+      return this.httpClient.post(this.apiUrl + '/CreateDealerships' , dealership, this.httpOptions)
     }
-  //   createDealership(Dealership: Dealership){
-  //     return this.httpClient.post(this.apiUrl + '/api/Dealerships/CreateDealerships' , Dealership , this.httpOptions)
-  //   }
 
-  //   createDealerships(Dealership: Dealership,address: Address){
-  //     return this.httpClient.post(this.apiUrl + '/api/Dealerships/CreateDealerships' , Dealership && address, this.httpOptions)
-  //   }
+     createDealerships(Dealership: Dealership,address: Address){
+       return this.httpClient.post(this.apiUrl + '/api/Dealerships/CreateDealerships' , Dealership && address, this.httpOptions)
+     }
   
-  //   getDealershipList(): Observable<Dealership> {
-  //     return this.httpClient
-  //       .get<Dealership>(this.apiUrl + '/api/Dealerships/GetAllDealerships')
-  //       .pipe(
-  //         retry(2),
-  //         catchError(this.handleError)
-  //       )
-  //   }
+     getDealershipList(): Observable<Dealership> {
+       return this.httpClient
+       .get<Dealership>(this.apiUrl + '/api/Dealerships/GetAllDealerships')
+         .pipe(
+           retry(2),
+           catchError(this.handleError)
+         )
+     }
   
-  //   getDealership(id): Observable<Dealership> {
-  //     return this.httpClient
-  //       .get<Dealership>(this.apiUrl + '/api/Dealerships/id?id=' + id)
-  //       .pipe(
-  //         retry(2),
-  //         catchError(this.handleError)
-  //       )
-  //   }
+     getDealership(id): Observable<Dealership> {
+       return this.httpClient
+         .get<Dealership>(this.apiUrl + '/api/Dealerships/id?id=' + id)
+         .pipe(
+           retry(2),
+           catchError(this.handleError)
+         )
+     }
     
-  //   updateDealership(item): Observable<Dealership> {
-  //     return this.httpClient
-  //       .put<Dealership>(this.apiUrl + '/api/Dealerships/PutDealership' + '?' + item, this.httpOptions)
-  //       .pipe(
-  //         retry(2),
-  //         catchError(this.handleError)
-  //       )
-  //   }
+     updateDealership(item): Observable<Dealership> {
+       return this.httpClient
+         .put<Dealership>(this.apiUrl + '/api/Dealerships/PutDealership' + '?' + item, this.httpOptions)
+         .pipe(
+           retry(2),
+           catchError(this.handleError)
+         )
+     }
     
-  //   /*delete(id) {
-  //     return this.httpClient
-  //       .delete<Dealership>(this.apiUrl + '/api/Fleet/DeleteFleet' + '/' + id, this.httpOptions)
-  //       .pipe(
-  //         retry(2),
-  //         catchError(this.handleError)
-  //       )
-  //   }
-  //   */
+     delete(id) {
+       return this.httpClient
+         .delete<Dealership>(this.apiUrl + '/api/Fleet/DeleteFleet' + '/' + id, this.httpOptions)
+         .pipe(
+           retry(2),
+           catchError(this.handleError)
+         )
+     }
+     
   
-  //   deleteDealership(id): Observable<{}> {
-  //     return this.httpClient.delete(this.apiUrl + '/api/Dealerships/' +  id , this.httpOptions)
-  //       .pipe(
-  //         catchError(this.handleError)
-  //       );
-  //   }
-  // }
+     deleteDealership(id): Observable<{}> {
+       return this.httpClient.delete(this.apiUrl + '/api/Dealerships/' +  id , this.httpOptions)
+         .pipe(
+           catchError(this.handleError)
+         );
+     }
+   }
