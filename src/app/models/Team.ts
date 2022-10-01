@@ -3,6 +3,6 @@ export class Team {
     TeamType: string;
     Quantity: string;
     WorkStatus: string;
-    TeamName: string;
+    teamName: string;
 }
 

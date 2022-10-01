@@ -16,14 +16,14 @@
   <div class="contents">
     <ion-title><h1>Create Service</h1></ion-title>
   
-    <form [formGroup]="serviceForm" (ngSubmit)="submitForm()" novalidate>
+    <form >
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Select Team</b></ion-label>
-              <ion-select [(ngModel)]="data.TeamName" placeholder="Select A Team..." [ngModelOptions]="{standalone: true}">
-                <ion-select-option *ngFor="let item of data">{{ item.team_Name }}</ion-select-option>
+              <ion-select [(ngModel)]="team.teamName" placeholder="Select A Team..." [ngModelOptions]="{standalone: true}">
+                <ion-select-option *ngFor="let item of data">{{ item.teamName }}</ion-select-option>
               </ion-select>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamName.errors?.required">
@@ -38,8 +38,8 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Select Service Type</b></ion-label>
-              <ion-select [(ngModel)]="data.ServiceTypeName" [ngModelOptions]="{standalone: true}" placeholder="Select Service Type...">
-                <ion-select-option *ngFor="let item of data">{{ item.type_Description }}</ion-select-option>
+              <ion-select [(ngModel)]="type.typeDescription" [ngModelOptions]="{standalone: true}" placeholder="Select Service Type...">
+                <ion-select-option *ngFor="let item of data">{{ item.typeDescription }}</ion-select-option>
               </ion-select>
             </ion-item>
             <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.ServiceTypeName.errors?.required">

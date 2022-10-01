@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Team } from '../models/Team';
 import { retry, catchError } from 'rxjs/operators';
+import {ServiceType} from '../models/ServiceType';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class TeamService {
 
  apiUrl = 'https://localhost:7163/api/Teams';
+ apiURLS = 'https://localhost:7163/api/ServiceTypes';
 
   httpOptions = {
   headers: new HttpHeaders({
@@ -47,7 +49,16 @@ export class TeamService {
   
     getTeamList(): Observable<Team> {
       return this.httpClient
-        .get<Team>(this.apiUrl + '/api/Teams/GetAll')
+        .get<Team>(this.apiUrl + '/GetAll')
+        .pipe(
+          retry(2),
+          catchError(this.handleError)
+        )
+    }
+
+    getServiceTypeList(): Observable<ServiceType> {
+      return this.httpClient
+        .get<ServiceType>(this.apiURLS + '/GetAllServiceTypes')
         .pipe(
           retry(2),
           catchError(this.handleError)
