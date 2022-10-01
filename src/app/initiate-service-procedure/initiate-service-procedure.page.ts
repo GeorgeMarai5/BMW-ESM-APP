@@ -38,11 +38,20 @@ export class InitiateServiceProcedurePage implements OnInit {
 
   constructor(public vehicleService: VehicleService , private zone: NgZone, private toastCtrl: ToastController, private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
-    private firestore: AngularFirestore,private fleetservice: FleetService,private teamservice: TeamService,private dealershipservice: DealershipService) { 
+    private firestore: AngularFirestore,
+    private fleetservice: FleetService,private teamservice: TeamService,
+    private dealershipservice: DealershipService,public activatedRoute: ActivatedRoute)
+    
+    { 
       vehicleService = {} as VehicleService;
-      fleetservice= {} as FleetService;
-      teamservice= {} as TeamService;
-      dealershipservice= {} as DealershipService;
+      this.fleetservice= {} as FleetService;
+      this.teamservice= {} as TeamService;
+      this.dealershipservice= {} as DealershipService;
+
+
+      this.activatedRoute.params.subscribe(params => {
+        this.fle = params.id;
+    });
 
       //this.data = new Team();
 
@@ -63,43 +72,29 @@ export class InitiateServiceProcedurePage implements OnInit {
 
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
-
-
-
-    this.dealershipservice.getDealershipList().subscribe(response => {
-      console.log(response);
-      this.de = response;
-    })
+   
     
-this.getFleet();
-//this.getDealership();
+    this.fleetservice.getFleet(this.fle).subscribe(response => {
+      console.log(response);
+      this.fle = response;
+    })
+
+
+this.getDealership();
 this.getTeam();
 
   }
 
-  InitiateService() {
-    console.log(this.initiateServiceForm.value);
-    this.myService.intiateService(this.initiateServiceForm.value).then(resp => {
-      this.initiateServiceForm.reset();
-      this.presentToast();
-    })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+ 
 
 
-async getFleet(){
-  this.fleetservice.getFleetList().subscribe(response => {
-    console.log(response);
-    this.fle = response;
-  })
+async getFleet(item){
+ 
+    this.fleetservice.getFleet(item.FleetID).subscribe(response => {
+      console.log(response);
+      this.data = response;
+
+    });
 
 }
 
@@ -110,7 +105,7 @@ async getDealership(){
   this.dealershipservice.getDealershipList().subscribe(response => {
     console.log(response);
     this.de = response;
-  })
+  });
 
 
 }
@@ -120,21 +115,9 @@ async getTeam(){
   this.teamservice.getTeamList().subscribe(response => {
     console.log(response);
     this.data = response;
-  })
+  });
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

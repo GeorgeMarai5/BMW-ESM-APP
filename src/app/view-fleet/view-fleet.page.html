@@ -37,7 +37,7 @@
           <ion-col>
             <ion-button class="red-Btn" (click)="deleteVehicles(data.fleetID)">Remove</ion-button>
             <ion-button class="light-Btn" [routerLink]="['/tabs/view/vehicle', data.fleetID]">View</ion-button>
-            <ion-button class="green-Btn" (click)="checkIn()" [routerLink]="['/tabs/view/service-progress', data.fleetID]">Check In</ion-button>
+            <ion-button class="green-Btn" (click)="checkIn()" [routerLink]="['tabs/initiate-service-procedure']">Check In</ion-button>
           </ion-col>
         </ion-row>
         <ion-item-divider></ion-item-divider>

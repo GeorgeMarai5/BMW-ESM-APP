@@ -18,13 +18,13 @@
       <h1>Confirm Service Details</h1>
     </ion-title>
 
-    <form [formGroup]="initiateServiceForm" novalidate>
+    <form >
       <ion-grid>
           <ion-row>
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked" >Dealership Name</ion-label>
-                  <ion-input [(ngModel)]="data.dealershipName" [ngModelOptions]="{standalone: true}" readonly="true"></ion-input>
+                  <ion-input [(ngModel)]="de.dealershipName" [ngModelOptions]="{standalone: true}" readonly="true"></ion-input>
                 </ion-item>
               </ion-col>
           </ion-row>
@@ -32,7 +32,7 @@
               <ion-col>
                 <ion-item lines="full">
                   <ion-label position="stacked">Fleet Name</ion-label>
-                  <ion-input [(ngModel)]="data.fleetName" [ngModelOptions]="{standalone: true}" readonly="true"></ion-input>
+                  <ion-input [(ngModel)]="fle.fleetName" [ngModelOptions]="{standalone: true}" readonly="true"></ion-input>
                 </ion-item>
               </ion-col>
           </ion-row>
@@ -48,7 +48,7 @@
               <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked">Service Date</ion-label>
-                    <ion-input [(ngModel)]="data.serviceData" [ngModelOptions]="{standalone: true}" readonly="true"></ion-input>
+                    <ion-input >22/05/2022</ion-input>
                   </ion-item>
               </ion-col>
           </ion-row>
@@ -62,7 +62,7 @@
                 <ion-button [routerLink]="['/tabs/search/account/employee']">Back</ion-button>
               </ion-col>
               <ion-col>
-                <ion-button class="light-Btn" [routerLink]="['/tabs/update/employee']">Initiate Service</ion-button>
+                <ion-button class="light-Btn" [routerLink]="['/tabs/view-service-progress']">Initiate Service</ion-button>
               </ion-col>
           </ion-row>
       </ion-grid>
