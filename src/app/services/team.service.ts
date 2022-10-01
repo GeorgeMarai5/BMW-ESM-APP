@@ -49,7 +49,7 @@ export class TeamService {
   
     getTeamList(): Observable<Team> {
       return this.httpClient
-        .get<Team>(this.apiUrl + '/GetAll')
+        .get<Team>(this.apiUrl + '/GetAllTeams')
         .pipe(
           retry(2),
           catchError(this.handleError)

@@ -25,11 +25,12 @@ export class CreateServicePage implements OnInit {
   serviceForm: FormGroup;
   searchTerm: string;
   deleteModal: HTMLElement;
-  isSubmitted = false;
+  //isSubmitted = false;
   data: any;
-  today = new Date();
+  TeamData:any;
+  //today = new Date();
   id :any;
-  pipe = new DatePipe('en-US');
+  //pipe = new DatePipe('en-US');
   team: Team;
   type: ServiceType;
 /*
@@ -76,6 +77,8 @@ export class CreateServicePage implements OnInit {
   }
 
   ngOnInit() {
+
+    /*
    
     if(this.authService.isLoggedIn){
       return true;
@@ -83,7 +86,7 @@ export class CreateServicePage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-
+*/
     
 this.getTeam();
 
@@ -97,7 +100,7 @@ async getTeam(){
 
   this.teamservice.getTeamList().subscribe(response => {
     console.log(response);
-    this.data = response;
+    this.TeamData = response;
 
   });
 
