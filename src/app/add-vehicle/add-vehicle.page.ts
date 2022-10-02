@@ -41,6 +41,7 @@ export class AddVehiclePage implements OnInit {
   submitForm() {
     //
   }
+  
 
   async create(){
     this.service.createVehicle(this.data).subscribe(response => {
@@ -70,9 +71,4 @@ export class AddVehiclePage implements OnInit {
     });
     toast.present();
   }
-
-  get errorControl() {
-    return this.addVehicleForm.controls;
-  }
-
 }

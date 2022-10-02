@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Console } from 'console';
 import { Dealership } from '../models/Dealership';
 import { AuthService } from '../services/auth.service';
@@ -9,6 +9,7 @@ import { ServiceService } from '../services/service.service';
 import { AddressService } from 'app/services/Address.service';
 import { DealershipService } from '../services/dealership.service';
 import { Address } from 'app/models/Address';
+import { AssignDealershipHelpComponent } from 'app/components/assign-dealership-help/assign-dealership-help.component';
 
 @Component({
    selector: 'app-assign-dealership',
@@ -31,7 +32,8 @@ public fb: FormBuilder,
 public authService: AuthService,
 public service: ServiceService, public router: Router, 
 private toastCtrl: ToastController, 
-private dealershipservice: DealershipService, private addresservice: AddressService) { 
+private dealershipservice: DealershipService, private addresservice: AddressService,
+public helpModal: ModalController) { 
 
 dealershipservice = {} as DealershipService;
 addresservice = {} as AddressService;
@@ -42,19 +44,21 @@ this.adID = new Address();
 }
  
 ngOnInit(){
-if(this.authService.isLoggedIn){
+/*if(this.authService.isLoggedIn){
 return true;
  }
 else{
  this.router.navigate(['/tabs/login']);
-}
+}*/
     
 
 }
 
-  get errorControl() {
-    return this.assignDealershipForm.controls;
-  }
+async showHelp(){
+  const modal = await this.helpModal.create({
+    component: AssignDealershipHelpComponent});
+    return await modal.present();
+}
 
    async createDealership(){
 //this.data.addressId.toString() = this.ad.addressId.toString();

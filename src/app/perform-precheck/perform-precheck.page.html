@@ -16,6 +16,7 @@
 <ion-content class="ion-margin">
   <div class="contents">
     <ion-title><h1>Precheck</h1></ion-title>
+    <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
     <form [formGroup]="selectChecksForm" (ngSubmit)="submitForm()" novalidate>
       <ion-grid>
         <ion-row>

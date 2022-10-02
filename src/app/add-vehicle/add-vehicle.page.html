@@ -19,22 +19,23 @@
         <ion-title>
             <h1>Add Vehicle</h1>
         </ion-title>
+        
 
-        <form [formGroup]="addVehicleForm" (ngSubmit)="submitForm()" novalidate>
+        <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>VIN Number</b></ion-label>
-                            <ion-input [(ngModel)]="data.VINNum" placeholder="Enter VIN Number..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #vin="ngModel" [(ngModel)]="data.VINNum" placeholder="Enter VIN Number..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.required">
-              VIN Number is required.
-            </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.min || 
-            errorControl.VINNum.errors?.max || !errorControl.VINNum.value.trim()">
-              VIN Number is invalid.
-            </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && vin.errors?.required">
+                            VIN Number is required.
+                        </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && vin.errors?.min || 
+                            vin.errors?.max">
+                            VIN Number is invalid.
+                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -45,23 +46,17 @@
                                 <ion-select-option *ngFor="let item of models">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
-              Vehicle Model is required.
-            </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Registration</b></ion-label>
-                            <ion-input [(ngModel)]="data.Registration" placeholder="Enter Registration..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #registration="ngModel" [(ngModel)]="data.Registration" placeholder="Enter Registration..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.required">
-              Registration is required.
-            </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
-              Registration is invalid.
-          </span>
+                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && registration.errors?.required">
+                            Registration is required.
+                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -72,9 +67,6 @@
                                 <ion-select-option *ngFor="let item of plans">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.required">
-              Warranty Plan is required.
-            </span>
                     </ion-col>
                 </ion-row>
                 <br/>

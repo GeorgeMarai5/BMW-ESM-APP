@@ -3,9 +3,10 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Fleet } from '../models/Fleet';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CreateFleetHelpComponent } from 'app/components/create-fleet-help/create-fleet-help.component';
 
 @Component({
   selector: 'app-create-fleet',
@@ -26,7 +27,8 @@ export class CreateFleetPage implements OnInit {
     public authService: AuthService, 
     public fb: FormBuilder, 
     private fleetservice: FleetService, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) {
 
 
 
@@ -65,7 +67,11 @@ export class CreateFleetPage implements OnInit {
   }
   */
 
-
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: CreateFleetHelpComponent});
+      return await modal.present();
+  }
 
   async create(){
 

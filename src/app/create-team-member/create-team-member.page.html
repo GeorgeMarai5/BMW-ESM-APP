@@ -20,19 +20,16 @@
             <h1>Create Team Member</h1>
         </ion-title>
 
-        <form [formGroup]="createTeamMemberForm" (ngSubmit)="submitForm()" novalidate>
+        <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Name</b></ion-label>
-                            <ion-input [(ngModel)]="data.employeeName" placeholder="Enter Employee Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #employeeName="ngModel" [(ngModel)]="data.employeeName" placeholder="Enter Employee Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color=" danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.employeeName.errors?.required ">
+                        <span color=" danger " style="padding-top: 2vh; " *ngIf="isSubmitted && employeeName.errors?.required ">
                             Employee Name is required.
-                        </span>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.employeeName.value.trim() ">
-                            Employee Name is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
@@ -40,13 +37,10 @@
                     <ion-col>
                         <ion-item lines="full ">
                             <ion-label position="stacked "><b>Surname</b></ion-label>
-                            <ion-input [(ngModel)]="data.employeeSurname" placeholder="Enter Employee Surname..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #employeeSurname="ngModel" [(ngModel)]="data.employeeSurname" placeholder="Enter Employee Surname..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.employeeSurname.errors?.required ">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && employeeSurname.errors?.required ">
                             Employee Surname is required.
-                        </span>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.employeeSurname.value.trim() ">
-                            Employee Surname is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
@@ -54,13 +48,10 @@
                     <ion-col>
                         <ion-item lines="full ">
                             <ion-label position="stacked "><b>Phone Number</b></ion-label>
-                            <ion-input [(ngModel)]="data.phoneNumber" placeholder="Enter Phone Number..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #phoneNumber="ngModel" [(ngModel)]="data.phoneNumber" placeholder="Enter Phone Number..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNumber.errors?.required ">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && phoneNumber.errors?.required ">
                             Phone Number is required.
-                        </span>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.phoneNumber.value.trim() ">
-                            Phone Number is invalid.
                         </span>
                     </ion-col>
                 </ion-row>
@@ -68,13 +59,10 @@
                     <ion-col>
                         <ion-item lines="full ">
                             <ion-label position="stacked "><b>Email</b></ion-label>
-                            <ion-input [(ngModel)]="data.emailAddress" placeholder="Enter Email..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #emailAddress="ngModel" [(ngModel)]="data.emailAddress" placeholder="Enter Email..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.emailAddress.errors?.required ">
+                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && emailAddress.errors?.required ">
                             Email Address is required.
-                        </span>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.emailAddress.value.trim() ">
-                            Email Address is invalid.
                         </span>
                     </ion-col>
                 </ion-row>

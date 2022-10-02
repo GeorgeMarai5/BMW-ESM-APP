@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
 import { Team } from '../models/Team';
 import { retry, catchError } from 'rxjs/operators';
 import {ServiceType} from '../models/ServiceType';
+import { TeamType } from '../models/TeamType';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,8 @@ import {ServiceType} from '../models/ServiceType';
 
 export class TeamService {
 
- apiUrl = 'https://localhost:7163/api/Teams';
- apiURLS = 'https://localhost:7163/api/ServiceTypes';
+ apiTeamUrl = 'https://localhost:7163/api/Teams';
+ apiServiceUrl = 'https://localhost:7163/api/ServiceTypes';
 
   httpOptions = {
   headers: new HttpHeaders({
@@ -41,7 +42,7 @@ export class TeamService {
   
   
     createTeam(Team: Team){
-      return this.httpClient.post(this.apiUrl + '/api/Teams/Create' , Team, this.httpOptions)
+      return this.httpClient.post(this.apiTeamUrl + '/api/Teams/Create' , Team, this.httpOptions)
   
   
     }
@@ -49,7 +50,7 @@ export class TeamService {
   
     getTeamList(): Observable<Team> {
       return this.httpClient
-        .get<Team>(this.apiUrl + '/GetAllTeams')
+        .get<Team>(this.apiTeamUrl + '/GetAllTeams')
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -58,7 +59,7 @@ export class TeamService {
 
     getServiceTypeList(): Observable<ServiceType> {
       return this.httpClient
-        .get<ServiceType>(this.apiURLS + '/GetAllServiceTypes')
+        .get<ServiceType>(this.apiServiceUrl + '/GetAllServiceTypes')
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -69,7 +70,7 @@ export class TeamService {
     // Get single student data by ID
     getTeam(id): Observable<Team> {
       return this.httpClient
-        .get<Team>(this.apiUrl + '/api/Teams/' + id)
+        .get<Team>(this.apiTeamUrl + '/api/Teams/' + id)
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -79,7 +80,7 @@ export class TeamService {
     // Update item by id
     updateteam(item): Observable<Team> {
       return this.httpClient
-        .put<Team>(this.apiUrl + '/api/Teams/' + item, this.httpOptions)
+        .put<Team>(this.apiTeamUrl + '/api/Teams/' + item, this.httpOptions)
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -88,7 +89,7 @@ export class TeamService {
   
     updateTeam(id, item): Observable<Team> {
       return this.httpClient
-        .put<Team>(this.apiUrl + '/api/Teams/' + id, item, this.httpOptions)
+        .put<Team>(this.apiTeamUrl + '/api/Teams/' + id, item, this.httpOptions)
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -98,7 +99,7 @@ export class TeamService {
     // Delete item by id
     delete(id) {
       return this.httpClient
-        .delete<Team>(this.apiUrl + '/api/Teams' + '/' + id, this.httpOptions)
+        .delete<Team>(this.apiTeamUrl + '/api/Teams' + '/' + id, this.httpOptions)
         .pipe(
           retry(2),
           catchError(this.handleError)
@@ -109,11 +110,10 @@ export class TeamService {
   
     deleteTeam(id): Observable<{}> {
     
-      return this.httpClient.delete(this.apiUrl + '/api/Teams/' +  id , this.httpOptions)
+      return this.httpClient.delete(this.apiTeamUrl + '/api/Teams/' +  id , this.httpOptions)
         .pipe(
           catchError(this.handleError)
         );
     }
   
-
 }
