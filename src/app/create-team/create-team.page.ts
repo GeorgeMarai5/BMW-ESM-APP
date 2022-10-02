@@ -6,7 +6,10 @@ import { TeamService } from '../services/team.service';
 import { ToastController } from '@ionic/angular';
 import { Team } from '../models/team';
 import { Observable } from 'rxjs';
-
+import { TeamType } from 'app/models/TeamType';
+import { TeamTypeService } from 'app/services/teamtype.service';
+import { DealershipService } from 'app/services/dealership.service';
+import { Dealership } from 'app/models/Dealership';
 @Component({
   selector: 'app-create-team',
   templateUrl: './create-team.page.html',
@@ -15,72 +18,60 @@ import { Observable } from 'rxjs';
 export class CreateTeamPage implements OnInit {
 
   isSubmitted = false;
-  teamTypes = [];
   TeamList = [];
-  dealerships = [];
   createTeamForm: FormGroup;
-  AddressID: string;
-  team: Team;
+  team: Team;  
+  dealership: Dealership;
+  teamType: TeamType;
   data: any;
 
   constructor(public authService: AuthService, 
     public fb: FormBuilder, 
     private teamService: TeamService, 
+    private dealershipService: DealershipService,
+    private teamtypeService: TeamTypeService,
     public router: Router,
     public route: ActivatedRoute, 
-    public toastCtrl: ToastController) {  
-
+    public toastCtrl: ToastController) 
+    {  
       teamService = {} as TeamService;
-      this.data = new Team();
-    /*
-    this.route.params.subscribe(params => {
-      this.data = params.id;
-    });
-    this.createTeamForm = new FormGroup({
-      TeamName: new FormControl('', Validators.required),
-      Dealership: new FormControl('', Validators.required),
-      TeamType: new FormControl('', Validators.required)
-    });
-    */
-  }
+      dealershipService = {} as DealershipService;
+      teamtypeService = {} as TeamTypeService;
+    }
 
   submitForm(){
     this.teamService.createTeam(this.data).subscribe(response => {
       console.log(response);
-      //this.router.navigate(['student-list']);
     });
   
     this.presentToast();
-    
-    /*
-    this.isSubmitted = true;
-    if(!this.createTeamForm.valid){
-      return false;
-    }
-    else{
-        const Team = {
-          TeamName: this.createTeamForm.get('TeamName').value,
-          Dealership: this.createTeamForm.get('Dealership').value,
-          TeamType: this.createTeamForm.get('TeamType').value
-        }
-        this.teamService.createTeam(Team)
-        this.presentToast()
-      }
-      this.router.navigate(['/tabs/create/service']);
-      */
   }
 
-  /*
+  async getDealership(){
+
+    this.dealershipService.getDealershipList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+  
+    });
+  }
+  
+  async getTeamType(){
+  
+    this.teamtypeService.getTeamTypeList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+  
   async create(){
 
     this.teamService.createTeam(this.data).subscribe(response => {
       console.log(response);
-      //this.router.navigate(['student-list']);
     });
   
     this.presentToast();
-  
-  }*/
+  }
 
   ngOnInit() {
     /*
@@ -91,6 +82,10 @@ export class CreateTeamPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
     */
+
+    this.getDealership();
+    this.getTeamType();
+
   }
 
   async presentToast() {

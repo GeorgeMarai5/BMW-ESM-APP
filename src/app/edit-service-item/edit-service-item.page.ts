@@ -67,29 +67,32 @@ export class EditServiceItemPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
+    /*if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
+    */
 
-    // this.service.getServiceItem(this.data)
-    // .subscribe(res =>{
-    //   console.log(res)
-    //   this.editItemForm.setValue({
-    //     itemName: res['itemName'], 
-    //     itemDescription: res['itemDescription']
-    //   })
-    // });
+   this.getItemID();
   }
-  async updateServiceItem(id, data){
+
+  async getItemID(){
+    this._service.getServiceItem(this.id).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+
+  async updateServiceItem(){
 
     this._service.updateserviceItem(this.id,this.data).subscribe(response => {
       console.log(response);
     })
     await this.presentToast();
   }
+
   back(){
     this.router.navigate(['tabs/search/service-item', this.data]);
   }

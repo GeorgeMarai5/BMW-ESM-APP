@@ -19,7 +19,7 @@ export class SearchServiceItemPage implements OnInit {
   searchTerm: string;
   id: any;
   data: any;
-  serviceItemID: string;
+  //serviceItemID: string;
 
   constructor(public authService: AuthService, private service: ServiceItemService, public fb: FormBuilder, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
@@ -95,7 +95,7 @@ export class SearchServiceItemPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteServiceItem(item.serviceItemID).subscribe(Response => {
+          this.service.deleteServiceItem(item.serviceItemId).subscribe(Response => {
             //Update list after delete is successful
             console.log(Response);
             this.getAllServiceItems()
