@@ -19,7 +19,7 @@
         <ion-title>
             <h1>Create Quote</h1>
         </ion-title>
-        <form [formGroup]="createQuoteForm" (ngSubmit)="create()">
+        <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -81,7 +81,7 @@
                         <ion-button type="submit" expand="block" [routerLink]="[ '/tabs/home'] ">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" type="submit" [routerLink]="[ '/tabs/search/quote'] " expand="block ">Create</ion-button>
+                        <ion-button class="light-Btn" type="submit" [routerLink]="[ '/tabs/search/quote'] " expand="block" (click)="createQuote()">Create</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

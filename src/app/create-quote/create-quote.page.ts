@@ -65,7 +65,7 @@ export class CreateQuotePage implements OnInit {
 
 
 
-  async create(){
+  async createQuote(){
 
   this.quoteservice.createQuote(this.data).subscribe(response => {
     console.log(response);

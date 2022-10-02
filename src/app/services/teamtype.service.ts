@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 
 export class TeamTypeService {
 
- apiUrl = 'https://localhost:7163/';
+ apiUrl = 'https://localhost:7163';
 
   httpOptions = {
   headers: new HttpHeaders({

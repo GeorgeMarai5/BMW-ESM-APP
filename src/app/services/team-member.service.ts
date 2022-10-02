@@ -9,7 +9,7 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class TeamMemberService {
 
-  apiUrl = 'https://localhost:7292';
+  apiUrl = 'https://localhost:7163';
   httpClient: any;
 
   constructor(private http: HttpClient) { 
