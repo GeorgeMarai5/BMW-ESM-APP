@@ -24,6 +24,7 @@ export class SearchVehiclePage implements OnInit {
   vehicleForm: FormGroup;
   searchTerm: string;
   data:any;
+  Model: any;
   constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
     
@@ -43,6 +44,7 @@ export class SearchVehiclePage implements OnInit {
   ngOnInit() {
 
     this.getallVehicles()
+    this.getModel()
     /*
     if(this.authService.isLoggedIn){
       return true;
@@ -76,9 +78,26 @@ export class SearchVehiclePage implements OnInit {
   getallVehicles(){
 
     this.service.getVehicleList().subscribe(response => {
+      
       console.log(response);
-      this.data = response;
+      this.data = response ;
     })
+
+  
+  }
+
+  getModel(){
+
+    this.service.getVehicleModelList().subscribe(response => {
+      console.log(response);
+      this.Model = response;
+
+    
+
+
+
+    })
+
   }
 
   async removeVehicle(item){
