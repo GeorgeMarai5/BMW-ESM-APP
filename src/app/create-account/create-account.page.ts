@@ -5,10 +5,11 @@ import { AuthService } from "../services/auth.service";
 import { UserService, User } from '../services/user.service';
 import { getAuth } from "firebase/auth";
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { ClientService } from 'app/services/Client.service';
 import { EmployeeService } from 'app/services/Employee.service';
 import { Clients } from 'app/models/Clients';
+import { CreateAccountHelpComponent } from 'app/components/create-account-help/create-account-help.component';
 
 @Component({
   selector: 'app-create-account',
@@ -22,7 +23,7 @@ export class CreateAccountPage implements OnInit {
   client: Clients;
   data: any;
 
-  constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public userService: UserService, 
+  constructor(public fb: FormBuilder, public authService: AuthService, public router: Router, public userService: UserService, public helpModal: ModalController,
     public firestore: AngularFirestore, public toastCtrl: ToastController, public clientService: ClientService, public employeeService: EmployeeService) {
     this.createAccountForm = new FormGroup({
       accountType: new FormControl('', Validators.required),
@@ -53,6 +54,12 @@ export class CreateAccountPage implements OnInit {
         }
       });
     }
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: CreateAccountHelpComponent});
+      return await modal.present();
   }
 
   passwordMatchingValidatior: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {

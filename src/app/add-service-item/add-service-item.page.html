@@ -18,19 +18,19 @@
             <h1>Add Service Item</h1>
         </ion-title>
 
-        <form [formGroup]="addItemForm" (ngSubmit)="submitForm()" novalidate>
+        <form>
+            <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Item Name</ion-label>
-                            <ion-input [(ngModel)]="data.itemName" placeholder="Enter Item Name..." [ngModelOptions]="{standalone: true}"></ion-input>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.itemName.errors?.required">
+                            <ion-input #itemName="ngModel" [(ngModel)]="data.itemName" placeholder="Enter Item Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <div *ngIf="itemName.invalid && (itemName.dirty || itemName.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="itemName.errors?.['required']">
                                 Item Name is required.
                               </span>
-                              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.itemName.value.trim()">
-                                Item Name is invalid.
-                            </span>
+                            </div>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -38,13 +38,12 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Description</ion-label>
-                            <ion-input [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.itemDescription.errors?.required">
-                                Item Description is required.
-                              </span>
-                              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.itemDescription.value.trim()">
-                                Item Description is invalid.
-                            </span>
+                            <ion-input #description="ngModel" [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert">
+                                <span color="danger" style="padding-top: 2vh; " *ngIf="description.errors?.required">
+                                    Item Description is required.
+                                </span>
+                            </div>
                         </ion-item>
                     </ion-col>
                 </ion-row>

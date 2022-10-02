@@ -5,7 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ServiceItem } from 'app/models/ServiceItem';
 import { ServiceItemService } from 'app/services/service-item.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { AddServiceItemHelpComponent } from 'app/components/add-service-item-help/add-service-item-help.component';
 
 @Component({
   selector: 'app-add-service-item',
@@ -14,18 +15,16 @@ import { ToastController } from '@ionic/angular';
 })
 export class AddServiceItemPage implements OnInit {
 
-  addItemForm: FormGroup;
-  isSubmitted = false;
   data: any;
   serviceItem: ServiceItem;
 
-  constructor(private route: ActivatedRoute, 
-    public fb: FormBuilder, 
+  constructor(private route: ActivatedRoute,  
     public authService: AuthService, 
     public firestore: AngularFirestore, 
     public service: ServiceItemService, 
     public router: Router, 
-    public toastCtrl: ToastController) { 
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) { 
     
       service = {} as ServiceItemService;
       this.data = new ServiceItem();
@@ -59,6 +58,12 @@ export class AddServiceItemPage implements OnInit {
     */
   }
 
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: AddServiceItemHelpComponent});
+      return await modal.present();
+  }
+
   async create(){
 
     this.service.createServiceItem(this.data).subscribe(response => {
@@ -71,16 +76,12 @@ export class AddServiceItemPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
+    /*if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
-    }
-  }
-
-  get errorControl() {
-    return this.addItemForm.controls;
+    }*/
   }
 
   async presentToast() {

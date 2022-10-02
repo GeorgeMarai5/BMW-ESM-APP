@@ -29,6 +29,15 @@
   transition: max-height 0.2s ease-out;
 }
 
+#helpIcon{
+  float: right;
+  font-size: 1.5rem;
+}
+
+#helpIcon:hover{
+  cursor: pointer;
+}
+
 form { 
     width:30%; 
     margin: 2% auto !important;
