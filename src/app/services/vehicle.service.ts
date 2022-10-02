@@ -49,6 +49,15 @@ getVehicleList(): Observable<Vehicle> {
     )
 }
 
+getVehicleModelList(): Observable<VehicleModel> {
+  return this.httpClient
+    .get<VehicleModel>(this.apiUrl + '/VehicleModel')
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+}
+
 // Get single student data by ID
 getVehicle(id): Observable<Vehicle> {
   return this.httpClient
