@@ -42,7 +42,7 @@ createVehicle(Vehicle: Vehicle){
 
 getVehicleList(): Observable<Vehicle> {
   return this.httpClient
-    .get<Vehicle>(this.apiUrl + '/api/Vehicles/GetAll')
+    .get<Vehicle>(this.apiUrl + '/GetAllVehicles')
     .pipe(
       retry(2),
       catchError(this.handleError)

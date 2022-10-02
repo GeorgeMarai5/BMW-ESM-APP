@@ -6,7 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ServiceService } from '../services/service.service';
 import { Service_Note } from '../models/Service_Note'
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { CreateServiceNoteHelpComponent } from 'app/components/create-service-note-help/create-service-note-help.component';
 
 @Component({
   selector: 'app-create-service-note',
@@ -31,7 +32,8 @@ export class CreateServiceNotePage implements OnInit {
     public authService: AuthService, 
     public fb: FormBuilder, 
     private _serviceNote: ServiceNoteService, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) {
 
     _serviceNote = {} as ServiceNoteService;
     this.data = new Service_Note();
@@ -54,6 +56,12 @@ export class CreateServiceNotePage implements OnInit {
     //else{
     //  this.router.navigate(['/tabs/login']);
     //}
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: CreateServiceNoteHelpComponent});
+      return await modal.present();
   }
 
   get errorControl() {
