@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { CaptureInitialInspectionDetailsHelpComponent } from 'app/components/capture-initial-inspection-details-help/capture-initial-inspection-details-help.component';
 import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
 
@@ -20,20 +21,26 @@ export class CaptureInitialInspectionDetailsPage implements OnInit {
   inspectionDetailsForm: FormGroup;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
-    public service: VehicleService, public router: Router, public toastCtrl: ToastController) { 
+    public service: VehicleService, public router: Router, public toastCtrl: ToastController, public helpModal: ModalController) { 
       this.route.params.subscribe(params => {
         this.data = params['id'];
       });
     }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
+    /*if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
-    }
+    }*/
     this.checkList = JSON.parse(sessionStorage.getItem('checkList'));
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: CaptureInitialInspectionDetailsHelpComponent});
+      return await modal.present();
   }
 
   async presentToast() {

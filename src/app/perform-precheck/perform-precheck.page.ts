@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { PrecheckHelpComponent } from 'app/components/precheck-help/precheck-help.component';
 import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
 
@@ -18,7 +19,7 @@ export class PerformPrecheckPage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public firestore: AngularFirestore, 
-    public service: VehicleService, public router: Router, public toastCtrl: ToastController) { 
+    public service: VehicleService, public router: Router, public toastCtrl: ToastController, public helpModal: ModalController) { 
     this.route.params.subscribe(params => {
       this.data = params['id'];
     });
@@ -41,12 +42,12 @@ export class PerformPrecheckPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
+    /*if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
-    }
+    }*/
   }
 
   submitForm(){
@@ -76,6 +77,12 @@ export class PerformPrecheckPage implements OnInit {
         this.presentToast();
       }
       this.router.navigate(['/tabs/capture/initial-inspection-details']);
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: PrecheckHelpComponent});
+      return await modal.present();
   }
 
   get errorControl() {
