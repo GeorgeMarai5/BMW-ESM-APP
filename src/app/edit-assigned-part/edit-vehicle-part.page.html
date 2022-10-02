@@ -5,7 +5,7 @@
         <ion-button [routerLink]="['/tabs/view/client']">
           <ion-icon slot="icon-only" name="person" style="color: #002850;"></ion-icon>
         </ion-button>  
-        <ion-button (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
+        <ion-button class="accBtn" (click)="authService.SignOut()" fill="solid" style="--background: #002850; --border-radius: 3rem; font-size: 0.7rem; margin-right: 1.5rem; width: 12vw;">
           Log Out
         </ion-button>  
       </ion-buttons>
@@ -92,4 +92,17 @@
             </ion-grid>
         </form>
     </div>
+    <button type="button" class="collapsible">Help Chat
+        <ion-icon id="up" style="float: right; margin-top: 0.2em;" name="chevron-up-outline">
+        </ion-icon>
+        <ion-icon id="down" style="float: right; display: none; margin-top: 0.2em;" name="chevron-down-outline"></ion-icon>
+      </button>
+      <div class="content">
+        <iframe style="border: none;"
+          allow="microphone;"
+          width="350"
+          height="430"
+          src="https://console.dialogflow.com/api-client/demo/embedded/9a6d9339-edec-4934-869e-c563312600c3">
+        </iframe>
+      </div>
 </ion-content>
