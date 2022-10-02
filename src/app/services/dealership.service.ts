@@ -39,12 +39,12 @@ export class DealershipService {
     }
 
      createDealerships(Dealership: Dealership,address: Address){
-       return this.httpClient.post(this.apiUrl + '/api/Dealerships/CreateDealerships' , Dealership && address, this.httpOptions)
+       return this.httpClient.post(this.apiUrl + '/CreateDealerships' , Dealership && address, this.httpOptions)
      }
   
      getDealershipList(): Observable<Dealership> {
        return this.httpClient
-       .get<Dealership>(this.apiUrl + 'GetAllDealerships')
+       .get<Dealership>(this.apiUrl + '/GetAllDealerships')
          .pipe(
            retry(2),
            catchError(this.handleError)
@@ -62,7 +62,7 @@ export class DealershipService {
     
      updateDealership(id, item): Observable<Dealership> {
        return this.httpClient
-         .put<Dealership>(this.apiUrl + '/api/Dealerships/PutDealership' + id, item, this.httpOptions)
+         .put<Dealership>(this.apiUrl + '/PutDealership' + id, item, this.httpOptions)
          .pipe(
            retry(2),
            catchError(this.handleError)

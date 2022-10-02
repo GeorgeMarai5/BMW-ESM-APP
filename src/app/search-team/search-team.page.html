@@ -28,18 +28,18 @@
                 <ion-col></ion-col>
             </ion-row>
             <ion-item-divider></ion-item-divider>
-            <ion-row *ngFor="let item of teamList | filter: searchTerm | filter: teamID">
+            <ion-row *ngFor="let item of data | filter: searchTerm | filter: teamID">
                 <ion-col>
-                    <ion-label> {{item.TeamID}}</ion-label>
+                    <ion-label> {{item.teamID}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label> {{item.TeamName}}</ion-label>
+                    <ion-label> {{item.teamName}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label> {{item.DealershipName}}</ion-label>
+                    <ion-label> {{item.dealershipName}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label> {{item.TeamType}}</ion-label>
+                    <ion-label> {{item.teamType}}</ion-label>
                 </ion-col>
                 <ion-col>
                     <ion-col>

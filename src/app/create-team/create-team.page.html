@@ -20,7 +20,7 @@
             <h1>Create Team</h1>
         </ion-title>
 
-        <form [formGroup]="createTeamForm" (ngSubmit)="submitForm()" novalidate>
+        <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -40,8 +40,8 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Dealership</b></ion-label>
-                            <ion-select [(ngModel)]="data.DealershipName" [ngModelOptions]="{standalone: true}" placeholder="Enter Dealership Name" >
-                                <ion-select-option *ngFor="let item of dealerships">{{ item }}</ion-select-option>
+                            <ion-select [(ngModel)]="data.dealershipName" [ngModelOptions]="{standalone: true}" placeholder="Enter Dealership Name" >
+                                <ion-select-option *ngFor="let item of data">{{ item.dealershipName }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                         <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.DealershipName.errors?.required">
@@ -53,8 +53,8 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Type</b></ion-label>
-                            <ion-select [(ngModel)]="data.TeamType" [ngModelOptions]="{standalone: true}" placeholder=" Enter Team Type">
-                                <ion-select-option *ngFor="let item of teamTypes ">{{ item }}</ion-select-option>
+                            <ion-select [(ngModel)]="data.teamType" [ngModelOptions]="{standalone: true}" placeholder=" Enter Team Type">
+                                <ion-select-option *ngFor="let item of data ">{{ item.teamType }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                         <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamType.errors?.required ">

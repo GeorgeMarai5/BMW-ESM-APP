@@ -17,10 +17,11 @@ import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
-
+import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
+import { VehicleFeedbackReportComponent } from './components/vehicle-feedback-report/vehicle-feedback-report.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, VehicleFeedbackReportComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AngularFireModule.initializeApp(environment.firebaseConfig), 
     AngularFireAuthModule,
@@ -36,7 +37,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     })
   ],
   providers: [SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  ],
+    PDFGenerator, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -6,6 +6,8 @@ import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { DealershipService } from 'app/services/dealership.service';
+import { TeamTypeService } from 'app/services/teamtype.service';
 
 @Component({
   selector: 'app-search-team',
@@ -21,9 +23,11 @@ export class SearchTeamPage implements OnInit {
   teamID: string;
   data: any;
 
-  constructor(public authService: AuthService, private teamservice: TeamService, public firestore: AngularFirestore, 
-    public alertCtrl: AlertController, public fb: FormBuilder, public router: Router, public toastCtrl: ToastController) { 
+  constructor(public authService: AuthService, private teamservice: TeamService, private dealershipService: DealershipService, 
+    private teamtypeService: TeamTypeService, public alertCtrl: AlertController, public fb: FormBuilder, public router: Router, public toastCtrl: ToastController) { 
       teamservice = {} as TeamService;
+      dealershipService = {} as DealershipService;
+      teamtypeService = {} as TeamTypeService;
     }
 
   ngOnInit() {
@@ -35,6 +39,7 @@ export class SearchTeamPage implements OnInit {
     }
     */
     this.getallTeams();
+    this.getDealership();
   }
 
   async getallTeams(){
@@ -42,6 +47,15 @@ export class SearchTeamPage implements OnInit {
       console.log(response);
       this.data = response;
     })
+  }
+
+  async getDealership(){
+
+    this.dealershipService.getDealershipList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+  
+    });
   }
 
   async deleteTeam(item){

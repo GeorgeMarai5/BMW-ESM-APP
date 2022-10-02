@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-img style="width: 12vw; height: 12vh; padding: 0.2rem; margin-left: -1vw;" src="assets/icon/bmw-logo-2020-grey.png"></ion-img>
         <ion-buttons slot="end">
@@ -12,6 +12,29 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
-</ion-content>
+    <ion-content>
+    <div>
+        <ion-img src="assets\icon\bmw-logo-2020-grey.png" style="width: 55vw;" class="bmw"></ion-img>
+        <ion-title>Service Data</ion-title>
+    </div>
+    <div *ngFor = "let name of names">
+    <h1>Team Name</h1>
+    <h1>Service ID</h1>
+</div>
+    <div>{{name.TeamName}} {{name.ServiceID}}</div>
+
+    <div *ngFor="let item of details">
+        <table>
+            <tr>
+                <th>Service Items</th>
+                <th>Part</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>{{item.serviceItems}}</td>
+                <td>{{item.Part}}</td>
+                <td>{{item.Quantity}}</td>
+            </tr>
+        </table>
+    </ion-content> -->
