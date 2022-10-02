@@ -29,42 +29,14 @@ export class EditServiceItemPage implements OnInit {
     public toastCtrl: ToastController,
     public activatedRoute: ActivatedRoute) {
 
-    //   this.route.params.subscribe(params => {
-    //       this.data = params.id;
-    //   });
-    // this.editItemForm = new FormGroup({
-    //   itemName: new FormControl('', Validators.required),
-    //   itemDescription: new FormControl('', Validators.required)
-    // })
-
      _service = {} as ServiceItemService;
      this.serviceItem = new ServiceItem();
- 
-  
- 
      this.activatedRoute.params.subscribe(params => {
        this.id = params.id;
    });
     
   }
 
-  submitForm(){
-    // this.isSubmitted = true;
-    // if(!this.editItemForm.valid){
-    //   return false;
-    // }
-    // else{
-    //     const serviceItems = {
-    //       itemName: this.editItemForm.get('itemName').value,
-    //       itemDescription: this.editItemForm.get('itemDescription').value
-    //     }
-
-    //   this.service.updateServiceItem(this.data)
-    //   this.presentToast();
-    // }
-
-    // this.router.navigate(['tabs/search/service-item', this.data]);
-  }
 
   ngOnInit() {
     /*if(this.authService.isLoggedIn){
@@ -103,7 +75,7 @@ export class EditServiceItemPage implements OnInit {
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
-      message: 'Dealership has been updated successfully.',
+      message: 'Service Item has been updated successfully.',
       duration: 3000,
       position: 'top'
     });
