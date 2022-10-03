@@ -54,34 +54,6 @@ export class CreateTeamMemberPage implements OnInit {
     //else{
     //  this.router.navigate(['/tabs/login']);
     //}
-    
-    this.getEmployee();
-    
-    let id = JSON.parse(localStorage.getItem('user'));       //This is the current signed in user from FireBase
-    console.log(id)
-  }
-
-  getEmployee() {
-      this.employeeService.getEmployeeList().subscribe(response => {
-      console.log(response);
-      this.data = response;
-    })
-  }
-
-  async create(){
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user.uid)
-
-
-
-    this.service.CreateEmployee(this.data).subscribe(response => {
-      this.data.employeeId = 
-     
-      console.log(response);
-    });
-    
-    this.presentToast();
-
 
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -103,6 +75,33 @@ export class CreateTeamMemberPage implements OnInit {
         }
       });
     }
+
+    this.getEmployee();
+    
+    let id = JSON.parse(localStorage.getItem('user'));       //This is the current signed in user from FireBase
+    console.log(id)
+  }
+
+  getEmployee() {
+      this.employeeService.getEmployeeList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+
+  async create(){
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user.uid)
+
+    this.service.CreateEmployee(this.data).subscribe(response => {
+      this.data.employeeId = 
+     
+      console.log(response);
+    });
+    
+    this.presentToast();
+    
   }
 
   get errorControl() {
