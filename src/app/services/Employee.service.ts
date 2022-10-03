@@ -42,7 +42,7 @@ export class EmployeeService {
 
   getEmployeeList(): Observable<Employee> {
     return this.httpClient
-      .get<Employee>(this.apiUrl + '/api/Employees/GetEmployees')
+      .get<Employee>(this.apiUrl + '/api/Employees/GetAllEmployees')
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -67,7 +67,7 @@ export class EmployeeService {
       )
   }
   
-  delete(id) {
+  deletes(id) {
     return this.httpClient
       .delete<Employee>(this.apiUrl + '/api/Employees' + '/' + id, this.httpOptions)
       .pipe(
@@ -76,7 +76,7 @@ export class EmployeeService {
       )
   }
 
-  deleteEmployee(id): Observable<{}> {
+  delete(id): Observable<{}> {
     return this.httpClient.delete(this.apiUrl + '/api/Employees/' +  id , this.httpOptions)
       .pipe(
         catchError(this.handleError)
