@@ -22,8 +22,9 @@
         <ion-searchbar class="isb" placeholder="Search Team..." showCancelButton="focus" [(ngModel)]="searchTerm" animated></ion-searchbar><br/>
         <ion-grid class="ion-margin" class="ion-grid-padding">
             <ion-row>
+                <ion-col>Team ID</ion-col>
                 <ion-col>Team Name</ion-col>
-                <ion-col>Dealership</ion-col>
+                <ion-col>Dealership Name</ion-col>
                 <ion-col>Team Type</ion-col>
                 <ion-col></ion-col>
             </ion-row>
@@ -36,10 +37,10 @@
                     <ion-label> {{item.teamName}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label> {{item.dealershipName}}</ion-label>
+                    <ion-label> {{item.dealership.dealershipName}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label> {{item.typeName}}</ion-label>
+                    <ion-label> {{item.teamType.typeName}}</ion-label>
                 </ion-col>
                 <ion-col>
                     <ion-col>

@@ -42,7 +42,7 @@ export class EmployeeService {
 
   getEmployeeList(): Observable<Employee> {
     return this.httpClient
-      .get<Employee>(this.apiUrl + '/api/Employees/GetEmployees')
+      .get<Employee>(this.apiUrl + '/api/Employees/GetAllEmployees')
       .pipe(
         retry(2),
         catchError(this.handleError)

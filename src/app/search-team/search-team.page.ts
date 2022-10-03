@@ -43,8 +43,8 @@ export class SearchTeamPage implements OnInit {
     }
     */
     this.getallTeams();
-    this.getDealership();
-    this.getTeamType();
+    //this.getDealership();
+    //this.getTeamType();
   }
 
   async getallTeams(){

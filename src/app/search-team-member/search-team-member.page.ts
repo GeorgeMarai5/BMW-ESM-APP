@@ -6,6 +6,7 @@ import { Employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { EmployeeService } from 'app/services/Employee.service';
 
 @Component({
   selector: 'app-search-team-member',
@@ -22,8 +23,11 @@ export class SearchTeamMemberPage implements OnInit {
   data: any;
 
   constructor(public authService: AuthService, private teamMemberservice: TeamMemberService, public fb: FormBuilder, public firestore: AngularFirestore, 
-     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
-      this.teamMembers = {} as Employee;
+     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController,private employeeservice: EmployeeService) { 
+
+
+      //this.teamMembers = {} as Employee;
+      employeeservice = {} as EmployeeService;
     }
 
   ngOnInit() {
@@ -41,7 +45,7 @@ export class SearchTeamMemberPage implements OnInit {
   }
 
   async getallTeamMembers(){
-    this.teamMemberservice.getTeamMemberList().subscribe(response => {
+    this.employeeservice.getEmployeeList().subscribe(response => {
       console.log(response);
       this.data = response;
     })

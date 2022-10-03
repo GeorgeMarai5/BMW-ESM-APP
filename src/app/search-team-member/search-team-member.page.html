@@ -25,19 +25,19 @@
             <ion-row>
                 <ion-col>Employee Name</ion-col>
                 <ion-col>Email</ion-col>
-                <ion-col>Role</ion-col>
+                <ion-col>Role ID</ion-col>
                 <ion-col></ion-col>
             </ion-row>
             <ion-item-divider></ion-item-divider>
-            <ion-row *ngFor="let item of teamMemberList | filter: searchTerm" | filter:temMemberID>
+            <ion-row *ngFor="let item of data | filter: searchTerm">
                 <ion-col>
-                    <ion-label> {{item.employeeName}}</ion-label>
+                    <ion-label> {{item.name}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label> {{item.Email}}</ion-label>
+                    <ion-label> {{item.email}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label> {{item.Role}}</ion-label>
+                    <ion-label> {{item.employeeRoleId}}</ion-label>
                 </ion-col>
                 <ion-col>
                     <ion-col>
