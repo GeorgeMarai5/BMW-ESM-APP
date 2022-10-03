@@ -40,7 +40,7 @@
             <ion-label position="floating">Email</ion-label>
             <ion-input #email placeholder="Enter Email..."></ion-input>
           </ion-item> 
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.email.errors?.required">
             Email is required.
           </span>
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email">
@@ -50,14 +50,14 @@
             <ion-label position="floating">Password</ion-label>
             <ion-input type="password" #password placeholder="Enter Password..."></ion-input>
           </ion-item>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.password.errors?.required">
             Password is required.
           </span>
           <ion-item lines="full">
             <ion-label position="floating">Confirm Password</ion-label>
             <ion-input type="password" #confirmPassword placeholder="Re-Enter Password"></ion-input>
           </ion-item>
-          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.errors?.required">
+          <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.password.errors?.required">
             Confirmed Password is required.
           </span>
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.password.value != errorControl.confirmPassword.value">
