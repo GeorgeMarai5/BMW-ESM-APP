@@ -5,13 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
 import { AlertController, ToastController } from '@ionic/angular';
 
-interface QuoteData {
-  ClientName: string;
-  Date: string;
-  Description: string;
-  Accepted: string;
+// interface QuoteData {
+//   ClientName: string;
+//   Date: string;
+//   Description: string;
+//   Accepted: string;
   
-}
+// }
 
 @Component({
   selector: 'app-search-quote',
@@ -22,7 +22,7 @@ export class SearchQuotePage implements OnInit {
 
   QuoteList = [];
   QuoteForm: FormGroup;
-  quotedata: QuoteData;
+  //quotedata: QuoteData;
   id: any;
   data: any;
   searchTerm: string;
@@ -36,14 +36,17 @@ export class SearchQuotePage implements OnInit {
   }
 
   ngOnInit() {
+    this.getAllQuotes();
 
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
-    }
 
+ 
+    }
+    this.getAllQuotes();
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');
@@ -66,7 +69,7 @@ export class SearchQuotePage implements OnInit {
     }
 
 
-    this.getallQuotes();
+    
 
     //this.fleetservice.getList().subscribe(response => {
       //console.log(response);
@@ -89,7 +92,7 @@ gotoview(id){
 
 
 
-    async getallQuotes(){
+    async getAllQuotes(){
 
       this.quoteservice.getQuoteList().subscribe(response => {
         console.log(response);
@@ -113,10 +116,10 @@ gotoview(id){
           text: 'Remove',
           role: 'remove',
           handler: () => {
-            this.quoteservice.deleteQuote(item.QuoteID).subscribe(Response => {
+            this.quoteservice.deleteQuote(item.QuoteId).subscribe(Response => {
               //Update list after delete is successful
               console.log(Response);
-              this.getallQuotes()
+              this.getAllQuotes()
       
             });
             this.presentToast();

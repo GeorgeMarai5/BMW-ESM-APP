@@ -4,12 +4,12 @@ import { FormBuilder,FormGroup, FormControl, Validators, Form } from '@angular/f
 import { Router, NavigationExtras,ActivatedRoute } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
 
-interface QuoteData {
-  ClientName: string;
-  Date: string;
-  Description: string;
-  Accepted: string;
-}
+// interface QuoteData {
+//   ClientName: string;
+//   Date: string;
+//   Description: string;
+//   Accepted: string;
+// }
 
 @Component({
   selector: 'app-view-quote',
@@ -21,8 +21,9 @@ export class ViewQuotePage implements OnInit {
   
   QuoteList = [];
   viewQuoteForm: FormGroup;
-  quotedata: QuoteData;
+  //quotedata: QuoteData;
   data: any;
+  searchTerm: string;
 
   constructor(public authService: AuthService, public router: Router, private activatedRoute: ActivatedRoute, private quoteservice: QuoteService,
     private fb:FormBuilder) {
@@ -77,11 +78,11 @@ export class ViewQuotePage implements OnInit {
   }
 
   navToUpdate() {
-    this.router.navigate(['tabs/update/quote', this.data]);
+    this.router.navigate(['tabs/update/quote', this.data.id]);
   }
 
   viewServiceNote() {
-    this.router.navigate(['tabs/view/service-note', this.data]);
+    this.router.navigate(['tabs/view/service-note', this.data.id]);
   }
 
   getQuotes(id){

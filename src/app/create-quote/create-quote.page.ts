@@ -75,6 +75,7 @@ export class CreateQuotePage implements OnInit {
 
   this.quoteservice.createQuote(this.data).subscribe(response => {
     console.log(response);
+    this.data = response;
     //this.router.navigate(['student-list']);
   });
 
@@ -120,7 +121,7 @@ export class CreateQuotePage implements OnInit {
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
-      message: 'The quote has been created successfully',
+      message: 'The quote has been created successfully.',
       duration: 3000,
       position: 'top'
     });

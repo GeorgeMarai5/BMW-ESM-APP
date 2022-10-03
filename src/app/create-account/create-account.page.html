@@ -14,7 +14,7 @@
 
 <ion-content>
   <div>
-    <form> 
+    <form [formGroup]="createAccountForm" novalidate> 
       <ion-card>
         <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
         <ion-grid>
@@ -31,14 +31,14 @@
         <div style="padding-left: 4%; padding-right: 4%; padding-bottom: 5%">
           <ion-item>
             <ion-label position="floating">Select Account Type</ion-label>
-            <ion-select #accountType placeholder="Select Account Type">
+            <ion-select formControlName="accountType" #accountType placeholder="Select Account Type">
               <ion-select-option>Client</ion-select-option>
               <ion-select-option>Employee</ion-select-option>
             </ion-select>
           </ion-item>    
           <ion-item lines="full">
             <ion-label position="floating">Email</ion-label>
-            <ion-input #email placeholder="Enter Email..."></ion-input>
+            <ion-input formControlName="email" #email placeholder="Enter Email..."></ion-input>
           </ion-item> 
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.email.errors?.required">
             Email is required.
@@ -48,14 +48,14 @@
           </span>
           <ion-item lines="full">
             <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" #password placeholder="Enter Password..."></ion-input>
+            <ion-input formControlName="password" type="password" #password placeholder="Enter Password..."></ion-input>
           </ion-item>
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.password.errors?.required">
             Password is required.
           </span>
           <ion-item lines="full">
             <ion-label position="floating">Confirm Password</ion-label>
-            <ion-input type="password" #confirmPassword placeholder="Re-Enter Password"></ion-input>
+            <ion-input formControlName="confirmPassword" type="password" #confirmPassword placeholder="Re-Enter Password"></ion-input>
           </ion-item>
           <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.password.errors?.required">
             Confirmed Password is required.

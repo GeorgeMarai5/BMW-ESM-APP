@@ -31,13 +31,14 @@ export class QuoteService {
       return throwError('Something bad happened; please try again later.');
     }
   
-  createQuote(quote: Quote){
-    return this.httpClient.post(this.apiUrl + '/api/Quotes/CreateQuote' , Quote, this.httpOptions)
-  }
-
+    createQuote(Quote: Quote){
+      return this.httpClient.post(this.apiUrl + '/api/Quotes/CreateQuote' , Quote, this.httpOptions)
+  
+  
+    }
   getQuoteList(): Observable<Quote> {
     return this.httpClient
-      .get<Quote>(this.apiUrl + '/api/Quotes/GetQuoteList')
+      .get<Quote>(this.apiUrl + '/api/Quotes/GetAllQuotes')
       .pipe(
         retry(2),
         catchError(this.handleError)

@@ -148,7 +148,6 @@ this.getAllServiceItems();
 
   async getReport() {
     console.log(this.data.Description);
-    
 
     let docDefinition = {  
       header: {
@@ -159,7 +158,7 @@ this.getAllServiceItems();
                 text: 'End of Service Report',  
                 fontSize: 20,  
                 float: 'right',  
-                color: '#000000' 
+                color: '#000000'
             }
         ]
       },

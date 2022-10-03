@@ -4,6 +4,7 @@ import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
 import{FleetService} from '../services/fleet.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import {  Fleet } from '../models/Fleet';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-fleet',
@@ -20,12 +21,17 @@ export class SearchFleetPage implements OnInit {
   fleetID: string;
   
   constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, 
-    public alertCtrl: AlertController, public toastCtrl: ToastController) { 
+    public alertCtrl: AlertController, public toastCtrl: ToastController, public router: Router) { 
     fleetservice = {} as FleetService;
   }
 
   ngOnInit() {
-
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     this.getallFleets()
 
     //this.fleetservice.getList().subscribe(response => {
@@ -63,7 +69,6 @@ export class SearchFleetPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
     */
-    this.getallFleets()
   }
 
     async getallFleets(){
