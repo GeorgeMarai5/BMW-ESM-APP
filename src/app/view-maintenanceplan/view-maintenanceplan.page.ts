@@ -20,22 +20,30 @@ export class ViewMaintenancePlanPage implements OnInit {
   plans: MaintenancePlan;
   planform : FormGroup;
   data: any;
+  id: any;
 
   constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-  public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
-    this.route.params.subscribe(params => {
-      this.data = params.id;
-    });
+  public fb: FormBuilder,private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+  
+    planService = {} as MaintenancePlanService;
 
-    this.planform = new FormGroup({
-      PlanName: new FormControl('', Validators.required),
-      Description: new FormControl('', Validators.required),
-      Duration: new FormControl('', Validators.required),
-      Price: new FormControl('', Validators.required)
-    });
+    // this.planform = new FormGroup({
+    //   PlanName: new FormControl('', Validators.required),
+    //   Description: new FormControl('', Validators.required),
+    //   Duration: new FormControl('', Validators.required),
+    //   Price: new FormControl('', Validators.required)
+    // });
+    this.activatedRoute.params.subscribe(params => {
+      this.data = params.id;
+  });
   }
 
   ngOnInit() {
+    this.planService.getMaintenancePlan(this.data).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+
     // this.planService.getMaintenancePlan(this.data).valueChanges()
     //   .subscribe(res =>{
     //   console.log(res)

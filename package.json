@@ -66,6 +66,7 @@
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.25",
     "nexmo": "^2.9.1",
+    "ng2-charts": "^4.0.1",
     "ng2-search-filter": "^0.5.1",
     "ngx-gauge": "^5.0.0",
     "node-modules": "^0.0.1",

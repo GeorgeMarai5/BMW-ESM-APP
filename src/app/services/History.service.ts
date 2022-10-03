@@ -10,7 +10,7 @@ import { VehicleService } from '../models/VehicleService';
   providedIn: 'root'
 })
 export class HistoryService {
-  apiUrl = 'https://localhost:7292'
+  apiUrl = 'https://localhost:7163'
   httpOptions ={
     headers: new HttpHeaders({
       ContentType: 'application/json'
@@ -32,43 +32,101 @@ export class HistoryService {
     
   }
 
-
-  AddFleet(Service: VehicleService){
-    return this.httpClient.post(this.apiUrl + '/api/Service/Create' , Service, this.httpOptions)
+  createHistory(Service: VehicleService){
+    return this.httpClient.post(this.apiUrl + '/api/Services/Create' , VehicleService, this.httpOptions)
   }
-
-
   getServiceList(): Observable<VehicleService> {
     return this.httpClient
-      .get<VehicleService>(this.apiUrl + '/api/Service/GetAllServices')
+      .get<VehicleService>(this.apiUrl + '/api/Services/GetAllServices')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getService(id): Observable<VehicleService> {
+    return this.httpClient
+      .get<VehicleService>(this.apiUrl + '/api/Services/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  updateService(item): Observable<VehicleService> {
+    return this.httpClient
+      .put<VehicleService>(this.apiUrl + '/api/Services/' + item, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  updateservice(id, item): Observable<VehicleService> {
+    return this.httpClient
+      .put<VehicleService>(this.apiUrl + '/api/Services/' + id, item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
   
-  updateService(item): Observable<VehicleService> {
-    return this.httpClient
-      .put<VehicleService>(this.apiUrl + '/api/Service/UpdateService' + '?' + item, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
+  // // Delete item by id
+  // delete(id) {
+  //   return this.httpClient
+  //     .delete<Fleet>(this.apiUrl + '/api/Fleets' + '/' + id, this.httpOptions)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
+
+
 
   deleteService(id): Observable<{}> {
-    return this.httpClient.delete(this.apiUrl + '/api/Service/DeleteService?id=' +  id , this.httpOptions)
+  
+    return this.httpClient.delete(this.apiUrl + '/api/Services/' +  id , this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
 
+  // AddFleet(Service: VehicleService){
+  //   return this.httpClient.post(this.apiUrl + '/api/Service/Create' , Service, this.httpOptions)
+  // }
 
-  getService(id): Observable<{}> {
-    return this.httpClient.get(this.apiUrl + '/api/Service/id?id=' +  id , this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
+
+  // getServiceList(): Observable<VehicleService> {
+  //   return this.httpClient
+  //     .get<VehicleService>(this.apiUrl + '/api/Service/GetAllServices')
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
+  
+  // updateService(item): Observable<VehicleService> {
+  //   return this.httpClient
+  //     .put<VehicleService>(this.apiUrl + '/api/Service/UpdateService' + '?' + item, this.httpOptions)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
+
+  // deleteService(id): Observable<{}> {
+  //   return this.httpClient.delete(this.apiUrl + '/api/Service/DeleteService?id=' +  id , this.httpOptions)
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     );
+  // }
+
+
+  // getService(id): Observable<{}> {
+  //   return this.httpClient.get(this.apiUrl + '/api/Service/id?id=' +  id , this.httpOptions)
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     );
+  // }
 
 }

@@ -16,7 +16,7 @@ import { ToastController } from '@ionic/angular';
 
 export class UpgradeMaintenancePlanPage implements OnInit {
   
-  plans: MaintenancePlan;
+  plan: MaintenancePlan;
   maintenanceplans = [];
   upgradePlanForm: FormGroup;
   isSubmitted = false;
@@ -27,11 +27,16 @@ id: any;
     // this.route.params.subscribe(params => {
     //   this.data = params.id;
     // });
+    planService = {} as MaintenancePlanService;
+    this.plan = new MaintenancePlan();
 
     // this.upgradePlanForm = new FormGroup({
     //   PlanName: new FormControl('', Validators.required),
     //   NewPlanName: new FormControl('', Validators.required)
     // });
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params.id;
+  });
   }
 
   submitForm(){

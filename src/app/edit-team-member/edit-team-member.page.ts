@@ -20,7 +20,7 @@ export class EditTeamMemberPage implements OnInit {
   data: any;
   id: any;
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private activatedRoute: ActivatedRoute, 
     public fb: FormBuilder, 
     public authService: AuthService,
     public teamMemberService: TeamMemberService, 
@@ -40,6 +40,9 @@ export class EditTeamMemberPage implements OnInit {
       teamMemberService = {} as TeamMemberService;
       this.teamMember = new Employee();
   
+      this.activatedRoute.params.subscribe(params => {
+        this.id = params.id;
+    });
   }
 
   submitForm(){
