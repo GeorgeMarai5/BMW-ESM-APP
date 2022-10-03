@@ -18,13 +18,13 @@
             <h1>View Vehicle</h1>
         </ion-title>
 
-        <form [formGroup]="viewVehicleForm" (ngSubmit)="submitForm()" novalidate>
+        <form >
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>VIN Number</b></ion-label>
-                            <ion-input [(ngModel)]="data.VINNum" [ngModelOptions]="{standalone: true}" readonly>{{vehicle.VINNum}}</ion-input>
+                            <ion-input [(ngModel)]="data.vinNumber" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -32,9 +32,9 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Vehicle Model</b></ion-label>
-                            <ion-select [(ngModel)]="data.vehicleModel" [ngModelOptions]="{standalone: true}" required>
-                                <ion-select-option *ngFor="let item of models">{{ models[0] }}</ion-select-option>
-                            </ion-select>
+                            <ion-input [(ngModel)]="data.vehicleModel.modelName" [ngModelOptions]="{standalone: true}" readonly>
+                                
+                            </ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -42,7 +42,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Registration</b></ion-label>
-                            <ion-input [(ngModel)]="data.Registration" [ngModelOptions]="{standalone: true}" readonly>{{vehicle.Registration}}</ion-input>
+                            <ion-input [(ngModel)]="data.registration" [ngModelOptions]="{standalone: true}" readonly></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -50,9 +50,8 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Warranty Plan</b></ion-label>
-                            <ion-select [(ngModel)]="data.warrantyPlan" [ngModelOptions]="{standalone: true}" required>
-                                <ion-select-option *ngFor="let item of plans">{{ plans[0] }}</ion-select-option>
-                            </ion-select>
+                            <ion-input [(ngModel)]="data.warrantyPlanId" [ngModelOptions]="{standalone: true}" readonly>
+                            </ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -89,3 +88,12 @@
         </iframe>
       </div>
 </ion-content>
+
+
+
+
+
+
+
+
+<!-------[formGroup]="viewVehicleForm" (ngSubmit)="submitForm()" novalidate-->
