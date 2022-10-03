@@ -1,12 +1,13 @@
 .collapsible {
-  position: absolute;
-  bottom: 3.5rem; right: 0;
+  position: fixed;
+  bottom: 0; 
+  right: 0;
   z-index: 10;
   background-color: #1976D2;
   color: white;
   cursor: pointer;
   padding: 0.3rem;
-  width: 28.2%;
+  width: 27%;
   border: none;
   text-align: left;
   outline: none;
@@ -22,8 +23,8 @@
 
 .content {
   display: none;
-  position: absolute;
-  bottom: 5.1rem; right: 0;
+  position: fixed;
+  bottom: 1.6rem; right: 0;
   z-index: 10;
   transition: max-height 0.2s ease-out;
 }

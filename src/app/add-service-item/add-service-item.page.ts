@@ -28,15 +28,7 @@ export class AddServiceItemPage implements OnInit {
     
       service = {} as ServiceItemService;
       this.data = new ServiceItem();
-    /*
-    this.route.params.subscribe(params => {
-      this.data = params['id'];
-    });
-    this.addItemForm = new FormGroup({
-      itemName: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-      itemDescription: new FormControl('', Validators.required),
-    })
-    */
+
   }
 
   submitForm(){
@@ -56,6 +48,7 @@ export class AddServiceItemPage implements OnInit {
     }
     this.router.navigate(['/tabs/view/fleet']);
     */
+   
   }
 
   async showHelp(){
@@ -65,14 +58,11 @@ export class AddServiceItemPage implements OnInit {
   }
 
   async create(){
-
     this.service.createServiceItem(this.data).subscribe(response => {
       console.log(response);
-      //this.router.navigate(['student-list']);
+      this.router.navigate(['/tabs/search/service-item']);
     });
-  
     this.presentToast();
-  
   }
 
   ngOnInit() {
@@ -82,6 +72,26 @@ export class AddServiceItemPage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }*/
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    let up = document.getElementById('up');
+    let down = document.getElementById('down');
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          down.style.display = "none";
+          up.style.display = "block";
+        } else {
+          content.style.display = "block";
+          up.style.display = "none";
+          down.style.display = "block";
+        }
+      });
+    }
   }
 
   async presentToast() {

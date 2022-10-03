@@ -51,7 +51,28 @@ export class ViewServiceProgressPage implements OnInit {
 //     readonly  twilioNumber = '+19859806244';
 // readonly accountSid = 'AC2b54afb9d76e88c12db2ba3f5d5d911d';
 // readonly authToken = '6ee0efe44516b7df5de5b1680d2e1a69';
-  ngOnInit() {}
+  ngOnInit() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    let up = document.getElementById('up');
+    let down = document.getElementById('down');
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          down.style.display = "none";
+          up.style.display = "block";
+        } else {
+          content.style.display = "block";
+          up.style.display = "none";
+          down.style.display = "block";
+        }
+      });
+    }
+  }
   
   
   async myDateTimeFunction(){

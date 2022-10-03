@@ -6,6 +6,7 @@ import { Employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { EmployeeService } from 'app/services/Employee.service';
 
 @Component({
   selector: 'app-search-team-member',
@@ -22,8 +23,11 @@ export class SearchTeamMemberPage implements OnInit {
   data: any;
 
   constructor(public authService: AuthService, private teamMemberservice: TeamMemberService, public fb: FormBuilder, public firestore: AngularFirestore, 
-     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
-      this.teamMembers = {} as Employee;
+     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController,private employeeservice: EmployeeService) { 
+
+
+      //this.teamMembers = {} as Employee;
+      employeeservice = {} as EmployeeService;
     }
 
   ngOnInit() {
@@ -38,16 +42,45 @@ export class SearchTeamMemberPage implements OnInit {
     */
 
     this.getallTeamMembers();
+
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    let up = document.getElementById('up');
+    let down = document.getElementById('down');
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          down.style.display = "none";
+          up.style.display = "block";
+        } else {
+          content.style.display = "block";
+          up.style.display = "none";
+          down.style.display = "block";
+        }
+      });
+    }
   }
 
   async getallTeamMembers(){
-    this.teamMemberservice.getTeamMemberList().subscribe(response => {
+    this.employeeservice.getEmployeeList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
   }
 
-  async assignTeamMember(id){
+async delete(item){
+
+      this.employeeservice.delete(item.employeeId).subscribe(Response => {
+        
+        console.log(Response);
+        //this.getallTeamMembers();
+
+      });
+    
 
   }
 

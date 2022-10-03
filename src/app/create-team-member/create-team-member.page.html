@@ -26,10 +26,10 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Name</b></ion-label>
-                            <ion-input #employeeName="ngModel" [(ngModel)]="data.employeeName" placeholder="Enter Employee Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #name="ngModel" [(ngModel)]="data.name" placeholder="Enter Employee Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <div *ngIf="employeeName.invalid && (employeeName.dirty || employeeName.touched)" class="alert">
-                            <span color=" danger " style="padding-top: 2vh; " *ngIf="employeeName.errors?.required ">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+                            <span color=" danger " style="padding-top: 2vh; " *ngIf="name.errors?.required ">
                                 Employee Name is required.
                             </span>
                         </div>
@@ -39,10 +39,10 @@
                     <ion-col>
                         <ion-item lines="full ">
                             <ion-label position="stacked "><b>Surname</b></ion-label>
-                            <ion-input #employeeSurname="ngModel" [(ngModel)]="data.employeeSurname" placeholder="Enter Employee Surname..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #surname="ngModel" [(ngModel)]="data.surname" placeholder="Enter Employee Surname..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <div *ngIf="employeeSurname.invalid && (employeeSurname.dirty || employeeSurname.touched)" class="alert">
-                            <span color="danger " style="padding-top: 2vh; " *ngIf="employeeSurname.errors?.required ">
+                        <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert">
+                            <span color="danger " style="padding-top: 2vh; " *ngIf="surname.errors?.required ">
                                 Employee Surname is required.
                             </span>
                         </div>
@@ -52,10 +52,10 @@
                     <ion-col>
                         <ion-item lines="full ">
                             <ion-label position="stacked "><b>Phone Number</b></ion-label>
-                            <ion-input #phoneNumber="ngModel" [(ngModel)]="data.phoneNumber" placeholder="Enter Phone Number..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #phoneNum="ngModel" [(ngModel)]="data.phoneNum" placeholder="Enter Phone Number..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert">
-                            <span color="danger " style="padding-top: 2vh; " *ngIf="phoneNumber.errors?.required ">
+                        <div *ngIf="phoneNum.invalid && (phoneNum.dirty || phoneNum.touched)" class="alert">
+                            <span color="danger " style="padding-top: 2vh; " *ngIf="phoneNum.errors?.required ">
                                 Phone Number is required.
                             </span>
                         </div>
@@ -65,10 +65,10 @@
                     <ion-col>
                         <ion-item lines="full ">
                             <ion-label position="stacked "><b>Email</b></ion-label>
-                            <ion-input #emailAddress="ngModel" [(ngModel)]="data.emailAddress" placeholder="Enter Email..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #email="ngModel" [(ngModel)]="data.email" placeholder="Enter Email..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <div *ngIf="emailAddress.invalid && (emailAddress.dirty || emailAddress.touched)" class="alert">
-                            <span color="danger " style="padding-top: 2vh; " *ngIf="emailAddress.errors?.required ">
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
+                            <span color="danger " style="padding-top: 2vh; " *ngIf="email.errors?.required ">
                                 Email Address is required.
                             </span>
                         </div>
@@ -77,9 +77,9 @@
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full ">
-                            <ion-label position="stacked "><b>Role</b></ion-label>
-                            <ion-select [(ngModel)]="data.Role" placeholder="Select A Role..." [ngModelOptions]="{standalone: true}">
-                                <ion-select-option *ngFor="let item of roles ">{{ item }}</ion-select-option>
+                            <ion-label position="stacked "><b>Role ID</b></ion-label>
+                            <ion-select [(ngModel)]="data.employeeRoleId" placeholder="Select A Role..." [ngModelOptions]="{standalone: true}">
+                                <ion-select-option *ngFor="let item of data ">{{ item.employeeRoleId }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
@@ -91,7 +91,7 @@
                         <ion-button [routerLink]="[ '/tabs/create-team'] " expand="block ">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn " type="submit " expand="block ">Create</ion-button>
+                        <ion-button class="light-Btn " type="submit " expand="block "  (click)=" create() ">Create</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

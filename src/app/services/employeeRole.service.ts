@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable,of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { retry,catchError, tap, map } from 'rxjs/operators';
-import { Employee } from '../models/employee';
+import { EmployeeRole } from 'app/models/EmployeeRole';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class EmployeeRoleService {
 
   apiUrl = 'https://localhost:7163'
   httpOptions ={
@@ -36,48 +36,48 @@ export class EmployeeService {
     
   }
 
-  CreateEmployee(Employee: Employee){
-    return this.httpClient.post(this.apiUrl + '/api/Employees/CreateEmployee' , Employee, this.httpOptions)
+  CreateEmployeeRole(EmployeeRole: EmployeeRole){
+    return this.httpClient.post(this.apiUrl + '/api/EmployeeRoles/CreateEmployeeRole' , EmployeeRole, this.httpOptions)
   }
 
-  getEmployeeList(): Observable<Employee> {
+  getEmployeeRoleList(): Observable<EmployeeRole> {
     return this.httpClient
-      .get<Employee>(this.apiUrl + '/api/Employees/GetAllEmployees')
+      .get<EmployeeRole>(this.apiUrl + '/api/EmployeeRoles/GetEmployeeRoles')
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  getEmployee(id): Observable<Employee> {
+  getEmployeeRole(id): Observable<EmployeeRole> {
     return this.httpClient
-      .get<Employee>(this.apiUrl + '/api/Employees/' + id)
+      .get<EmployeeRole>(this.apiUrl + '/api/EmployeeRoles/' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
   
-  updateEmployee(item): Observable<Employee> {
+  updateEmployeeRole(item): Observable<EmployeeRole> {
     return this.httpClient
-      .put<Employee>(this.apiUrl + '/api/Employees/PutEmployee' + '?' + item, this.httpOptions)
+      .put<EmployeeRole>(this.apiUrl + '/api/EmployeeRoles/PutEmployeeRole' + '?' + item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
   
-  deletes(id) {
+  delete(id) {
     return this.httpClient
-      .delete<Employee>(this.apiUrl + '/api/Employees' + '/' + id, this.httpOptions)
+      .delete<EmployeeRole>(this.apiUrl + '/api/EmployeeRoles' + '/' + id, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  delete(id): Observable<{}> {
-    return this.httpClient.delete(this.apiUrl + '/api/Employees/' +  id , this.httpOptions)
+  deleteEmployeeRole(id): Observable<{}> {
+    return this.httpClient.delete(this.apiUrl + '/api/EmployeeRoles/' +  id , this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
