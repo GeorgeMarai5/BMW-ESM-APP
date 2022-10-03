@@ -24,15 +24,22 @@ export class ViewQuotePage implements OnInit {
   quotedata: QuoteData;
   data: any;
 
-  constructor(public authService: AuthService, public router: Router, private route: ActivatedRoute, private quoteservice: QuoteService,
+  constructor(public authService: AuthService, public router: Router, private activatedRoute: ActivatedRoute, private quoteservice: QuoteService,
     private fb:FormBuilder) {
-      this.route.params.subscribe(params => {
+      this.activatedRoute.params.subscribe(params => {
         this.data = params.id;
     });
-      this.quotedata = {} as QuoteData;
+  
+    quoteservice = {} as QuoteService;
    }
 
   ngOnInit() {
+
+    this.quoteservice.getQuote(this.data).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+
     // this.quoteservice.getQuoteList().subscribe(data => {
     //   this.QuoteList = data.map(e => {
     //     return {

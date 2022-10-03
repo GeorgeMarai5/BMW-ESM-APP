@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
-import { Vehicle } from '../models/Vehicle';
+import { VehicleModel } from '../models/VehicleModel';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Vehicle } from 'app/models/Vehicle';
 import { ModalController, ToastController } from '@ionic/angular';
 import { EditVehicleHelpComponent } from 'app/components/edit-vehicle-help/edit-vehicle-help.component';
+
 
 @Component({
   selector: 'app-edit-vehicle',
@@ -15,8 +17,8 @@ import { EditVehicleHelpComponent } from 'app/components/edit-vehicle-help/edit-
 
 export class EditVehiclePage implements OnInit {
 
-  vehicles: Vehicle;
-  vehicle = {};
+  vehicle: Vehicle;
+  vehicles = {};
   plans = [];
   models = [];
   editVehicleForm: FormGroup;
@@ -41,6 +43,12 @@ export class EditVehiclePage implements OnInit {
     //   Registration: new FormControl('', Validators.required),
     //   warrantyPlan: new FormControl('', Validators.required)
     // })
+    _service = {} as VehicleService;
+    this.vehicle = new Vehicle();
+
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params.id;
+  });
 
   }
 
@@ -92,7 +100,7 @@ export class EditVehiclePage implements OnInit {
   get errorControl() {
     return this.editVehicleForm.controls;
   }
-  async update(id, data){
+  async updateVehicle(id, data){
 
     this._service.updateVehicle(this.id,this.data).subscribe(response => {
       console.log(response);
