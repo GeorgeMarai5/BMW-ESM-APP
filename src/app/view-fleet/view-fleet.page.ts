@@ -165,6 +165,7 @@ async getFleetDetails(){
     });
   
     toast.present();
+
   }
 
 

@@ -6,7 +6,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { AssignVehiclePartHelpComponent } from 'app/components/assign-vehicle-part-help/assign-vehicle-part-help.component';
 import { Part } from '../models/Part';
 import { AuthService } from '../services/auth.service';
-import { PartInfoService } from '../services/part-info.service';
+import { VehiclePartService } from 'app/services/vehicle-part.service';
 
 @Component({
   selector: 'app-assign-vehicle-part',
@@ -25,38 +25,23 @@ export class AssignVehiclePartPage implements OnInit {
   constructor(private route: ActivatedRoute,
     public fb: FormBuilder, 
     public authService: AuthService, 
-    public service: PartInfoService, 
+    public service: VehiclePartService, 
     public router: Router, 
     public toastCtrl: ToastController,
     public helpModal: ModalController) {
 
-      this.route.params.subscribe(params => {
-          this.data = params.id;
-      });
-      this.assignPartForm = new FormGroup({
-        partName: new FormControl('', Validators.required),
-        partType: new FormControl('', Validators.required),
-        Description: new FormControl('', Validators.required),
-        partStock: new FormControl('', Validators.required)
-      });
+      service = {} as VehiclePartService;
+      this.data = new Part();
 
   }
 
-  submitForm(){
-    this.isSubmitted = true;
-    if(!this.assignPartForm.valid){
-      return false;
-    }
-    else{
-        const vehicleParts = {
-          partName: this.assignPartForm.get('partName').value,
-          partType: this.assignPartForm.get('partType').value,
-          Description: this.assignPartForm.get('description').value
-        }
-        this.service.getPart(vehicleParts)
-        this.presentToast()
-      }
-      this.router.navigate(['/tabs/search/vehicle-part']);
+  async create(){
+    this.service.createPart(this.data).subscribe(response => {
+      console.log(response);
+      this.data = response;
+      this.router.navigate(['/tabs/update/service']);
+    });
+    this.presentToast();
   }
 
   async showHelp(){
@@ -66,13 +51,13 @@ export class AssignVehiclePartPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn) {
+    /*if(this.authService.isLoggedIn) {
       return true;
     }
     else {
       this.router.navigate(['/tabs/login']);
     }
-
+    */
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');

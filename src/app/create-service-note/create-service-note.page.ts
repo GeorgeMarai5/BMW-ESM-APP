@@ -25,13 +25,15 @@ export class CreateServiceNotePage implements OnInit {
   isSubmitted = false;
   data : any;
   today = new Date();
+  serviceData: any;
 
   constructor (private route: ActivatedRoute, 
     public router: Router, 
     public httpClient: HttpClient,
     public authService: AuthService, 
     public fb: FormBuilder, 
-    private _serviceNote: ServiceNoteService, 
+    private _serviceNote: ServiceNoteService,
+    public service: ServiceService, 
     public toastCtrl: ToastController,
     public helpModal: ModalController) {
 
@@ -40,12 +42,10 @@ export class CreateServiceNotePage implements OnInit {
 
   }
 
-  submitForm() {
+  async create(){
     this._serviceNote.createServiceNote(this.data).subscribe(response => {
       console.log(response);
-      //this.router.navigate(['student-list']);
     });
-  
     this.presentToast();
   }
     
@@ -56,6 +56,8 @@ export class CreateServiceNotePage implements OnInit {
     //else{
     //  this.router.navigate(['/tabs/login']);
     //}
+
+    this.getServiceInfo();
 
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -77,6 +79,13 @@ export class CreateServiceNotePage implements OnInit {
         }
       });
     }
+  }
+
+  getServiceInfo() { 
+    this.service.getServiceList().subscribe(response => {
+      console.log(response);
+      this.serviceData = response;
+    })
   }
 
   async showHelp(){

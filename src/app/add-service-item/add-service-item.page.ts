@@ -31,26 +31,6 @@ export class AddServiceItemPage implements OnInit {
 
   }
 
-  submitForm(){
-
-    /*
-    this.isSubmitted = true;
-    if(!this.addItemForm.valid){
-      return false;
-    }
-    else{
-      const serviceItem = {
-        itemName: this.addItemForm.get('itemName').value,
-        itemDescription: this.addItemForm.get('itemDescription').value,
-      }
-      this.service.createServiceItem(serviceItem)
-      this.presentToast()
-    }
-    this.router.navigate(['/tabs/view/fleet']);
-    */
-   
-  }
-
   async showHelp(){
     const modal = await this.helpModal.create({
       component: AddServiceItemHelpComponent});

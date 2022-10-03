@@ -9,7 +9,7 @@ import { Part } from '../models/Part';
 })
 export class PartInfoService {
 
-  apiUrl = 'https://localhost:7292'
+  apiUrl = 'https://localhost:7163'
   httpOptions ={
     headers: new HttpHeaders({
       ContentType: 'application/json'
