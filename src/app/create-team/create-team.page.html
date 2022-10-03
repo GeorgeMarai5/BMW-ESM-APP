@@ -26,7 +26,11 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Name</b></ion-label>
+<<<<<<< Updated upstream
                             <ion-input #TeamName="ngModel" required [(ngModel)]="data.TeamName" placeholder="Enter Team Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+=======
+                            <ion-input [(ngModel)]="data.teamName" placeholder="Enter Team Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+>>>>>>> Stashed changes
                         </ion-item>
                         <div *ngIf="TeamName.invalid && (TeamName.dirty || TeamName.touched)" class="alert">
                             <span color="danger" style="padding-top: 2vh; " *ngIf="TeamName.errors?.required">
@@ -39,8 +43,8 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Dealership</b></ion-label>
-                            <ion-select [(ngModel)]="data.dealershipName" [ngModelOptions]="{standalone: true}" placeholder="Enter Dealership Name" >
-                                <ion-select-option *ngFor="let item of data">{{ item.dealershipName }}</ion-select-option>
+                            <ion-select [(ngModel)]="de.dealershipName" [ngModelOptions]="{standalone: true}" placeholder="Enter Dealership Name" >
+                                <ion-select-option *ngFor="let item of dealershipdrop">{{ item.dealershipName }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
@@ -49,8 +53,8 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Type</b></ion-label>
-                            <ion-select [(ngModel)]="data.teamType" [ngModelOptions]="{standalone: true}" placeholder=" Enter Team Type">
-                                <ion-select-option *ngFor="let item of data ">{{ item.teamType }}</ion-select-option>
+                            <ion-select [(ngModel)]="te.typeName" [ngModelOptions]="{standalone: true}" placeholder=" Enter Team Type">
+                                <ion-select-option *ngFor="let item of teamtypedrop ">{{ item.typeName }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
@@ -63,7 +67,7 @@
                         <ion-button [routerLink]="[ '/tabs/create/service'] " expand="block ">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn " type="submit " expand="block ">Create</ion-button>
+                        <ion-button class="light-Btn " (click)="createTeam()" type="submit " expand="block "  [routerLink]="[ '/tabs/search/team'] ">Create</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

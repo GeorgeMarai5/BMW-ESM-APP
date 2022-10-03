@@ -31,7 +31,7 @@ export class QuoteService {
       return throwError('Something bad happened; please try again later.');
     }
   
-  createQuote(createQuote: Quote){
+  createQuote(quote: Quote){
     return this.httpClient.post(this.apiUrl + '/api/Quotes/CreateQuote' , Quote, this.httpOptions)
   }
 

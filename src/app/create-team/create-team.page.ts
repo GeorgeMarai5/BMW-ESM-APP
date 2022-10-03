@@ -24,6 +24,12 @@ export class CreateTeamPage implements OnInit {
   dealership: Dealership;
   teamType: TeamType;
   data: any;
+  de: any;
+  te:any;
+
+  teamtypedrop:any;
+  dealershipdrop: any;
+  
 
   constructor(public authService: AuthService, 
     public fb: FormBuilder, 
@@ -37,10 +43,22 @@ export class CreateTeamPage implements OnInit {
       teamService = {} as TeamService;
       dealershipService = {} as DealershipService;
       teamtypeService = {} as TeamTypeService;
+      this.data = new Team();
+      this.de = new Dealership();
+      this.te = new TeamType();
     }
 
-  submitForm(){
+  async createTeam(){
     this.teamService.createTeam(this.data).subscribe(response => {
+      console.log(response);
+    });
+
+
+    this.dealershipService.createDealership(this.de).subscribe(response => {
+      console.log(response);
+    });
+
+    this.teamtypeService.createTeamType(this.te).subscribe(response => {
       console.log(response);
     });
   
@@ -51,16 +69,17 @@ export class CreateTeamPage implements OnInit {
 
     this.dealershipService.getDealershipList().subscribe(response => {
       console.log(response);
-      this.data = response;
+      this.dealershipdrop = response;
   
     });
+
   }
   
   async getTeamType(){
   
     this.teamtypeService.getTeamTypeList().subscribe(response => {
       console.log(response);
-      this.data = response;
+      this.teamtypedrop = response;
     })
   }
   
