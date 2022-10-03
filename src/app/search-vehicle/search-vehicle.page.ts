@@ -90,7 +90,7 @@ export class SearchVehiclePage implements OnInit {
 
     this.service.getVehicleModelList().subscribe(response => {
       console.log(response);
-      this.Model = response;
+      this.data = response;
 
     
 
