@@ -26,7 +26,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Client Name</b></ion-label>
-                            <ion-input #ClientName="ngModel" required [(ngModel)]="data.ClientName" placeholder="Enter Client Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #ClientName="ngModel" required [(ngModel)]="data.clientName" placeholder="Enter Client Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                             <div *ngIf="ClientName.invalid && (ClientName.dirty || ClientName.touched)" class="alert">
                                 <span color="danger" style="padding-top: 2vh; " *ngIf="ClientName.errors?.required">
                                     Client Name is required.
@@ -39,7 +39,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Date</b></ion-label>
-                            <ion-input #Date="ngModel" [(ngModel)]="data.Date" placeholder="Enter Date..." [ngModelOptions]="{standalone: true}" type="date"></ion-input>
+                            <ion-input #Date="ngModel" [(ngModel)]="data.date" placeholder="Enter Date..." [ngModelOptions]="{standalone: true}" type="date"></ion-input>
                             <div *ngIf="Date.invalid && (Date.dirty || Date.touched)" class="alert">
                                 <span color="danger" style="padding-top: 2vh; " *ngIf="Date.errors?.required">
                                     Date is required.
@@ -52,7 +52,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Description</b></ion-label>
-                            <ion-input #Description="ngModel" [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #Description="ngModel" [(ngModel)]="data.description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
                             <div *ngIf="Description.invalid && (Description.dirty || Description.touched)" class="alert">
                                 <span color="danger" style="padding-top: 2vh; " *ngIf="Description.errors?.required">
                                     Description is required.
@@ -65,9 +65,9 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Accepted</b></ion-label>
-                            <ion-select [(ngModel)]="data.isAccepted" placeholder="Select an option..." [ngModelOptions]="{standalone: true}">
-                                <ion-select-option>Yes</ion-select-option>
-                                <ion-select-option>No</ion-select-option>
+                            <ion-select >
+                                <ion-select-option>True</ion-select-option>
+                                <ion-select-option>False</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
@@ -99,3 +99,9 @@
         </iframe>
       </div>
 </ion-content>
+
+
+
+<!----[(ngModel)]="data.description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"-->
+
+<!--[(ngModel)]="data.isAccepted" placeholder="Select an option..." [ngModelOptions]="{standalone: true}"-->
