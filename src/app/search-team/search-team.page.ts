@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
 import { AlertController, ToastController } from '@ionic/angular';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DealershipService } from 'app/services/dealership.service';
 import { TeamTypeService } from 'app/services/teamtype.service';
 
@@ -16,15 +14,21 @@ import { TeamTypeService } from 'app/services/teamtype.service';
 })
 export class SearchTeamPage implements OnInit {
 
-  teams: Team;
   teamList = [];
   teamForm: FormGroup;
   searchTerm: string;
-  teamID: string;
-  data: any;
+  teamId: string;
+  teamData: any;
+  data: any; 
 
-  constructor(public authService: AuthService, private teamservice: TeamService, private dealershipService: DealershipService, 
-    private teamtypeService: TeamTypeService, public alertCtrl: AlertController, public fb: FormBuilder, public router: Router, public toastCtrl: ToastController) { 
+  constructor(public authService: AuthService, 
+    private teamservice: TeamService, 
+    private dealershipService: DealershipService, 
+    private teamtypeService: TeamTypeService, 
+    public alertCtrl: AlertController, 
+    public fb: FormBuilder, 
+    public router: Router, 
+    public toastCtrl: ToastController) { 
       teamservice = {} as TeamService;
       dealershipService = {} as DealershipService;
       teamtypeService = {} as TeamTypeService;
@@ -40,21 +44,27 @@ export class SearchTeamPage implements OnInit {
     */
     this.getallTeams();
     this.getDealership();
+    this.getTeamType();
   }
 
   async getallTeams(){
     this.teamservice.getTeamList().subscribe(response => {
       console.log(response);
       this.data = response;
-    })
+    });
   }
 
   async getDealership(){
-
     this.dealershipService.getDealershipList().subscribe(response => {
       console.log(response);
       this.data = response;
-  
+    });
+  }
+
+  async getTeamType() {
+    this.teamtypeService.getTeamTypeList().subscribe(response => {
+      console.log(response);
+      this.data = response;
     });
   }
 
@@ -73,7 +83,7 @@ export class SearchTeamPage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.teamservice.deleteTeam(item.teamID).subscribe(Response => {
+          this.teamservice.deleteTeam(item.teamId).subscribe(Response => {
             console.log(Response);
           });
           this.presentToast();

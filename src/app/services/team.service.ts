@@ -43,8 +43,6 @@ export class TeamService {
   
     createTeam(Team: Team){
       return this.httpClient.post(this.apiTeamUrl + '/CreateTeam' , Team, this.httpOptions)
-  
-  
     }
   
   
