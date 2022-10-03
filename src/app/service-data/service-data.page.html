@@ -38,3 +38,15 @@
             </tr>
         </table>
     </ion-content> -->
+    <ion-row *ngFor="let item of data">
+        <ion-col>
+            <ion-label> {{item.Description}}</ion-label>
+        </ion-col>
+        <ion-button href="javascript:generatePDF()" id="downloadButton" (click)="printMyPDF()">Click to download</ion-button>
+    </ion-row>
+
+    <ion-row *ngFor="let item of data">
+        <ion-label>Hello</ion-label>
+          <ion-label> {{item.Description}}</ion-label>
+      <ion-button href="javascript:generatePDF()" id="downloadButton" (click)="printMyPDF()">Click to download</ion-button>
+  </ion-row>

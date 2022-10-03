@@ -9,6 +9,10 @@ import { ServiceItemService } from '../services/service-item.service';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { ServiceItem } from 'app/models/ServiceItem';
+import html2canvas from 'html2canvas';
+import { threadId } from 'worker_threads';
+import { response } from 'express';
+
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
@@ -20,7 +24,7 @@ import { ServiceItem } from 'app/models/ServiceItem';
 export class ViewServiceInvoicePage implements OnInit {
 
 item: any;
-
+data: ServiceItem;
   vehicles: Vehicle;
   vehicle = [];
   newItems = {
@@ -38,7 +42,7 @@ item: any;
   serviceItems = [this.newItems.item1, this.newItems.item2];
   viewInvoiceForm: FormGroup;
   isSubmitted = false;
-  data: any;
+
   maintenanceplanID: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
@@ -58,6 +62,38 @@ this.getAllServiceItems();
   }
   submitForm(){
   }
+
+//   getModel(){
+
+//     this.service.getServiceItemList().subscribe(response => {
+//       console.log(response);
+//       this.data = response;
+//     })
+//   }
+
+//  async printMyPDF(){
+//         document.getElementById("downloadButton").innerHTML = "Currently downloading, please wait";
+
+//         //Downloading
+//         var downloading = document.getElementById("whatToPrint");
+//         var doc = new jsPDF('l', 'pt');
+
+//         await html2canvas(downloading, {
+//             //allowTaint: true,
+//             //useCORS: true,
+//             width: 530
+//         }).then((canvas) => {
+//             //Canvas (convert to PNG)
+//             doc.addImage(canvas.toDataURL("image/png"), 'PNG', 5, 5, 500, 200);
+//         })
+
+//         doc.save("Document.pdf");
+
+//         //End of downloading
+
+//         document.getElementById("downloadButton").innerHTML = "Click to download";
+//     }
+
 
   navToUpdate() {
     this.router.navigate(['tabs/edit/vehicle', this.data]);
@@ -90,6 +126,9 @@ this.getAllServiceItems();
   }
 
   async getReport() {
+    console.log(this.data.Description);
+    
+
     let docDefinition = {  
       header: {
         margin: 10,
@@ -107,12 +146,12 @@ this.getAllServiceItems();
         {
           columns: [  
             [  
-                {  
-                    text: 'Client Details',  
+                {   
+                  
+                    text: this.data.Description,
                     fontSize: 16, 
                     bold: true
                 },  
-                { text: this.getAllServiceItems()}
             ]
           ], 
         },
@@ -123,7 +162,7 @@ this.getAllServiceItems();
             body: [
               ['Service Items', '', ''],
               [{text: 'Oil Change' + '\t\t\t R2 000' + '\n' + 'Quantity: 1'}, {text: 'Brake Disk Replacement' + '\t\t\t R4 000' + '\n' + 'Quantity: 4'},
-            {text: 'Grand Total' + '\t\t\t R6 480' + '\n' + '+VAT (8%)'}]
+            {text:  + '\t\t\t R6 480' + '\n' + '+VAT (8%)'}]
             ]
           },
           style: 'superMargin'

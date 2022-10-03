@@ -1,6 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
 import { ModalController } from '@ionic/angular';
+import { Feedback } from 'app/models/Feedback';
+import { FeedbackService } from 'app/services/feedback.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas'
+import { ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-vehicle-feedback-report',
@@ -9,8 +14,11 @@ import { ModalController } from '@ionic/angular';
 })
 export class VehicleFeedbackReportComponent implements OnInit {
 
-  constructor(private modalContrller: ModalController, private pdfGenerator: PDFGenerator) { }
+  constructor(private modalContrller: ModalController, private pdfGenerator: PDFGenerator, private _service: FeedbackService) { 
 
+    _service = {} as FeedbackService;
+  }
+data: any;
   @Input() feedback;
   content: string;
   closeModal() {
@@ -34,4 +42,13 @@ export class VehicleFeedbackReportComponent implements OnInit {
   ngOnInit() {
     console.log('Feedback Page', this.feedback);
   }
+
+  getModel(){
+
+    this._service.getFeedbackList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+
 }
