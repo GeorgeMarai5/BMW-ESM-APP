@@ -22,13 +22,14 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>VIN Number</b></ion-label>
-              <ion-input [(ngModel)]="data.VINNum" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input #VINNum="ngModel" required minlength="17" maxlength="17"
+               [(ngModel)]="data.VINNum" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.required">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && VINNum.errors?.required">
               VIN Number is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.VINNum.errors?.min || 
-            errorControl.VINNum.errors?.max || !errorControl.Registration.value.trim()">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && VINNum.errors?.minLength || 
+            errorControl.VINNum.errors?.maxLength">
               VIN Number is invalid.
             </span>
           </ion-col>
@@ -41,23 +42,19 @@
                 <ion-select-option *ngFor="let item of models">{{ item }}</ion-select-option>
               </ion-select>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.vehicleModel.errors?.required">
-              Vehicle Model is required.
-            </span>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Registration</b></ion-label>
-              <ion-input [(ngModel)]="data.Registration" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input #Registration="ngModel" required [(ngModel)]="data.Registration" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Registration.errors?.required">
-              Registration is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Registration.value.trim()">
-              Registration is invalid.
-          </span>
+            <div *ngIf="Registration.invalid && (Registration.dirty || Registration.touched)" class="alert">
+              <span color="danger" style="padding-top: 2vh; " *ngIf="Registration.errors?.required">
+                Registration is required.
+              </span>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -68,9 +65,6 @@
                 <ion-select-option *ngFor="let item of plans">{{ item }}</ion-select-option>
               </ion-select>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.warrantyPlan.errors?.required">
-              Warranty Plan is required.
-            </span>
           </ion-col>
         </ion-row>
         <br/>

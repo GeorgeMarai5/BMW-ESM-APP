@@ -26,14 +26,13 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Name</b></ion-label>
-                            <ion-input [(ngModel)]="data.TeamName" [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #TeamName="ngModel" required [(ngModel)]="data.TeamName" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamName.errors?.required">
-                            Team Name is required.
-                        </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.TeamName.value.trim()">
-                            Team Name is invalid.
-                        </span>
+                        <div *ngIf="TeamName.invalid && (TeamName.dirty || TeamName.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="TeamName.errors?.required">
+                                Team Name is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -44,9 +43,6 @@
                                 <ion-select-option *ngFor="let item of dealerships">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.DealershipName.errors?.required">
-                            Dealership is required.
-                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -57,9 +53,6 @@
                                 <ion-select-option *ngFor="let item of teamTypes">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.TeamType.errors?.required">
-                            Team Type is required.
-                        </span>
                     </ion-col>
                 </ion-row>
                 <br/>

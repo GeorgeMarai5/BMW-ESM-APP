@@ -28,9 +28,11 @@
                             <ion-label position="stacked"><b>Name</b></ion-label>
                             <ion-input #employeeName="ngModel" [(ngModel)]="data.employeeName" placeholder="Enter Employee Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color=" danger " style="padding-top: 2vh; " *ngIf="isSubmitted && employeeName.errors?.required ">
-                            Employee Name is required.
-                        </span>
+                        <div *ngIf="employeeName.invalid && (employeeName.dirty || employeeName.touched)" class="alert">
+                            <span color=" danger " style="padding-top: 2vh; " *ngIf="employeeName.errors?.required ">
+                                Employee Name is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -39,9 +41,11 @@
                             <ion-label position="stacked "><b>Surname</b></ion-label>
                             <ion-input #employeeSurname="ngModel" [(ngModel)]="data.employeeSurname" placeholder="Enter Employee Surname..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && employeeSurname.errors?.required ">
-                            Employee Surname is required.
-                        </span>
+                        <div *ngIf="employeeSurname.invalid && (employeeSurname.dirty || employeeSurname.touched)" class="alert">
+                            <span color="danger " style="padding-top: 2vh; " *ngIf="employeeSurname.errors?.required ">
+                                Employee Surname is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -50,9 +54,11 @@
                             <ion-label position="stacked "><b>Phone Number</b></ion-label>
                             <ion-input #phoneNumber="ngModel" [(ngModel)]="data.phoneNumber" placeholder="Enter Phone Number..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && phoneNumber.errors?.required ">
-                            Phone Number is required.
-                        </span>
+                        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert">
+                            <span color="danger " style="padding-top: 2vh; " *ngIf="phoneNumber.errors?.required ">
+                                Phone Number is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -61,9 +67,11 @@
                             <ion-label position="stacked "><b>Email</b></ion-label>
                             <ion-input #emailAddress="ngModel" [(ngModel)]="data.emailAddress" placeholder="Enter Email..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && emailAddress.errors?.required ">
-                            Email Address is required.
-                        </span>
+                        <div *ngIf="emailAddress.invalid && (emailAddress.dirty || emailAddress.touched)" class="alert">
+                            <span color="danger " style="padding-top: 2vh; " *ngIf="emailAddress.errors?.required ">
+                                Email Address is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -74,9 +82,6 @@
                                 <ion-select-option *ngFor="let item of roles ">{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger " style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Role.errors?.required ">
-                            Employee Role is required.
-                        </span>
                     </ion-col>
                 </ion-row>
                 <br/>

@@ -24,7 +24,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Item Name</ion-label>
-                            <ion-input #name="ngModel" [(ngModel)]="data.name" placeholder="Enter Item Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #name="ngModel" required [(ngModel)]="data.name" placeholder="Enter Item Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
                             <span color="danger" style="padding-top: 2vh; " *ngIf="name.errors?.['required']">
                                 Item Name is required.
@@ -37,7 +37,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Description</ion-label>
-                            <ion-input #Description="ngModel" [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #Description="ngModel" required [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
                             <div *ngIf="Description.invalid && (Description.dirty || Description.touched)" class="alert">
                                 <span color="danger" style="padding-top: 2vh; " *ngIf="Description.errors?.required">
                                     Item Description is required.

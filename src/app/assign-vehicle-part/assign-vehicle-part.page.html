@@ -18,20 +18,19 @@
             <h1>Assign Part</h1>
         </ion-title>
 
-        <form [formGroup]="assignPartForm" (ngSubmit)="submitForm()" novalidate>
+        <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Part Name</b></ion-label>
-                            <ion-input [(ngModel)]="data.partName" placeholder="Enter Part Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #partName="ngModel" required [(ngModel)]="data.partName" placeholder="Enter Part Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partName.errors?.required">
-                            Part Name is required.
-                        </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.partName.value.trim()">
-                            Part Name is invalid.
-                        </span>
+                        <div *ngIf="partName.invalid && (partName.dirty || partName.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="partName.errors?.required">
+                                Part Name is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -42,37 +41,32 @@
                                 <ion-select-option *ngFor="let item of types" >{{ item }}</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.partType.errors?.required">
-                            Part Type is required.
-                        </span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Description</b></ion-label>
-                            <ion-input [(ngModel)]="data.description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #description="ngModel" required [(ngModel)]="data.description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.description.errors?.required">
-                            Description is required.
-                        </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.description.value.trim()">
-                            Description is invalid.
-                        </span>
+                        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="description.errors?.required">
+                                Description is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Part In Stock</b></ion-label>
-                            <ion-input [(ngModel)]="data.Availability" placeholder="Enter Part Status" [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #Availability="ngModel" required [(ngModel)]="data.Availability" placeholder="Enter Part Status" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Availability.errors?.required">
-                            Part Availability is required.
-                        </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Availability.value.trim()">
-                            Part Availability can not contain spaces.
-                        </span>
+                        <div *ngIf="Availability.invalid && (Availability.dirty || Availability.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="Availability.errors?.required">
+                                Part Availability is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <br/>

@@ -27,15 +27,17 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>VIN Number</b></ion-label>
-                            <ion-input #vin="ngModel" [(ngModel)]="data.VINNum" placeholder="Enter VIN Number..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #vin="ngModel" required minlength="17" maxlength="17" [(ngModel)]="data.VINNum" placeholder="Enter VIN Number..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && vin.errors?.required">
-                            VIN Number is required.
-                        </span>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && vin.errors?.min || 
-                            vin.errors?.max">
-                            VIN Number is invalid.
-                        </span>
+                        <div *ngIf="vin.invalid && (vin.dirty || vin.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && vin.errors?.required">
+                                VIN Number is required.
+                            </span>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && vin.errors?.minLength || 
+                                vin.errors?.maxLength">
+                                VIN Number is invalid.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -52,11 +54,13 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Registration</b></ion-label>
-                            <ion-input #registration="ngModel" [(ngModel)]="data.Registration" placeholder="Enter Registration..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #registration="ngModel" required [(ngModel)]="data.Registration" placeholder="Enter Registration..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && registration.errors?.required">
-                            Registration is required.
-                        </span>
+                        <div *ngIf="registration.invalid && (registration.dirty || registration.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="registration.errors?.required">
+                                Registration is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>

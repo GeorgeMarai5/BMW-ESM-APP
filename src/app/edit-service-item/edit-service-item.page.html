@@ -24,13 +24,12 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Item Name</ion-label>
-                            <ion-input [(ngModel)]="data.name" [ngModelOptions]="{standalone: true}"></ion-input>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.name.errors?.required">
+                            <ion-input #name="ngModel" required [(ngModel)]="data.name" [ngModelOptions]="{standalone: true}"></ion-input>
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+                              <span color="danger" style="padding-top: 2vh; " *ngIf="name.errors?.required">
                                 Item Name is required.
                               </span>
-                              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.name.value.trim()">
-                                Item Name is invalid.
-                            </span>
+                            </div>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -38,13 +37,12 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked">Description</ion-label>
-                            <ion-input [(ngModel)]="data.description" [ngModelOptions]="{standalone: true}"></ion-input>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.description.errors?.required">
+                            <ion-input #description="ngModel" required [(ngModel)]="data.description" [ngModelOptions]="{standalone: true}"></ion-input>
+                            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert">
+                              <span color="danger" style="padding-top: 2vh; " *ngIf="description.errors?.required">
                                 Item Description is required.
                               </span>
-                              <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.description.value.trim()">
-                                Item Description is invalid.
-                            </span>
+                            </div>
                         </ion-item>
                     </ion-col>
                 </ion-row>

@@ -22,28 +22,26 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Dealership Name</b></ion-label>
-              <ion-input [(ngModel)]="data.dealershipName" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input #dealershipName="ngModel" required [(ngModel)]="data.dealershipName" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.dealershipName.errors?.required">
+            <div *ngIf="dealershipName.invalid && (dealershipName.dirty || dealershipName.touched)" class="alert">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="dealershipName.errors?.required">
               Dealership Name is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.dealershipName.value.trim()">
-              Dealership Name is invalid.
-          </span>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Address</b></ion-label>
-              <ion-input [(ngModel)]="data.address" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input #address="ngModel" required [(ngModel)]="data.address" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.address.errors?.required">
-              Address is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.address.value.trim()">
-              Address is invalid.
-          </span>
+            <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert">
+              <span color="danger" style="padding-top: 2vh; " *ngIf="address.errors?.required">
+                Address is required.
+              </span>
+            </div>
           </ion-col>
         </ion-row>
         <br/>

@@ -26,10 +26,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Safety Systems</ion-label>
-                            <ion-textarea [(ngModel)]="data.safetySystemsCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.safetySystemsCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #safetySystemsCheck="ngModel" [(ngModel)]="data.safetySystemsCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && safetySystemsCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -37,10 +37,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Interior Lights</ion-label>
-                            <ion-textarea [(ngModel)]="data.interiorLightsCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.interiorLightsCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #interiorLightsCheck="ngModel" [(ngModel)]="data.interiorLightsCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && interiorLightsCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -48,10 +48,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Exterior Lights</ion-label>
-                            <ion-textarea [(ngModel)]="data.exteriorLightsCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.exteriorLightsCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #exteriorLightsCheck="ngModel" [(ngModel)]="data.exteriorLightsCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && exteriorLightsCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -59,10 +59,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Windscreen Washer System And Fluids</ion-label>
-                            <ion-textarea [(ngModel)]="data.windscreenCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.windscreenCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #windscreenCheck="ngModel" [(ngModel)]="data.windscreenCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && windscreenCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -70,10 +70,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Tyres</ion-label>
-                            <ion-textarea [(ngModel)]="data.tyreCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.tyreCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #tyreCheck="ngModel" [(ngModel)]="data.tyreCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && tyreCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -81,10 +81,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">BMW Mobility System</ion-label>
-                            <ion-textarea [(ngModel)]="data.mobilityCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.mobilityCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #mobilityCheck="ngModel" [(ngModel)]="data.mobilityCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && mobilityCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -92,10 +92,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Engine Coolant Checks</ion-label>
-                            <ion-textarea [(ngModel)]="data.coolantCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.coolantCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #coolantCheck="ngModel" [(ngModel)]="data.coolantCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && coolantCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -103,10 +103,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Headlamp Exterior Condition And Functionality</ion-label>
-                            <ion-textarea [(ngModel)]="data.headlmapCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.headlampCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #headlampCheck="ngModel" [(ngModel)]="data.headlmapCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && headlampCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -114,10 +114,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Steering Fluid Reservoir Oil Level</ion-label>
-                            <ion-textarea [(ngModel)]="data.steeringFluidCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.steeringFluidCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #steeringFluidCheck="ngModel" [(ngModel)]="data.steeringFluidCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && steeringFluidCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -125,10 +125,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Brake Lines And Connections</ion-label>
-                            <ion-textarea [(ngModel)]="data.brakeCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.brakeCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #brakeCheck="ngModel" [(ngModel)]="data.brakeCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && brakeCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -136,10 +136,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Under Body Panelling</ion-label>
-                            <ion-textarea [(ngModel)]="data.underBodyCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.underBodyCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #underBodyCheck="ngModel" [(ngModel)]="data.underBodyCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && underBodyCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -147,10 +147,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Steering System</ion-label>
-                            <ion-textarea [(ngModel)]="data.steeringFluidCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.steeringFluidCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #steeringFluidCheck="ngModel" [(ngModel)]="data.steeringFluidCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && steeringFluidCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -158,10 +158,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Spark Plugs</ion-label>
-                            <ion-textarea [(ngModel)]="data.sparkPlugsCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.sparkPlugsCheck.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #sparkPlugsCheck="ngModel" [(ngModel)]="data.sparkPlugsCheck" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && sparkPlugsCheck.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -169,10 +169,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Other</ion-label>
-                            <ion-textarea [(ngModel)]="data.other" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.other.value.trim()">
-                Note is invalid.
-            </span>
+                            <ion-textarea #other="ngModel" [(ngModel)]="data.other" placeholder="Notes..." [ngModelOptions]="{standalone: true}" style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && other.invalid">
+                                Note is invalid.
+                            </span>
                         </ion-item>
                     </ion-col>
                 </ion-row>

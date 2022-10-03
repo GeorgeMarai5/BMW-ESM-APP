@@ -28,22 +28,26 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Fleet Name</b></ion-label>
-                            <ion-input [(ngModel)]="data.fleetName" placeholder="Enter Fleet Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #fleetName="ngModel" required [(ngModel)]="data.fleetName" placeholder="Enter Fleet Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.fleetName.value.trim()">
-              Fleet Name can not contain spaces.
-          </span>
+                        <div *ngIf="fleetName.invalid && (fleetName.dirty || fleetName.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh;" *ngIf="fleetName.errors?.required">
+                                Fleet Name is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Fleet Location</b></ion-label>
-                            <ion-input [(ngModel)]="data.fleetLocation" placeholder="Enter Fleet Location..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #fleetLocation="ngModel" required [(ngModel)]="data.fleetLocation" placeholder="Enter Fleet Location..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh;" *ngIf="isSubmitted && !errorControl.fleetLocation.value.trim()">
-              Fleet Location is invalid.
-          </span>
+                        <div *ngIf="fleetLocation.invalid && (fleetLocation.dirty || fleetLocation.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh;" *ngIf="fleetLocation.errors?.required">
+                                Fleet Location is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <br/>
