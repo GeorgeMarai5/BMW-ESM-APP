@@ -26,7 +26,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Name</b></ion-label>
-                            <ion-input [(ngModel)]="data.teamName" placeholder="Enter Team Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #TeamName="ngModel" required [(ngModel)]="data.teamName" placeholder="Enter Team Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <div *ngIf="TeamName.invalid && (TeamName.dirty || TeamName.touched)" class="alert">
                             <span color="danger" style="padding-top: 2vh; " *ngIf="TeamName.errors?.required">

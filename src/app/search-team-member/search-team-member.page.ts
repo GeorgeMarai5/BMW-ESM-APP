@@ -109,6 +109,10 @@ async delete(item){
     confirmDeleteAlert.present();
   }
 
+  async assignTeamMember(id){
+    
+  }
+
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Team member has been removed successfully.',
