@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VehicleService } from '../models/VehicleService';
+import { VehicleService } from 'app/services/vehicle.service';
 import { AuthService } from '../services/auth.service';
 import { ServiceService } from '../services/service.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -21,13 +21,18 @@ export class SearchServicePage implements OnInit {
   serviceForm: FormGroup;
   searchTerm: string;
   id: any;
+  data:any;
 
-  constructor(public router: Router, public authService: AuthService, private _service: ServiceService, public fb: FormBuilder, private firestore: AngularFirestore, 
-    public alertCtrl: AlertController, public toastCtrl: ToastController) { 
-      this.services = {} as VehicleService;
+  constructor(public router: Router, public authService: AuthService, private _service: VehicleService, public fb: FormBuilder, private firestore: AngularFirestore, 
+    public alertCtrl: AlertController, public toastCtrl: ToastController,private Sservice: ServiceService) { 
+      _service = {} as VehicleService;
+      Sservice = {} as ServiceService;
     }
 
   ngOnInit() {
+    //this.getServiceType();
+    //this.getVehicle();
+    this.getService();
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -55,28 +60,7 @@ export class SearchServicePage implements OnInit {
         }
       });
     }
-    // this.serviceForm = this.fb.group({
-    //   ServiceID: ['', [Validators.required]],
-    //   VINNumber: ['', [Validators.required]],
-    //   ServiceType: ['', [Validators.required]],
-    //   Date: ['', [Validators.required]]
-    // });
-    
-    // this._service.getServices().subscribe(data => {
-    //   this.serviceList = data.map(e => {
-
-    //     return {
-    //       id: e.payload.doc.id,
-    //       ServiceID: e.payload.doc.data()['ServiceID'],
-    //       VINNumber: e.payload.doc.data()['VINNumber'],
-    //       ServiceTypeName: e.payload.doc.data()['ServiceTypeName'],
-    //       Date: e.payload.doc.data()['Date']
-
-    //     };
-    //   })
-    //   console.log(this.serviceList);
-
-    // });
+  
   }
   
   async cancelService(id){
@@ -94,7 +78,7 @@ export class SearchServicePage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this._service.deleteService(id);
+          //this._service.deleteService(id);
           this.presentToast();
         }
       }]
@@ -106,11 +90,50 @@ export class SearchServicePage implements OnInit {
 
   async presentToast() {
     let toast = await this.toastCtrl.create({
-      message: 'Service has been canceled successfully.',
+      message: 'Service has been cancelled successfully.',
       duration: 3000,
       position: 'top'
     });
   
     toast.present();
   }
+
+async getVehicle(){
+
+  this._service.getVehicleList().subscribe(response => {
+    console.log(response);
+    this.data = response ;
+  })
+
 }
+
+async getService(){
+
+  this.Sservice.getServiceList().subscribe(response => {
+    console.log(response);
+    this.data = response ;
+  })
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

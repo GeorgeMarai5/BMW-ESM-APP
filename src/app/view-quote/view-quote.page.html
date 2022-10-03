@@ -12,39 +12,45 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+
+
+<!-----
+
+
+
+<ion-content class="ion-margin">
   <div class="contents">
     <ion-title><h1>View Quote</h1></ion-title>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-item lines="full">
-              <ion-label position="stacked"><b>Client Name</b></ion-label>
-              <ion-input >{{data.lastName}}, {{}data.firstName}</ion-input>
+            <ion-item >
+              <ion-label >Client Name</ion-label>
+              <ion-input readonly>{{data.client.firstName}}</ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-item lines="full">
-              <ion-label position="stacked"><b>Date</b></ion-label>
-              <ion-input readonly>{{data.Date}}</ion-input>
+            <ion-item >
+              <ion-label >Date</ion-label>
+              <ion-input readonly>{{data.date}}</ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-item lines="full">
-              <ion-label position="stacked"><b>Description</b></ion-label>
-              <ion-input readonly>{{data.Description}}</ion-input>
+            <ion-item >
+              <ion-label >Description</ion-label>
+              <ion-input readonly>{{data.description}}</ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-item lines="full">
-              <ion-label position="stacked"><b>Accepted</b></ion-label>
-              <ion-input readonly>{{data.Accepted}}</ion-input>
+            <ion-item >
+              <ion-label >Accepted</ion-label>
+              <ion-input readonly>{{data.isAccepted}}</ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -62,6 +68,82 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+
+
+---->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <ion-content>
+        <div class="contents">
+            <ion-title>
+                <h1>View Quote</h1>
+            </ion-title>
+    
+            <form >
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-item lines="full">
+                                <ion-label position="stacked"><b>Client Name</b></ion-label>
+                                <ion-input [(ngModel)]="data.description" [ngModelOptions]="{standalone: true}" readonly></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <ion-item lines="full">
+                                <ion-label position="stacked"><b>Date</b></ion-label>
+                                <ion-input [(ngModel)]="data.date" [ngModelOptions]="{standalone: true}" readonly>
+                                    
+                                </ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <ion-item lines="full">
+                                <ion-label position="stacked"><b>Description</b></ion-label>
+                                <ion-input [(ngModel)]="data.description" [ngModelOptions]="{standalone: true}" readonly></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <ion-item lines="full">
+                                <ion-label position="stacked"><b>Accepted</b></ion-label>
+                                <ion-input [(ngModel)]="data.isAccepted" [ngModelOptions]="{standalone: true}" readonly>
+                                </ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <br/>
+                    <ion-row>
+                        <ion-col></ion-col>
+                        <ion-col>
+                            <ion-button [routerLink]="['tabs/search/quote']" expand="block">Back</ion-button>
+                        </ion-col>
+                        <ion-col>
+                            <ion-button class="light-Btn" (click)="navToUpdate()" expand="block">View Service Note</ion-button>
+                        </ion-col>
+                        <ion-col>
+                            <ion-button type="submit" class="green-Btn" expand="block">Update Quote</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </form>
   </div>
   <button type="button" class="collapsible">Help Chat
     <ion-icon id="up" style="float: right; margin-top: 0.2em;" name="chevron-up-outline">

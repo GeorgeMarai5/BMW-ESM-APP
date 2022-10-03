@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
 import { Vehicle } from '../models/Vehicle';
 import { retry, catchError } from 'rxjs/operators';
 import { VehicleModel } from 'app/models/VehicleModel';
+import { ServiceType } from 'app/models/ServiceType';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,16 @@ createVehicle(Vehicle: Vehicle){
 getVehicleList(): Observable<Vehicle> {
   return this.httpClient
     .get<Vehicle>(this.apiUrl + '/GetAllVehicles')
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+}
+
+
+getServiceTypeList(): Observable<ServiceType> {
+  return this.httpClient
+    .get<ServiceType>('https://localhost:7163/api/ServiceTypes/GetAllServiceTypes')
     .pipe(
       retry(2),
       catchError(this.handleError)

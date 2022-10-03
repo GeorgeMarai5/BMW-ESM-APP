@@ -35,6 +35,13 @@ export class ViewQuotePage implements OnInit {
    }
 
   ngOnInit() {
+
+
+    this.quoteservice.getQuote(this.data).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    });
+
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');
@@ -56,25 +63,9 @@ export class ViewQuotePage implements OnInit {
       });
     }
     
-    this.quoteservice.getQuote(this.data).subscribe(response => {
-      console.log(response);
-      this.data = response;
-    })
+   
 
-    // this.quoteservice.getQuoteList().subscribe(data => {
-    //   this.QuoteList = data.map(e => {
-    //     return {
-    //       id: e.payload.doc.id,
-    //       isEdit: false,
-    //       ClientName: e.payload.doc.data()['ClientName'],
-    //       Date: e.payload.doc.data()['Date'],
-    //       Description: e.payload.doc.data()['Description'],
-    //       Accepted: e.payload.doc.data()['Accepted'],
-    //     };
-    //   });
-
-    //   console.log(this.QuoteList);
-    // });
+  
   }
 
   navToUpdate() {
@@ -85,7 +76,7 @@ export class ViewQuotePage implements OnInit {
     this.router.navigate(['tabs/view/service-note', this.data.id]);
   }
 
-  getQuotes(id){
+  getQuote(id){
 
   }
 }

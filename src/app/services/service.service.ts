@@ -44,7 +44,7 @@ export class ServiceService {
 
   getServiceList(): Observable<ServiceService> {
     return this.httpClient
-      .get<ServiceService>(this.apiUrl + '/api/Services/GetAll')
+      .get<ServiceService>(this.apiUrl + '/api/Services/GetAllServices')
       .pipe(
         retry(2),
         catchError(this.handleError)

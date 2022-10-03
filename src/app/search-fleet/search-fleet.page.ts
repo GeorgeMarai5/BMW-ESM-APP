@@ -26,6 +26,7 @@ export class SearchFleetPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getallFleets()
     if(this.authService.isLoggedIn){
       return true;
     }
