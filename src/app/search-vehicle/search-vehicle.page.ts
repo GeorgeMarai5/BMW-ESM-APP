@@ -54,24 +54,6 @@ export class SearchVehiclePage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    //this.getallVehicles();
-
-    //  this.service.getVehicleList().subscribe(data => {
-    //    this.vehicleList = data.map(e => {
-    //      let yearCode: string;
-    //      yearCode = e.payload.doc.data()['VIN_Number'];
-
-    //      return {
-    //        id: e.payload.doc.id,
-    //        VehicleID: e.payload.doc.data()['VehicleID'],
-    //        VINNum: e.payload.doc.data()['VIN_Number'],
-    //        model: e.payload.doc.data()['VehicleModel'],
-    //        year: this.service.getYear(yearCode.substring(9, 10))
-    //      };
-    //    })
-    //    console.log(this.vehicleList);
-
-    //  });
     */
 
     var coll = document.getElementsByClassName("collapsible");
@@ -143,7 +125,11 @@ export class SearchVehiclePage implements OnInit {
         text: 'Remove',
         role: 'remove',
         handler: () => {
-          this.service.deleteVehicle(item.VehicleID).subscribe(Response => {
+          this.service.deleteVehicle(item.vehicleId).subscribe(Response => {
+            console.log(Response);
+            this.getallVehicles()
+          });
+          this.service.deleteVehicleModel(item.vehicleModelId).subscribe(Response => {
             console.log(Response);
             this.getallVehicles()
           });

@@ -35,11 +35,11 @@
                     <ion-label> {{item.vehicleModel.year}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-button class="red-Btn" (click)="removeVehicle(this.item.id)">Remove</ion-button>
-                    <ion-button class="light-Btn" [routerLink]="['/tabs/view/vehicle', this.item.id]">View</ion-button>
+                    <ion-button class="red-Btn" (click)="removeVehicle(item)">Remove</ion-button>
+                    <ion-button class="light-Btn" [routerLink]="['/tabs/view/vehicle', this.item.vehicleId]">View</ion-button>
                     <ion-button class="green-Btn" [routerLink]="['/tabs/view/service-progress']">Check In</ion-button>
                 </ion-col>
-            </ion-row>
+            </ion-row>[routerLink]="['/tabs/view/fleet',this.item.fleetId]"
             <ion-item-divider></ion-item-divider>
         </ion-grid>
     </div>

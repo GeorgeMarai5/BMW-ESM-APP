@@ -9,6 +9,7 @@ import { Employee } from '../models/Employee';
 import { EmployeeRoleService } from 'app/services/employeeRole.service';
 import { EmployeeRole } from 'app/models/EmployeeRole';
 import { CreateTeamMemberHelpComponent } from 'app/components/create-team-member-help/create-team-member-help.component';
+import { CreateAccountPage } from 'app/create-account/create-account.page';
 
 @Component({
   selector: 'app-create-team-member',
@@ -24,6 +25,7 @@ export class CreateTeamMemberPage implements OnInit {
   data: any;
   roleData:any;
   roledrop: any;
+  CreateAccountPage;
 
 
   constructor(private route: ActivatedRoute, 
@@ -52,23 +54,6 @@ export class CreateTeamMemberPage implements OnInit {
     //else{
     //  this.router.navigate(['/tabs/login']);
     //}
-    this.getEmployee();
-  }
-
-  getEmployee() {
-      this.employeeService.getEmployeeList().subscribe(response => {
-      console.log(response);
-      this.data = response;
-    })
-  }
-
-  async create(){
-    this.service.CreateEmployee(this.data).subscribe(response => {
-      console.log(response);
-    });
-    
-    this.presentToast();
-
 
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -90,6 +75,33 @@ export class CreateTeamMemberPage implements OnInit {
         }
       });
     }
+
+    this.getEmployee();
+    
+    let id = JSON.parse(localStorage.getItem('user'));       //This is the current signed in user from FireBase
+    console.log(id)
+  }
+
+  getEmployee() {
+      this.employeeService.getEmployeeList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+
+  async create(){
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user.uid)
+
+    this.service.CreateEmployee(this.data).subscribe(response => {
+      this.data.employeeId = 
+     
+      console.log(response);
+    });
+    
+    this.presentToast();
+    
   }
 
   get errorControl() {
