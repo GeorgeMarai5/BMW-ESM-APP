@@ -27,7 +27,6 @@ export class CreateTeamPage implements OnInit {
   data: any;
   de: any;
   te:any;
-
   teamtypedrop:any;
   dealershipdrop: any;
   
@@ -91,15 +90,6 @@ export class CreateTeamPage implements OnInit {
     })
   }
   
-  async create(){
-
-    this.teamService.createTeam(this.data).subscribe(response => {
-      console.log(response);
-    });
-  
-    this.presentToast();
-  }
-
   ngOnInit() {
     /*
     if(this.authService.isLoggedIn){

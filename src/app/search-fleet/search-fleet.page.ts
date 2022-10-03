@@ -5,8 +5,6 @@ import{FleetService} from '../services/fleet.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import {  Fleet } from '../models/Fleet';
 
-
-
 @Component({
   selector: 'app-search-fleet',
   templateUrl: './search-fleet.page.html',
@@ -19,206 +17,69 @@ export class SearchFleetPage implements OnInit {
   fleetForm: FormGroup;
   searchTerm: string;
   data: any;
-  //fleetID: string;
+  fleetID: string;
   
   constructor(public authService: AuthService, public fb: FormBuilder, private fleetservice: FleetService, 
     public alertCtrl: AlertController, public toastCtrl: ToastController) { 
-
     fleetservice = {} as FleetService;
-
   }
 
   ngOnInit() {
-
-    this.getallFleets()
-
-    //this.fleetservice.getList().subscribe(response => {
-      //console.log(response);
-      //this.data = response;
-
-  //})
-
+    /*
+    if(this.authService.isLoggedIn){
+      return true;
     }
-
-gotoview(id){
-
-
-  //this.router.navigate(['/tabs/view/fleet', this.data]);
-
-
-
-}
-
-
-
-
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+    */
+    this.getallFleets()
+  }
 
     async getallFleets(){
-
       this.fleetservice.getFleetList().subscribe(response => {
         console.log(response);
         this.data = response;
       })
     }
-
     
     async deleteFleet(item){
-
-      //Delete item in Student data
       this.fleetservice.deleteFleet(item.fleetId).subscribe(Response => {
-        //Update list after delete is successful
         console.log(Response);
         this.getallFleets()
-
       });
     }
   
 
-
-
-
-
-
-
-
-  }
-
-
+    async Deletefleet(id){
+      const confirmDeleteAlert = await this.alertCtrl.create({
+        header: 'Remove Fleet',
+        message: 'Are you sure you would like to remove this Fleet from the system?',
+        buttons: [{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: end => {
+            this.alertCtrl.dismiss();
+          }
+        },
+        {
+          text: 'Remove',
+          role: 'remove',
+          handler: () => {
+            this.fleetservice.deleteFleet(id);
+            this.presentToast();
+          }
+        }]
+      });  
+      confirmDeleteAlert.present();
+    }
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-    this.fleetForm = this.fb.group({
-      FleetName: ['', [Validators.required]],
-      FleetLocation: ['', [Validators.required]],
-      FleetID: ['', [Validators.required]],
-      FleetVehicleQty: ['', [Validators.required]],
-    });
-
-    this.fleetservice.read_Fleet().subscribe(data => {
-
-      this.fleetList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          FleetID: e.payload.doc.data()['FleetID'],
-          FleetVehicleQty: e.payload.doc.data()['FleetVehicleQty'],
-          FleetName: e.payload.doc.data()['FleetName'],
-          FleetLocation: e.payload.doc.data()['FleetLocation']
-        };
-      })
-
-      console.log(this.fleetList);
-
-    });
+    async presentToast() {
+      let toast = await this.toastCtrl.create({
+        message: 'Fleet has been removed successfully.',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+    }
   }
-
-  async Deletefleet(id){
-    const confirmDeleteAlert = await this.alertCtrl.create({
-      header: 'Remove Fleet',
-      message: 'Are you sure you would like to remove this Fleet from the system?',
-      buttons: [{
-        text: 'Cancel',
-        role: 'cancel',
-        handler: end => {
-          this.alertCtrl.dismiss();
-        }
-      },
-      {
-        text: 'Remove',
-        role: 'remove',
-        handler: () => {
-          this.fleetservice.delete_Fleet(id);
-          this.presentToast();
-        }
-      }]
-    });
-
-    confirmDeleteAlert.present();
-
-  }
-
-  async presentToast() {
-    let toast = await this.toastCtrl.create({
-      message: 'Fleet has been removed successfully.',
-      duration: 3000,
-      position: 'top'
-    });
-  
-    toast.present();
-  }
-}
-
-
-*/
-
-
-
-
-
-
