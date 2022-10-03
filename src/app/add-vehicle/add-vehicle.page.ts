@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { AddVehicleHelpComponent } from 'app/components/add-vehicle-help/add-vehicle-help.component';
 import { Vehicle } from 'app/models/Vehicle';
 import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
@@ -21,7 +22,7 @@ export class AddVehiclePage implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public service: VehicleService, public router: Router, public toastCtrl: ToastController) { 
+    public service: VehicleService, public router: Router, public toastCtrl: ToastController, public helpModal: ModalController) { 
     
       service = {} as VehicleService;
       this.data = new Vehicle();
@@ -40,6 +41,12 @@ export class AddVehiclePage implements OnInit {
 
   submitForm() {
     //
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: AddVehicleHelpComponent});
+      return await modal.present();
   }
   
 

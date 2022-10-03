@@ -4,7 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
 import { Quote } from '../models/Quote';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { CreateQuoteHelpComponent } from 'app/components/create-quote-help/create-quote-help.component';
 
 @Component({
   selector: 'app-create-quote',
@@ -24,7 +25,8 @@ export class CreateQuotePage implements OnInit {
     public authService: AuthService, 
     public fb: FormBuilder, 
     private quoteservice: QuoteService, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) {
 
 
 
@@ -63,7 +65,11 @@ export class CreateQuotePage implements OnInit {
   }
   */
 
-
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: CreateQuoteHelpComponent});
+      return await modal.present();
+  }
 
   async createQuote(){
 

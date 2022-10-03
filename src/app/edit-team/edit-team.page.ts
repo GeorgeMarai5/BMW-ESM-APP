@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from '../models/Team';
 import { AuthService } from '../services/auth.service';
 import { TeamService } from '../services/team.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { EditTeamHelpComponent } from 'app/components/edit-team-help/edit-team-help.component';
 
 @Component({
   selector: 'app-edit-team',
@@ -26,7 +27,8 @@ export class EditTeamPage implements OnInit {
     public authService: AuthService,
     public teamservice: TeamService, 
     public router: Router, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) {
       
     // this.route.params.subscribe(params => {
     //     this.data = params.id;
@@ -59,6 +61,12 @@ export class EditTeamPage implements OnInit {
     //     this.presentToast()
     //   }
      
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: EditTeamHelpComponent});
+      return await modal.present();
   }
 
   ngOnInit() {

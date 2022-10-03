@@ -4,8 +4,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignedPart } from '../models/AssignedPart';
 import { AuthService } from '../services/auth.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AssignedPartService } from '../services/assigned-part.service';
+import { EditAssignedPartHelpComponent } from 'app/components/edit-assigned-part-help/edit-assigned-part-help.component';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class EditVehiclePartPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public helpModal: ModalController,
     public service: AssignedPartService, public firestore: AngularFirestore, public router: Router, private toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
@@ -71,6 +72,12 @@ export class EditVehiclePartPage implements OnInit {
       partStock: res['PartInStock']
     })
     });
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: EditAssignedPartHelpComponent});
+      return await modal.present();
   }
 
   get errorControl() {

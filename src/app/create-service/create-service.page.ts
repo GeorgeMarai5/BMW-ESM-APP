@@ -5,11 +5,12 @@ import { ServiceService } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatePipe } from '@angular/common';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { TeamService } from '../services/team.service';
 import { VehicleService } from 'app/models/VehicleService';
 import { Team } from 'app/models/Team';
 import { ServiceType } from 'app/models/ServiceType';
+import { CreateServiceHelpComponent } from 'app/components/create-service-help/create-service-help.component';
 
 @Component({
   selector: 'app-create-service',
@@ -47,7 +48,8 @@ export class CreateServicePage implements OnInit {
     public fb: FormBuilder, 
     private service: ServiceService, 
     public toastCtrl: ToastController, 
-    private teamservice: TeamService) {
+    private teamservice: TeamService,
+    public helpModal: ModalController) {
 
       //service = {} as ServiceService;
       //this.data = new VehicleService();
@@ -94,6 +96,12 @@ this.getType();
     
 
    
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: CreateServiceHelpComponent});
+      return await modal.present();
   }
 
 async getTeam(){

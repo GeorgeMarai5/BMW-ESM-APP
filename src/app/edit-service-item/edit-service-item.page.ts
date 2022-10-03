@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { ServiceItem } from 'app/models/ServiceItem';
 import { AuthService } from '../services/auth.service';
 import { ServiceItemService } from 'app/services/service-item.service';
+import { EditServiceItemHelpComponent } from 'app/components/edit-service-item-help/edit-service-item-help.component';
 
 @Component({
   selector: 'app-edit-service-item',
@@ -27,7 +28,8 @@ export class EditServiceItemPage implements OnInit {
     public _service: ServiceItemService,  
     public router: Router, 
     public toastCtrl: ToastController,
-    public activatedRoute: ActivatedRoute) {
+    public activatedRoute: ActivatedRoute,
+    public helpModal: ModalController) {
 
      _service = {} as ServiceItemService;
      this.serviceItem = new ServiceItem();
@@ -55,6 +57,12 @@ export class EditServiceItemPage implements OnInit {
       console.log(response);
       this.data = response;
     })
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: EditServiceItemHelpComponent});
+      return await modal.present();
   }
 
   async updateServiceItem(){

@@ -1,9 +1,9 @@
 export class Quote{
-    QuoteID: string;
-    ClientName: string;
+    quoteId: string;
+    clientName: string;
     Service_Note: string;
     Service_Price: string;
-    Date: Date;
-    Description: string;
-    Accepted: boolean;
+    date: Date;
+    description: string;
+    accepted: boolean;
 }

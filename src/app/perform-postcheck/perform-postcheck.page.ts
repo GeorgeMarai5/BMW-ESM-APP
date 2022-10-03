@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { PostCheckHelpComponent } from 'app/components/post-check-help/post-check-help.component';
 import { AssignedPartService } from '../services/assigned-part.service';
 import { AuthService } from '../services/auth.service';
 
@@ -19,7 +20,7 @@ export class PerformPostcheckPage implements OnInit {
   isSubmitted = false;
   data: any;
 
-  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
+  constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public helpModal: ModalController,
     public service: AssignedPartService, public firestore: AngularFirestore, public router: Router, private toastCtrl: ToastController) {
       this.route.params.subscribe(params => {
           this.data = params.id;
@@ -51,6 +52,12 @@ export class PerformPostcheckPage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: PostCheckHelpComponent});
+      return await modal.present();
   }
 
   get errorControl() {

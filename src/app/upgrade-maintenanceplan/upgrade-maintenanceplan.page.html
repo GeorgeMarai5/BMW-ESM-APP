@@ -17,18 +17,20 @@
         <ion-title>
             <h1>Upgrade Maintenance Plan</h1>
         </ion-title>
-
+        <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
         <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Current Plan</b></ion-label>
-                            <ion-input [(ngModel)]="data.PlanName" [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #PlanName="ngModel" required [(ngModel)]="data.PlanName" [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
-                        <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.required">
-                            Plan Name is required.
-                        </span>
+                        <div *ngIf="PlanName.invalid && (PlanName.dirty || PlanName.touched)" class="alert">
+                            <span color="danger" style="padding-top: 2vh; " *ngIf="PlanName.errors?.required">
+                                Plan Name is required.
+                            </span>
+                        </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
