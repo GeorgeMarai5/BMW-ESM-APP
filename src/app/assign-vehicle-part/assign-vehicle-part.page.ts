@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { AssignVehiclePartHelpComponent } from 'app/components/assign-vehicle-part-help/assign-vehicle-part-help.component';
 import { Part } from '../models/Part';
 import { AuthService } from '../services/auth.service';
 import { PartInfoService } from '../services/part-info.service';
@@ -26,7 +27,8 @@ export class AssignVehiclePartPage implements OnInit {
     public authService: AuthService, 
     public service: PartInfoService, 
     public router: Router, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) {
 
       this.route.params.subscribe(params => {
           this.data = params.id;
@@ -55,6 +57,12 @@ export class AssignVehiclePartPage implements OnInit {
         this.presentToast()
       }
       this.router.navigate(['/tabs/search/vehicle-part']);
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: AssignVehiclePartHelpComponent});
+      return await modal.present();
   }
 
   ngOnInit() {

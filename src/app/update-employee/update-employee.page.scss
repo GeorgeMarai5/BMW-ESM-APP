@@ -55,6 +55,15 @@
   ion-title{
     margin-top: 4vh;
   }
+
+  #helpIcon{
+    float: right;
+    font-size: 1.5rem;
+  }
+  
+  #helpIcon:hover{
+    cursor: pointer;
+  }
   
   span{
     color: red;

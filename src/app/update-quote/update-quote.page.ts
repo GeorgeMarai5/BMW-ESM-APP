@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder,Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuoteService } from '../services/quote.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Quote } from 'app/models/Quote';
+import { UpdateQuoteHelpComponent } from 'app/components/update-quote-help/update-quote-help.component';
 
 @Component({
   selector: 'app-update-quote',
@@ -25,7 +26,8 @@ export class UpdateQuotePage implements OnInit {
     private quoteService: QuoteService, 
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute, 
-    public toastCtrl: ToastController) { 
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) { 
 
     //   this.route.params.subscribe(params => {
     //     this.data = params.id;
@@ -63,6 +65,12 @@ export class UpdateQuotePage implements OnInit {
       }
       this.router.navigate(['/tabs/view/dealership', this.data]);
       */
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: UpdateQuoteHelpComponent});
+      return await modal.present();
   }
 
   ngOnInit() {

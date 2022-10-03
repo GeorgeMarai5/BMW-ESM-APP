@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder,Validators,FormGroup, FormControl } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,7 @@ import { EmployeeService } from '../services/Employee.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Employee } from '../models/Employee';
+import { UpdateEmployeeHelpComponent } from 'app/components/update-employee-help/update-employee-help.component';
 
 @Component({
   selector: 'app-view-employee-account',
@@ -29,7 +30,8 @@ export class UpdateEmployeePage implements OnInit {
     //ClientList: any;   //[]
 
   constructor(public employeeService: EmployeeService , private zone: NgZone,private toastCtrl: ToastController,private service: PostService, 
-    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore) { 
+    public fb: FormBuilder,private router: Router, private route: ActivatedRoute, 
+    public authService: AuthService, private firestore: AngularFirestore, public helpModal: ModalController) { 
       this.route.params.subscribe(params => {
         this.data = params.id;
     });
@@ -52,6 +54,12 @@ export class UpdateEmployeePage implements OnInit {
 
   submitForm(){
 
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: UpdateEmployeeHelpComponent});
+      return await modal.present();
   }
 
   back(){

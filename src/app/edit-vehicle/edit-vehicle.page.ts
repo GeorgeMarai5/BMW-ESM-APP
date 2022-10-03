@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
-import { Vehicle } from '../models/Vehicle';
+import { VehicleModel } from '../models/VehicleModel';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { Vehicle } from 'app/models/Vehicle';
+import { ModalController, ToastController } from '@ionic/angular';
+import { EditVehicleHelpComponent } from 'app/components/edit-vehicle-help/edit-vehicle-help.component';
+
 
 @Component({
   selector: 'app-edit-vehicle',
@@ -14,8 +17,8 @@ import { ToastController } from '@ionic/angular';
 
 export class EditVehiclePage implements OnInit {
 
-  vehicles: Vehicle;
-  vehicle = {};
+  vehicle: Vehicle;
+  vehicles = {};
   plans = [];
   models = [];
   editVehicleForm: FormGroup;
@@ -28,7 +31,8 @@ export class EditVehiclePage implements OnInit {
     public authService: AuthService, 
     public _service: VehicleService, 
     public router: Router, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) {
       
     // this.route.params.subscribe(params => {
     //       this.data = params.id;
@@ -39,6 +43,12 @@ export class EditVehiclePage implements OnInit {
     //   Registration: new FormControl('', Validators.required),
     //   warrantyPlan: new FormControl('', Validators.required)
     // })
+    _service = {} as VehicleService;
+    this.vehicle = new Vehicle();
+
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params.id;
+  });
 
   }
 
@@ -59,6 +69,12 @@ export class EditVehiclePage implements OnInit {
     //   this.presentToast();
     // }
     this.router.navigate(['/tabs/view/vehicle', this.data]);
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: EditVehicleHelpComponent});
+      return await modal.present();
   }
 
   ngOnInit() {
@@ -84,7 +100,7 @@ export class EditVehiclePage implements OnInit {
   get errorControl() {
     return this.editVehicleForm.controls;
   }
-  async update(id, data){
+  async updateVehicle(id, data){
 
     this._service.updateVehicle(this.id,this.data).subscribe(response => {
       console.log(response);

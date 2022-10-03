@@ -19,28 +19,19 @@
         <ion-title>
             <h1>Create Quote</h1>
         </ion-title>
+        <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
         <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Client Name</b></ion-label>
-<<<<<<< Updated upstream
-                            <ion-input #ClientName="ngModel" required [(ngModel)]="data.ClientName" placeholder="Enter Client Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #ClientName="ngModel" required [(ngModel)]="data.clientName" placeholder="Enter Client Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                             <div *ngIf="ClientName.invalid && (ClientName.dirty || ClientName.touched)" class="alert">
                                 <span color="danger" style="padding-top: 2vh; " *ngIf="ClientName.errors?.required">
                                     Client Name is required.
                                 </span>
                             </div>
-=======
-                            <ion-input [(ngModel)]="data.description" placeholder="Enter Client Name..." [ngModelOptions]="{standalone: true}"></ion-input>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.ClientName.errors?.required">
-                Client Name is required.
-              </span>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.ClientName.value.trim()">
-                Client Name is invalid.
-            </span>
->>>>>>> Stashed changes
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -48,22 +39,12 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Date</b></ion-label>
-<<<<<<< Updated upstream
-                            <ion-input #Date="ngModel" [(ngModel)]="data.Date" placeholder="Enter Date..." [ngModelOptions]="{standalone: true}" type="date"></ion-input>
+                            <ion-input #Date="ngModel" [(ngModel)]="data.date" placeholder="Enter Date..." [ngModelOptions]="{standalone: true}" type="date"></ion-input>
                             <div *ngIf="Date.invalid && (Date.dirty || Date.touched)" class="alert">
                                 <span color="danger" style="padding-top: 2vh; " *ngIf="Date.errors?.required">
                                     Date is required.
                                 </span>
                             </div>
-=======
-                            <ion-input [(ngModel)]="data.date" placeholder="Enter Date..." [ngModelOptions]="{standalone: true}" type="date"></ion-input>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Date.errors?.required">
-                Date is required.
-              </span>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Date.value.trim()">
-                Date is invalid.
-            </span>
->>>>>>> Stashed changes
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -71,22 +52,12 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Description</b></ion-label>
-<<<<<<< Updated upstream
-                            <ion-input #Description="ngModel" [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #Description="ngModel" [(ngModel)]="data.description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
                             <div *ngIf="Description.invalid && (Description.dirty || Description.touched)" class="alert">
                                 <span color="danger" style="padding-top: 2vh; " *ngIf="Description.errors?.required">
                                     Description is required.
                                 </span>
                             </div>
-=======
-                            <ion-input ></ion-input>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.required">
-                Description is required.
-              </span>
-                            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.Description.value.trim()">
-                Description is invalid.
-            </span>
->>>>>>> Stashed changes
                         </ion-item>
                     </ion-col>
                 </ion-row>

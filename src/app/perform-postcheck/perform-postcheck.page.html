@@ -15,22 +15,20 @@
 <ion-content>
   <div class="contents">
     <ion-title><h1>Post Service Inspection</h1></ion-title>
-  
-    <form [formGroup]="postServiceForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
+    <form>
       <ion-grid>
         <ion-row *ngFor="let item of checks">
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>{{ item }}</b></ion-label>
-              <ion-textarea [(ngModel)]="data.item" [ngModelOptions]="{standalone: true}" placeholder="Check Feedback..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;" required></ion-textarea>
+              <ion-textarea #check="ngModel" required [(ngModel)]="data.item" [ngModelOptions]="{standalone: true}" placeholder="Check Feedback..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;" required></ion-textarea>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.check.errors?.required">
-              This check is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.check.errors?.min || 
-              errorControl.VINNum.errors?.max || !errorControl.Registration.value.trim()">
-              This check is invalid.
-            </span>
+            <div *ngIf="check.invalid && (check.dirty || check.touched)" class="alert">
+              <span color="danger" style="padding-top: 2vh; " *ngIf="check.errors?.required">
+                This check is required.
+              </span>
+            </div>
           </ion-col>
         </ion-row>
         <br/>

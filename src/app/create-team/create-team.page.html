@@ -19,18 +19,14 @@
         <ion-title>
             <h1>Create Team</h1>
         </ion-title>
-
+        <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
         <form>
             <ion-grid>
                 <ion-row>
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Team Name</b></ion-label>
-<<<<<<< Updated upstream
-                            <ion-input #TeamName="ngModel" required [(ngModel)]="data.TeamName" placeholder="Enter Team Name..." [ngModelOptions]="{standalone: true}"></ion-input>
-=======
                             <ion-input [(ngModel)]="data.teamName" placeholder="Enter Team Name..." [ngModelOptions]="{standalone: true}"></ion-input>
->>>>>>> Stashed changes
                         </ion-item>
                         <div *ngIf="TeamName.invalid && (TeamName.dirty || TeamName.touched)" class="alert">
                             <span color="danger" style="padding-top: 2vh; " *ngIf="TeamName.errors?.required">

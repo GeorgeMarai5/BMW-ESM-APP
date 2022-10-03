@@ -16,79 +16,59 @@
     <div class="contents">
         <ion-title>
             <h1>Plan Details</h1>
-        </ion-title>
-        <form [formGroup]="planForm" (ngSubmit)="submitForm()" novalidate>
+        </ion-title><ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
+        <form>
             <ion-grid>
               <ion-row>
                 <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked"><b>Plan Name</b></ion-label>
-                    <ion-input [(ngModel)]="data.PlanName" placeholder="Enter Plan Name..." [ngModelOptions]="{standalone: true}"></ion-input>
+                    <ion-input #PlanName="ngModel" required [(ngModel)]="data.PlanName" placeholder="Enter Plan Name..." [ngModelOptions]="{standalone: true}"></ion-input>
                   </ion-item>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.required">
-                    Plan Name is required.
-                  </span>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.min || 
-                  errorControl.PlanName.errors?.max">
-                    Plan Name is invalid.
-                  </span>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.PlanName.errors?.cannotContainSpace">
-                    Plan Name can not contain spaces.
-                </span>
+                  <div *ngIf="PlanName.invalid && (PlanName.dirty || PlanName.touched)" class="alert">
+                    <span color="danger" style="padding-top: 2vh; " *ngIf="PlanName.errors?.required">
+                      Plan Name is required.
+                    </span>
+                  </div>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked"><b>Description</b></ion-label>
-                    <ion-input [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
+                    <ion-input #Description="ngModel" required [(ngModel)]="data.Description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
                   </ion-item>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.required">
-                    Description is required.
-                  </span>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.min || 
-                  errorControl.Description.errors?.max">
-                    Description is invalid.
-                  </span>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Description.errors?.cannotContainSpace">
-                    Description can not contain spaces.
-                </span>
+                  <div *ngIf="Description.invalid && (Description.dirty || Description.touched)" class="alert">
+                    <span color="danger" style="padding-top: 2vh; " *ngIf="Description.errors?.required">
+                      Description is required.
+                    </span>
+                  </div>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked"><b>Duration</b></ion-label>
-                    <ion-input [(ngModel)]="data.Duration" placeholder="Enter Duration..." [ngModelOptions]="{standalone: true}"></ion-input>
+                    <ion-input #Duration="ngModel" required [(ngModel)]="data.Duration" placeholder="Enter Duration..." [ngModelOptions]="{standalone: true}"></ion-input>
                   </ion-item>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Duration.errors?.required">
-                    Duration is required.
-                  </span>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Duration.errors?.min || 
-                  errorControl.Duration.errors?.max">
-                    Duration is invalid.
-                  </span>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Duration.errors?.cannotContainSpace">
-                    Duration can not contain spaces.
-                </span>
+                  <div *ngIf="Duration.invalid && (Duration.dirty || Duration.touched)" class="alert">
+                    <span color="danger" style="padding-top: 2vh; " *ngIf="Duration.errors?.required">
+                      Duration is required.
+                    </span>
+                  </div>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col>
                   <ion-item lines="full">
                     <ion-label position="stacked"><b>Price</b></ion-label>
-                    <ion-input [(ngModel)]="data.Price" placeholder="Enter Price..." [ngModelOptions]="{standalone: true}"></ion-input>
+                    <ion-input #Price="ngModel" required [(ngModel)]="data.Price" placeholder="Enter Price..." [ngModelOptions]="{standalone: true}"></ion-input>
                   </ion-item>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Price.errors?.required">
-                    Price is required.
-                  </span>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Price.errors?.min || 
-                  errorControl.Price.errors?.max">
-                    Price is invalid.
-                  </span>
-                  <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.Price.errors?.cannotContainSpace">
-                    Price can not contain spaces.
-                </span>
+                  <div *ngIf="Price.invalid && (Price.dirty || Price.touched)" class="alert">
+                    <span color="danger" style="padding-top: 2vh; " *ngIf="Price.errors?.required">
+                      Price is required.
+                    </span>
+                  </div>
                 </ion-col>
               </ion-row>
               <br/>

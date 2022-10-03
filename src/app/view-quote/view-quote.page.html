@@ -15,13 +15,12 @@
 <ion-content>
   <div class="contents">
     <ion-title><h1>View Quote</h1></ion-title>
-    <form [formGroup]="viewQuoteForm" *ngFor="let item of QuoteList" >
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Client Name</b></ion-label>
-              <ion-input >{{item.ClientName}}</ion-input>
+              <ion-input >{{data.ClientName}}</ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -29,7 +28,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Date</b></ion-label>
-              <ion-input readonly>{{item.Date}}</ion-input>
+              <ion-input readonly>{{data.Date}}</ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -37,7 +36,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Description</b></ion-label>
-              <ion-input readonly>{{item.Description}}</ion-input>
+              <ion-input readonly>{{data.Description}}</ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -45,7 +44,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Accepted</b></ion-label>
-              <ion-input readonly>{{item.Accepted}}</ion-input>
+              <ion-input readonly>{{data.Accepted}}</ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -63,7 +62,6 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </form>
   </div>
   <button type="button" class="collapsible">Help Chat
     <ion-icon id="up" style="float: right; margin-top: 0.2em;" name="chevron-up-outline">

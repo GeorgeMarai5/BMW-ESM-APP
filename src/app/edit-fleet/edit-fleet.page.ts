@@ -6,9 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FleetService } from '../services/fleet.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Fleet } from '../models/fleet';
 import { updateCurrentUser } from 'firebase/auth';
+import { EditFleetHelpComponent } from 'app/components/edit-fleet-help/edit-fleet-help.component';
 
 @Component({
   selector: 'app-edit-fleet',
@@ -36,7 +37,8 @@ export class EditFleetPage implements OnInit {
     public firestore: AngularFirestore, 
     public router: Router, 
     public toastCtrl: ToastController, 
-    public activatedRoute: ActivatedRoute) {
+    public activatedRoute: ActivatedRoute,
+    public helpModal: ModalController) {
       
       //vehicleservice = {} as VehicleService;
       fleetservice = {} as FleetService;
@@ -71,6 +73,12 @@ export class EditFleetPage implements OnInit {
 */
 
 
+}
+
+async showHelp(){
+  const modal = await this.helpModal.create({
+    component: EditFleetHelpComponent});
+    return await modal.present();
 }
     
   async update(id, data){

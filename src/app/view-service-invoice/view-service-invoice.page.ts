@@ -5,9 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { Vehicle } from '../models/Vehicle';
 import { AuthService } from '../services/auth.service';
-import { VehicleService } from '../services/vehicle.service';
+import { ServiceItemService } from '../services/service-item.service';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { ServiceItem } from 'app/models/ServiceItem';
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
@@ -17,6 +18,8 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
   styleUrls: ['./view-service-invoice.page.scss'],
 })
 export class ViewServiceInvoicePage implements OnInit {
+
+item: any;
 
   vehicles: Vehicle;
   vehicle = [];
@@ -39,16 +42,20 @@ export class ViewServiceInvoicePage implements OnInit {
   maintenanceplanID: any;
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
-    public firestore: AngularFirestore, public router: Router, public service: VehicleService) {
-      this.route.params.subscribe(params => {
-          this.data = params.id;
-      });
+    public firestore: AngularFirestore, public router: Router, public service: ServiceItemService) {
+      service = {} as ServiceItemService;
      }
 
   ngOnInit() {
-    
+this.getAllServiceItems();
   }
-
+  async getAllServiceItems(){
+    this.service.getServiceItemList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  
+  }
   submitForm(){
   }
 
@@ -105,7 +112,7 @@ export class ViewServiceInvoicePage implements OnInit {
                     fontSize: 16, 
                     bold: true
                 },  
-                { text: 'Mr George Marais' + '\n' + 'maraisgeorge39@gmail.com' + '\n' + '020 303 4310' }
+                { text: this.getAllServiceItems()}
             ]
           ], 
         },
@@ -139,8 +146,6 @@ export class ViewServiceInvoicePage implements OnInit {
 
     createPdf.getBase64(function(encodedString) {
         base64data = encodedString;
-        console.log(base64data);
-
 
         var byteCharacters = atob(base64data);
         var byteNumbers = new Array(byteCharacters.length);
@@ -152,4 +157,7 @@ export class ViewServiceInvoicePage implements OnInit {
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL);
   });
-}}
+}
+
+
+}
