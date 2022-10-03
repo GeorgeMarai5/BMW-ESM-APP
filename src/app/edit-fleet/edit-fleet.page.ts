@@ -106,6 +106,7 @@ async showHelp(){
       console.log(response);
       //this.data = response;
       //this.router.navigate(['student-list']);
+      this.presentToast();
       
     })
   }
@@ -125,6 +126,7 @@ async showHelp(){
       position: 'top'
     });
     toast.present();
+    
   }
 
 

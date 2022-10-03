@@ -102,13 +102,13 @@ console.log(details);
 //this.data.addressId = id;
 //this.adID = this.addresservice.getItem(this.ad.addressId) 
     
-    this.dealershipservice.createDealership(this.data).subscribe(response => {
+    //this.dealershipservice.createDealership(this.data).subscribe(response => {
      //this.adID = this.addresservice.getItem(this.ad.addressId) 
      
-      console.log(response);
-      console.log(response);
+     // console.log(response);
+     
       
-    });
+    //});
     this.presentToast();
     
    }
