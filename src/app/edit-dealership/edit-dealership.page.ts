@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { EditDealershipHelpComponent } from 'app/components/edit-dealership-help/edit-dealership-help.component';
 import { Dealership } from '../models/Dealership';
 import { AuthService } from '../services/auth.service';
 import { DealershipService } from '../services/dealership.service';
@@ -27,7 +28,8 @@ export class EditDealershipPage implements OnInit {
     public dealershipService: DealershipService, 
     public router: Router, 
     public toastCtrl: ToastController,
-    public activatedRoute: ActivatedRoute) {
+    public activatedRoute: ActivatedRoute,
+    public helpModal: ModalController) {
       
       // this.route.params.subscribe(params => {
       //   this.dealership = params['id'];
@@ -58,6 +60,12 @@ this.activatedRoute.params.subscribe(params => {
     //     this.presentToast();
     //   }
     //   this.router.navigate(['/tabs/search/dealership', this.data]);
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: EditDealershipHelpComponent});
+      return await modal.present();
   }
 
   ngOnInit() {

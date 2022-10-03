@@ -15,8 +15,8 @@
 <ion-content>
   <div class="contents">
     <ion-title><h1>Edit Vehicle Details</h1></ion-title>
-  
-    <form [formGroup]="editVehicleForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
+    <form>
       <ion-grid>
         <ion-row>
           <ion-col>

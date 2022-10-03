@@ -4,7 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { EditVehicleHelpComponent } from 'app/components/edit-vehicle-help/edit-vehicle-help.component';
 
 @Component({
   selector: 'app-edit-vehicle',
@@ -28,7 +29,8 @@ export class EditVehiclePage implements OnInit {
     public authService: AuthService, 
     public _service: VehicleService, 
     public router: Router, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) {
       
     // this.route.params.subscribe(params => {
     //       this.data = params.id;
@@ -59,6 +61,12 @@ export class EditVehiclePage implements OnInit {
     //   this.presentToast();
     // }
     this.router.navigate(['/tabs/view/vehicle', this.data]);
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: EditVehicleHelpComponent});
+      return await modal.present();
   }
 
   ngOnInit() {

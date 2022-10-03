@@ -5,7 +5,8 @@ import { Clients } from '../models/Clients';
 import { ActivatedRoute } from '@angular/router';
 import { ClientService } from '../services/Client.service';
 import { AuthService } from '../services/auth.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { UpdateClientHelpComponent } from 'app/components/update-client-help/update-client-help.component';
 
 @Component({
   selector: 'app-update-client',
@@ -20,7 +21,8 @@ export class UpdateClientPage implements OnInit {
   titles = [];
   data: any;
 
-  constructor(public fb: FormBuilder, public authService: AuthService, public toastCtrl: ToastController, public router: Router, public route: ActivatedRoute) {
+  constructor(public fb: FormBuilder, public authService: AuthService, public toastCtrl: ToastController, 
+    public router: Router, public route: ActivatedRoute, public helpModal: ModalController) {
     this.route.params.subscribe(params => {
       this.data = params.id;
     });
@@ -48,6 +50,12 @@ export class UpdateClientPage implements OnInit {
 
   ngOnInit() {
     this.updateClientForm.setValue({title: '', fName: '', lName: '', phoneNum: '', email: '', address: ''});
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: UpdateClientHelpComponent});
+      return await modal.present();
   }
 
   back(){

@@ -4,8 +4,9 @@ import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ServiceService } from '../services/service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { VehicleService } from 'app/models/VehicleService';
+import { UpdateServiceHelpComponent } from 'app/components/update-service-help/update-service-help.component';
 
 @Component({
   selector: 'app-update-service',
@@ -29,7 +30,8 @@ export class UpdateServicePage implements OnInit {
     public authService: AuthService, 
     public _service: ServiceService,
     public router: Router, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) {
       
       // this.route.params.subscribe(params => {
       //     this.data = params.id;
@@ -63,6 +65,12 @@ export class UpdateServicePage implements OnInit {
     //   this.presentToast();
     // }
     
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: UpdateServiceHelpComponent});
+      return await modal.present();
   }
 
   ngOnInit() {

@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../models/Employee';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { EditTeamMemberHelpComponent } from 'app/components/edit-team-member-help/edit-team-member-help.component';
 
 @Component({
   selector: 'app-edit-team-member',
@@ -25,7 +26,8 @@ export class EditTeamMemberPage implements OnInit {
     public authService: AuthService,
     public teamMemberService: TeamMemberService, 
     public router: Router, 
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) {
       
       // this.route.params.subscribe(params => {
       //   this.data = params.id;
@@ -59,6 +61,12 @@ export class EditTeamMemberPage implements OnInit {
     //     this.presentToast()
     //   }
       this.router.navigate(['/tabs/search/team-member', this.teamMember]);
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: EditTeamMemberHelpComponent});
+      return await modal.present();
   }
 
   ngOnInit() {

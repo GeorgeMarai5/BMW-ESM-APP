@@ -3,10 +3,11 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { TeamMemberService } from '../services/team-member.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Team } from '../models/Team';
 import { Employee } from '../models/Employee';
+import { CreateTeamMemberHelpComponent } from 'app/components/create-team-member-help/create-team-member-help.component';
 
 @Component({
   selector: 'app-create-team-member',
@@ -26,7 +27,8 @@ export class CreateTeamMemberPage implements OnInit {
     public authService: AuthService, 
     public teamMemberservice: TeamMemberService, 
     public router: Router, 
-    public toastCtrl: ToastController) { 
+    public toastCtrl: ToastController,
+    public helpModal: ModalController) { 
       
       teamMemberservice = {} as TeamMemberService;
       this.data = new Employee();
@@ -42,6 +44,12 @@ export class CreateTeamMemberPage implements OnInit {
         Role: new FormControl('', Validators.required)
       });
       */
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: CreateTeamMemberHelpComponent});
+      return await modal.present();
   }
 
   submitForm(){

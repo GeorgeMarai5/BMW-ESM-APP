@@ -15,84 +15,72 @@
 <ion-content>
   <div class="contents">
     <ion-title><h1>Update Account Details</h1></ion-title>
-  
-    <form [formGroup]="updateEmployeeForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
+    <form>
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Name</b></ion-label>
-              <ion-input [(ngModel)]="data.fName" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input #fName="ngModel" required [(ngModel)]="data.fName" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.required">
+            <div *ngIf="fName.invalid && (fName.dirty || fName.touched)" class="alert">
+            <span color="danger" style="padding-top: 2vh; " *ngIf="fName.errors?.required">
               First Name is required.
             </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.fName.errors?.maxlength">
-              First Name can't be longer than 20 characters.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.fName.value.trim()">
-              First Name is invalid.
-          </span>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Surname</b></ion-label>
-              <ion-input [(ngModel)]="data.lName" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input #lName="ngModel" required [(ngModel)]="data.lName" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.lName.errors?.required">
-              Surname is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.lName.errors?.maxlength">
-              Surname can't be longer than 20 characters.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && !errorControl.lName.value.trim()">
-              Surname is invalid.
-          </span>
+            <div *ngIf="lName.invalid && (lName.dirty || lName.touched)" class="alert">
+              <span color="danger" style="padding-top: 2vh; " *ngIf="lName.errors?.required">
+                Surname is required.
+              </span>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Phone Number</b></ion-label>
-              <ion-input [(ngModel)]="data.phoneNum" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input #phoneNum="ngModel" required [(ngModel)]="data.phoneNum" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNum.errors?.required">
-              Phone Number is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.phoneNum.errors?.maxlength || 
-            errorControl.phoneNum.errors?.maxlength || !errorControl.Registration.value.trim()">
-              Phone Number is invalid.
-            </span>
+            <div *ngIf="phoneNum.invalid && (phoneNum.dirty || phoneNum.touched)" class="alert">
+              <span color="danger" style="padding-top: 2vh; " *ngIf="phoneNum.errors?.required">
+                Phone Number is required.
+              </span>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Email Address</b></ion-label>
-              <ion-input [(ngModel)]="data.email" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input #email="ngModel" required [(ngModel)]="data.email" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.required">
-              Email is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.email.errors?.email || !errorControl.Registration.value.trim()">
-              Invalid Email Address.
-            </span>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
+              <span color="danger" style="padding-top: 2vh; " *ngIf="email.errors?.required">
+                Email is required.
+              </span>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Team Name</b></ion-label>
-              <ion-input [(ngModel)]="data.teamName" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input #teamName="ngModel" required [(ngModel)]="data.teamName" [ngModelOptions]="{standalone: true}"></ion-input>
             </ion-item>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.teamName.errors?.required">
-              Team Name is required.
-            </span>
-            <span color="danger" style="padding-top: 2vh; " *ngIf="isSubmitted && errorControl.teamName.errors?.email || !errorControl.Registration.value.trim()">
-              Invalid Team Name.
-            </span>
+            <div *ngIf="teamName.invalid && (teamName.dirty || teamName.touched)" class="alert">
+              <span color="danger" style="padding-top: 2vh; " *ngIf="teamName.errors?.required">
+                Team Name is required.
+              </span>
+            </div>
           </ion-col>
         </ion-row>
         <br/>

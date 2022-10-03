@@ -2,12 +2,13 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { MaintenancePlan } from '../models/Maintenance-Plan';
 import { AuthService } from '../services/auth.service';
 import { MaintenancePlanService } from '../services/MaintenancePlan.service';
 import { PostService } from '../services/post.service';
 import { AlertController } from '@ionic/angular';
+import { SelectMaintenanceplanHelpComponent } from 'app/components/select-maintenanceplan-help/select-maintenanceplan-help.component';
 
 @Component({
   selector: 'app-select-maintenanceplan',
@@ -25,7 +26,8 @@ export class SelectMaintenanceplanPage implements OnInit {
  
   constructor(public planService: MaintenancePlanService , private zone: NgZone,private toastCtrl: ToastController, private service: PostService, 
     public fb: FormBuilder,private router: Router, private route: ActivatedRoute, public authService: AuthService, 
-    public alertController: AlertController,private firestore: AngularFirestore) { 
+    public alertController: AlertController,private firestore: AngularFirestore,
+    public helpModal: ModalController) { 
       this.route.params.subscribe(params => {
         this.data = params.id;
       });
@@ -43,6 +45,12 @@ export class SelectMaintenanceplanPage implements OnInit {
 
   submitForm(){
 
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: SelectMaintenanceplanHelpComponent});
+      return await modal.present();
   }
 
   get errorControl() {

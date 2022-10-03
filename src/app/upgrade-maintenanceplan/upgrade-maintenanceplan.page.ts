@@ -6,7 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MaintenancePlanService } from '../services/MaintenancePlan.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { UpgradeMaintenanceplanHelpComponent } from 'app/components/upgrade-maintenanceplan-help/upgrade-maintenanceplan-help.component';
 
 @Component({
   selector: 'app-upgrade-maintenanceplan',
@@ -22,7 +23,8 @@ export class UpgradeMaintenancePlanPage implements OnInit {
   isSubmitted = false;
   data: any;
 id: any;
-  constructor(private activatedRoute: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, public planService: MaintenancePlanService, 
+  constructor(private activatedRoute: ActivatedRoute, public fb: FormBuilder, public authService: AuthService, 
+    public planService: MaintenancePlanService, public helpModal: ModalController,
     public firestore: AngularFirestore, public router: Router, public toastCtrl: ToastController) {
     // this.route.params.subscribe(params => {
     //   this.data = params.id;
@@ -50,6 +52,12 @@ id: any;
 
     this.router.navigate(['/tabs/view/maintenanceplan', this.data]);
 
+  }
+
+  async showHelp(){
+    const modal = await this.helpModal.create({
+      component: UpgradeMaintenanceplanHelpComponent});
+      return await modal.present();
   }
 
   ngOnInit() {
