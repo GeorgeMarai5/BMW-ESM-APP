@@ -26,13 +26,13 @@
             <ion-item-divider></ion-item-divider>
             <ion-row *ngFor="let item of data | filter: searchTerm">
                 <ion-col>
-                    <ion-label> {{<data>{{data.}}</data>}}</ion-label>
+                    <ion-label> {{item.vinNumber}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label> {{data.modelName}}</ion-label>
+                    <ion-label> {{item.vehicleModel.modelName}}</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label> {{data.year}}</ion-label>
+                    <ion-label> {{item.vehicleModel.year}}</ion-label>
                 </ion-col>
                 <ion-col>
                     <ion-button class="red-Btn" (click)="removeVehicle(this.item.id)">Remove</ion-button>

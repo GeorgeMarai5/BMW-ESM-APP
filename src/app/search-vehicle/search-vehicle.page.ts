@@ -25,6 +25,7 @@ export class SearchVehiclePage implements OnInit {
   searchTerm: string;
   data:any;
   Model: any;
+  d:any;
   constructor(public authService: AuthService, private service: VehicleService, public fb: FormBuilder, private firestore: AngularFirestore, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
     
@@ -78,9 +79,15 @@ export class SearchVehiclePage implements OnInit {
   getallVehicles(){
 
     this.service.getVehicleList().subscribe(response => {
-      
+      this.d = JSON.stringify(response);
+      console.log(this.d)
+
+
       console.log(response);
       this.data = response ;
+
+      //let item = JSON.stringify(response["vinNumber"])
+    
     })
 
   
