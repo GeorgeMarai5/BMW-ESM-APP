@@ -12,6 +12,7 @@ import { EditTeamHelpComponent } from 'app/components/edit-team-help/edit-team-h
   templateUrl: './edit-team.page.html',
   styleUrls: ['./edit-team.page.scss'],
 })
+
 export class EditTeamPage implements OnInit {
 
   team: Team;
@@ -29,38 +30,11 @@ export class EditTeamPage implements OnInit {
     public router: Router, 
     public toastCtrl: ToastController,
     public helpModal: ModalController) {
-      
-    // this.route.params.subscribe(params => {
-    //     this.data = params.id;
-    // });
-
-    // this.editTeamForm = new FormGroup({
-    //   TeamName: new FormControl('', Validators.required),
-    //   DealershipName: new FormControl('', Validators.required),
-    //   TeamType: new FormControl('', Validators.required)
-    // });
     this.activatedRoute.params.subscribe(params => {
-      this.id = params.id;});
+      this.id = params.id;
+    });
     teamservice = {} as TeamService;
     this.team = new Team();
-
-  }
-    
-  submitForm() {
-    // this.isSubmitted = true;
-    // if(!this.editTeamForm.valid){
-    //   return false;
-    // }
-    // else{
-    //     const teams = {
-    //       TeamName: this.editTeamForm.get('TeamName').value,
-    //       Dealership: this.editTeamForm.get('Dealership').value,
-    //       TeamType: this.editTeamForm.get('TeamType').value
-    //     }
-    //     //this.teamservice.updateTeam(this.team, teams)
-    //     this.presentToast()
-    //   }
-     
   }
 
   async showHelp(){
@@ -76,16 +50,6 @@ export class EditTeamPage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-
-    // this.teamservice.getTeam(this.data)
-    // .subscribe(res =>{
-    // console.log(res)
-    // this.editTeamForm.setValue({
-    //   TeamName: res['TeamName'],
-    //   Dealership: res['Dealership'], 
-    //   TeamType: res['TeamType']
-    // })
-    // });
 
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -107,12 +71,14 @@ export class EditTeamPage implements OnInit {
         }
       });
     }
-    
+    this.updateTeam();
   }
-  async updateTeam(id, data){
+
+  async updateTeam(){
 
     this.teamservice.updateTeam(this.id,this.data).subscribe(response => {
       console.log(response);
+      this.data = response;
     })
     this.router.navigate(['/tabs/search/team', this.team]);
     await this.presentToast();

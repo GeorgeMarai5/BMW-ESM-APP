@@ -21,7 +21,6 @@ export class EditServiceItemPage implements OnInit {
   data: any;
   id: any;
   
-
   constructor(private route: ActivatedRoute, 
     public fb: FormBuilder, 
     public authService: AuthService, 
