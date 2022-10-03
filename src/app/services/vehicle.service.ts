@@ -37,7 +37,7 @@ private handleError(error: HttpErrorResponse) {
 }
 
 createVehicle(Vehicle: Vehicle){
-  return this.httpClient.post(this.apiUrl + '/api/Vehicles/Create' , Vehicle, this.httpOptions)
+  return this.httpClient.post(this.apiUrl + '/Create' , Vehicle, this.httpOptions)
 }
 
 getVehicleList(): Observable<Vehicle> {
@@ -72,7 +72,7 @@ getVehicleModelList(): Observable<VehicleModel> {
 // Get single student data by ID
 getVehicle(id): Observable<Vehicle> {
   return this.httpClient
-    .get<Vehicle>(this.apiUrl + '/api/Vehicle/' + id)
+    .get<Vehicle>(this.apiUrl + '/' + id)
     .pipe(
       retry(2),
       catchError(this.handleError)
@@ -82,7 +82,7 @@ getVehicle(id): Observable<Vehicle> {
 // Update item by id
 updateVehicle(id, item): Observable<Vehicle> {
   return this.httpClient
-    .put<Vehicle>(this.apiUrl + '/api/Vehicle/UpdateVehicle' + id, item, this.httpOptions)
+    .put<Vehicle>(this.apiUrl + '/UpdateVehicle' + id, item, this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError)
@@ -92,7 +92,7 @@ updateVehicle(id, item): Observable<Vehicle> {
 // Delete item by id
 delete(id) {
   return this.httpClient
-    .delete<Vehicle>(this.apiUrl + '/api/Vehicle' + '/' + id, this.httpOptions)
+    .delete<Vehicle>(this.apiUrl  + '/' + id, this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError)
@@ -101,7 +101,15 @@ delete(id) {
 
 deleteVehicle(id): Observable<{}> {
 
-  return this.httpClient.delete(this.apiUrl + '/api/Vehicle/' +  id , this.httpOptions)
+  return this.httpClient.delete(this.apiUrl + '/' +  id , this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+}
+
+deleteVehicleModel(id): Observable<{}> {
+
+  return this.httpClient.delete('https://localhost:7163/api/VehicleModels/' +  id , this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );

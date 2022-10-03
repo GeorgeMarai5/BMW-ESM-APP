@@ -38,24 +38,26 @@ export class ViewVehiclePage implements OnInit {
       this.route.params.subscribe(params => {
           this.data = params.id;
       });
-      this.viewVehicleForm = new FormGroup({
-        VINNum: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-        vehicleModel: new FormControl('', Validators.required),
-        Registration: new FormControl('', Validators.required),
-        warrantyPlan: new FormControl('', Validators.required)
-      })
+      
      }
 
+
+
+viewVehicle(){
+
+  this.service.getVehicle(this.data).subscribe(response => {
+    console.log(response);
+    this.data = response;
+  })
+
+}
+
+
+
   ngOnInit() {
-    this.service.getVehicleList().subscribe(res =>{
-      console.log(res)
-      this.viewVehicleForm.setValue({
-        vehicleModel: res['VehicleModel'], 
-        Registration: res['Registration'],
-        VINNum: res['VIN_Number'], 
-        warrantyPlan: res['Warranty']
-      })
-    });
+
+    this.viewVehicle();
+    
     
     var coll = document.getElementsByClassName("collapsible");
     var i;
