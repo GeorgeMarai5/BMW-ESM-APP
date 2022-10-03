@@ -51,7 +51,15 @@ export class SearchTeamMemberPage implements OnInit {
     })
   }
 
-  async assignTeamMember(id){
+async delete(item){
+
+      this.employeeservice.delete(item.employeeId).subscribe(Response => {
+        
+        console.log(Response);
+        //this.getallTeamMembers();
+
+      });
+    
 
   }
 
