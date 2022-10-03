@@ -28,15 +28,7 @@ export class AddServiceItemPage implements OnInit {
     
       service = {} as ServiceItemService;
       this.data = new ServiceItem();
-    /*
-    this.route.params.subscribe(params => {
-      this.data = params['id'];
-    });
-    this.addItemForm = new FormGroup({
-      itemName: new FormControl('', [Validators.required, Validators.min(17), Validators.max(17)]),
-      itemDescription: new FormControl('', Validators.required),
-    })
-    */
+
   }
 
   submitForm(){
@@ -56,6 +48,7 @@ export class AddServiceItemPage implements OnInit {
     }
     this.router.navigate(['/tabs/view/fleet']);
     */
+   
   }
 
   async showHelp(){
@@ -65,14 +58,11 @@ export class AddServiceItemPage implements OnInit {
   }
 
   async create(){
-
     this.service.createServiceItem(this.data).subscribe(response => {
       console.log(response);
-      //this.router.navigate(['student-list']);
+      this.router.navigate(['/tabs/search/service-item']);
     });
-  
     this.presentToast();
-  
   }
 
   ngOnInit() {

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { TeamMemberService } from '../services/team-member.service';
+import { EmployeeService } from 'app/services/Employee.service';
 import { ModalController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { Team } from '../models/Team';
 import { Employee } from '../models/Employee';
+import { EmployeeRoleService } from 'app/services/employeeRole.service';
+import { EmployeeRole } from 'app/models/EmployeeRole';
 import { CreateTeamMemberHelpComponent } from 'app/components/create-team-member-help/create-team-member-help.component';
 
 @Component({
@@ -21,29 +22,21 @@ export class CreateTeamMemberPage implements OnInit {
   isSubmitted = false;
   teamMember: Employee;
   data: any;
+  roleData:any;
+  roledrop: any;
+
 
   constructor(private route: ActivatedRoute, 
     public fb: FormBuilder, 
     public authService: AuthService, 
-    public teamMemberservice: TeamMemberService, 
+    public service: EmployeeService,
+    public employeeService: EmployeeService, 
     public router: Router, 
     public toastCtrl: ToastController,
     public helpModal: ModalController) { 
-      
-      teamMemberservice = {} as TeamMemberService;
+      service = {} as EmployeeService;
       this.data = new Employee();
-      /*
-      this.route.params.subscribe(params => {
-        this.data = params.id;
-      });
-      this.createTeamMemberForm = new FormGroup({
-        Name: new FormControl('', Validators.required),
-        Surname: new FormControl('', Validators.required),
-        PhoneNumber: new FormControl('', Validators.required),
-        Email: new FormControl('', Validators.required),
-        Role: new FormControl('', Validators.required)
-      });
-      */
+      employeeService = {} as EmployeeService;
   }
 
   async showHelp(){
@@ -52,35 +45,6 @@ export class CreateTeamMemberPage implements OnInit {
       return await modal.present();
   }
 
-  submitForm(){
-    this.teamMemberservice.createTeamMember(this.data).subscribe(response => {
-      console.log(response);
-      //this.router.navigate(['student-list']);
-    });
-  
-    this.presentToast();
-  
-    /*
-    this.isSubmitted = true;
-    if(!this.createTeamMemberForm.valid){
-      return false;
-    }
-    else{
-        const teamMember = {
-          Name: this.createTeamMemberForm.get('Name').value,
-          Surname: this.createTeamMemberForm.get('Surname').value,
-          PhoneNumber: this.createTeamMemberForm.get('PhoneNumber').value,
-          Email: this.createTeamMemberForm.get('Email').value,
-          Role: this.createTeamMemberForm.get('Role').value,
-          Team: this.createTeamMemberForm.get('Team').value,
-        }
-        this.teamMemberservice.createTeamMember(teamMember)
-        this.presentToast()
-      }
-      this.router.navigate(['/tabs/search/team-member']);
-      */
-  }  
-
   ngOnInit() {
     //if(this.authService.isLoggedIn){
     //  return true;
@@ -88,6 +52,23 @@ export class CreateTeamMemberPage implements OnInit {
     //else{
     //  this.router.navigate(['/tabs/login']);
     //}
+    this.getEmployee();
+  }
+
+  getEmployee() {
+      this.employeeService.getEmployeeList().subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+  }
+
+  async create(){
+    this.service.CreateEmployee(this.data).subscribe(response => {
+      console.log(response);
+    });
+    
+    this.presentToast();
+
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

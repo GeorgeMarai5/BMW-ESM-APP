@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
-import { Vehicle } from '../models/Vehicle';
 import { AuthService } from '../services/auth.service';
 import { ServiceItemService } from 'app/services/service-item.service';
 
@@ -13,13 +12,11 @@ import { ServiceItemService } from 'app/services/service-item.service';
 })
 export class SearchServiceItemPage implements OnInit {
 
-  vehicles: Vehicle;
   serviceItemList = [];
   serviceItemForm: FormGroup;
   searchTerm: string;
   id: any;
   data: any;
-  //serviceItemID: string;
 
   constructor(public authService: AuthService, private service: ServiceItemService, public fb: FormBuilder, 
     public alertCtrl: AlertController, public router: Router, public toastCtrl: ToastController) { 
@@ -27,7 +24,6 @@ export class SearchServiceItemPage implements OnInit {
     }
 
   ngOnInit() {
-
     /*
     if(this.authService.isLoggedIn){
       return true;
@@ -35,12 +31,6 @@ export class SearchServiceItemPage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-    this.serviceItemForm = this.fb.group({
-      FleetName: ['', [Validators.required]],
-      FleetLocation: ['', [Validators.required]],
-      FleetID: ['', [Validators.required]],
-      FleetVehicleQty: ['', [Validators.required]],
-    });
     */
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -65,40 +55,14 @@ export class SearchServiceItemPage implements OnInit {
 
 
     this.getAllServiceItems();
-
-
-/*
-    this.service.getItem(this.id).subscribe(data => {
-      this.serviceItemList = data.map(e => {
-        let yearCode: string;
-        yearCode = e.payload.doc.data()['VIN_Number'];
-
-        return {
-          id: e.payload.doc.id,
-          VehicleID: e.payload.doc.data()['VehicleID'],
-          VINNumber: e.payload.doc.data()['VIN_Number'],
-          vehicleModel: e.payload.doc.data()['VehicleModel'],
-          year: this.service.getYear(yearCode.substring(9, 10))
-        };
-      })
-      console.log(this.serviceItemList);
-
-    });
-
-    */
   }
 
-
   async getAllServiceItems(){
-
     this.service.getServiceItemList().subscribe(response => {
       console.log(response);
       this.data = response;
     })
-
-
   }
-
 
   async removeItem(item){
     const confirmDeleteAlert = await this.alertCtrl.create({
@@ -116,7 +80,6 @@ export class SearchServiceItemPage implements OnInit {
         role: 'remove',
         handler: () => {
           this.service.deleteServiceItem(item.serviceItemId).subscribe(Response => {
-            //Update list after delete is successful
             console.log(Response);
             this.getAllServiceItems()
           });
@@ -124,9 +87,7 @@ export class SearchServiceItemPage implements OnInit {
         }
       }]
     });
-
     confirmDeleteAlert.present();
-
   } 
 
   async presentToast(_message) {
