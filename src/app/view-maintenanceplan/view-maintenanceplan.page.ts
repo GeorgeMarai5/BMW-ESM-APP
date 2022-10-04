@@ -39,6 +39,13 @@ export class ViewMaintenancePlanPage implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+    
     this.planService.getMaintenancePlan(this.data).subscribe(response => {
       console.log(response);
       this.data = response;

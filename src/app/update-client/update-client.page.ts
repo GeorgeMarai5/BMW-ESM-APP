@@ -49,6 +49,13 @@ export class UpdateClientPage implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+    
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');

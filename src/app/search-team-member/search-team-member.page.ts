@@ -31,14 +31,14 @@ export class SearchTeamMemberPage implements OnInit {
     }
 
   ngOnInit() {
-    this.getallTeamMembers();
-    
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
+    
+    this.getallTeamMembers();
     
 
     

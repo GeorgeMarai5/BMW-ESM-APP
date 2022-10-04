@@ -29,6 +29,13 @@ export class SearchPartPage implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+    
     this.partForm = this.fb.group({
       PartID: ['', [Validators.required]],
       PartName: ['', [Validators.required]],

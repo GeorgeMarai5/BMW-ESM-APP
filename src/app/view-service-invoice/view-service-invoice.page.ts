@@ -27,19 +27,7 @@ item: any;
 data: ServiceItem;
   vehicles: Vehicle;
   vehicle = [];
-  newItems = {
-    item1: {
-      name: 'Oil Change',
-      quantity: 1,
-      price: 2000
-    },
-    item2: {
-      name: 'Brake Disk Replacement',
-      quantity: 4,
-      price: 1000
-    }
-  }
-  serviceItems = [this.newItems.item1, this.newItems.item2];
+
   viewInvoiceForm: FormGroup;
   isSubmitted = false;
 
@@ -51,6 +39,13 @@ data: ServiceItem;
      }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
+    
 this.getAllServiceItems();
   }
   async getAllServiceItems(){
@@ -147,7 +142,6 @@ this.getAllServiceItems();
   }
 
   async getReport() {
-    console.log(this.data.Description);
 
     let docDefinition = {  
       header: {
@@ -168,7 +162,7 @@ this.getAllServiceItems();
             [  
                 {   
                   
-                    text: this.data.Description,
+                    text: "",
                     fontSize: 16, 
                     bold: true
                 },  
@@ -181,8 +175,7 @@ this.getAllServiceItems();
             width: ['*', 'auto', 'auto', 'auto'],
             body: [
               ['Service Items', '', ''],
-              [{text: 'Oil Change' + '\t\t\t R2 000' + '\n' + 'Quantity: 1'}, {text: 'Brake Disk Replacement' + '\t\t\t R4 000' + '\n' + 'Quantity: 4'},
-            {text:  + '\t\t\t R6 480' + '\n' + '+VAT (8%)'}]
+              []
             ]
           },
           style: 'superMargin'

@@ -44,7 +44,12 @@ export class ViewFleetPage implements OnInit {
   }
 
   ngOnInit() {
-
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     
     this.fleetservice.getFleet(this.data).subscribe(response => {
       console.log(response);
