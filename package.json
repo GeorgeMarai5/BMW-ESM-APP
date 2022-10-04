@@ -30,6 +30,7 @@
     "@awesome-cordova-plugins/splash-screen": "^5.43.0",
     "@aws-amplify/cli": "^10.0.0",
     "@aws-amplify/ui-angular": "^2.3.15",
+    "@capacitor/android": "^4.3.0",
     "@capacitor/app": "1.1.1",
     "@capacitor/core": "3.5.0",
     "@capacitor/haptics": "1.1.4",
@@ -50,6 +51,7 @@
     "aws-amplify": "^4.3.20",
     "chart.js": "^3.9.1",
     "cordova": "^11.0.0",
+    "cordova-android": "10.1.2",
     "cordova-pdf-generator": "^2.1.1",
     "cordova-plugin-file-opener2": "^3.0.5",
     "cordova-plugin-firebase": "^2.0.5",
@@ -135,7 +137,8 @@
       "cordova-pdf-generator": {}
     },
     "platforms": [
-      "browser"
+      "browser",
+      "android"
     ]
   },
   "main": "karma.conf.js",

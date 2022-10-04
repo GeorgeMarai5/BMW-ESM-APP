@@ -91,9 +91,7 @@ export class CreateTeamPage implements OnInit {
   }
   
   ngOnInit() {
-    this.getDealership();
-    this.getTeamType();
-   
+    
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -102,7 +100,8 @@ export class CreateTeamPage implements OnInit {
     }
     
 
-    
+    this.getDealership();
+    this.getTeamType();
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

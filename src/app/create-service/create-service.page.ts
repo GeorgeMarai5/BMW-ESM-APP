@@ -80,9 +80,7 @@ export class CreateServicePage implements OnInit {
 
   ngOnInit() {
 
-    this.getTeam();
-
-this.getType();
+    
    
     if(this.authService.isLoggedIn){
       return true;

@@ -16,7 +16,7 @@ export class DashboardEmployeePage implements OnInit {
   
   team = [];
   gaugeType = "semi";
-  gaugeValue = 28.3;
+  gaugeValue = 0;
   gaugeLabel = "Completion";
   gaugeAppendText = "%";
 
