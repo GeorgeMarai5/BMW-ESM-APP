@@ -62,12 +62,6 @@ export class InitiateServiceProcedurePage implements OnInit {
 
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
     
     this.fleetservice.getFleet(this.fle).subscribe(response => {
       console.log(response);

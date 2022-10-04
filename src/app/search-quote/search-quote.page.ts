@@ -36,6 +36,12 @@ export class SearchQuotePage implements OnInit {
   }
 
   ngOnInit() {
+    
+    
+    this.getAllQuotes();
+
+    this.getAllQuotes();
+
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -43,9 +49,6 @@ export class SearchQuotePage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
     
-    this.getAllQuotes();
-
-    this.getAllQuotes();
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');

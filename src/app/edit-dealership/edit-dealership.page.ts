@@ -69,12 +69,7 @@ this.activatedRoute.params.subscribe(params => {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+    
 
     // this.dealershipService.getDealership(this.data)
     // .subscribe(res =>{
@@ -113,6 +108,13 @@ async updateDealership(id, data){
     console.log(response);
     
   })
+
+  if(this.authService.isLoggedIn){
+    return true;
+  }
+  else{
+    this.router.navigate(['/tabs/login']);
+  }
 }
 
   get errorControl() {

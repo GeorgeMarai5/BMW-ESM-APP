@@ -55,16 +55,16 @@ viewVehicle(){
 
 
   ngOnInit() {
-if(this.authService.isLoggedIn){
+
+    
+    this.viewVehicle();
+
+    if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
-    
-    this.viewVehicle();
-
-    
     
     var coll = document.getElementsByClassName("collapsible");
     var i;

@@ -43,18 +43,18 @@ export class SearchVehiclePage implements OnInit {
     }
 
   ngOnInit() {
-if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+
     
     this.getallVehicles()
     //this.getModel()
     
     
-
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     
 
     var coll = document.getElementsByClassName("collapsible");

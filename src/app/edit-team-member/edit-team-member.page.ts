@@ -66,7 +66,6 @@ export class EditTeamMemberPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
     
-    
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

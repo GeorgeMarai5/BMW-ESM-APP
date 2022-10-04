@@ -44,12 +44,6 @@ export class EditTeamPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
 
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -72,6 +66,13 @@ export class EditTeamPage implements OnInit {
       });
     }
     this.updateTeam();
+
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
   }
 
   async updateTeam(){

@@ -35,17 +35,19 @@ export class ViewQuotePage implements OnInit {
    }
 
   ngOnInit() {
+    
+
+    this.quoteservice.getQuote(this.data).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    });
+
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
-
-    this.quoteservice.getQuote(this.data).subscribe(response => {
-      console.log(response);
-      this.data = response;
-    });
     
     var coll = document.getElementsByClassName("collapsible");
     var i;

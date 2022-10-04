@@ -55,12 +55,7 @@ export class EditVehiclePartPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+    
 
     this.service.getAssignedPart(this.data)
     .subscribe(res =>{
@@ -72,6 +67,13 @@ export class EditVehiclePartPage implements OnInit {
       partStock: res['PartInStock']
     })
     });
+
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

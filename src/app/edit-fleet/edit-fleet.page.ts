@@ -60,17 +60,17 @@ export class EditFleetPage implements OnInit {
   }
 
   ngOnInit() {
-if(this.authService.isLoggedIn){
+
+
+    this.get();
+
+    
+    if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
-
-    this.get();
-
-    
-
 
 var coll = document.getElementsByClassName("collapsible");
     var i;

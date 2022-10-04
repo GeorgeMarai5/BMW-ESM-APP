@@ -39,17 +39,19 @@ export class ViewMaintenancePlanPage implements OnInit {
   }
 
   ngOnInit() {
+    
+    
+    this.planService.getMaintenancePlan(this.data).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
-    
-    this.planService.getMaintenancePlan(this.data).subscribe(response => {
-      console.log(response);
-      this.data = response;
-    })
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

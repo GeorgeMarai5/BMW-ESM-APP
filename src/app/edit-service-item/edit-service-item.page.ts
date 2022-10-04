@@ -40,12 +40,6 @@ export class EditServiceItemPage implements OnInit {
 
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
     
 
     var coll = document.getElementsByClassName("collapsible");
@@ -70,6 +64,13 @@ export class EditServiceItemPage implements OnInit {
     }
 
    this.getItemID();
+
+   if(this.authService.isLoggedIn){
+    return true;
+  }
+  else{
+    this.router.navigate(['/tabs/login']);
+  }
   }
 
   async getItemID(){

@@ -44,18 +44,19 @@ export class ViewFleetPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+    
     
     this.fleetservice.getFleet(this.data).subscribe(response => {
       console.log(response);
       this.data = response;
     })
 
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

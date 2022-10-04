@@ -29,12 +29,6 @@ export class SearchPartPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
     
     this.partForm = this.fb.group({
       PartID: ['', [Validators.required]],
@@ -44,6 +38,13 @@ export class SearchPartPage implements OnInit {
     this.httpClient.get<any>("assets/vehicle-parts.json").subscribe((data)=>
       this.partList = data
     );
+
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

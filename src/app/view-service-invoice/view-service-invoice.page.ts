@@ -39,14 +39,16 @@ data: ServiceItem;
      }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      return true;
-    }
-    else{
-      this.router.navigate(['/tabs/login']);
-    }
+    
     
 this.getAllServiceItems();
+
+if(this.authService.isLoggedIn){
+  return true;
+}
+else{
+  this.router.navigate(['/tabs/login']);
+}
   }
   async getAllServiceItems(){
     this.service.getServiceItemList().subscribe(response => {
