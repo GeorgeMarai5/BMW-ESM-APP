@@ -43,7 +43,7 @@ export class ViewServiceProgressPage implements OnInit {
   serviceItems = [this.newItems.item1, this.newItems.item2];
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, private httpClient: HttpClient, public authService: AuthService, public firestore: AngularFirestore,
-    public router: Router, public service: VehicleService, public toastCtrl: ToastController, private alertController: AlertController, public alertCtrl: AlertController,r) {
+    public router: Router, public service: VehicleService, public toastCtrl: ToastController, private alertController: AlertController, public alertCtrl: AlertController) {
       this.route.params.subscribe((params) => {
         this.data = params.id;
       });

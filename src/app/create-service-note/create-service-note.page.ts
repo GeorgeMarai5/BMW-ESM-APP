@@ -32,7 +32,7 @@ export class CreateServiceNotePage implements OnInit {
     public router: Router,
     public authService: AuthService, 
     
-    private servicenote: ServiceNoteService,
+    private servicenote: ServiceNoteService
     
     ) {
 
