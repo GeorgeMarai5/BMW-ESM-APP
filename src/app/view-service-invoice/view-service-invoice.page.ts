@@ -27,7 +27,7 @@ item: any;
 data: ServiceItem;
   vehicles: Vehicle;
   vehicle = [];
-
+  serviceItems = []
   viewInvoiceForm: FormGroup;
   isSubmitted = false;
 

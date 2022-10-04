@@ -32,7 +32,7 @@
           <ion-col>
             <ion-item lines="full">
               <ion-label position="stacked"><b>Select Service Type</b></ion-label>
-              <ion-select [(ngModel)]="type.typeDescription" [ngModelOptions]="{standalone: true}" placeholder="Select Service Type...">
+              <ion-select [(ngModel)]="type.Type_Description" [ngModelOptions]="{standalone: true}" placeholder="Select Service Type...">
                 <ion-select-option *ngFor="let item of data">{{ item.typeDescription }}</ion-select-option>
               </ion-select>
             </ion-item>
