@@ -25,7 +25,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class ViewServiceProgressPage implements OnInit {
 
 
-
+  serviceItems = [];
   isSubmitted = false;
   data: any;
 

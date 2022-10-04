@@ -15,7 +15,7 @@
 <ion-content class="ion-margin">
   <div class="contents">
     <ion-title><h1>Service Note</h1></ion-title>
-    <ion-icon id="helpIcon" name="help-circle" style="color: #002850;" (click)="showHelp()"></ion-icon>
+    
     <form>
       <ion-grid>
         <ion-row>
@@ -23,7 +23,7 @@
             <ion-item lines="none">
               <ion-label position="stacked">Service Note</ion-label>
               <ion-textarea #Description="ngModel" required [(ngModel)]="data.description"[ngModelOptions]="{standalone: true}"placeholder="Description..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert">
+              <div *ngIf="Description.invalid && (Description.dirty || Description.touched)" class="alert">
                 <span color="danger" style="padding-top: 2vh; " *ngIf="Description.errors?.required">
                   Description is required.
                 </span>
