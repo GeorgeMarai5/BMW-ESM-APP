@@ -49,10 +49,12 @@ export class CreateServiceNotePage implements OnInit {
   }
     
   ngOnInit() {
-
-
-    //this.getServiceInfo();
-    
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
 
     /*
 

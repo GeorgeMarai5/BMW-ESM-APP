@@ -13,21 +13,8 @@ import { Router } from '@angular/router';
 })
 export class DashboardClientPage implements OnInit {
 
-  fleet = {
-    name: 'Avis Hatfield',
-    location: 'Hatfield'
-  };
-  service = {
-    count: 5,
-    type: '100 000km',
-    date: '02/04/2022',
-    price: 'R36 000'
-  };
-  client = {
-    name: "George"
-  };
   gaugeType = "semi";
-  gaugeValue = 82;
+  gaugeValue = 0;
   gaugeLabel = "Health";
   gaugeAppendText = "%";
 

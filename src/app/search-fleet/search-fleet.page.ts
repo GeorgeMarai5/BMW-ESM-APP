@@ -26,13 +26,14 @@ export class SearchFleetPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getallFleets()
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
+    this.getallFleets()
+    
     this.getallFleets()
 
    

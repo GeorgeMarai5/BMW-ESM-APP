@@ -55,18 +55,16 @@ export class UpdateServicePage implements OnInit {
   }
 
   ngOnInit() {
-this.getDealership();
-this.getServicetype();
-this.getTeam();
-
-
-
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
+    
+this.getDealership();
+this.getServicetype();
+this.getTeam();
     
     var coll = document.getElementsByClassName("collapsible");
     var i;

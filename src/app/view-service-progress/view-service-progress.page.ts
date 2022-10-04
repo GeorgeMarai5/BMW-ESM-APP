@@ -28,22 +28,9 @@ export class ViewServiceProgressPage implements OnInit {
 
   isSubmitted = false;
   data: any;
-  newItems = {
-    item1: {
-      name: 'Oil Change',
-      quantity: 1,
-      price: 2000
-    },
-    item2: {
-      name: 'Brake Disk Replacement',
-      quantity: 4,
-      price: 1000
-    }
-  }
-  serviceItems = [this.newItems.item1, this.newItems.item2];
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, private httpClient: HttpClient, public authService: AuthService, public firestore: AngularFirestore,
-    public router: Router, public service: VehicleService, public toastCtrl: ToastController, private alertController: AlertController, public alertCtrl: AlertController) {
+    public router: Router, public service: VehicleService, public toastCtrl: ToastController, private alertController: AlertController, public alertCtrl: AlertController,) {
       this.route.params.subscribe((params) => {
         this.data = params.id;
       });
@@ -51,6 +38,12 @@ export class ViewServiceProgressPage implements OnInit {
 
   
   ngOnInit() {
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');
