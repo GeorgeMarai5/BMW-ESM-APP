@@ -47,25 +47,7 @@ export class CreateFleetPage implements OnInit {
   
   }
 
-  /*submitForm(){
-    this.isSubmitted = true;
-    if(!this.addFleetForm.valid){
-      return false;
-    }
-    else{
-        const fleet = {
-          fleetName: this.addFleetForm.get('fleetName').value,
-          fleetID: this.addFleetForm.get('fleetID').value,
-          vehicleAmount: this.addFleetForm.get('vehicleAmount').value,
-          fleetLocation: this.addFleetForm.get('fleetLocation').value
-        }
-        this.fleetservice.createFleet(fleet);
-        console.log(fleet);
-        this.presentToast()
-      }
-      this.router.navigate(['/tabs/search/vehicle']);
-  }
-  */
+
 
   async showHelp(){
     const modal = await this.helpModal.create({
@@ -86,13 +68,13 @@ export class CreateFleetPage implements OnInit {
 
 
   ngOnInit() {
-    /*if(this.authService.isLoggedIn){
+    if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
-    */
+    
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

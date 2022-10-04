@@ -48,21 +48,7 @@ export class EditTeamMemberPage implements OnInit {
   }
 
   submitForm(){
-    // this.isSubmitted = true;
-    // if(!this.editTeamMemberForm.valid){
-    //   return false;
-    // }
-    // else{
-    //     const teamMember = {
-    //       Name: this.editTeamMemberForm.get('Name').value,
-    //       Surname: this.editTeamMemberForm.get('Surname').value,
-    //       PhoneNumber: this.editTeamMemberForm.get('PhoneNumber').value,
-    //       Email: this.editTeamMemberForm.get('Email').value,
-    //       Role: this.editTeamMemberForm.get('Role').value
-    //     }
-    //     //this.teamMemberservice.updateTeaMember(this.teamMember, teamMember)
-    //     this.presentToast()
-    //   }
+ 
       this.router.navigate(['/tabs/search/team-member', this.teamMember]);
   }
 
@@ -80,17 +66,7 @@ export class EditTeamMemberPage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
     
-    // this.teamMemberservice.getTeamMember(this.data)
-    // .subscribe(res =>{
-    // console.log(res)
-    // this.editTeamMemberForm.setValue({
-    //   Name: res['Name'],
-    //   Surname: res['Surname'], 
-    //   PhoneNumber: res['PhoneNumber'], 
-    //   Email: res['Email'],
-    //   Role: res['Role']
-    // })
-    // });
+    
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

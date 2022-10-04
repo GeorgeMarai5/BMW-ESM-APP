@@ -91,17 +91,18 @@ export class CreateTeamPage implements OnInit {
   }
   
   ngOnInit() {
-    /*
+    this.getDealership();
+    this.getTeamType();
+   
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
-    */
+    
 
-    this.getDealership();
-    this.getTeamType();
+    
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

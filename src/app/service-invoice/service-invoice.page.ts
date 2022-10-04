@@ -115,7 +115,7 @@ export class ServiceInvoicePage implements OnInit {
         {
           stack: [
             {text: [
-              this.note.Description,
+              ,
             ]
             },
           ],

@@ -3,11 +3,11 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ServiceNoteService } from '../services/servicenote.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { ServiceService } from '../services/service.service';
+//import { ServiceService } from '../services/service.service';
 import { Service_Note } from '../models/Service_Note'
 import { ModalController, ToastController } from '@ionic/angular';
-import { CreateServiceNoteHelpComponent } from 'app/components/create-service-note-help/create-service-note-help.component';
+
+
 
 @Component({
   selector: 'app-create-service-note',
@@ -18,46 +18,43 @@ import { CreateServiceNoteHelpComponent } from 'app/components/create-service-no
 export class CreateServiceNotePage implements OnInit {
 
   serviceNotes: Service_Note
-  addNoteForm: FormGroup
-  serviceNoteList = [];
+  
+  //serviceNoteList = [];
   searchTerm: string;
-  deleteModal: HTMLElement;
-  isSubmitted = false;
+ 
+  //isSubmitted = false;
   data : any;
-  today = new Date();
-  serviceData: any;
+  ServiceNote: Service_Note;
+  //today = new Date();
+ 
 
-  constructor (private route: ActivatedRoute, 
-    public router: Router, 
-    public httpClient: HttpClient,
+  constructor ( 
+    public router: Router,
     public authService: AuthService, 
-    public fb: FormBuilder, 
-    private _serviceNote: ServiceNoteService,
-    public service: ServiceService, 
-    public toastCtrl: ToastController,
-    public helpModal: ModalController) {
+    
+    private servicenote: ServiceNoteService,
+    
+    ) {
 
-    _serviceNote = {} as ServiceNoteService;
+    //serviceNote = {} as ServiceNoteService;
     this.data = new Service_Note();
 
   }
 
-  async create(){
-    this._serviceNote.createServiceNote(this.data).subscribe(response => {
+  async create() {
+    this.servicenote.createServiceNote(this.data).subscribe(response => {
       console.log(response);
     });
-    this.presentToast();
+   
   }
     
   ngOnInit() {
-    //if(this.authService.isLoggedIn){
-    //  return true;
-    //}
-    //else{
-    //  this.router.navigate(['/tabs/login']);
-    //}
 
-    this.getServiceInfo();
+
+    //this.getServiceInfo();
+    
+
+    /*
 
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -80,7 +77,7 @@ export class CreateServiceNotePage implements OnInit {
       });
     }
   }
-
+/*
   getServiceInfo() { 
     this.service.getServiceList().subscribe(response => {
       console.log(response);
@@ -88,11 +85,13 @@ export class CreateServiceNotePage implements OnInit {
     })
   }
 
+  
   async showHelp(){
     const modal = await this.helpModal.create({
       component: CreateServiceNoteHelpComponent});
       return await modal.present();
   }
+  
 
   get errorControl() {
     return this.addNoteForm.controls;
@@ -105,6 +104,13 @@ export class CreateServiceNotePage implements OnInit {
       position: 'top'
     });
     toast.present();
+  }
+
+}
+
+
+*/
+
   }
 
 }

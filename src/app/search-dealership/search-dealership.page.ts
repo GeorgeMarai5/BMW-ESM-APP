@@ -27,6 +27,7 @@ export class SearchDealershipPage implements OnInit {
     }
 
   ngOnInit() {
+    this.getallDealerships();
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -56,7 +57,7 @@ export class SearchDealershipPage implements OnInit {
     }
 
   //   this.getallDealerships();
-    this.getallDealerships();
+    
 
 
 
@@ -67,20 +68,7 @@ export class SearchDealershipPage implements OnInit {
       FleetVehicleQty: ['', [Validators.required]],
   });
 
-  /*
-  this.service.getList().subscribe(data => {
-    this.dealershipList = data.map(e => {
-      return {
-        id: e.payload.doc.id,
-        DealershipID: e.payload.doc.data()['DealershipID'],
-        DealershipName: e.payload.doc.data()['DealershipName'],
-        AddressName: e.payload.doc.data()['AddressName'],
-      };
-    })
-    console.log(this.dealershipList);
-
-  });
-  */
+  
  
   }
 

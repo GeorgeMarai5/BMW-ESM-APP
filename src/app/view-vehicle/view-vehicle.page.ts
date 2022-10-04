@@ -57,7 +57,13 @@ viewVehicle(){
   ngOnInit() {
 
     this.viewVehicle();
-    
+
+    if(this.authService.isLoggedIn){
+      return true;
+    }
+    else{
+      this.router.navigate(['/tabs/login']);
+    }
     
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -111,6 +117,13 @@ viewVehicle(){
 
   navToUpdate() {
     this.router.navigate(['tabs/edit/vehicle', this.data]);
+  }
+
+
+ async back(){
+
+    this.router.navigate(['tabs/search/vehicle']);
+
   }
 
   getBase64ImageFromURL(url) {

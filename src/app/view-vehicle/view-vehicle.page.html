@@ -59,10 +59,10 @@
                 <ion-row>
                     <ion-col></ion-col>
                     <ion-col>
-                        <ion-button [routerLink]="['/tabs/search/vehicle']" expand="block">Back</ion-button>
+                        <ion-button (click)="back()" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" (click)="navToUpdate()" expand="block">Update</ion-button>
+                        <ion-button class="light-Btn"  (click)="navToUpdate()" expand="block">Update</ion-button>
                     </ion-col>
                     <ion-col>
                         <ion-button class="light-Btn" expand="block" (click)="getReport()">Performance<br/>Report</ion-button>

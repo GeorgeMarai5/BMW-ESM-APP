@@ -24,8 +24,8 @@
                 <ion-col>
                     <ion-item lines="full">
                         <ion-label position="stacked"><b>Select Dealership</b></ion-label>
-                        <ion-select [(ngModel)]="data.dealerhsipName" [ngModelOptions]="{standalone: true}">
-                            <ion-select-option *ngFor="let item of dealerships">{{ item }}</ion-select-option>
+                        <ion-select [(ngModel)]="data.dealershipName" [ngModelOptions]="{standalone: true}">
+                            <ion-select-option *ngFor="let item of deal">{{ item.dealershipName }}</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
@@ -35,7 +35,7 @@
                   <ion-item lines="full">
                       <ion-label position="stacked"><b>Select Team</b></ion-label>
                       <ion-select [(ngModel)]="data.teamName" [ngModelOptions]="{standalone: true}">
-                        <ion-select-option *ngFor="let item of teams">{{ item }}</ion-select-option>
+                        <ion-select-option *ngFor="let item of team">{{ item.teamName }}</ion-select-option>
                       </ion-select>
                   </ion-item>
               </ion-col>
@@ -45,7 +45,7 @@
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Service Type</b></ion-label>
                             <ion-select [(ngModel)]="data.serviceTypeName" [ngModelOptions]="{standalone: true}">
-                                <ion-select-option *ngFor="let item of serviceTypes">{{ item }}</ion-select-option>
+                                <ion-select-option *ngFor="let item of type">{{ item.serviceTypeName }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
@@ -58,7 +58,7 @@
                         <ion-button (click)="back()" expand="block">Back</ion-button>
                       </ion-col>
                       <ion-col>
-                        <ion-button class="light-Btn" type="submit" expand="block" (click)="updateService(this.id, this.data)">Update</ion-button>
+                        <ion-button class="light-Btn" type="submit" expand="block" [routerLink]="['/tabs/create/quote']" (click)="updateService(this.id, this.data)">Update</ion-button>
                       </ion-col>
                 </ion-row>
             </ion-grid>

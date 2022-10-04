@@ -39,7 +39,6 @@ export class AssignVehiclePartPage implements OnInit {
     this.service.createPart(this.data).subscribe(response => {
       console.log(response);
       this.data = response;
-      this.router.navigate(['/tabs/update/service']);
     });
     this.presentToast();
   }
@@ -51,13 +50,13 @@ export class AssignVehiclePartPage implements OnInit {
   }
 
   ngOnInit() {
-    /*if(this.authService.isLoggedIn) {
+    if(this.authService.isLoggedIn) {
       return true;
     }
     else {
       this.router.navigate(['/tabs/login']);
     }
-    */
+    
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');

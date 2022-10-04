@@ -46,7 +46,7 @@ export class SearchVehiclePage implements OnInit {
 
     this.getallVehicles()
     //this.getModel()
-    /*
+    
     if(this.authService.isLoggedIn){
       return true;
     }
@@ -54,7 +54,7 @@ export class SearchVehiclePage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    */
+    
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

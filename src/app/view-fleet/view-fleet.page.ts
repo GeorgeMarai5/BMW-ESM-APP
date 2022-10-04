@@ -44,6 +44,14 @@ export class ViewFleetPage implements OnInit {
   }
 
   ngOnInit() {
+
+    
+    this.fleetservice.getFleet(this.data).subscribe(response => {
+      console.log(response);
+      this.data = response;
+    })
+
+
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');
@@ -64,25 +72,11 @@ export class ViewFleetPage implements OnInit {
         }
       });
     }
-    //this.id = this.activatedRoute.snapshot.params["fleetID"];
-
-    //this.feedbacks.forEach((fb, index)
-    //=> this.combinedArray.push({ feedback: fb, result: this.results[index] }));
-
-   
-//this.getFleetDetails();
-
-      //this.Get(this.id);
-    //this.getVin();
-
+    
     
 
 
-    this.fleetservice.getFleet(this.data).subscribe(response => {
-      console.log(response);
-      this.data = response;
-    })
-
+   
     //this.getModelAndYear();
 
   }

@@ -37,12 +37,12 @@ export class DashboardEmployeePage implements OnInit {
   }
   
   ngOnInit() {
-    /*if(this.authService.isLoggedIn){
+    if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
-    }*/
+    }
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

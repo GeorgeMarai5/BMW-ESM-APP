@@ -48,23 +48,7 @@ export class UpdateQuotePage implements OnInit {
   }
 
   submitForm(){
-    /*
-    this.isSubmitted = true;
-    if(!this.editquoteForm.valid){
-      return false;
-    }
-    else{
-        const QuoteData = {
-          ClientName: this.editquoteForm.get('ClientName').value,
-          Date: this.editquoteForm.get('Date').value,
-          Description: this.editquoteForm.get('Description').value,
-          Accepted: this.editquoteForm.get('Accepted').value
-        }
-        this.quoteservice.updateQuote(this.data)
-        this.presentToast()
-      }
-      this.router.navigate(['/tabs/view/dealership', this.data]);
-      */
+   
   }
 
   async showHelp(){
@@ -102,16 +86,7 @@ export class UpdateQuotePage implements OnInit {
       });
     }
 
-    /*this.quoteservice.get_Quote(this.data)
-    .subscribe(res =>{
-    console.log(res)
-    this.editquoteForm.setValue({
-      ClientName: res['ClientName'],
-      Date: res['Date'], 
-      Description: res['Description'], 
-      Accepted: res['Accepted']
-    })
-    });*/
+  
   }
 
   get errorControl() {

@@ -29,7 +29,7 @@
                 <ion-col></ion-col>
             </ion-row>
             <ion-item-divider></ion-item-divider>
-            <ion-row *ngFor="let item of data | filter: searchTerm | filter: teamId">
+            <ion-row *ngFor="let item of data | filter: searchTerm">
                 <ion-col>
                     <ion-label> {{item.teamId}}</ion-label>
                 </ion-col>
@@ -44,7 +44,7 @@
                 </ion-col>
                 <ion-col>
                     <ion-col>
-                        <ion-button class="red-Btn" (click)="deleteTeam(this.item.id)">Remove</ion-button>
+                        <ion-button class="red-Btn" (click)="deleteTeam(item)">Remove</ion-button>
                         <ion-button class="light-Btn" [routerLink]="['/tabs/edit/team', this.item.id]">Update</ion-button>
                         <ion-button class="green-Btn" [routerLink]="['/tabs/search/team-member', this.item.id]">Assign Member</ion-button>
                     </ion-col>

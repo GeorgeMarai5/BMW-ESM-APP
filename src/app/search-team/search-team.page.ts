@@ -35,16 +35,18 @@ export class SearchTeamPage implements OnInit {
     }
 
   ngOnInit() {
-    /*if(this.authService.isLoggedIn){
+   
+    
+    this.getallTeams();
+    //this.getDealership();
+    //this.getTeamType();
+
+    if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
-    */
-    this.getallTeams();
-    this.getDealership();
-    this.getTeamType();
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

@@ -24,14 +24,14 @@ export class SearchServiceItemPage implements OnInit {
     }
 
   ngOnInit() {
-    /*
+    this.getAllServiceItems();
     if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
-    */
+    
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');
@@ -54,7 +54,7 @@ export class SearchServiceItemPage implements OnInit {
     }
 
 
-    this.getAllServiceItems();
+   
   }
 
   async getAllServiceItems(){

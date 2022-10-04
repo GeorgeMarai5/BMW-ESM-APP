@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../models/Vehicle';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { sendPasswordResetEmail } from 'firebase/auth';
@@ -23,7 +23,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 
 export class ViewServiceProgressPage implements OnInit {
-// getting ready
+
 
 
   isSubmitted = false;
@@ -43,14 +43,13 @@ export class ViewServiceProgressPage implements OnInit {
   serviceItems = [this.newItems.item1, this.newItems.item2];
 
   constructor(private route: ActivatedRoute, public fb: FormBuilder, private httpClient: HttpClient, public authService: AuthService, public firestore: AngularFirestore,
-    public router: Router, public service: VehicleService, private alertController: AlertController) {
+    public router: Router, public service: VehicleService, public toastCtrl: ToastController, private alertController: AlertController, public alertCtrl: AlertController,r) {
       this.route.params.subscribe((params) => {
         this.data = params.id;
       });
     }
-//     readonly  twilioNumber = '+19859806244';
-// readonly accountSid = 'AC2b54afb9d76e88c12db2ba3f5d5d911d';
-// readonly authToken = '6ee0efe44516b7df5de5b1680d2e1a69';
+
+  
   ngOnInit() {
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -98,7 +97,54 @@ export class ViewServiceProgressPage implements OnInit {
     await alert.present();
   }
   
-    
+  async concludeQuoteAlert() {
+    const alert = await this.alertController.create({
+      header: 'Conclude Quote',
+      buttons: ['Submit', 'Cancel'],
+      inputs: [
+        {
+          placeholder: 'Would you like to conclude the service?',
+        },
+      ],
+
+    });
+
+    await alert.present();
+  }
+
+  async concludeQuote() {
+    const concludeQuoteAlert = await this.alertCtrl.create({
+      header: 'Conclude Quote',
+      message: 'Would you like to conclude the service?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: end => {
+          this.alertCtrl.dismiss();
+        }
+      },
+      {
+        text: 'Submit',
+        role: 'Submit',
+        handler: () => {
+          
+          this.presentToast('Your service has been concluded.');
+        }
+      }]
+    });  
+    concludeQuoteAlert.present();
+  }
+
+  async presentToast(_message) {
+    let toast = await this.toastCtrl.create({
+      message: _message,
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.present();
+  }
+
   async provideFeedbackAlert() {
     const alert = await this.alertController.create({
       header: 'CaptureFeedback',
@@ -113,57 +159,6 @@ export class ViewServiceProgressPage implements OnInit {
     await alert.present();
   }
 
-  // public text: string;
-  // public from: string;
-  // public to: string;
-
-
-  // public sendSms() {
-  //   const payload = new HttpParams()
-  //     .set('from', this.from)
-  //     .set('to', this.to)
-  //     .set('text', this.text);
-
-  //   return this.httpClient.post('http://sms.com:3000/send-sms', payload)
-  //     .pipe(
-  //       catchError((error: HttpErrorResponse) => {
-  //         this.alertController.create({ message: 'Oops!'})
-  //           .then((alert) => alert.present());
-  //         return throwError('Oops!');
-  //       }))
-  //     .subscribe(async (resp: any) => {
-  //       const alert = await this.alertController.create({ message: resp.message });
-  //       await alert.present();
-  //     });
-  // }
-
-// start sending message
-// readonly client = Twilio(this.accountSid, this.authToken);
-//  sendText(){
-//     const phoneNumbers = [ 'phone-number-1', 'phone-number-2']    
-
-//     phoneNumbers.map(phoneNumber => {
-//         console.log(phoneNumber);
-        
-//         if ( !this.validE164(phoneNumber) ) {
-//             throw new Error('number must be E164 format!')
-//         }
-    
-//         const textContent = {
-//             body: `You have a new sms from Dale Nguyen :)`,
-//             to: phoneNumber,
-//             from: this.twilioNumber
-//         }
-    
-//         this.client.messages.create(textContent)
-//         .then((message) => console.log(message.to))
-//     })
-// }
-
-// // Validate E164 format
-//  validE164(num) {
-//     return /^\+?[1-9]\d{1,14}$/.test(num)
-// }
   getReport() {
     let docDefinition = {  
       header: {

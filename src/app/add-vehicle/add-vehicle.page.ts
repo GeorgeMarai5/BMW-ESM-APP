@@ -60,12 +60,12 @@ export class AddVehiclePage implements OnInit {
   }
 
   ngOnInit() {
-    //if(this.authService.isLoggedIn){
-    //  return true;
-    //}
-    //else{
-    //  this.router.navigate(['/tabs/login']);
-    //}
+    if(this.authService.isLoggedIn){
+     return true;
+    }
+    else{
+     this.router.navigate(['/tabs/login']);
+    }
 
     //this.addVehicleForm.setValue({VINNum: '', vehicleModel: '', Registration: '', warrantyPlan: ''});
 

@@ -23,17 +23,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class SearchclientaccountPage implements OnInit {
 
   searchTerm: string;
-  //   clients:any = [];
-  //   public list: Array<Object> = [];
-  //   private searchedItem: any;
-  //   public searchField: FormControl;
-  //  // public clientList$: Observable<any[]>;
-  //   id: string;
-  //   name: string;
-  //   phone: number;
-  //   email: string;
   
-  // Filter: string;
   public clientList: any;
   //clientList= [];
     

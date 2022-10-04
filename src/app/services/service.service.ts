@@ -3,6 +3,7 @@ import { Observable,of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { retry,catchError, tap, map } from 'rxjs/operators';
 import { VehicleService } from '../models/VehicleService';
+import { ServiceType } from 'app/models/ServiceType';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,15 @@ export class ServiceService {
   getServiceList(): Observable<ServiceService> {
     return this.httpClient
       .get<ServiceService>(this.apiUrl + '/api/Services/GetAllServices')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getServiceTypeList(): Observable<ServiceType> {
+    return this.httpClient
+      .get<ServiceType>(this.apiUrl + '/api/ServiceTypes/GetAllServiceTypes')
       .pipe(
         retry(2),
         catchError(this.handleError)

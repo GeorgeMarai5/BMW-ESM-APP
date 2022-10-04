@@ -35,11 +35,7 @@ export class SearchFleetPage implements OnInit {
     }
     this.getallFleets()
 
-    //this.fleetservice.getList().subscribe(response => {
-      //console.log(response);
-      //this.data = response;
-
-  //})
+   
 
   var coll = document.getElementsByClassName("collapsible");
     var i;

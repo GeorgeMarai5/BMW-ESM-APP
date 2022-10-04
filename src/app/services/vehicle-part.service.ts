@@ -9,7 +9,7 @@ import { Part } from '../models/Part';
 })
 export class VehiclePartService {
 
-  apiUrl = 'https://localhost:7163/api/Parts'
+  apiUrl = 'https://localhost:7163'
   httpOptions ={
     headers: new HttpHeaders({
       ContentType: 'application/json'
@@ -38,7 +38,7 @@ export class VehiclePartService {
   }
 
   createPart(Part: Part){
-    return this.httpClient.post(this.apiUrl + '/CreatePart' , Part, this.httpOptions)
+    return this.httpClient.post(this.apiUrl + 'api/Parts/CreatePart' , Part, this.httpOptions)
   }
 
   getPartList(): Observable<Part> {

@@ -53,21 +53,7 @@ export class EditVehiclePage implements OnInit {
   }
 
   submitForm(){
-    // this.isSubmitted = true;
-    // if(!this.editVehicleForm.valid){
-    //   return false;
-    // }
-    // else{
-
-    //   const dealership = {
-    //     VIN_Number: this.editVehicleForm.get('VINNum').value,
-    //     VehicleModel: this.editVehicleForm.get('vehicleModel').value,
-    //     Registration: this.editVehicleForm.get('Registration').value,
-    //     Warranty: this.editVehicleForm.get('warrantyPlan').value,
-    //   }
-    //   this.service.updateVehicle(this.data)
-    //   this.presentToast();
-    // }
+    
     this.router.navigate(['/tabs/view/vehicle', this.data]);
   }
 
@@ -85,16 +71,7 @@ export class EditVehiclePage implements OnInit {
       this.router.navigate(['/tabs/login']);
     }
 
-    // this.service.getVehicle(this.data)
-    // .subscribe(res =>{
-    // console.log(res)
-    // this.editVehicleForm.setValue({
-    //   VINNum: res['VIN_Number'],
-    //   vehicleModel: res['VehicleModel'], 
-    //   Registration: res['Registration'],
-    //   warrantyPlan: res['Warranty']
-    // })
-    // });
+    
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

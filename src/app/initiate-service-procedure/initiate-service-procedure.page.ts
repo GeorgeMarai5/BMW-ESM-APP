@@ -57,16 +57,6 @@ export class InitiateServiceProcedurePage implements OnInit {
 
     }
 
-/*
-
-      this.initiateServiceForm = new FormGroup({
-        dealership: new FormControl(''),
-        fleet: new FormControl(''),
-        team: new FormControl(''),
-        date: new FormControl('')
-      });
-    }
-*/
 
 
 
@@ -82,6 +72,13 @@ export class InitiateServiceProcedurePage implements OnInit {
 
 this.getDealership();
 this.getTeam();
+
+if(this.authService.isLoggedIn){
+  return true;
+}
+else{
+  this.router.navigate(['/tabs/login']);
+}
 
 var coll = document.getElementsByClassName("collapsible");
     var i;

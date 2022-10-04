@@ -48,12 +48,12 @@ export class CreateTeamMemberPage implements OnInit {
   }
 
   ngOnInit() {
-    //if(this.authService.isLoggedIn){
-    //  return true;
-    //}
-    //else{
-    //  this.router.navigate(['/tabs/login']);
-    //}
+    if(this.authService.isLoggedIn){
+     return true;
+    }
+    else{
+     this.router.navigate(['/tabs/login']);
+    }
 
     var coll = document.getElementsByClassName("collapsible");
     var i;

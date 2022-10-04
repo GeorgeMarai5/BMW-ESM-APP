@@ -80,7 +80,9 @@ export class CreateServicePage implements OnInit {
 
   ngOnInit() {
 
-    /*
+    this.getTeam();
+
+this.getType();
    
     if(this.authService.isLoggedIn){
       return true;
@@ -88,11 +90,9 @@ export class CreateServicePage implements OnInit {
     else{
       this.router.navigate(['/tabs/login']);
     }
-*/
-    
-this.getTeam();
 
-this.getType();
+    
+
     
 var coll = document.getElementsByClassName("collapsible");
     var i;

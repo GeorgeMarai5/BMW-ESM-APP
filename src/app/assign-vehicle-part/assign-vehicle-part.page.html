@@ -38,7 +38,7 @@
                     <ion-col>
                         <ion-item lines="full">
                             <ion-label position="stacked"><b>Description</b></ion-label>
-                            <ion-input #description="ngModel" required [(ngModel)]="data.description" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
+                            <ion-input #description="ngModel" required [(ngModel)]="data.partDescription" placeholder="Enter Description..." [ngModelOptions]="{standalone: true}"></ion-input>
                         </ion-item>
                         <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert">
                             <span color="danger" style="padding-top: 2vh; " *ngIf="description.errors?.required">
@@ -68,7 +68,7 @@
                         <ion-button [routerLink]="['/tabs/create/service']" expand="block">Back</ion-button>
                     </ion-col>
                     <ion-col>
-                        <ion-button class="light-Btn" type="submit" expand="block" (click)="create()" >Assign Part</ion-button>
+                        <ion-button class="light-Btn" type="submit" expand="block"  [routerLink]="['/tabs/create/quote']" (click)="create()" >Assign Part</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>

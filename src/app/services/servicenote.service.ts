@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 
 export class ServiceNoteService {
 
- apiUrl = 'https://localhost:7163/api';
+ apiUrl = 'https://localhost:7163/api/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -32,7 +32,7 @@ export class ServiceNoteService {
   }   
 
      createServiceNote(ServiceNote: Service_Note){
-      return this.httpClient.post(this.apiUrl + '/CreateServiceNote' , ServiceNote, this.httpOptions)
+      return this.httpClient.post(this.apiUrl + 'ServiceNotes/CreateServiceNote' , ServiceNote, this.httpOptions)
     }
   
      getServiceNoteList(): Observable<Service_Note> {

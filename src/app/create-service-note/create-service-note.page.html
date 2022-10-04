@@ -22,8 +22,8 @@
           <ion-col>
             <ion-item lines="none">
               <ion-label position="stacked">Service Note</ion-label>
-              <ion-textarea #Description="ngModel" required [(ngModel)]="data.Description"[ngModelOptions]="{standalone: true}"placeholder="Description..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
-              <div *ngIf="Description.invalid && (Description.dirty || Description.touched)" class="alert">
+              <ion-textarea #Description="ngModel" required [(ngModel)]="data.description"[ngModelOptions]="{standalone: true}"placeholder="Description..." style="border: 1px solid rgb(70, 70, 70); border-radius: 0.2rem; padding: 0.1rem 0.5rem;"></ion-textarea>
+              <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert">
                 <span color="danger" style="padding-top: 2vh; " *ngIf="Description.errors?.required">
                   Description is required.
                 </span>
@@ -36,10 +36,10 @@
           <ion-col></ion-col>
           <ion-col></ion-col>
           <ion-col>
-            <ion-button type="submit" expand="block">Back</ion-button>
+            <ion-button type="submit" expand="block" [routerLink]="[ '/tabs/search/quote']">Back</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button class="light-Btn" type="submit" style="margin-right: 1vw" expand="block" (click)="create()">Proceed</ion-button>
+            <ion-button class="light-Btn" type="submit" [routerLink]="[ '/tabs/view/service-progress'] " style="margin-right: 1vw" expand="block">Proceed</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

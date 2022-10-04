@@ -28,12 +28,12 @@ export class CaptureInitialInspectionDetailsPage implements OnInit {
     }
 
   ngOnInit() {
-    /*if(this.authService.isLoggedIn){
+   if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
-    }*/
+    }
     this.checkList = JSON.parse(sessionStorage.getItem('checkList'));
 
     var coll = document.getElementsByClassName("collapsible");

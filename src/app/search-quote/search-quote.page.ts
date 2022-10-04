@@ -71,11 +71,7 @@ export class SearchQuotePage implements OnInit {
 
     
 
-    //this.fleetservice.getList().subscribe(response => {
-      //console.log(response);
-      //this.data = response;
-
-  //})
+   
 
     }
 

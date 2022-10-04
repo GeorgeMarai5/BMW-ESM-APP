@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { VehicleService } from 'app/models/VehicleService';
 import { UpdateServiceHelpComponent } from 'app/components/update-service-help/update-service-help.component';
+import { DealershipService } from 'app/services/dealership.service';
+import { TeamService } from 'app/services/team.service';
 
 @Component({
   selector: 'app-update-service',
@@ -23,6 +25,9 @@ export class UpdateServicePage implements OnInit {
   isSubmitted = false;
   data: any;
   id: any;
+  deal:any;
+  team:any;
+  type:any;
 
   constructor(private activatedRoute: ActivatedRoute, 
     public fb: FormBuilder, 
@@ -30,9 +35,11 @@ export class UpdateServicePage implements OnInit {
     public _service: ServiceService,
     public router: Router, 
     public toastCtrl: ToastController,
-    public helpModal: ModalController) {
+    public helpModal: ModalController,private dealershipservice: DealershipService, private teamService: TeamService) {
     
       _service = {} as ServiceService;
+      dealershipservice = {} as DealershipService;
+      teamService = {} as  TeamService;
       this.service = new VehicleService();
   
       this.activatedRoute.params.subscribe(params => {
@@ -48,13 +55,19 @@ export class UpdateServicePage implements OnInit {
   }
 
   ngOnInit() {
-    /*if(this.authService.isLoggedIn){
+this.getDealership();
+this.getServicetype();
+this.getTeam();
+
+
+
+    if(this.authService.isLoggedIn){
       return true;
     }
     else{
       this.router.navigate(['/tabs/login']);
     }
-    */
+    
     var coll = document.getElementsByClassName("collapsible");
     var i;
     let up = document.getElementById('up');
@@ -85,6 +98,38 @@ export class UpdateServicePage implements OnInit {
     this.router.navigate(['/tabs/view/service', this.data]);
     await this.presentToast();
   }
+
+
+
+getDealership(){
+
+  this.dealershipservice.getDealershipList().subscribe(response => {
+    console.log(response);
+    this.deal = response;
+  })
+
+}
+
+
+getTeam(){
+  this.teamService.getTeamList().subscribe(response => {
+    console.log(response);
+    this.team = response;
+  })
+
+}
+
+
+getServicetype(){
+  this._service.getServiceTypeList().subscribe(response => {
+    console.log(response);
+    this.type = response;
+  })
+
+
+}
+
+
 
   back(){
     this.router.navigate(['tabs/view/service', this.data]);
