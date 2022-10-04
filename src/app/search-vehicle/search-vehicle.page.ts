@@ -43,13 +43,8 @@ export class SearchVehiclePage implements OnInit {
     }
 
   ngOnInit() {
-
-    
     this.getallVehicles()
-    //this.getModel()
-    
-    
-    if(this.authService.isLoggedIn){
+if(this.authService.isLoggedIn){
       return true;
     }
     else{
